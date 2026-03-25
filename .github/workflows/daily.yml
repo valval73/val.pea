@@ -1,34 +1,32 @@
-name: VAL.PEA — Prix + Signaux (17h35 Lun-Ven)
+name: VAL.PEA — Automation Complète
 
 on:
   schedule:
-    - cron: '35 15 * * 1-5'
+    - cron: '35 15 * * 1-5'   # Lun-Ven 17h35 Paris — Prix + Signaux
+    - cron: '0 7 * * 0'        # Dimanche 9h Paris — Macro Digest
   workflow_dispatch:
 
 jobs:
+  # ─── JOB 1 : Prix + Signaux (chaque soir) ───────────────────
   update-prices:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '35 15 * * 1-5')
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Installer yfinance
         run: pip install yfinance
-
       - name: Mise a jour des prix
         run: python update_prices.py
-
       - name: Analyse signaux et email
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: python alert_signal.py
-
       - name: Commit et push
         run: |
           git config user.name "PEA Bot"
@@ -36,3 +34,19 @@ jobs:
           git add index.html
           git diff --staged --quiet || git commit -m "Cloture $(date '+%d/%m %H:%M')"
           git push
+
+  # ─── JOB 2 : Macro Digest (dimanche matin) ──────────────────
+  macro-digest:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 0')
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Macro Digest hebdomadaire
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python macro_digest.py
