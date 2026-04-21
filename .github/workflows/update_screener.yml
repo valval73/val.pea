@@ -2,9 +2,9 @@ name: Update PEA Screener Prices
 
 on:
   schedule:
-    # Lundi-Jeudi : mise à jour prix uniquement à 17h35 Paris (16h35 UTC)
+    # Lundi-Jeudi : mise à jour prix à 17h35 Paris (16h35 UTC)
     - cron: '35 16 * * 1-4'
-    # Vendredi : recalibration complète zones + prix à 18h00 Paris (17h00 UTC)  
+    # Vendredi : recalibration complète à 18h00 Paris (17h00 UTC)
     - cron: '0 17 * * 5'
   workflow_dispatch:
     inputs:
@@ -25,34 +25,32 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Update prices (and zones on Friday)
+      - name: Update prices (recalibration complète le vendredi)
         run: |
-          # Détecter si on est vendredi ou si recalibration forcée
           DAY=$(date +%u)
           FORCE="${{ github.event.inputs.full_recalibration }}"
-          
           if [ "$DAY" = "5" ] || [ "$FORCE" = "true" ]; then
-            echo "Mode: RECALIBRATION COMPLÈTE (vendredi ou forcé)"
+            echo "Mode: RECALIBRATION COMPLÈTE"
             python update_prices_v2.py --full
           else
             echo "Mode: mise à jour prix quotidienne"
             python update_prices_v2.py
           fi
 
-      - name: Send alert email
+      - name: Send alert email + Telegram
         if: success()
         run: python send_alerts.py
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
           RECIPIENT: ${{ secrets.RECIPIENT_EMAIL }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: Commit and push updated screener
+      - name: Commit and push
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "PEA Screener Bot"
-          git add index.html
-          git diff --staged --quiet || git commit -m "Auto: prix mis à jour le $(date +'%d/%m/%Y %H:%M') (vendredi: zones recalibrées)"
+          git add index.html prices_history.json || true
+          git diff --staged --quiet || git commit -m "Auto: prix mis à jour le $(date +'%d/%m/%Y %H:%M')"
           git push
