@@ -12,22 +12,90 @@ from datetime import datetime
 
 # ─── MAPPING TICKERS → YAHOO FINANCE ─────────────────────────────────────
 YF_MAP = {
+    # ─── CAC 40 ───────────────────────────────────────────────
     'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA',
     'TTE':'TTE.PA','SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA',
     'ACA':'ACA.PA','GLE':'GLE.PA','AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA',
     'ORA':'ORA.PA','VIE':'VIE.PA','RNO':'RNO.PA','SGO':'SGO.PA','CAP':'CAP.PA',
     'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','WLN':'WLN.PA','DSY':'DSY.PA',
     'STM':'STM.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA',
+    'AC':'AC.PA','AF':'AF.PA','BN':'BN.PA','CA':'CA.PA','EN':'EN.PA','SW':'SW.PA',
+    'MT':'MT.AS','URW':'URW.AS','RI':'RI.PA',
+
+    # ─── SBF 120 / Grandes caps ────────────────────────────────
     'GTT':'GTT.PA','ELIS':'ELIS.PA','SEB':'SK.PA','ERF':'ERF.PA',
-    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','SAP':'SAP.DE',
     'COFA':'COFA.PA','SPIE':'SPIE.PA','ALO':'ALO.PA','EDENRED':'EDEN.PA',
     'BVI':'BVI.PA','FDJ':'FDJ.PA','NRO':'NRO.PA','PERNOD':'RI.PA',
-    'GTT':'GTT.PA','TRIGANO':'TRI.PA','BOIRON':'BOI.PA',
-    'VIRBAC':'VIRP.PA','SOP':'SOP.PA','IPSEN':'IPN.PA','REXEL':'RXL.PA',
-    'SEB2':'SK.PA','LNA':'LNA.PA','ABCA':'ABCA.PA','VK':'VK.PA',
-    'FNAC':'FNAC.PA','CNP':'CNP.PA','KLPI':'LI.PA','EIFFAGE':'FGR.PA',
-    'NEXANS':'NEX.PA','PLUXEE':'PLX.PA','FORVIA':'FRVIA.PA',
-    'DIORCDI':'CDI.PA','HERM2':'RMS.PA',
+    'IPSEN':'IPN.PA','REXEL':'RXL.PA','SOP':'SOP.PA',
+    'LNA':'LNA.PA','ABCA':'ABCA.PA','VK':'VK.PA','FNAC':'FNAC.PA',
+    'CNP':'CNP.PA','KLPI':'LI.PA','EIFFAGE':'FGR.PA','NEXANS':'NEX.PA',
+    'PLUXEE':'PLX.PA','FORVIA':'FRVIA.PA',
+    'DIOR':'CDI.PA','IMERYS':'NK.PA','IPSOS':'IPS.PA',
+
+    # ─── International ─────────────────────────────────────────
+    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','SAP':'SAP.DE',
+    'ADYEN':'ADYEN.AS','HEIA':'HEIA.AS','SIEMENS':'SIE.DE','ALV':'ALV.DE',
+    'SOLVB':'SOLB.BB','SYENSQO':'SYENS.BB','PRX':'PRX.AS','MT':'MT.AS',
+
+    # ─── Midcaps françaises ────────────────────────────────────
+    'ESKER':'ESK.PA','LECTRA':'LSS.PA','ARGAN':'ARG.PA',
+    'FREY':'FREY.PA','MERCIALYS':'MERY.PA','COVIVIO':'COV.PA',
+    'ALTAREA':'ALTA.PA','DERICHEBOURG':'DBG.PA','DBG':'DBG.PA',
+    'CLASQUIN':'ALCLA.PA','ALCLF':'ALCLA.PA',
+    'INTERPARFUMS':'ITP.PA','INTPRF':'ITP.PA',
+    'STEF':'STF.PA','STEF2':'STF.PA',
+    'THERMADOR':'THEP.PA','THERMD':'THEP.PA',
+    'LISI':'FII.PA','MANITOU':'MTU.PA','RADIALL':'RAL.PA',
+    'SAMSE':'SAMS.PA','ELIOR':'ELIOR.PA','BIOM':'BIM.PA',
+    'PRECIA':'PREC.PA','LACROIX':'LACR.PA','LACBX':'LACR.PA',
+    'CHSR':'CAS.PA','DASSAV':'AM.PA',
+    'EMEIS':'EMEIS.PA','ORPEA':'ORP.PA',
+    'GALIMMO':'GALIM.PA','MERY':'MRY.PA',
+    'ESCAP':'ESCAP.PA','TRGO':'TRI.PA',
+    'VIRB2':'VIRP.PA','VIRBAC':'VIRP.PA',
+    'IDLG':'IDL.PA','EUFSCI':'ERF.PA',
+    'LDLC':'LDLC.PA','LDLCG':'LDLC.PA',
+    'PLFRY':'PLX.PA','RXLSA':'RXL.PA','PRNRD':'RI.PA',
+    'VALO':'FR.PA','LEGRAND':'LR.PA',
+    'TEP':'TEP.PA','TALY':'TEP.PA','GTTLNG':'GTT.PA',
+    'ALBIA':'ABIO.PA','ALIDS':'ALIDS.PA','ALFPC':'ALFPC.PA',
+    'ALMKT':'ALMKT.PA','ALSEI':'ALSEI.PA','ALTGX':'ALTGX.PA',
+    'NAMR':'NAMR.PA','NAMREN':'NAMR.PA',
+    'KZATM':'KZK.PA','ATO':'ATO.PA','ICAD':'ICA.PA',
+    'SELENV':'SELER.PA','CDRCK':'CDK.PA','SIPH':'SIPH.PA',
+    'LNSBN':'LNS.PA','DBV':'DBV.PA',
+    'ENVEA':'ENVEA.PA','JXS':'JXS.PA','JACMETL':'JXS.PA',
+    'WAGA':'WGAEN.PA','WGAEN':'WGAEN.PA',
+    'IPSNF':'IPN.PA','ITRLN':'ITL.PA','IDSF':'IDS.PA',
+    'GENIE':'GENI.PA','HIPAY':'HPI.PA',
+    'DALET':'DLT.PA','NANOBT':'ABVX.PA','ABIVAX':'ABVX.PA','ABIVXA':'ABVX.PA',
+    'OPM':'VRLA.PA','PLASTIC':'POM.PA','RCO':'RCO.PA',
+    'SCBSM':'SCBSM.PA','SFCA':'WLN2.PA','SIIGRP':'SII.PA',
+    'SODITECH':'SDT.PA','VRMTX':'VRM.PA','FIGEAC':'FGA.PA','FGAERO':'FGA.PA',
+    'SEQENS':'SEQENS.PA','GLEVT':'GLE.PA','LVMHF':'MC.PA',
+
+    # ─── Smallcaps ML* ─────────────────────────────────────────
+    'MLGAZ':'GTT.PA','MLJR':'JRS.PA','MLKAG':'KAG.PA',
+    'MLHRZ':'HRZ.PA','MLGOM':'GOM.PA','MLHAG':'HAG.PA',
+    'MLHRT':'HRT.PA','MLINS':'INS.PA','MLAEP':'AEP.PA',
+    'MLAFF':'AFF.PA','MLALW':'ALW.PA','MLARDK':'ARDK.PA',
+    'MLBCF':'BCF.PA','MLBFF':'BFF.PA','MLBLT':'BLT.PA',
+    'MLCFT':'CFT.PA','MLCHG':'CHG.PA','MLCOB':'COB.PA',
+    'MLFNIV':'FNIV.PA','MLLBP':'LBP.PA','MLMCD':'MCD.PA',
+    'MLNMG':'NMG.PA','MLNMX':'NMX.PA','MLNRD':'NRD.PA',
+    'MLPFT':'PFT.PA','MLPHI':'PHI.PA','MLPSB':'PSB.PA',
+    'MLPVR':'PVR.PA','MLRLV':'RLV.PA','MLSBS':'SBS.PA',
+    'MLSMD':'SMD.PA','MLTPX':'TPX.PA','MLVAL':'VAL.PA',
+    'MLVPN':'VPN.PA','MLVRB':'VRB.PA','MLXIV':'XIV.PA',
+    'MLZPH':'ZPH.PA','MLAERO':'AERO.PA','MLHRT':'HRT.PA',
+    'CSTEU':'CST.PA','HMSNW':'HMS.PA','HIPAY':'HPI.PA',
+    'NEXTY':'NEXO.PA','TIXEO':'TIXEO.PA',
+    'NBNTX':'ABVX.PA','SSYNQ':'SSYNQ.PA','WTRGP':'WTR.PA',
+    'COGEFI':'COFA.PA','LPE':'LPE.PA',
+    # ─── Ajouts finaux ─────────────────────────────────────────
+    'TRIGANO':'TRI.PA','BOIRON':'BOI.PA','ELECOR':'ELEC.PA',
+    'DIORCDI':'CDI.PA','BNENF':'BNF.PA','ALSTOM':'ALO.PA',
+
 }
 
 def fetch_yahoo_fundamentals(yf_ticker):
@@ -378,22 +446,27 @@ if __name__ == '__main__':
         content = f.read()
 
     # Déterminer quels tickers mettre à jour
-    # Par défaut: les 30 plus importantes (top par capitalisation)
-    priority = [
+    # Tous les tickers avec un mapping Yahoo Finance
+    # --all : même comportement (gardé pour compatibilité)
+    # --ticker XXXX : un seul ticker
+    # --top50 : les 50 plus importantes seulement
+    top50 = [
         'MC','AI','OR','RMS','SAN','TTE','SAF','SU','AXA','BNP',
         'ACA','GLE','AIR','KER','PUB','ORA','DG','LR','WLN','DSY',
         'HO','GTT','EL','STM','ASML','NOVO','CAP','VIV','ENGI','SEB',
-        'ELIS','SPIE','COFA','EDENRED','NRO','BVI','PERNOD',
+        'ELIS','SPIE','COFA','EDENRED','NRO','BVI','PERNOD','IPSEN',
+        'IMERYS','LECTRA','ARGAN','COVIVIO','DERICHEBOURG','CLASQUIN',
+        'INTERPARFUMS','STEF','THERMADOR','LISI','MANITOU','BIOM',
     ]
 
-    # Option --all pour tout mettre à jour (plus long)
-    if '--all' in sys.argv:
-        tickers_to_update = [t for t in YF_MAP.keys()]
-    elif '--ticker' in sys.argv:
+    if '--ticker' in sys.argv:
         idx = sys.argv.index('--ticker')
         tickers_to_update = [sys.argv[idx+1]]
+    elif '--top50' in sys.argv:
+        tickers_to_update = top50
     else:
-        tickers_to_update = priority
+        # Par défaut ET --all : TOUS les tickers du mapping
+        tickers_to_update = list(YF_MAP.keys())
 
     print(f"Mise à jour fondamentaux — {len(tickers_to_update)} actions")
     print(f"Mode: {'--all' if '--all' in sys.argv else 'prioritaires'}")
