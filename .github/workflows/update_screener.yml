@@ -1,15 +1,21 @@
-name: Update PEA Screener Prices
+name: Update PEA Screener
 
 on:
   schedule:
+    # Lundi-Jeudi : prix seulement à 17h35 Paris (16h35 UTC)
     - cron: '35 16 * * 1-4'
+    # Vendredi : prix + recalibration zones à 18h00 Paris (17h00 UTC)
     - cron: '0 17 * * 5'
+    # Samedi matin : mise à jour fondamentaux (après clôture semaine)
+    - cron: '0 8 * * 6'
+    # 1er du mois : mise à jour fondamentaux complète (tous les tickers)
+    - cron: '0 9 1 * *'
   workflow_dispatch:
     inputs:
-      full_recalibration:
-        description: 'Forcer recalibration complète'
+      mode:
+        description: 'Mode: prices, fundamentals, full'
         required: false
-        default: 'false'
+        default: 'prices'
 
 permissions:
   contents: write
@@ -28,20 +34,47 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Update prices
+      - name: Determine mode
+        id: mode
         run: |
-          DAY=$(date +%u)
-          FORCE="${{ github.event.inputs.full_recalibration }}"
-          if [ "$DAY" = "5" ] || [ "$FORCE" = "true" ]; then
-            echo "Mode: RECALIBRATION COMPLÈTE (vendredi)"
+          DAY=$(date +%u)   # 1=lun ... 7=dim
+          DOM=$(date +%d)   # jour du mois
+          MODE="${{ github.event.inputs.mode }}"
+
+          if [ "$MODE" = "full" ] || [ "$DOM" = "01" ]; then
+            echo "mode=full" >> $GITHUB_OUTPUT
+            echo "Mode: COMPLET (prix + fondamentaux tous tickers)"
+          elif [ "$MODE" = "fundamentals" ] || [ "$DAY" = "6" ]; then
+            echo "mode=fundamentals" >> $GITHUB_OUTPUT
+            echo "Mode: FONDAMENTAUX (top 37 actions)"
+          elif [ "$DAY" = "5" ]; then
+            echo "mode=friday" >> $GITHUB_OUTPUT
+            echo "Mode: VENDREDI (prix + recalibration zones)"
+          else
+            echo "mode=prices" >> $GITHUB_OUTPUT
+            echo "Mode: PRIX quotidiens"
+          fi
+
+      - name: Update prices
+        if: steps.mode.outputs.mode != 'fundamentals'
+        run: |
+          if [ "${{ steps.mode.outputs.mode }}" = "friday" ] || [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
             python update_prices_v2.py --full
           else
-            echo "Mode: mise à jour prix quotidienne"
             python update_prices_v2.py
           fi
 
+      - name: Update fundamentals
+        if: steps.mode.outputs.mode == 'fundamentals' || steps.mode.outputs.mode == 'full'
+        run: |
+          if [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
+            python update_fundamentals.py --all
+          else
+            python update_fundamentals.py
+          fi
+
       - name: Send alert email + Telegram
-        if: success()
+        if: steps.mode.outputs.mode == 'prices' || steps.mode.outputs.mode == 'friday'
         run: python send_alerts.py
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
@@ -54,6 +87,6 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "PEA Screener Bot"
-          git add index.html prices_history.json || true
-          git diff --staged --quiet || git commit -m "Auto: prix mis à jour le $(date +'%d/%m/%Y %H:%M')"
+          git add index.html prices_history.json fundamentals_log.json || true
+          git diff --staged --quiet || git commit -m "Auto: $(date +'%d/%m/%Y %H:%M') — mode=${{ steps.mode.outputs.mode }}"
           git push
