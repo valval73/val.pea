@@ -6007,7 +6007,7 @@ const PTF_REEL=[
   {ticker:'ELIS',name:'Elis',nb:45,pru:18.9524,type:'ACTION'},
   {ticker:'EL',name:'EssilorLuxottica',nb:3,pru:211.6633,type:'ACTION'},
   {ticker:'GTT',name:'Gaztransport Technigaz',nb:4,pru:196.7575,type:'ACTION'},
-  {ticker:'RMS',name:'Hermes International',nb:2,pru:1797.40,type:'ACTION'},
+  {ticker:'RMS',name:'Hermes International',nb:2,pru:1795.95,type:'ACTION'},
   {ticker:'AI',name:'Air Liquide',nb:10,pru:159.308,type:'ACTION'},
   {ticker:'LR',name:'Legrand',nb:5,pru:139.234,type:'ACTION'},
   {ticker:'SU',name:'Schneider Electric',nb:7,pru:240.7243,type:'ACTION'},
@@ -6387,7 +6387,7 @@ function ptfRender(filter='all'){
       <td onclick="if(typeof jump==='function'){showPg('sc',document.querySelectorAll('.ntab')[0]);const i=fil.findIndex(x=>x.ticker==='${pos.ticker}');if(i>=0)jump(i);}" title="Voir fiche">${pos.ticker}</td>
       <td>${s?s.name:pos.ticker}</td>
       <td>${pos.qty}</td>
-      <td>${pos.pru.toFixed(2)}€</td>
+      <td title="${(function(){var h=PTF_HIST.filter(function(x){return x.ticker===pos.ticker&&(x.type==='achat'||x.type==='renforcement');});return h.length>1?h.map(function(x){return (x.type==='renforcement'?'🔄':'🛒')+' '+x.date+' : '+x.qty+'×'+x.pru+'€';}).join('\n'):'Premier achat';})()}" style="cursor:help">${pos.pru.toFixed(2)}€${(function(){var h=PTF_HIST.filter(function(x){return x.ticker===pos.ticker&&(x.type==='achat'||x.type==='renforcement');});return h.length>1?'<span style="font-size:8px;color:var(--mu);margin-left:2px">('+h.length+'×)</span>':'';})()}</td>
       <td><b>${cours.toFixed(2)}€</b></td>
       <td>${fmt(valeur)}€</td>
       <td style="color:${pnl>=0?'var(--gn)':'var(--rd)'}">${pnl>=0?'+':''}${fmt(pnl)}€</td>
@@ -7727,63 +7727,86 @@ const PTF_ENRICHED = {
 };
 
 function exportCalendar(){
-  // Génère un fichier .ics avec toutes les dates de résultats du portefeuille
-  var ptf = PTF || [];
-  var events = [];
-  var now = new Date();
+  var events=[];
+  var now=new Date();
+  var ptfTickers=(PTF||[]).map(function(p){return p.ticker;});
 
-  ptf.forEach(function(pos){
-    var s=S.find(function(x){return x.ticker===pos.ticker;});
-    if(!s||!s.res) return;
-    var res=s.res;
-    var quarters=['q1','q2','q3','qa'];
-    quarters.forEach(function(q){
-      if(!res[q]) return;
-      // Format: MM/YYYY
-      var parts=res[q].split('/');
-      if(parts.length!==2) return;
-      var month=parseInt(parts[0])-1;
-      var year=parseInt(parts[1]);
-      var d=new Date(year,month,15); // Milieu du mois
-      if(d<now) return; // Ignorer les passés
-      var label='Résultats '+s.ticker+' '+q.toUpperCase()+' ('+s.name+')';
-      events.push({date:d, label:label, ticker:s.ticker});
+  // Source 1 : CAL[] global
+  if(typeof CAL!=='undefined'){
+    Object.keys(CAL).forEach(function(ticker){
+      var entry=CAL[ticker];
+      var s=S.find(function(x){return x.ticker===ticker;});
+      if(!s)return;
+      var inPtf=ptfTickers.indexOf(ticker)>=0;
+      ['q1','q2','q3','q4','qa','s1','s2'].forEach(function(q){
+        if(!entry[q])return;
+        var ds=entry[q];
+        var d=null;
+        if(/^\d{2}\/\d{4}$/.test(ds)){var p=ds.split('/');d=new Date(parseInt(p[1]),parseInt(p[0])-1,15);}
+        else if(/^\d{2}\/\d{2}\/\d{4}$/.test(ds)){var p=ds.split('/');d=new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));}
+        else if(/^\d{4}-\d{2}-\d{2}$/.test(ds)){d=new Date(ds);}
+        if(!d||isNaN(d.getTime())||d<now)return;
+        events.push({date:d,label:'Résultats '+ticker+' '+q.toUpperCase()+' ('+s.name+')',ticker:ticker});
+      });
+    });
+  }
+
+  // Source 2 : cats[] avec mots-clés résultats
+  S.forEach(function(s){
+    if(!s.cats||!s.cats.length)return;
+    s.cats.forEach(function(cat){
+      if(!cat.t||!cat.w)return;
+      var t=cat.t.toLowerCase();
+      if(t.indexOf('résultat')<0&&t.indexOf('resultat')<0&&t.indexOf('earnings')<0)return;
+      var yr=cat.w.match(/\d{4}/);
+      if(!yr)return;
+      var y=parseInt(yr[0]);
+      var qm=cat.w.match(/T(\d)/);
+      var sm=cat.w.match(/S(\d)/);
+      var month=qm?(parseInt(qm[1])-1)*3+1:sm?(parseInt(sm[1])-1)*6+1:3;
+      var d=new Date(y,month-1,15);
+      if(d<now)return;
+      events.push({date:d,label:'Résultats '+s.ticker+' '+cat.w+' ('+s.name+')',ticker:s.ticker});
     });
   });
 
+  // Dédupliquer
+  var seen={};
+  events=events.filter(function(e){
+    var k=e.ticker+'-'+e.date.toISOString().slice(0,10);
+    if(seen[k])return false;seen[k]=true;return true;
+  });
+  events.sort(function(a,b){return a.date-b.date;});
+
   if(events.length===0){
-    alert('Aucune date de résultats à venir dans ton portefeuille.');
+    alert('Aucune date de résultats à venir.\nConsulte les fiches Calendrier dans le screener.');
     return;
   }
 
-  // Générer le .ics
   var ics='BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//VAL.PEA//Calendrier Résultats//FR\n';
   events.forEach(function(ev){
     var d=ev.date;
     var ds=d.getFullYear()+('0'+(d.getMonth()+1)).slice(-2)+('0'+d.getDate()).slice(-2);
-    var uid=ev.ticker+'-'+ds+'@valpea';
     ics+='BEGIN:VEVENT\n';
-    ics+='UID:'+uid+'\n';
+    ics+='UID:'+ev.ticker+'-'+ds+'@valpea\n';
     ics+='DTSTART;VALUE=DATE:'+ds+'\n';
     ics+='DTEND;VALUE=DATE:'+ds+'\n';
-    ics+='SUMMARY:📅 '+ev.label+'\n';
+    ics+='SUMMARY:Résultats '+ev.label+'\n';
     ics+='DESCRIPTION:VAL.PEA — Résultats à surveiller\n';
-    ics+='BEGIN:VALARM\nTRIGGER:-P7D\nACTION:DISPLAY\nDESCRIPTION:J-7 avant résultats '+ev.ticker+'\nEND:VALARM\n';
+    ics+='BEGIN:VALARM\nTRIGGER:-P7D\nACTION:DISPLAY\nDESCRIPTION:J-7 résultats '+ev.ticker+'\nEND:VALARM\n';
     ics+='END:VEVENT\n';
   });
   ics+='END:VCALENDAR';
 
-  // Télécharger
   var blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
-  a.href=url; a.download='valpea_resultats.ics';
-  document.body.appendChild(a); a.click();
+  a.href=url;a.download='valpea_resultats.ics';
+  document.body.appendChild(a);a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  alert('Fichier valpea_resultats.ics téléchargé !\nOuvre-le pour ajouter tous les résultats à ton calendrier (iPhone, Google Calendar...)');
+  alert('Fichier valpea_resultats.ics téléchargé !\nOuvre-le pour importer dans iPhone/Google Calendar.');
 }
-
 function buildBt(){
   // Populate datalist
   const dl = document.getElementById('pv-list');
@@ -8396,7 +8419,7 @@ var PTF_VAL_DEFAULT = [
   {id:'v4',ticker:'ELIS',qty:45,pru:18.9524,date:'2025-01-01',note:'Elis'},
   {id:'v5',ticker:'EL',qty:3,pru:211.6633,date:'2025-01-01',note:'EssilorLuxottica'},
   {id:'v6',ticker:'GTT',qty:4,pru:196.7575,date:'2025-01-01',note:'GTT GNL'},
-  {id:'v7',ticker:'RMS',qty:2,pru:1797.40,date:'2026-04-15',note:'Hermes - PRU moyen apres achat avr 2026'},
+  {id:'v7',ticker:'RMS',qty:2,pru:1795.95,date:'2026-04-15',note:'Hermes 2 titres - PRU moyen (2037.90 + 1554) / 2 = 1795.95'},
   {id:'v8',ticker:'AI',qty:10,pru:159.308,date:'2025-01-01',note:'Air Liquide'},
   {id:'v9',ticker:'LR',qty:5,pru:139.234,date:'2025-01-01',note:'Legrand'},
   {id:'v10',ticker:'SU',qty:7,pru:240.7243,date:'2025-01-01',note:'Schneider Electric'},
@@ -8522,7 +8545,7 @@ function detectAccumulation(s){
   var score=0; var signals=[];
   var p=s.price||0, rsi=s.rsi||50, mm200=s.mm200||0, mm50=s.mm50||0;
   var z=dynZone(s);
-  if(rsi>=25&&rsi<=40){score+=30;signals.push({icon:'🔵',txt:'RSI '+rsi+' — survente (25-40) : accumulation profonde'});}
+  if(rsi>=25&&rsi<=60){score+=30;signals.push({icon:'🔵',txt:'RSI '+rsi+' — zone valeur (25-60) : accumulation profonde'});}
   else if(rsi>40&&rsi<=50){score+=15;signals.push({icon:'🟡',txt:'RSI '+rsi+' — zone neutre-basse : rebond possible'});}
   if(mm200>0){
     var d200=(p-mm200)/mm200*100;
@@ -10355,7 +10378,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:4px">Score /100 = Triptyque résultats (60%) + Accumulation institutionnelle (40%)</div>
   </div>
   <div style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:#444;line-height:1.8">
-    <b>R/R</b> = ratio risque/rendement &nbsp;·&nbsp; <b>Taille</b> = % portefeuille recommandé (Kelly) &nbsp;·&nbsp; 🔵 RSI 25-40 &nbsp;·&nbsp; 🟡 MM200 &nbsp;·&nbsp; 🟢 Zone DCF
+    <b>R/R</b> = ratio risque/rendement &nbsp;·&nbsp; <b>Taille</b> = % portefeuille recommandé (Kelly) &nbsp;·&nbsp; 🔵 RSI 25-60 &nbsp;·&nbsp; 🟡 MM200 &nbsp;·&nbsp; 🟢 Zone DCF
   </div>
   <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
     <button onclick="filtAlertes('all',this)" id="al-btn-all" style="padding:7px 14px;background:#0f2540;color:#f0d080;border:none;border-radius:4px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700">Toutes</button>
@@ -10582,7 +10605,7 @@ document.addEventListener('DOMContentLoaded',function(){
       <div><div style="font-size:14px;font-weight:700;color:#0f2540">Le Triptyque — les 3 feux verts</div><div style="font-size:11px;color:var(--mu)">Timing technique confirme-t-il le fondamental ?</div></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
-      <div style="text-align:center;padding:12px 8px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:6px"><div style="font-size:20px">🔵</div><div style="font-size:10px;font-weight:700;color:#7c3aed;margin-top:4px">RSI 25-55</div><div style="font-size:9px;color:var(--mu);margin-top:2px">Zone de valeur</div></div>
+      <div style="text-align:center;padding:12px 8px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:6px"><div style="font-size:20px">🔵</div><div style="font-size:10px;font-weight:700;color:#7c3aed;margin-top:4px">RSI 25-60</div><div style="font-size:9px;color:var(--mu);margin-top:2px">Zone de valeur</div></div>
       <div style="text-align:center;padding:12px 8px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:6px"><div style="font-size:20px">🟡</div><div style="font-size:10px;font-weight:700;color:#7c3aed;margin-top:4px">&gt; MM200</div><div style="font-size:9px;color:var(--mu);margin-top:2px">Tendance long terme</div></div>
       <div style="text-align:center;padding:12px 8px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:6px"><div style="font-size:20px">🟢</div><div style="font-size:10px;font-weight:700;color:#7c3aed;margin-top:4px">Zone DCF</div><div style="font-size:9px;color:var(--mu);margin-top:2px">Prix dans la zone</div></div>
     </div>
