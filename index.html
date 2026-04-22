@@ -5143,8 +5143,21 @@ function render(s){
               </div>
             </div>
             <div style="margin-top:8px;padding:6px 10px;background:var(--sf);border-radius:5px;font-size:10px;color:var(--mu);font-style:italic">
-              ${s.fcf>=10&&s.margin>=15?'Machine a cash — FCF couvre largement les besoins':s.fcf>=5?'FCF correct — surveiller la conversion':'Faible generation de cash libre'}
+              ${s.fcf>=10&&s.margin>=15?'Machine a cash — FCF couvre les besoins':s.fcf>=5?'FCF correct — surveiller la conversion':'Faible generation de cash libre'}
             </div>
+            ${(function(){
+              if(!s.ca_n||!s.ca_n1||!s.ca_n2) return '';
+              var tc=s.ca_n>s.ca_n1&&s.ca_n1>s.ca_n2?'#16a34a':s.ca_n<s.ca_n1?'#dc2626':'#d97706';
+              var ti=s.ca_n>s.ca_n1?'↑':s.ca_n<s.ca_n1?'↓':'→';
+              var tm=s.marg_trend==='up'?'#16a34a':s.marg_trend==='down'?'#dc2626':'#d97706';
+              var mi=s.marg_trend==='up'?'↑':s.marg_trend==='down'?'↓':'→';
+              return '<div style="margin-top:6px;padding:6px 8px;background:var(--sf);border-radius:5px">'
+                +'<div style="font-size:9px;color:var(--mu)">CA sur 3 ans : '
+                +'<b>'+s.ca_n2+'</b> → <b>'+s.ca_n1+'</b> → <b style="color:'+tc+'">'+s.ca_n+' Md€</b> <span style="color:'+tc+'">'+ti+'</span></div>'
+                +(s.marg_n&&s.marg_n1&&s.marg_n2?'<div style="font-size:9px;color:var(--mu);margin-top:2px">Marge : '
+                +'<b>'+s.marg_n2+'%</b> → <b>'+s.marg_n1+'%</b> → <b style="color:'+tm+'">'+s.marg_n+'%</b> <span style="color:'+tm+'">'+mi+'</span></div>':'')
+                +'</div>';
+            })()}
           </div>
 
           <!-- PE vs pairs + Track record -->
