@@ -2,18 +2,15 @@ name: Update PEA Screener
 
 on:
   schedule:
-    # Lundi-Jeudi : prix seulement à 17h35 Paris (16h35 UTC)
-    - cron: '35 16 * * 1-4'
-    # Vendredi : prix + recalibration zones à 18h00 Paris (17h00 UTC)
-    - cron: '0 17 * * 5'
-    # Samedi matin : mise à jour fondamentaux (après clôture semaine)
-    - cron: '0 8 * * 6'
-    # 1er du mois : mise à jour fondamentaux complète (tous les tickers)
-    - cron: '0 9 1 * *'
+    - cron: '35 16 * * 1-4'   # Lun-Jeu 17h35 Paris : prix + mail soir
+    - cron: '0 17 * * 5'       # Vendredi 18h00 : prix + recalibration zones
+    - cron: '0 8 * * 6'        # Samedi 8h00 : fondamentaux
+    - cron: '0 1 * * *'        # 1er du mois : fondamentaux complets
+    - cron: '0 7 * * 0'        # Dimanche 9h00 Paris : mail spécial avec insights YouTube
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Mode: prices, fundamentals, full'
+        description: 'prices / fundamentals / full / sunday'
         required: false
         default: 'prices'
 
@@ -24,39 +21,34 @@ jobs:
   update-screener:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Determine mode
         id: mode
         run: |
-          DAY=$(date +%u)   # 1=lun ... 7=dim
-          DOM=$(date +%d)   # jour du mois
+          DAY=$(date +%u)
+          DOM=$(date +%d)
           MODE="${{ github.event.inputs.mode }}"
-
-          if [ "$MODE" = "full" ] || [ "$DOM" = "01" ]; then
+          if   [ "$MODE" = "sunday" ] || [ "$DAY" = "7" ]; then
+            echo "mode=sunday" >> $GITHUB_OUTPUT
+          elif [ "$MODE" = "full" ] || [ "$DOM" = "01" ]; then
             echo "mode=full" >> $GITHUB_OUTPUT
-            echo "Mode: COMPLET (prix + fondamentaux tous tickers)"
           elif [ "$MODE" = "fundamentals" ] || [ "$DAY" = "6" ]; then
             echo "mode=fundamentals" >> $GITHUB_OUTPUT
-            echo "Mode: FONDAMENTAUX (top 37 actions)"
           elif [ "$DAY" = "5" ]; then
             echo "mode=friday" >> $GITHUB_OUTPUT
-            echo "Mode: VENDREDI (prix + recalibration zones)"
           else
             echo "mode=prices" >> $GITHUB_OUTPUT
-            echo "Mode: PRIX quotidiens"
           fi
 
       - name: Update prices
-        if: steps.mode.outputs.mode != 'fundamentals'
+        if: steps.mode.outputs.mode != 'fundamentals' && steps.mode.outputs.mode != 'sunday'
         run: |
           if [ "${{ steps.mode.outputs.mode }}" = "friday" ] || [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
             python update_prices_v2.py --full
@@ -66,16 +58,11 @@ jobs:
 
       - name: Update fundamentals
         if: steps.mode.outputs.mode == 'fundamentals' || steps.mode.outputs.mode == 'full'
-        run: |
-          if [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
-            python update_fundamentals.py --all
-          else
-            python update_fundamentals.py
-          fi
+        run: python update_fundamentals.py
 
-      - name: Send alert email + Telegram
+      - name: Send alert mail (soir semaine)
         if: steps.mode.outputs.mode == 'prices' || steps.mode.outputs.mode == 'friday'
-        run: python send_alerts.py
+        run: python send_alerts_v2.py
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
@@ -83,10 +70,21 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
+      - name: Send SUNDAY mail (avec insights YouTube)
+        if: steps.mode.outputs.mode == 'sunday'
+        run: python send_alerts_v2.py --insights
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
+          RECIPIENT: ${{ secrets.RECIPIENT_EMAIL }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
       - name: Commit and push
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "PEA Screener Bot"
           git add index.html prices_history.json fundamentals_log.json || true
-          git diff --staged --quiet || git commit -m "Auto: $(date +'%d/%m/%Y %H:%M') — mode=${{ steps.mode.outputs.mode }}"
+          git diff --staged --quiet || git commit -m "Auto: $(date +'%d/%m/%Y %H:%M') — ${{ steps.mode.outputs.mode }}"
           git push
