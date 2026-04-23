@@ -4626,6 +4626,11 @@ function calcQARP(s){
   else if(upsidePct>=0) v=5;
   else v=1;
 
+  // 4b. INTÉGRITÉ COMPTABLE (Beneish M-Score) — malus si suspect
+  var mScore = calcBeneish(s);
+  if(mScore > -1.49) v = Math.max(1, v - 8);  // Alerte élevée : malus -8
+  else if(mScore > -1.78) v = Math.max(1, v - 3); // Zone grise : malus -3
+
   // 5. MOMENTUM (zone, RSI, MM200)
   var m = 0;
   var inZ = s.price>=s.el&&s.price<=s.eh;
@@ -4656,6 +4661,63 @@ function qarpVerdict(score){
   if(score>=50) return {txt:'SURVEILLER — ATTENDRE ZONE', col:'#d97706', bg:'#fef3c7', icon:'👁️'};
   if(score>=35) return {txt:'TROP CHER OU QUALITE INSUFFISANTE', col:'#ea580c', bg:'#ffedd5', icon:'⏳'};
   return {txt:'EVITER', col:'#dc2626', bg:'#fee2e2', icon:'🚫'};
+}
+
+
+// ═══════════ BENEISH M-SCORE (détection fraude comptable) ═══════════
+function calcBeneish(s){
+  // Le M-Score utilise 8 ratios sur données N vs N-1
+  // On estime les composantes depuis les données disponibles dans S[]
+  // Résultat: M > -1.78 = suspect, M > -1.49 = très suspect
+
+  // DSRI : Days Sales Receivable Index (croissance créances/CA)
+  // GMIX : Gross Margin Index (dégradation marges)
+  // AQI  : Asset Quality Index (actifs incorporels/total)
+  // SGI  : Sales Growth Index (croissance CA)
+  // DEPI : Depreciation Index (amortissement ralenti)
+  // SGAI : Sales General Admin Index (coûts admin)
+  // LVGI : Leverage Index (endettement croissant)
+  // TATA : Total Accruals to Total Assets
+
+  var dsri = 1.0; // Neutre faute de données créances détaillées
+  var gmix = s.marg_n1 && s.marg_n ? (s.marg_n1/100) / Math.max(s.marg_n/100, 0.01) : 1.0;
+  gmix = Math.max(0.5, Math.min(2.5, gmix));
+  var aqi  = s.pb > 0 ? Math.min(1.5, 1 + (s.pb > 3 ? 0.15 : 0)) : 1.0; // Proxy: PB élevé = plus d'intangibles
+  var sgi  = s.revg > 0 ? 1 + s.revg/100 : 1.0;
+  var depi = 1.0; // Neutre
+  var sgai = s.margin > 0 ? Math.min(1.5, 1 + (s.om > 0 ? (s.om - s.margin) / 100 : 0)) : 1.0;
+  var lvgi = s.debt > 0 ? Math.min(2.0, 1 + s.debt * 0.1) : 1.0;
+  // TATA: accruals = (résultat net - CFO) / actifs totaux
+  // On estime: marge nette élevée + FCF faible = accruals élevés
+  var tata = 0;
+  if(s.margin > 0 && s.fcf > 0){
+    var accrualProxy = (s.margin - s.fcf) / 100;
+    tata = Math.max(-0.1, Math.min(0.15, accrualProxy));
+  }
+
+  // Formule Beneish 1999
+  var m = -4.84
+    + 0.920 * dsri
+    + 0.528 * gmix
+    + 0.404 * aqi
+    + 0.892 * sgi
+    + 0.115 * depi
+    - 0.172 * sgai
+    + 4.679 * tata
+    - 0.327 * lvgi;
+
+  return Math.round(m * 100) / 100;
+}
+
+function beneishVerdict(m){
+  if(m > -1.49) return {label:'ALERTE ÉLEVÉE', col:'#dc2626', bg:'#fee2e2', icon:'🚨',
+    desc:'Manipulation comptable probable. Vérifier les états financiers primaires.'};
+  if(m > -1.78) return {label:'ZONE GRISE', col:'#d97706', bg:'#fef3c7', icon:'⚠️',
+    desc:'Signal ambigu. Analyser les flux de trésorerie vs résultat net.'};
+  if(m > -2.20) return {label:'NORMAL', col:'#16a34a', bg:'#dcfce7', icon:'✅',
+    desc:'Pas de signal de manipulation détecté.'};
+  return {label:'TRÈS PRUDENT', col:'#2563eb', bg:'#dbeafe', icon:'🛡️',
+    desc:'Bilan très conservateur. Qualité comptable excellente.'};
 }
 
 function render(s){
@@ -5051,6 +5113,44 @@ function render(s){
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- BLOC 2c : BENEISH M-SCORE -->
+      <div style="padding:0 24px 18px;border-bottom:1px solid var(--bd)">
+        <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--mu);margin-bottom:10px">02c — Beneish M-Score — Détection manipulation comptable</div>
+        ${(function(){
+          var m=calcBeneish(s);
+          var v=beneishVerdict(m);
+          var components=[
+            {l:'Croissance marge (GMIX)',ok:!(s.marg_n1&&s.marg_n&&s.marg_n1>s.marg_n)},
+            {l:'Croissance CA (SGI)',ok:s.revg<=15},
+            {l:'Accruals faibles (TATA)',ok:s.margin<=s.fcf+5},
+            {l:'Levier stable (LVGI)',ok:s.debt<=2},
+            {l:'Marge op. vs nette',ok:s.om>0&&Math.abs((s.om||s.margin)-s.margin)<8},
+          ];
+          var okCount=components.filter(function(x){return x.ok;}).length;
+          return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">'+
+            '<div>'+
+              '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
+                '<div style="font-size:28px;font-weight:700;font-family:IBM Plex Mono,monospace;color:'+v.col+'">'+m+'</div>'+
+                '<div>'+
+                  '<div style="padding:3px 10px;background:'+v.bg+';border-radius:4px;font-size:10px;font-weight:700;color:'+v.col+'">'+v.icon+' '+v.label+'</div>'+
+                  '<div style="font-size:9px;color:var(--mu);margin-top:3px">Seuil alerte : &gt; -1.78 (Enron = -0.47)</div>'+
+                '</div>'+
+              '</div>'+
+              '<div style="font-size:10px;color:var(--tx);line-height:1.6;padding:8px 10px;background:var(--sf);border-radius:5px">'+v.desc+'</div>'+
+            '</div>'+
+            '<div>'+
+              '<div style="font-size:9px;color:var(--mu);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Composantes analysées</div>'+
+              components.map(function(x){
+                return '<div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid var(--bd)">'+
+                  '<span style="font-size:12px">'+(x.ok?'✅':'⚠️')+'</span>'+
+                  '<span style="font-size:10px;color:var(--tx)">'+x.l+'</span></div>';
+              }).join('')+
+              '<div style="margin-top:6px;font-size:9px;color:var(--mu)">Score OK : '+okCount+'/'+components.length+' — Sources: Beneish 1999, Ciesielski & Weirich</div>'+
+            '</div>'+
+          '</div>';
+        })()}
       </div>
 
       <!-- BLOC 3 : VERDICT PRIX -->
