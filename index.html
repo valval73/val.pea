@@ -4665,6 +4665,30 @@ function qarpVerdict(score){
 
 
 // ═══════════ BENEISH M-SCORE (détection fraude comptable) ═══════════
+
+// ===== GOUVERNANCE (Harrabi) =====
+function calcGouvernance(s){
+  var score=0,signals=[];
+  if(s.ins&&s.ins.length>0){
+    var a=s.ins.filter(function(i){return i[0]==='Achat';});
+    if(a.length>=2){score+=30;signals.push({ok:true,txt:'Insiders ach\u00e8tent ('+a.length+'x)'});}
+    else if(a.length===1){score+=15;signals.push({ok:true,txt:'1 achat insider r\u00e9cent'});}
+    else{signals.push({ok:false,txt:'Aucun achat insider'});}
+  } else {score+=5;signals.push({ok:null,txt:'Insiders non renseign\u00e9s'});}
+  if(s.track&&s.track.length>0){
+    var ok=s.track.filter(function(t){return t.ok==='ok';}).length;
+    var pct=Math.round(ok/s.track.length*100);
+    if(pct>=80){score+=35;signals.push({ok:true,txt:'Direction cr\u00e9dible '+pct+'%'});}
+    else if(pct>=60){score+=20;signals.push({ok:null,txt:'Direction correcte '+pct+'%'});}
+    else{score+=5;signals.push({ok:false,txt:'Direction peu fiable '+pct+'%'});}
+  } else {score+=10;signals.push({ok:null,txt:'Historique non renseign\u00e9'});}
+  if(s.pb>0&&s.pb<3&&s.ins&&s.ins.length>0){score+=20;signals.push({ok:true,txt:'PB<3x + insiders actifs'});}
+  else if(s.ins&&s.ins.length>0){score+=10;signals.push({ok:true,txt:'Insiders pr\u00e9sents'});}
+  else{signals.push({ok:null,txt:'Alignement non v\u00e9rifi\u00e9'});}
+  if(s.score==='A'){score+=15;signals.push({ok:true,txt:'Grade A'});}
+  else if(s.score==='B'){score+=8;}
+  return{score:Math.min(100,score),signals:signals};
+}
 function calcBeneish(s){
   // Le M-Score utilise 8 ratios sur données N vs N-1
   // On estime les composantes depuis les données disponibles dans S[]
@@ -5153,6 +5177,50 @@ function render(s){
         })()}
       </div>
 
+      <!-- BLOC 2d : GOUVERNANCE -->
+      <div style="padding:0 24px 18px;border-bottom:1px solid var(--bd)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--mu);margin-bottom:10px">02d &#8212; Gouvernance</div>
+            ${(function(){
+              var g=calcGouvernance(s);
+              var col=g.score>=70?'var(--gn)':g.score>=45?'var(--gd)':'var(--rd)';
+              var lbl=g.score>=70?'Bonne gouvernance':g.score>=45?'Correcte':'Faible';
+              return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
+                '<div style="font-size:26px;font-weight:700;font-family:IBM Plex Mono,monospace;color:'+col+'">'+g.score+'</div>'+
+                '<div style="padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;background:'+(g.score>=70?'rgba(34,197,94,.1)':g.score>=45?'rgba(245,158,11,.1)':'rgba(239,68,68,.1)')+';color:'+col+'">'+lbl+'</div>'+
+              '</div>'+
+              g.signals.map(function(sig){
+                return '<div style="display:flex;align-items:center;gap:5px;padding:3px 0;border-bottom:1px solid var(--bd)">'+
+                  '<span>'+(sig.ok===true?'&#10003;':sig.ok===false?'&#10007;':'&#9675;')+'</span>'+
+                  '<span style="font-size:10px;color:var(--tx)">'+sig.txt+'</span></div>';
+              }).join('');
+            })()}
+          </div>
+          <div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--mu);margin-bottom:10px">Couverture analystes</div>
+            <div style="background:var(--sf);border-radius:6px;padding:10px 12px;margin-bottom:8px">
+              ${(function(){
+                var total=(s.cb||0)+(s.ch||0)+(s.cs||0);
+                var col=total<=3?'#7c3aed':total<=6?'#2563eb':'#16a34a';
+                var lbl=total<=3?'Peu couvert (alpha potentiel)':total<=6?'Couverture modérée':'Bien couvert';
+                return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'+
+                  '<span style="font-size:10px;color:var(--tx);font-weight:700">'+lbl+'</span>'+
+                  '<span style="font-size:12px;font-family:IBM Plex Mono,monospace;color:'+col+'">'+total+' analystes</span></div>'+
+                  '<div style="display:flex;gap:8px">'+
+                  '<span style="background:rgba(34,197,94,.1);color:var(--gn);padding:2px 8px;border-radius:3px;font-size:10px">Achat: '+(s.cb||0)+'</span>'+
+                  '<span style="background:rgba(245,158,11,.1);color:var(--gd);padding:2px 8px;border-radius:3px;font-size:10px">Neutre: '+(s.ch||0)+'</span>'+
+                  '<span style="background:rgba(239,68,68,.1);color:var(--rd);padding:2px 8px;border-radius:3px;font-size:10px">Vente: '+(s.cs||0)+'</span></div>';
+              })()}
+            </div>
+            ${s.cats&&s.cats.length>0?
+              '<div style="font-size:9px;color:var(--mu);text-transform:uppercase;margin-bottom:5px">Catalyseurs</div>'+
+              s.cats.slice(0,3).map(function(cat){return '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--bd)"><span style="font-size:10px">'+cat.t+'</span><span style="font-size:9px;color:var(--mu)">'+cat.w+'</span></div>';}).join('')
+              :''}
+          </div>
+        </div>
+      </div>
+
       <!-- BLOC 3 : VERDICT PRIX -->
       <div style="padding:18px 24px">
         <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--mu);margin-bottom:12px">03 — À quel prix agir</div>
@@ -5518,7 +5586,7 @@ function loadMM200Banner(s){
 // ═══════════ QUEUE ═══════════
 function buildQ(){
   const l=document.getElementById('ql');
-  l.innerHTML=fil.map((s,i)=>`<div class="qi${i===idx?' active':''}" onclick="jump(${i})"><span class="qi-n">${i+1}</span><span class="qi-t">${s.ticker}</span><span class="qi-nm">${s.name}</span><span class="qg ${qGCl(s.score)}">${s.score}</span></div>`).join('');
+  l.innerHTML=fil.map((s,i)=>`<div class="qi${i===idx?' active':''}" onclick="jump(${i})"><span class="qi-n">${i+1}</span><span class="qi-t">${s.ticker}</span><span class="qi-nm">${s.name}</span><span class="qg ${qGCl(s.score)}">${s.score}</span>${(s.cb!=null&&(s.cb+(s.ch||0)+(s.cs||0))<=3)?'<span style="font-size:7px;background:rgba(124,58,237,.15);color:#7c3aed;border-radius:2px;padding:1px 3px" title="Peu couvert">*</span>':''}</div>`).join('');
   document.getElementById('qcnt').textContent=fil.length+' val.';
   const a=l.querySelector('.active');
   if(a)a.scrollIntoView({block:'nearest'});
@@ -5582,7 +5650,7 @@ function showPg(pg,btn){
   if(pg==='labo')laboInit();
   if(pg==='pres')buildPres();
   if(pg==='plan')buildPlan();
-  if(pg==='bt')buildBt();
+  if(pg==='bt'){buildBt();setTimeout(simPEA,100);}
   if(pg==='al'){_alerteFilter='all';buildAlertes();}
   if(pg==='jnl'){setTimeout(function(){jnlRender('all');},50);}
 }
@@ -6394,6 +6462,42 @@ function ptfRender(filter='all'){
         '</div>';
     }).join('');
   }
+  // ===== ALERTES SECTORIELLE + CORRELATION =====
+  (function(){
+    if(PTF.length<2)return;
+    var total=PTF.reduce(function(sum,pos){
+      var s=S.find(function(x){return x.ticker===pos.ticker;});
+      return sum+(s?s.price:pos.pru)*pos.qty;
+    },0);
+    if(!total)return;
+    var sectMap={}, sectTick={};
+    PTF.forEach(function(pos){
+      var s=S.find(function(x){return x.ticker===pos.ticker;});
+      if(!s)return;
+      var sect=s.sector||'Autre';
+      var val=(s.price||pos.pru)*pos.qty;
+      sectMap[sect]=(sectMap[sect]||0)+val;
+      if(!sectTick[sect])sectTick[sect]=[];
+      sectTick[sect].push(pos.ticker);
+    });
+    var alerts=[];
+    Object.keys(sectMap).forEach(function(sect){
+      var pct=Math.round(sectMap[sect]/total*100);
+      if(pct>=30)alerts.push('<span style="color:#d97706">&#9888; Concentration : '+sect+' = '+pct+'%</span>');
+    });
+    Object.keys(sectTick).forEach(function(sect){
+      if(sectTick[sect].length>=2)alerts.push('<span style="color:#2563eb">&#8635; Doublon sectoriel : '+sectTick[sect].join(' + ')+' ('+sect+')</span>');
+    });
+    if(!alerts.length)return;
+    var div=document.getElementById('ptf-alerts');
+    if(!div){div=document.createElement('div');div.id='ptf-alerts';
+      var pb=document.getElementById('ptf-body');
+      if(pb&&pb.parentNode)pb.parentNode.insertBefore(div,pb);}
+    div.innerHTML='<div style="margin-bottom:10px">'+alerts.map(function(a){
+      return '<div style="padding:7px 12px;margin-bottom:4px;background:rgba(245,158,11,.06);border-left:3px solid var(--gd);border-radius:4px;font-size:11px">'+a+'</div>';
+    }).join('')+'</div>';
+  })();
+
 }
 
 function ptfSignalText(s, pos){
@@ -9775,6 +9879,100 @@ function buildGuide(){
   el._done=true;
 }
 
+
+// ===== SIMULATEUR PEA =====
+function fmtK(n){return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'k':''+Math.round(n);}
+function simPEA(){
+  var capital=parseFloat(document.getElementById('sim-capital').value)||0;
+  var monthly=parseFloat(document.getElementById('sim-monthly').value)||0;
+  var rate=parseFloat(document.getElementById('sim-rate').value)||10;
+  var r=rate/100, rm=Math.pow(1+r,1/12)-1;
+  var horizons=[5,10,15,20];
+  var results=horizons.map(function(years){
+    var n=years*12;
+    var fv=capital*Math.pow(1+r,years)+monthly*(Math.pow(1+rm,n)-1)/rm;
+    var invested=capital+monthly*n;
+    return{years:years,fv:Math.round(fv),invested:Math.round(invested),gains:Math.round(fv-invested)};
+  });
+  var el=document.getElementById('sim-results');
+  if(!el)return;
+  el.innerHTML=results.map(function(r){
+    return '<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:6px;padding:12px;text-align:center">'+
+      '<div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:4px">Dans '+r.years+' ans</div>'+
+      '<div style="font-size:20px;font-weight:700;color:#f0d080;font-family:IBM Plex Mono,monospace">'+fmtK(r.fv)+'€</div>'+
+      '<div style="font-size:9px;color:rgba(255,255,255,.5);margin-top:3px">+'+fmtK(r.gains)+'€ de gains</div>'+
+      '<div style="font-size:9px;color:rgba(255,255,255,.4)">×'+((r.fv/Math.max(r.invested,1)).toFixed(1))+'</div>'+
+    '</div>';
+  }).join('');
+  var barEl=document.getElementById('sim-bar');
+  if(!barEl)return;
+  var best=results[results.length-1];
+  barEl.innerHTML='<b>Rendement '+rate+'%/an</b> | Capital investi : <b>'+fmtK(best.invested)+'€</b> | Dans 20 ans : <b style="color:var(--gn)">'+fmtK(best.fv)+'€</b> (×'+((best.fv/Math.max(capital,1)).toFixed(1))+')<br>'+
+    '<span style="font-size:9px;color:var(--mu)">Simulation indicative — les performances passées ne préjugent pas des performances futures</span>';
+}
+
+// ===== BACKTEST ZONE ACHAT =====
+function btPreview(){
+  var ticker=(document.getElementById('bt-ticker').value||'').toUpperCase().trim();
+  var s=S.find(function(x){return x.ticker===ticker;});
+  var prev=document.getElementById('bt-preview');
+  if(!s){if(prev)prev.innerHTML='Ticker non trouvé — essaie GTT, AI, RMS...';return;}
+  if(prev)prev.innerHTML='<b>'+s.ticker+' — '+s.name+'</b> | Cours: <b>'+s.price+'€</b> | Zone: <b>'+s.el+'–'+s.eh+'€</b> | DCF: <b>'+s.dcfm+'€</b>';
+  var pi=document.getElementById('bt-price');
+  if(pi&&!pi.value)pi.value=s.el;
+  btCalc();
+}
+function btCalc(){
+  var ticker=(document.getElementById('bt-ticker').value||'').toUpperCase().trim();
+  var buyPrice=parseFloat(document.getElementById('bt-price').value)||0;
+  var amount=parseFloat(document.getElementById('bt-amount').value)||1000;
+  var s=S.find(function(x){return x.ticker===ticker;});
+  var res=document.getElementById('bt-result');
+  if(!s||!buyPrice||!res)return;
+  var qty=Math.floor(amount/buyPrice);
+  var invested=qty*buyPrice;
+  var currentVal=qty*s.price;
+  var pnl=currentVal-invested;
+  var pct=((s.price-buyPrice)/buyPrice*100);
+  var toObj1=((s.o1-buyPrice)/buyPrice*100);
+  var col=pnl>=0?'var(--gn)':'var(--rd)';
+  var zoneLbl=buyPrice>=s.el&&buyPrice<=s.eh?'dans la zone':buyPrice<s.el?'sous la zone':'au-dessus de la zone';
+  res.innerHTML='<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:16px">'+
+    '<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:10px">Achat à '+buyPrice+'€ ('+zoneLbl+')</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">'+
+    [['Titres',qty],['Investi',Math.round(invested)+'€'],['Valeur act.',Math.round(currentVal)+'€'],['PV/MV',(pnl>=0?'+':'')+Math.round(pnl)+'€']].map(function(x,i){
+      return '<div style="text-align:center"><div style="font-size:17px;font-weight:700;font-family:IBM Plex Mono,monospace;color:'+(i===3?col:'#f0d080')+'">'+x[1]+'</div><div style="font-size:8px;color:rgba(255,255,255,.4)">'+x[0]+'</div></div>';
+    }).join('')+
+    '</div>'+
+    '<div style="margin-top:10px;padding:8px 12px;background:rgba(255,255,255,.06);border-radius:5px;font-size:10px;color:rgba(255,255,255,.7)">'+
+    'Performance: <b style="color:'+col+'">'+(pct>=0?'+':'')+pct.toFixed(1)+'%</b> | '+
+    'Vers obj. 1 ('+s.o1+'€): <b style="color:#22c55e">+'+toObj1.toFixed(0)+'%</b> | '+
+    'Vers DCF ('+s.dcfm+'€): <b style="color:#22c55e">+'+((s.dcfm-buyPrice)/buyPrice*100).toFixed(0)+'%</b>'+
+    '</div></div>';
+}
+function btLoadScenarios(){
+  var el=document.getElementById('bt-scenarios');
+  if(!el)return;
+  var cands=S.filter(function(s){return s.score==='A'&&s.pio>=7&&s.mm200>0;}).slice(0,6);
+  el.innerHTML='';
+  cands.forEach(function(s){
+    var bp=s.el, qty=Math.floor(1000/bp);
+    var cv=qty*s.price, pnl=cv-qty*bp;
+    var pct=((s.price-bp)/bp*100), col=pct>=0?'#16a34a':'#dc2626';
+    var div=document.createElement('div');
+    div.style.cssText='background:var(--sf);border-radius:6px;padding:12px;cursor:pointer';
+    div.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:4px">'+
+      '<b style="font-size:12px;font-family:IBM Plex Mono,monospace">'+s.ticker+'</b>'+
+      '<span style="font-size:11px;font-weight:700;color:'+col+'">'+(pct>=0?'+':'')+pct.toFixed(0)+'%</span></div>'+
+      '<div style="font-size:10px;color:var(--mu)">Achat hyp. à '+bp+'€ → cours actuel '+s.price+'€</div>'+
+      '<div style="font-size:9px;color:'+col+';margin-top:2px">1000€ → '+Math.round(cv)+'€ ('+(pnl>=0?'+':'')+Math.round(pnl)+'€)</div>';
+    div.addEventListener('click',(function(tk,p){return function(){
+      var ti=document.getElementById('bt-ticker');var pi=document.getElementById('bt-price');
+      if(ti)ti.value=tk;if(pi)pi.value=p;btCalc();
+    };})(s.ticker,bp));
+    el.appendChild(div);
+  });
+}
 document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
   setTimeout(fetchLive,3000);
@@ -10380,6 +10578,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <button id="labo-btn-psycho" class="labo-btn" onclick="laboShowTab('psycho',this)" style="padding:9px 18px;background:#059669;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px">🧠 Test psychologique</button>
     <button id="labo-btn-virtuel" class="labo-btn" onclick="laboShowTab('virtuel',this)" style="padding:9px 18px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:6px;cursor:pointer;font-size:12px">📈 Portefeuille virtuel</button>
     <button id="labo-btn-dimanche" class="labo-btn" onclick="laboShowTab('dimanche',this)" style="padding:9px 18px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:6px;cursor:pointer;font-size:12px">📅 Règle du Dimanche</button>
+    <button id="labo-btn-backtest" class="labo-btn" onclick="laboShowTab('backtest',this)" style="padding:9px 18px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">Backtest zone</button>
   </div>
 
   <!-- TAB: TEST PSYCHOLOGIQUE -->
@@ -10517,7 +10716,7 @@ document.addEventListener('DOMContentLoaded',function(){
             'Regarder son portefeuille plus d\'une fois par jour',
             'Décider d\'un achat après avoir vu une news',
             'Renforcer une position parce qu\'elle baisse (sans analyse)',
-            'Vendre parce que le marché fait -3% aujourd\'hui',
+            'Vendre parce que le marché fait -3% cours actuel',
             'Passer un ordre "avant que ça monte encore"',
             'Calculer ses gains/pertes latents plusieurs fois par jour',
             'Lire les forums et prendre des décisions sur des rumeurs',
