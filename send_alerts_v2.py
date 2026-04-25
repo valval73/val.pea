@@ -309,6 +309,84 @@ def stock_card(s, highlight=False):
   </tr></table>
 </div>'''
 
+
+def generate_ptf_fiches(stocks):
+    """
+    Génère une fiche condensée pour chaque action du portefeuille VAL
+    Utilisé dans le mail du dimanche uniquement
+    """
+    # Récupérer les positions Val depuis S[] (on simule le PTF avec les données disponibles)
+    # Les vraies positions sont dans localStorage — on génère pour les actions BPF
+    bpf_tickers = ['RMS','AI','LR','HO','SU','TTE','EL','GTT','MC','OR','DSY','SAF','ASML','EDEN','EL']
+    
+    fiches = []
+    for ticker in bpf_tickers:
+        s = next((x for x in stocks if x['ticker']==ticker), None)
+        if not s:
+            continue
+        
+        inZone = s['in_zone']
+        qarp = s['qarp']
+        upside = s['upside']
+        rr = s['rr']
+        
+        # Signal pour cette position
+        if inZone and qarp >= 65:
+            status_col = '#16a34a'
+            status_lbl = '✅ RENFORCER (zone + score)'
+        elif s['price'] <= s['stop'] * 1.05:
+            status_col = '#dc2626'
+            status_lbl = '🔴 ATTENTION STOP PROCHE'
+        elif qarp >= 55:
+            status_col = '#d97706'
+            status_lbl = '🟡 GARDER — conditions correctes'
+        else:
+            status_col = '#6b7280'
+            status_lbl = '⚪ SURVEILLER'
+        
+        gc = {'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}.get(s['score'],'#6b7280')
+        
+        fiche = f"""
+<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="background:{gc};color:#fff;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">{s["score"]}</span>
+      <b style="font-size:14px;font-family:monospace">{ticker}</b>
+      <span style="font-size:10px;color:#888">{s["name"][:16]}</span>
+    </div>
+    <div style="padding:3px 10px;background:{status_col}22;color:{status_col};border-radius:4px;font-size:10px;font-weight:700">{status_lbl}</div>
+  </div>
+  <table width="100%" cellpadding="3" cellspacing="0" style="font-size:10px">
+    <tr>
+      <td style="color:#888">Cours</td><td><b style="font-family:monospace">{s["price"]}€</b></td>
+      <td style="color:#888">Zone</td><td><b style="font-family:monospace">{s["el"]}–{s["eh"]}€</b></td>
+      <td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">{s["stop"]}€</b></td>
+    </tr>
+    <tr>
+      <td style="color:#888">QARP</td><td><b>{qarp}/100</b></td>
+      <td style="color:#888">Upside</td><td><b style="color:{"#16a34a" if upside>15 else "#d97706"}">{"+"+str(upside) if upside>0 else str(upside)}%</b></td>
+      <td style="color:#888">R/R</td><td><b>{rr}x</b></td>
+    </tr>
+    <tr>
+      <td style="color:#888">ROE</td><td>{s["roe"]}%</td>
+      <td style="color:#888">Marge</td><td>{s["margin"]}%</td>
+      <td style="color:#888">Pio.</td><td>{int(s["pio"])}/9</td>
+    </tr>
+  </table>
+</div>"""
+        fiches.append(fiche)
+    
+    if not fiches:
+        return ''
+    
+    return f"""
+<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">
+  <div style="font-size:11px;font-family:monospace;color:#0f2540;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">
+    📋 Fiches portefeuille — {'·'.join(bpf_tickers[:len(fiches)])}
+  </div>
+  {''.join(fiches)}
+</div>"""
+
 def build_email(stocks, macro, insights, date_str, is_sunday=False):
     ultimes = sorted([s for s in stocks if s['signal']=='ULTIME'], key=lambda x: -x['qarp'])
     forts   = sorted([s for s in stocks if s['signal']=='FORT'],   key=lambda x: -x['qarp'])
