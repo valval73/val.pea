@@ -7266,36 +7266,7 @@ function checkBpfResultats(){
   }
 }
 
-function checkAlerts(){
-  const alerts=JSON.parse(localStorage.getItem('pea_alerts')||'[]');
-  const triggered=[];
-  S.forEach(s=>{
-    const inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88&&s.price>0);
-    const nearStop=s.price<=s.stop*1.02;
-    if(inZone&&!alerts.includes('zone_'+s.ticker+'_'+Math.floor(s.price))){
-      triggered.push({type:'ACHAT',ticker:s.ticker,name:s.name,msg:'📍 '+s.ticker+' en zone achat ('+s.price+'€ · zone '+s.el+'-'+s.eh+'€)'});
-    }
-    if(nearStop&&!alerts.includes('stop_'+s.ticker)){
-      triggered.push({type:'STOP',ticker:s.ticker,name:s.name,msg:'🔴 '+s.ticker+' proche du stop loss ('+s.price+'€ · stop '+s.stop+'€)'});
-    }
-  });
-  if(triggered.length>0){
-    var banner=document.getElementById('alert-banner');
-    if(!banner){banner=document.createElement('div');banner.id='alert-banner';
-      banner.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f2540;border-top:2px solid #f0d080;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap';
-      document.body.appendChild(banner);}
-    var parts=['<span style="font-size:11px;font-weight:700;color:#f0d080">Alertes</span>'];
-    triggered.forEach(function(a){
-      var bg=a.type==='ACHAT'?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)';
-      var col=a.type==='ACHAT'?'#22c55e':'#ef4444';
-      parts.push('<span data-ticker="'+a.ticker+'" class="alrt-item" style="cursor:pointer;background:'+bg+';color:'+col+';padding:3px 10px;border-radius:4px;font-size:10px;font-weight:600">'+a.msg+'</span>');
-    });
-    parts.push('<span id="alrt-close" style="margin-left:auto;cursor:pointer;color:rgba(255,255,255,.4);font-size:18px">×</span>');
-    banner.innerHTML=parts.join('');
-    banner.querySelectorAll('.alrt-item').forEach(function(el){el.addEventListener('click',function(){goStock(this.getAttribute('data-ticker'));});});
-    var cb=document.getElementById('alrt-close');if(cb)cb.addEventListener('click',function(){banner.remove();});
-  }
-}
+function checkAlerts(){/* Alertes désactivées — voir mail du soir */}
 
 function addAlert(ticker){
   const alerts=JSON.parse(localStorage.getItem('pea_alerts')||'[]');
@@ -10048,8 +10019,8 @@ document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
   setTimeout(fetchLive,3000);
   setTimeout(fetchMacro, 1500);
-  setTimeout(checkAlerts,2000);
-  setTimeout(checkBpfResultats,3000);
+  // checkAlerts désactivé
+  // checkBpfResultats désactivé
   setTimeout(function(){
     ptfInit();
     ptfLoadProfile(window._ptfProfile||'val');
