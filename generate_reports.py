@@ -335,6 +335,48 @@ def generate_revue_vendredi(html_content, output_path, date_str):
 
     doc.add_paragraph().paragraph_format.space_after = Pt(8)
 
+
+    # ── SECTION NICOLAS CHÉRON ─────────────────────────────────
+    hdr(doc, "Analyse de marché — Nicolas Chéron (bimensuel)", "1D4ED8", size=11, before=6, after=3)
+    box(doc,
+        "NOTE : Chéron publie son décryptage tous les 15 jours sur YouTube (Centrale des Marchés). "
+        "Il analyse les indices (CAC40, S&P500, DAX), les secteurs et 3-5 actions spécifiques avec niveaux techniques précis. "
+        "Intégrer ses niveaux de résistance/support dans la surveillance des positions.",
+        "EFF6FF", "1D4ED8", 9)
+    
+    # Tableau des points clés Chéron à surveiller cette semaine
+    two_col(doc, [
+        ("CAC40", "Surveiller support 7800 pts · Résistance 8200 pts", "F8FAFC","F8FAFC",True,"0F2540"),
+        ("S&P500", "Tendance haussière long terme intacte · Support 5000 pts", "F8FAFC","F8FAFC",True,"0F2540"),
+        ("EUR/USD", "Zone 1.05-1.10 · Impact sur les positions exportatrices (AIR)", "F8FAFC","F8FAFC",True,"0F2540"),
+        ("Taux 10 ans FR", "< 3.5% = favorable pour la valorisation des actions de croissance", "F8FAFC","F8FAFC",True,"0F2540"),
+        ("Actions à surveiller", "Consulter la dernière vidéo pour les niveaux spécifiques", "EFF6FF","EFF6FF",True,"1D4ED8"),
+    ], "Indicateur (Chéron)", "Analyse bimensuelle")
+    doc.add_paragraph().paragraph_format.space_after = Pt(3)
+
+    # ── ALLOCATION POST-VENTE TTE ──────────────────────────────
+    # Calculer si des ventes ont généré du cash à réallouer
+    cash_from_sales = sum(
+        (p['cours'] - p['pru']) * p['qty'] 
+        for p in portfolio 
+        if p['pct'] > 40 and not (p['s']['in_zone'] or p['s']['dcf_zone'])
+    )
+    if cash_from_sales > 200:
+        # Trouver les meilleures opportunités de réallocation
+        best_opps = [p for p in portfolio if (p['s']['in_zone'] or p['s']['dcf_zone']) and p['s']['rr'] >= 1.5]
+        if best_opps:
+            hdr(doc, "Suggestion de réallocation", "16A34A", size=10, before=4, after=2)
+            opp_rows = []
+            for opp in best_opps[:3]:
+                s = opp['s']
+                opp_rows.append((
+                    opp['ticker'], 
+                    f"Zone {s['el']}-{s['eh']}€ · R/R {s['rr']}x · Upside +{s['upside']}%",
+                    "DCFCE7","DCFCE7",True,"16A34A"
+                ))
+            two_col(doc, opp_rows, f"Cash disponible ~{cash_from_sales:.0f}€", "Opportunité de réallocation")
+            doc.add_paragraph().paragraph_format.space_after = Pt(4)
+
     # ── FICHES INDIVIDUELLES ──
     for idx, pos in enumerate(portfolio):
         s = pos['s']

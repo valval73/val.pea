@@ -6512,23 +6512,22 @@ function ptfAdd(){
 function ptfSell(id){
   var pos=PTF.find(function(p){return p.id===id;});
   if(!pos)return;
+  _sellId=id;
   var s=S.find(function(x){return x.ticker===pos.ticker;});
   var ca=s?s.price:pos.pru;
-  var pvL=(ca-pos.pru)*pos.qty;
-  var pvPct=((ca-pos.pru)/pos.pru*100);
-  var pvLbl=(pvL>=0?'+':'')+Math.round(pvL)+'E ('+(pvPct>=0?'+':'')+pvPct.toFixed(1)+'%)';
-  var msg=pos.ticker+' - '+pos.qty+' titres\nPRU: '+pos.pru.toFixed(2)+'E\nCours: '+ca.toFixed(2)+'E\nPV/MV latente: '+pvLbl+'\n\nPrix de vente reel (E):';
-  var pxStr=prompt(msg,ca.toFixed(2));
-  if(pxStr===null)return;
-  var px=parseFloat(pxStr)||ca;
-  var pnl=(px-pos.pru)*pos.qty;
-  var pct=((px-pos.pru)/pos.pru*100);
-  var pf=(pnl>=0?'+':'')+Math.round(pnl)+'E ('+(pct>=0?'+':'')+pct.toFixed(1)+'%)';
-  if(!confirm('Vente '+pos.qty+' '+pos.ticker+' a '+px.toFixed(2)+'E - PV/MV: '+pf))return;
-  PTF_HIST.push({id:Date.now().toString(),type:'vente',ticker:pos.ticker,qty:pos.qty,pru:pos.pru,prixVente:px,pnl:pnl,pct:pct,date:new Date().toLocaleDateString('fr-FR'),note:'Vente a '+px.toFixed(2)+'E - PV/MV: '+pf});
-  PTF=PTF.filter(function(p){return p.id!==id;});
-  ptfSave();
-  ptfRender();
+  var title=document.getElementById('sell-modal-title');
+  var info=document.getElementById('sell-modal-info');
+  var input=document.getElementById('sell-price-input');
+  if(title)title.textContent='Vendre '+pos.qty+' x '+pos.ticker;
+  if(info)info.innerHTML=
+    '<b>'+pos.ticker+'</b> — '+pos.qty+' titre(s)<br>'+
+    'PRU : <b>'+pos.pru.toFixed(2)+'€</b> · Cours actuel : <b>'+ca.toFixed(2)+'€</b><br>'+
+    'PV/MV latente : <b style="color:'+(ca>=pos.pru?'var(--gn)':'var(--rd)')+'">'+
+    (((ca-pos.pru)*pos.qty)>=0?'+':'')+Math.round((ca-pos.pru)*pos.qty)+'€</b>';
+  if(input)input.value=ca.toFixed(2);
+  sellModalUpdate();
+  var m=document.getElementById('sell-modal');
+  if(m)m.style.display='flex';
 }
 
 function ptfDelete(id){
@@ -8159,44 +8158,35 @@ function nextResultFromStock(s){
 
 // Score Triptyque: 0-100
 function triptyqueScore(s){
-  if(!s.res) return null;
-  const nr = nextResultFromStock(s);
-  if(!nr) return null;
+  // Triptyque Chéron : RSI + MM200 + Zone DCF — PAS de dépendance à s.res
+  var score = 0;
   
-  let score = 0;
-  
-  // Condition 1: QUALITÉ (40 pts)
-  if(s.score==='A') score += 25;
-  else if(s.score==='B') score += 15;
+  // Pilier 1 : QUALITÉ (Grade + Piotroski) — 30 pts
+  if(s.score==='A') score += 20;
+  else if(s.score==='B') score += 12;
   if(s.pio >= 8) score += 10;
   else if(s.pio >= 7) score += 7;
   else if(s.pio >= 6) score += 3;
   
-  // Condition 2: TIMING (35 pts)
-  // Zone d'accumulation optimale: J-3 à J-33
-  if(nr.days <= 3 && nr.days >= 0) score += 35;       // Signal maximal
-  else if(nr.days <= 7) score += 30;                   // Très fort
-  else if(nr.days <= 14) score += 25;                  // Fort
-  else if(nr.days <= 21) score += 20;                  // Bon
-  else if(nr.days <= 33) score += 15;                  // Acceptable
-  else if(nr.days <= 45) score += 8;                   // Surveiller
-  else score += 2;                                     // Trop tôt
+  // Pilier 2 : RSI zone valeur (25-60) — 25 pts
+  if(s.rsi >= 25 && s.rsi <= 45) score += 25;      // Zone idéale (sur-vente légère)
+  else if(s.rsi > 45 && s.rsi <= 60) score += 18;  // Zone valeur
+  else if(s.rsi > 20 && s.rsi < 25) score += 15;   // Sur-vendu (attention)
   
-  // Condition 3: PRIX / VALORISATION (25 pts)
-  const z = dynZone(s);
-  if(s.price >= z.el && s.price <= z.eh*1.05) score += 20;  // En zone
-  else if(s.price < z.el * 1.1) score += 10;               // Proche zone
-  else if(s.price < z.el * 1.2) score += 5;                // Acceptable
+  // Pilier 3 : MM200 (tendance longue) — 20 pts
+  if(s.price > s.mm200 && s.mm200 > 0) score += 20;     // Tendance haussière
+  else if(s.mm200 > 0 && s.price >= s.mm200*0.97) score += 10; // Légèrement sous
   
-  // Bonus: track record management
-  const trOkCount = (s.track||[]).filter(t=>t.ok==='ok').length;
-  const trTotal = (s.track||[]).length;
-  if(trTotal > 0 && trOkCount/trTotal >= 1.0) score += 5;  // 100% guidances
+  // Pilier 4 : Zone DCF / zone achat — 25 pts
+  var inZone = (s.price >= s.el && s.price <= s.eh);
+  var dcfZone = (s.dcfm > 0 && s.price <= s.dcfm * 0.88);
+  if(inZone) score += 25;
+  else if(dcfZone) score += 20;
+  else if(s.dcfm > 0 && s.price <= s.dcfm * 0.95) score += 10;
   
   return Math.min(100, score);
 }
 
-// Badge visuel Triptyque
 function triptyqueBadge(s){
   const sc = triptyqueScore(s);
   if(sc === null) return '';
@@ -8340,16 +8330,12 @@ window.buildCal = function(s){
 function filtTriptyque(btn){
   document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
   if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#16a34a,#4ade80)';btn.style.color='#fff';}
-  fil=S.filter(function(s){return nextResultFromStock(s)!==null&&triptyqueScore(s)>=35;}).sort(function(a,b){return (triptyqueScore(b)||0)-(triptyqueScore(a)||0);});
+  fil=S.filter(function(s){
+    return triptyqueScore(s) >= 55 && (s.price >= s.el && s.price <= s.eh || (s.dcfm>0 && s.price<=s.dcfm*0.88));
+  }).sort(function(a,b){return triptyqueScore(b)-triptyqueScore(a);});
   buildQ();
-  if(fil.length>0){idx=0;show(fil[0]);}
+  if(fil.length>0){idx=0;show(0);}
 }
-
-
-// ════════════ NOUVELLES FONCTIONS v40 ════════════
-// Ajouts SANS overrides - tout est nouveau
-
-window._ptfProfile = 'val';
 
 function ptfLoadProfile(name){
   try {
@@ -8411,7 +8397,7 @@ function ptfInputChange(val){
 
 var PTF_VAL_DEFAULT = [
   {id:'v1',ticker:'PAEEM',qty:13,pru:30.9138,date:'2025-01-01',note:'ETF Emergents'},
-  {id:'v2',ticker:'DCAM',qty:80,pru:5.5084,date:'2025-01-01',note:'ETF MSCI World'},
+  {id:'v2',ticker:'DCAM',qty:95,pru:5.54,date:'2025-01-01',note:'ETF MSCI World'},
   {id:'v3',ticker:'ASML',qty:1,pru:653.60,date:'2025-01-01',note:'ASML Holding'},
   {id:'v4',ticker:'ELIS',qty:45,pru:18.9524,date:'2025-01-01',note:'Elis'},
   {id:'v5',ticker:'EL',qty:4,pru:205.78,date:'2025-01-01',note:'EssilorLuxottica'},
