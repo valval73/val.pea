@@ -2,89 +2,97 @@ name: Update PEA Screener
 
 on:
   schedule:
-    - cron: '35 16 * * 1-4'   # Lun-Jeu 17h35 Paris : prix + mail soir
-    - cron: '0 17 * * 5'       # Vendredi 18h00 : prix + recalibration zones
-    - cron: '0 8 * * 6'        # Samedi 8h00 : fondamentaux
-    - cron: '0 1 * * *'        # 1er du mois : fondamentaux complets
-    - cron: '0 7 * * 0'        # Dimanche 9h00 Paris : mail spécial avec insights YouTube
+    # Lun-Jeu 17h35 (prix + mail alertes)
+    - cron: '35 15 * * 1-4'
+    # Vendredi 18h00 (prix + recalibration + revue portefeuille + mail)
+    - cron: '0 16 * * 5'
+    # Samedi 8h00 (fondamentaux)
+    - cron: '0 6 * * 6'
+    # Dimanche 9h00 (mail signaux + doc signaux)
+    - cron: '0 7 * * 0'
   workflow_dispatch:
     inputs:
       mode:
-        description: 'prices / fundamentals / full / sunday'
+        description: 'Mode (prices/fundamentals/alerts/reports/all)'
         required: false
-        default: 'prices'
-
-permissions:
-  contents: write
+        default: 'all'
 
 jobs:
-  update-screener:
+  update:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
 
-      - uses: actions/setup-python@v5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Determine mode
-        id: mode
+      - name: Install dependencies
         run: |
-          DAY=$(date +%u)
-          DOM=$(date +%d)
-          MODE="${{ github.event.inputs.mode }}"
-          if   [ "$MODE" = "sunday" ] || [ "$DAY" = "7" ]; then
-            echo "mode=sunday" >> $GITHUB_OUTPUT
-          elif [ "$MODE" = "full" ] || [ "$DOM" = "01" ]; then
-            echo "mode=full" >> $GITHUB_OUTPUT
-          elif [ "$MODE" = "fundamentals" ] || [ "$DAY" = "6" ]; then
-            echo "mode=fundamentals" >> $GITHUB_OUTPUT
-          elif [ "$DAY" = "5" ]; then
-            echo "mode=friday" >> $GITHUB_OUTPUT
-          else
-            echo "mode=prices" >> $GITHUB_OUTPUT
-          fi
+          pip install requests python-docx yfinance
 
+      - name: Determine day
+        id: day
+        run: |
+          DAY=$(date +%u)  # 1=lundi ... 7=dimanche
+          echo "day=$DAY" >> $GITHUB_OUTPUT
+          echo "Today is day $DAY"
+
+      # ── PRIX (tous les jours en semaine) ───────────────────────
       - name: Update prices
-        if: steps.mode.outputs.mode != 'fundamentals' && steps.mode.outputs.mode != 'sunday'
+        if: steps.day.outputs.day != '6'
         run: |
-          if [ "${{ steps.mode.outputs.mode }}" = "friday" ] || [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
-            python update_prices_v2.py --full
-          else
-            python update_prices_v2.py
-          fi
+          python update_prices_v2.py
+          echo "Prices updated"
 
+      # ── FONDAMENTAUX (samedi seulement) ────────────────────────
       - name: Update fundamentals
-        if: steps.mode.outputs.mode == 'fundamentals' || steps.mode.outputs.mode == 'full'
-        run: python update_fundamentals.py
+        if: steps.day.outputs.day == '6'
+        run: |
+          python update_fundamentals.py
+          echo "Fundamentals updated"
 
-      - name: Send alert mail (soir semaine)
-        if: steps.mode.outputs.mode == 'prices' || steps.mode.outputs.mode == 'friday'
-        run: python send_alerts_v2.py
+      # ── REVUE PORTEFEUILLE (vendredi seulement) ─────────────────
+      - name: Generate revue vendredi
+        if: steps.day.outputs.day == '5'
+        env:
+          PYTHONPATH: .
+        run: |
+          python generate_reports.py vendredi
+          echo "Revue vendredi generated"
+
+      # ── SIGNAUX DIMANCHE ────────────────────────────────────────
+      - name: Generate signaux dimanche
+        if: steps.day.outputs.day == '0' || steps.day.outputs.day == '7'
+        env:
+          PYTHONPATH: .
+        run: |
+          python generate_reports.py dimanche
+          echo "Signaux dimanche generated"
+
+      # ── MAIL ALERTES (lun-ven) ──────────────────────────────────
+      - name: Send alerts email
+        if: steps.day.outputs.day != '6'
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENT: ${{ secrets.RECIPIENT_EMAIL }}
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
-      - name: Send SUNDAY mail (avec insights YouTube)
-        if: steps.mode.outputs.mode == 'sunday'
-        run: python send_alerts_v2.py --insights
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENT: ${{ secrets.RECIPIENT_EMAIL }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python send_alerts_v2.py
 
+      # ── COMMIT tout ─────────────────────────────────────────────
       - name: Commit and push
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "PEA Screener Bot"
-          git add index.html prices_history.json fundamentals_log.json || true
-          git diff --staged --quiet || git commit -m "Auto: $(date +'%d/%m/%Y %H:%M') — ${{ steps.mode.outputs.mode }}"
+          git config user.name "VAL.PEA Bot"
+          git config user.email "bot@val.pea"
+          git add index.html VAL_PEA_*.docx 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Auto update $(date '+%Y-%m-%d %H:%M') [skip ci]"
           git push
