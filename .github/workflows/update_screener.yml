@@ -2,18 +2,18 @@ name: Update PEA Screener
 
 on:
   schedule:
-    # Lun-Jeu 17h35 (prix + mail alertes)
-    - cron: '35 15 * * 1-4'
-    # Vendredi 18h00 (prix + recalibration + revue portefeuille + mail)
+    # Vendredi 18h00 : prix + revue portefeuille + mail
     - cron: '0 16 * * 5'
-    # Samedi 8h00 (fondamentaux)
+    # Samedi 8h00 : fondamentaux
     - cron: '0 6 * * 6'
-    # Dimanche 9h00 (mail signaux + doc signaux)
+    # Dimanche 9h00 : signaux uniquement (pas de mail)
     - cron: '0 7 * * 0'
+    # Lun-Jeu 17h35 : prix uniquement (pas de mail)
+    - cron: '35 15 * * 1-4'
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Mode (prices/fundamentals/alerts/reports/all)'
+        description: 'Mode manuel (prices/fundamentals/reports/alerts/all)'
         required: false
         default: 'all'
 
@@ -34,16 +34,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests python-docx yfinance
+          pip install requests python-docx yfinance pandas numpy -q
 
       - name: Determine day
         id: day
         run: |
-          DAY=$(date +%u)  # 1=lundi ... 7=dimanche
+          DAY=$(date +%u)  # 1=lundi 2=mardi 3=mercredi 4=jeudi 5=vendredi 6=samedi 7=dimanche
           echo "day=$DAY" >> $GITHUB_OUTPUT
-          echo "Today is day $DAY"
+          echo "Today is day $DAY (5=vendredi, 6=samedi, 7=dimanche)"
 
-      # ── PRIX (tous les jours en semaine) ───────────────────────
+      # ── PRIX (lun-ven + dimanche) ──────────────────────────────
       - name: Update prices
         if: steps.day.outputs.day != '6'
         run: |
@@ -60,24 +60,20 @@ jobs:
       # ── REVUE PORTEFEUILLE (vendredi seulement) ─────────────────
       - name: Generate revue vendredi
         if: steps.day.outputs.day == '5'
-        env:
-          PYTHONPATH: .
         run: |
           python generate_reports.py vendredi
           echo "Revue vendredi generated"
 
-      # ── SIGNAUX DIMANCHE ────────────────────────────────────────
+      # ── SIGNAUX DIMANCHE (dimanche seulement, sans mail) ────────
       - name: Generate signaux dimanche
-        if: steps.day.outputs.day == '0' || steps.day.outputs.day == '7'
-        env:
-          PYTHONPATH: .
+        if: steps.day.outputs.day == '7'
         run: |
           python generate_reports.py dimanche
           echo "Signaux dimanche generated"
 
-      # ── MAIL ALERTES (lun-ven) ──────────────────────────────────
-      - name: Send alerts email
-        if: steps.day.outputs.day != '6'
+      # ── MAIL (VENDREDI SOIR UNIQUEMENT) ─────────────────────────
+      - name: Send Friday evening email
+        if: steps.day.outputs.day == '5'
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
@@ -87,8 +83,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python send_alerts_v2.py
+          echo "Friday email sent"
 
-      # ── COMMIT tout ─────────────────────────────────────────────
+      # ── COMMIT ──────────────────────────────────────────────────
       - name: Commit and push
         run: |
           git config user.name "VAL.PEA Bot"
