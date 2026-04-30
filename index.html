@@ -5542,10 +5542,23 @@ function loadMM200Banner(s){
 // ═══════════ QUEUE ═══════════
 function buildQ(){
   const l=document.getElementById('ql');
-  l.innerHTML=fil.map((s,i)=>`<div class="qi${i===idx?' active':''}" onclick="jump(${i})"><span class="qi-n">${i+1}</span><span class="qi-t">${s.ticker}</span><span class="qi-nm">${s.name}</span><span class="qg ${qGCl(s.score)}">${s.score}</span></div>`).join('');
+  if(!l)return;
+  l.innerHTML=fil.filter(s=>s&&s.ticker).map((s,i)=>{
+    const qU=calcQARP(s).total,qL=calcQARPLarge(s).total,qM=calcQARPMid(s).total;
+    const qcol=qU>=65?'#22c55e':qU>=50?'#f59e0b':'#ef4444';
+    const inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
+    return `<div class="qi${i===idx?' active':''}" onclick="jump(${i})">`+
+      `<span class="qi-n">${i+1}</span>`+
+      `<span class="qi-t" style="color:${s.cyclic?'#d97706':'inherit'}">${s.ticker}</span>`+
+      (s.cyclic?`<span title="Cyclique" style="font-size:8px"> ð</span>`:"") +
+      (inZone?`<span style="color:#22c55e;font-size:8px"> ●</span>`:"") +
+      `<span class="qi-nm">${s.name}</span>`+
+      `<span class="qg ${qGCl(s.score)}">${s.score}</span>`+
+      `<span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:${qcol};margin-left:3px">`+
+      `${qU}<span style="font-size:7px;opacity:.55">(${qL}L/${qM}M)</span></span></div>`;
+  }).join('');
   document.getElementById('qcnt').textContent=fil.length+' val.';
-  const a=l.querySelector('.active');
-  if(a)a.scrollIntoView({block:'nearest'});
+  const a=l.querySelector('.active');if(a)a.scrollIntoView({block:'nearest'});
 }
 function filterFile(q){
   var v=(q||'').trim().toLowerCase();
@@ -9859,27 +9872,6 @@ function filtScoreMid(btn){
   buildQ();if(fil.length>0){idx=0;show(0);}
 }
 // ===== BUILDQ AVEC SCORES L/M =====
-function buildQ(){
-  var l=document.getElementById('queue');if(!l)return;
-  l.innerHTML=fil.map(function(s,i){
-    if(!s||!s.ticker) return '';
-    var qL=calcQARPLarge(s).total,qM=calcQARPMid(s).total,qU=calcQARP(s).total;
-    var qcol=qU>=65?'#22c55e':qU>=50?'#f59e0b':'#ef4444';
-    var inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
-    var badges='';
-    if(s.cyclic) badges+='<span title="Cyclique" style="color:#d97706;font-size:9px">&#128260;</span>';
-    if(inZone) badges+='<span title="Zone" style="color:#22c55e;font-size:8px">&#9679;</span>';
-    return '<div class="qi'+(i===idx?' active':'')+'" onclick="jump('+i+')">'
-      +'<span class="qi-n">'+(i+1)+'</span>'
-      +'<span class="qi-t">'+s.ticker+'</span>'+badges
-      +'<span class="qi-nm">'+s.name+'</span>'
-      +'<span class="qg '+qGCl(s.score)+'">'+s.score+'</span>'
-      +'<span style="font-size:9px;color:'+qcol+';margin-left:4px;white-space:nowrap">'+qU
-      +'<span style="font-size:7px;opacity:.6"> ('+qL+'L/'+qM+'M)</span></span></div>';
-  }).join('');
-  document.getElementById('qcnt').textContent=fil.length+' val.';
-  var a=l.querySelector('.active');if(a)a.scrollIntoView({block:'nearest'});
-}
 
 
 // ===== MODAL VENTE =====
