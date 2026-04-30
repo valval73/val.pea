@@ -389,9 +389,9 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
     <button class="fb" onclick="filt('zone',this)">📍 Zone achat</button>
     <button class="fb" onclick="filt('fort30',this)" style="background:#7c3aed;color:#fff">⚡ Signal Fort</button>
     <button class="fb" onclick="filtTriptyque(this)" style="background:linear-gradient(135deg,#16a34a,#4ade80);color:#fff;font-weight:700">Triptyque</button>
-    <button class="fb" onclick="filtScoreLarge(this)" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🏦 Score Large</button>
-    <button class="fb" onclick="filtScoreMid(this)" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🚀 Score Mid</button>
-        <button class="fb" onclick="filtCycliques(this)" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🔄 Cycliques</button>
+    <button class="fb" onclick="filtScoreLarge(this)" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px">&#127970; Score Large</button>
+    <button class="fb" onclick="filtScoreMid(this)" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px">&#128640; Score Mid</button>
+    <button class="fb" onclick="filtCycliques(this)" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px">&#128260; Cycliques</button>
     <div class="vsep"></div>
     <div class="spd">
       <span>Vitesse</span>
@@ -538,7 +538,7 @@ const S=[
  contra:"La Chine représente 27% des ventes dans un contexte de nationalisme croissant. La correction depuis 900€ n'est peut-être pas terminée."},
 
 {ticker:'AI',bpf:true,name:'Air Liquide',sector:'Gaz industriels',cap:'large',srd:true,idx:'CAC40',
- price:188.36,chg:0.3,mkt:'74Md€',b52h:192,b52l:138,beta:0.6,
+ price:186,chg:0.3,mkt:'74Md€',b52h:192,b52l:138,beta:0.6,
  pe:26,pb:4.2,ev_ebitda:16,ps:3.1,pfcf:22,ev_ebit:19,
  roe:16,roic:12,roa:8,debt:1.8,de:0.8,ic:8.2,cr:1.2,qr:0.9,
  yield:2.1,epsg:9,revg:7,margin:13,gm:34,om:18,fcf:5.8,
@@ -576,7 +576,7 @@ const S=[
  contra:"32x PE pour une croissance qui ralentit. La Chine déçoit. Marques DTC gagnent des parts."},
 
 {ticker:'RMS',bpf:true,name:'Hermès',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:1648.0,chg:0.2,mkt:'232Md€',b52h:2200,b52l:1520,beta:0.6,
+ price:1656,chg:0.2,mkt:'232Md€',b52h:2200,b52l:1520,beta:0.6,
  pe:50,pb:22,ev_ebitda:32,ps:12.8,pfcf:42,ev_ebit:36,
  roe:36,roic:32,roa:22,debt:0.0,de:0.2,ic:999,cr:3.8,qr:3.2,
  yield:0.6,epsg:15,revg:12,margin:42,gm:70,om:42,fcf:10.5,
@@ -614,8 +614,8 @@ const S=[
  contra:"Dupixent = 40% des revenus : concentration dangereuse. R&D historiquement décevante sur 10 ans."},
 
 {ticker:'TTE',bpf:true,name:'TotalEnergies',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Pétrole intégré — cycle énergie',
- price:77.0,chg:-0.8,mkt:'146Md€',b52h:66,b52l:48,beta:0.9,
+ cyclic:true,cyclicReason:'Petrole',
+ price:54,chg:-0.8,mkt:'146Md€',b52h:66,b52l:48,beta:0.9,
  pe:8,pb:1.4,ev_ebitda:5,ps:0.6,pfcf:7,ev_ebit:6,
  roe:14,roic:11,roa:7,debt:1.2,de:0.4,ic:18.5,cr:1.3,qr:1.0,
  yield:5.2,epsg:3,revg:2,margin:8,gm:28,om:12,fcf:9.8,
@@ -653,7 +653,7 @@ const S=[
  contra:"Valorisation exigeante à 32x PE. Dépendance Airbus (50% CA). Baisse USD pénalise les revenus."},
 
 {ticker:'SU',bpf:true,name:'Schneider Electric',sector:'Énergie & Automatisation',cap:'large',srd:true,idx:'CAC40',
- price:276.0,chg:0.8,mkt:'136Md€',b52h:285,b52l:195,beta:1.0,
+ price:270,chg:0.8,mkt:'136Md€',b52h:285,b52l:195,beta:1.0,
  pe:28,pb:6.8,ev_ebitda:18,ps:3.6,pfcf:22,ev_ebit:20,
  roe:26,roic:20,roa:11,debt:1.0,de:0.7,ic:11.8,cr:1.4,qr:1.1,
  yield:1.5,epsg:15,revg:12,margin:15,gm:44,om:18,fcf:7.5,
@@ -843,7 +843,7 @@ const S=[
  contra:"Dette élevée post-fusion. Régulation tarifaire peut bloquer la transmission des coûts."},
 
 {ticker:'RNO',name:'Renault',sector:'Automobile',cap:'mid',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Automobile — cycle consommation',
+ cyclic:true,cyclicReason:'Automobile',
  price:42,chg:-0.8,mkt:'13Md€',b52h:58,b52l:35,beta:1.5,
  pe:5,pb:0.5,ev_ebitda:3,ps:0.2,pfcf:6,ev_ebit:4,
  roe:12,roic:6,roa:3,debt:2.8,de:1.8,ic:3.2,cr:1.1,qr:0.9,
@@ -863,7 +863,7 @@ const S=[
  contra:"Transition VE incertaine. Alliance Nissan fragile. Concurrence chinoise déferle."},
 
 {ticker:'SGO',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Matériaux construction — cycle immobilier',
+ cyclic:true,cyclicReason:'Materiaux',
  price:68,chg:0.2,mkt:'36Md€',b52h:82,b52l:56,beta:1.1,
  pe:12,pb:1.8,ev_ebitda:8,ps:0.6,pfcf:10,ev_ebit:9,
  roe:15,roic:10,roa:6,debt:1.5,de:0.8,ic:6.2,cr:1.2,qr:1.0,
@@ -959,7 +959,7 @@ const S=[
  contra:"La Chine déçoit depuis 18 mois. Objectifs manqués régulièrement. Dette élevée."},
 
 {ticker:'LR',bpf:true,name:'Legrand',sector:'Électricité bâtiment',cap:'large',srd:true,idx:'CAC40',
- price:152.5,chg:0.4,mkt:'26Md€',b52h:162,b52l:115,beta:0.8,
+ price:148,chg:0.4,mkt:'26Md€',b52h:162,b52l:115,beta:0.8,
  pe:24,pb:5.2,ev_ebitda:16,ps:3.8,pfcf:20,ev_ebit:18,
  roe:22,roic:18,roa:10,debt:1.2,de:0.7,ic:8.5,cr:1.5,qr:1.2,
  yield:1.8,epsg:10,revg:8,margin:18,gm:52,om:21,fcf:8.5,
@@ -1035,7 +1035,7 @@ const S=[
  contra:"Ralentissement VE plus long que prévu. Inventaires encore élevés. Tesla a réduit ses commandes SiC."},
 
 {ticker:'EL',bpf:true,name:'EssilorLuxottica',sector:'Optique',cap:'large',srd:true,idx:'CAC40',
- price:185.7,chg:0.3,mkt:'85Md€',b52h:248,b52l:165,beta:0.7,
+ price:210,chg:0.3,mkt:'85Md€',b52h:248,b52l:165,beta:0.7,
  pe:28,pb:3.5,ev_ebitda:18,ps:3.2,pfcf:22,ev_ebit:20,
  roe:13,roic:10,roa:6,debt:1.5,de:0.6,ic:8.2,cr:1.5,qr:1.2,
  yield:1.2,epsg:12,revg:9,margin:15,gm:58,om:18,fcf:7.5,
@@ -1092,7 +1092,7 @@ const S=[
  contra:"CAPEX permanent massif. Politique énergétique volatile. Dette élevée."},
 
 {ticker:'MT',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Acier — cycle industriel mondial',
+ cyclic:true,cyclicReason:'Acier',
  price:22,chg:-0.8,mkt:'18Md€',b52h:29,b52l:18,beta:1.8,
  pe:8,pb:0.6,ev_ebitda:5,ps:0.3,pfcf:6,ev_ebit:5,
  roe:8,roic:6,roa:4,debt:0.8,de:0.4,ic:8.5,cr:1.5,qr:1.2,
@@ -1191,7 +1191,7 @@ const S=[
 // SBF 120 & SRD
 // ══════════════════════════════════════════
 {ticker:'GTT',bpf:true,name:'Gaztransport & Technigaz',sector:'LNG Technology',cap:'mid',srd:true,idx:'SBF120',
- price:197.8,chg:0.4,mkt:'7.2Md€',b52h:205,b52l:108,beta:0.24,
+ price:175,chg:0.4,mkt:'7.2Md€',b52h:205,b52l:108,beta:0.24,
  pe:22,pb:12,ev_ebitda:15,ps:9.2,pfcf:18,ev_ebit:16,
  roe:85,roic:72,roa:52,debt:0.0,de:0.1,ic:999,cr:3.2,qr:2.8,
  yield:5.2,epsg:18,revg:25,margin:58,gm:68,om:58,fcf:18.5,
@@ -1248,7 +1248,7 @@ const S=[
  contra:"VE ralentit. Taille limitée. Dette laisse peu de marge."},
 
 {ticker:'JXS',name:'Jacquet Metals',sector:'Aciers spéciaux',cap:'small',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Aciers spéciaux — cycle automobile',
+ cyclic:true,cyclicReason:'Aciers speciaux',
  price:22,chg:1.1,mkt:'0.43Md€',b52h:28,b52l:18,beta:0.9,
  pe:9,pb:0.8,ev_ebitda:4,ps:0.2,pfcf:7,ev_ebit:5,
  roe:9,roic:7,roa:4,debt:0.8,de:0.5,ic:6.8,cr:1.8,qr:1.4,
@@ -1268,7 +1268,7 @@ const S=[
  contra:"VE ralentit détruit les marges. Exposition cyclique maximale à l'industrie européenne."},
 
 {ticker:'SPIE',name:'Spie',sector:'Services techniques',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Services techniques — cycle investissement',
+ cyclic:true,cyclicReason:'Services techniques',
  price:32,chg:0.3,mkt:'5.2Md€',b52h:38,b52l:26,beta:0.8,
  pe:18,pb:3.5,ev_ebitda:11,ps:0.8,pfcf:14,ev_ebit:12,
  roe:20,roic:15,roa:8,debt:2.2,de:1.0,ic:5.8,cr:1.2,qr:1.0,
@@ -1288,7 +1288,7 @@ const S=[
  contra:"Valorisation élevée à 18x. Marges fines dans les services."},
 
 {ticker:'NEXANS',name:'Nexans',sector:'Câbles',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Câbles industriels — cycle infrastructure',
+ cyclic:true,cyclicReason:'Cables',
  price:88,chg:0.5,mkt:'2.8Md€',b52h:108,b52l:72,beta:1.2,
  pe:12,pb:2.5,ev_ebitda:8,ps:0.4,pfcf:9,ev_ebit:9,
  roe:22,roic:16,roa:8,debt:1.8,de:0.8,ic:6.5,cr:1.3,qr:1.1,
@@ -1346,7 +1346,7 @@ const S=[
  contra:"Crise trésorerie 2023-2024 a détruit la confiance. Intégration Bombardier = désastre. Exécution risquée."},
 
 {ticker:'ELIS',bpf:false,name:'Elis',sector:'Services location-entretien',cap:'mid',srd:true,idx:'SBF120',
- price:26.04,chg:0.3,mkt:'4.5Md€',b52h:27,b52l:17,beta:0.9,
+ price:22,chg:0.3,mkt:'4.5Md€',b52h:27,b52l:17,beta:0.9,
  pe:14,pb:2.2,ev_ebitda:9,ps:1.2,pfcf:10,ev_ebit:10,
  roe:16,roic:11,roa:6,debt:3.5,de:1.4,ic:4.2,cr:1.0,qr:0.8,
  yield:2.8,epsg:10,revg:7,margin:10,gm:35,om:12,fcf:7.5,
@@ -1441,7 +1441,7 @@ const S=[
  contra:"Modèle opaque. Très peu liquide. Dépend de la volatilité pour performer."},
 
 {ticker:'VK',name:'Vallourec',sector:'Tubes acier',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Tubes acier — cycle pétrolier',
+ cyclic:true,cyclicReason:'Tubes acier',
  price:18,chg:0.5,mkt:'2.8Md€',b52h:24,b52l:14,beta:1.6,
  pe:6,pb:1.2,ev_ebitda:4,ps:0.4,pfcf:5,ev_ebit:5,
  roe:18,roic:14,roa:8,debt:0.8,de:0.5,ic:8.5,cr:1.4,qr:1.1,
@@ -1461,7 +1461,7 @@ const S=[
  contra:"Pure cyclique. Pétrole sous 60$ = thèse détruite. Restructuration a dilué les actionnaires."},
 
 {ticker:'FNAC',name:'Fnac Darty',sector:'Distribution',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Distribution tech — cycle consommation',
+ cyclic:true,cyclicReason:'Distribution',
  price:28,chg:0.4,mkt:'0.88Md€',b52h:36,b52l:22,beta:1.1,
  pe:8,pb:0.8,ev_ebitda:4,ps:0.1,pfcf:6,ev_ebit:5,
  roe:10,roic:7,roa:4,debt:1.8,de:0.9,ic:4.5,cr:0.9,qr:0.7,
@@ -1519,7 +1519,7 @@ const S=[
  contra:"Assurance vie française sous pression taux bas. Business model opaque."},
 
 {ticker:'SOP',name:'Sopra Steria',sector:'Services IT',cap:'mid',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Sécurité physique — cycle capex industriel',
+ cyclic:true,cyclicReason:'Securite',
  price:165,chg:0.3,mkt:'2.8Md€',b52h:195,b52l:140,beta:0.9,
  pe:14,pb:2.2,ev_ebitda:9,ps:0.8,pfcf:11,ev_ebit:10,
  roe:16,roic:12,roa:7,debt:0.8,de:0.6,ic:8.2,cr:1.3,qr:1.1,
@@ -1557,7 +1557,7 @@ const S=[
  contra:"Airbnb continue de prendre des parts sur le loisir. Exposition forte à la macro."},
 
 {ticker:'AF',name:'Air France-KLM',sector:'Transport aérien',cap:'large',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Transport aérien — cycle économique fort',
+ cyclic:true,cyclicReason:'Transport aerien',
  price:9.8,chg:-0.5,mkt:'3.8Md€',b52h:13.2,b52l:8.5,beta:1.8,
  pe:5,pb:999,ev_ebitda:4,ps:0.1,pfcf:6,ev_ebit:4,
  roe:-5,roic:4,roa:1,debt:8.5,de:8.2,ic:2.8,cr:0.7,qr:0.6,
@@ -1609,7 +1609,7 @@ const S=[
  contra:"Lidl/Aldi prennent des parts. Marges structurellement très fines. Amazon Grocery monte en puissance."},
 
 {ticker:'HO',bpf:true,name:'Thales',sector:'Défense & Technologie',cap:'large',srd:true,idx:'CAC40',
- price:232.8,chg:0.8,mkt:'19Md€',b52h:265,b52l:182,beta:0.7,
+ price:255,chg:0.8,mkt:'19Md€',b52h:265,b52l:182,beta:0.7,
  pe:22,pb:4.5,ev_ebitda:14,ps:2.0,pfcf:18,ev_ebit:15,
  roe:22,roic:16,roa:8,debt:1.2,de:0.7,ic:8.5,cr:1.4,qr:1.2,
  yield:1.8,epsg:14,revg:10,margin:11,gm:38,om:12,fcf:8.2,
@@ -1714,13 +1714,13 @@ const S=[
 
 // ═══ Actions européennes éligibles PEA ═══
 {ticker:'ASML',bpf:true,name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
- price:1249.6,chg:0.5,mkt:'246Md€',b52h:920,b52l:520,beta:1.2,
+ price:580,chg:0.5,mkt:'246Md€',b52h:920,b52l:520,beta:1.2,
  pe:28,pb:12,ev_ebitda:18,ps:8.5,pfcf:22,ev_ebit:20,
  roe:45,roic:38,roa:18,debt:0.2,de:0.4,ic:22.5,cr:1.8,qr:1.5,
  yield:1.0,epsg:20,revg:18,margin:30,gm:52,om:32,fcf:9.5,
- capex:2.5,capr:3.8,capda:0.4,dcfb:1000,dcfm:1400,dcfu:1800,
+ capex:2.5,capr:3.8,capda:0.4,dcfb:520,dcfm:1400,dcfu:960,
  pio:9,ca_n2:21.0,ca_n1:27.6,ca_n:28.3,marg_n2:26.5,marg_n1:29.8,marg_n:28.1,pe5y:38.0,marg_trend:'down',alt:6.5,rsi:48,mm50:590,mm200:680,
- el:1060,eh:1150,stop:999,o1:1500,o2:1750,cb:22,ch:5,cs:1,tp:780,score:'A',rec:'buy',zone:true,
+ el:545,eh:660,stop:480,o1:720,o2:860,cb:22,ch:5,cs:1,tp:780,score:'A',rec:'buy',zone:true,
  moat:[['Monopole absolu lithographie EUV','fort'],['R&D inégalable','fort']],
  cats:[{t:'Reprise commandes TSMC/Samsung',w:'T2 2026',c:'var(--gn)'}],
  ins:[['Achat','CEO van den Brink','12M€','Jan 2026']],
@@ -2123,7 +2123,7 @@ const S=[
  contra:"Dette écrasante. VE ralentit et Valeo a parié dessus massivement. Les constructeurs pressent les marges des équipementiers. À éviter sauf spéculatif."},
 
 {ticker:'FORVIA',name:'Forvia (Faurecia)',sector:'Équipementier auto',cap:'large',srd:true,idx:'CAC40',
- cyclic:true,cyclicReason:'Équipement auto — cycle automobile',
+ cyclic:true,cyclicReason:'Auto',
  price:7.8,chg:-0.5,mkt:'2.2Md€',b52h:14,b52l:6.8,beta:2.0,
  pe:6,pb:0.4,ev_ebitda:3,ps:0.07,pfcf:5,ev_ebit:4,
  roe:4,roic:2,roa:1,debt:3.8,de:2.5,ic:2.2,cr:0.9,qr:0.7,
@@ -2260,6 +2260,7 @@ const S=[
  contra:"Forte intensité énergétique. Transition vers les canettes en aluminium. Dette moderee."},
 
 {ticker:'DERICHEBOURG',name:'Derichebourg',sector:'Recyclage & Services',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Recyclage',
  price:4.8,chg:0.3,mkt:'1.1Md€',b52h:6.5,b52l:4.0,beta:1.2,
  pe:7,pb:0.8,ev_ebitda:4,ps:0.2,pfcf:6,ev_ebit:5,
  roe:12,roic:9,roa:5,debt:1.5,de:0.7,ic:6.2,cr:1.3,qr:1.0,
@@ -2277,7 +2278,7 @@ const S=[
  contra:"Cyclicité des prix des métaux. Aéronautique représente 40% du CA."}
 // Session 3
 ,{ticker:'IMERYS',name:'Imerys',sector:'Minéraux industriels',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Minéraux industriels — cycle industrie',
+ cyclic:true,cyclicReason:'Mineraux',
  price:28,chg:0.2,mkt:'2.2Md€',b52h:36,b52l:24,beta:1.1,
  pe:12,pb:1.0,ev_ebitda:7,ps:0.5,pfcf:9,ev_ebit:8,
  roe:8,roic:6,roa:4,debt:2.5,de:0.9,ic:4.8,cr:1.3,qr:1.1,
@@ -2294,7 +2295,7 @@ const S=[
  contra:"Très cyclique. Intensité énergétique élevée."},
 
 {ticker:'THERMADOR',name:'Thermador',sector:'Distribution eau',cap:'small',srd:false,idx:'SRD',
- cyclic:true,cyclicReason:'Distribution eau/thermique — cycle BTP',
+ cyclic:true,cyclicReason:'Distribution eau',
  price:88,chg:0.3,mkt:'0.35Md€',b52h:105,b52l:78,beta:0.7,
  pe:12,pb:2.2,ev_ebitda:8,ps:0.8,pfcf:9,ev_ebit:9,
  roe:18,roic:14,roa:9,debt:0.3,de:0.2,ic:18.5,cr:2.5,qr:2.0,
@@ -2464,7 +2465,7 @@ const S=[
  contra:"Marges fines (3%). Personnel intensif. Cyclicité e-commerce."},
 
 {ticker:'ELIOR',name:'Elior',sector:'Restauration collective',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Restauration collective — cycle entreprise',
+ cyclic:true,cyclicReason:'Restauration',
  price:3.8,chg:0.3,mkt:'0.68Md€',b52h:5.5,b52l:3.0,beta:1.3,
  pe:12,pb:0.6,ev_ebitda:5,ps:0.1,pfcf:7,ev_ebit:6,
  roe:5,roic:4,roa:1,debt:3.5,de:1.5,ic:2.8,cr:0.8,qr:0.6,
@@ -2634,7 +2635,7 @@ const S=[
  contra:"Volumes sous pression en Chine et aux US. 6 trimestres de deception. La normalisation post-COVID-boom prend plus de temps que prevu."},
 
 {ticker:'SYENSQO',name:'Syensqo',sector:'Chimie haute performance',cap:'mid',srd:false,idx:'EURONEXT',
- cyclic:true,cyclicReason:'Chimie haute performance — cycle industrie',
+ cyclic:true,cyclicReason:'Chimie',
  price:78,chg:0.3,mkt:'5.8Md€',b52h:95,b52l:65,beta:1.2,
  pe:18,pb:2.5,ev_ebitda:11,ps:1.5,pfcf:14,ev_ebit:12,
  roe:15,roic:12,roa:7,debt:1.5,de:0.7,ic:7.5,cr:1.5,qr:1.2,
@@ -2669,7 +2670,7 @@ const S=[
  contra:"Exposition brevet Somatuline (expiration 2027-2028). Concurrence Novartis/Pfizer sur maladies rares. Pipeline a prouver."},
 
 {ticker:'REXEL',name:'Rexel',sector:'Distribution electrique',cap:'large',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Distribution électrique — cycle construction',
+ cyclic:true,cyclicReason:'Distribution electrique',
  price:22,chg:0.2,mkt:'4.8Md€',b52h:28,b52l:18,beta:1.1,
  pe:11,pb:2.0,ev_ebitda:7,ps:0.25,pfcf:8,ev_ebit:7,
  roe:18,roic:13,roa:6,debt:1.5,de:0.8,ic:7.5,cr:1.3,qr:1.0,
@@ -2855,7 +2856,7 @@ const S=[
  contra:"Tres peu liquide (famille 98%). Cyclicite defense sur les grands programmes. Taille limitee vs Amphenol 10Md€ CA."},
 
 {ticker:'SAMSE',name:'Samse',sector:'Distribution materiaux',cap:'small',srd:false,idx:'SBF120',
- cyclic:true,cyclicReason:'Distribution matériaux — cycle BTP',
+ cyclic:true,cyclicReason:'Distribution mat',
  price:228,chg:0.3,mkt:'0.88Md€',b52h:265,b52l:188,beta:0.8,
  pe:12,pb:1.0,ev_ebitda:6,ps:0.4,pfcf:9,ev_ebit:7,
  roe:10,roic:8,roa:5,debt:1.8,de:0.8,ic:5.5,cr:1.4,qr:1.1,
@@ -2873,7 +2874,7 @@ const S=[
  contra:"Cyclicite construction forte. Saint-Gobain Distribution attaque le marche pro. Famille peut privatiser."},
 
 {ticker:'MANITOU',name:'Manitou',sector:'Engins manutention',cap:'mid',srd:true,idx:'SBF120',
- cyclic:true,cyclicReason:'Matériel levage — cycle investissement',
+ cyclic:true,cyclicReason:'Levage',
  price:26,chg:0.4,mkt:'1.4Md€',b52h:32,b52l:20,beta:1.1,
  pe:10,pb:1.5,ev_ebitda:6,ps:0.5,pfcf:8,ev_ebit:7,
  roe:14,roic:10,roa:6,debt:1.2,de:0.6,ic:6.5,cr:1.5,qr:1.2,
@@ -4619,114 +4620,52 @@ function show(i){
 
 
 // ═══════════ SCORE QARP (Quality At a Reasonable Price) ═══════════
-function calcQARPLarge(s){
-  // QARP Large Caps — recalibré sur backtest 85 actions 2019-2024
-  // Robuste : Dette (28) > PE fwd (27) > ROE (15) > Marge (18) > FCF (12)
-  // Recalibration prudente max ±5 pts — évite l'overfitting sur N=85
-  var q=0,r=0,b=0,v=0,m=0;
+function calcQARP(s){
+  // 5 dimensions, chacune notee sur 20 points = total /100
+  // 1. QUALITE BUSINESS (ROE, marge nette, moat)
+  var q = 0;
+  if(s.roe>=25) q=20; else if(s.roe>=18) q=16; else if(s.roe>=12) q=11; else if(s.roe>=7) q=6; else q=2;
 
-  // Q — ROE (15 pts — tenu car corrél. 0.494 même sans outliers)
-  if(s.roe>=25) q=15;
-  else if(s.roe>=18) q=12;
-  else if(s.roe>=12) q=9;
-  else if(s.roe>=8) q=5;
-  else q=2;
+  // 2. RENTABILITE (marge nette, FCF yield, ROIC)
+  var r = 0;
+  var moy = (s.margin + s.fcf + (s.roic||s.roe*0.8)) / 3;
+  if(moy>=20) r=20; else if(moy>=12) r=15; else if(moy>=7) r=10; else if(moy>=3) r=5; else r=1;
 
-  // R — Marge nette (18 pts — réduit de 22→18 car colinéaire avec PE)
-  if(s.margin>=20) r=18;
-  else if(s.margin>=14) r=14;
-  else if(s.margin>=8) r=10;
-  else if(s.margin>=4) r=6;
-  else r=2;
-
-  // B — Bilan/Dette (28 pts — augmenté de 26→28, facteur le plus robuste)
-  if(s.debt<1.0) b=28;
-  else if(s.debt<1.8) b=22;
-  else if(s.debt<2.8) b=14;
-  else if(s.debt<4.0) b=7;
+  // 3. BILAN (dette, Piotroski, Altman)
+  var b = 0;
+  if(s.debt<=0.5&&s.pio>=8) b=20;
+  else if(s.debt<=1&&s.pio>=7) b=16;
+  else if(s.debt<=2&&s.pio>=6) b=11;
+  else if(s.debt<=3) b=6;
   else b=2;
 
-  // V — Valorisation PE fwd (27 pts — augmenté de 25→27)
-  // Contre-intuitif : PE élevé = anticipation de croissance = signal haussier
-  if(s.pe>0&&s.pe<12) v=12;
-  else if(s.pe>=12&&s.pe<18) v=20;
-  else if(s.pe>=18&&s.pe<28) v=27;
-  else if(s.pe>=28&&s.pe<40) v=20;
-  else if(s.pe>=40&&s.pe<60) v=12;
-  else v=4;
+  // 4. VALORISATION (DCF upside, PE relatif, R/R)
+  var v = 0;
+  var upsidePct = parseFloat(((s.dcfm-s.price)/s.price*100).toFixed(1));
+  var rr = rratio(s);
+  if(upsidePct>=35&&rr>=2) v=20;
+  else if(upsidePct>=20&&rr>=1.5) v=15;
+  else if(upsidePct>=10) v=10;
+  else if(upsidePct>=0) v=5;
+  else v=1;
 
-  // M — FCF yield (12 pts — inchangé)
-  if(s.fcf>=8) m=12;
-  else if(s.fcf>=5) m=9;
-  else if(s.fcf>=2) m=6;
-  else m=2;
+  // 4b. INTÉGRITÉ COMPTABLE (Beneish M-Score) — malus si suspect
+  var mScore = calcBeneish(s);
+  if(mScore > -1.49) v = Math.max(1, v - 8);  // Alerte élevée : malus -8
+  else if(mScore > -1.78) v = Math.max(1, v - 3); // Zone grise : malus -3
 
-  var total=q+r+b+v+m;
-  return {q:q,r:r,b:b,v:v,m:m,total:Math.min(100,total)};
-}
+  // 5. MOMENTUM (zone, RSI, MM200)
+  var m = 0;
+  var inZ = s.price>=s.el&&s.price<=s.eh;
+  var aboveMM200 = s.price>s.mm200;
+  var goodRSI = s.rsi>=25&&s.rsi<=60;
+  if(inZ&&aboveMM200&&goodRSI) m=20;
+  else if(inZ&&aboveMM200) m=15;
+  else if(inZ||aboveMM200) m=10;
+  else m=4;
 
-function calcQARPMid(s){
-  // QARP Midcaps — recalibré sur backtest 2019-2024
-  // Dette (23) > PE (22) > Marge (15) > Croiss.CA (20) > FCF (12) > ROE (8)
-  var q=0,r=0,b=0,v=0,m=0;
-
-  // Q — ROE (8 pts — réduit car moins prédictif sur midcaps)
-  if(s.roe>=20) q=8;
-  else if(s.roe>=13) q=6;
-  else if(s.roe>=8) q=4;
-  else q=2;
-
-  // R — Marge (15 pts — augmenté de 10→15, facteur clé midcaps)
-  if(s.margin>=15) r=15;
-  else if(s.margin>=9) r=12;
-  else if(s.margin>=5) r=8;
-  else if(s.margin>=2) r=4;
-  else r=1;
-
-  // B — Bilan/Dette (23 pts — augmenté de 20→23)
-  if(s.debt<1.5) b=23;
-  else if(s.debt<2.5) b=18;
-  else if(s.debt<4.0) b=11;
-  else if(s.debt<6.0) b=5;
-  else b=1;
-
-  // V — Valorisation PE (22 pts — augmenté de 20→22)
-  if(s.pe>0&&s.pe<12) v=22;
-  else if(s.pe>=12&&s.pe<18) v=18;
-  else if(s.pe>=18&&s.pe<25) v=14;
-  else if(s.pe>=25&&s.pe<35) v=9;
-  else v=3;
-
-  // Croissance CA (20 pts — réduit de 25→20, moins prédictif qu'attendu)
-  if(s.revg>=15) m=20;
-  else if(s.revg>=10) m=16;
-  else if(s.revg>=5) m=11;
-  else if(s.revg>=0) m=6;
-  else m=2;
-
-  // FCF (12 pts — réduit de 15→12)
-  var fcf_bonus=0;
-  if(s.fcf>=6) fcf_bonus=12;
-  else if(s.fcf>=3) fcf_bonus=8;
-  else if(s.fcf>=1) fcf_bonus=4;
-
-  var total=q+r+b+v+m+fcf_bonus;
-  return {q:q,r:r,b:b,v:v,m:m+fcf_bonus,total:Math.min(100,total)};
-}
-
-function calcQARP(s){
-  // Score unifié selon la capitalisation
-  var L = calcQARPLarge(s);
-  var M = calcQARPMid(s);
-  var unified;
-  if(s.cap==='large')      unified = Math.round(L.total*0.75 + M.total*0.25);
-  else if(s.cap==='small') unified = Math.round(L.total*0.20 + M.total*0.80);
-  else                     unified = Math.round(L.total*0.45 + M.total*0.55);
-  // Retourne le score unifié mais expose aussi L et M
-  var result = {q:L.q,r:L.r,b:L.b,v:L.v,m:L.m,total:unified};
-  result.scoreL = L.total;
-  result.scoreM = M.total;
-  return result;
+  var total = q+r+b+v+m;
+  return {total:total, q:q, r:r, b:b, v:v, m:m};
 }
 
 function qarpBar(val, max){
@@ -4906,17 +4845,8 @@ function render(s){
         </div>
       </div>
       <div class="da-thesis">
-        <div class="da-bull"><div class="da-lbl" style="color:var(--g
-          \${s.cyclic ? \`
-          <div style="background:linear-gradient(135deg,#92400e22,#d97706,22);border:1px solid #d97706;border-radius:6px;padding:10px 12px;margin-bottom:8px">
-            <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔄 ACTION CYCLIQUE — NE PAS UTILISER LE SCORE QARP</div>
-            <div style="font-size:10px;color:#78350f">\${s.cyclicReason || 'Valeur de cycle — sensible à la conjoncture'}</div>
-            <div style="font-size:9px;color:#92400e;margin-top:4px">
-              Score cycle : <b>\${calcCyclic(s)}/100</b> &nbsp;·&nbsp;
-              Signal d'achat si : PE < 14 + BPA en hausse + cours > MM200 + cuivre en hausse
-            </div>
-          </div>\` : ''}
-n)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
+        ${s.cyclic===true?`<div style="background:#92400e;border-left:4px solid #d97706;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:10px"><div style="font-size:9px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔄 ACTION CYCLIQUE — NE PAS UTILISER LE SCORE QARP</div><div style="font-size:10px;color:#fef3c7">${s.cyclicReason||'Valeur de cycle'}</div><div style="font-size:9px;color:#fde68a;margin-top:4px">Score cycle : <b>${calcCyclic(s)}/100</b> · Signal si : PE&lt;14 + BPA↑ + cours&gt;MM200 + cuivre↑</div></div>`:''}
+        <div class="da-bull"><div class="da-lbl" style="color:var(--gn)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
         <div class="da-bear"><div class="da-lbl" style="color:var(--rd)">🐻 Ce que le marché craint</div><div class="da-txt">${s.contra}</div></div>
       </div>
       <div class="da-verdict">
@@ -4951,8 +4881,7 @@ n)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px">${s.sector} · ${s.idx} · Cap. ${s.mkt}</div>
         </div>
         <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:14px 20px">
-          <div style="font-size:36px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${(function(){var q=calcQARP(s).total;return q>=65?'#22c55e':q>=50?'#f59e0b':'#ef4444';})()}"><b>${calcQARP(s).total}</b><span style="font-size:8px;opacity:.65;margin-left:3px">${calcQARPLarge(s).total}L/${calcQARPMid(s).total}M</span></div>
-          \${isCyclical(s) ? \`<div style="margin-top:4px;font-size:9px;background:linear-gradient(135deg,#92400e,#d97706);color:#fff;padding:2px 6px;border-radius:3px;display:inline-block">🔄 CYCLIQUE — Score cycle: \${calcCyclic(s)}/100</div>\` : ''}
+          <div style="font-size:36px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${(function(){var q=calcQARP(s).total;return q>=65?'#22c55e':q>=50?'#f59e0b':'#ef4444';})()}">${calcQARP(s).total}</div>
           <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">/100 QARP</div>
           <div style="margin-top:6px;padding:4px 10px;background:${qarpVerdict(calcQARP(s).total).bg};border-radius:4px;font-size:9px;font-weight:700;color:${qarpVerdict(calcQARP(s).total).col}">${qarpVerdict(calcQARP(s).total).icon} ${qarpVerdict(calcQARP(s).total).txt}</div>
         </div>
@@ -4963,7 +4892,7 @@ n)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
         <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--mu);margin-bottom:12px">Score QARP — 5 dimensions</div>
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
           ${(function(){
-            var qp=calcQARP(s); var qL=calcQARPLarge(s); var qM=calcQARPMid(s);
+            var qp=calcQARP(s);
             return [
               {l:'Qualité',v:qp.q,icon:'🏆',desc:'ROE · Moat'},
               {l:'Rentabilité',v:qp.r,icon:'💰',desc:'Marge · FCF'},
@@ -5275,7 +5204,7 @@ n)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
               <div style="font-size:9px;font-family:IBM Plex Mono,monospace;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Verdict du Cabinet</div>
               <div style="font-size:20px;font-weight:700;color:#f0d080;font-family:Georgia,serif;margin-bottom:10px">${qarpVerdict(calcQARP(s).total).icon} ${qarpVerdict(calcQARP(s).total).txt}</div>
               <div style="display:flex;gap:12px;margin-bottom:12px">
-                <div style="text-align:center"><div style="font-size:14px;font-weight:700;font-family:IBM Plex Mono,monospace;color:#f0d080">${calcQARP(s).total}/100</div><div style="font-size:9px;color:rgba(255,255,255,.5);margin-top:2px;font-family:IBM Plex Mono,monospace">L:<b style="color:#f0d080">${calcQARPLarge(s).total}</b>&nbsp;·&nbsp;M:<b style="color:#a78bfa">${calcQARPMid(s).total}</b></div><div style="font-size:8px;color:rgba(255,255,255,.4)">QARP</div></div>
+                <div style="text-align:center"><div style="font-size:14px;font-weight:700;font-family:IBM Plex Mono,monospace;color:#f0d080">${calcQARP(s).total}/100</div><div style="font-size:8px;color:rgba(255,255,255,.4)">QARP</div></div>
                 <div style="text-align:center"><div style="font-size:14px;font-weight:700;font-family:IBM Plex Mono,monospace;color:#f0d080">${rratio(s).toFixed(1)}x</div><div style="font-size:8px;color:rgba(255,255,255,.4)">R/R</div></div>
                 <div style="text-align:center"><div style="font-size:14px;font-weight:700;font-family:IBM Plex Mono,monospace;color:#f0d080">${s.pio}/9</div><div style="font-size:8px;color:rgba(255,255,255,.4)">Piotroski</div></div>
               </div>
@@ -5612,32 +5541,12 @@ function loadMM200Banner(s){
 
 // ═══════════ QUEUE ═══════════
 function buildQ(){
-  var l=document.getElementById('queue');
-  if(!l)return;
-  l.innerHTML=fil.map(function(s,i){
-    var qL=calcQARPLarge(s).total;
-    var qM=calcQARPMid(s).total;
-    var qU=calcQARP(s).total;
-    var qcol=qU>=65?'#22c55e':qU>=50?'#f59e0b':'#ef4444';
-    var inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
-    var cyclicBadge=s.cyclic?'<span title="Action cyclique — utiliser le score cycle" style="color:#d97706;font-size:9px;margin-left:2px">🔄</span>':'';
-    var zoneDot=inZone?'<span style="color:#22c55e;font-size:8px;margin-left:2px" title="En zone d\'achat">●</span>':'';
-    return '<div class="qi'+(i===idx?' active':'')+'" onclick="jump('+i+')">'
-      +'<span class="qi-n">'+(i+1)+'</span>'
-      +'<span class="qi-t">'+s.ticker+'</span>'
-      +cyclicBadge
-      +zoneDot
-      +'<span class="qi-nm">'+s.name+'</span>'
-      +'<span class="qg '+qGCl(s.score)+'">'+s.score+'</span>'
-      +'<span style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:'+qcol+';margin-left:4px;white-space:nowrap">'
-      +qU+'<span style="font-size:7px;opacity:.6"> ('+qL+'L/'+qM+'M)</span></span>'
-      +'</div>';
-  }).join('');
+  const l=document.getElementById('ql');
+  l.innerHTML=fil.map((s,i)=>`<div class="qi${i===idx?' active':''}" onclick="jump(${i})"><span class="qi-n">${i+1}</span><span class="qi-t">${s.ticker}</span><span class="qi-nm">${s.name}</span><span class="qg ${qGCl(s.score)}">${s.score}</span></div>`).join('');
   document.getElementById('qcnt').textContent=fil.length+' val.';
-  var a=l.querySelector('.active');
+  const a=l.querySelector('.active');
   if(a)a.scrollIntoView({block:'nearest'});
 }
-
 function filterFile(q){
   var v=(q||'').trim().toLowerCase();
   var l=document.getElementById('ql');
@@ -5895,52 +5804,7 @@ const LEX=[
   formula:'Borne basse = support technique ou DCF bear case · Borne haute = résistance proche',
   interp:'Dans la zone = bon point d\'entrée. Au-dessus = attendre correction. Combinaison fondamentaux + technique est idéale.',
   ex:'L\'Oréal zone 315-348€ : sous 315€ = excellent (approche DCF bear 280€ + support tech), au-dessus 395€ = attendre la prochaine correction.'},
-
-,{term:'Beneish M-Score',cat:'qualite',short:'Détecteur de fraude comptable',
-  desc:'Modèle de 8 ratios développé par Messod Beneish en 1999 pour détecter les manipulations comptables. Utilisé pour identifier les entreprises qui gonflent artificiellement leurs bénéfices.',
-  formula:'M = -4.84 + 0.920×DSRI + 0.528×GMI + 0.404×AQI + 0.892×SGI + 0.115×DEPI - 0.172×SGAI + 4.679×TATA - 0.327×LVGI',
-  interp:'M < -1.78 = normal (pas de signal). M entre -1.78 et -1.49 = zone grise. M > -1.49 = alerte manipulation. Enron = -0.47.',
-  ex:'Orpea aurait été détecté avec M = -0.8 avant son effondrement. Une entreprise saine comme L&#39;Air Liquide affiche M ≈ -2.5.'}
-,{term:'Gouvernance Harrabi',cat:'qualite',short:'Score gouvernance 0-100',
-  desc:'Méthode de Youssef Harrabi pour évaluer la qualité du management et l\'alignement des intérêts entre dirigeants et actionnaires.',
-  formula:'Achats insiders (30pts) + Track record guidances (35pts) + Alignement capital (20pts) + Grade (15pts)',
-  interp:'≥70 = bonne gouvernance. 45-70 = correcte. <45 = faible. Insiders qui achètent = signal fort d\'alignement.',
-  ex:'Hermès : famille Dumas (50%+ du capital), guidances tenues 100% → gouvernance 90/100.'}
-,{term:'R/R (Ratio Risque/Rendement)',cat:'valorisation',short:'(Objectif - Cours) / (Cours - Stop)',
-  desc:'Mesure l\'asymétrie entre le gain potentiel et la perte maximale acceptée. Critère central du protocole VAL.PEA.',
-  formula:'R/R = (Objectif 1 - Cours actuel) / (Cours actuel - Stop Loss)',
-  interp:'R/R < 1 = défavorable. 1-1.5 = limite. ≥1.5 = acceptable. ≥2 = excellent. Ne jamais acheter avec R/R < 1.',
-  ex:'EL à 185€ : Obj1=248, Stop=165. R/R = (248-185)/(185-165) = 63/20 = 3.15x = excellent.'}
-,{term:'Triptyque Chéron',cat:'momentum',short:'RSI + MM200 + Zone DCF',
-  desc:'Triple filtre technique de Nicolas Chéron : RSI en zone valeur + cours au-dessus de la MM200 + cours dans la zone d\'achat fondamentale. Minimum 2/3 pour agir.',
-  formula:'1. RSI entre 25 et 60 · 2. Cours > MM200 · 3. Cours dans zone el-eh ou décote ≥12% sur DCF',
-  interp:'3/3 = conditions idéales. 2/3 = acceptable si R/R ≥1.5x. 1/3 ou 0/3 = attendre.',
-  ex:'Air Liquide 188€ : RSI=55 ✅ + MM200=182✅ + Zone ✅ = 3/3 feux verts.'}
-,{term:'Simulateur PEA',cat:'outils',short:'Projection avec intérêts composés',
-  desc:'Calcule la valeur projetée du PEA à 5, 10, 15 et 20 ans selon le capital actuel, les versements mensuels et le rendement annuel cible.',
-  formula:'VF = Capital × (1+r)^n + Versement × [(1+r_mensuel)^n - 1] / r_mensuel',
-  interp:'Base : 10%/an (rendement historique stock-picking PEA). 13% = cible réaliste avec stock-picking rigoureux. 15% = performance haute.',
-  ex:'13000€ + 200€/mois à 12%/an = 47k€ dans 10 ans, 145k€ dans 20 ans.'}
-,{term:'Signal Ultime',cat:'signaux',short:'Score ≥70 + zone + Grade A ou B',
-  desc:'Confluence de 3 conditions sur un même titre : score QARP ≥70/100 + cours dans la zone d\'achat + Grade A ou B. C\'est le signal le plus puissant du screener.',
-  formula:'Score QARP ≥ 70 ET (cours dans [el,eh] OU décote ≥12% sur DCF médian) ET Grade A ou B',
-  interp:'Signal ultime = agir le dimanche suivant après validation du protocole en 5 étapes. Maximum 2-3 signaux ultimes par mois.',
-  ex:'Hermès à 1600€ : Score 74 + Zone [1520-1820] + Grade A = Signal Ultime.'}
-,{term:'Backtest Zone',cat:'outils',short:'Simulation d\'achat historique',
-  desc:'Outil du Labo Psycho qui simule : si j\'avais acheté X à Y€, quelle serait ma situation aujourd\'hui ? Permet de calibrer le regret et valider les zones.',
-  formula:'PV/MV = (Cours actuel - Prix achat hypothétique) × Quantité',
-  interp:'Utile pour accepter psychologiquement les zones. Montre que les achats en zone basse surperforment systématiquement.',
-  ex:'GTT achetée hypothétiquement à 155€ (zone basse) vs cours actuel 197€ = +27% vs +0.5% au PRU réel 196€.'}
-,{term:'Concentration sectorielle',cat:'portefeuille',short:'Alerte si secteur > 30%',
-  desc:'Le screener alerte automatiquement quand un secteur dépasse 30% de la valeur totale du portefeuille. Évite la sur-concentration involontaire.',
-  formula:'Poids secteur = Somme(valeur positions du secteur) / Valeur totale portefeuille',
-  interp:'< 20% = bien diversifié. 20-30% = surveiller. > 30% = alerte rouge. Max recommandé par secteur : 25%.',
-  ex:'Si TTE (10%) + SU (12%) + AI (12%) = 34% énergie/industriels → alerte de concentration.'}
-,{term:'Nicolas Chéron — Analyse bimensuelle',cat:'sources',short:'Décryptage marché + actions tous les 15 jours',
-  desc:'Analyste technique et fondamental, auteur du Triptyque intégré dans VAL.PEA. Publie un décryptage de marché complet tous les 15 jours sur YouTube : macro, secteurs, actions spécifiques.',
-  formula:'Sources : YouTube "Nicolas Chéron" · chaîne Centrale des Marchés',
-  interp:'Intégré dans le condensé YouTube du mail du dimanche. Focus : timing d\'entrée, niveaux techniques clés, secteurs porteurs.',
-  ex:'Décryptage bimensuel : "Les 5 actions que j\'achèterais en zone basse" avec niveaux précis à surveiller.'}];
+];
 let lexCat='all';
 function buildLex(){
   const g=document.getElementById('lex-grid');
@@ -6069,7 +5933,7 @@ const ETF=[
   {ticker:'CW8',name:'MSCI World',emetteur:'Amundi',isin:'LU1681043599',type:'Capitalisant',frais:0.12,perf1y:18.2,perf3y:11.4,perf5y:14.8,encours:'8.2Md€',indice:'MSCI World (1600 titres)',replication:'Synthétique',note:'A',
    avantages:['0.12% frais — le moins cher PEA','Synthétique = éligible PEA','1600 entreprises mondiales'],
    risques:['Risque contrepartie swap (limité 10%)','Exposition USD 70%'],
-   verdict:"⭐ LE meilleur ETF PEA. 0.12% imbattable. Si un seul ETF dans votre PEA : c\'est celui-là."},
+   verdict:"⭐ LE meilleur ETF PEA. 0.12% imbattable. Si un seul ETF dans votre PEA : c'est celui-là."},
   {ticker:'PAEEM',name:'MSCI Emerging Markets',emetteur:'Amundi',isin:'LU1681045370',type:'Capitalisant',frais:0.20,perf1y:8.4,perf3y:2.1,perf5y:4.8,encours:'2.8Md€',indice:'MSCI EM (Chine, Inde, Brésil...)',replication:'Synthétique',note:'B',
    avantages:['Seul ETF émergents éligible PEA','Inde croissance structurelle'],
    risques:['Chine 30% risque géopolitique','Volatilité élevée'],
@@ -6081,7 +5945,7 @@ const ETF=[
   {ticker:'PCEU',name:'Europe ex-UK',emetteur:'Amundi',isin:'LU1681047378',type:'Capitalisant',frais:0.15,perf1y:6.8,perf3y:5.2,perf5y:8.4,encours:'1.2Md€',indice:'MSCI Europe ex-UK',replication:'Synthétique',note:'B',
    avantages:['Complémente CW8 sur Europe','Valorisation attractive PE 13x vs 22x US'],
    risques:['Croissance structurellement faible','Cycliques surpondérés'],
-   verdict:"Pour sur-pondérer l\'Europe. Pari sur le rattrapage européen."},
+   verdict:"Pour sur-pondérer l'Europe. Pari sur le rattrapage européen."},
   {ticker:'GOLDN',name:'Or Physique',emetteur:'WisdomTree',isin:'DE000A0N62G0',type:'Capitalisant',frais:0.39,perf1y:22.4,perf3y:11.8,perf5y:12.4,encours:'4.2Md€',indice:'Gold Spot Price',replication:'Physique',note:'B',
    avantages:['Couverture inflation & crises','Or physique réel','Décorrélation parfaite actions'],
    risques:['⚠️ Non éligible PEA — compte-titres uniquement','0.39% de frais','Aucun dividende'],
@@ -6627,22 +6491,23 @@ function ptfAdd(){
 function ptfSell(id){
   var pos=PTF.find(function(p){return p.id===id;});
   if(!pos)return;
-  _sellId=id;
   var s=S.find(function(x){return x.ticker===pos.ticker;});
   var ca=s?s.price:pos.pru;
-  var title=document.getElementById('sell-modal-title');
-  var info=document.getElementById('sell-modal-info');
-  var input=document.getElementById('sell-price-input');
-  if(title)title.textContent='Vendre '+pos.qty+' x '+pos.ticker;
-  if(info)info.innerHTML=
-    '<b>'+pos.ticker+'</b> — '+pos.qty+' titre(s)<br>'+
-    'PRU : <b>'+pos.pru.toFixed(2)+'€</b> · Cours actuel : <b>'+ca.toFixed(2)+'€</b><br>'+
-    'PV/MV latente : <b style="color:'+(ca>=pos.pru?'var(--gn)':'var(--rd)')+'">'+
-    (((ca-pos.pru)*pos.qty)>=0?'+':'')+Math.round((ca-pos.pru)*pos.qty)+'€</b>';
-  if(input)input.value=ca.toFixed(2);
-  sellModalUpdate();
-  var m=document.getElementById('sell-modal');
-  if(m)m.style.display='flex';
+  var pvL=(ca-pos.pru)*pos.qty;
+  var pvPct=((ca-pos.pru)/pos.pru*100);
+  var pvLbl=(pvL>=0?'+':'')+Math.round(pvL)+'E ('+(pvPct>=0?'+':'')+pvPct.toFixed(1)+'%)';
+  var msg=pos.ticker+' - '+pos.qty+' titres\nPRU: '+pos.pru.toFixed(2)+'E\nCours: '+ca.toFixed(2)+'E\nPV/MV latente: '+pvLbl+'\n\nPrix de vente reel (E):';
+  var pxStr=prompt(msg,ca.toFixed(2));
+  if(pxStr===null)return;
+  var px=parseFloat(pxStr)||ca;
+  var pnl=(px-pos.pru)*pos.qty;
+  var pct=((px-pos.pru)/pos.pru*100);
+  var pf=(pnl>=0?'+':'')+Math.round(pnl)+'E ('+(pct>=0?'+':'')+pct.toFixed(1)+'%)';
+  if(!confirm('Vente '+pos.qty+' '+pos.ticker+' a '+px.toFixed(2)+'E - PV/MV: '+pf))return;
+  PTF_HIST.push({id:Date.now().toString(),type:'vente',ticker:pos.ticker,qty:pos.qty,pru:pos.pru,prixVente:px,pnl:pnl,pct:pct,date:new Date().toLocaleDateString('fr-FR'),note:'Vente a '+px.toFixed(2)+'E - PV/MV: '+pf});
+  PTF=PTF.filter(function(p){return p.id!==id;});
+  ptfSave();
+  ptfRender();
 }
 
 function ptfDelete(id){
@@ -7359,7 +7224,25 @@ function checkBpfResultats(){
   }
 }
 
-function checkAlerts(){/* alertes désactivées */}
+function checkAlerts(){
+  const alerts=JSON.parse(localStorage.getItem('pea_alerts')||'[]');
+  const triggered=[];
+  S.forEach(s=>{
+    const inZone=s.price>=s.el&&s.price<=s.eh;
+    const nearStop=s.price<=s.stop*1.02;
+    if(inZone&&!alerts.includes('zone_'+s.ticker+'_'+Math.floor(s.price))){
+      triggered.push({type:'ACHAT',ticker:s.ticker,name:s.name,msg:'📍 '+s.ticker+' en zone achat ('+s.price+'€ · zone '+s.el+'-'+s.eh+'€)'});
+    }
+    if(nearStop&&!alerts.includes('stop_'+s.ticker)){
+      triggered.push({type:'STOP',ticker:s.ticker,name:s.name,msg:'🔴 '+s.ticker+' proche du stop loss ('+s.price+'€ · stop '+s.stop+'€)'});
+    }
+  });
+  if(triggered.length>0){
+    const msg=triggered.map(a=>a.msg).join('\n');
+    if(confirm('🔔 ALERTES PEA SCREENER:\n\n'+msg+'\n\nCliquer OK pour voir ces actions.'))
+      triggered.forEach(a=>goStock(a.ticker));
+  }
+}
 
 function addAlert(ticker){
   const alerts=JSON.parse(localStorage.getItem('pea_alerts')||'[]');
@@ -8273,35 +8156,44 @@ function nextResultFromStock(s){
 
 // Score Triptyque: 0-100
 function triptyqueScore(s){
-  // Triptyque Chéron : RSI + MM200 + Zone DCF — PAS de dépendance à s.res
-  var score = 0;
+  if(!s.res) return null;
+  const nr = nextResultFromStock(s);
+  if(!nr) return null;
   
-  // Pilier 1 : QUALITÉ (Grade + Piotroski) — 30 pts
-  if(s.score==='A') score += 20;
-  else if(s.score==='B') score += 12;
+  let score = 0;
+  
+  // Condition 1: QUALITÉ (40 pts)
+  if(s.score==='A') score += 25;
+  else if(s.score==='B') score += 15;
   if(s.pio >= 8) score += 10;
   else if(s.pio >= 7) score += 7;
   else if(s.pio >= 6) score += 3;
   
-  // Pilier 2 : RSI zone valeur (25-60) — 25 pts
-  if(s.rsi >= 25 && s.rsi <= 45) score += 25;      // Zone idéale (sur-vente légère)
-  else if(s.rsi > 45 && s.rsi <= 60) score += 18;  // Zone valeur
-  else if(s.rsi > 20 && s.rsi < 25) score += 15;   // Sur-vendu (attention)
+  // Condition 2: TIMING (35 pts)
+  // Zone d'accumulation optimale: J-3 à J-33
+  if(nr.days <= 3 && nr.days >= 0) score += 35;       // Signal maximal
+  else if(nr.days <= 7) score += 30;                   // Très fort
+  else if(nr.days <= 14) score += 25;                  // Fort
+  else if(nr.days <= 21) score += 20;                  // Bon
+  else if(nr.days <= 33) score += 15;                  // Acceptable
+  else if(nr.days <= 45) score += 8;                   // Surveiller
+  else score += 2;                                     // Trop tôt
   
-  // Pilier 3 : MM200 (tendance longue) — 20 pts
-  if(s.price > s.mm200 && s.mm200 > 0) score += 20;     // Tendance haussière
-  else if(s.mm200 > 0 && s.price >= s.mm200*0.97) score += 10; // Légèrement sous
+  // Condition 3: PRIX / VALORISATION (25 pts)
+  const z = dynZone(s);
+  if(s.price >= z.el && s.price <= z.eh*1.05) score += 20;  // En zone
+  else if(s.price < z.el * 1.1) score += 10;               // Proche zone
+  else if(s.price < z.el * 1.2) score += 5;                // Acceptable
   
-  // Pilier 4 : Zone DCF / zone achat — 25 pts
-  var inZone = (s.price >= s.el && s.price <= s.eh);
-  var dcfZone = (s.dcfm > 0 && s.price <= s.dcfm * 0.88);
-  if(inZone) score += 25;
-  else if(dcfZone) score += 20;
-  else if(s.dcfm > 0 && s.price <= s.dcfm * 0.95) score += 10;
+  // Bonus: track record management
+  const trOkCount = (s.track||[]).filter(t=>t.ok==='ok').length;
+  const trTotal = (s.track||[]).length;
+  if(trTotal > 0 && trOkCount/trTotal >= 1.0) score += 5;  // 100% guidances
   
   return Math.min(100, score);
 }
 
+// Badge visuel Triptyque
 function triptyqueBadge(s){
   const sc = triptyqueScore(s);
   if(sc === null) return '';
@@ -8442,88 +8334,19 @@ window.buildCal = function(s){
 };
 
 
-
-function calcCyclic(s){
-  // Score spécial pour valeurs cycliques
-  // Logique inversée : on achète quand les fondamentaux SEMBLENT mauvais
-  // mais que le cycle tourne
-  var score = 0;
-
-  // PE bas = valeur de cycle bas = ACHETER (contrairement à QARP)
-  if(s.pe > 0 && s.pe < 10) score += 30;
-  else if(s.pe >= 10 && s.pe < 14) score += 20;
-  else if(s.pe >= 14 && s.pe < 18) score += 10;
-
-  // Croissance BPA > 0 = le cycle tourne
-  if(s.epsg > 20) score += 25;
-  else if(s.epsg > 10) score += 18;
-  else if(s.epsg > 0) score += 10;
-  else score += 0; // BPA en baisse = pas encore le moment
-
-  // Croissance CA = proxy demande réelle
-  if(s.revg > 10) score += 20;
-  else if(s.revg > 5) score += 14;
-  else if(s.revg > 0) score += 8;
-
-  // Bilan = survie en bas de cycle
-  if(s.debt < 2.5) score += 15;
-  else if(s.debt < 4.0) score += 8;
-  else score += 2;
-
-  // Momentum : cours au-dessus de MM200 = reprise confirmée
-  if(s.price > s.mm200 && s.mm200 > 0) score += 10;
-
-  return Math.min(100, score);
-}
-
-function isCyclical(s){
-  // Source de vérité : champ cyclic:true dans S[]
-  // Plus fiable que la détection par secteur
-  return s.cyclic === true;
-}
-
-
-function filtCycliques(btn){
-  document.querySelectorAll('.fb').forEach(function(b){
-    b.classList.remove('active'); b.style.background=''; b.style.color='';
-  });
-  if(btn){
-    btn.classList.add('active');
-    btn.style.background='linear-gradient(135deg,#92400e,#d97706)';
-    btn.style.color='#fff';
-  }
-  fil = S.filter(function(s){
-    return isCyclical(s) && calcCyclic(s) >= 50 &&
-           s.price > s.mm200 * 0.97 && s.epsg > 0;
-  }).sort(function(a,b){ return calcCyclic(b) - calcCyclic(a); });
-  buildQ();
-  if(fil.length > 0){ idx=0; show(0); }
-}
-function filtScoreLarge(btn){
-  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
-  if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#1d4ed8,#3b82f6)';btn.style.color='#fff';}
-  fil=S.filter(function(s){return s.cap==='large'&&calcQARPLarge(s).total>=65;})
-       .sort(function(a,b){return calcQARPLarge(b).total-calcQARPLarge(a).total;});
-  buildQ();
-  if(fil.length>0){idx=0;show(0);}
-}
-function filtScoreMid(btn){
-  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
-  if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#7c3aed,#a78bfa)';btn.style.color='#fff';}
-  fil=S.filter(function(s){return s.cap!=='large'&&calcQARPMid(s).total>=65;})
-       .sort(function(a,b){return calcQARPMid(b).total-calcQARPMid(a).total;});
-  buildQ();
-  if(fil.length>0){idx=0;show(0);}
-}
 function filtTriptyque(btn){
   document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
   if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#16a34a,#4ade80)';btn.style.color='#fff';}
-  fil=S.filter(function(s){
-    return triptyqueScore(s) >= 55 && (s.price >= s.el && s.price <= s.eh || (s.dcfm>0 && s.price<=s.dcfm*0.88));
-  }).sort(function(a,b){return triptyqueScore(b)-triptyqueScore(a);});
+  fil=S.filter(function(s){return nextResultFromStock(s)!==null&&triptyqueScore(s)>=35;}).sort(function(a,b){return (triptyqueScore(b)||0)-(triptyqueScore(a)||0);});
   buildQ();
-  if(fil.length>0){idx=0;show(0);}
+  if(fil.length>0){idx=0;show(fil[0]);}
 }
+
+
+// ════════════ NOUVELLES FONCTIONS v40 ════════════
+// Ajouts SANS overrides - tout est nouveau
+
+window._ptfProfile = 'val';
 
 function ptfLoadProfile(name){
   try {
@@ -8585,17 +8408,17 @@ function ptfInputChange(val){
 
 var PTF_VAL_DEFAULT = [
   {id:'v1',ticker:'PAEEM',qty:13,pru:30.9138,date:'2025-01-01',note:'ETF Emergents'},
-  {id:'v2',ticker:'DCAM',qty:95,pru:5.54,date:'2025-01-01',note:'ETF MSCI World'},
+  {id:'v2',ticker:'DCAM',qty:80,pru:5.5084,date:'2025-01-01',note:'ETF MSCI World'},
   {id:'v3',ticker:'ASML',qty:1,pru:653.60,date:'2025-01-01',note:'ASML Holding'},
   {id:'v4',ticker:'ELIS',qty:45,pru:18.9524,date:'2025-01-01',note:'Elis'},
-  {id:'v5',ticker:'EL',qty:4,pru:205.78,date:'2025-01-01',note:'EssilorLuxottica'},
+  {id:'v5',ticker:'EL',qty:3,pru:211.6633,date:'2025-01-01',note:'EssilorLuxottica'},
   {id:'v6',ticker:'GTT',qty:4,pru:196.7575,date:'2025-01-01',note:'GTT GNL'},
   {id:'v7',ticker:'RMS',qty:2,pru:1795.95,date:'2026-04-15',note:'Hermes 2 titres - PRU moyen (2037.90 + 1554) / 2 = 1795.95'},
   {id:'v8',ticker:'AI',qty:10,pru:159.308,date:'2025-01-01',note:'Air Liquide'},
   {id:'v9',ticker:'LR',qty:5,pru:139.234,date:'2025-01-01',note:'Legrand'},
   {id:'v10',ticker:'SU',qty:7,pru:240.7243,date:'2025-01-01',note:'Schneider Electric'},
   {id:'v11',ticker:'HO',qty:3,pru:237.0767,date:'2025-01-01',note:'Thales Defense'},
-  {id:'v12',ticker:'TTE',qty:10,pru:50.5205,date:'2025-01-01',note:'TotalEnergies'},
+  {id:'v12',ticker:'TTE',qty:20,pru:50.5205,date:'2025-01-01',note:'TotalEnergies'},
 ];
 function ptfPreloadVal(){
   if(PTF.length>0){ptfRender();return;}
@@ -9977,147 +9800,115 @@ function buildGuide(){
 }
 
 
-// ===== GOUVERNANCE =====
-function calcGouvernance(s){
-  var score=0,signals=[];
-  if(s.ins&&s.ins.length>0){var a=s.ins.filter(function(i){return i[0]==='Achat';});if(a.length>=2){score+=30;signals.push({ok:true,txt:'Insiders achètent ('+a.length+'x)'});}else if(a.length===1){score+=15;signals.push({ok:true,txt:'1 achat insider'});}else{signals.push({ok:false,txt:'Aucun achat insider'});}}else{score+=5;signals.push({ok:null,txt:'Insiders non renseignés'});}
-  if(s.track&&s.track.length>0){var ok=s.track.filter(function(t){return t.ok==='ok';}).length;var pct=Math.round(ok/s.track.length*100);if(pct>=80){score+=35;signals.push({ok:true,txt:'Direction crédible '+pct+'%'});}else if(pct>=60){score+=20;signals.push({ok:null,txt:'Direction correcte '+pct+'%'});}else{score+=5;signals.push({ok:false,txt:'Direction peu fiable '+pct+'%'});}}else{score+=10;signals.push({ok:null,txt:'Historique non renseigné'});}
-  if(s.pb>0&&s.pb<3&&s.ins&&s.ins.length>0){score+=20;signals.push({ok:true,txt:'PB<3x + insiders'});}else if(s.ins&&s.ins.length>0){score+=10;signals.push({ok:true,txt:'Insiders présents'});}else{signals.push({ok:null,txt:'Alignement non vérifié'});}
-  if(s.score==='A'){score+=15;signals.push({ok:true,txt:'Grade A'});}else if(s.score==='B'){score+=8;}
-  return{score:Math.min(100,score),signals:signals};
+// ===== QARP LARGE CAPS =====
+function calcQARPLarge(s){
+  var q=0,r=0,b=0,v=0,m=0;
+  if(s.roe>=25) q=15; else if(s.roe>=18) q=12; else if(s.roe>=12) q=9; else if(s.roe>=8) q=5; else q=2;
+  if(s.margin>=20) r=18; else if(s.margin>=14) r=14; else if(s.margin>=8) r=10; else if(s.margin>=4) r=6; else r=2;
+  if(s.debt<1.0) b=28; else if(s.debt<1.8) b=22; else if(s.debt<2.8) b=14; else if(s.debt<4.0) b=7; else b=2;
+  var pe=s.pe||0;
+  if(pe>0&&pe<12) v=12; else if(pe>=12&&pe<18) v=20; else if(pe>=18&&pe<28) v=27; else if(pe>=28&&pe<40) v=20; else if(pe>=40&&pe<60) v=12; else v=4;
+  if(s.fcf>=8) m=12; else if(s.fcf>=5) m=9; else if(s.fcf>=2) m=6; else m=2;
+  return {q:q,r:r,b:b,v:v,m:m,total:Math.min(100,q+r+b+v+m)};
 }
-
-// ===== SIMULATEUR PEA =====
-function fmtK(n){return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'k':''+Math.round(n);}
-function simPEA(){
-  var cap=parseFloat(document.getElementById('sim-capital').value)||0;
-  var mo=parseFloat(document.getElementById('sim-monthly').value)||0;
-  var rt=parseFloat(document.getElementById('sim-rate').value)||10;
-  var r=rt/100,rm=Math.pow(1+r,1/12)-1;
-  var el=document.getElementById('sim-results');if(!el)return;
-  el.innerHTML=[5,10,15,20].map(function(y){
-    var n=y*12,fv=Math.round(cap*Math.pow(1+r,y)+mo*(Math.pow(1+rm,n)-1)/rm),inv=Math.round(cap+mo*n);
-    return '<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:6px;padding:12px;text-align:center">'+
-      '<div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Dans '+y+' ans</div>'+
-      '<div style="font-size:20px;font-weight:700;color:#f0d080;font-family:IBM Plex Mono,monospace">'+fmtK(fv)+'€</div>'+
-      '<div style="font-size:9px;color:rgba(255,255,255,.5)">+'+fmtK(fv-inv)+'€ gains / ×'+((fv/Math.max(inv,1)).toFixed(1))+'</div></div>';
-  }).join('');
-  var b=document.getElementById('sim-bar');if(!b)return;
-  var fv20=Math.round(cap*Math.pow(1+r,20)+mo*(Math.pow(1+rm,240)-1)/rm),inv20=Math.round(cap+mo*240);
-  b.innerHTML='<b>'+rt+'%/an</b> | Investi: <b>'+fmtK(inv20)+'€</b> | Dans 20 ans: <b style="color:var(--gn)">'+fmtK(fv20)+'€</b>';
+// ===== QARP MIDCAPS =====
+function calcQARPMid(s){
+  var q=0,r=0,b=0,v=0,m=0;
+  if(s.roe>=20) q=8; else if(s.roe>=13) q=6; else if(s.roe>=8) q=4; else q=2;
+  if(s.margin>=15) r=15; else if(s.margin>=9) r=12; else if(s.margin>=5) r=8; else if(s.margin>=2) r=4; else r=1;
+  if(s.debt<1.5) b=23; else if(s.debt<2.5) b=18; else if(s.debt<4.0) b=11; else if(s.debt<6.0) b=5; else b=1;
+  var pe=s.pe||0;
+  if(pe>0&&pe<12) v=22; else if(pe>=12&&pe<18) v=18; else if(pe>=18&&pe<25) v=14; else if(pe>=25&&pe<35) v=9; else v=3;
+  if(s.revg>=15) m=20; else if(s.revg>=10) m=16; else if(s.revg>=5) m=11; else if(s.revg>=0) m=6; else m=2;
+  var fcf=s.fcf>=6?12:s.fcf>=3?8:s.fcf>=1?4:0;
+  return {q:q,r:r,b:b,v:v,m:m+fcf,total:Math.min(100,q+r+b+v+m+fcf)};
 }
-
-// ===== BACKTEST ZONE =====
-function btPreview(){
-  var tk=(document.getElementById('bt-ticker').value||'').toUpperCase().trim();
-  var s=S.find(function(x){return x.ticker===tk;});
-  var prev=document.getElementById('bt-preview');
-  if(!s){if(prev)prev.innerHTML='Ticker non trouvé';return;}
-  if(prev)prev.innerHTML='<b>'+s.ticker+' — '+s.name+'</b> | Cours: <b>'+s.price+'€</b> | Zone: <b>'+s.el+'–'+s.eh+'€</b>';
-  var pi=document.getElementById('bt-price');if(pi&&!pi.value)pi.value=s.el;btCalc();
+// ===== SCORE CYCLIQUE =====
+function calcCyclic(s){
+  var score=0;
+  var pe=s.pe||0;
+  if(pe>0&&pe<10) score+=30; else if(pe>=10&&pe<14) score+=20; else if(pe>=14&&pe<18) score+=10;
+  if(s.epsg>20) score+=25; else if(s.epsg>10) score+=18; else if(s.epsg>0) score+=10;
+  if(s.revg>10) score+=20; else if(s.revg>5) score+=14; else if(s.revg>0) score+=8;
+  if(s.debt<2.5) score+=15; else if(s.debt<4.0) score+=8; else score+=2;
+  if(s.price>s.mm200&&s.mm200>0) score+=10;
+  return Math.min(100,score);
 }
-function btCalc(){
-  var tk=(document.getElementById('bt-ticker').value||'').toUpperCase().trim();
-  var bp=parseFloat(document.getElementById('bt-price').value)||0;
-  var amt=parseFloat(document.getElementById('bt-amount').value)||1000;
-  var s=S.find(function(x){return x.ticker===tk;});
-  var res=document.getElementById('bt-result');if(!s||!bp||!res)return;
-  var qty=Math.floor(amt/bp),cv=qty*s.price,pnl=cv-qty*bp,pct=((s.price-bp)/bp*100);
-  var col=pnl>=0?'var(--gn)':'var(--rd)';
-  res.innerHTML='<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:16px">'+
-    '<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:8px">Achat à '+bp+'€</div>'+
-    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">'+
-    [['Titres',qty],['Investi',Math.round(amt)+'€'],['Valeur',Math.round(cv)+'€'],['PV/MV',(pnl>=0?'+':'')+Math.round(pnl)+'€']].map(function(x,i){
-      return '<div style="text-align:center"><div style="font-size:15px;font-weight:700;font-family:IBM Plex Mono,monospace;color:'+(i===3?col:'#f0d080')+'">'+x[1]+'</div><div style="font-size:8px;color:rgba(255,255,255,.4)">'+x[0]+'</div></div>';
-    }).join('')+'</div></div>';
-}
-function btLoadScenarios(){
-  var el=document.getElementById('bt-scenarios');if(!el)return;el.innerHTML='';
-  S.filter(function(s){return s.score==='A'&&s.pio>=7&&s.mm200>0;}).slice(0,6).forEach(function(s){
-    var bp=s.el,qty=Math.floor(1000/bp),cv=qty*s.price,pnl=cv-qty*bp,pct=((s.price-bp)/bp*100),col=pct>=0?'#16a34a':'#dc2626';
-    var div=document.createElement('div');div.style.cssText='background:var(--sf);border-radius:6px;padding:12px;cursor:pointer';
-    div.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="font-size:12px;font-family:IBM Plex Mono,monospace">'+s.ticker+'</b><span style="font-size:11px;font-weight:700;color:'+col+'">'+(pct>=0?'+':'')+pct.toFixed(0)+'%</span></div>'+
-      '<div style="font-size:10px;color:var(--mu)">Zone: '+bp+'€ → cours: '+s.price+'€</div>'+
-      '<div style="font-size:9px;color:'+col+'">1000€ → '+Math.round(cv)+'€ ('+(pnl>=0?'+':'')+Math.round(pnl)+'€)</div>';
-    div.addEventListener('click',(function(t,p){return function(){var ti=document.getElementById('bt-ticker');var pi=document.getElementById('bt-price');if(ti)ti.value=t;if(pi)pi.value=p;btCalc();};})(s.ticker,bp));
-    el.appendChild(div);
+function isCyclical(s){ return s&&s.cyclic===true; }
+// ===== FILTRES =====
+function filtCycliques(btn){
+  document.querySelectorAll('.fb').forEach(function(b){
+    b.classList.remove('active'); b.style.background=''; b.style.color='';
   });
+  if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#92400e,#d97706)';btn.style.color='#fff';}
+  fil=S.filter(function(s){return s&&s.ticker&&s.cyclic===true;}).sort(function(a,b){return calcCyclic(b)-calcCyclic(a);});
+  buildQ();
+  if(fil.length>0){idx=0;show(0);}
+  else{const l=document.getElementById('ql');if(l)l.innerHTML='<div style="padding:20px;text-align:center;color:var(--mu);font-size:11px">Aucune action cyclique.</div>';document.getElementById('qcnt').textContent='0 val.';}
 }
-
-// ===== NOTES PERSONNELLES =====
-function noteLoad(t){try{return localStorage.getItem('pea_note_'+t)||'';}catch(e){return '';}}
-function noteSave(t,v){try{localStorage.setItem('pea_note_'+t,v);}catch(e){}}
-function noteDelete(t){try{localStorage.removeItem('pea_note_'+t);}catch(e){}}
-function noteRenderAll(){
-  var el=document.getElementById('notes-list');if(!el)return;
-  var notes=[];S.forEach(function(s){var n=noteLoad(s.ticker);if(n&&n.trim())notes.push({ticker:s.ticker,name:s.name,note:n,score:s.score});});
-  if(!notes.length){el.innerHTML='<div style="text-align:center;padding:20px;color:var(--mu);font-style:italic">Aucune note.</div>';return;}
-  var gc={'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'};
-  el.innerHTML=notes.map(function(n){
-    return '<div style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:12px;margin-bottom:8px">'+
-      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="background:'+(gc[n.score]||'#6b7280')+';color:#fff;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700">'+n.score+'</span>'+
-      '<b style="font-family:IBM Plex Mono,monospace;font-size:12px">'+n.ticker+'</b><span style="color:var(--mu);font-size:10px">'+n.name+'</span>'+
-      '<span data-nticker="'+n.ticker+'" class="note-del" style="margin-left:auto;cursor:pointer;color:var(--mu);font-size:16px">×</span></div>'+
-      '<div style="font-size:11px;color:var(--tx);white-space:pre-wrap;line-height:1.6">'+n.note+'</div></div>';
+function filtScoreLarge(btn){
+  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
+  if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#1d4ed8,#3b82f6)';btn.style.color='#fff';}
+  fil=S.filter(function(s){return s&&s.ticker&&s.cap==='large'&&calcQARPLarge(s).total>=65;}).sort(function(a,b){return calcQARPLarge(b).total-calcQARPLarge(a).total;});
+  buildQ();if(fil.length>0){idx=0;show(0);}
+}
+function filtScoreMid(btn){
+  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
+  if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#7c3aed,#a78bfa)';btn.style.color='#fff';}
+  fil=S.filter(function(s){return s&&s.ticker&&s.cap!=='large'&&calcQARPMid(s).total>=65;}).sort(function(a,b){return calcQARPMid(b).total-calcQARPMid(a).total;});
+  buildQ();if(fil.length>0){idx=0;show(0);}
+}
+// ===== BUILDQ AVEC SCORES L/M =====
+function buildQ(){
+  var l=document.getElementById('queue');if(!l)return;
+  l.innerHTML=fil.map(function(s,i){
+    if(!s||!s.ticker) return '';
+    var qL=calcQARPLarge(s).total,qM=calcQARPMid(s).total,qU=calcQARP(s).total;
+    var qcol=qU>=65?'#22c55e':qU>=50?'#f59e0b':'#ef4444';
+    var inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
+    var badges='';
+    if(s.cyclic) badges+='<span title="Cyclique" style="color:#d97706;font-size:9px">&#128260;</span>';
+    if(inZone) badges+='<span title="Zone" style="color:#22c55e;font-size:8px">&#9679;</span>';
+    return '<div class="qi'+(i===idx?' active':'')+'" onclick="jump('+i+')">'
+      +'<span class="qi-n">'+(i+1)+'</span>'
+      +'<span class="qi-t">'+s.ticker+'</span>'+badges
+      +'<span class="qi-nm">'+s.name+'</span>'
+      +'<span class="qg '+qGCl(s.score)+'">'+s.score+'</span>'
+      +'<span style="font-size:9px;color:'+qcol+';margin-left:4px;white-space:nowrap">'+qU
+      +'<span style="font-size:7px;opacity:.6"> ('+qL+'L/'+qM+'M)</span></span></div>';
   }).join('');
-  el.querySelectorAll('.note-del').forEach(function(b){b.addEventListener('click',function(){noteDelete(this.getAttribute('data-nticker'));noteRenderAll();});});
+  document.getElementById('qcnt').textContent=fil.length+' val.';
+  var a=l.querySelector('.active');if(a)a.scrollIntoView({block:'nearest'});
 }
 
-// ===== EXPORT FICHE PDF =====
-function exportFiche(ticker){
-  var s=S.find(function(x){return x.ticker===ticker;});
-  if(!s){alert('Action non trouvée');return;}
-  var qarp=calcQARP(s),bei=calcBeneish(s),bv=beneishVerdict(bei),gov=calcGouvernance(s);
-  var note=noteLoad(ticker);
-  var upside=s.dcfm>0&&s.price>0?((s.dcfm-s.price)/s.price*100).toFixed(1):0;
-  var rr=s.o1>s.stop&&s.price>s.stop?((s.o1-s.price)/(s.price-s.stop)).toFixed(1):'-';
-  var inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
-  var gc={'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}[s.score]||'#6b7280';
-  var win=window.open('','_blank','width=900,height=700');
-  if(!win){alert('Autorisez les popups pour exporter');return;}
-  var rows=function(pairs){return pairs.map(function(x){return '<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f1f5f9;font-size:10px"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join('');};
-  var p=[];
-  p.push('<!DOCTYPE html><html><head><meta charset="utf-8"><title>VAL.PEA '+ticker+'</title>');
-  p.push('<style>body{font-family:Arial,sans-serif;font-size:11px;color:#1a1a1a;padding:20px;max-width:800px;margin:0 auto}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.c{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 12px}.c h3{font-size:9px;text-transform:uppercase;color:#888;margin:0 0 6px}.big{font-size:20px;font-weight:700;font-family:monospace}.hd{background:#0f2540;color:#fff;padding:16px 20px;border-radius:8px;margin-bottom:16px}@media print{@page{size:A4;margin:12mm}}</style>');
-  p.push('<' + '/head><body>');
-  p.push('<div class="hd"><div style="display:flex;justify-content:space-between;align-items:start"><div><div style="font-size:18px;font-weight:700">'+s.name+'</div><div style="font-size:11px;color:rgba(255,255,255,.6)">'+ticker+' · '+s.sector+' · Cours: '+s.price+'€ · '+(inZone?'<b style=\"color:#4ade80\">EN ZONE</b>':'Hors zone')+'</div></div><div style="text-align:right"><div class="big" style="color:'+(qarp.total>=70?'#22c55e':qarp.total>=55?'#f59e0b':'#3b82f6')+'">'+qarp.total+'<span style="font-size:12px;color:rgba(255,255,255,.4)">/100</span><div style="font-size:9px;color:rgba(255,255,255,.55);margin-top:2px;font-family:IBM Plex Mono,monospace">L:<b style="color:#f0d080">'+(qarp.scoreL||0)+'</b>&nbsp;·&nbsp;M:<b style="color:#a78bfa">'+(qarp.scoreM||0)+'</b></div></div><span style="background:'+gc+';color:#fff;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700">Grade '+s.score+'</span></div></div></div>');
-  p.push('<div class="g4">');
-  [['Zone',s.el+'-'+s.eh+'€',inZone?'#16a34a':'#888'],['Stop',s.stop+'€','#dc2626'],['Obj.1',s.o1+'€','#2563eb'],['DCF',s.dcfm+'€','#d97706']].forEach(function(x){p.push('<div class="c"><h3>'+x[0]+'</h3><div class="big" style="color:'+x[2]+'">'+x[1]+'</div></div>');});
-  p.push('</div><div class="g2"><div class="c"><h3>Scores QARP</h3>'+rows([['Bilan (dette)',qarp.b+'/26'],['Valorisation',qarp.v+'/25'],['Marge',qarp.r+'/22'],['ROE',qarp.q+'/15'],['FCF',qarp.m+'/12'],['Score Large',qarp.scoreL+'/100'],['Score Mid',qarp.scoreM+'/100']])+'</div><div class="c"><h3>Chiffres clés</h3>'+rows([['ROE',s.roe+'%'],['Marge',s.margin+'%'],['FCF',s.fcf+'%'],['Dette',s.debt+'x'],['Piotroski',s.pio+'/9'],['Upside','+'+upside+'%'],['R/R',rr+'x'],['Div.',s.yield+'%']])+'</div></div>');
-  p.push('<div class="g2"><div class="c"><h3>Beneish: '+bv.label+'</h3><div class="big" style="color:'+bv.col+'">'+bei+'</div><div style="font-size:10px;color:#666;margin-top:4px">'+bv.desc+'</div></div><div class="c"><h3>Gouvernance: '+gov.score+'/100</h3>'+gov.signals.slice(0,4).map(function(sig){return '<div style="font-size:9px;color:#555">'+(sig.ok===true?'✓':sig.ok===false?'✗':'○')+' '+sig.txt+'</div>';}).join('')+'</div></div>');
-  if(s.thesis)p.push('<div class="c" style="margin-top:10px"><h3>Thèse</h3><p style="margin:0;line-height:1.6">'+s.thesis+'</p></div>');
-  if(s.contra)p.push('<div class="c" style="margin-top:8px;border-left:3px solid #dc2626"><h3>Risques</h3><p style="margin:0;line-height:1.6;color:#555">'+s.contra+'</p></div>');
-  if(note)p.push('<div style="background:#fffbeb;border-left:3px solid #d97706;padding:10px;margin-top:10px"><b>Ma note:</b><br>'+note+'</div>');
-  p.push('<div style="margin-top:16px;text-align:center;font-size:9px;color:#aaa">VAL.PEA · '+new Date().toLocaleDateString('fr-FR')+' · Non-conseil</div>');
-  p.push('<' + '/body><' + '/html>');
-  win.document.write(p.join(''));win.document.close();
-  setTimeout(function(){win.print();},600);
-}
 
 // ===== MODAL VENTE =====
 var _sellId=null;
 function ptfSell(id){
   var pos=PTF.find(function(p){return p.id===id;});if(!pos)return;
   _sellId=id;var s=S.find(function(x){return x.ticker===pos.ticker;});var ca=s?s.price:pos.pru;
-  var title=document.getElementById('sell-modal-title');var info=document.getElementById('sell-modal-info');var input=document.getElementById('sell-price-input');
-  if(title)title.textContent='Vendre '+pos.qty+' x '+pos.ticker;
-  if(info)info.innerHTML='<b>'+pos.ticker+'</b> '+pos.qty+' titre(s) | PRU: <b>'+pos.pru.toFixed(2)+'€</b> | Cours: <b>'+ca.toFixed(2)+'€</b>';
-  if(input)input.value=ca.toFixed(2);
-  sellModalUpdate();var m=document.getElementById('sell-modal');if(m)m.style.display='flex';
+  var ti=document.getElementById('sell-modal-title');
+  var inf=document.getElementById('sell-modal-info');
+  var inp=document.getElementById('sell-price-input');
+  if(ti) ti.textContent='Vendre '+pos.qty+' x '+pos.ticker;
+  if(inf) inf.innerHTML='PRU: <b>'+pos.pru.toFixed(2)+'\u20ac</b> · Cours: <b>'+ca.toFixed(2)+'\u20ac</b>';
+  if(inp) inp.value=ca.toFixed(2);
+  sellModalUpdate();
+  var m=document.getElementById('sell-modal');if(m)m.style.display='flex';
 }
 function sellModalUpdate(){
   var pos=PTF.find(function(p){return p.id===_sellId;});if(!pos)return;
   var px=parseFloat(document.getElementById('sell-price-input').value)||0;
   var pnl=(px-pos.pru)*pos.qty,pct=pos.pru>0?((px-pos.pru)/pos.pru*100):0;
   var res=document.getElementById('sell-modal-result');
-  if(res&&px>0)res.innerHTML='Valeur: <b>'+Math.round(px*pos.qty)+'€</b> | PV/MV: <b style="color:'+(pnl>=0?'var(--gn)':'var(--rd)')+'">('+(pnl>=0?'+':'')+Math.round(pnl)+'€ / '+(pct>=0?'+':'')+pct.toFixed(1)+'%)</b>';
+  if(res&&px>0)res.innerHTML='PV/MV: <b style="color:'+(pnl>=0?'var(--gn)':'var(--rd)')+'">('+(pnl>=0?'+':'')+Math.round(pnl)+'\u20ac / '+(pct>=0?'+':'')+pct.toFixed(1)+'%)</b>';
 }
 function closeSellModal(){var m=document.getElementById('sell-modal');if(m)m.style.display='none';_sellId=null;}
 function confirmSell(){
   var pos=PTF.find(function(p){return p.id===_sellId;});if(!pos)return;
   var px=parseFloat(document.getElementById('sell-price-input').value)||0;if(px<=0){alert('Prix invalide');return;}
   var pnl=(px-pos.pru)*pos.qty,pct=pos.pru>0?((px-pos.pru)/pos.pru*100):0;
-  PTF_HIST.push({id:Date.now().toString(),type:'vente',ticker:pos.ticker,qty:pos.qty,pru:pos.pru,prixVente:px,pnl:pnl,pct:pct,date:new Date().toLocaleDateString('fr-FR'),note:'Vente à '+px.toFixed(2)+'€'});
+  PTF_HIST.push({id:Date.now().toString(),type:'vente',ticker:pos.ticker,qty:pos.qty,pru:pos.pru,prixVente:px,pnl:pnl,pct:pct,date:new Date().toLocaleDateString('fr-FR'),note:'Vente \u00e0 '+px.toFixed(2)+'\u20ac'});
   PTF=PTF.filter(function(p){return p.id!==_sellId;});ptfSave();closeSellModal();ptfRender();
 }
 
@@ -10125,8 +9916,8 @@ document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
   setTimeout(fetchLive,3000);
   setTimeout(fetchMacro, 1500);
-  // checkAlerts désactivé
-  // checkBpfResultats désactivé
+  setTimeout(checkAlerts,2000);
+  setTimeout(checkBpfResultats,3000);
   setTimeout(function(){
     ptfInit();
     ptfLoadProfile(window._ptfProfile||'val');
@@ -11004,21 +10795,5 @@ document.addEventListener('DOMContentLoaded',function(){
 
 </div>
 </div>
-
-<div id="sell-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;align-items:center;justify-content:center">
-  <div style="background:var(--bg);border-radius:10px;padding:24px 28px;width:340px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.4)">
-    <div style="font-size:14px;font-weight:700;color:var(--tx);margin-bottom:16px" id="sell-modal-title">Vendre</div>
-    <div style="background:var(--sf);border-radius:6px;padding:10px 12px;margin-bottom:14px;font-size:11px" id="sell-modal-info"></div>
-    <div style="margin-bottom:14px"><label style="font-size:9px;color:var(--mu);text-transform:uppercase;display:block;margin-bottom:5px">Prix de vente (€)</label>
-    <input id="sell-price-input" type="number" step="0.01" min="0.01" style="width:100%;padding:8px 10px;border:1px solid var(--bd);border-radius:5px;font-size:14px;font-family:'IBM Plex Mono',monospace;background:var(--sf);color:var(--tx);box-sizing:border-box" oninput="sellModalUpdate()"></div>
-    <div id="sell-modal-result" style="background:var(--sf);border-radius:5px;padding:8px 10px;margin-bottom:16px;font-size:11px;min-height:36px"></div>
-    <div style="display:flex;gap:10px">
-      <button onclick="closeSellModal()" style="flex:1;padding:9px;background:var(--sf);color:var(--mu);border:1px solid var(--bd);border-radius:5px;cursor:pointer;font-size:12px">Annuler</button>
-      <button onclick="confirmSell()" style="flex:1;padding:9px;background:#dc2626;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px;font-weight:700">Confirmer la vente</button>
-    </div>
-  </div>
-</div>
 </body>
-</html>
-<!-- stocks will be injected -->
 </html>
