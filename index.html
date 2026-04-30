@@ -614,6 +614,7 @@ const S=[
  contra:"Dupixent = 40% des revenus : concentration dangereuse. R&D historiquement décevante sur 10 ans."},
 
 {ticker:'TTE',bpf:true,name:'TotalEnergies',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Pétrole intégré — cycle énergie',
  price:77.0,chg:-0.8,mkt:'146Md€',b52h:66,b52l:48,beta:0.9,
  pe:8,pb:1.4,ev_ebitda:5,ps:0.6,pfcf:7,ev_ebit:6,
  roe:14,roic:11,roa:7,debt:1.2,de:0.4,ic:18.5,cr:1.3,qr:1.0,
@@ -842,6 +843,7 @@ const S=[
  contra:"Dette élevée post-fusion. Régulation tarifaire peut bloquer la transmission des coûts."},
 
 {ticker:'RNO',name:'Renault',sector:'Automobile',cap:'mid',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Automobile — cycle consommation',
  price:42,chg:-0.8,mkt:'13Md€',b52h:58,b52l:35,beta:1.5,
  pe:5,pb:0.5,ev_ebitda:3,ps:0.2,pfcf:6,ev_ebit:4,
  roe:12,roic:6,roa:3,debt:2.8,de:1.8,ic:3.2,cr:1.1,qr:0.9,
@@ -861,6 +863,7 @@ const S=[
  contra:"Transition VE incertaine. Alliance Nissan fragile. Concurrence chinoise déferle."},
 
 {ticker:'SGO',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Matériaux construction — cycle immobilier',
  price:68,chg:0.2,mkt:'36Md€',b52h:82,b52l:56,beta:1.1,
  pe:12,pb:1.8,ev_ebitda:8,ps:0.6,pfcf:10,ev_ebit:9,
  roe:15,roic:10,roa:6,debt:1.5,de:0.8,ic:6.2,cr:1.2,qr:1.0,
@@ -1089,6 +1092,7 @@ const S=[
  contra:"CAPEX permanent massif. Politique énergétique volatile. Dette élevée."},
 
 {ticker:'MT',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Acier — cycle industriel mondial',
  price:22,chg:-0.8,mkt:'18Md€',b52h:29,b52l:18,beta:1.8,
  pe:8,pb:0.6,ev_ebitda:5,ps:0.3,pfcf:6,ev_ebit:5,
  roe:8,roic:6,roa:4,debt:0.8,de:0.4,ic:8.5,cr:1.5,qr:1.2,
@@ -1244,6 +1248,7 @@ const S=[
  contra:"VE ralentit. Taille limitée. Dette laisse peu de marge."},
 
 {ticker:'JXS',name:'Jacquet Metals',sector:'Aciers spéciaux',cap:'small',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Aciers spéciaux — cycle automobile',
  price:22,chg:1.1,mkt:'0.43Md€',b52h:28,b52l:18,beta:0.9,
  pe:9,pb:0.8,ev_ebitda:4,ps:0.2,pfcf:7,ev_ebit:5,
  roe:9,roic:7,roa:4,debt:0.8,de:0.5,ic:6.8,cr:1.8,qr:1.4,
@@ -1263,6 +1268,7 @@ const S=[
  contra:"VE ralentit détruit les marges. Exposition cyclique maximale à l'industrie européenne."},
 
 {ticker:'SPIE',name:'Spie',sector:'Services techniques',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Services techniques — cycle investissement',
  price:32,chg:0.3,mkt:'5.2Md€',b52h:38,b52l:26,beta:0.8,
  pe:18,pb:3.5,ev_ebitda:11,ps:0.8,pfcf:14,ev_ebit:12,
  roe:20,roic:15,roa:8,debt:2.2,de:1.0,ic:5.8,cr:1.2,qr:1.0,
@@ -1282,6 +1288,7 @@ const S=[
  contra:"Valorisation élevée à 18x. Marges fines dans les services."},
 
 {ticker:'NEXANS',name:'Nexans',sector:'Câbles',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Câbles industriels — cycle infrastructure',
  price:88,chg:0.5,mkt:'2.8Md€',b52h:108,b52l:72,beta:1.2,
  pe:12,pb:2.5,ev_ebitda:8,ps:0.4,pfcf:9,ev_ebit:9,
  roe:22,roic:16,roa:8,debt:1.8,de:0.8,ic:6.5,cr:1.3,qr:1.1,
@@ -1434,6 +1441,7 @@ const S=[
  contra:"Modèle opaque. Très peu liquide. Dépend de la volatilité pour performer."},
 
 {ticker:'VK',name:'Vallourec',sector:'Tubes acier',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Tubes acier — cycle pétrolier',
  price:18,chg:0.5,mkt:'2.8Md€',b52h:24,b52l:14,beta:1.6,
  pe:6,pb:1.2,ev_ebitda:4,ps:0.4,pfcf:5,ev_ebit:5,
  roe:18,roic:14,roa:8,debt:0.8,de:0.5,ic:8.5,cr:1.4,qr:1.1,
@@ -1453,6 +1461,7 @@ const S=[
  contra:"Pure cyclique. Pétrole sous 60$ = thèse détruite. Restructuration a dilué les actionnaires."},
 
 {ticker:'FNAC',name:'Fnac Darty',sector:'Distribution',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Distribution tech — cycle consommation',
  price:28,chg:0.4,mkt:'0.88Md€',b52h:36,b52l:22,beta:1.1,
  pe:8,pb:0.8,ev_ebitda:4,ps:0.1,pfcf:6,ev_ebit:5,
  roe:10,roic:7,roa:4,debt:1.8,de:0.9,ic:4.5,cr:0.9,qr:0.7,
@@ -1510,6 +1519,7 @@ const S=[
  contra:"Assurance vie française sous pression taux bas. Business model opaque."},
 
 {ticker:'SOP',name:'Sopra Steria',sector:'Services IT',cap:'mid',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Sécurité physique — cycle capex industriel',
  price:165,chg:0.3,mkt:'2.8Md€',b52h:195,b52l:140,beta:0.9,
  pe:14,pb:2.2,ev_ebitda:9,ps:0.8,pfcf:11,ev_ebit:10,
  roe:16,roic:12,roa:7,debt:0.8,de:0.6,ic:8.2,cr:1.3,qr:1.1,
@@ -1547,6 +1557,7 @@ const S=[
  contra:"Airbnb continue de prendre des parts sur le loisir. Exposition forte à la macro."},
 
 {ticker:'AF',name:'Air France-KLM',sector:'Transport aérien',cap:'large',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Transport aérien — cycle économique fort',
  price:9.8,chg:-0.5,mkt:'3.8Md€',b52h:13.2,b52l:8.5,beta:1.8,
  pe:5,pb:999,ev_ebitda:4,ps:0.1,pfcf:6,ev_ebit:4,
  roe:-5,roic:4,roa:1,debt:8.5,de:8.2,ic:2.8,cr:0.7,qr:0.6,
@@ -2112,6 +2123,7 @@ const S=[
  contra:"Dette écrasante. VE ralentit et Valeo a parié dessus massivement. Les constructeurs pressent les marges des équipementiers. À éviter sauf spéculatif."},
 
 {ticker:'FORVIA',name:'Forvia (Faurecia)',sector:'Équipementier auto',cap:'large',srd:true,idx:'CAC40',
+ cyclic:true,cyclicReason:'Équipement auto — cycle automobile',
  price:7.8,chg:-0.5,mkt:'2.2Md€',b52h:14,b52l:6.8,beta:2.0,
  pe:6,pb:0.4,ev_ebitda:3,ps:0.07,pfcf:5,ev_ebit:4,
  roe:4,roic:2,roa:1,debt:3.8,de:2.5,ic:2.2,cr:0.9,qr:0.7,
@@ -2265,6 +2277,7 @@ const S=[
  contra:"Cyclicité des prix des métaux. Aéronautique représente 40% du CA."}
 // Session 3
 ,{ticker:'IMERYS',name:'Imerys',sector:'Minéraux industriels',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Minéraux industriels — cycle industrie',
  price:28,chg:0.2,mkt:'2.2Md€',b52h:36,b52l:24,beta:1.1,
  pe:12,pb:1.0,ev_ebitda:7,ps:0.5,pfcf:9,ev_ebit:8,
  roe:8,roic:6,roa:4,debt:2.5,de:0.9,ic:4.8,cr:1.3,qr:1.1,
@@ -2281,6 +2294,7 @@ const S=[
  contra:"Très cyclique. Intensité énergétique élevée."},
 
 {ticker:'THERMADOR',name:'Thermador',sector:'Distribution eau',cap:'small',srd:false,idx:'SRD',
+ cyclic:true,cyclicReason:'Distribution eau/thermique — cycle BTP',
  price:88,chg:0.3,mkt:'0.35Md€',b52h:105,b52l:78,beta:0.7,
  pe:12,pb:2.2,ev_ebitda:8,ps:0.8,pfcf:9,ev_ebit:9,
  roe:18,roic:14,roa:9,debt:0.3,de:0.2,ic:18.5,cr:2.5,qr:2.0,
@@ -2450,6 +2464,7 @@ const S=[
  contra:"Marges fines (3%). Personnel intensif. Cyclicité e-commerce."},
 
 {ticker:'ELIOR',name:'Elior',sector:'Restauration collective',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Restauration collective — cycle entreprise',
  price:3.8,chg:0.3,mkt:'0.68Md€',b52h:5.5,b52l:3.0,beta:1.3,
  pe:12,pb:0.6,ev_ebitda:5,ps:0.1,pfcf:7,ev_ebit:6,
  roe:5,roic:4,roa:1,debt:3.5,de:1.5,ic:2.8,cr:0.8,qr:0.6,
@@ -2619,6 +2634,7 @@ const S=[
  contra:"Volumes sous pression en Chine et aux US. 6 trimestres de deception. La normalisation post-COVID-boom prend plus de temps que prevu."},
 
 {ticker:'SYENSQO',name:'Syensqo',sector:'Chimie haute performance',cap:'mid',srd:false,idx:'EURONEXT',
+ cyclic:true,cyclicReason:'Chimie haute performance — cycle industrie',
  price:78,chg:0.3,mkt:'5.8Md€',b52h:95,b52l:65,beta:1.2,
  pe:18,pb:2.5,ev_ebitda:11,ps:1.5,pfcf:14,ev_ebit:12,
  roe:15,roic:12,roa:7,debt:1.5,de:0.7,ic:7.5,cr:1.5,qr:1.2,
@@ -2653,6 +2669,7 @@ const S=[
  contra:"Exposition brevet Somatuline (expiration 2027-2028). Concurrence Novartis/Pfizer sur maladies rares. Pipeline a prouver."},
 
 {ticker:'REXEL',name:'Rexel',sector:'Distribution electrique',cap:'large',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Distribution électrique — cycle construction',
  price:22,chg:0.2,mkt:'4.8Md€',b52h:28,b52l:18,beta:1.1,
  pe:11,pb:2.0,ev_ebitda:7,ps:0.25,pfcf:8,ev_ebit:7,
  roe:18,roic:13,roa:6,debt:1.5,de:0.8,ic:7.5,cr:1.3,qr:1.0,
@@ -2838,6 +2855,7 @@ const S=[
  contra:"Tres peu liquide (famille 98%). Cyclicite defense sur les grands programmes. Taille limitee vs Amphenol 10Md€ CA."},
 
 {ticker:'SAMSE',name:'Samse',sector:'Distribution materiaux',cap:'small',srd:false,idx:'SBF120',
+ cyclic:true,cyclicReason:'Distribution matériaux — cycle BTP',
  price:228,chg:0.3,mkt:'0.88Md€',b52h:265,b52l:188,beta:0.8,
  pe:12,pb:1.0,ev_ebitda:6,ps:0.4,pfcf:9,ev_ebit:7,
  roe:10,roic:8,roa:5,debt:1.8,de:0.8,ic:5.5,cr:1.4,qr:1.1,
@@ -2855,6 +2873,7 @@ const S=[
  contra:"Cyclicite construction forte. Saint-Gobain Distribution attaque le marche pro. Famille peut privatiser."},
 
 {ticker:'MANITOU',name:'Manitou',sector:'Engins manutention',cap:'mid',srd:true,idx:'SBF120',
+ cyclic:true,cyclicReason:'Matériel levage — cycle investissement',
  price:26,chg:0.4,mkt:'1.4Md€',b52h:32,b52l:20,beta:1.1,
  pe:10,pb:1.5,ev_ebitda:6,ps:0.5,pfcf:8,ev_ebit:7,
  roe:14,roic:10,roa:6,debt:1.2,de:0.6,ic:6.5,cr:1.5,qr:1.2,
@@ -4887,7 +4906,17 @@ function render(s){
         </div>
       </div>
       <div class="da-thesis">
-        <div class="da-bull"><div class="da-lbl" style="color:var(--gn)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
+        <div class="da-bull"><div class="da-lbl" style="color:var(--g
+          \${s.cyclic ? \`
+          <div style="background:linear-gradient(135deg,#92400e22,#d97706,22);border:1px solid #d97706;border-radius:6px;padding:10px 12px;margin-bottom:8px">
+            <div style="font-size:9px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔄 ACTION CYCLIQUE — NE PAS UTILISER LE SCORE QARP</div>
+            <div style="font-size:10px;color:#78350f">\${s.cyclicReason || 'Valeur de cycle — sensible à la conjoncture'}</div>
+            <div style="font-size:9px;color:#92400e;margin-top:4px">
+              Score cycle : <b>\${calcCyclic(s)}/100</b> &nbsp;·&nbsp;
+              Signal d'achat si : PE < 14 + BPA en hausse + cours > MM200 + cuivre en hausse
+            </div>
+          </div>\` : ''}
+n)">🐂 Pourquoi acheter</div><div class="da-txt">${s.thesis}</div></div>
         <div class="da-bear"><div class="da-lbl" style="color:var(--rd)">🐻 Ce que le marché craint</div><div class="da-txt">${s.contra}</div></div>
       </div>
       <div class="da-verdict">
@@ -5591,12 +5620,14 @@ function buildQ(){
     var qU=calcQARP(s).total;
     var qcol=qU>=65?'#22c55e':qU>=50?'#f59e0b':'#ef4444';
     var inZone=(s.price>=s.el&&s.price<=s.eh)||(s.dcfm>0&&s.price<=s.dcfm*0.88);
-    var zoneFlag=inZone?'<span style="color:#22c55e;font-size:9px;margin-left:3px">●</span>':'';
+    var cyclicBadge=s.cyclic?'<span title="Action cyclique — utiliser le score cycle" style="color:#d97706;font-size:9px;margin-left:2px">🔄</span>':'';
+    var zoneDot=inZone?'<span style="color:#22c55e;font-size:8px;margin-left:2px" title="En zone d\'achat">●</span>':'';
     return '<div class="qi'+(i===idx?' active':'')+'" onclick="jump('+i+')">'
       +'<span class="qi-n">'+(i+1)+'</span>'
       +'<span class="qi-t">'+s.ticker+'</span>'
+      +cyclicBadge
+      +zoneDot
       +'<span class="qi-nm">'+s.name+'</span>'
-      +zoneFlag
       +'<span class="qg '+qGCl(s.score)+'">'+s.score+'</span>'
       +'<span style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:'+qcol+';margin-left:4px;white-space:nowrap">'
       +qU+'<span style="font-size:7px;opacity:.6"> ('+qL+'L/'+qM+'M)</span></span>'
@@ -8446,16 +8477,11 @@ function calcCyclic(s){
 }
 
 function isCyclical(s){
-  var cyclicalSectors = [
-    'matériaux','industrie','chimie','distribution','btp',
-    'câbles','transport','acier','ciment','papier','tubes'
-  ];
-  var sect = (s.sector || '').toLowerCase();
-  var cyclicalTickers = ['NEXANS','SGO','REXEL','SPIE','SOP','MT','VK',
-    'IMERYS','AF','FNAC','THERMADOR','SAMSE','JXS'];
-  return cyclicalSectors.some(function(cs){ return sect.includes(cs); }) ||
-         cyclicalTickers.indexOf(s.ticker) >= 0;
+  // Source de vérité : champ cyclic:true dans S[]
+  // Plus fiable que la détection par secteur
+  return s.cyclic === true;
 }
+
 
 function filtCycliques(btn){
   document.querySelectorAll('.fb').forEach(function(b){
