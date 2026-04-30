@@ -37,6 +37,16 @@ def fetch_macro():
         except Exception as e:
             macro[key] = {'label': label, 'value': 0, 'chg': 0}
         time.sleep(0.3)
+
+    # Cuivre — indicateur avancé des cycliques
+    try:
+        cu = yf.download('HG=F', period='5d', progress=False)['Close']
+        if not cu.empty and len(cu) >= 2:
+            cu_price = round(float(cu.iloc[-1]), 2)
+            cu_chg = round((float(cu.iloc[-1]) - float(cu.iloc[-5])) / float(cu.iloc[-5]) * 100, 2) if len(cu) >= 5 else 0
+            macro['cuivre'] = {'label': 'Cuivre (cycle)', 'value': f'{cu_price}$/t', 'chg': cu_chg,
+                               'signal': '🟢 CYCLIQUES FAVORIS' if cu_chg > 3 else '🔴 CYCLIQUES DÉFAVORABLES' if cu_chg < -3 else '⚪ Neutre'}
+    except: macro['cuivre'] = {'label': 'Cuivre', 'value': None, 'chg': 0, 'signal': ''}
     return macro
 
 def macro_sentiment(macro):
@@ -528,8 +538,8 @@ if __name__ == '__main__':
 
     # Envoyer
     gmail_user = os.environ.get('GMAIL_USER', '')
-    gmail_pass = os.environ.get('GMAIL_PASS', '')
-    recipient  = os.environ.get('RECIPIENT', gmail_user)
+    gmail_pass = os.environ.get('GMAIL_PASSWORD', '')
+    recipient  = os.environ.get('RECIPIENT_EMAIL', gmail_user)
 
     if gmail_user and gmail_pass:
         ultimes = [s for s in stocks if s['signal']=='ULTIME']

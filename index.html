@@ -391,6 +391,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
     <button class="fb" onclick="filtTriptyque(this)" style="background:linear-gradient(135deg,#16a34a,#4ade80);color:#fff;font-weight:700">Triptyque</button>
     <button class="fb" onclick="filtScoreLarge(this)" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🏦 Score Large</button>
     <button class="fb" onclick="filtScoreMid(this)" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🚀 Score Mid</button>
+        <button class="fb" onclick="filtCycliques(this)" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:10px;font-family:'IBM Plex Mono',monospace">🔄 Cycliques</button>
     <div class="vsep"></div>
     <div class="spd">
       <span>Vitesse</span>
@@ -4600,65 +4601,98 @@ function show(i){
 
 // ═══════════ SCORE QARP (Quality At a Reasonable Price) ═══════════
 function calcQARPLarge(s){
-  // QARP Large Caps — pondérations recalibrées sur backtest SBF250
-  // Bilan (26) > Valorisation/PEG (25) > Marge (22) > ROE (15) > FCF (12)
+  // QARP Large Caps — recalibré sur backtest 85 actions 2019-2024
+  // Robuste : Dette (28) > PE fwd (27) > ROE (15) > Marge (18) > FCF (12)
+  // Recalibration prudente max ±5 pts — évite l'overfitting sur N=85
   var q=0,r=0,b=0,v=0,m=0;
 
-  // Q — ROE (15 pts — réduit car corrél. 0.012 sur large caps)
-  if(s.roe>=25) q=15; else if(s.roe>=18) q=11; else if(s.roe>=12) q=7; else if(s.roe>=6) q=3;
+  // Q — ROE (15 pts — tenu car corrél. 0.494 même sans outliers)
+  if(s.roe>=25) q=15;
+  else if(s.roe>=18) q=12;
+  else if(s.roe>=12) q=9;
+  else if(s.roe>=8) q=5;
+  else q=2;
 
-  // R — Marge nette (22 pts — corrél. 0.391)
-  if(s.margin>=20) r=22; else if(s.margin>=15) r=17; else if(s.margin>=10) r=12;
-  else if(s.margin>=5) r=6; else r=1;
+  // R — Marge nette (18 pts — réduit de 22→18 car colinéaire avec PE)
+  if(s.margin>=20) r=18;
+  else if(s.margin>=14) r=14;
+  else if(s.margin>=8) r=10;
+  else if(s.margin>=4) r=6;
+  else r=2;
 
-  // B — Bilan/Dette (26 pts — le plus prédictif, corrél. -0.493)
-  if(s.debt<0.5) b=26; else if(s.debt<1.0) b=22; else if(s.debt<1.5) b=17;
-  else if(s.debt<2.5) b=11; else if(s.debt<4.0) b=5; else b=0;
+  // B — Bilan/Dette (28 pts — augmenté de 26→28, facteur le plus robuste)
+  if(s.debt<1.0) b=28;
+  else if(s.debt<1.8) b=22;
+  else if(s.debt<2.8) b=14;
+  else if(s.debt<4.0) b=7;
+  else b=2;
 
-  // V — PEG ratio (25 pts — growth a surperformé, corrél. 0.467)
-  var peg = (s.epsg>0) ? s.pe/Math.max(s.epsg,1) : 99;
-  if(peg<1.0) v=25; else if(peg<1.5) v=20; else if(peg<2.0) v=15;
-  else if(peg<2.5) v=10; else if(peg<3.5) v=5;
-  else { // fallback PE seul
-    if(s.pe<12) v=20; else if(s.pe<20) v=14; else if(s.pe<30) v=8; else v=3;
-  }
+  // V — Valorisation PE fwd (27 pts — augmenté de 25→27)
+  // Contre-intuitif : PE élevé = anticipation de croissance = signal haussier
+  if(s.pe>0&&s.pe<12) v=12;
+  else if(s.pe>=12&&s.pe<18) v=20;
+  else if(s.pe>=18&&s.pe<28) v=27;
+  else if(s.pe>=28&&s.pe<40) v=20;
+  else if(s.pe>=40&&s.pe<60) v=12;
+  else v=4;
 
-  // M — FCF yield (12 pts — corrél. -0.237, réduit)
-  if(s.fcf>=8) m=12; else if(s.fcf>=5) m=9; else if(s.fcf>=3) m=6;
-  else if(s.fcf>=1) m=3;
+  // M — FCF yield (12 pts — inchangé)
+  if(s.fcf>=8) m=12;
+  else if(s.fcf>=5) m=9;
+  else if(s.fcf>=2) m=6;
+  else m=2;
 
-  return {q:q,r:r,b:b,v:v,m:m,total:Math.min(100,q+r+b+v+m),type:'L'};
+  var total=q+r+b+v+m;
+  return {q:q,r:r,b:b,v:v,m:m,total:Math.min(100,total)};
 }
 
 function calcQARPMid(s){
-  // QARP Midcaps — accent sur croissance CA, rentabilité opérationnelle
-  // Croissance CA (25) > Bilan (20) > Valorisation (20) > ROE+Marge op. (20) > FCF+BPA (15)
+  // QARP Midcaps — recalibré sur backtest 2019-2024
+  // Dette (23) > PE (22) > Marge (15) > Croiss.CA (20) > FCF (12) > ROE (8)
   var q=0,r=0,b=0,v=0,m=0;
 
-  // Q — ROE + Marge opérationnelle (20 pts)
-  var roe_s = s.roe>=15?10 : s.roe>=10?7 : s.roe>=6?4 : 1;
-  var om_s  = s.om>=15?10 : s.om>=10?7 : s.om>=6?4 : 1;
-  q = roe_s + om_s;
+  // Q — ROE (8 pts — réduit car moins prédictif sur midcaps)
+  if(s.roe>=20) q=8;
+  else if(s.roe>=13) q=6;
+  else if(s.roe>=8) q=4;
+  else q=2;
 
-  // R — Croissance CA (25 pts — midcaps = stories de croissance)
-  var rg = s.revg||s.ca_n>0?(s.ca_n-s.ca_n1)/Math.max(s.ca_n1,1)*100:0;
-  if(rg>=15) r=25; else if(rg>=10) r=20; else if(rg>=5) r=15;
-  else if(rg>=2) r=8; else if(rg>=0) r=4;
+  // R — Marge (15 pts — augmenté de 10→15, facteur clé midcaps)
+  if(s.margin>=15) r=15;
+  else if(s.margin>=9) r=12;
+  else if(s.margin>=5) r=8;
+  else if(s.margin>=2) r=4;
+  else r=1;
 
-  // B — Bilan moins strict midcaps (20 pts)
-  if(s.debt<1.0) b=20; else if(s.debt<2.0) b=15; else if(s.debt<3.0) b=10;
-  else if(s.debt<4.5) b=5;
+  // B — Bilan/Dette (23 pts — augmenté de 20→23)
+  if(s.debt<1.5) b=23;
+  else if(s.debt<2.5) b=18;
+  else if(s.debt<4.0) b=11;
+  else if(s.debt<6.0) b=5;
+  else b=1;
 
-  // V — Valorisation PE (20 pts)
-  if(s.pe<12) v=20; else if(s.pe<18) v=15; else if(s.pe<25) v=10;
-  else if(s.pe<35) v=5; else v=2;
+  // V — Valorisation PE (22 pts — augmenté de 20→22)
+  if(s.pe>0&&s.pe<12) v=22;
+  else if(s.pe>=12&&s.pe<18) v=18;
+  else if(s.pe>=18&&s.pe<25) v=14;
+  else if(s.pe>=25&&s.pe<35) v=9;
+  else v=3;
 
-  // M — FCF + Croissance BPA (15 pts)
-  var fcf_s = s.fcf>=5?8 : s.fcf>=3?5 : s.fcf>=1?2 : 0;
-  var eps_s = s.epsg>=15?7 : s.epsg>=8?5 : s.epsg>=3?3 : 0;
-  m = fcf_s + eps_s;
+  // Croissance CA (20 pts — réduit de 25→20, moins prédictif qu'attendu)
+  if(s.revg>=15) m=20;
+  else if(s.revg>=10) m=16;
+  else if(s.revg>=5) m=11;
+  else if(s.revg>=0) m=6;
+  else m=2;
 
-  return {q:q,r:r,b:b,v:v,m:m,total:Math.min(100,q+r+b+v+m),type:'M'};
+  // FCF (12 pts — réduit de 15→12)
+  var fcf_bonus=0;
+  if(s.fcf>=6) fcf_bonus=12;
+  else if(s.fcf>=3) fcf_bonus=8;
+  else if(s.fcf>=1) fcf_bonus=4;
+
+  var total=q+r+b+v+m+fcf_bonus;
+  return {q:q,r:r,b:b,v:v,m:m+fcf_bonus,total:Math.min(100,total)};
 }
 
 function calcQARP(s){
@@ -4889,6 +4923,7 @@ function render(s){
         </div>
         <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:14px 20px">
           <div style="font-size:36px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${(function(){var q=calcQARP(s).total;return q>=65?'#22c55e':q>=50?'#f59e0b':'#ef4444';})()}"><b>${calcQARP(s).total}</b><span style="font-size:8px;opacity:.65;margin-left:3px">${calcQARPLarge(s).total}L/${calcQARPMid(s).total}M</span></div>
+          \${isCyclical(s) ? \`<div style="margin-top:4px;font-size:9px;background:linear-gradient(135deg,#92400e,#d97706);color:#fff;padding:2px 6px;border-radius:3px;display:inline-block">🔄 CYCLIQUE — Score cycle: \${calcCyclic(s)}/100</div>\` : ''}
           <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">/100 QARP</div>
           <div style="margin-top:6px;padding:4px 10px;background:${qarpVerdict(calcQARP(s).total).bg};border-radius:4px;font-size:9px;font-weight:700;color:${qarpVerdict(calcQARP(s).total).col}">${qarpVerdict(calcQARP(s).total).icon} ${qarpVerdict(calcQARP(s).total).txt}</div>
         </div>
@@ -8376,6 +8411,68 @@ window.buildCal = function(s){
 };
 
 
+
+function calcCyclic(s){
+  // Score spécial pour valeurs cycliques
+  // Logique inversée : on achète quand les fondamentaux SEMBLENT mauvais
+  // mais que le cycle tourne
+  var score = 0;
+
+  // PE bas = valeur de cycle bas = ACHETER (contrairement à QARP)
+  if(s.pe > 0 && s.pe < 10) score += 30;
+  else if(s.pe >= 10 && s.pe < 14) score += 20;
+  else if(s.pe >= 14 && s.pe < 18) score += 10;
+
+  // Croissance BPA > 0 = le cycle tourne
+  if(s.epsg > 20) score += 25;
+  else if(s.epsg > 10) score += 18;
+  else if(s.epsg > 0) score += 10;
+  else score += 0; // BPA en baisse = pas encore le moment
+
+  // Croissance CA = proxy demande réelle
+  if(s.revg > 10) score += 20;
+  else if(s.revg > 5) score += 14;
+  else if(s.revg > 0) score += 8;
+
+  // Bilan = survie en bas de cycle
+  if(s.debt < 2.5) score += 15;
+  else if(s.debt < 4.0) score += 8;
+  else score += 2;
+
+  // Momentum : cours au-dessus de MM200 = reprise confirmée
+  if(s.price > s.mm200 && s.mm200 > 0) score += 10;
+
+  return Math.min(100, score);
+}
+
+function isCyclical(s){
+  var cyclicalSectors = [
+    'matériaux','industrie','chimie','distribution','btp',
+    'câbles','transport','acier','ciment','papier','tubes'
+  ];
+  var sect = (s.sector || '').toLowerCase();
+  var cyclicalTickers = ['NEXANS','SGO','REXEL','SPIE','SOP','MT','VK',
+    'IMERYS','AF','FNAC','THERMADOR','SAMSE','JXS'];
+  return cyclicalSectors.some(function(cs){ return sect.includes(cs); }) ||
+         cyclicalTickers.indexOf(s.ticker) >= 0;
+}
+
+function filtCycliques(btn){
+  document.querySelectorAll('.fb').forEach(function(b){
+    b.classList.remove('active'); b.style.background=''; b.style.color='';
+  });
+  if(btn){
+    btn.classList.add('active');
+    btn.style.background='linear-gradient(135deg,#92400e,#d97706)';
+    btn.style.color='#fff';
+  }
+  fil = S.filter(function(s){
+    return isCyclical(s) && calcCyclic(s) >= 50 &&
+           s.price > s.mm200 * 0.97 && s.epsg > 0;
+  }).sort(function(a,b){ return calcCyclic(b) - calcCyclic(a); });
+  buildQ();
+  if(fil.length > 0){ idx=0; show(0); }
+}
 function filtScoreLarge(btn){
   document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');b.style.background='';b.style.color='';});
   if(btn){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#1d4ed8,#3b82f6)';btn.style.color='#fff';}
