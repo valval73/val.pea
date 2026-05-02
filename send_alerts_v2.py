@@ -277,47 +277,101 @@ def stock_card(s, highlight=False):
     sc = '#22c55e' if s['qarp'] >= 70 else '#d97706' if s['qarp'] >= 55 else '#2563eb'
     gc = {'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}.get(s['score'], '#6b7280')
     bg = '#f0fdf4' if highlight else '#f8fafc'
-    zone_html = ('<span style="background:#dcfce7;color:#16a34a;padding:1px 5px;'
-                 'border-radius:3px;font-size:9px;font-weight:700">✅ EN ZONE</span>'
+    border_col = '#22c55e' if highlight else '#e2e8f0'
+    zone_html = ('<span style="background:#dcfce7;color:#16a34a;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">EN ZONE</span>'
                  if s['in_zone'] else
-                 '<span style="background:#f1f5f9;color:#64748b;padding:1px 5px;'
-                 'border-radius:3px;font-size:9px">hors zone</span>')
+                 '<span style="background:#f1f5f9;color:#64748b;padding:1px 5px;border-radius:3px;font-size:9px">hors zone</span>')
     beneish_html = ''
     if s['beneish'] > -1.78:
         bc = '#dc2626' if s['beneish'] > -1.49 else '#d97706'
-        beneish_html = f'<span style="background:#fee2e2;color:{bc};padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">⚠️ Beneish {s["beneish"]}</span>'
+        beneish_html = '<span style="background:#fee2e2;color:' + bc + ';padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">Beneish ' + str(s["beneish"]) + '</span>'
+    # Triptyque
+    rsi_ok = 25 <= s.get('rsi',50) <= 60
+    mm_ok = s.get('price',0) > s.get('mm200',0) if s.get('mm200',0) else False
+    zone_ok = s['in_zone']
+    tri_score = sum([rsi_ok, mm_ok, zone_ok])
+    tri_html = ('RSI ' + ('OK' if rsi_ok else 'NON') + ' &nbsp;|&nbsp; ' +
+                'MM200 ' + ('OK' if mm_ok else 'NON') + ' &nbsp;|&nbsp; ' +
+                'Zone ' + ('OK' if zone_ok else 'NON'))
+    tri_col = '#16a34a' if tri_score >= 2 else '#d97706' if tri_score == 1 else '#dc2626'
+    # Avis
+    rr = s['rr']; upside = s['upside']; in_zone = s['in_zone']
+    stop = s.get('stop',0); price = s['price']
+    if stop > 0 and price <= stop * 1.05:
+        avis_label = 'STOP PROCHE — vente si atteint'; avis_col_a = '#dc2626'; avis_bg_a = '#fee2e2'
+        avis_text = 'Stop a ' + str(stop) + 'EUR. Distance critique.'
+    elif in_zone and rr >= 2.0 and s['score'] in ('A','B'):
+        avis_label = 'RENFORCER — zone + R/R favorable'; avis_col_a = '#16a34a'; avis_bg_a = '#dcfce7'
+        avis_text = 'Zone active, R/R ' + str(rr) + 'x. Protocole 5 etapes avant achat. Stop : ' + str(stop) + 'EUR.'
+    elif in_zone and rr >= 1.5:
+        avis_label = 'ZONE ACTIVE — attendre confirmation'; avis_col_a = '#d97706'; avis_bg_a = '#fef3c7'
+        avis_text = 'Cours en zone, R/R ' + str(rr) + 'x. Attendre triptyque 2/3.'
+    elif not in_zone and upside < 0:
+        avis_label = 'HORS ZONE + UPSIDE NEGATIF'; avis_col_a = '#ea580c'; avis_bg_a = '#ffedd5'
+        avis_text = 'DCF depasse (' + str(upside) + '%). Ne pas renforcer. Surveiller prise de benefice partielle.'
+    elif not in_zone:
+        avis_label = 'HORS ZONE — attendre'; avis_col_a = '#6b7280'; avis_bg_a = '#f8fafc'
+        avis_text = 'Hors zone [' + str(s.get('el',0)) + '-' + str(s.get('eh',0)) + 'EUR]. Attendre retour en zone.'
+    else:
+        avis_label = 'SURVEILLER'; avis_col_a = '#d97706'; avis_bg_a = '#fef3c7'
+        avis_text = 'Surveiller chaque vendredi.'
+    # Thèse / contra
+    thesis = s.get('thesis','')[:220] + ('...' if len(s.get('thesis','')) > 220 else '')
+    contra = s.get('contra','')[:180] + ('...' if len(s.get('contra','')) > 180 else '')
+    thesis_html = ''
+    if thesis:
+        thesis_html = ('<div style="margin-top:10px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 4px 4px 0">'
+                       '<div style="font-size:8px;color:#16a34a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Pourquoi investir</div>'
+                       '<div style="font-size:10px;color:#1a4730;line-height:1.5">' + thesis + '</div></div>')
+    contra_html = ''
+    if contra:
+        contra_html = ('<div style="margin-top:6px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0">'
+                       '<div style="font-size:8px;color:#dc2626;font-weight:700;text-transform:uppercase;margin-bottom:3px">Ce que le marche craint</div>'
+                       '<div style="font-size:10px;color:#7c2d2d;line-height:1.5">' + contra + '</div></div>')
+    avis_html = ('<div style="margin-top:8px;padding:8px 12px;background:' + avis_bg_a + ';border-left:4px solid ' + avis_col_a + ';border-radius:0 6px 6px 0">'
+                 '<div style="font-size:10px;font-weight:700;color:' + avis_col_a + ';margin-bottom:2px">' + avis_label + '</div>'
+                 '<div style="font-size:9px;color:#444">' + avis_text + '</div></div>')
+    # Objectif avec %
+    o1_pct = round((s['o1'] - price) / price * 100) if price and s['o1'] else 0
+    margin_val = s.get('margin', 0)
+    debt_val = s.get('debt', 0)
 
-    return f'''
-<div style="background:{bg};border:1px solid {'#22c55e' if highlight else '#e2e8f0'};border-radius:8px;padding:12px 14px;margin-bottom:8px;{'border-left:4px solid #22c55e;' if highlight else ''}">
-  <table width="100%" cellpadding="0" cellspacing="0"><tr>
-    <td style="vertical-align:top;width:65%">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap">
-        <span style="background:{gc};color:#fff;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700;font-family:monospace">{s["score"]}</span>
-        <b style="font-size:14px;color:#0f2540">{s["ticker"]}</b>
-        <span style="color:#888;font-size:10px">{s["name"][:18]}</span>
-        {zone_html}
-        {beneish_html}
-      </div>
-      <table cellpadding="2" cellspacing="0" style="font-size:10px">
-        <tr><td style="color:#888;min-width:60px">Cours</td><td><b style="font-family:monospace">{s["price"]}€</b></td>
-            <td style="padding-left:10px;color:#888">Zone</td><td><b style="font-family:monospace">{s["el"]}–{s["eh"]}€</b></td></tr>
-        <tr><td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">{s["stop"]}€</b></td>
-            <td style="padding-left:10px;color:#888">Objectif</td><td><b style="color:#16a34a;font-family:monospace">{s["o1"]}€</b></td></tr>
-        <tr><td style="color:#888">Upside DCF</td><td><b style="color:{'#16a34a' if s["upside"]>20 else '#d97706'};font-family:monospace">{'+' if s["upside"]>0 else ''}{s["upside"]}%</b></td>
-            <td style="padding-left:10px;color:#888">R/R</td><td><b style="font-family:monospace">{s["rr"]}x</b></td></tr>
-        <tr><td style="color:#888">ROE</td><td><b style="font-family:monospace">{s["roe"]}%</b></td>
-            <td style="padding-left:10px;color:#888">Piotroski</td><td><b style="font-family:monospace">{int(s["pio"])}/9</b></td></tr>
-      </table>
-    </td>
-    <td style="vertical-align:top;text-align:right">
-      <div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:10px 14px;text-align:center;min-width:75px">
-        <div style="font-size:26px;font-weight:700;color:{sc};font-family:monospace">{s["qarp"]}</div>
-        <div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">/100 QARP</div>
-        <div style="margin-top:4px;font-size:9px;color:#f0d080;font-weight:700">{"🚀 ULTIME" if s["signal"]=="ULTIME" else "✅ FORT" if s["signal"]=="FORT" else "👁 SURVEILLER"}</div>
-      </div>
-    </td>
-  </tr></table>
-</div>'''
+    return ('<div style="background:' + bg + ';border:1px solid ' + border_col + ';border-radius:8px;padding:14px 16px;margin-bottom:12px' + (';border-left:4px solid #22c55e' if highlight else '') + '">'
+        + '<table width="100%" cellpadding="0" cellspacing="0"><tr>'
+        + '<td style="vertical-align:top">'
+        + '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">'
+        + '<span style="background:' + gc + ';color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;font-family:monospace">' + s['score'] + '</span>'
+        + '<b style="font-size:15px;color:#0f2540;font-family:monospace">' + s['ticker'] + '</b>'
+        + '<span style="color:#888;font-size:10px">' + s['name'][:20] + '</span>'
+        + zone_html + beneish_html
+        + '</div>'
+        + '<div style="font-size:9px;color:#888;margin-bottom:6px">' + s.get('sector','') + '</div>'
+        + '</td>'
+        + '<td style="vertical-align:top;text-align:right;min-width:90px">'
+        + '<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:10px 14px;text-align:center">'
+        + '<div style="font-size:26px;font-weight:700;color:' + sc + ';font-family:monospace">' + str(s['qarp']) + '</div>'
+        + '<div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">/100 QARP</div>'
+        + '<div style="margin-top:4px;font-size:9px;color:#f0d080;font-weight:700">' + ('ULTIME' if s['signal']=='ULTIME' else 'FORT' if s['signal']=='FORT' else 'SURVEILLER') + '</div>'
+        + '</div></td></tr></table>'
+        + '<table width="100%" cellpadding="3" cellspacing="0" style="font-size:10px;margin-bottom:6px">'
+        + '<tr><td style="color:#888;width:22%">Cours</td><td><b style="font-family:monospace">' + str(price) + 'EUR</b></td>'
+        + '<td style="color:#888">Zone</td><td><b style="font-family:monospace">' + str(s['el']) + '-' + str(s['eh']) + 'EUR</b></td></tr>'
+        + '<tr><td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">' + str(stop) + 'EUR</b></td>'
+        + '<td style="color:#888">Objectif 1</td><td><b style="color:#16a34a;font-family:monospace">' + str(s['o1']) + 'EUR (+' + str(o1_pct) + '%)</b></td></tr>'
+        + '<tr><td style="color:#888">Upside DCF</td><td><b style="color:' + ('#16a34a' if upside>15 else '#d97706') + ';font-family:monospace">' + ('+' if upside>0 else '') + str(upside) + '%</b></td>'
+        + '<td style="color:#888">R/R</td><td><b style="font-family:monospace;color:' + ('#16a34a' if rr>=1.5 else '#d97706') + '">' + str(rr) + 'x</b></td></tr>'
+        + '<tr><td style="color:#888">ROE</td><td><b style="font-family:monospace">' + str(s['roe']) + '%</b></td>'
+        + '<td style="color:#888">Piotroski</td><td><b style="font-family:monospace">' + str(int(s['pio'])) + '/9</b></td></tr>'
+        + '<tr><td style="color:#888">Marge</td><td><b style="font-family:monospace">' + str(margin_val) + '%</b></td>'
+        + '<td style="color:#888">Dette</td><td><b style="font-family:monospace">' + str(debt_val) + 'x</b></td></tr>'
+        + '</table>'
+        + '<div style="font-size:9px;padding:4px 8px;background:#f8fafc;border-radius:4px;margin-bottom:6px;color:' + tri_col + '">'
+        + '<b>Triptyque ' + str(tri_score) + '/3 :</b> ' + tri_html
+        + '</div>'
+        + thesis_html
+        + contra_html
+        + avis_html
+        + '</div>')
 
 
 def generate_ptf_fiches(stocks):
