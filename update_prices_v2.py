@@ -149,6 +149,7 @@ if __name__ == '__main__':
     updated = 0
     recalibrated = 0
     errors = []
+    aberrant_errors = []
     skipped = 0
 
     # Find S[] bounds
@@ -185,6 +186,28 @@ if __name__ == '__main__':
         if not new_price:
             errors.append(f"{ticker}({yf}): no price")
             continue
+
+        # ── VALIDATION ANTI-ABERRATION ──────────────────────────
+        if old_price > 0:
+            variation = abs(new_price - old_price) / old_price
+            if variation > 0.40:  # >40% de variation = aberration
+                aberrant_errors.append(
+                    f"{ticker}: prix aberrant {new_price} vs précédent {old_price} "
+                    f"({variation*100:.0f}% de variation) — ignoré"
+                )
+                continue
+            # Vérifier cohérence avec le 52-week range si disponible
+            b52h_m = re.search(r'\bb52h:([\d.]+)', block)
+            b52l_m = re.search(r'\bb52l:([\d.]+)', block)
+            if b52h_m and b52l_m:
+                b52h = float(b52h_m.group(1))
+                b52l = float(b52l_m.group(1))
+                if b52l > 0 and (new_price < b52l * 0.60 or new_price > b52h * 1.40):
+                    aberrant_errors.append(
+                        f"{ticker}: prix {new_price} hors 52-week range "
+                        f"[{b52l}-{b52h}] × 1.4 — ignoré"
+                    )
+                    continue
 
         new_block = block
         chg = round((new_price - old_price) / old_price * 100, 2) if old_price else 0
@@ -233,4 +256,7 @@ if __name__ == '__main__':
     print(f"⏭  {skipped} tickers sans mapping YF")
     if errors:
         print(f"⚠️  {len(errors)} erreurs: {errors[:5]}")
+    if aberrant_errors:
+        print(f"🚫 {len(aberrant_errors)} prix aberrants ignorés:")
+        for e in aberrant_errors[:5]: print(f"  {e}")
     sys.exit(0)
