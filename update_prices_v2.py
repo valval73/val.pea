@@ -1,52 +1,55 @@
 #!/usr/bin/env python3
 """
 update_prices_v2.py — VAL.PEA
-Système de prix multi-sources avec mémoire persistante.
+Multi-sources avec mémoire persistante.
 
-Cascade de fiabilité :
-  1. Twelve Data (800 req/jour gratuit — meilleure couverture Euronext)
-  2. Yahoo Finance via yfinance (fallback si Twelve Data échoue)
-  3. Mémoire persistante (dernier prix valide connu)
+Cascade :
+  1. Twelve Data (800 req/jour gratuit — clé dans secrets GitHub)
+  2. Yahoo Finance via yfinance (fallback automatique)
+  3. Mémoire persistante prices_memory.json (filet de sécurité)
 
-Validation anti-aberration à chaque étape.
-prices_memory.json = source de vérité des derniers prix valides.
-
-Clés API requises (gratuites) :
-  - TWELVE_DATA_KEY : twelvedata.com (800 req/jour)
-  - FMP_KEY         : financialmodelingprep.com (250 req/jour — pour le PTF uniquement)
+Validation anti-aberration : variation > 40% = rejeté, mémoire utilisée.
 """
 
-import re, json, sys, os, time
+import re, json, sys, os
 from datetime import datetime
-import urllib.request
-import yfinance as yf
+
+# Imports optionnels — ne pas crasher si manquants
+try:
+    import yfinance as yf
+    HAS_YF = True
+except ImportError:
+    HAS_YF = False
+    print("⚠️  yfinance non installé — fallback urllib uniquement")
+
+try:
+    import urllib.request
+    HAS_URLLIB = True
+except ImportError:
+    HAS_URLLIB = False
 
 MEMORY_FILE   = 'prices_memory.json'
-MAX_VARIATION = 0.40   # 40% max entre 2 runs
-MIN_PRICE     = 0.50   # Prix minimum acceptable
+MAX_VARIATION = 0.40
+MIN_PRICE     = 0.50
 
-# Clés API depuis les secrets GitHub
 TWELVE_KEY = os.environ.get('TWELVE_DATA_KEY', '')
 FMP_KEY    = os.environ.get('FMP_KEY', '')
 
-# ─── MAPPING TWELVE DATA (symboles Euronext) ─────────────────────
-# Twelve Data utilise le format "MC:EPA" pour les actions françaises
+# ─── MAPPING TWELVE DATA ─────────────────────────────────────────
 TWELVE_MAP = {
     'MC':'MC:EPA','AI':'AI:EPA','OR':'OR:EPA','RMS':'RMS:EPA','SAN':'SAN:EPA',
     'TTE':'TTE:EPA','SAF':'SAF:EPA','SU':'SU:EPA','AXA':'CS:EPA','BNP':'BNP:EPA',
     'ACA':'ACA:EPA','GLE':'GLE:EPA','AIR':'AIR:EPA','KER':'KER:EPA','PUB':'PUB:EPA',
     'ORA':'ORA:EPA','LR':'LR:EPA','DSY':'DSY:EPA','STM':'STM:EPA','EL':'EL:EPA',
     'ML':'ML:EPA','ENGI':'ENGI:EPA','HO':'HO:EPA','DG':'DG:EPA','CAP':'CAP:EPA',
-    'GTT':'GTT:EPA','ELIS':'ELIS:EPA','ERF':'ERF:EPA','COFA':'COFA:EPA',
-    'SPIE':'SPIE:EPA','ALO':'ALO:EPA','BVI':'BVI:EPA','FDJ':'FDJ:EPA',
-    'IPSEN':'IPNP:EPA','REXEL':'RXL:EPA','SOI':'SOI:EPA',
-    'ASML':'ASML:AMS','NOVO':'NOVO-B:CPH','PRX':'PRX:AMS',
-    'NEXANS':'NEX:EPA','SGB':'SGO:EPA','RNO':'RNO:EPA',
-    'FORVIA':'FRVIA:EPA','IMERYS':'NK:EPA','ALTEN':'ATE:EPA',
-    'EIFFAGE':'FGR:EPA','VK':'VK:EPA','MT':'MT:AMS',
+    'GTT':'GTT:EPA','ELIS':'ELIS:EPA','SPIE':'SPIE:EPA','ALO':'ALO:EPA',
+    'BVI':'BVI:EPA','FDJ':'FDJ:EPA','REXEL':'RXL:EPA','SOI':'SOI:EPA',
+    'ASML':'ASML:AMS','NOVO':'NOVO-B:CPH','MT':'MT:AMS','VK':'VK:EPA',
+    'NEXANS':'NEX:EPA','RNO':'RNO:EPA','FORVIA':'FRVIA:EPA','IMERYS':'NK:EPA',
+    'ALTEN':'ATE:EPA','EIFFAGE':'FGR:EPA','SGO':'SGO:EPA','ERF':'ERF:EPA',
 }
 
-# Mapping Yahoo Finance (fallback)
+# ─── MAPPING YAHOO FINANCE ───────────────────────────────────────
 YF_MAP = {
     'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA',
     'TTE':'TTE.PA','SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA',
@@ -59,12 +62,12 @@ YF_MAP = {
     'SPIE':'SPIE.PA','ALO':'ALO.PA','BVI':'BVI.PA','FDJ':'FDJ.PA',
     'IPSEN':'IPN.PA','REXEL':'RXL.PA','SOP':'SOP.PA','LNA':'LNA.PA',
     'FNAC':'FNAC.PA','EIFFAGE':'FGR.PA','NEXANS':'NEX.PA','SOI':'SOI.PA',
-    'FORVIA':'FRVIA.PA','IMERYS':'NK.PA','ALTEN':'ATE.PA',
-    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','PRX':'PRX.AS','MT':'MT.AS',
-    'HEIA':'HEIA.AS','ADYEN':'ADYEN.AS','VK':'VK.PA','RNO':'RNO.PA',
+    'FORVIA':'FRVIA.PA','IMERYS':'NK.PA','ALTEN':'ATE.PA','VK':'VK.PA',
+    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','MT':'MT.AS','HEIA':'HEIA.AS',
+    'ADYEN':'ADYEN.AS','RNO':'RNO.PA','SGO':'SGO.PA',
 }
 
-# ─── MÉMOIRE PERSISTANTE ─────────────────────────────────────────
+# ─── MÉMOIRE ─────────────────────────────────────────────────────
 def load_memory():
     if os.path.exists(MEMORY_FILE):
         try:
@@ -78,24 +81,22 @@ def save_memory(memory):
     with open(MEMORY_FILE, 'w') as f:
         json.dump(memory, f, indent=2)
 
-# ─── VALIDATION ANTI-ABERRATION ──────────────────────────────────
-def is_valid(new_price, mem_price, b52h=None, b52l=None):
-    """Retourne (True, "") si valide, (False, raison) si aberrant"""
-    if not new_price or new_price < MIN_PRICE:
-        return False, f"prix trop bas {new_price}"
+# ─── VALIDATION ──────────────────────────────────────────────────
+def is_valid(price, mem_price, b52h=None, b52l=None):
+    if not price or price < MIN_PRICE:
+        return False, f"prix trop bas ({price})"
     if mem_price and mem_price > 0:
-        variation = abs(new_price - mem_price) / mem_price
-        if variation > MAX_VARIATION:
-            return False, f"variation {variation*100:.0f}% vs mémoire {mem_price}"
+        var = abs(price - mem_price) / mem_price
+        if var > MAX_VARIATION:
+            return False, f"variation {var*100:.0f}% vs mémoire {mem_price}"
     if b52h and b52l and b52l > 0:
-        if new_price < b52l * 0.50 or new_price > b52h * 1.50:
-            return False, f"hors range [{b52l}-{b52h}]×1.5"
+        if price < b52l * 0.50 or price > b52h * 1.50:
+            return False, f"hors range 52S [{b52l}-{b52h}]×1.5"
     return True, ""
 
-# ─── SOURCE 1 : TWELVE DATA ──────────────────────────────────────
+# ─── SOURCES ─────────────────────────────────────────────────────
 def fetch_twelve(ticker):
-    """Twelve Data — 800 req/jour gratuit, meilleure couverture Euronext"""
-    if not TWELVE_KEY:
+    if not TWELVE_KEY or not HAS_URLLIB:
         return None
     symbol = TWELVE_MAP.get(ticker)
     if not symbol:
@@ -111,87 +112,42 @@ def fetch_twelve(ticker):
         pass
     return None
 
-# ─── SOURCE 2 : YAHOO FINANCE (yfinance) ─────────────────────────
 def fetch_yahoo(ticker):
-    """Yahoo Finance via yfinance — fallback principal"""
-    yf_ticker = YF_MAP.get(ticker)
-    if not yf_ticker:
+    yf_sym = YF_MAP.get(ticker)
+    if not yf_sym:
         return None
-    try:
-        t = yf.Ticker(yf_ticker)
-        price = t.fast_info.last_price
-        if price and price > 0:
-            return round(float(price), 2)
-    except:
-        pass
-    # Fallback v8 API
-    try:
-        url = f"https://query2.finance.yahoo.com/v8/finance/chart/{yf_ticker}?interval=1d&range=1d"
-        req = urllib.request.Request(url, headers={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            'Accept': 'application/json',
-            'Referer': 'https://finance.yahoo.com/',
-        })
-        with urllib.request.urlopen(req, timeout=10) as r:
-            data = json.loads(r.read())
-        meta = data['chart']['result'][0]['meta']
-        price = meta.get('regularMarketPrice') or meta.get('previousClose')
-        return round(float(price), 2) if price else None
-    except:
-        return None
-
-# ─── SOURCE 3 : FMP (portefeuille uniquement) ────────────────────
-def fetch_fmp(ticker):
-    """FMP — 250 req/jour, utilisé uniquement pour valider le PTF"""
-    if not FMP_KEY:
-        return None
-    try:
-        url = f"https://financialmodelingprep.com/api/v3/quote-short/{ticker}.PA?apikey={FMP_KEY}"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=8) as r:
-            data = json.loads(r.read())
-        if data and isinstance(data, list):
-            return round(float(data[0]['price']), 2)
-    except:
-        pass
+    # Méthode 1 : yfinance library
+    if HAS_YF:
+        try:
+            t = yf.Ticker(yf_sym)
+            price = t.fast_info.last_price
+            if price and price > 0:
+                return round(float(price), 2)
+        except:
+            pass
+    # Méthode 2 : API directe
+    if HAS_URLLIB:
+        try:
+            url = f"https://query2.finance.yahoo.com/v8/finance/chart/{yf_sym}?interval=1d&range=1d"
+            req = urllib.request.Request(url, headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Accept': 'application/json',
+                'Referer': 'https://finance.yahoo.com/',
+            })
+            with urllib.request.urlopen(req, timeout=10) as r:
+                data = json.loads(r.read())
+            meta = data['chart']['result'][0]['meta']
+            price = meta.get('regularMarketPrice') or meta.get('previousClose')
+            return round(float(price), 2) if price else None
+        except:
+            pass
     return None
-
-# ─── FETCH AVEC CASCADE ──────────────────────────────────────────
-def fetch_best_price(ticker, mem_price, b52h, b52l, is_portfolio=False):
-    """
-    Essaie les sources dans l'ordre et retourne le premier prix valide.
-    Retourne (price, source, reason_if_fallback)
-    """
-    # 1. Twelve Data
-    p1 = fetch_twelve(ticker)
-    valid, reason = is_valid(p1, mem_price, b52h, b52l)
-    if p1 and valid:
-        return p1, 'twelve', ''
-
-    # 2. Yahoo Finance
-    p2 = fetch_yahoo(ticker)
-    valid2, reason2 = is_valid(p2, mem_price, b52h, b52l)
-    if p2 and valid2:
-        return p2, 'yahoo', f"twelve={'aberrant: '+reason if p1 else 'indispo'}"
-
-    # 3. FMP (si portefeuille)
-    if is_portfolio and FMP_KEY:
-        p3 = fetch_fmp(ticker)
-        valid3, reason3 = is_valid(p3, mem_price, b52h, b52l)
-        if p3 and valid3:
-            return p3, 'fmp', f"twelve+yahoo indispos/aberrants"
-
-    # 4. Mémoire (filet de sécurité)
-    if mem_price and mem_price > 0:
-        return mem_price, 'memory', f"toutes sources indisponibles/aberrantes"
-
-    return None, 'none', 'aucune source disponible'
 
 # ─── MAIN ─────────────────────────────────────────────────────────
 if __name__ == '__main__':
     html_file = 'index.html'
     if not os.path.exists(html_file):
-        print(f"ERROR: {html_file} not found")
+        print(f"ERREUR: {html_file} introuvable")
         sys.exit(1)
 
     with open(html_file, 'r', encoding='utf-8') as f:
@@ -200,28 +156,25 @@ if __name__ == '__main__':
     is_friday = datetime.now().weekday() == 4
     now_str   = datetime.now().strftime('%d/%m à %H:%M')
 
-    # Afficher la configuration
-    print(f"Sources actives :")
-    print(f"  Twelve Data : {'OUI (' + TWELVE_KEY[:8] + '...)' if TWELVE_KEY else 'NON — ajouter TWELVE_DATA_KEY dans GitHub Secrets'}")
-    print(f"  Yahoo Finance (yfinance) : OUI (fallback)")
-    print(f"  FMP : {'OUI' if FMP_KEY else 'NON (optionnel)'}")
-    print(f"  Mémoire persistante : OUI ({MEMORY_FILE})")
+    print(f"Sources : Twelve={'OUI' if TWELVE_KEY else 'NON (ajouter TWELVE_DATA_KEY dans GitHub Secrets)'} | yfinance={'OUI' if HAS_YF else 'NON'}")
     print(f"Mode : {'VENDREDI — recalibration zones' if is_friday else 'Quotidien'}")
-    print("=" * 60)
+    print("=" * 55)
 
     memory = load_memory()
     print(f"Mémoire : {len(memory)} prix en cache")
 
-    # Portefeuille Val (pour priorité FMP)
-    ptf_tickers = ['ASML','ELIS','EL','GTT','RMS','AI','LR','SU','HO','TTE','DCAM','PAEEM']
-
     s_start = content.find("const S=[")
-    stats = {'twelve':0, 'yahoo':0, 'fmp':0, 'memory':0, 'none':0, 'recalibrated':0}
+    if s_start < 0:
+        print("ERREUR: const S=[ non trouvé")
+        sys.exit(1)
 
-    for m in re.finditer(
-        r"(\{ticker:'([^']+)'.*?)(?=\n\n\{ticker:|\n\n\];)",
-        content[s_start:], re.DOTALL
-    ):
+    stats = {'twelve': 0, 'yahoo': 0, 'memory': 0, 'skipped': 0}
+
+    # Trouver toutes les actions dans S[]
+    pattern = re.compile(r"(\{ticker:'([^']+)'[^{}]*(?:\{[^{}]*\}[^{}]*)*\})", re.DOTALL)
+    s_section = content[s_start:]
+
+    for m in re.finditer(r"(\{ticker:'([^']+)'.*?)(?=\n\n\{ticker:|\n\n\];)", s_section, re.DOTALL):
         block  = m.group(1)
         ticker = m.group(2)
 
@@ -230,28 +183,39 @@ if __name__ == '__main__':
         b52l_m = re.search(r'\bb52l:([\d.]+)', block)
 
         file_price = float(pm.group(1)) if pm else 0
-        mem_price  = memory.get(ticker, {}).get('price', file_price)
+        mem_entry  = memory.get(ticker, {})
+        mem_price  = mem_entry.get('price', file_price)
         b52h       = float(b52h_m.group(1)) if b52h_m else None
         b52l       = float(b52l_m.group(1)) if b52l_m else None
-        is_ptf     = ticker in ptf_tickers
 
-        # Récupérer le meilleur prix disponible
-        best_price, source, fallback_reason = fetch_best_price(
-            ticker, mem_price, b52h, b52l, is_portfolio=is_ptf
-        )
+        best_price = None
+        source     = 'skipped'
 
+        # 1. Twelve Data
+        p = fetch_twelve(ticker)
+        ok, reason = is_valid(p, mem_price, b52h, b52l)
+        if p and ok:
+            best_price, source = p, 'twelve'
+        
+        # 2. Yahoo Finance (si Twelve échoue)
         if not best_price:
-            stats['none'] += 1
-            continue
+            p = fetch_yahoo(ticker)
+            ok, reason = is_valid(p, mem_price, b52h, b52l)
+            if p and ok:
+                best_price, source = p, 'yahoo'
+            elif p and not ok:
+                print(f"  🚫 {ticker:8} Yahoo={p} ABERRANT ({reason}) → mémoire {mem_price}")
 
-        # Logger les fallbacks
-        if source == 'memory' and fallback_reason:
-            print(f"  📦 {ticker:8} → mémoire {best_price} ({fallback_reason})")
-        elif source == 'yahoo' and fallback_reason:
-            pass  # silencieux pour ne pas polluer les logs
+        # 3. Mémoire (filet de sécurité)
+        if not best_price:
+            if mem_price and mem_price > 0:
+                best_price, source = mem_price, 'memory'
+            else:
+                stats['skipped'] += 1
+                continue
 
-        # Mettre à jour la mémoire si source fiable
-        if source in ('twelve', 'yahoo', 'fmp'):
+        # Mettre à jour la mémoire
+        if source in ('twelve', 'yahoo'):
             memory[ticker] = {
                 'price':  best_price,
                 'date':   datetime.now().strftime('%Y-%m-%d %H:%M'),
@@ -260,7 +224,7 @@ if __name__ == '__main__':
 
         stats[source] = stats.get(source, 0) + 1
 
-        # Appliquer dans index.html
+        # Appliquer dans le fichier
         if best_price != file_price:
             chg = round((best_price - mem_price) / mem_price * 100, 2) if mem_price else 0
             new_block = re.sub(r'\bprice:[\d.]+', f'price:{best_price}', block, count=1)
@@ -268,7 +232,7 @@ if __name__ == '__main__':
             if new_block != block:
                 content = content[:s_start + m.start()] + new_block + content[s_start + m.end():]
 
-        # Recalibration zones le vendredi
+        # Recalibration zones le vendredi (dérive > 15%)
         if is_friday and source != 'memory' and mem_price and mem_price > 0:
             drift = abs(best_price - mem_price) / mem_price
             if drift > 0.15:
@@ -278,30 +242,27 @@ if __name__ == '__main__':
                     if km:
                         new_val = round(float(km.group(1)) * ratio, 1)
                         content = content.replace(f'{key}:{km.group(1)}', f'{key}:{new_val}', 1)
-                stats['recalibrated'] += 1
                 print(f"  📐 {ticker:8} zones recalibrées ({drift*100:.0f}% dérive)")
 
     # Sauvegarder mémoire
     save_memory(memory)
 
-    # Timestamp header
-    total_updated = stats['twelve'] + stats['yahoo'] + stats['fmp']
+    # Timestamp
+    total = stats['twelve'] + stats['yahoo']
     content = re.sub(
         r'\d+ cours mis à jour[^<"\')\]]*',
-        f"{total_updated} cours mis à jour le {now_str} "
-        f"(twelve:{stats['twelve']} yahoo:{stats['yahoo']} mémoire:{stats['memory']})",
+        f"{total} cours mis à jour le {now_str} (twelve:{stats['twelve']} yahoo:{stats['yahoo']} mémoire:{stats['memory']})",
         content
     )
 
     with open(html_file, 'w', encoding='utf-8') as f:
         f.write(content)
 
-    print(f"\n✅ Twelve Data   : {stats['twelve']} prix")
-    print(f"✅ Yahoo Finance : {stats['yahoo']} prix")
-    print(f"✅ FMP           : {stats.get('fmp',0)} prix")
-    print(f"📦 Mémoire       : {stats['memory']} prix (fallback)")
-    print(f"📐 Recalibrés    : {stats['recalibrated']} zones (vendredi)")
-    print(f"💾 Mémoire sauvegardée : {len(memory)} entrées")
+    print(f"\n✅ Twelve Data   : {stats['twelve']}")
+    print(f"✅ Yahoo Finance : {stats['yahoo']}")
+    print(f"📦 Mémoire       : {stats['memory']} (fallback)")
+    print(f"💾 {len(memory)} entrées sauvegardées dans {MEMORY_FILE}")
 
-    if stats.get('none', 0) > 10:
-        print(f"⚠️  {stats['none']} actions sans aucune source — vérifier les secrets GitHub")
+    if not TWELVE_KEY:
+        print("\n⚠️  CONSEIL : Ajouter TWELVE_DATA_KEY dans GitHub Secrets")
+        print("   → twelvedata.com (gratuit, 800 req/jour)")

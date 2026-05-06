@@ -5885,155 +5885,24 @@ function xls(){
 
 // ═══════════ LIVE DATA ═══════════
 async function fetchLive(){
-  const st=document.getElementById('live-st');
-  if(st)st.textContent='🔄 Mise à jour...';
-  const PROXIES=['https://api.codetabs.com/v1/proxy?quest=','https://corsproxy.io/?url=','https://api.allorigins.win/raw?url='];
-  const map={
-    'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA','TTE':'TTE.PA',
-    'SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA','ACA':'ACA.PA','GLE':'GLE.PA',
-    'AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA','ORA':'ORA.PA','VIE':'VIE.PA','RNO':'RNO.PA',
-    'SGO':'SGO.PA','CAP':'CAP.PA','DG':'DG.PA','VIV':'VIV.PA','RI':'RI.PA','LR':'LR.PA',
-    'WLN':'WLN.PA','DSY':'DSY.PA','STM':'STM.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA',
-    'MT':'MT.AS','URW':'URW.AS','SW':'SW.PA','TEP':'TEP.PA','EN':'EN.PA','AC':'AC.PA',
-    'AF':'AF.PA','BN':'BN.PA','CA':'CA.PA','HO':'HO.PA','GTT':'GTT.PA','COFA':'COFA.PA',
-    'MERY':'MRY.PA','JXS':'JXS.PA','SPIE':'SPIE.PA','NEXANS':'NEX.PA','DASSAV':'AM.PA',
-    'ALO':'ALO.PA','ELIS':'ELIS.PA','SEB':'SK.PA','ERF':'ERF.PA','IPSOS':'IPS.PA',
-    'ABCA':'ABCA.PA','VK':'VK.PA','FNAC':'FNAC.PA','LNA':'LNA.PA','CNP':'CNP.PA','SOP':'SOP.PA',
-    'BIOM':'BIM.PA','KLPI':'LI.PA','RCO':'RCO.PA','EIFFAGE':'FGR.PA','COVIVIO':'COV.PA',
-    'TRIGANO':'TRI.PA','BOIRON':'BOI.PA','VIRBAC':'VIRP.PA','INTERPARFUMS':'ITP.PA',
-    'CLASQUIN':'ALCLA.PA','ARGAN':'ARG.PA','STEF':'STF.PA','THERMADOR':'THEP.PA',
-    'PLUXEE':'PLX.PA','EDENRED':'EDEN.PA','VALO':'FR.PA','FORVIA':'FRVIA.PA',
-    'ASML':'ASML.AS','ADYEN':'ADYEN.AS','HEIA':'HEIA.AS','NOVO':'NOVO-B.CO',
-    'SAP':'SAP.DE','SIEMENS':'SIE.DE','ALV':'ALV.DE','LVMHF':'RACE.MI',
-    'BVI':'BVI.PA','TALY':'TEP.PA','FDJ':'FDJ.PA','ALSTOM':'ALO.PA','NRO':'NRO.PA',
-    'PERNOD':'RI.PA','IPSEN':'IPN.PA','REXEL':'RXL.PA','IMERYS':'NK.PA'
-  };
-  let ok=0,fail=0,workingProxy=null;
-  const total=Object.keys(map).length;
-  const ts=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-  // Trouver le proxy qui fonctionne
-  for(const proxy of PROXIES){
-    try{
-      const testUrl='https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?interval=1d&range=1d';
-      const r=await fetch(proxy+encodeURIComponent(testUrl),{signal:AbortSignal.timeout(5000)});
-      if(r.ok){const d=await r.json();if(d?.chart?.result?.[0]?.meta?.regularMarketPrice){workingProxy=proxy;break;}}
-    }catch(e){}
+  // Les prix sont mis à jour automatiquement par GitHub Actions
+  // (chaque soir en semaine, via Twelve Data + Yahoo Finance)
+  // Le bouton "Actualiser" n'est plus disponible depuis le navigateur
+  // car les APIs Yahoo/Twelve Data bloquent les requêtes CORS
+  var st = document.getElementById('live-st');
+  if(st){
+    st.textContent = '✅ Prix mis à jour automatiquement chaque soir';
+    st.style.color = '#16a34a';
+    setTimeout(function(){ st.textContent = ''; }, 4000);
   }
-  if(!workingProxy){
-    if(st)st.textContent='⚠️ Proxy indisponible — prix mis à jour auto à 17h35 (GitHub Actions)';
-    return;
-  }
-  const entries=Object.entries(map);
-  for(let i=0;i<entries.length;i++){
-    const[t,yf]=entries[i];
-    if(st&&i%5===0)st.textContent='🔄 '+ok+'/'+total+'...';
-    try{
-      const url='https://query2.finance.yahoo.com/v8/finance/chart/'+yf+'?interval=1d&range=1d';
-      const r=await fetch(workingProxy+encodeURIComponent(url),{signal:AbortSignal.timeout(6000)});
-      if(r.ok){
-        const d=await r.json();
-        const meta=d?.chart?.result?.[0]?.meta;
-        if(meta?.regularMarketPrice){
-          const price=Math.round(meta.regularMarketPrice*100)/100;
-          const prev=meta.previousClose||meta.chartPreviousClose||price;
-          const chg=+((price-prev)/prev*100).toFixed(2);
-          const s=S.find(x=>x.ticker===t);
-          if(s){s.price=price;s.chg=chg;ok++;
-            const fp=document.getElementById('fp-'+t);
-            const fl=document.getElementById('fl-'+t);
-            if(fp)fp.textContent=price.toFixed(2)+' €';
-            if(fl){fl.textContent='● '+ts;fl.style.color='#5ddb8a';}
-          }
-        }else fail++;
-      }else fail++;
-    }catch(e){fail++;}
-    await new Promise(res=>setTimeout(res,120));
-  }
-  if(fil[idx])render(fil[idx]);
-  buildT(S);
-  const msg=ok>0?'✅ '+ok+' cours mis à jour à '+ts+(fail>0?' ('+fail+' échecs)':''):'❌ Indisponible — prix auto à 17h35';
-  if(st)st.textContent=msg;
+  // Afficher une notification
+  var notif = document.createElement('div');
+  notif.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#0f2540;color:#fff;padding:12px 18px;border-radius:8px;font-size:11px;z-index:9999;border-left:4px solid #22c55e';
+  notif.innerHTML = '<b>Prix automatiques</b><br>Mis à jour chaque soir via GitHub Actions<br><span style="opacity:.6;font-size:9px">Twelve Data + Yahoo Finance + Mémoire persistante</span>';
+  document.body.appendChild(notif);
+  setTimeout(function(){ notif.remove(); }, 5000);
 }
 
-
-
-// ═══════════ ETF DATA ═══════════
-const ETF=[
-  {ticker:'CW8',name:'MSCI World',emetteur:'Amundi',isin:'LU1681043599',type:'Capitalisant',frais:0.12,perf1y:18.2,perf3y:11.4,perf5y:14.8,encours:'8.2Md€',indice:'MSCI World (1600 titres)',replication:'Synthétique',note:'A',
-   avantages:['0.12% frais — le moins cher PEA','Synthétique = éligible PEA','1600 entreprises mondiales'],
-   risques:['Risque contrepartie swap (limité 10%)','Exposition USD 70%'],
-   verdict:"⭐ LE meilleur ETF PEA. 0.12% imbattable. Si un seul ETF dans votre PEA : c'est celui-là."},
-  {ticker:'PAEEM',name:'MSCI Emerging Markets',emetteur:'Amundi',isin:'LU1681045370',type:'Capitalisant',frais:0.20,perf1y:8.4,perf3y:2.1,perf5y:4.8,encours:'2.8Md€',indice:'MSCI EM (Chine, Inde, Brésil...)',replication:'Synthétique',note:'B',
-   avantages:['Seul ETF émergents éligible PEA','Inde croissance structurelle'],
-   risques:['Chine 30% risque géopolitique','Volatilité élevée'],
-   verdict:'Complément du CW8 pour émergents. Limiter à 15% du portefeuille.'},
-  {ticker:'PANX',name:'NASDAQ 100',emetteur:'Amundi',isin:'LU1681038243',type:'Capitalisant',frais:0.23,perf1y:28.4,perf3y:10.1,perf5y:22.3,encours:'3.1Md€',indice:'NASDAQ 100 (100 tech US)',replication:'Synthétique',note:'B',
-   avantages:['Éligible PEA','Apple, MSFT, Nvidia, Meta...','Performance historique supérieure'],
-   risques:['0.23% relativement cher','Concentration 10 titres = 50%'],
-   verdict:'Satellite tech US en PEA. Ne pas dépasser 20% du portefeuille.'},
-  {ticker:'PCEU',name:'Europe ex-UK',emetteur:'Amundi',isin:'LU1681047378',type:'Capitalisant',frais:0.15,perf1y:6.8,perf3y:5.2,perf5y:8.4,encours:'1.2Md€',indice:'MSCI Europe ex-UK',replication:'Synthétique',note:'B',
-   avantages:['Complémente CW8 sur Europe','Valorisation attractive PE 13x vs 22x US'],
-   risques:['Croissance structurellement faible','Cycliques surpondérés'],
-   verdict:"Pour sur-pondérer l'Europe. Pari sur le rattrapage européen."},
-  {ticker:'GOLDN',name:'Or Physique',emetteur:'WisdomTree',isin:'DE000A0N62G0',type:'Capitalisant',frais:0.39,perf1y:22.4,perf3y:11.8,perf5y:12.4,encours:'4.2Md€',indice:'Gold Spot Price',replication:'Physique',note:'B',
-   avantages:['Couverture inflation & crises','Or physique réel','Décorrélation parfaite actions'],
-   risques:['⚠️ Non éligible PEA — compte-titres uniquement','0.39% de frais','Aucun dividende'],
-   verdict:'5-10% du portefeuille global en CTO. Assurance contre les crises. Pas dans le PEA.'},
-  {ticker:'ESE',name:'S&P 500 Core',emetteur:'iShares (BlackRock)',isin:'IE00B5BMR087',type:'Capitalisant',frais:0.07,perf1y:24.1,perf3y:13.2,perf5y:17.6,encours:'95Md€',indice:'S&P 500 (500 grandes US)',replication:'Physique',note:'A',
-   avantages:['0.07% ultra-compétitif','Réplication physique','Liquidité maximale'],
-   risques:['⚠️ Non éligible PEA direct','Concentration US 70%+'],
-   verdict:'Meilleur ETF S&P 500 mondial mais en CTO. En PEA utiliser CW8 (Amundi synthétique).'},
-  {ticker:'LYPS',name:'S&P 500 ESG',emetteur:'Lyxor (Amundi)',isin:'LU1792117779',type:'Capitalisant',frais:0.09,perf1y:22.8,perf3y:12.8,perf5y:16.4,encours:'2.1Md€',indice:'S&P 500 ESG filtré',replication:'Synthétique',note:'B',
-   avantages:['Éligible PEA','0.09% compétitif','Filtrage ESG','Quasi-même performance S&P 500'],
-   risques:['Exclut pétrole/tabac/armement','Concentration tech similaire'],
-   verdict:'Alternative au CW8 pour S&P 500 en PEA avec filtre ESG. Frais compétitifs.'},
-  {ticker:'RS2K',name:'Russell 2000 Small Caps',emetteur:'iShares',isin:'IE00B3YCGJ38',type:'Capitalisant',frais:0.20,perf1y:8.2,perf3y:2.4,perf5y:9.8,encours:'12Md€',indice:'Russell 2000 (2000 small caps US)',replication:'Physique',note:'C',
-   avantages:['Diversification hors mega-caps','Bénéficiaire baisse taux US'],
-   risques:['⚠️ Non éligible PEA','Très volatile (Beta 1.4)','Sous-performance 2021-2024'],
-   verdict:'Satellite optionnel CTO pour small caps US. Attendre confirmation baisse des taux.'},
-,
-{ticker:'PINR',name:'BNPP Easy MSCI World SRI',emetteur:'BNP Paribas',type:'Actions Monde ISR',isin:'FR0013346068',frais:0.15,perf1y:8.2,perf5y:52.1,encours:'2.1Md€',note:'A',
- desc:'ETF monde filtré ESG/ISR avec critères de durabilité stricts. Alternative responsable au CW8.',
- avantages:['ESG SRI filtre fort','BNP émetteur solide','Eligible PEA'],
- risques:['Biais sectoriel ESG','Univers reduit vs CW8']},
-
-{ticker:'PTPXE',name:'Amundi PEA S&P 500',emetteur:'Amundi',type:'Actions USA',isin:'LU1681048804',frais:0.15,perf1y:12.5,perf5y:78.3,encours:'1.8Md€',note:'A',
- desc:'Accès au S&P 500 américain via le PEA grâce à une réplication synthétique (swap). La solution la moins chere pour s exposer aux USA depuis un PEA.',
- avantages:['Seul SP500 eligible PEA direct','0.15% frais ultra-bas','Amundi fiable'],
- risques:['Risque contrepartie swap','Dollar/Euro devise']},
-
-{ticker:'DCAM',name:'Amundi CAC 40 ESG',emetteur:'Amundi',type:'Actions France ESG',isin:'LU1681042609',frais:0.25,perf1y:6.8,perf5y:38.5,encours:'0.9Md€',note:'B',
- desc:'CAC 40 filtre avec criteres ESG - retire les entreprises les moins responsables. Combine exposition France et approche durable.',
- avantages:['Exposition France ESG','Eligble PEA','Amundi solide'],
- risques:['Concentration France','Moins performant que CW8 long terme']}];
-
-// ═══ PORTEFEUILLE RÉEL VAL ═══
-const PTF_REEL=[
-  {ticker:'PAEEM',name:'Amundi PEA Emergent',nb:13,pru:30.9138,type:'ETF'},
-  {ticker:'DCAM',name:'Amundi PEA MONDE MSCI',nb:80,pru:5.5084,type:'ETF'},
-  {ticker:'ASML',name:'ASML Holding',nb:1,pru:653.60,type:'ACTION'},
-  {ticker:'ELIS',name:'Elis',nb:45,pru:18.9524,type:'ACTION'},
-  {ticker:'EL',name:'EssilorLuxottica',nb:3,pru:211.6633,type:'ACTION'},
-  {ticker:'GTT',name:'Gaztransport Technigaz',nb:4,pru:196.7575,type:'ACTION'},
-  {ticker:'RMS',name:'Hermes International',nb:2,pru:1795.95,type:'ACTION'},
-  {ticker:'AI',name:'Air Liquide',nb:10,pru:159.308,type:'ACTION'},
-  {ticker:'LR',name:'Legrand',nb:5,pru:139.234,type:'ACTION'},
-  {ticker:'SU',name:'Schneider Electric',nb:7,pru:240.7243,type:'ACTION'},
-  {ticker:'HO',name:'Thales',nb:3,pru:237.0767,type:'ACTION'},
-  {ticker:'TTE',name:'TotalEnergies',nb:20,pru:50.5205,type:'ACTION'},
-];
-const PTF_DCF={
-  PAEEM:{dcfb:26,dcfm:35,dcfu:45},PTPXE:{dcfb:29,dcfm:38,dcfu:48},
-  DCAM:{dcfb:4.8,dcfm:6.2,dcfu:8.0},ASML:{dcfb:900,dcfm:1400,dcfu:1900},
-  ELIS:{dcfb:20,dcfm:27,dcfu:36},EL:{dcfb:170,dcfm:220,dcfu:280},
-  GTT:{dcfb:172,dcfm:255,dcfu:340},RMS:{dcfb:1700,dcfm:2400,dcfu:2800},
-  AI:{dcfb:138,dcfm:198,dcfu:262},LR:{dcfb:110,dcfm:148,dcfu:195},
-  SU:{dcfb:198,dcfm:298,dcfu:398},HO:{dcfb:198,dcfm:285,dcfu:380},
-  ESE:{dcfb:25,dcfm:34,dcfu:44},TTE:{dcfb:55,dcfm:72,dcfu:95},
-};
-
-
-// ═══════════ ETF AFFICHAGE ═══════════
 function buildETF(){
   const g=document.getElementById('etf-grid');
   if(!g)return;
