@@ -1,7 +1,7 @@
 {
   "MC": {
     "price": 474.0,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "AI": {
@@ -191,77 +191,77 @@
   },
   "TTE": {
     "price": 76.75,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "BNP": {
     "price": 93.41,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "KER": {
     "price": 243.25,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "ORA": {
     "price": 18.12,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "SW": {
     "price": 44.28,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "EN": {
     "price": 53.0,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "SPIE": {
     "price": 51.75,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   },
   "EIFFAGE": {
     "price": 142.7,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   },
   "REXEL": {
     "price": 38.44,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   },
   "GLE": {
     "price": 70.0,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "ENGI": {
     "price": 27.57,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "MT": {
     "price": 53.56,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "NEXANS": {
     "price": 166.4,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   },
   "PRX": {
     "price": 41.88,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   },
   "RI": {
     "price": 66.06,
-    "date": "2026-05-06 20:25",
+    "date": "2026-05-06 20:39",
     "source": "yahoo"
   },
   "TEP": {
@@ -452,6 +452,36 @@
   "NXI": {
     "price": 8.88,
     "date": "2026-05-06 20:27",
+    "source": "yahoo"
+  },
+  "MERY": {
+    "price": 11.82,
+    "date": "2026-05-06 20:39",
+    "source": "yahoo"
+  },
+  "NOVO": {
+    "price": 39.28,
+    "date": "2026-05-06 20:40",
+    "source": "yahoo"
+  },
+  "SIEMENS": {
+    "price": 268.3,
+    "date": "2026-05-06 20:40",
+    "source": "yahoo"
+  },
+  "INTERPARFUMS": {
+    "price": 23.3,
+    "date": "2026-05-06 20:40",
+    "source": "yahoo"
+  },
+  "LACROIX": {
+    "price": 13.15,
+    "date": "2026-05-06 20:40",
+    "source": "yahoo"
+  },
+  "SAMSE": {
+    "price": 117.0,
+    "date": "2026-05-06 20:40",
     "source": "yahoo"
   }
 }
