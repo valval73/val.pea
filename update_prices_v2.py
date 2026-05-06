@@ -191,20 +191,32 @@ if __name__ == '__main__':
         best_price = None
         source     = 'skipped'
 
+        # Premier run : mémoire vide → accepter sans validation
+        # Les prix dans S[] sont peut-être périmés — ne pas les utiliser comme référence
+        first_run = (len(memory) == 0)
+
         # 1. Twelve Data
         p = fetch_twelve(ticker)
-        ok, reason = is_valid(p, mem_price, b52h, b52l)
-        if p and ok:
-            best_price, source = p, 'twelve'
-        
+        if p and p > MIN_PRICE:
+            if first_run:
+                ok, reason = True, ""
+            else:
+                ok, reason = is_valid(p, mem_price, b52h, b52l)
+            if ok:
+                best_price, source = p, 'twelve'
+
         # 2. Yahoo Finance (si Twelve échoue)
         if not best_price:
             p = fetch_yahoo(ticker)
-            ok, reason = is_valid(p, mem_price, b52h, b52l)
-            if p and ok:
-                best_price, source = p, 'yahoo'
-            elif p and not ok:
-                print(f"  🚫 {ticker:8} Yahoo={p} ABERRANT ({reason}) → mémoire {mem_price}")
+            if p and p > MIN_PRICE:
+                if first_run:
+                    ok, reason = True, ""
+                else:
+                    ok, reason = is_valid(p, mem_price, b52h, b52l)
+                if ok:
+                    best_price, source = p, 'yahoo'
+                elif not ok:
+                    print(f"  🚫 {ticker:8} Yahoo={p} ABERRANT ({reason}) → mémoire {mem_price}")
 
         # 3. Mémoire (filet de sécurité)
         if not best_price:
