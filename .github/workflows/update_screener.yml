@@ -2,20 +2,11 @@ name: Update PEA Screener
 
 on:
   schedule:
-    # Vendredi 18h00 : prix + revue portefeuille + mail
-    - cron: '0 16 * * 5'
-    # Samedi 8h00 : fondamentaux
-    - cron: '0 6 * * 6'
-    # Dimanche 9h00 : signaux uniquement (pas de mail)
-    - cron: '0 7 * * 0'
-    # Lun-Jeu 17h35 : prix uniquement (pas de mail)
-    - cron: '35 15 * * 1-4'
+    - cron: '0 16 * * 5'    # Vendredi 18h00 — prix + mail
+    - cron: '0 6 * * 6'     # Samedi 8h00 — fondamentaux
+    - cron: '0 7 * * 0'     # Dimanche 9h00 — signaux
+    - cron: '35 15 * * 1-4' # Lun-Jeu 17h35 — prix silencieux
   workflow_dispatch:
-    inputs:
-      mode:
-        description: 'Mode manuel (prices/fundamentals/reports/alerts/all)'
-        required: false
-        default: 'all'
 
 jobs:
   update:
@@ -34,45 +25,35 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests python-docx yfinance pandas numpy -q
+          pip install yfinance requests python-docx pandas numpy -q
 
       - name: Determine day
         id: day
         run: |
-          DAY=$(date +%u)  # 1=lundi 2=mardi 3=mercredi 4=jeudi 5=vendredi 6=samedi 7=dimanche
+          DAY=$(date +%u)
           echo "day=$DAY" >> $GITHUB_OUTPUT
-          echo "Today is day $DAY (5=vendredi, 6=samedi, 7=dimanche)"
+          echo "Day = $DAY (1=lun 2=mar 3=mer 4=jeu 5=ven 6=sam 7=dim)"
 
-      # ── PRIX (lun-ven + dimanche) ──────────────────────────────
       - name: Update prices
         if: steps.day.outputs.day != '6'
-        run: |
-          python update_prices_v2.py
-          echo "Prices updated"
+        env:
+          TWELVE_DATA_KEY: ${{ secrets.TWELVE_DATA_KEY }}
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: python update_prices_v2.py
 
-      # ── FONDAMENTAUX (samedi seulement) ────────────────────────
       - name: Update fundamentals
         if: steps.day.outputs.day == '6'
-        run: |
-          python update_fundamentals.py
-          echo "Fundamentals updated"
+        run: python update_fundamentals.py
 
-      # ── REVUE PORTEFEUILLE (vendredi seulement) ─────────────────
       - name: Generate revue vendredi
         if: steps.day.outputs.day == '5'
-        run: |
-          python generate_reports.py vendredi
-          echo "Revue vendredi generated"
+        run: python generate_reports.py vendredi
 
-      # ── SIGNAUX DIMANCHE (dimanche seulement, sans mail) ────────
       - name: Generate signaux dimanche
         if: steps.day.outputs.day == '7'
-        run: |
-          python generate_reports.py dimanche
-          echo "Signaux dimanche generated"
+        run: python generate_reports.py dimanche
 
-      # ── MAIL (VENDREDI SOIR UNIQUEMENT) ─────────────────────────
-      - name: Send Friday evening email
+      - name: Send Friday email
         if: steps.day.outputs.day == '5'
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
@@ -81,11 +62,8 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python send_alerts_v2.py
-          echo "Friday email sent"
+        run: python send_alerts_v2.py
 
-      # ── COMMIT ──────────────────────────────────────────────────
       - name: Commit and push
         run: |
           git config user.name "VAL.PEA Bot"
@@ -93,55 +71,3 @@ jobs:
           git add index.html prices_memory.json VAL_PEA_*.docx 2>/dev/null || true
           git diff --staged --quiet || git commit -m "Auto update $(date '+%Y-%m-%d %H:%M') [skip ci]"
           git push
-
-      # ── WATCHDOG (faille 8) ─────────────────────────────────────
-      - name: Watchdog — vérifier fraîcheur des données
-        if: steps.day.outputs.day == '5'
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
-        run: |
-          python3 - << 'PYEOF'
-import os, re, smtplib, sys
-from datetime import datetime
-from email.mime.text import MIMEText
-
-# Vérifier que index.html contient des prix récents
-with open('index.html','r',encoding='utf-8') as f:
-    content = f.read()
-
-# Chercher la date de dernière MAJ
-ts_match = re.search(r'cours mis à jour[^<"]{0,50}(\d{2}/\d{2})', content)
-if ts_match:
-    print(f"Dernière MAJ prix : {ts_match.group(0)[:50]}")
-else:
-    print("AVERTISSEMENT : date de MAJ introuvable dans index.html")
-
-# Vérifier que le fichier n'est pas trop ancien (> 5 jours)
-import os
-mtime = os.path.getmtime('index.html')
-age_days = (datetime.now().timestamp() - mtime) / 86400
-print(f"Âge du fichier : {age_days:.1f} jours")
-
-if age_days > 4:
-    # Envoyer alerte
-    gmail_user = os.environ.get('GMAIL_USER','')
-    gmail_pass = os.environ.get('GMAIL_PASSWORD','')
-    recipient  = os.environ.get('RECIPIENT_EMAIL', gmail_user)
-    if gmail_user and gmail_pass:
-        msg = MIMEText(f"ALERTE VAL.PEA : index.html n'a pas été mis à jour depuis {age_days:.0f} jours. Vérifier GitHub Actions.")
-        msg['Subject'] = f"⚠️ VAL.PEA — Données périmées ({age_days:.0f} jours)"
-        msg['From'] = gmail_user
-        msg['To'] = recipient
-        try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
-                s.login(gmail_user, gmail_pass)
-                s.sendmail(gmail_user, recipient, msg.as_string())
-            print("Alerte watchdog envoyée")
-        except Exception as e:
-            print(f"Erreur envoi alerte: {e}")
-    sys.exit(1)
-else:
-    print("Données fraîches OK")
-PYEOF
