@@ -209,7 +209,7 @@ def gen_avis(pos, s, qarp):
 
     # Stop proche
     if p <= s['stop'] * 1.05 and s['stop'] > 0:
-        return ('🔴 VENDRE — STOP LOSS PROCHE',
+        return ('⚠️ STOP PROCHE — distance critique',
                 f"Stop à {s['stop']}€. Distance : {round((p-s['stop'])/p*100,1)}% seulement. "
                 f"Vente mécanique si atteint. Ne pas attendre le lundi.",
                 'FEE2E2', 'DC2626')
@@ -217,7 +217,7 @@ def gen_avis(pos, s, qarp):
     # Hors zone + forte PV + upside négatif
     if not in_zone and pct > 40 and s['upside'] < 0:
         pv_half = round((p - pru) * pos['qty'] / 2)
-        return ('🟠 PRENDRE 50% DES BÉNÉFICES',
+        return ('ℹ️ PV ÉLEVÉE — upside DCF négatif',
                 f"PV de {pct:.1f}% hors zone avec upside DCF négatif ({s['upside']}%). "
                 f"Vendre 50% ({pos['qty']//2} titre(s)) = encaisser ~{pv_half}€. "
                 f"Garder le reste pour exposition + dividende.",
@@ -225,7 +225,7 @@ def gen_avis(pos, s, qarp):
 
     # En zone + R/R excellent + score B/A
     if in_zone and rr >= 2.0 and score in ['A','B'] and qarp['total'] >= 60:
-        return ('✅ RENFORCER — ZONE + R/R FAVORABLE',
+        return ('✅ ZONE ACTIVE — R/R favorable',
                 f"Cours en zone, R/R {rr}x ≥ 2x. Score {qarp['total']}/100. "
                 f"Conditions réunies pour un renforcement ciblé (max +3% du PEA). "
                 f"Stop à {s['stop']}€ à définir avant passage d'ordre.",
@@ -233,7 +233,7 @@ def gen_avis(pos, s, qarp):
 
     # En zone + R/R correct
     if in_zone and 1.0 <= rr < 2.0:
-        return ('🟡 ZONE ACTIVE — R/R INSUFFISANT POUR RENFORCER',
+        return ('🟡 ZONE ACTIVE — R/R < 2x',
                 f"Cours en zone mais R/R {rr}x < 2x. "
                 f"Garder la position, attendre retour vers {s['el']}€ pour R/R ≥ 2x. "
                 f"Ne pas renforcer ici.",
@@ -241,21 +241,21 @@ def gen_avis(pos, s, qarp):
 
     # Hors zone mais position saine
     if not in_zone and pct > 0 and s['upside'] > 0:
-        return ('🟡 GARDER — HORS ZONE, NE PAS RENFORCER',
+        return ('⚪ HORS ZONE',
                 f"Position en PV ({pct:.1f}%). Cours hors zone. "
                 f"Conserver, ne pas renforcer. Surveiller retour vers {s['el']}€.",
                 'FFFBEB', 'D97706')
 
     # En MV sans zone
     if pct < -10 and not in_zone:
-        return ('⚠️ SURVEILLER — MV SANS ZONE ACTIVE',
+        return ('⚪ HORS ZONE — cours sous zone',
                 f"Moins-value de {pct:.1f}% et cours hors zone. "
                 f"Vérifier si la thèse est cassée. Si fondamentaux intacts : tenir. "
                 f"Si dégradation des résultats : réduire.",
                 'FEF3C7', 'D97706')
 
     # Par défaut
-    return ('🟡 CONSERVER',
+    return ('⚪ SURVEILLER',
             f"Position {'en PV' if pct >= 0 else 'en MV'} de {pct:.1f}%. "
             f"Surveiller chaque vendredi. Agir si zone atteinte avec R/R ≥ 2x.",
             'F8FAFC', '6B7280')

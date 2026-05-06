@@ -294,27 +294,24 @@ def stock_card(s, highlight=False):
                 'MM200 ' + ('OK' if mm_ok else 'NON') + ' &nbsp;|&nbsp; ' +
                 'Zone ' + ('OK' if zone_ok else 'NON'))
     tri_col = '#16a34a' if tri_score >= 2 else '#d97706' if tri_score == 1 else '#dc2626'
-    # Avis
+    # SITUATION — FAITS NEUTRES (pas de recommandation d'achat/vente)
     rr = s['rr']; upside = s['upside']; in_zone = s['in_zone']
-    stop = s.get('stop',0); price = s['price']
+    stop = s.get('stop',0); price = s['price']; o1 = s.get('o1',0)
+    dist_stop = round((price - stop) / price * 100, 1) if stop and price else 0
+    dist_o1   = round((o1 - price)   / price * 100, 1) if o1 and price else 0
+    sit = [
+        ('Zone',     '#16a34a' if in_zone else '#888', ('EN ZONE' if in_zone else 'Hors zone')),
+        ('Stop',     '#dc2626' if dist_stop < 8 else '#888', '-' + str(dist_stop) + '%'),
+        ('Obj.1',    '#16a34a', '+' + str(dist_o1) + '%'),
+        ('Upside DCF','#16a34a' if upside > 10 else '#888', ('+' if upside > 0 else '') + str(upside) + '%'),
+        ('R/R',      '#16a34a' if rr >= 1.5 else '#888', str(rr) + 'x'),
+        ('Piotroski','#16a34a' if s['pio'] >= 7 else '#888', str(int(s['pio'])) + '/9'),
+    ]
+    alerte_html = ''
     if stop > 0 and price <= stop * 1.05:
-        avis_label = 'STOP PROCHE — vente si atteint'; avis_col_a = '#dc2626'; avis_bg_a = '#fee2e2'
-        avis_text = 'Stop a ' + str(stop) + 'EUR. Distance critique.'
-    elif in_zone and rr >= 2.0 and s['score'] in ('A','B'):
-        avis_label = 'RENFORCER — zone + R/R favorable'; avis_col_a = '#16a34a'; avis_bg_a = '#dcfce7'
-        avis_text = 'Zone active, R/R ' + str(rr) + 'x. Protocole 5 etapes avant achat. Stop : ' + str(stop) + 'EUR.'
-    elif in_zone and rr >= 1.5:
-        avis_label = 'ZONE ACTIVE — attendre confirmation'; avis_col_a = '#d97706'; avis_bg_a = '#fef3c7'
-        avis_text = 'Cours en zone, R/R ' + str(rr) + 'x. Attendre triptyque 2/3.'
-    elif not in_zone and upside < 0:
-        avis_label = 'HORS ZONE + UPSIDE NEGATIF'; avis_col_a = '#ea580c'; avis_bg_a = '#ffedd5'
-        avis_text = 'DCF depasse (' + str(upside) + '%). Ne pas renforcer. Surveiller prise de benefice partielle.'
-    elif not in_zone:
-        avis_label = 'HORS ZONE — attendre'; avis_col_a = '#6b7280'; avis_bg_a = '#f8fafc'
-        avis_text = 'Hors zone [' + str(s.get('el',0)) + '-' + str(s.get('eh',0)) + 'EUR]. Attendre retour en zone.'
-    else:
-        avis_label = 'SURVEILLER'; avis_col_a = '#d97706'; avis_bg_a = '#fef3c7'
-        avis_text = 'Surveiller chaque vendredi.'
+        alerte_html = '<div style="background:#fee2e2;border-left:4px solid #dc2626;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#dc2626"><b>ATTENTION : ' + str(dist_stop) + '% du stop (' + str(stop) + 'EUR)</b></div>'
+    elif upside < -10 and not in_zone:
+        alerte_html = '<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#ea580c"><b>PV latente : cours depasse le DCF de ' + str(abs(upside)) + '%</b></div>'
     # Thèse / contra
     thesis = s.get('thesis','')[:220] + ('...' if len(s.get('thesis','')) > 220 else '')
     contra = s.get('contra','')[:180] + ('...' if len(s.get('contra','')) > 180 else '')
@@ -328,14 +325,12 @@ def stock_card(s, highlight=False):
         contra_html = ('<div style="margin-top:6px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0">'
                        '<div style="font-size:8px;color:#dc2626;font-weight:700;text-transform:uppercase;margin-bottom:3px">Ce que le marche craint</div>'
                        '<div style="font-size:10px;color:#7c2d2d;line-height:1.5">' + contra + '</div></div>')
-    avis_html = ('<div style="margin-top:8px;padding:8px 12px;background:' + avis_bg_a + ';border-left:4px solid ' + avis_col_a + ';border-radius:0 6px 6px 0">'
-                 '<div style="font-size:10px;font-weight:700;color:' + avis_col_a + ';margin-bottom:2px">' + avis_label + '</div>'
-                 '<div style="font-size:9px;color:#444">' + avis_text + '</div></div>')
-    # Objectif avec %
-    o1_pct = round((s['o1'] - price) / price * 100) if price and s['o1'] else 0
-    margin_val = s.get('margin', 0)
-    debt_val = s.get('debt', 0)
-
+    situation_html = ('<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px">'
+        + ''.join('<div style="background:#f8fafc;border-radius:4px;padding:4px 6px;text-align:center">'
+                  + '<div style="font-size:12px;font-weight:700;color:' + col + '">' + val + '</div>'
+                  + '<div style="font-size:8px;color:#aaa">' + label + '</div></div>'
+                  for label, col, val in sit)
+        + '</div>' + alerte_html)
     return ('<div style="background:' + bg + ';border:1px solid ' + border_col + ';border-radius:8px;padding:14px 16px;margin-bottom:12px' + (';border-left:4px solid #22c55e' if highlight else '') + '">'
         + '<table width="100%" cellpadding="0" cellspacing="0"><tr>'
         + '<td style="vertical-align:top">'
@@ -370,7 +365,7 @@ def stock_card(s, highlight=False):
         + '</div>'
         + thesis_html
         + contra_html
-        + avis_html
+        + situation_html
         + '</div>')
 
 
