@@ -28,6 +28,10 @@ try:
 except ImportError:
     HAS_URLLIB = False
 
+
+DKK_TICKERS = {'NOVO'}  # Retournent des prix en DKK, pas en EUR
+DKK_TO_EUR  = 7.46      # Taux approximatif EUR/DKK
+
 MEMORY_FILE   = 'prices_memory.json'
 MAX_VARIATION = 0.40
 MIN_PRICE     = 0.50
@@ -37,16 +41,17 @@ FMP_KEY    = os.environ.get('FMP_KEY', '')
 
 # ─── MAPPING TWELVE DATA ─────────────────────────────────────────
 TWELVE_MAP = {
-    'MC':'MC:EPA','AI':'AI:EPA','OR':'OR:EPA','RMS':'RMS:EPA','SAN':'SAN:EPA',
-    'TTE':'TTE:EPA','SAF':'SAF:EPA','SU':'SU:EPA','AXA':'CS:EPA','BNP':'BNP:EPA',
-    'ACA':'ACA:EPA','GLE':'GLE:EPA','AIR':'AIR:EPA','KER':'KER:EPA','PUB':'PUB:EPA',
-    'ORA':'ORA:EPA','LR':'LR:EPA','DSY':'DSY:EPA','STM':'STM:EPA','EL':'EL:EPA',
-    'ML':'ML:EPA','ENGI':'ENGI:EPA','HO':'HO:EPA','DG':'DG:EPA','CAP':'CAP:EPA',
-    'GTT':'GTT:EPA','ELIS':'ELIS:EPA','SPIE':'SPIE:EPA','ALO':'ALO:EPA',
-    'BVI':'BVI:EPA','FDJ':'FDJ:EPA','REXEL':'RXL:EPA','SOI':'SOI:EPA',
-    'ASML':'ASML:AMS','NOVO':'NOVO-B:CPH','MT':'MT:AMS','VK':'VK:EPA',
-    'NEXANS':'NEX:EPA','RNO':'RNO:EPA','FORVIA':'FRVIA:EPA','IMERYS':'NK:EPA',
-    'ALTEN':'ATE:EPA','EIFFAGE':'FGR:EPA','SGO':'SGO:EPA','ERF':'ERF:EPA',
+    # Format Twelve Data pour Euronext Paris : même format que Yahoo (.PA, .AS etc.)
+    'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA',
+    'TTE':'TTE.PA','SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA',
+    'ACA':'ACA.PA','GLE':'GLE.PA','AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA',
+    'ORA':'ORA.PA','LR':'LR.PA','DSY':'DSY.PA','STM':'STM.MI','EL':'EL.PA',
+    'ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA','DG':'DG.PA','CAP':'CAP.PA',
+    'GTT':'GTT.PA','ELIS':'ELIS.PA','SPIE':'SPIE.PA','ALO':'ALO.PA',
+    'BVI':'BVI.PA','REXEL':'RXL.PA','SOI':'SOI.PA','NEXANS':'NEX.PA',
+    'ASML':'ASML.AS','MT':'MT.AS','VK':'VK.PA','RNO':'RNO.PA',
+    'FORVIA':'FRVIA.PA','IMERYS':'NK.PA','ALTEN':'ATE.PA','EIFFAGE':'FGR.PA',
+    'SGO':'SGO.PA','ERF':'ERF.PA','BN':'BN.PA','EN':'EN.PA',
 }
 
 # ─── MAPPING YAHOO FINANCE ───────────────────────────────────────
@@ -83,15 +88,13 @@ def save_memory(memory):
 
 # ─── VALIDATION ──────────────────────────────────────────────────
 def is_valid(price, mem_price, b52h=None, b52l=None):
+    # Validation uniquement vs mémoire (les b52h/b52l dans S[] sont périmés)
     if not price or price < MIN_PRICE:
         return False, f"prix trop bas ({price})"
     if mem_price and mem_price > 0:
         var = abs(price - mem_price) / mem_price
         if var > MAX_VARIATION:
             return False, f"variation {var*100:.0f}% vs mémoire {mem_price}"
-    if b52h and b52l and b52l > 0:
-        if price < b52l * 0.50 or price > b52h * 1.50:
-            return False, f"hors range 52S [{b52l}-{b52h}]×1.5"
     return True, ""
 
 # ─── SOURCES ─────────────────────────────────────────────────────
@@ -197,6 +200,8 @@ if __name__ == '__main__':
 
         # 1. Twelve Data
         p = fetch_twelve(ticker)
+        if p and ticker in DKK_TICKERS:
+            p = round(p / DKK_TO_EUR, 2)
         if p and p > MIN_PRICE:
             if first_run:
                 ok, reason = True, ""
@@ -208,6 +213,9 @@ if __name__ == '__main__':
         # 2. Yahoo Finance (si Twelve échoue)
         if not best_price:
             p = fetch_yahoo(ticker)
+            # Conversion DKK → EUR (Novo Nordisk)
+            if p and ticker in DKK_TICKERS:
+                p = round(p / DKK_TO_EUR, 2)
             if p and p > MIN_PRICE:
                 if first_run:
                     ok, reason = True, ""
