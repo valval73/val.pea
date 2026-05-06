@@ -61,7 +61,7 @@ YF_MAP = {
     'ACA':'ACA.PA','GLE':'GLE.PA','AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA',
     'ORA':'ORA.PA','VIE':'VIE.PA','RNO':'RNO.PA','SGO':'SGO.PA','CAP':'CAP.PA',
     'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','WLN':'WLN.PA','DSY':'DSY.PA',
-    'STM':'STM.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA',
+    'STM':'STM.MI','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA',
     'AC':'AC.PA','AF':'AF.PA','BN':'BN.PA','EN':'EN.PA','SW':'SW.PA',
     'GTT':'GTT.PA','ELIS':'ELIS.PA','ERF':'ERF.PA','COFA':'COFA.PA',
     'SPIE':'SPIE.PA','ALO':'ALO.PA','BVI':'BVI.PA','FDJ':'FDJ.PA',
@@ -74,13 +74,20 @@ YF_MAP = {
 
 # ─── MÉMOIRE ─────────────────────────────────────────────────────
 def load_memory():
+    memory = {}
     if os.path.exists(MEMORY_FILE):
         try:
             with open(MEMORY_FILE, 'r') as f:
-                return json.load(f)
+                memory = json.load(f)
         except:
             pass
-    return {}
+    # Réinitialiser les tickers DKK si leur prix mémoire > 100
+    # (signifie qu'ils ont été enregistrés en DKK avant la conversion)
+    for ticker in list(memory.keys()):
+        if ticker in ('NOVO',) and memory[ticker].get('price', 0) > 100:
+            print(f"  🔄 Reset mémoire {ticker}: {memory[ticker]['price']} (était en DKK)")
+            del memory[ticker]
+    return memory
 
 def save_memory(memory):
     with open(MEMORY_FILE, 'w') as f:
@@ -98,7 +105,10 @@ def is_valid(price, mem_price, b52h=None, b52l=None):
     return True, ""
 
 # ─── SOURCES ─────────────────────────────────────────────────────
+_twelve_error_logged = False  # Logger une seule fois
+
 def fetch_twelve(ticker):
+    global _twelve_error_logged
     if not TWELVE_KEY or not HAS_URLLIB:
         return None
     symbol = TWELVE_MAP.get(ticker)
@@ -110,9 +120,15 @@ def fetch_twelve(ticker):
         with urllib.request.urlopen(req, timeout=8) as r:
             data = json.loads(r.read())
         if 'price' in data:
+            _twelve_error_logged = False
             return round(float(data['price']), 2)
-    except:
-        pass
+        elif 'code' in data and not _twelve_error_logged:
+            print(f"  ⚠️  Twelve Data erreur: {data.get('message','?')} (code {data.get('code','?')})")
+            _twelve_error_logged = True
+    except Exception as e:
+        if not _twelve_error_logged:
+            print(f"  ⚠️  Twelve Data exception: {str(e)[:80]}")
+            _twelve_error_logged = True
     return None
 
 def fetch_yahoo(ticker):
@@ -221,6 +237,9 @@ if __name__ == '__main__':
                     ok, reason = True, ""
                 else:
                     ok, reason = is_valid(p, mem_price, b52h, b52l)
+                # Reset mémoire si le ticker DKK avait un ancien prix EUR incorrect
+                if not ok and ticker in DKK_TICKERS:
+                    ok, reason = True, "reset DKK ticker"
                 if ok:
                     best_price, source = p, 'yahoo'
                 elif not ok:
@@ -283,6 +302,14 @@ if __name__ == '__main__':
     print(f"📦 Mémoire       : {stats['memory']} (fallback)")
     print(f"💾 {len(memory)} entrées sauvegardées dans {MEMORY_FILE}")
 
+    total_live = stats['twelve'] + stats['yahoo']
+    total_all  = total_live + stats['memory'] + stats.get('skipped',0)
+    coverage   = round(total_live / total_all * 100) if total_all > 0 else 0
+    print(f"📊 Couverture prix en temps réel : {coverage}% ({total_live}/{total_all})")
+
     if not TWELVE_KEY:
         print("\n⚠️  CONSEIL : Ajouter TWELVE_DATA_KEY dans GitHub Secrets")
         print("   → twelvedata.com (gratuit, 800 req/jour)")
+    if stats['twelve'] == 0 and TWELVE_KEY:
+        print("\n⚠️  Twelve Data actif mais 0 prix retournés — vérifier la clé API")
+        print("   Test manuel : https://api.twelvedata.com/price?symbol=MC.PA&apikey=VOTRE_CLE")
