@@ -26,7 +26,7 @@ except ImportError:
     sys.exit(1)
 
 MEMORY_FILE   = 'prices_memory.json'
-MAX_VARIATION = 0.40
+MAX_VARIATION = 0.80
 MIN_PRICE     = 0.50
 
 # Taux de change approximatifs pour les actions hors EUR
@@ -39,57 +39,28 @@ YF_MAP = {
     'AXA':'CS.PA','BNP':'BNP.PA','ACA':'ACA.PA','GLE':'GLE.PA',
     'AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA','ORA':'ORA.PA',
     'VIE':'VIE.PA','RNO':'RNO.PA','SGO':'SGO.PA','CAP':'CAP.PA',
-    'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','WLN':'WLN.PA',
-    'DSY':'DSY.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA',
-    'HO':'HO.PA','EN':'EN.PA','BN':'BN.PA','AC':'AC.PA',
-    'SW':'SW.PA','AF':'AF.PA','GTT':'GTT.PA','ELIS':'ELIS.PA',
-    'ERF':'ERF.PA','COFA':'COFA.PA','SPIE':'SPIE.PA','ALO':'ALO.PA',
+    'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','DSY':'DSY.PA',
+    'EL':'EL.PA','ENGI':'ENGI.PA','HO':'HO.PA','EN':'EN.PA',
+    'BN':'BN.PA','AC':'AC.PA','AF':'AF.PA','CA':'CA.PA',
+    'RI':'RI.PA','URW':'URW.AS','TEP':'TEP.PA','DIOR':'CDI.PA',
+    'EDENRED':'EDEN.PA','PLUXEE':'PLX.PA','ALSTOM':'ALO.PA','GTT':'GTT.PA',
+    'ELIS':'ELIS.PA','ERF':'ERF.PA','COFA':'COFA.PA','SPIE':'SPIE.PA',
     'BVI':'BVI.PA','FDJ':'FDJ.PA','IPSEN':'IPN.PA','REXEL':'RXL.PA',
     'SOP':'SOP.PA','LNA':'LNA.PA','FNAC':'FNAC.PA','EIFFAGE':'FGR.PA',
     'NEXANS':'NEX.PA','SOI':'SOI.PA','FORVIA':'FRVIA.PA','IMERYS':'NK.PA',
-    'ALTEN':'ATE.PA','VK':'VK.PA','MT':'MT.AS','STM':'STM.PA',
-    'NOVO':'NOVO-B.CO','ASML':'ASML.AS','PRX':'PRX.AS','ADYEN':'ADYEN.AS',
-    'HEIA':'HEIA.AS','RI':'RI.PA','URW':'URW.AS','TEP':'TEP.PA',
-    'MERY':'MERY.PA','JXS':'JXS.PA','DASSAV':'AM.PA','SEB':'SK.PA',
-    'IPSOS':'IPS.PA','ABCA':'ABCA.PA','CNP':'CNP.PA','CA':'CA.PA',
-    'ATO':'ATO.PA','DBG':'DBG.PA','MLGOM':'MLGOM.PA','LPE':'LPE.PA',
-    'MLNMG':'MLNMG.PA','LVMHF':'LVMHF.PA','SAP':'SAP.DE','SIEMENS':'SIE.DE',
-    'ALV':'ALV.DE','BIOM':'BIO.PA','KLPI':'KLPI.PA','RCO':'RCO.PA',
-    'ORPEA':'ORP.PA','ALTAREA':'ALTA.PA','LEGRAND':'LR.PA','COVIVIO':'COV.PA',
-    'FREY':'FREY.PA','GALIMMO':'GALIM.PA','MERCIALYS':'MERY.PA','TRIGANO':'TRI.PA',
-    'BOIRON':'BOI.PA','CHSR':'CHSR.PA','VALO':'FR.PA','PLASTIC':'POM.PA',
-    'SFCA':'WLN.PA','COGEFI':'COGEFI.PA','SIPH':'SIPH.PA','PLUXEE':'PLX.PA',
-    'EDENRED':'EDEN.PA','OPM':'OPM.PA','DERICHEBOURG':'DBG.PA','THERMADOR':'THEP.PA',
-    'STEF':'STF.PA','VIRBAC':'VIRP.PA','INTERPARFUMS':'ITP.PA','CLASQUIN':'CLASQUIN.PA',
-    'ARGAN':'ARG.PA','LECTRA':'LSS.PA','PRECIA':'PRECIA.PA','LACROIX':'LACR.PA',
-    'IDLG':'IDLG.PA','ELIOR':'ELIOR.PA','SEQENS':'SEQENS.PA','WAGA':'WGAEN.PA',
-    'LDLC':'LDLC.PA','NAMR':'NAMR.PA','DBV':'DBV.PA','HIPAY':'HIPAY.PA',
-    'TIXEO':'TIXEO.PA','LISI':'FII.PA','PERNOD':'RI.PA','SYENSQO':'SYENS.PA',
-    'FIGEAC':'FGA.PA','DIOR':'CDI.PA','ABIVAX':'ABVX.PA','NANOBT':'NANOBT.PA',
-    'ICAD':'ICAD.PA','GLEVT':'GLEVT.PA','MLVAL':'MLVAL.PA','VRMTX':'VRMTX.PA',
-    'HMSNW':'HMSNW.PA','RADIALL':'RADIALL.PA','SAMSE':'SAMS.PA','MANITOU':'MTU.PA',
-    'JACMETL':'JACMETL.PA','NEXTY':'NEXTY.PA','ALMKT':'ALMKT.PA','ALCLF':'ALCLF.PA',
-    'PLFRY':'PLFRY.PA','ALSEI':'ALSEI.PA','SCBSM':'SCBSM.PA','SIIGRP':'SIIGRP.PA',
-    'ENVEA':'ENVEA.PA','EMEIS':'EMEIS.PA','ALFPC':'ALFPC.PA','SELENV':'SELENV.PA',
-    'ALBIA':'ALBIA.PA','LACBX':'LACBX.PA','KZATM':'KZATM.PA','DALET':'DALET.PA',
-    'LNSBN':'LNSBN.PA','ALTGX':'ALTGX.PA','ITRLN':'ITRLN.PA','ALIDS':'ALIDS.PA',
-    'SODITECH':'SODITECH.PA','MLAEP':'MLAEP.PA','MLCHG':'MLCHG.PA','MLFNIV':'MLFNIV.PA',
-    'ELECOR':'ELECOR.PA','MLXIV':'MLXIV.PA','SOLVB':'SOLB.BR','SSYNQ':'SSYNQ.PA',
-    'IPSNF':'IPSNF.PA','RXLSA':'RXLSA.PA','FGAERO':'FGAERO.PA','PRNRD':'PRNRD.PA',
-    'DIORCDI':'DIORCDI.PA','ABIVXA':'ABIVXA.PA','NBNTX':'NBNTX.PA','WTRGP':'WTRGP.PA',
-    'TRGO':'TRGO.PA','BNENF':'BNENF.PA','LDLCG':'LDLCG.PA','WGAEN':'WGAEN.PA',
-    'NAMREN':'NAMREN.PA','ESCAP':'ESCAP.PA','IDSF':'IDSF.PA','MLINS':'MLINS.PA',
-    'MLMCD':'MLMCD.PA','MLLBP':'MLLBP.PA','GENIE':'GENIE.PA','MLHAG':'MLHAG.PA',
-    'MLNMX':'MLNMX.PA','MLVPN':'MLVPN.PA','MLARDK':'MLARDK.PA','MLPHI':'MLPHI.PA',
-    'MLCOB':'MLCOB.PA','MLTPX':'MLTPX.PA','MLPSB':'MLPSB.PA','MLAERO':'MLAERO.PA',
-    'MLSMD':'MLSMD.PA','MLJR':'MLJR.PA','MLCFT':'MLCFT.PA','MLAFF':'MLAFF.PA',
-    'MLPVR':'MLPVR.PA','MLHRZ':'MLHRZ.PA','MLVRB':'MLVRB.PA','MLALW':'MLALW.PA',
-    'CDRCK':'CDRCK.PA','MLBLT':'MLBLT.PA','MLNRD':'MLNRD.PA','MLBFF':'MLBFF.PA',
-    'MLSBS':'MLSBS.PA','MLRLV':'MLRLV.PA','MLBCF':'MLBCF.PA','MLHRT':'MLHRT.PA',
-    'CSTEU':'CSTEU.PA','MLPFT':'MLPFT.PA','EUFSCI':'EUFSCI.PA','STEF2':'STEF2.PA',
-    'INTPRF':'INTPRF.PA','VIRB2':'VIRB2.PA','THERMD':'THERMD.PA','NRO':'NRO.PA',
-    'TALY':'TEP.PA','ALSTOM':'ALO.PA','AMF':'AMF.PA','AK':'AK.PA',
-    'RUI':'RUI.PA','GFC':'GFC.PA','WLX':'WLX.PA','NXI':'NXI.PA',
+    'ALTEN':'ATE.PA','VK':'VK.PA','STM':'STM.PA','NOVO':'NOVO-B.CO',
+    'SW':'SW.PA','ASML':'ASML.AS','PRX':'PRX.AS','ADYEN':'ADYEN.AS',
+    'HEIA':'HEIA.AS','MT':'MT.AS','WLN':'WLN.PA','SEB':'SK.PA',
+    'IPSOS':'IPS.PA','CNP':'CNP.PA','DBG':'DBG.PA','TRIGANO':'TRI.PA',
+    'BOIRON':'BOI.PA','VIRBAC':'VIRP.PA','INTERPARFUMS':'ITP.PA','ARGAN':'ARG.PA',
+    'LECTRA':'LSS.PA','LISI':'FII.PA','ELIOR':'ELIOR.PA','SAMSE':'SAMS.PA',
+    'MANITOU':'MTU.PA','FIGEAC':'FGA.PA','ABIVAX':'ABVX.PA','COVIVIO':'COV.PA',
+    'STEF':'STF.PA','THERMADOR':'THEP.PA','LACROIX':'LACR.PA','SYENSQO':'SYENS.PA',
+    'WAGA':'WGAEN.PA','ORPEA':'ORP.PA','EMEIS':'EMEIS.PA','ALTAREA':'ALTA.PA',
+    'NRO':'NRO.PA','RUI':'RUI.PA','NXI':'NXI.PA','GFC':'GFC.PA',
+    'DERICHEBOURG':'DBG.PA','DASSAV':'AM.PA','SAP':'SAP.DE','SIEMENS':'SIE.DE',
+    'ALV':'ALV.DE','BIOM':'BIO.PA','ATO':'ATO.PA','AK':'AK.PA',
+    'JXS':'JXS.PA','MERY':'MERY.PA','TALY':'TEP.PA',
 }
 
 # Tickers dont le prix Yahoo est dans une devise autre que EUR
@@ -152,11 +123,14 @@ def fetch_price(ticker):
     except:
         pass
 
-    # Méthode 2 : history (plus robuste)
+    # Méthode 2 : history (silencieuse)
     try:
+        import warnings
         t = yf.Ticker(yf_sym)
-        hist = t.history(period='2d')
-        if not hist.empty:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            hist = t.history(period='2d', raise_errors=False)
+        if hist is not None and not hist.empty:
             p = round(float(hist['Close'].iloc[-1]), 2)
             if ticker in NON_EUR:
                 p = round(p / NON_EUR[ticker], 2)
@@ -167,6 +141,17 @@ def fetch_price(ticker):
     return None
 
 # ─── MAIN ─────────────────────────────────────────────────────────
+import sys, io
+
+# Supprimer les warnings yfinance sur les tickers non trouvés
+class _SuppressYF:
+    def write(self, msg):
+        if 'possibly delisted' not in msg and 'No data found' not in msg:
+            sys.__stderr__.write(msg)
+    def flush(self): pass
+
+sys.stderr = _SuppressYF()
+
 if __name__ == '__main__':
     html_file = 'index.html'
     if not os.path.exists(html_file):
