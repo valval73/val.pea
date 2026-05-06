@@ -1,17 +1,92 @@
 #!/usr/bin/env python3
 """
-update_prices_v2.py - GitHub Actions script
-Runs every weekday at 17:35 + every Friday at 18:00 (full recalibration)
-1. Updates live prices for ALL 223 tickers from Yahoo Finance
-2. On Friday: recalibrates el/eh/stop/o1/o2/dcfm when price drifts >15%
+update_prices_v2.py — VAL.PEA
+Système de prix avec mémoire persistante.
+
+Principe :
+  - Chaque run lit prices_memory.json (dernier prix valide connu)
+  - Si Yahoo Finance retourne un prix cohérent → on met à jour la mémoire ET index.html
+  - Si Yahoo Finance retourne une aberration → on utilise le prix en mémoire
+  - La mémoire s'enrichit run après run — jamais de régression
+
+prices_memory.json = source de vérité des derniers prix valides
 """
 
 import re, json, sys, os
 from datetime import datetime
 import urllib.request
 
+MEMORY_FILE = 'prices_memory.json'
+MAX_VARIATION = 0.40   # 40% max entre 2 runs consécutifs
+MIN_PRICE     = 0.50   # Prix minimum acceptable (évite les centimes)
+
+# ─── MAPPING YAHOO FINANCE ─────────────────────────────────────────
+YF_MAP = {
+    'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA',
+    'TTE':'TTE.PA','SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA',
+    'ACA':'ACA.PA','GLE':'GLE.PA','AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA',
+    'ORA':'ORA.PA','VIE':'VIE.PA','RNO':'RNO.PA','SGO':'SGO.PA','CAP':'CAP.PA',
+    'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','WLN':'WLN.PA','DSY':'DSY.PA',
+    'STM':'STM.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA',
+    'AC':'AC.PA','AF':'AF.PA','BN':'BN.PA','EN':'EN.PA','SW':'SW.PA',
+    'GTT':'GTT.PA','ELIS':'ELIS.PA','ERF':'ERF.PA','COFA':'COFA.PA',
+    'SPIE':'SPIE.PA','ALO':'ALO.PA','BVI':'BVI.PA','FDJ':'FDJ.PA',
+    'IPSEN':'IPN.PA','REXEL':'RXL.PA','SOP':'SOP.PA','LNA':'LNA.PA',
+    'FNAC':'FNAC.PA','CNP':'CNP.PA','EIFFAGE':'FGR.PA','NEXANS':'NEX.PA',
+    'FORVIA':'FRVIA.PA','IMERYS':'NK.PA','IPSOS':'IPS.PA',
+    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','PRX':'PRX.AS',
+    'HEIA':'HEIA.AS','ADYEN':'ADYEN.AS',
+    'LECTRA':'LSS.PA','ARGAN':'ARG.PA','FREY':'FREY.PA',
+    'COVIVIO':'COV.PA','DERICHEBOURG':'DBG.PA',
+    'STEF':'STF.PA','THERMADOR':'THEP.PA','LISI':'FII.PA',
+    'MANITOU':'MTU.PA','SAMSE':'SAMS.PA','ELIOR':'ELIOR.PA',
+    'TRIGANO':'TRI.PA','BOIRON':'BOI.PA','VIRBAC':'VIRP.PA',
+    'DIOR':'CDI.PA','EDEN':'EDEN.PA','PLXEE':'PLX.PA',
+    'NXI':'NXI.PA','ATO':'ATO.PA','RUI':'RUI.PA',
+    'WAGA':'WGAEN.PA','ABIVAX':'ABVX.PA','FIGEAC':'FGA.PA',
+    'SOI':'SOI.PA','ALTEN':'ATE.PA','SWORD':'SWP.PA',
+    'SEB':'SK.PA','MT':'MT.AS','VK':'VK.PA','JXS':'JXS.PA',
+    'NEXANS':'NEX.PA','REXEL':'RXL.PA',
+}
+
+# ─── MÉMOIRE PERSISTANTE ──────────────────────────────────────────
+def load_memory():
+    """Charge la mémoire des derniers prix valides"""
+    if os.path.exists(MEMORY_FILE):
+        try:
+            with open(MEMORY_FILE, 'r') as f:
+                return json.load(f)
+        except:
+            pass
+    return {}
+
+def save_memory(memory):
+    """Sauvegarde la mémoire des prix valides"""
+    with open(MEMORY_FILE, 'w') as f:
+        json.dump(memory, f, indent=2)
+
+def is_aberrant(new_price, memory_price, b52h=None, b52l=None):
+    """
+    Détecte un prix aberrant en comparant avec la mémoire
+    et le range 52 semaines.
+    """
+    if new_price < MIN_PRICE:
+        return True, f"prix trop bas ({new_price})"
+
+    if memory_price and memory_price > 0:
+        variation = abs(new_price - memory_price) / memory_price
+        if variation > MAX_VARIATION:
+            return True, f"variation {variation*100:.0f}% vs mémoire {memory_price}"
+
+    if b52h and b52l and b52l > 0:
+        # Tolérance 50% au-delà du range (marché peut bouger fort)
+        if new_price < b52l * 0.50 or new_price > b52h * 1.50:
+            return True, f"hors range 52S [{b52l}-{b52h}] × 1.5"
+
+    return False, ""
+
+# ─── FETCH PRIX ───────────────────────────────────────────────────
 def fetch_price(yf_ticker):
-    """Fetch live price from Yahoo Finance v8"""
     url = f"https://query2.finance.yahoo.com/v8/finance/chart/{yf_ticker}?interval=1d&range=1d"
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -23,112 +98,7 @@ def fetch_price(yf_ticker):
     except:
         return None
 
-def recalibrate_zones(old_price, new_price, el, eh, stop, o1, o2, dcfb, dcfm, dcfu):
-    """Scale all zones proportionally when price drifts >15%"""
-    if old_price <= 0 or new_price <= 0:
-        return el, eh, stop, o1, o2, dcfb, dcfm, dcfu
-    ratio = new_price / old_price
-    new_el   = round(el   * ratio, 1)
-    new_eh   = round(eh   * ratio, 1)
-    new_stop = round(stop * ratio, 1)
-    new_o1   = round(o1   * ratio, 1)
-    new_o2   = round(o2   * ratio, 1)
-    new_dcfb = round(dcfb * ratio, 1)
-    new_dcfm = round(dcfm * ratio, 1)
-    new_dcfu = round(dcfu * ratio, 1)
-    assert new_stop < new_price, f"stop {new_stop} >= price {new_price}"
-    assert new_o1   > new_price, f"o1 {new_o1} <= price {new_price}"
-    assert new_dcfm > new_price * 0.9, f"dcfm {new_dcfm} too low vs price {new_price}"
-    return new_el, new_eh, new_stop, new_o1, new_o2, new_dcfb, new_dcfm, new_dcfu
-
-# ─── MAPPING COMPLET 223 TICKERS → YAHOO FINANCE ─────────────────────────
-YF_MAP = {
-    # CAC 40
-    'MC':'MC.PA','AI':'AI.PA','OR':'OR.PA','RMS':'RMS.PA','SAN':'SAN.PA',
-    'TTE':'TTE.PA','SAF':'SAF.PA','SU':'SU.PA','AXA':'CS.PA','BNP':'BNP.PA',
-    'ACA':'ACA.PA','GLE':'GLE.PA','AIR':'AIR.PA','KER':'KER.PA','PUB':'PUB.PA',
-    'ORA':'ORA.PA','VIE':'VIE.PA','RNO':'RNO.PA','SGO':'SGO.PA','CAP':'CAP.PA',
-    'DG':'DG.PA','VIV':'VIV.PA','LR':'LR.PA','WLN':'WLN.PA','DSY':'DSY.PA',
-    'STM':'STM.PA','EL':'EL.PA','ML':'ML.PA','ENGI':'ENGI.PA','HO':'HO.PA',
-    'AC':'AC.PA','AF':'AF.PA','BN':'BN.PA','EN':'EN.PA','SW':'SW.PA',
-    'MT':'MT.AS','URW':'URW.AS','RI':'RI.PA',
-    # SBF 120 / Grandes caps
-    'GTT':'GTT.PA','ELIS':'ELIS.PA','SEB':'SK.PA','ERF':'ERF.PA',
-    'COFA':'COFA.PA','SPIE':'SPIE.PA','ALO':'ALO.PA','EDENRED':'EDEN.PA',
-    'BVI':'BVI.PA','FDJ':'FDJ.PA','NRO':'NRO.PA','PERNOD':'RI.PA',
-    'IPSEN':'IPN.PA','REXEL':'RXL.PA','SOP':'SOP.PA',
-    'LNA':'LNA.PA','ABCA':'ABCA.PA','VK':'VK.PA','FNAC':'FNAC.PA',
-    'CNP':'CNP.PA','KLPI':'LI.PA','EIFFAGE':'FGR.PA','NEXANS':'NEX.PA',
-    'PLUXEE':'PLX.PA','FORVIA':'FRVIA.PA',
-    'DIOR':'CDI.PA','IMERYS':'NK.PA','IPSOS':'IPS.PA',
-    # International
-    'ASML':'ASML.AS','NOVO':'NOVO-B.CO','SAP':'SAP.DE',
-    'ADYEN':'ADYEN.AS','HEIA':'HEIA.AS','SIEMENS':'SIE.DE','ALV':'ALV.DE',
-    'SOLVB':'SOLB.BB','SYENSQO':'SYENS.BB','PRX':'PRX.AS',
-    # Midcaps
-    'LECTRA':'LSS.PA','ARGAN':'ARG.PA','FREY':'FREY.PA',
-    'COVIVIO':'COV.PA','ALTAREA':'ALTA.PA','DERICHEBOURG':'DBG.PA','DBG':'DBG.PA',
-    'CLASQUIN':'ALCLA.PA','ALCLF':'ALCLA.PA',
-    'INTERPARFUMS':'ITP.PA','INTPRF':'ITP.PA',
-    'STEF':'STF.PA','STEF2':'STF.PA',
-    'THERMADOR':'THEP.PA','THERMD':'THEP.PA',
-    'LISI':'FII.PA','MANITOU':'MTU.PA',
-    'SAMSE':'SAMS.PA','ELIOR':'ELIOR.PA','BIOM':'BIM.PA',
-    'LACROIX':'LACR.PA','LACBX':'LACR.PA',
-    'DASSAV':'AM.PA','EMEIS':'EMEIS.PA','ORPEA':'ORP.PA',
-    'MERCIALYS':'MRY.PA','MERY':'MRY.PA',
-    'IDLG':'IDL.PA','EUFSCI':'ERF.PA',
-    'LDLC':'LDLC.PA','LDLCG':'LDLC.PA',
-    'PLFRY':'PLX.PA','RXLSA':'RXL.PA','PRNRD':'RI.PA',
-    'VALO':'FR.PA','LEGRAND':'LR.PA',
-    'TEP':'TEP.PA','TALY':'TEP.PA',
-    'ALBIA':'ABIO.PA','ALIDS':'ALIDS.PA','ALFPC':'ALFPC.PA',
-    'NAMR':'NAMR.PA','NAMREN':'NAMR.PA',
-    'KZATM':'KZK.PA','ATO':'ATO.PA','ICAD':'ICA.PA',
-    'SELENV':'SELER.PA','SIPH':'SIPH.PA',
-    'ENVEA':'ENVEA.PA','JXS':'JXS.PA','JACMETL':'JXS.PA',
-    'WAGA':'WGAEN.PA','WGAEN':'WGAEN.PA',
-    'IPSNF':'IPN.PA','DALET':'DLT.PA',
-    'ABIVAX':'ABVX.PA','ABIVXA':'ABVX.PA','NANOBT':'ABVX.PA','NBNTX':'ABVX.PA',
-    'PLASTIC':'POM.PA','RCO':'RCO.PA',
-    'SCBSM':'SCBSM.PA','SIIGRP':'SII.PA',
-    'VRMTX':'VRM.PA','FIGEAC':'FGA.PA','FGAERO':'FGA.PA',
-    'GLEVT':'GLE.PA','LVMHF':'MC.PA',
-    'TRIGANO':'TRI.PA','TRGO':'TRI.PA',
-    'BOIRON':'BOI.PA',
-    'VIRBAC':'VIRP.PA','VIRB2':'VIRP.PA',
-    'ALSTOM':'ALO.PA',
-    # Nouveaux ajouts
-    'AMF':'AMUN.PA','AK':'AKE.PA','RUI':'RUI.PA','SOI':'SOI.PA',
-    'GFC':'GFC.PA','WLX':'WLN.PA','NXI':'NXI.PA',
-    # Smallcaps ML*
-    'MLJR':'JRS.PA','MLKAG':'KAG.PA','MLHRZ':'HRZ.PA',
-    'MLHAG':'HAG.PA','MLHRT':'HRT.PA','MLINS':'INS.PA','MLAEP':'AEP.PA',
-    'MLAFF':'AFF.PA','MLALW':'ALW.PA','MLARDK':'ARDK.PA',
-    'MLBCF':'BCF.PA','MLBFF':'BFF.PA','MLBLT':'BLT.PA',
-    'MLCFT':'CFT.PA','MLCHG':'CHG.PA','MLCOB':'COB.PA',
-    'MLFNIV':'FNIV.PA','MLLBP':'LBP.PA','MLMCD':'MCD.PA',
-    'MLNMG':'NMG.PA','MLNMX':'NMX.PA','MLNRD':'NRD.PA',
-    'MLPFT':'PFT.PA','MLPHI':'PHI.PA','MLPSB':'PSB.PA',
-    'MLPVR':'PVR.PA','MLRLV':'RLV.PA','MLSBS':'SBS.PA',
-    'MLSMD':'SMD.PA','MLTPX':'TPX.PA','MLVAL':'VAL.PA',
-    'MLVPN':'VPN.PA','MLVRB':'VRB.PA','MLXIV':'XIV.PA',
-    'MLAERO':'AERO.PA','MLGOM':'GOM.PA',
-    # Divers
-    'CA':'CA.PA','CDRCK':'CDK.PA','CHSR':'CAS.PA',
-    'COGEFI':'COFA.PA','DIOR':'CDI.PA','DIORCDI':'CDI.PA',
-    'ELECOR':'ELEC.PA','ESCAP':'ESCAP.PA','GALIMMO':'GALIM.PA',
-    'GENIE':'GENI.PA','HIPAY':'HPI.PA','HMSNW':'HMS.PA',
-    'IDSF':'IDS.PA','ITRLN':'ITL.PA','BNENF':'BNF.PA',
-    'LPE':'LPE.PA','NEXTY':'NEXO.PA','TIXEO':'TIXEO.PA',
-    'SSYNQ':'SSYNQ.PA','WTRGP':'WTR.PA','SFCA':'WLN2.PA',
-    'SODITECH':'SDT.PA','SEQENS':'SEQENS.PA','PRECIA':'PREC.PA',
-    'RADIALL':'RAL.PA','LNSBN':'LNS.PA','ALMKT':'ALMKT.PA',
-    'ALTGX':'ALTGX.PA','ALSEI':'ALSEI.PA','CSTEU':'CST.PA',
-    'DBV':'DBV.PA','OPM':'VRLA.PA',
-}
-
-# ─── MAIN ──────────────────────────────────────────────────────────────────
+# ─── MAIN ─────────────────────────────────────────────────────────
 if __name__ == '__main__':
     html_file = 'index.html'
     if not os.path.exists(html_file):
@@ -139,124 +109,116 @@ if __name__ == '__main__':
         content = f.read()
 
     is_friday = datetime.now().weekday() == 4
-    is_full_recalibration = '--full' in sys.argv or is_friday
+    now_str = datetime.now().strftime('%d/%m à %H:%M')
 
-    print(f"Mode: {'VENDREDI — Recalibration complète' if is_full_recalibration else 'Mise à jour prix quotidienne'}")
-    print(f"Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
-    print(f"Tickers avec mapping YF: {len(YF_MAP)}")
-    print("="*50)
+    # Charger la mémoire
+    memory = load_memory()
+    print(f"Mémoire chargée : {len(memory)} prix en mémoire")
+    print(f"Mode : {'VENDREDI — recalibration complète' if is_friday else 'Mise à jour quotidienne'}")
+    print("=" * 55)
 
-    updated = 0
-    recalibrated = 0
-    errors = []
-    aberrant_errors = []
-    skipped = 0
-
-    # Find S[] bounds
     s_start = content.find("const S=[")
-    s_end_match = re.search(r'\n\];\s*\n\s*\n\s*// ═+\s*CALENDRIER', content[s_start:])
-    if not s_end_match:
-        # Fallback: chercher la fin de S[] autrement
-        s_end_match = re.search(r'\n\];\s*\n', content[s_start:])
-    if not s_end_match:
-        print("ERROR: Could not find end of S[]")
+    if s_start < 0:
+        print("ERROR: S[] non trouvé")
         sys.exit(1)
-    s_end = s_start + s_end_match.start()
 
-    # Process each stock
-    for m in re.finditer(r"(\{ticker:'([^']+)'.*?)(?=\n\n\{ticker:|\n\n\];)",
-                          content[s_start:s_end], re.DOTALL):
-        block = m.group(1)
+    updated     = 0
+    from_memory = 0
+    aberrant    = 0
+    no_yf       = 0
+
+    for m in re.finditer(
+        r"(\{ticker:'([^']+)'.*?)(?=\n\n\{ticker:|\n\n\];)",
+        content[s_start:], re.DOTALL
+    ):
+        block  = m.group(1)
         ticker = m.group(2)
+        yf     = YF_MAP.get(ticker)
 
-        yf = YF_MAP.get(ticker)
+        # Prix actuel dans le fichier
+        pm = re.search(r'\bprice:([\d.]+)', block)
+        file_price = float(pm.group(1)) if pm else 0
+
+        # Prix en mémoire (dernier prix valide connu)
+        mem_price = memory.get(ticker, {}).get('price', file_price)
+
+        # Range 52 semaines
+        b52h_m = re.search(r'\bb52h:([\d.]+)', block)
+        b52l_m = re.search(r'\bb52l:([\d.]+)', block)
+        b52h = float(b52h_m.group(1)) if b52h_m else None
+        b52l = float(b52l_m.group(1)) if b52l_m else None
+
         if not yf:
-            skipped += 1
+            no_yf += 1
+            # Pas de mapping YF — utiliser la mémoire si disponible
+            if mem_price and mem_price != file_price:
+                # Mettre à jour depuis mémoire
+                new_block = re.sub(r'\bprice:[\d.]+', f'price:{mem_price}', block, count=1)
+                if new_block != block:
+                    content = content[:s_start + m.start()] + new_block + content[s_start + m.end():]
             continue
 
-        def gn(key, text=block):
-            mx = re.search(r'\b'+key+r':([\d.]+)', text)
-            return float(mx.group(1)) if mx else None
+        # Récupérer le prix Yahoo Finance
+        yf_price = fetch_price(yf)
 
-        old_price = gn('price')
-        if not old_price:
-            continue
+        if yf_price:
+            # Valider le prix
+            aberrant_flag, reason = is_aberrant(yf_price, mem_price, b52h, b52l)
 
-        new_price = fetch_price(yf)
-        if not new_price:
-            errors.append(f"{ticker}({yf}): no price")
-            continue
+            if aberrant_flag:
+                # Prix aberrant → utiliser la mémoire
+                best_price = mem_price if mem_price else file_price
+                aberrant += 1
+                print(f"  🚫 {ticker:8} Yahoo={yf_price} ABERRANT ({reason}) → mémoire {best_price}")
+            else:
+                # Prix valide → mettre à jour mémoire ET fichier
+                best_price = yf_price
+                memory[ticker] = {
+                    'price': yf_price,
+                    'date':  datetime.now().strftime('%Y-%m-%d %H:%M'),
+                    'source': 'yahoo'
+                }
+                updated += 1
+        else:
+            # Yahoo Finance indisponible → utiliser la mémoire
+            best_price = mem_price if mem_price else file_price
+            from_memory += 1
 
-        # ── VALIDATION ANTI-ABERRATION ──────────────────────────
-        if old_price > 0:
-            variation = abs(new_price - old_price) / old_price
-            if variation > 0.40:  # >40% de variation = aberration
-                aberrant_errors.append(
-                    f"{ticker}: prix aberrant {new_price} vs précédent {old_price} "
-                    f"({variation*100:.0f}% de variation) — ignoré"
-                )
-                continue
-            # Vérifier cohérence avec le 52-week range si disponible
-            b52h_m = re.search(r'\bb52h:([\d.]+)', block)
-            b52l_m = re.search(r'\bb52l:([\d.]+)', block)
-            if b52h_m and b52l_m:
-                b52h = float(b52h_m.group(1))
-                b52l = float(b52l_m.group(1))
-                if b52l > 0 and (new_price < b52l * 0.60 or new_price > b52h * 1.40):
-                    aberrant_errors.append(
-                        f"{ticker}: prix {new_price} hors 52-week range "
-                        f"[{b52l}-{b52h}] × 1.4 — ignoré"
-                    )
-                    continue
+        # Appliquer le meilleur prix disponible
+        if best_price and best_price != file_price:
+            chg = round((best_price - mem_price) / mem_price * 100, 2) if mem_price else 0
+            new_block = re.sub(r'\bprice:[\d.]+', f'price:{best_price}', block, count=1)
+            new_block = re.sub(r'\bchg:[-\d.]+', f'chg:{chg}', new_block, count=1)
+            if new_block != block:
+                content = content[:s_start + m.start()] + new_block + content[s_start + m.end():]
 
-        new_block = block
-        chg = round((new_price - old_price) / old_price * 100, 2) if old_price else 0
-        new_block = re.sub(r'\bprice:[\d.]+', f'price:{new_price}', new_block, count=1)
-        new_block = re.sub(r'\bchg:[-\d.]+', f'chg:{chg}', new_block, count=1)
-        updated += 1
+        # Vendredi : recalibrer les zones si dérive > 15%
+        if is_friday and yf_price and not aberrant_flag and mem_price and mem_price > 0:
+            drift = abs(yf_price - mem_price) / mem_price
+            if drift > 0.15:
+                ratio = yf_price / mem_price
+                for key in ['el','eh','stop','o1','o2','dcfb','dcfm','dcfu']:
+                    km = re.search(r'\b' + key + r':([\d.]+)', block)
+                    if km:
+                        new_val = round(float(km.group(1)) * ratio, 1)
+                        content = content.replace(f'{key}:{km.group(1)}', f'{key}:{new_val}', 1)
+                print(f"  📐 {ticker:8} recalibré ({drift*100:.0f}% de dérive)")
 
-        # Vendredi ou drift >15%: recalibrer les zones
-        drift = abs(new_price - old_price) / old_price if old_price else 0
-        if is_full_recalibration or drift > 0.15:
-            el=gn('el'); eh=gn('eh'); stop=gn('stop')
-            o1=gn('o1'); o2=gn('o2')
-            dcfb=gn('dcfb'); dcfm=gn('dcfm'); dcfu=gn('dcfu')
-            if all(v is not None for v in [el,eh,stop,o1,o2,dcfb,dcfm,dcfu]):
-                try:
-                    new_el,new_eh,new_stop,new_o1,new_o2,new_dcfb,new_dcfm,new_dcfu = \
-                        recalibrate_zones(old_price,new_price,el,eh,stop,o1,o2,dcfb,dcfm,dcfu)
-                    for key,val in [('el',new_el),('eh',new_eh),('stop',new_stop),
-                                     ('o1',new_o1),('o2',new_o2),('dcfb',new_dcfb),
-                                     ('dcfm',new_dcfm),('dcfu',new_dcfu)]:
-                        new_block = re.sub(r'\b'+key+r':[\d.]+', key+':'+str(val), new_block, count=1)
-                    recalibrated += 1
-                    if drift > 0.05:
-                        print(f"  RECALIBRÉ {ticker}: {old_price}€ → {new_price}€ ({drift*100:.1f}%)")
-                except AssertionError as e:
-                    errors.append(f"{ticker}: {e}")
+    # Sauvegarder la mémoire mise à jour
+    save_memory(memory)
 
-        if new_block != block:
-            block_start = s_start + m.start()
-            block_end = block_start + len(block)
-            content = content[:block_start] + new_block + content[block_end:]
-
-    # Timestamp dans le header
-    ts = datetime.now().strftime('%d/%m à %H:%M')
+    # Mettre à jour le timestamp dans le header
     content = re.sub(
-        r'(\d+ cours mis à jour[^<"\)]*)',
-        f'{updated} cours mis à jour le {ts} ({len(errors)} échecs)',
+        r'\d+ cours mis à jour[^<"\')\]]*',
+        f'{updated} cours mis à jour le {now_str} ({aberrant} aberrants corrigés)',
         content
     )
 
     with open(html_file, 'w', encoding='utf-8') as f:
         f.write(content)
 
-    print(f"\n✅ {updated} prix mis à jour")
-    print(f"✅ {recalibrated} zones recalibrées (vendredi={is_friday})")
-    print(f"⏭  {skipped} tickers sans mapping YF")
-    if errors:
-        print(f"⚠️  {len(errors)} erreurs: {errors[:5]}")
-    if aberrant_errors:
-        print(f"🚫 {len(aberrant_errors)} prix aberrants ignorés:")
-        for e in aberrant_errors[:5]: print(f"  {e}")
-    sys.exit(0)
+    print(f"\n✅ {updated} prix Yahoo Finance valides")
+    print(f"📦 {from_memory} prix depuis la mémoire (Yahoo indispo)")
+    print(f"🚫 {aberrant} aberrations corrigées automatiquement")
+    print(f"⏭  {no_yf} tickers sans mapping YF")
+    print(f"💾 Mémoire sauvegardée : {len(memory)} entrées ({MEMORY_FILE})")
