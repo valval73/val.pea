@@ -105,40 +105,54 @@ def is_valid(price, mem_price):
     return True, ""
 
 # ─── FETCH PRIX ──────────────────────────────────────────────────
-def fetch_price(ticker):
-    yf_sym = YF_MAP.get(ticker)
-    if not yf_sym:
-        return None
+def fetch_all_prices(tickers_yf):
+    """Télécharge tous les prix en 1 seul appel batch — plus efficace et moins bloqué"""
+    results = {}
+    if not tickers_yf:
+        return results
 
-    # Méthode 1 : yfinance fast_info
+    # Batch download
     try:
-        t = yf.Ticker(yf_sym)
-        price = t.fast_info.last_price
-        if price and price > 0:
-            p = round(float(price), 2)
-            # Conversion devise si nécessaire
-            if ticker in NON_EUR:
-                p = round(p / NON_EUR[ticker], 2)
-            return p
-    except:
-        pass
+        import pandas as pd
+        symbols = list(set(tickers_yf.values()))
+        data = yf.download(symbols, period='2d', auto_adjust=True,
+                          progress=False, threads=True)
 
-    # Méthode 2 : history (silencieuse)
-    try:
-        import warnings
-        t = yf.Ticker(yf_sym)
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            hist = t.history(period='2d', raise_errors=False)
-        if hist is not None and not hist.empty:
-            p = round(float(hist['Close'].iloc[-1]), 2)
-            if ticker in NON_EUR:
-                p = round(p / NON_EUR[ticker], 2)
-            return p
-    except:
-        pass
+        if data.empty:
+            return results
 
-    return None
+        # Extraire le dernier cours de clôture
+        close = data['Close'] if 'Close' in data.columns else data.xs('Close', level=0, axis=1) if len(data.columns.names) > 1 else data
+
+        for ticker, yf_sym in tickers_yf.items():
+            try:
+                if yf_sym in close.columns:
+                    series = close[yf_sym].dropna()
+                    if not series.empty:
+                        price = round(float(series.iloc[-1]), 2)
+                        if price > MIN_PRICE:
+                            # Conversion devise
+                            if ticker in NON_EUR:
+                                price = round(price / NON_EUR[ticker], 2)
+                            results[ticker] = price
+            except:
+                pass
+    except Exception as e:
+        print(f"  Batch download erreur: {e}")
+        # Fallback individuel
+        for ticker, yf_sym in tickers_yf.items():
+            try:
+                t = yf.Ticker(yf_sym)
+                p = t.fast_info.last_price
+                if p and p > MIN_PRICE:
+                    price = round(float(p), 2)
+                    if ticker in NON_EUR:
+                        price = round(price / NON_EUR[ticker], 2)
+                    results[ticker] = price
+            except:
+                pass
+
+    return results
 
 # ─── MAIN ─────────────────────────────────────────────────────────
 import sys, io
@@ -179,6 +193,11 @@ if __name__ == '__main__':
         print("ERREUR: const S=[ non trouvé")
         sys.exit(1)
 
+    # Télécharger TOUS les prix en 1 appel batch
+    print("Téléchargement des prix en batch...")
+    all_prices = fetch_all_prices(YF_MAP)
+    print(f"  → {len(all_prices)} prix reçus du batch")
+
     updated   = 0
     from_mem  = 0
     aberrant  = 0
@@ -199,11 +218,13 @@ if __name__ == '__main__':
             no_map += 1
             continue
 
-        # Récupérer le prix Yahoo
-        yf_price = fetch_price(ticker)
+        yf_price = all_prices.get(ticker)
 
         if yf_price:
-            if first_run:
+            # Phase d'initialisation : mémoire < 100 entrées = vieux prix S[]
+            # Accepter tous les prix Yahoo > 0.50 sans validation
+            init_phase = len(memory) < 100
+            if first_run or init_phase:
                 ok, reason = True, ""
             else:
                 ok, reason = is_valid(yf_price, mem_price)
