@@ -576,7 +576,7 @@ const S=[
  contra:"32x PE pour une croissance qui ralentit. La Chine déçoit. Marques DTC gagnent des parts."},
 
 {ticker:'RMS',bpf:true,name:'Hermès',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:2100.0,chg:26.8,mkt:'232Md€',b52h:2200,b52l:1520,beta:0.6,
+ price:2100.0,chg:0.2,mkt:'232Md€',b52h:2200,b52l:1520,beta:0.6,
  pe:50,pb:22,ev_ebitda:32,ps:12.8,pfcf:42,ev_ebit:36,
  roe:36,roic:32,roa:22,debt:0.0,de:0.2,ic:999,cr:3.8,qr:3.2,
  yield:0.6,epsg:15,revg:12,margin:42,gm:70,om:42,fcf:10.5,
@@ -653,7 +653,7 @@ const S=[
  contra:"Valorisation exigeante à 32x PE. Dépendance Airbus (50% CA). Baisse USD pénalise les revenus."},
 
 {ticker:'SU',bpf:true,name:'Schneider Electric',sector:'Énergie & Automatisation',cap:'large',srd:true,idx:'CAC40',
- price:270.0,chg:0.0,mkt:'136Md€',b52h:285,b52l:195,beta:1.0,
+ price:270.0,chg:0.8,mkt:'136Md€',b52h:285,b52l:195,beta:1.0,
  pe:28,pb:6.8,ev_ebitda:18,ps:3.6,pfcf:22,ev_ebit:20,
  roe:26,roic:20,roa:11,debt:1.0,de:0.7,ic:11.8,cr:1.4,qr:1.1,
  yield:1.5,epsg:15,revg:12,margin:15,gm:44,om:18,fcf:7.5,
@@ -1609,7 +1609,7 @@ const S=[
  contra:"Lidl/Aldi prennent des parts. Marges structurellement très fines. Amazon Grocery monte en puissance."},
 
 {ticker:'HO',bpf:true,name:'Thales',sector:'Défense & Technologie',cap:'large',srd:true,idx:'CAC40',
- price:280.0,chg:9.8,mkt:'19Md€',b52h:265,b52l:182,beta:0.7,
+ price:280.0,chg:0.5,mkt:'19Md€',b52h:265,b52l:182,beta:0.7,
  pe:22,pb:4.5,ev_ebitda:14,ps:2.0,pfcf:18,ev_ebit:15,
  roe:22,roic:16,roa:8,debt:1.2,de:0.7,ic:8.5,cr:1.4,qr:1.2,
  yield:1.8,epsg:14,revg:10,margin:11,gm:38,om:12,fcf:8.2,
@@ -1714,7 +1714,7 @@ const S=[
 
 // ═══ Actions européennes éligibles PEA ═══
 {ticker:'ASML',bpf:true,name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
- price:1229.0,chg:111.9,mkt:'246Md€',b52h:920,b52l:520,beta:1.2,
+ price:1229.0,chg:6.2,mkt:'246Md€',b52h:920,b52l:520,beta:1.2,
  pe:28,pb:12,ev_ebitda:18,ps:8.5,pfcf:22,ev_ebit:20,
  roe:45,roic:38,roa:18,debt:0.2,de:0.4,ic:22.5,cr:1.8,qr:1.5,
  yield:1.0,epsg:20,revg:18,margin:30,gm:52,om:32,fcf:9.5,
@@ -4750,7 +4750,7 @@ function renderCyclicBadge(s){
   var cycScore = calcCyclic(s);
   return '<div style="background:#92400e;border-left:4px solid #d97706;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:10px">'
     + '<div style="font-size:9px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">'
-    + 'ð ACTION CYCLIQUE — NE PAS UTILISER LE SCORE QARP</div>'
+    + '🔄 ACTION CYCLIQUE — NE PAS UTILISER LE SCORE QARP</div>'
     + '<div style="font-size:10px;color:#fef3c7">' + reason + '</div>'
     + '<div style="font-size:9px;color:#fde68a;margin-top:4px">Score cycle : <b>' + cycScore + '/100</b>'
     + ' · Signal si : PE&lt;14 + BPA↑ + cours&gt;MM200 + cuivre↑</div>'
@@ -5566,7 +5566,7 @@ function buildQ(){
     return `<div class="qi${i===idx?' active':''}" onclick="jump(${i})">`+
       `<span class="qi-n">${i+1}</span>`+
       `<span class="qi-t" style="color:${s.cyclic?'#d97706':'inherit'}">${s.ticker}</span>`+
-      (s.cyclic?`<span title="Cyclique" style="font-size:9px;margin-left:1px">ð</span>`:"") +
+      (s.cyclic?`<span title="Cyclique" style="font-size:9px;margin-left:1px">🔄</span>`:"") +
       (inZone?`<span title="En zone" style="color:#22c55e;font-size:9px;margin-left:1px">●</span>`:"") +
       `<span class="qi-nm">${s.name}</span>`+
       `<span class="qg ${qGCl(s.score)}">${s.score}</span>`+
@@ -9814,6 +9814,18 @@ function dataFreshness(s){
   return {score:score, label:label, col:col, warnings:warnings,
           note:'Fondamentaux Yahoo Finance — délai ~3 mois après résultats'};
 }
+
+
+const ETF = [
+  {ticker:'EWLD',name:'iShares MSCI World',isin:'IE00B4L5Y983',ter:0.20,perf1y:12.1,perf5y:89.3,encours:'8.2Md€',note:'A',
+   desc:'ETF monde large — coeur de portefeuille PEA. Replique MSCI World (1600 societes).'},
+  {ticker:'DCAM',name:'Amundi MSCI World',isin:'LU1681043599',ter:0.12,perf1y:11.8,perf5y:86.2,encours:'12.1Md€',note:'A',
+   desc:'ETF monde ultra-low cost. Le moins cher du PEA (0.12% TER). Ideal epargne reguliere.'},
+  {ticker:'PAEEM',name:'Amundi MSCI Emerging',isin:'LU1681045370',ter:0.20,perf1y:6.2,perf5y:32.1,encours:'3.1Md€',note:'B',
+   desc:'ETF emergents. Chine 30%, Inde 18%, Taiwan 15%. Volatilite plus elevee.'},
+  {ticker:'EPAB',name:'Amundi Euro Corp Bond',isin:'FR0010754119',ter:0.16,perf1y:5.8,perf5y:18.2,encours:'4.2Md€',note:'B',
+   desc:'ETF obligations zone euro. Couverture taux dans un PEA actions.'},
+];
 
 document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
