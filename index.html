@@ -5903,6 +5903,18 @@ async function fetchLive(){
   setTimeout(function(){ notif.remove(); }, 5000);
 }
 
+
+const ETF = [
+  {ticker:'EWLD',name:'iShares MSCI World',isin:'IE00B4L5Y983',ter:0.20,perf1y:12.1,perf5y:89.3,encours:'8.2Md€',note:'A',
+   desc:'ETF monde large — coeur de portefeuille PEA. Replique MSCI World (1600 societes).'},
+  {ticker:'DCAM',name:'Amundi MSCI World',isin:'LU1681043599',ter:0.12,perf1y:11.8,perf5y:86.2,encours:'12.1Md€',note:'A',
+ price:6.2,chg:0.3,   desc:'ETF monde ultra-low cost. Le moins cher du PEA (0.12% TER). Ideal epargne reguliere.'},
+  {ticker:'PAEEM',name:'Amundi MSCI Emerging',isin:'LU1681045370',ter:0.20,perf1y:6.2,perf5y:32.1,encours:'3.1Md€',note:'B',
+ price:32.5,chg:0.4,   desc:'ETF emergents. Chine 30%, Inde 18%, Taiwan 15%. Volatilite plus elevee.'},
+  {ticker:'EPAB',name:'Amundi Euro Corp Bond',isin:'FR0010754119',ter:0.16,perf1y:5.8,perf5y:18.2,encours:'4.2Md€',note:'B',
+   desc:'ETF obligations zone euro. Couverture taux dans un PEA actions.'},
+];
+
 function buildETF(){
   const g=document.getElementById('etf-grid');
   if(!g)return;
@@ -9815,17 +9827,6 @@ function dataFreshness(s){
           note:'Fondamentaux Yahoo Finance — délai ~3 mois après résultats'};
 }
 
-
-const ETF = [
-  {ticker:'EWLD',name:'iShares MSCI World',isin:'IE00B4L5Y983',ter:0.20,perf1y:12.1,perf5y:89.3,encours:'8.2Md€',note:'A',
-   desc:'ETF monde large — coeur de portefeuille PEA. Replique MSCI World (1600 societes).'},
-  {ticker:'DCAM',name:'Amundi MSCI World',isin:'LU1681043599',ter:0.12,perf1y:11.8,perf5y:86.2,encours:'12.1Md€',note:'A',
-   desc:'ETF monde ultra-low cost. Le moins cher du PEA (0.12% TER). Ideal epargne reguliere.'},
-  {ticker:'PAEEM',name:'Amundi MSCI Emerging',isin:'LU1681045370',ter:0.20,perf1y:6.2,perf5y:32.1,encours:'3.1Md€',note:'B',
-   desc:'ETF emergents. Chine 30%, Inde 18%, Taiwan 15%. Volatilite plus elevee.'},
-  {ticker:'EPAB',name:'Amundi Euro Corp Bond',isin:'FR0010754119',ter:0.16,perf1y:5.8,perf5y:18.2,encours:'4.2Md€',note:'B',
-   desc:'ETF obligations zone euro. Couverture taux dans un PEA actions.'},
-];
 
 document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
