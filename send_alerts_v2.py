@@ -202,7 +202,32 @@ def get_stocks(html_content):
             return float(mx.group(1)) if mx else default
         def gs(key, default=''):
             mx = re.search(r"\b"+key+r":'([^']*)'", block)
+            if mx: return mx.group(1)
+            mx = re.search(r'\b'+key+r':["](.*?)["]\.', block)
+            if mx: return mx.group(1)
+            mx = re.search(r'\b'+key+r':\"([^\"]*)\"|\b'+key+r':\'([^\']*)\'', block)
+            return mx.group(1) or mx.group(2) if mx and mx.lastindex else default
+
+        def gdb(key, default=''):
+            """Extrait les valeurs entre doubles guillemets."""
+            mx = re.search(r'\b'+key+r':"([^"]*)"', block)
             return mx.group(1) if mx else default
+
+        def extract_moat():
+            m = re.search(r'moat:\[([^\]]*)', block)
+            if not m: return []
+            return re.findall(r"'([^']+)'", m.group(1))[::2]
+
+        def extract_cats():
+            m = re.search(r'cats:\[(.+?)\]', block)
+            if not m: return []
+            return re.findall(r"t:'([^']+)'", m.group(1))
+
+        def extract_ins():
+            m = re.search(r'ins:\[([^\]]*)', block)
+            if not m: return ''
+            parts = re.findall(r"'([^']+)'", m.group(1))
+            return f"{parts[0]} {parts[1]} {parts[2]}" if len(parts) >= 3 else ''
 
         s = {
             'ticker': ticker,
@@ -212,7 +237,7 @@ def get_stocks(html_content):
             'price': gn('price'),
             'el': gn('el'), 'eh': gn('eh'),
             'stop': gn('stop'), 'o1': gn('o1'),
-            'dcfm': gn('dcfm'),
+            'dcfb': gn('dcfb'), 'dcfm': gn('dcfm'), 'dcfu': gn('dcfu'),
             'roe': gn('roe'), 'margin': gn('margin'),
             'fcf': gn('fcf'), 'debt': gn('debt'),
             'pio': gn('pio'), 'rsi': gn('rsi'),
@@ -221,6 +246,12 @@ def get_stocks(html_content):
             'revg': gn('revg'), 'epsg': gn('epsg'),
             'om': gn('om'), 'marg_n': gn('marg_n'),
             'marg_n1': gn('marg_n1'), 'pb': gn('pb'),
+            'pe': gn('pe'), 'ev_ebitda': gn('ev_ebitda'),
+            'thesis': gdb('thesis'),
+            'contra': gdb('contra'),
+            'moat': extract_moat(),
+            'cats': extract_cats(),
+            'insider': extract_ins(),
         }
 
         # Calculs dérivés
@@ -370,6 +401,109 @@ def stock_card(s, highlight=False):
         + contra_html
         + situation_html
         + '</div>')
+
+
+
+def grade_a_analyse_section(stocks):
+    """Analyse Grade A : thesis, contra, DCF, moat, catalysts, insider. Max 6."""
+    targets = sorted(
+        [s for s in stocks if s['score'] == 'A' and s['signal'] in ('ULTIME', 'FORT')
+         and s.get('thesis')],
+        key=lambda x: -x['qarp']
+    )[:6]
+    if not targets:
+        return ''
+
+    cards = []
+    for s in targets:
+        price   = s['price']
+        dcfb    = s.get('dcfb', 0)
+        dcfm    = s.get('dcfm', 0)
+        dcfu    = s.get('dcfu', 0)
+        upside  = s['upside']
+        moat    = s.get('moat', [])
+        cats    = s.get('cats', [])
+        insider = s.get('insider', '')
+        thesis  = s.get('thesis', '')
+        contra  = s.get('contra', '')
+
+        sig_col = '#16a34a' if s['signal'] == 'ULTIME' else '#d97706'
+        sig_lbl = '\U0001f680 ULTIME' if s['signal'] == 'ULTIME' else '\u2705 FORT'
+        up_col  = '#16a34a' if upside > 15 else '#d97706'
+
+        # Barre DCF
+        dcf_bar = ''
+        if dcfb and dcfm and dcfu and price:
+            pct = min(100, max(0, round((price - dcfb) / max(dcfu - dcfb, 1) * 100)))
+            dcf_bar = (
+                '<div style="margin:8px 0 4px">'
+                '<div style="font-size:9px;color:#888;margin-bottom:3px">Fourchette DCF</div>'
+                '<div style="position:relative;height:8px;background:#e2e8f0;border-radius:4px">'
+                f'<div style="position:absolute;left:{pct}%;top:-2px;width:4px;height:12px;background:{up_col};border-radius:2px"></div>'
+                '</div>'
+                '<div style="display:flex;justify-content:space-between;font-size:8px;color:#888;margin-top:2px">'
+                f'<span>Bas {dcfb}\u20ac</span><span>Milieu {dcfm}\u20ac</span><span>Haut {dcfu}\u20ac</span>'
+                '</div></div>'
+            )
+
+        moat_html = ''
+        if moat:
+            items = ''.join(
+                f'<span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:3px;font-size:9px;margin:1px 2px 1px 0;display:inline-block">\U0001f3f0 {m}</span>'
+                for m in moat[:3]
+            )
+            moat_html = f'<div style="margin:6px 0">{items}</div>'
+
+        cats_html = ''
+        if cats:
+            items = ''.join(
+                f'<span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:3px;font-size:9px;margin:1px 2px 1px 0;display:inline-block">\u26a1 {c}</span>'
+                for c in cats[:3]
+            )
+            cats_html = f'<div style="margin:4px 0">{items}</div>'
+
+        insider_html = (
+            f'<div style="margin-top:4px;font-size:9px;color:#7c3aed;background:#f5f3ff;padding:3px 8px;border-radius:3px;display:inline-block">\U0001f464 Insider: {insider}</div>'
+            if insider else ''
+        )
+
+        card = (
+            f'<div style="border:1px solid #e2e8f0;border-left:4px solid {sig_col};border-radius:0 6px 6px 0;padding:12px 14px;margin-bottom:10px;background:#fff">'
+            f'<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">'
+            f'<div>'
+            f'<span style="font-family:monospace;font-size:14px;font-weight:700;color:#0f2540">{s["ticker"]}</span>'
+            f'<span style="color:#64748b;font-size:11px;margin-left:6px">{s["name"]}</span>'
+            f'</div>'
+            f'<div style="text-align:right">'
+            f'<span style="background:{sig_col};color:#fff;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700">{sig_lbl}</span>'
+            f'<div style="font-family:monospace;font-weight:700;font-size:12px;margin-top:2px">{price}\u20ac'
+            f' <span style="color:{up_col};font-size:10px">+{upside}% DCF</span></div>'
+            f'</div></div>'
+            + dcf_bar + moat_html
+            + f'<div style="margin-top:8px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 4px 4px 0;font-size:10px;color:#1a4730;line-height:1.6">'
+            f'<b style="font-size:8px;color:#16a34a;text-transform:uppercase;display:block;margin-bottom:3px">Pourquoi investir</b>'
+            + thesis
+            + '</div>'
+            f'<div style="margin-top:5px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0;font-size:10px;color:#7c2d2d;line-height:1.6">'
+            f'<b style="font-size:8px;color:#dc2626;text-transform:uppercase;display:block;margin-bottom:3px">Ce que le march\xe9 craint</b>'
+            + contra
+            + '</div>'
+            + cats_html + insider_html
+            + '</div>'
+        )
+        cards.append(card)
+
+    n = len(targets)
+    return (
+        '<div style="margin-bottom:20px">'
+        '<div style="background:#1e293b;color:#fff;padding:9px 14px;border-radius:6px 6px 0 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between">'
+        f'<span>\U0001f4cb Analyse Grade A \u2014 Th\xe8ses & Risques</span>'
+        f'<span style="opacity:.7">{n} dossier{"s" if n>1 else ""}</span>'
+        '</div>'
+        '<div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;padding:12px">'
+        + ''.join(cards)
+        + '</div></div>'
+    )
 
 
 def generate_ptf_fiches(stocks):
@@ -544,6 +678,7 @@ def build_email(stocks, macro, insights, date_str, is_sunday=False):
 
   {insights_html}
   {beneish_html}
+  {grade_a_analyse_section(stocks)}
   {section("🚀 Signaux Ultimes — Score ≥70 + décote DCF", "#16a34a", ultimes)}
   {section("✅ Signaux Forts — Score ≥58 (Grade A/B)", "#d97706", forts)}
   {section("👁 À Surveiller — Grade A en approche", "#2563eb", surv, max_items=3)}
