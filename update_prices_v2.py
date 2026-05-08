@@ -23,7 +23,7 @@ FORCE_RESET = {"NOVO": 50, "WLN": 50, "ATO": 5}
 YF_MAP = {
     # ══ CAC 40 ════════════════════════════════════════════════════════
     "MC":"MC.PA","AI":"AI.PA","OR":"OR.PA","RMS":"RMS.PA","SAN":"SAN.PA",
-    "TTE":"TTE.PA","SAF":"SAF.PA","SU":"SU.PA","AXA":"AXA.PA","BNP":"BNP.PA",
+    "TTE":"TTE.PA","SAF":"SAF.PA","SU":"SU.PA","AXA":"CS.PA","BNP":"BNP.PA",
     "ACA":"ACA.PA","GLE":"GLE.PA","AIR":"AIR.PA","KER":"KER.PA","PUB":"PUB.PA",
     "ORA":"ORA.PA","VIE":"VIE.PA","RNO":"RNO.PA","SGO":"SGO.PA","CAP":"CAP.PA",
     "DG":"DG.PA","VIV":"VIV.PA","LR":"LR.PA","DSY":"DSY.PA",
@@ -41,51 +41,34 @@ YF_MAP = {
     "DBG":"DBG.PA","TRIGANO":"TRI.PA","EMEIS":"EMEIS.PA",
     "AMF":"AMUN.PA","BIOM":"BIM.PA","BNENF":"BEN.PA","CDRCK":"CARM.PA",
     "CHSR":"CRI.PA","ELECOR":"ELEC.PA","FREY":"FREY.PA",
-    "GALIMMO":"GALI.PA","GENIE":"GNFT.PA","GLEVT":"GLO.PA",
-    "HIPAY":"HIP.PA","ICAD":"ICAD.PA","IDLG":"IDL.PA","IDSF":"INFO.PA",
-    "KLPI":"LI.PA","LDLC":"LDLC.PA","LPE":"LPE.PA",
-    "ML":"ML.PA","MLAEP":"ADP.PA","MLAFF":"AFF.PA","MLBCF":"BSTD.PA",
-    "MLINS":"INSL.PA","MLPFT":"PARRO.PA","MLPVR":"PLVR.PA",
-    "MLRLV":"RAL.PA","MLTPX":"TIPI.PA","MLVPN":"VIS.PA","MLXIV":"VAC.PA",
-    "NAMR":"NAMR.PA","NXI":"NXI.PA","ORPEA":"EMEIS.PA",
-    "PLASTIC":"POM.PA","PRECIA":"PREC.PA","RADIALL":"RAD.PA","RCO":"RCO.PA",
-    "SCBSM":"SCBSM.PA","SELENV":"SCHP.PA","SIIGRP":"SII.PA","SIPH":"SIPH.PA",
-    "TIXEO":"ALTIX.PA","VALO":"FR.PA","VRMTX":"VMX.PA","DALET":"ALDLT.PA",
-    "ABCA":"ABCA.PA","AK":"AKE.PA","DBV":"DBV.PA","ESCAP":"ALESK.PA",
-    "ENVEA":"EVENV.PA","ALFPC":"ALFPC.PA","LNSBN":"LNSB.PA","ALBIA":"ABIO.PA",
     # ══ Européens / Internationaux ════════════════════════════════════
     "ASML":"ASML.AS","PRX":"PRX.AS","ADYEN":"ADYEN.AS","HEIA":"HEIA.AS",
     "MT":"MT.AS","SAP":"SAP.DE","SIEMENS":"SIE.DE","ALV":"ALV.DE",
-    "SOLVB":"SOLB.BR","HMSNW":"HMSNB.ST","ITRLN":"ITRN.SW","KZATM":"KAP.L",
-    "LVMHF":"RACE.MI","MLHRZ":"6857.T","MLHAG":"HAVP.PA",
     # ══ Small caps FR ═════════════════════════════════════════════════
     "NOVO":"NOVO-B.CO","BOIRON":"BOI.PA","VIRBAC":"VIRP.PA",
     "INTERPARFUMS":"ITP.PA","ARGAN":"ARG.PA","LECTRA":"LSS.PA",
     "LISI":"FII.PA","ELIOR":"ELIOR.PA","SAMSE":"SAMS.PA",
     "MANITOU":"MTU.PA","FIGEAC":"FGA.PA","ABIVAX":"ABVX.PA",
     "COVIVIO":"COV.PA","STEF":"STF.PA","THERMADOR":"THEP.PA",
-    "LACROIX":"LACR.PA","WAGA":"WGAEN.PA","DASSAV":"AM.PA",
+    "LACROIX":"LACR.PA","WAGA":"WAGA.PA","DASSAV":"AM.PA",
     "LEGRAND":"LR.PA","PERNOD":"RI.PA",
     # ══ ETFs ══════════════════════════════════════════════════════════
     "DCAM":"DCAM.PA","EWLD":"EWLD.PA","PAEEM":"PAEEM.PA",
     # ══ Alias / doublons (même YF que le ticker principal) ════════════
-    "ABIVXA":"ABVX.PA","ALO":"ALO.PA","ALCLF":"GCLSQ.PA","CLASQUIN":"GCLSQ.PA",
     "DIORCDI":"CDI.PA","EUFSCI":"ERF.PA","FGAERO":"FGA.PA",
     "INTPRF":"ITP.PA","IPSNF":"IPN.PA","JACMETL":"JCQ.PA",
-    "LDLCG":"LDLC.PA","MERCIALYS":"MERY.PA","NANOBT":"NANO.PA","NBNTX":"NANO.PA",
     "NEXTY":"NXI.PA","PRNRD":"RI.PA","RXLSA":"RXL.PA",
-    "SFCA":"WLN.PA","SSYNQ":"SYENS.PA","STEF2":"STF.PA","TALY":"TEP.PA",
+    "SFCA":"WLN.PA","SSYNQ":"SYENSQO.PA","STEF2":"STF.PA","TALY":"TEP.PA",
     "THERMD":"THEP.PA","TRGO":"TRI.PA","VIRB2":"VIRP.PA",
-    "WGAEN":"WGAEN.PA","WLX":"WLN.PA","MLCHG":"CRI.PA",
-    "MLGOM":"GLO.PA","MLVAL":"VK.PA","MLVRB":"VER.PA","NAMREN":"NAMR.PA",
+    # ══ Autres / Fixes ═══════════════════════════════════════════════
+    "ATO":"ATO.PA","MERY":"MERY.PA","SYENSQO":"SYENSQO.PA",
+    "ICAD":"ICAD.PA","NXI":"NXI.PA","IDLG":"IDL.PA","KLPI":"LI.PA",
+    "ML":"ML.PA","MLAEP":"ADP.PA","RCO":"RCO.PA","VALO":"FR.PA",
+    "GENIE":"GNFT.PA","GLEVT":"GLO.PA",
     # ══ Derniers mappings (Altarea, Gecina, Rubis, etc.) ══════════════
     "DERICHEBOURG":"DBG.PA","ALTAREA":"ALTA.PA","GFC":"GFC.PA",
     "NRO":"NRO.PA","RUI":"RUI.PA","LACBX":"LACR.PA",
-    "ALIDS":"ALIDS.PA","ALMKT":"ALMKT.PA","ALSEI":"ALSEI.PA",
-    "ALTGX":"ALTGX.PA","EPAB":"EPAB.PA","COGEFI":"MLCOFI.PA",
-    "OPM":"OPM.PA","PLFRY":"PLFRY.PA",
     # ══ Autres ════════════════════════════════════════════════════════
-    "ATO":"ATO.PA","MERY":"MERY.PA","JXS":"JXS.PA","SYENSQO":"SYENS.PA",
 }
 
 # Tickers sans source YF connue (micro-caps Marché Libre non cotés sur YF)
@@ -212,7 +195,7 @@ if __name__ == "__main__":
     is_friday = datetime.now().weekday() == 4
     now_str   = datetime.now().strftime("%d/%m à %H:%M")
     memory    = load_memory()
-    init_mode = len(memory) < 100
+    init_mode = len(memory) < 70
     synced    = 0
 
     print(f"Source  : Yahoo Finance  ({len(YF_MAP)} tickers mappés)")

@@ -297,6 +297,8 @@ def stock_card(s, highlight=False):
     # SITUATION — FAITS NEUTRES (pas de recommandation d'achat/vente)
     rr = s['rr']; upside = s['upside']; in_zone = s['in_zone']
     stop = s.get('stop',0); price = s['price']; o1 = s.get('o1',0)
+    margin_val = s.get('margin', 0)
+    debt_val   = s.get('debt', 0)
     o1_pct = round((o1 - price) / price * 100) if o1 and price else 0
     dist_stop = round((price - stop) / price * 100, 1) if stop and price else 0
     dist_o1   = round((o1 - price)   / price * 100, 1) if o1 and price else 0
