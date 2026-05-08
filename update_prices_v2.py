@@ -17,8 +17,8 @@ except ImportError:
 
 MEMORY_FILE = "prices_memory.json"
 MIN_PRICE   = 0.50
-NON_EUR     = {"NOVO": 7.46, "MLHRZ": 0.0085}  # DKK→EUR, JPY→EUR approx
-FORCE_RESET = {"NOVO": 50, "WLN": 50, "ATO": 5}
+NON_EUR     = {"NOVO": 7.46}   # DKK→EUR : prix_DKK / 7.46 = prix_EUR
+FORCE_RESET = {"NOVO": 400, "WLN": 50}  # ATO supprimé (prix normal ~37€)
 
 YF_MAP = {
     # ══ CAC 40 ════════════════════════════════════════════════════════
@@ -29,7 +29,7 @@ YF_MAP = {
     "DG":"DG.PA","VIV":"VIV.PA","LR":"LR.PA","DSY":"DSY.PA",
     "EL":"EL.PA","ENGI":"ENGI.PA","HO":"HO.PA","EN":"EN.PA",
     "BN":"BN.PA","AC":"AC.PA","AF":"AF.PA","CA":"CA.PA","RI":"RI.PA",
-    "URW":"URW.AS","TEP":"TEP.PA","DIOR":"CDI.PA","STM":"STM.PA",
+    "URW":"URW.AS","TEP":"TEP.PA","DIOR":"CDI.PA","STM":"STM.MI",
     "ALSTOM":"ALO.PA","EDENRED":"EDEN.PA","PLUXEE":"PLX.PA",
     # ══ SBF 120 / Mid caps FR ══════════════════════════════════════════
     "GTT":"GTT.PA","ELIS":"ELIS.PA","ERF":"ERF.PA","COFA":"COFA.PA",
@@ -37,7 +37,7 @@ YF_MAP = {
     "IPSEN":"IPN.PA","REXEL":"RXL.PA","SOP":"SOP.PA","LNA":"LNA.PA",
     "FNAC":"FNAC.PA","EIFFAGE":"FGR.PA","NEXANS":"NEX.PA","SOI":"SOI.PA",
     "FORVIA":"FRVIA.PA","IMERYS":"NK.PA","ALTEN":"ATE.PA","VK":"VK.PA",
-    "SW":"SW.PA","WLN":"WLN.PA","SEB":"SK.PA","IPSOS":"IPS.PA","CNP":"CNP.PA",
+    "SW":"SW.PA","WLN":"WLN.PA","SEB":"SK.PA","IPSOS":"IPS.PA",
     "DBG":"DBG.PA","TRIGANO":"TRI.PA","EMEIS":"EMEIS.PA",
     "AMF":"AMUN.PA","BIOM":"BIM.PA","BNENF":"BEN.PA","CDRCK":"CARM.PA",
     "CHSR":"CRI.PA","ELECOR":"ELEC.PA","FREY":"FREY.PA",
@@ -58,10 +58,10 @@ YF_MAP = {
     "DIORCDI":"CDI.PA","EUFSCI":"ERF.PA","FGAERO":"FGA.PA",
     "INTPRF":"ITP.PA","IPSNF":"IPN.PA","JACMETL":"JCQ.PA",
     "NEXTY":"NXI.PA","PRNRD":"RI.PA","RXLSA":"RXL.PA",
-    "SFCA":"WLN.PA","SSYNQ":"SYENSQO.PA","STEF2":"STF.PA","TALY":"TEP.PA",
+    "SFCA":"WLN.PA","SSYNQ":"SYENSQO.BR","STEF2":"STF.PA","TALY":"TEP.PA",
     "THERMD":"THEP.PA","TRGO":"TRI.PA","VIRB2":"VIRP.PA",
     # ══ Autres / Fixes ═══════════════════════════════════════════════
-    "ATO":"ATO.PA","MERY":"MERY.PA","SYENSQO":"SYENSQO.PA",
+    "ATO":"ATO.PA","MERY":"MERY.PA","SYENSQO":"SYENSQO.BR",
     "ICAD":"ICAD.PA","NXI":"NXI.PA","IDLG":"IDL.PA","KLPI":"LI.PA",
     "ML":"ML.PA","MLAEP":"ADP.PA","RCO":"RCO.PA","VALO":"FR.PA",
     "GENIE":"GNFT.PA","GLEVT":"GLO.PA",
@@ -118,7 +118,7 @@ def fetch_batch():
                     if not series.empty:
                         p = round(float(series.iloc[-1]), 2)
                         if ticker in NON_EUR:
-                            p = round(p * NON_EUR[ticker], 2)
+                            p = round(p / NON_EUR[ticker], 2)
                         if p > MIN_PRICE:
                             results[ticker] = p
             except: pass
@@ -138,7 +138,7 @@ def fetch_individual(tickers_needed):
             if not hist.empty:
                 p = round(float(hist["Close"].dropna().iloc[-1]), 2)
                 if ticker in NON_EUR:
-                    p = round(p * NON_EUR[ticker], 2)
+                    p = round(p / NON_EUR[ticker], 2)
                 if p > MIN_PRICE:
                     results[ticker] = p
         except: pass

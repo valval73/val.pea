@@ -622,20 +622,22 @@ if __name__ == '__main__':
         forts   = [s for s in stocks if s['signal']=='FORT']
         suspects = [s for s in stocks if s['beneish'] > -1.78 and s['score'] in ['A','B']]
         macro_v = macro_sentiment(macro)[0]
-        msg = (f"📊 *VAL.PEA — {'Dimanche' if is_sunday else 'Soir'} {datetime.now().strftime('%d/%m')}*\n"
-               f"Macro: {macro_v[0]}\n\n")
+        # HTML mode — évite les erreurs Markdown sur noms spéciaux
+        def esc(t): return str(t).replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
+        msg = (f"📊 <b>VAL.PEA — {'Dimanche' if is_sunday else 'Soir'} {datetime.now().strftime('%d/%m')}</b>\n"
+               f"Macro: {esc(macro_v[0])}\n\n")
         if ultimes:
-            msg += f"🚀 *ULTIMES ({len(ultimes)})*\n"
+            msg += f"🚀 <b>ULTIMES ({len(ultimes)})</b>\n"
             for s in ultimes[:5]:
-                msg += f"  • *{s['ticker']}* {s['name'][:12]} — {s['qarp']}/100 — {s['price']}€\n"
+                msg += f"  • <b>{esc(s['ticker'])}</b> {esc(s['name'][:12])} — {s['qarp']}/100 — {s['price']}€\n"
         if forts:
-            msg += f"\n✅ *FORTS ({len(forts)})*\n"
+            msg += f"\n✅ <b>FORTS ({len(forts)})</b>\n"
             for s in forts[:4]:
-                msg += f"  • *{s['ticker']}* — {s['qarp']}/100\n"
+                msg += f"  • <b>{esc(s['ticker'])}</b> — {s['qarp']}/100\n"
         if suspects:
-            msg += f"\n⚠️ *Beneish suspects:* {', '.join(s['ticker'] for s in suspects[:4])}"
+            msg += f"\n⚠️ <b>Beneish suspects:</b> {esc(', '.join(s['ticker'] for s in suspects[:4]))}"
 
-        payload = json.dumps({'chat_id': tg_chat, 'text': msg, 'parse_mode': 'Markdown'})
+        payload = json.dumps({'chat_id': tg_chat, 'text': msg, 'parse_mode': 'HTML'})
         req = urllib.request.Request(
             f"https://api.telegram.org/bot{tg_token}/sendMessage",
             data=payload.encode(),
