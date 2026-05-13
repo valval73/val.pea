@@ -5885,22 +5885,122 @@ function xls(){
 
 // ═══════════ LIVE DATA ═══════════
 async function fetchLive(){
-  // Les prix sont mis à jour automatiquement par GitHub Actions
-  // (chaque soir en semaine, via Twelve Data + Yahoo Finance)
-  // Le bouton "Actualiser" n'est plus disponible depuis le navigateur
-  // car les APIs Yahoo/Twelve Data bloquent les requêtes CORS
-  var st = document.getElementById('live-st');
-  if(st){
-    st.textContent = '✅ Prix mis à jour automatiquement chaque soir';
-    st.style.color = '#16a34a';
-    setTimeout(function(){ st.textContent = ''; }, 4000);
+  // ═══ Mapping ticker interne → symbole Yahoo Finance ═══
+  const YF_MAP = {
+    "MC":"MC.PA","AI":"AI.PA","OR":"OR.PA","RMS":"RMS.PA","SAN":"SAN.PA",
+    "TTE":"TTE.PA","SAF":"SAF.PA","SU":"SU.PA","AXA":"CS.PA","BNP":"BNP.PA",
+    "ACA":"ACA.PA","GLE":"GLE.PA","AIR":"AIR.PA","KER":"KER.PA","PUB":"PUB.PA",
+    "ORA":"ORA.PA","VIE":"VIE.PA","RNO":"RNO.PA","SGO":"SGO.PA","CAP":"CAP.PA",
+    "DG":"DG.PA","VIV":"VIV.PA","LR":"LR.PA","DSY":"DSY.PA","EL":"EL.PA",
+    "ENGI":"ENGI.PA","HO":"HO.PA","EN":"EN.PA","BN":"BN.PA","AC":"AC.PA",
+    "AF":"AF.PA","CA":"CA.PA","RI":"RI.PA","URW":"URW.AS","TEP":"TEP.PA",
+    "STM":"STM.MI","ML":"ML.PA","WLN":"WLN.PA","SEB":"SK.PA","IPSOS":"IPS.PA",
+    "GTT":"GTT.PA","ELIS":"ELIS.PA","ERF":"ERF.PA","COFA":"COFA.PA",
+    "SPIE":"SPIE.PA","FNAC":"FNAC.PA","LNA":"LNA.PA","SOP":"SOP.PA",
+    "NEXANS":"NEX.PA","VK":"VK.PA","SW":"SW.PA","MERY":"MERY.PA",
+    "IPSEN":"IPN.PA","REXEL":"RXL.PA","ALTEN":"ATE.PA","IMERYS":"NK.PA",
+    "FORVIA":"FRVIA.PA","EIFFAGE":"FGR.PA","TRIGANO":"TRI.PA","DASSAV":"AM.PA",
+    "ASML":"ASML.AS","PRX":"PRX.AS","ADYEN":"ADYEN.AS","MT":"MT.AS",
+    "SAP":"SAP.DE","ALV":"ALV.DE","HEIA":"HEIA.AS","SIEMENS":"SIE.DE",
+    "NOVO":"NOVO-B.CO","COVIVIO":"COV.PA","STEF":"STF.PA","ARGAN":"ARG.PA",
+    "INTERPARFUMS":"ITP.PA","LECTRA":"LSS.PA","LISI":"FII.PA","VIRBAC":"VIRP.PA",
+    "ABIVAX":"ABVX.PA","BOIRON":"BOI.PA","THERMADOR":"THEP.PA","WAGA":"WAGA.PA",
+    "LACROIX":"LACR.PA","MANITOU":"MTU.PA","FIGEAC":"FGA.PA","SAMSE":"SAMS.PA",
+    "ALTAREA":"ALTA.PA","DERICHEBOURG":"DBG.PA","NRO":"NRO.PA","RUI":"RUI.PA",
+    "DCAM":"DCAM.PA","EWLD":"EWLD.PA","PAEEM":"PAEEM.PA","GTI":"GTT.PA",
+    "JXS":"JCQ.PA","CNP":"CNP.PA","VK":"VK.PA","ABCA":"ABCA.PA",
+    "ATO":"ATO.PA","SYENSQO":"SYENSQO.BR","ICAD":"ICAD.PA","NXI":"NXI.PA",
+    "GFC":"GFC.PA","EMEIS":"EMEIS.PA","ELIOR":"ELIOR.PA","DBG":"DBG.PA",
+    "ALSTOM":"ALO.PA"
+  };
+  // Taux DKK→EUR pour NOVO
+  const NON_EUR = {"NOVO-B.CO": 7.46};
+
+  const st = document.getElementById('live-st');
+  const setStatus = (msg, color) => { if(st){ st.textContent=msg; st.style.color=color||''; } };
+
+  setStatus('⏳ Connexion Yahoo Finance…', '#f59e0b');
+
+  // Bouton en état chargement
+  const btn = document.querySelector('[onclick="fetchLive()"]');
+  if(btn){ btn.disabled=true; btn.style.opacity='0.6'; }
+
+  // Construire liste des tickers à fetcher
+  const toFetch = S
+    .filter(s => YF_MAP[s.ticker])
+    .map(s => ({tk: s.ticker, yf: YF_MAP[s.ticker]}));
+
+  // Groupes de 20 (limite Yahoo v7)
+  const chunks = [];
+  for(let i=0; i<toFetch.length; i+=20) chunks.push(toFetch.slice(i,i+20));
+
+  // Proxies CORS à essayer dans l'ordre
+  const PROXIES = [
+    sym => `https://corsproxy.io/?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym+'&fields=regularMarketPrice,regularMarketChangePercent')}`,
+    sym => `https://api.allorigins.win/raw?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym)}`
+  ];
+
+  async function fetchChunk(chunk, proxyIdx){
+    const symbols = chunk.map(x=>x.yf).join(',');
+    const url = PROXIES[proxyIdx||0](symbols);
+    const res = await fetch(url, {headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    return data?.quoteResponse?.result || [];
   }
-  // Afficher une notification
-  var notif = document.createElement('div');
-  notif.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#0f2540;color:#fff;padding:12px 18px;border-radius:8px;font-size:11px;z-index:9999;border-left:4px solid #22c55e';
-  notif.innerHTML = '<b>Prix automatiques</b><br>Mis à jour chaque soir via GitHub Actions<br><span style="opacity:.6;font-size:9px">Twelve Data + Yahoo Finance + Mémoire persistante</span>';
-  document.body.appendChild(notif);
-  setTimeout(function(){ notif.remove(); }, 5000);
+
+  let updated=0, errors=0;
+  // Reverse map YF symbol → internal ticker
+  const revMap = {};
+  Object.entries(YF_MAP).forEach(([tk,yf])=>{ revMap[yf]=tk; });
+
+  for(let ci=0; ci<chunks.length; ci++){
+    const chunk = chunks[ci];
+    setStatus(`⏳ Lot ${ci+1}/${chunks.length}…`, '#f59e0b');
+    let quotes=[], proxyIdx=0;
+    while(proxyIdx < PROXIES.length && !quotes.length){
+      try { quotes = await fetchChunk(chunk, proxyIdx); }
+      catch(e){ console.warn('Proxy',proxyIdx,'failed:',e); proxyIdx++; }
+    }
+    quotes.forEach(q=>{
+      const tk = revMap[q.symbol];
+      if(!tk) return;
+      const s = S.find(x=>x.ticker===tk);
+      if(!s) return;
+      let price = q.regularMarketPrice;
+      if(!price || price<=0.05) return;
+      // Conversion devises non-EUR
+      if(NON_EUR[q.symbol]) price = Math.round(price/NON_EUR[q.symbol]*100)/100;
+      else price = Math.round(price*100)/100;
+      const chg = Math.round((q.regularMarketChangePercent||0)*100)/100;
+      s.price = price;
+      s.chg = chg;
+      updated++;
+    });
+    if(ci < chunks.length-1) await new Promise(r=>setTimeout(r,150));
+  }
+
+  // Re-render
+  try{
+    if(typeof buildT==='function') buildT(fil.length?fil:S);
+    if(typeof render==='function' && fil[idx]) render(fil[idx]);
+    if(typeof updHK==='function') updHK();
+  }catch(e){ console.warn('Render error:',e); }
+
+  // Réactiver bouton
+  if(btn){ btn.disabled=false; btn.style.opacity='1'; }
+
+  if(updated>0){
+    setStatus(`✅ ${updated} cours mis à jour`, '#16a34a');
+    const notif = document.createElement('div');
+    notif.style.cssText='position:fixed;bottom:20px;right:20px;background:#0f2540;color:#fff;padding:12px 18px;border-radius:8px;font-size:11px;z-index:9999;border-left:4px solid #22c55e';
+    notif.innerHTML=`<b>✅ Cours actualisés</b><br>${updated} valeurs mises à jour via Yahoo Finance`;
+    document.body.appendChild(notif);
+    setTimeout(()=>{ notif.remove(); setStatus('Données temps réel',''); },6000);
+  } else {
+    setStatus('⚠️ Échec fetch — réessayez', '#ef4444');
+    console.error('fetchLive: 0 cours mis à jour. Vérifiez CORS proxy ou connexion réseau.');
+  }
 }
 
 
