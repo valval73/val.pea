@@ -459,7 +459,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
       <thead><tr>
         <th onclick="srt('ticker')">Ticker ⇅</th><th onclick="srt('name')">Société</th>
         <th onclick="srt('score')">Note</th><th onclick="srt('rec')">Rec.</th>
-        <th onclick="srt('price')">Cours</th><th onclick="srt('entry_low')">Zone entrée</th>
+        <th onclick="srt('price')">Cours</th><th onclick="srt('chg')">Var.%</th><th onclick="srt('entry_low')">Zone entrée</th>
         <th onclick="srt('stop')">Stop</th><th onclick="srt('obj1')">Obj.1</th>
         <th onclick="srt('rr')">R/R</th><th onclick="srt('dcf_base')">DCF</th>
         <th onclick="srt('upside')">Upside</th>
@@ -1627,7 +1627,7 @@ const S=[
  contra:"Exposition exportations gouvernementales. Valorisation déjà bien pricée à 22x PE."},
 
 {ticker:'ATO',name:'Atos',sector:'IT',cap:'mid',srd:true,idx:'CAC40',
- price:35.7,chg:-0.94,mkt:'0.38Md€',b52h:6.5,b52l:0.8,beta:2.5,
+ price:35.7,chg:-0.94,mkt:'0.38Md€',b52h:42.0,b52l:22.0,beta:2.5,
  pe:999,pb:0.1,ev_ebitda:999,ps:0.02,pfcf:999,ev_ebit:999,
  roe:-45,roic:999,roa:-12,debt:4.2,de:8.5,ic:1.2,cr:0.6,qr:0.5,
  yield:0.0,epsg:0,revg:-10,margin:-15,gm:28,om:-8,fcf:-5.5,
@@ -4261,7 +4261,7 @@ const S=[
  contra:"Tres peu liquide. Cyclicite construction. Taille insuffisante pour les institutionnels."},
 
 {ticker:'NRO',bpf:false,name:'Neurones',sector:'IT Services',cap:'mid',srd:true,idx:'SBF120',
- price:36.9,chg:-0.67,mkt:'1.1Mde',b52h:48.5,b52l:33.2,beta:0.55,
+ price:36.9,chg:-0.67,mkt:'1.1Md€',b52h:48.5,b52l:33.2,beta:0.55,
  pe:14,pb:2.8,ev_ebitda:8,ps:0.9,pfcf:11,ev_ebit:9,
  roe:22,roic:18,roa:12,debt:0.0,de:0.05,ic:8.5,cr:2.1,qr:1.9,
  yield:2.8,epsg:12,revg:8,margin:6.5,gm:28,om:9,fcf:42,
@@ -4269,7 +4269,7 @@ const S=[
  dcfb:38,dcfm:52,dcfu:68,
  pio:8,alt:5.2,rsi:48,mm50:41,mm200:39,
  el:38,eh:46,stop:34,o1:55,o2:68,
- cb:6,ch:3,cs:2,tp:54,score:'B',rec:'surveiller',zone:true,
+ cb:6,ch:3,cs:2,tp:54,score:'B',rec:'watch',zone:true,
  moat:[['ESN independante rentable sans dette','moyen'],['Relation longue duree grands comptes','moyen']],
  cats:[],ins:[],
  peers:[{n:'Sopra Steria',pe:18,pb:2.1,roe:14,div:2.5,evebitda:9},{n:'Alten',pe:16,pb:3.2,roe:20,div:1.8,evebitda:9}],
@@ -4279,7 +4279,7 @@ const S=[
  contra:"Secteur IT cyclique. Croissance organique modeste. Taille insuffisante grands mandats europeens."},
 
 {ticker:'BVI',bpf:false,name:'Bureau Veritas',sector:'Inspection & Certification',cap:'large',srd:true,idx:'CAC40',
- price:26.02,chg:0.12,mkt:'9.8Mde',b52h:29.8,b52l:22.4,beta:0.85,
+ price:26.02,chg:0.12,mkt:'9.8Md€',b52h:29.8,b52l:22.4,beta:0.85,
  pe:19,pb:4.2,ev_ebitda:12,ps:2.1,pfcf:16,ev_ebit:13,
  roe:28,roic:18,roa:9,debt:1.8,de:1.2,ic:7.5,cr:1.2,qr:1.0,
  yield:3.5,epsg:10,revg:8,margin:11,gm:35,om:14,fcf:7.2,
@@ -4287,7 +4287,7 @@ const S=[
  dcfb:23,dcfm:31,dcfu:40,
  pio:7,alt:4.8,rsi:52,mm50:27,mm200:25.5,
  el:24,eh:29,stop:22,o1:33,o2:40,
- cb:7,ch:3,cs:2,tp:32,score:'B',rec:'surveiller',zone:true,
+ cb:7,ch:3,cs:2,tp:32,score:'B',rec:'watch',zone:true,
  moat:[['Leader mondial inspection certification','fort'],['Switching cost reglementaire','moyen']],
  cats:[],ins:[],
  peers:[{n:'SGS',pe:22,pb:5.1,roe:25,div:3.8,evebitda:14}],
@@ -4297,7 +4297,7 @@ const S=[
  contra:"Croissance organique limitee a 6-8%. Valorisation juste. Exposition devises emergentes."},
 
 {ticker:'TALY',bpf:false,name:'Teleperformance',sector:'Outsourcing BPO',cap:'large',srd:true,idx:'CAC40',
- price:67.3,chg:-1.69,mkt:'5.2Mde',b52h:135,b52l:68,beta:1.4,
+ price:67.3,chg:-1.69,mkt:'5.2Md€',b52h:135,b52l:68,beta:1.4,
  pe:9,pb:1.2,ev_ebitda:5,ps:0.5,pfcf:8,ev_ebit:6,
  roe:16,roic:12,roa:6,debt:2.1,de:1.8,ic:5.2,cr:1.1,qr:0.9,
  yield:5.8,epsg:-5,revg:3,margin:8,gm:28,om:11,fcf:10.5,
@@ -4305,7 +4305,7 @@ const S=[
  dcfb:70,dcfm:100,dcfu:135,
  pio:6,alt:3.8,rsi:45,mm50:84,mm200:98,
  el:72,eh:95,stop:62,o1:108,o2:130,
- cb:8,ch:4,cs:3,tp:105,score:'C',rec:'surveiller',zone:true,
+ cb:8,ch:4,cs:3,tp:105,score:'C',rec:'watch',zone:true,
  moat:[['Echelle mondiale 500k agents','moyen'],['Contrats pluriannuels','moyen']],
  cats:[],ins:[],
  peers:[{n:'Concentrix',pe:8,pb:0.9,roe:12,div:6.5,evebitda:5}],
@@ -4315,7 +4315,7 @@ const S=[
  contra:"IA menace structurelle du modele. Dette elevee. Croissance negative. Pas une conviction forte."},
 
 {ticker:'FDJ',bpf:false,name:'Francaise des Jeux',sector:'Jeux et Loterie',cap:'large',srd:true,idx:'CAC40',
- price:19.0,chg:0.0,mkt:'5.8Mde',b52h:25.4,b52l:18.8,beta:0.55,
+ price:19.0,chg:0.0,mkt:'5.8Md€',b52h:25.4,b52l:18.8,beta:0.55,
  pe:18,pb:12,ev_ebitda:14,ps:1.8,pfcf:15,ev_ebit:15,
  roe:58,roic:35,roa:14,debt:0.8,de:0.5,ic:8.8,cr:1.4,qr:1.2,
  yield:4.2,epsg:8,revg:6,margin:14,gm:52,om:17,fcf:6.8,
@@ -4323,7 +4323,7 @@ const S=[
  dcfb:19,dcfm:25,dcfu:32,
  pio:8,alt:5.5,rsi:50,mm50:22,mm200:21.5,
  el:20,eh:24,stop:18,o1:27,o2:33,
- cb:7,ch:3,cs:2,tp:27,score:'B',rec:'surveiller',zone:true,
+ cb:7,ch:3,cs:2,tp:27,score:'B',rec:'watch',zone:true,
  moat:[['Monopole legal loterie France','fort'],['Licence exclusive 25 ans','fort']],
  cats:[],ins:[],
  peers:[{n:'Flutter',pe:25,pb:8,roe:45,div:0,evebitda:18}],
@@ -4333,7 +4333,7 @@ const S=[
  contra:"Croissance limitee. PB eleve 12x. Risque fiscal. Expansion internationale non prouvee."},
 
 {ticker:'ALSTOM',bpf:false,name:'Alstom',sector:'Ferroviaire',cap:'large',srd:true,idx:'CAC40',
- price:16.83,chg:-2.26,mkt:'8.2Mde',b52h:19.2,b52l:11.8,beta:1.35,
+ price:16.83,chg:-2.26,mkt:'8.2Md€',b52h:19.2,b52l:11.8,beta:1.35,
  pe:28,pb:1.1,ev_ebitda:9,ps:0.4,pfcf:-2,ev_ebit:12,
  roe:4,roic:3,roa:1.5,debt:3.2,de:2.8,ic:3.2,cr:0.9,qr:0.7,
  yield:0.0,epsg:45,revg:4,margin:2,gm:18,om:5,fcf:-200,
@@ -4341,7 +4341,7 @@ const S=[
  dcfb:12,dcfm:18,dcfu:26,
  pio:4,alt:2.1,rsi:54,mm50:15,mm200:14.8,
  el:13,eh:18,stop:11,o1:22,o2:28,
- cb:5,ch:3,cs:3,tp:20,score:'C',rec:'surveiller',zone:false,
+ cb:5,ch:3,cs:3,tp:20,score:'C',rec:'watch',zone:false,
  moat:[['Carnet commandes 92Md vis 10 ans','fort'],['Barrieres entree ferroviaire','fort']],
  cats:[{t:'Plan redressement FCF 2026',w:'2026',c:'var(--or)'}],ins:[],
  peers:[{n:'Siemens Mobility',pe:22,pb:3.5,roe:18,div:2.5,evebitda:11}],
@@ -4358,7 +4358,7 @@ const S=[
  yield:5.2,epsg:8,revg:6,margin:22,gm:65,om:28,fcf:9.5,
  capex:1.2,capr:0.8,capda:0.3,dcfb:55,dcfm:78,dcfu:100,
  pio:7,alt:5.2,rsi:48,mm50:66,mm200:65,
- el:58,eh:72,stop:50,o1:82,o2:98,cb:6,ch:3,cs:2,tp:75,score:'B',rec:'surveiller',zone:true,
+ el:58,eh:72,stop:50,o1:82,o2:98,cb:6,ch:3,cs:2,tp:75,score:'B',rec:'watch',zone:true,
  moat:[['Leader europeen gestion actifs','fort'],['Reseau Crédit Agricole captif','moyen']],
  cats:[{t:'Croissance ETF Europe',w:'2026',c:'var(--gn)'}],ins:[],
  peers:[{n:'DWS',pe:12,pb:1.8,roe:14,div:5.5,evebitda:9}],
@@ -4374,7 +4374,7 @@ const S=[
  yield:4.2,epsg:12,revg:4,margin:7,gm:28,om:11,fcf:8.2,
  capex:4.5,capr:4.8,capda:1.1,dcfb:72,dcfm:105,dcfu:138,
  pio:6,alt:4.2,rsi:44,mm50:88,mm200:92,
- el:76,eh:96,stop:68,o1:108,o2:132,cb:5,ch:3,cs:2,tp:105,score:'B',rec:'surveiller',zone:false,
+ el:76,eh:96,stop:68,o1:108,o2:132,cb:5,ch:3,cs:2,tp:105,score:'B',rec:'watch',zone:false,
  moat:[['Chimie de spécialité haute valeur ajoutée','moyen'],['Brevets adhésifs thermoplastiques','moyen']],
  cats:[{t:'Pivot vers matériaux avancés',w:'2025-2027',c:'var(--gd)'}],ins:[],
  peers:[{n:'Evonik',pe:14,pb:1.0,roe:9,div:4.8,evebitda:7},{n:'Solvay',pe:12,pb:0.9,roe:8,div:5.0,evebitda:6}],
@@ -4390,7 +4390,7 @@ const S=[
  yield:7.8,epsg:5,revg:3,margin:5,gm:22,om:8,fcf:9.5,
  capex:3.2,capr:2.8,capda:0.9,dcfb:24,dcfm:36,dcfu:48,
  pio:6,alt:3.8,rsi:42,mm50:29,mm200:30,
- el:24,eh:32,stop:21,o1:38,o2:46,cb:4,ch:2,cs:2,tp:38,score:'B',rec:'surveiller',zone:false,
+ el:24,eh:32,stop:21,o1:38,o2:46,cb:4,ch:2,cs:2,tp:38,score:'B',rec:'watch',zone:false,
  moat:[['Monopoles locaux distribution carburants','moyen'],['Présence Outre-mer et Afrique','moyen']],
  cats:[{t:'Diversification biocarburants',w:'2026',c:'var(--gd)'}],ins:[],
  peers:[{n:'Vopak',pe:12,pb:1.6,roe:12,div:4.5,evebitda:8}],
@@ -4406,7 +4406,7 @@ const S=[
  yield:1.2,epsg:15,revg:12,margin:14,gm:38,om:18,fcf:8.5,
  capex:18.5,capr:22.5,capda:2.2,dcfb:56.0,dcfm:80.0,dcfu:150.0,
  pio:7,alt:4.8,rsi:38,mm50:88,mm200:108,
- el:130.0,eh:155.0,stop:112.0,o1:175.0,o2:200.0,cb:8,ch:4,cs:3,tp:125,score:'B',rec:'surveiller',zone:true,
+ el:130.0,eh:155.0,stop:112.0,o1:175.0,o2:200.0,cb:8,ch:4,cs:3,tp:125,score:'B',rec:'watch',zone:true,
  moat:[['SOI unique fournisseur substrats SOI','fort'],['Brevets silicium sur isolant','fort']],
  cats:[{t:'Montée en puissance RF 5G',w:'2026-2027',c:'var(--gn)'}],ins:[],
  peers:[{n:'Shin-Etsu',pe:22,pb:3.5,roe:20,div:1.8,evebitda:12}],
@@ -4422,7 +4422,7 @@ const S=[
  yield:5.5,epsg:4,revg:3,margin:28,gm:55,om:35,fcf:5.8,
  capex:8.5,capr:16.5,capda:1.4,dcfb:72,dcfm:100,dcfu:128,
  pio:5,alt:3.5,rsi:48,mm50:84,mm200:82,
- el:74,eh:92,stop:66,o1:102,o2:122,cb:5,ch:3,cs:2,tp:100,score:'C',rec:'surveiller',zone:true,
+ el:74,eh:92,stop:66,o1:102,o2:122,cb:5,ch:3,cs:2,tp:100,score:'C',rec:'watch',zone:true,
  moat:[['Parc immobilier Paris QCA prime','moyen'],['Qualité locataires grands comptes','moyen']],
  cats:[{t:'Retour télétravail modéré',w:'2026',c:'var(--gd)'}],ins:[],
  peers:[{n:'Unibail',pe:12,pb:0.5,roe:4,div:7.0,evebitda:18}],
@@ -4439,7 +4439,7 @@ const S=[
  yield:0,epsg:-50,revg:-5,margin:-8,gm:35,om:8,fcf:-2,
  capex:5.5,capr:6.5,capda:0.8,dcfb:5,dcfm:12,dcfu:22,
  pio:3,alt:1.8,rsi:42,mm50:8,mm200:11,
- el:6,eh:10,stop:5,o1:14,o2:20,cb:2,ch:1,cs:1,tp:12,score:'D',rec:'eviter',zone:false,
+ el:6,eh:10,stop:5,o1:14,o2:20,cb:2,ch:1,cs:1,tp:12,score:'D',rec:'avoid',zone:false,
  moat:[['Part de marché paiements Europe','faible']],
  cats:[{t:'Restructuration dette 2025',w:'2025-2026',c:'var(--rd)'}],ins:[],
  peers:[{n:'Nexi',pe:10,pb:0.6,roe:4,div:0,evebitda:7}],
@@ -4455,7 +4455,7 @@ const S=[
  yield:0,epsg:-15,revg:-8,margin:3,gm:18,om:5,fcf:8.5,
  capex:1.8,capr:1.5,capda:0.8,dcfb:10,dcfm:18,dcfu:28,
  pio:4,alt:2.5,rsi:45,mm50:13,mm200:14,
- el:10,eh:16,stop:8,o1:20,o2:26,cb:2,ch:1,cs:1,tp:18,score:'D',rec:'eviter',zone:false,
+ el:10,eh:16,stop:8,o1:20,o2:26,cb:2,ch:1,cs:1,tp:18,score:'D',rec:'avoid',zone:false,
  moat:[['Marque reconnue promotion immobilière','faible']],
  cats:[{t:'Rebond immobilier si taux baissent',w:'2026',c:'var(--gd)'}],ins:[],
  peers:[{n:'Bouygues Immo',pe:0,pb:0.4,roe:3,div:0,evebitda:4}],
@@ -5645,12 +5645,24 @@ function buildT(data){
   document.getElementById('rtbody').innerHTML=data.map(s=>{
     const u=up(s);const inZ=s.price>=s.el&&s.price<=s.eh||s.zone;
     const gr={A:'qA',B:'qB',C:'qC',D:'qD'};
+    // Variation journalière
+    const chg=s.chg||0;
+    const chgCol=chg>0?'var(--gn)':chg<0?'var(--rd)':'inherit';
+    const chgStr=(chg>0?'+':'')+chg.toFixed(2)+'%';
+    // RSI coloré : >70 suracheté (rouge), <30 survendu (vert)
+    const rsiCol=s.rsi>=70?'var(--rd)':s.rsi<=30?'var(--gn)':s.rsi>=60?'var(--or)':'inherit';
+    const rsiBold=s.rsi>=70||s.rsi<=30?'font-weight:700;':'';
+    // Position dans la plage 52 semaines
+    const has52=(s.b52h&&s.b52l&&s.b52h>s.b52l);
+    const pct52=has52?Math.round((s.price-s.b52l)/(s.b52h-s.b52l)*100):null;
+    const pos52=pct52!==null?`<div title="${pct52}% de la plage 52s" style="width:36px;height:4px;background:var(--bd);border-radius:2px;display:inline-block;vertical-align:middle;margin-left:4px"><div style="width:${Math.min(100,Math.max(0,pct52))}%;height:100%;background:${pct52<20?'var(--rd)':pct52>80?'var(--or)':'var(--gn)'};border-radius:2px"></div></div>`:'';
     return `<tr class="${inZ?'zone-row':''}">
       <td onclick="goStock('${s.ticker}')">${s.ticker}${inZ?'📍':''}</td>
       <td>${s.name}</td>
       <td><span class="rtg ${gr[s.score]||'qC'}">${s.score}</span></td>
-      <td><span class="rb ${rCl(s.rec)}" style="padding:1px 4px;font-size:7px">${s.rec.toUpperCase()}</span></td>
-      <td>${s.price}€</td>
+      <td><span class="rb ${rCl(s.rec)}" style="padding:1px 4px;font-size:7px">${(rLb(s.rec)||s.rec).replace(/[🎯👁⏸❌]\s*/,'').toUpperCase()}</span></td>
+      <td>${s.price}€${pos52}</td>
+      <td style="color:${chgCol};font-size:10px;font-weight:600">${chgStr}</td>
       <td style="color:var(--gn)">${s.el}–${s.eh}€</td>
       <td style="color:var(--rd)">${s.stop}€</td>
       <td style="color:var(--bl)">${s.o1}€</td>
@@ -5670,7 +5682,7 @@ function buildT(data){
       <td style="color:${s.epsg>=10?'var(--gn)':s.epsg<0?'var(--rd)':'inherit'}">${s.epsg}%</td>
       <td style="color:${s.pio>=7?'var(--gn)':s.pio<=3?'var(--rd)':'inherit'}">${s.pio}/9</td>
       <td style="color:${s.alt>3?'var(--gn)':s.alt<1.8&&s.alt>0?'var(--rd)':'var(--gd)'}">${s.alt||'—'}</td>
-      <td>${s.rsi}</td>
+      <td style="color:${rsiCol};${rsiBold}">${s.rsi}</td>
       <td><span class="tag t-cap" style="font-size:7px">${cL[s.cap]}</span></td>
     </tr>`;
   }).join('');
@@ -5685,7 +5697,7 @@ function tf(f,btn){
 }
 function srt(col){
   if(srtC===col)srtD*=-1;else{srtC=col;srtD=1;}
-  const colMap={ticker:'ticker',name:'name',score:'score',rec:'rec',price:'price',entry_low:'el',
+  const colMap={ticker:'ticker',name:'name',score:'score',rec:'rec',price:'price',chg:'chg',entry_low:'el',
    stop:'stop',obj1:'o1',rr:null,dcf_base:'dcfm',upside:null,pe:'pe',pb:'pb',ev_ebitda:'ev_ebitda',
    ps:'ps',roe:'roe',roic:'roic',roa:'roa',debt:'debt',ic:'ic',yield:'yield',margin:'margin',
    gross_margin:'gm',fcf:'fcf',capex_rev:'capr',eps_growth:'epsg',piotroski:'pio',altman:'alt',rsi:'rsi',cap:'cap'};
@@ -5884,7 +5896,20 @@ function xls(){
 }
 
 // ═══════════ LIVE DATA ═══════════
-async function fetchLive(){
+async function fetchLive(isAuto){
+  // ─── Throttle : éviter un fetch auto à chaque rechargement ───
+  const THROTTLE_MIN = 30;
+  const LS_KEY = 'valpea_last_fetch';
+  if(isAuto){
+    try{
+      const last = parseInt(localStorage.getItem(LS_KEY)||'0');
+      if(Date.now()-last < THROTTLE_MIN*60*1000){
+        console.log(`fetchLive: throttled (dernier fetch il y a ${Math.round((Date.now()-last)/60000)} min)`);
+        return;
+      }
+    }catch(e){}
+  }
+
   // ═══ Mapping ticker interne → symbole Yahoo Finance ═══
   const YF_MAP = {
     "MC":"MC.PA","AI":"AI.PA","OR":"OR.PA","RMS":"RMS.PA","SAN":"SAN.PA",
@@ -5908,7 +5933,7 @@ async function fetchLive(){
     "LACROIX":"LACR.PA","MANITOU":"MTU.PA","FIGEAC":"FGA.PA","SAMSE":"SAMS.PA",
     "ALTAREA":"ALTA.PA","DERICHEBOURG":"DBG.PA","NRO":"NRO.PA","RUI":"RUI.PA",
     "DCAM":"DCAM.PA","EWLD":"EWLD.PA","PAEEM":"PAEEM.PA","GTI":"GTT.PA",
-    "JXS":"JCQ.PA","CNP":"CNP.PA","VK":"VK.PA","ABCA":"ABCA.PA",
+    "JXS":"JCQ.PA","CNP":"CNP.PA","ABCA":"ABCA.PA",
     "ATO":"ATO.PA","SYENSQO":"SYENSQO.BR","ICAD":"ICAD.PA","NXI":"NXI.PA",
     "GFC":"GFC.PA","EMEIS":"EMEIS.PA","ELIOR":"ELIOR.PA","DBG":"DBG.PA",
     "ALSTOM":"ALO.PA"
@@ -5936,7 +5961,7 @@ async function fetchLive(){
 
   // Proxies CORS à essayer dans l'ordre
   const PROXIES = [
-    sym => `https://corsproxy.io/?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym+'&fields=regularMarketPrice,regularMarketChangePercent')}`,
+    sym => `https://corsproxy.io/?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym+'&fields=regularMarketPrice,regularMarketChangePercent,fiftyTwoWeekHigh,fiftyTwoWeekLow')}`,
     sym => `https://api.allorigins.win/raw?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym)}`
   ];
 
@@ -5949,7 +5974,7 @@ async function fetchLive(){
     return data?.quoteResponse?.result || [];
   }
 
-  let updated=0, errors=0;
+  let updated=0;
   // Reverse map YF symbol → internal ticker
   const revMap = {};
   Object.entries(YF_MAP).forEach(([tk,yf])=>{ revMap[yf]=tk; });
@@ -5970,11 +5995,15 @@ async function fetchLive(){
       let price = q.regularMarketPrice;
       if(!price || price<=0.05) return;
       // Conversion devises non-EUR
-      if(NON_EUR[q.symbol]) price = Math.round(price/NON_EUR[q.symbol]*100)/100;
-      else price = Math.round(price*100)/100;
-      const chg = Math.round((q.regularMarketChangePercent||0)*100)/100;
+      const fx = NON_EUR[q.symbol]||1;
+      price = Math.round(price/fx*100)/100;
       s.price = price;
-      s.chg = chg;
+      s.chg = Math.round((q.regularMarketChangePercent||0)*100)/100;
+      // ─── Mise à jour plage 52 semaines ───
+      if(q.fiftyTwoWeekHigh && q.fiftyTwoWeekLow){
+        s.b52h = Math.round(q.fiftyTwoWeekHigh/fx*100)/100;
+        s.b52l = Math.round(q.fiftyTwoWeekLow/fx*100)/100;
+      }
       updated++;
     });
     if(ci < chunks.length-1) await new Promise(r=>setTimeout(r,150));
@@ -5991,10 +6020,11 @@ async function fetchLive(){
   if(btn){ btn.disabled=false; btn.style.opacity='1'; }
 
   if(updated>0){
+    try{ localStorage.setItem(LS_KEY, String(Date.now())); }catch(e){}
     setStatus(`✅ ${updated} cours mis à jour`, '#16a34a');
     const notif = document.createElement('div');
     notif.style.cssText='position:fixed;bottom:20px;right:20px;background:#0f2540;color:#fff;padding:12px 18px;border-radius:8px;font-size:11px;z-index:9999;border-left:4px solid #22c55e';
-    notif.innerHTML=`<b>✅ Cours actualisés</b><br>${updated} valeurs mises à jour via Yahoo Finance`;
+    notif.innerHTML=`<b>✅ Cours actualisés</b><br>${updated} valeurs mises à jour (prix + plages 52s)`;
     document.body.appendChild(notif);
     setTimeout(()=>{ notif.remove(); setStatus('Données temps réel',''); },6000);
   } else {
@@ -9930,7 +9960,7 @@ function dataFreshness(s){
 
 document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
-  setTimeout(fetchLive,3000);
+  setTimeout(()=>fetchLive(true),3000);
   setTimeout(fetchMacro, 1500);
   setTimeout(checkAlerts,2000);
   setTimeout(checkBpfResultats,3000);
