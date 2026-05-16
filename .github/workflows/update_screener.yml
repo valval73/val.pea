@@ -61,8 +61,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python send_alerts_v2.py
 
-                  - name: Inject live_patch.js
-        run: grep -q live_patch.js index.html || sed -i 's|</body>|<script src="live_patch.js"></script>\n</body>|' index.html
+                        - name: Inject live_patch.js
+        run: python3 inject_patch.py
 
 - name: Commit and push
         run: |
