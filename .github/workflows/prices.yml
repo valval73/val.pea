@@ -13,6 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install yfinance
+        run: pip install yfinance --quiet
+
       - name: Fetch prices
         run: python3 fetch_prices.py
 
