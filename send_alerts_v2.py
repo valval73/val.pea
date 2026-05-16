@@ -772,7 +772,7 @@ if __name__ == '__main__':
         if suspects:
             msg += f"\n⚠️ <b>Beneish suspects:</b> {esc(', '.join(s['ticker'] for s in suspects[:4]))}"
 
-        payload = json.dumps({'chat_id': tg_chat, 'text': msg, 'parse_mode': 'HTML'})
+        payload = json.dumps({'chat_id': tg_chat, 'text': msg[:3800], 'parse_mode': 'HTML'})
         req = urllib.request.Request(
             f"https://api.telegram.org/bot{tg_token}/sendMessage",
             data=payload.encode(),
