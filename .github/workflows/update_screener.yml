@@ -61,21 +61,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python send_alerts_v2.py
 
-            - name: Inject live_patch.js in index.html
-        run: |
-          python3 -c "
-import re
-with open('index.html','r',encoding='utf-8') as f:
-    html = f.read()
-tag = '<script src=\"live_patch.js\"></script>'
-if tag not in html:
-    html = html.replace('</body>', tag + chr(10) + '</body>', 1)
-    with open('index.html','w',encoding='utf-8') as f:
-        f.write(html)
-    print('live_patch.js injected')
-else:
-    print('live_patch.js already present')
-"
+                  - name: Inject live_patch.js
+        run: grep -q live_patch.js index.html || sed -i 's|</body>|<script src="live_patch.js"></script>\n</body>|' index.html
 
 - name: Commit and push
         run: |
