@@ -61,10 +61,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python send_alerts_v2.py
 
-                        - name: Inject live_patch.js
+      - name: Inject live_patch.js
         run: python3 inject_patch.py
 
-- name: Commit and push
+      - name: Commit and push
         run: |
           git config user.name "VAL.PEA Bot"
           git config user.email "bot@val.pea"
