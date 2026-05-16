@@ -97,89 +97,43 @@ def macro_sentiment(macro):
 
 # ─── FETCH YOUTUBE RÉSUMÉS VIA ANTHROPIC API ──────────────────────────────
 def fetch_youtube_insights():
-    """
-    Utilise l'API Anthropic pour analyser les dernières vidéos des 4 influenceurs
-    et en tirer un condensé actionnable
-    """
+    """Resume hebdomadaire des 4 influenceurs via API Anthropic web_search"""
     api_key = os.environ.get('ANTHROPIC_API_KEY', '')
     if not api_key:
         return None
-
-    channels = [
-        {
-            'name': 'Guillaume Fournier (Finance Optimale)',
-            'url': 'https://www.youtube.com/@FinanceOptimale',
-            'focus': 'QARP, analyse fondamentale actions françaises'
-        },
-        {
-            'name': 'Nicolas Chéron',
-            'url': 'https://www.youtube.com/@NicolasCheron',
-            'focus': 'Récapitulatif marchés bimensuel, analyse technique + fondamentale'
-        },
-        {
-            'name': 'Youssef Harrabi (MasterBourse)',
-            'url': 'https://www.youtube.com/@masterbourse4180',
-            'focus': 'Stock picking, midcaps françaises, analyse fondamentale'
-        },
-        {
-            'name': 'Xavier Delmas',
-            'url': 'https://www.youtube.com/@xavierdelmasinvest',
-            'focus': 'Lecture bilans, analyse actions, investissement long terme'
-        },
-    ]
-
-    prompt = f"""Tu es un assistant qui analyse les contenus YouTube de 4 influenceurs finance français sérieux.
-
-Aujourd'hui : {datetime.now().strftime('%d/%m/%Y')}
-
-Les 4 chaînes à surveiller :
-{json.dumps(channels, ensure_ascii=False, indent=2)}
-
-Tâche : En te basant sur ta connaissance de ces chaînes et de leurs publications récentes, génère un condensé hebdomadaire actionnable pour un investisseur PEA long terme avec les sections suivantes :
-
-1. **Actions/secteurs mentionnés** : quelles actions ou secteurs ont été analysés récemment par ces influenceurs ?
-2. **Consensus ou divergence** : sont-ils d'accord sur le marché actuel ? Où divergent-ils ?
-3. **À retenir pour le dimanche** : 3 points concrets issus de leurs analyses récentes
-4. **Vigilance** : 1-2 risques ou pièges mentionnés
-
-Réponds en JSON avec cette structure exacte :
-{{
-  "actions_mentionnees": ["liste des actions/secteurs"],
-  "consensus": "1-2 phrases sur le consensus actuel",
-  "a_retenir": ["point 1", "point 2", "point 3"],
-  "vigilance": ["risque 1", "risque 2"]
-}}
-
-Sois concis et actionnable. Pas de phrases génériques — uniquement ce qui est utile pour décider d'un achat ce dimanche."""
-
+    prompt = (
+        f"Tu es un analyste boursier. Nous sommes le {datetime.now().strftime('%d/%m/%Y')}.\n\n"
+        "MISSION: Resumes les analyses de ces 4 influenceurs bourse francais cette semaine.\n\n"
+        "1. Guillaume Fournier (@guillaumefournier13 YouTube) - QARP, dividendes, FCF yield\n"
+        "2. Rique Trading (@riquetrading YouTube / @rique.trading Instagram) - Technique + fondamentale, PEA sous-evalues\n"
+        "3. Nicolas Cheron (@NCheron_bourse X + YouTube) - Macro + sentiment + technique, ZoneBourse\n"
+        "4. Jean-Benoit Gambet (@jeanbenoit_gambet Instagram) - Institutionnel, qualite + valorisation\n\n"
+        "Recherche leurs publications des 7 derniers jours. Pour chaque influenceur (2 lignes max):\n"
+        "- Sentiment bull/bear/neutre + raison\n"
+        "- Actions/secteurs mentionnes positivement\n\n"
+        "Synthese finale: consensus semaine + 2-3 tickers PEA qui ressortent.\n"
+        "Format HTML avec <b>noms et tickers</b>. Sois direct et factuel."
+    )
     try:
         payload = json.dumps({
-            "model": "claude-sonnet-4-20250514",
-            "max_tokens": 800,
-            "messages": [{"role": "user", "content": prompt}]
+            'model': 'claude-sonnet-4-20250514',
+            'max_tokens': 900,
+            'tools': [{'type': 'web_search_20250305', 'name': 'web_search'}],
+            'messages': [{'role': 'user', 'content': prompt}]
         }).encode('utf-8')
-
         req = urllib.request.Request(
-            "https://api.anthropic.com/v1/messages",
-            data=payload,
-            headers={
-                'Content-Type': 'application/json',
-                'x-api-key': api_key,
-                'anthropic-version': '2023-06-01'
-            }
+            'https://api.anthropic.com/v1/messages', data=payload,
+            headers={'Content-Type': 'application/json', 'x-api-key': api_key,
+                     'anthropic-version': '2023-06-01', 'anthropic-beta': 'web-search-2025-03-05'}
         )
-        with urllib.request.urlopen(req, timeout=30) as r:
-            resp = json.loads(r.read())
-
-        text = resp['content'][0]['text']
-        # Nettoyer le JSON
-        text = re.sub(r'```json|```', '', text).strip()
-        return json.loads(text)
+        with urllib.request.urlopen(req, timeout=50) as resp:
+            data = json.loads(resp.read())
+        text = ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text')
+        return text.strip() if text else None
     except Exception as e:
-        print(f"⚠️ Insights YouTube: {e}")
+        print(f"  fetch_youtube_insights error: {e}")
         return None
 
-# ─── STOCKS PARSING ────────────────────────────────────────────────────────
 def get_stocks(html_content):
     s_start = html_content.find("const S=[")
     s_end_m = re.search(r'\n\];\s*\n\s*\n\s*// ═+\s*CALENDRIER', html_content[s_start:])
@@ -708,8 +662,9 @@ if __name__ == '__main__':
         if v['value']: print(f"  {v['label']}: {v['value']} ({'+' if v['chg']>0 else ''}{v['chg']}%)")
 
     print("Analyse YouTube influenceurs...")
+    is_saturday_or_sunday = datetime.now().weekday() in (5, 6)
     is_sunday = datetime.now().weekday() == 6
-    insights = fetch_youtube_insights() if is_sunday or '--insights' in sys.argv else None
+    insights = fetch_youtube_insights() if is_saturday_or_sunday or '--insights' in sys.argv else None
     if insights:
         print("  ✅ Condensé YouTube généré")
     else:
