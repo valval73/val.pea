@@ -6029,7 +6029,7 @@ async function fetchLive(isAuto){
     setTimeout(()=>{ notif.remove(); setStatus('Données temps réel',''); },6000);
   } else {
     setStatus('⚠️ Échec fetch — réessayez', '#ef4444');
-    console.error('fetchLive: 128 cours mis à jour le 15/05 à 17:23');
+    console.error('fetchLive: 0 cours mis à jour le 17/05 à 06:36');
   }
 }
 
@@ -6253,7 +6253,6 @@ function pdfFiche(){
   <div class=footer>⚠ Données éducatives — Pas de conseil en investissement · PEA Screener Pro · ${new Date().toLocaleDateString('fr-FR')} · ${s.ticker}</div>
   <script>window.onload=function(){setTimeout(function(){window.print();},600);}<\/script>
   
-<script src="live_patch.js"></script>
 </body></html>`;
   w.document.write(html);
   w.document.close();
@@ -10842,5 +10841,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
 </div>
 </div>
+<script src="live_patch.js"></script>
 </body>
 </html>
