@@ -1,5 +1,7 @@
-import yfinance as yf
-import json, time
+import urllib.request, urllib.parse, json, time
+
+PROXY = 'https://corsproxy.io/?'
+YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/'
 
 YF_MAP = {
   "MC":"MC.PA","AI":"AI.PA","OR":"OR.PA","RMS":"RMS.PA","SAN":"SAN.PA",
@@ -18,31 +20,48 @@ YF_MAP = {
 }
 
 out = {}
-rev = {v:k for k,v in YF_MAP.items()}
-all_yf = list(YF_MAP.values())
+rev = {v: k for k, v in YF_MAP.items()}
+HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+  'Accept': 'application/json, */*',
+}
 
-for i in range(0, len(all_yf), 20):
-    batch = all_yf[i:i+20]
-    try:
-        tickers = yf.Tickers(" ".join(batch))
-        for sym in batch:
-            try:
-                info = tickers.tickers[sym].fast_info
-                p = info.last_price
-                prev = info.previous_close
-                if p and p > 0 and prev and prev > 0:
-                    c = round((p-prev)/prev*100, 2)
-                    tk = rev.get(sym)
-                    if tk:
-                        out[tk] = {"p":round(float(p),2),"c":c,"h52":round(float(info.year_high or 0),2),"l52":round(float(info.year_low or 0),2)}
-            except: pass
-        print(f"Batch {i//20+1}: OK")
-    except Exception as e:
-        print(f"Batch {i//20+1} ERR: {e}")
-    time.sleep(1)
+def fetch_price(yf_sym):
+    url = PROXY + urllib.parse.quote(YF_BASE + yf_sym + '?range=1d&interval=5m', safe='')
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=12) as resp:
+        data = json.loads(resp.read())
+    m = data['chart']['result'][0]['meta']
+    p = m['regularMarketPrice']
+    prev = m['chartPreviousClose']
+    if not p or p <= 0: return None
+    return {
+        'p': round(float(p), 2),
+        'c': round((float(p) - float(prev)) / float(prev) * 100, 2),
+        'h52': round(float(m.get('fiftyTwoWeekHigh') or 0), 2),
+        'l52': round(float(m.get('fiftyTwoWeekLow') or 0), 2)
+    }
 
-out["_updated"] = int(time.time())
-out["_count"] = len(out) - 2
-with open("prices.json","w") as f:
+BATCH = 5
+syms = list(YF_MAP.values())
+for i in range(0, len(syms), BATCH):
+    batch = syms[i:i+BATCH]
+    for sym in batch:
+        try:
+            data = fetch_price(sym)
+            if data:
+                tk = rev.get(sym)
+                if tk:
+                    out[tk] = data
+                    print(f"  {tk}: {data['p']}e ({'+' if data['c']>0 else ''}{data['c']}%)")
+        except Exception as e:
+            print(f"  ERR {sym}: {str(e)[:50]}")
+        time.sleep(0.3)
+    if i + BATCH < len(syms):
+        time.sleep(1.5)
+
+out['_updated'] = int(time.time())
+out['_count'] = len(out) - 2
+with open('prices.json', 'w') as f:
     json.dump(out, f, indent=2)
-print(f"Done: {out['_count']} prices")
+print(f"Done: {out['_count']} prix dans prices.json")
