@@ -1,19 +1,10 @@
-// ====================================================
-// LIVE PATCH - fetchLive via GitHub Actions prices.json
-// + Bouton analyse IA Anthropic par action
-// ====================================================
-
-// Override fetchLive - lit prices.json genere par GitHub Actions
+// LIVE PATCH v2 - fetchLive + IA Anthropic (CORS fix)
 window.fetchLive = async function(isAuto) {
   const LS = 'valpea_fetch';
-  if (isAuto) {
-    try { if (Date.now() - parseInt(localStorage.getItem(LS)||0) < 15*60*1000) return; } catch(e) {}
-  }
+  if (isAuto) { try { if (Date.now() - parseInt(localStorage.getItem(LS)||0) < 15*60*1000) return; } catch(e) {} }
   try { localStorage.setItem(LS, Date.now()); } catch(e) {}
-
   const liveEl = document.getElementById('live-st');
   if (liveEl) { liveEl.textContent = 'Mise a jour cours...'; liveEl.style.color = '#f59e0b'; }
-
   try {
     const r = await fetch('https://raw.githubusercontent.com/valval73/val.pea/main/prices.json?t=' + Date.now());
     if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -34,101 +25,69 @@ window.fetchLive = async function(isAuto) {
       });
     }
     const age = data._updated ? Math.round((Date.now()/1000 - data._updated) / 60) : '?';
-    const msg = n + ' cours — ' + age + 'min';
-    if (liveEl) { liveEl.textContent = msg; liveEl.style.color = '#22c55e'; }
-    console.log('fetchLive: ' + n + ' cours mis a jour depuis GitHub Actions (age: ' + age + 'min)');
+    if (liveEl) { liveEl.textContent = n + ' cours — ' + age + 'min'; liveEl.style.color = '#22c55e'; }
   } catch(e) {
     if (liveEl) { liveEl.textContent = 'Echec — reessayez'; liveEl.style.color = '#ef4444'; }
-    console.error('fetchLive error:', e);
   }
 };
 
-// Bouton analyse IA Anthropic - ajoute dans la fiche action
-function addIAButton(ticker, name) {
-  const existing = document.getElementById('ia-btn-' + ticker);
-  if (existing) return;
-
-  const fiche = document.getElementById('fiche');
-  if (!fiche) return;
-
+// Bouton IA Anthropic avec header CORS
+function injectIAButton(ticker, name, scoreData) {
+  const ficheEl = document.getElementById('fiche');
+  if (!ficheEl || document.getElementById('ia-btn-' + ticker)) return;
   const btn = document.createElement('button');
   btn.id = 'ia-btn-' + ticker;
-  btn.textContent = 'Analyse IA';
-  btn.style.cssText = 'margin:8px 0;padding:8px 16px;background:#7C3AED;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;width:100%;letter-spacing:0.5px;';
-
-  const resultDiv = document.createElement('div');
-  resultDiv.id = 'ia-result-' + ticker;
-  resultDiv.style.cssText = 'margin-top:8px;padding:10px;background:#F5F3FF;border-radius:6px;font-size:12px;line-height:1.6;display:none;';
-
+  btn.innerHTML = '🤖 Analyse IA Claude';
+  btn.style.cssText = 'display:block;width:100%;margin:6px 0;padding:10px;background:#7C3AED;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;';
+  const res = document.createElement('div');
+  res.id = 'ia-res-' + ticker;
+  res.style.cssText = 'display:none;margin:6px 0;padding:12px;background:#F5F3FF;border-left:3px solid #7C3AED;border-radius:6px;font-size:12px;line-height:1.65;';
   btn.onclick = async () => {
-    btn.disabled = true;
-    btn.textContent = 'Analyse en cours...';
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = '<i>L'IA analyse ' + name + '...</i>';
-
+    btn.disabled = true; btn.innerHTML = '⏳ Analyse...';
+    res.style.display = 'block'; res.innerHTML = 'Analyse de <b>' + name + '</b>...';
     try {
-      const s = (typeof S !== 'undefined') ? S.find(x => x.ticker === ticker) : null;
-      const ctx = s ? 'Prix: ' + s.price + 'EUR, QARP: ' + s.qarp + '/100, Grade: ' + s.grade + ', Dividende: ' + (s.dy||'?') + '%, ROE: ' + (s.roe||'?') + '%, Beneish: ' + (s.beneish||'?') : '';
-
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const ctx = scoreData ? 'QARP ' + scoreData.qarp + '/100, Grade ' + scoreData.grade + ', Prix ' + scoreData.price + 'EUR, ROE ' + scoreData.roe + '%, Div ' + scoreData.dy + '%' : '';
+      const resp = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': window._ANT || '',
+          'anthropic-version': '2023-06-01',
+          'anthropic-beta': 'web-search-2025-03-05',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 600,
+          model: 'claude-sonnet-4-20250514', max_tokens: 500,
           tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-          messages: [{
-            role: 'user',
-            content: 'Analyse rapide de ' + name + ' (' + ticker + '.PA) pour un investisseur PEA. ' + ctx + '. En 5 points concis: 1) Catalyseurs actuels, 2) Risques principaux, 3) Valorisation vs pairs, 4) Signal achat/vente/attendre, 5) Horizon recommande. Sois direct et actionnable. Pas de disclaimers.'
-          }]
+          messages: [{ role: 'user', content: 'Analyse ' + name + ' (' + ticker + ') pour PEA. ' + ctx + '. 5 points: 1)Catalyseurs 2)Risques 3)Valorisation 4)Signal 5)Horizon. Direct.' }]
         })
       });
-      const d = await res.json();
-      const text = (d.content||[]).filter(b => b.type === 'text').map(b => b.text).join('');
-      resultDiv.innerHTML = text.replace(/
-/g, '<br>') || 'Analyse non disponible';
-    } catch(e) {
-      resultDiv.innerHTML = 'Erreur: ' + e.message;
-    }
-    btn.disabled = false;
-    btn.textContent = 'Analyse IA';
+      if (!resp.ok) throw new Error(resp.status + ': ' + (await resp.text()).substring(0,80));
+      const d = await resp.json();
+      const text = (d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+      res.innerHTML = text ? text.replace(/\n/g,'<br>') : 'Non disponible';
+    } catch(e) { res.innerHTML = '<b style="color:red">Erreur:</b> ' + e.message; }
+    btn.disabled = false; btn.innerHTML = '🤖 Analyse IA Claude';
   };
-
-  // Inserer le bouton dans la fiche
-  const analyseSection = fiche.querySelector('[id="pg-sc"]') || fiche;
-  fiche.insertBefore(btn, fiche.firstChild);
-  fiche.insertBefore(resultDiv, btn.nextSibling);
+  ficheEl.insertBefore(res, ficheEl.firstChild);
+  ficheEl.insertBefore(btn, ficheEl.firstChild);
 }
 
-// Observer les changements de fiche pour injecter le bouton IA
-const ficheObserver = new MutationObserver(() => {
+// Observer fiche
+const ficheObs = new MutationObserver(() => {
   const fiche = document.getElementById('fiche');
   if (!fiche || fiche.style.display === 'none') return;
-  // Trouver le ticker de l'action affichee
-  const tickerEl = fiche.querySelector('.logo-s, [class*="ticker"]');
-  if (tickerEl) {
-    const ticker = tickerEl.textContent.trim().split(' ')[0];
-    const nameEl = fiche.querySelector('h2, .logo-m, [class*="name"]');
-    const name = nameEl ? nameEl.textContent.trim() : ticker;
-    if (ticker && ticker.length <= 6) addIAButton(ticker, name);
+  const tickerEl = fiche.querySelector('.logo-s');
+  if (!tickerEl) return;
+  const ticker = tickerEl.textContent.trim().split(' ')[0];
+  const nameEl = fiche.querySelector('.logo-m, h2');
+  const name = nameEl ? nameEl.textContent.trim() : ticker;
+  if (ticker && /^[A-Z]{2,6}$/.test(ticker)) {
+    const s = typeof S !== 'undefined' ? S.find(x => x.ticker === ticker) : null;
+    setTimeout(() => injectIAButton(ticker, name, s), 400);
   }
 });
 
-// Lancer le patch
-document.addEventListener('DOMContentLoaded', () => {
-  ficheObserver.observe(document.body, { childList: true, subtree: true });
-  // Lancer fetchLive automatiquement au chargement
-  setTimeout(() => {
-    if (typeof fetchLive === 'function') fetchLive(false);
-  }, 1500);
-  console.log('live_patch.js charge - fetchLive et IA Anthropic actifs');
-});
-
-// Si DOM deja pret
-if (document.readyState !== 'loading') {
-  ficheObserver.observe(document.body, { childList: true, subtree: true });
-  setTimeout(() => {
-    if (typeof fetchLive === 'function') fetchLive(false);
-  }, 1500);
-  console.log('live_patch.js charge (DOM ready) - fetchLive et IA actifs');
-}
+ficheObs.observe(document.body, { childList: true, subtree: true });
+setTimeout(() => { if (typeof fetchLive === 'function') fetchLive(false); }, 1500);
+console.log('live_patch v2 OK');
