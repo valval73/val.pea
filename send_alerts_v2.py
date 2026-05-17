@@ -537,7 +537,7 @@ def generate_ptf_fiches(stocks):
   {''.join(fiches)}
 </div>"""
 
-def build_email(stocks, macro, insights, date_str, is_sunday=False):
+def build_email(stocks, macro, insights, date_str, is_sunday=False, extra=None):
     ultimes = sorted([s for s in stocks if s['signal']=='ULTIME'], key=lambda x: -x['qarp'])
     forts   = sorted([s for s in stocks if s['signal']=='FORT'],   key=lambda x: -x['qarp'])
     surv    = sorted([s for s in stocks if s['signal']=='SURVEILLER' and s['score']=='A'], key=lambda x: -x['qarp'])
@@ -561,6 +561,9 @@ def build_email(stocks, macro, insights, date_str, is_sunday=False):
 
     # Section insights YouTube
     insights_html = ''
+    if extra:
+        html += '<div style="background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;border-left:4px solid #0f2540;"><div style="font-size:11px;font-weight:700;color:#0f2540;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📊 Consensus Analystes · Résultats · Pépites</div><div style="font-size:12px;line-height:1.7;color:#333;">' + extra + '</div></div>'
+
     if insights:
         insights_html = '''
 <div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">
@@ -647,6 +650,22 @@ def build_email(stocks, macro, insights, date_str, is_sunday=False):
 </div></body></html>'''
 
 # ─── MAIN ──────────────────────────────────────────────────────────────────
+
+def fetch_extra_sources(stocks):
+    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
+    if not api_key: return None
+    top5 = ', '.join(s['ticker'] for s in sorted(stocks, key=lambda x: x.get('qarp',0), reverse=True)[:5])
+    prompt = ('Date: ' + datetime.now().strftime('%d/%m/%Y') + '. Top5 QARP: ' + top5 + '\n\nEn HTML: 1.CONSENSUS analystes ZoneBourse pour chaque ticker 2.RESULTATS cette semaine CAC40/SBF120 3.PEPITE cachee small cap europeenne 4.CAC40 technique niveaux cles. Direct et factuel.')
+    try:
+        payload = json.dumps({'model':'claude-sonnet-4-20250514','max_tokens':700,'tools':[{'type':'web_search_20250305','name':'web_search'}],'messages':[{'role':'user','content':prompt}]}).encode('utf-8')
+        req = urllib.request.Request('https://api.anthropic.com/v1/messages',data=payload,headers={'Content-Type':'application/json','x-api-key':api_key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05'})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read())
+        return ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text').strip() or None
+    except Exception as e:
+        print(f'  extra: {e}')
+        return None
+
 if __name__ == '__main__':
     html_file = 'index.html'
     with open(html_file, 'r', encoding='utf-8') as f:
@@ -661,6 +680,10 @@ if __name__ == '__main__':
     for k,v in macro.items():
         if v['value']: print(f"  {v['label']}: {v['value']} ({'+' if v['chg']>0 else ''}{v['chg']}%)")
 
+    is_saturday = datetime.now().weekday() == 5
+    extra = fetch_extra_sources(stocks) if is_saturday or '--extra' in sys.argv else None
+    if extra: print("  Extra sources OK")
+
     print("Analyse YouTube influenceurs...")
     is_saturday_or_sunday = datetime.now().weekday() in (5, 6)
     is_sunday = datetime.now().weekday() == 6
@@ -671,7 +694,7 @@ if __name__ == '__main__':
         print("  ⏭  Insights ignorés (lundi-samedi)")
 
     date_str = datetime.now().strftime('%d/%m/%Y %H:%M')
-    email_html = build_email(stocks, macro, insights, date_str, is_sunday)
+    email_html = build_email(stocks, macro, insights, date_str, is_sunday, extra)
 
     # Sauvegarder preview
     with open('alert_preview.html', 'w', encoding='utf-8') as f:
