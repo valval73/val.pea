@@ -1,9 +1,4 @@
-// ================================================================
-// PEA SCREENER PRO — live_patch.js v4.2
-// Prix live multi-proxy + Analyse IA Anthropic
-// ================================================================
 
-const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
 // PEA SCREENER PRO — live_patch.js v4.3
 // Prix live multi-proxy + Analyse IA + patch buildETF
 // ================================================================
