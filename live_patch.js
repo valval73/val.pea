@@ -4,6 +4,11 @@
 // ================================================================
 
 const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
+// PEA SCREENER PRO — live_patch.js v4.3
+// Prix live multi-proxy + Analyse IA + patch buildETF
+// ================================================================
+
+const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
 
 const PROXIES = [
   url => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
@@ -83,7 +88,7 @@ window.fetchLive = async function(isAuto) {
   }
   const now = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   upd(ok>0 ? ok+' cours live · '+now : 'Hors marché · données statiques', ok>0?'#22c55e':'#6b7280');
-  console.log('[v4.2] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
+  console.log('[v4.3] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
 };
 
 function getANTKey() {
@@ -205,4 +210,25 @@ _ficheObs.observe(document.body,{childList:true,subtree:true});
 
 const _k=localStorage.getItem('_ant_key'); if (_k) window._ANT=_k;
 setTimeout(function(){if (typeof window.fetchLive==='function') window.fetchLive(false);},2500);
-console.log('[live_patch v4.2] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
+
+// ─── PATCH buildETF : ajoute les propriétés manquantes et re-déclenche ──────
+setTimeout(function() {
+  try {
+    if (typeof ETF !== 'undefined' && Array.isArray(ETF)) {
+      var patched = 0;
+      ETF.forEach(function(etf) {
+        if (!etf || typeof etf !== 'object') return;
+        if (!Array.isArray(etf.avantages)) { etf.avantages = []; patched++; }
+        if (!Array.isArray(etf.risques)) { etf.risques = []; patched++; }
+        if (!etf.verdict) etf.verdict = '';
+        if (!etf.note) etf.note = 'B';
+      });
+      if (typeof buildETF === 'function') {
+        buildETF();
+        console.log('[v4.3] buildETF patched: ' + patched + ' props, re-run OK');
+      }
+    }
+  } catch(e) { console.log('[v4.3] buildETF patch error:', e.message); }
+}, 3500);
+
+console.log('[live_patch v4.3] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
