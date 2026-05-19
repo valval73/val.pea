@@ -1,5 +1,5 @@
 // ================================================================
-// PEA SCREENER PRO — live_patch.js v4.1
+// PEA SCREENER PRO — live_patch.js v4.2
 // Prix live multi-proxy + Analyse IA Anthropic
 // ================================================================
 
@@ -37,7 +37,7 @@ async function fetchOnePrice(yfSym) {
       const r = await fetch(PROXIES[idx](targetUrl), { signal: AbortSignal.timeout(8000) });
       if (!r.ok) continue;
       const d = await r.json();
-      const m = d?.chart?.result?.[0]?.meta;
+      const m = d && d.chart && d.chart.result && d.chart.result[0] && d.chart.result[0].meta;
       if (!m || !m.regularMarketPrice) continue;
       _activeProxyIdx = idx;
       return {
@@ -58,16 +58,16 @@ window.fetchLive = async function(isAuto) {
   }
   try { localStorage.setItem(LS, Date.now()); } catch(e) {}
   const liveEl = document.getElementById('live-st');
-  const upd = (msg, col) => { if(liveEl) { liveEl.textContent=msg; liveEl.style.color=col||'#f59e0b'; } };
+  const upd = function(msg, col) { if(liveEl) { liveEl.textContent=msg; liveEl.style.color=col||'#f59e0b'; } };
   upd('Connexion...', '#f59e0b');
-  const tickers = typeof S !== 'undefined' ? S.map(s=>s.ticker).filter(t=>YF_MAP[t]) : Object.keys(YF_MAP);
+  const tickers = typeof S !== 'undefined' ? S.map(function(s){return s.ticker;}).filter(function(t){return YF_MAP[t];}) : Object.keys(YF_MAP);
   let ok = 0, fail = 0;
   for (let i = 0; i < tickers.length; i += 6) {
-    await Promise.all(tickers.slice(i,i+6).map(async ticker => {
+    await Promise.all(tickers.slice(i,i+6).map(async function(ticker) {
       try {
         const data = await fetchOnePrice(YF_MAP[ticker]);
         if (data && typeof S !== 'undefined') {
-          const s = S.find(x=>x.ticker===ticker);
+          const s = S.find(function(x){return x.ticker===ticker;});
           if (s) {
             s.price=data.p; s.chg=data.c;
             if (data.h52>0) s.b52h=data.h52;
@@ -79,11 +79,11 @@ window.fetchLive = async function(isAuto) {
       } catch(e) { fail++; }
     }));
     upd(ok+'/'+tickers.length+' cours...','#f59e0b');
-    if (i+6 < tickers.length) await new Promise(r=>setTimeout(r,400));
+    if (i+6 < tickers.length) await new Promise(function(r){setTimeout(r,400);});
   }
   const now = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   upd(ok>0 ? ok+' cours live · '+now : 'Hors marché · données statiques', ok>0?'#22c55e':'#6b7280');
-  console.log('[v4.1] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
+  console.log('[v4.2] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
 };
 
 function getANTKey() {
@@ -95,94 +95,114 @@ function getANTKey() {
 
 function showKeyPrompt(onSave) {
   if (document.getElementById('ia-key-modal')) return;
-  const m = document.createElement('div');
-  m.id = 'ia-key-modal';
-  m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:flex;align-items:center;justify-content:center;';
+  const overlay = document.createElement('div');
+  overlay.id = 'ia-key-modal';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:flex;align-items:center;justify-content:center;';
   const box = document.createElement('div');
   box.style.cssText = 'background:#0f2540;border-radius:14px;padding:28px;max-width:440px;width:92%;border:1px solid rgba(255,255,255,.1);';
-  box.innerHTML = '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;">🤖 Clé API Anthropic</div>'
-    + '<div style="font-size:12px;color:#8899aa;margin-bottom:18px;">Pour analyser avec IA + recherche web temps réel</div>'
-    + '<input id="ant-inp" type="password" placeholder="sk-ant-api03-..." style="width:100%;padding:11px;background:#1a3050;border:1px solid #2a4060;border-radius:8px;color:#fff;font-size:12px;font-family:monospace;box-sizing:border-box;outline:none;" />'
-    + '<div style="font-size:11px;color:#8899aa;margin-top:8px;">Stockée localement · <a href="https://console.anthropic.com" target="_blank" style="color:#7C3AED;">Obtenir une clé</a></div>'
-    + '<div style="display:flex;gap:10px;margin-top:18px;">'
-    + '<button id="ant-save" style="flex:1;padding:10px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-weight:700;cursor:pointer;">Activer l’IA</button>'
-    + '<button id="ant-skip" style="padding:10px 16px;background:transparent;color:#8899aa;border:1px solid #2a4060;border-radius:7px;cursor:pointer;">Plus tard</button>'
-    + '</div>';
-  m.appendChild(box);
-  document.body.appendChild(m);
-  document.getElementById('ant-save').onclick = function() {
-    var k = document.getElementById('ant-inp').value.trim();
-    if (k.startsWith('sk-ant')) { localStorage.setItem('_ant_key',k); window._ANT=k; m.remove(); if(onSave) onSave(k); }
-    else document.getElementById('ant-inp').style.borderColor='#ef4444';
+  const title = document.createElement('div');
+  title.style.cssText = 'font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;';
+  title.textContent = '🤖 Clé API Anthropic';
+  const sub = document.createElement('div');
+  sub.style.cssText = 'font-size:12px;color:#8899aa;margin-bottom:18px;';
+  sub.textContent = 'Pour analyser les actions avec IA + recherche web temps réel';
+  const inp = document.createElement('input');
+  inp.id = 'ant-inp'; inp.type = 'password'; inp.placeholder = 'sk-ant-api03-...';
+  inp.style.cssText = 'width:100%;padding:11px;background:#1a3050;border:1px solid #2a4060;border-radius:8px;color:#fff;font-size:12px;font-family:monospace;box-sizing:border-box;outline:none;';
+  const hint = document.createElement('div');
+  hint.style.cssText = 'font-size:11px;color:#8899aa;margin-top:8px;';
+  hint.textContent = 'Stockée localement dans votre navigateur';
+  const btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:10px;margin-top:18px;';
+  const btnSave = document.createElement('button');
+  btnSave.style.cssText = 'flex:1;padding:10px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-weight:700;cursor:pointer;';
+  btnSave.textContent = 'Activer l’IA';
+  const btnSkip = document.createElement('button');
+  btnSkip.style.cssText = 'padding:10px 16px;background:transparent;color:#8899aa;border:1px solid #2a4060;border-radius:7px;cursor:pointer;';
+  btnSkip.textContent = 'Plus tard';
+  btnRow.appendChild(btnSave); btnRow.appendChild(btnSkip);
+  box.appendChild(title); box.appendChild(sub); box.appendChild(inp); box.appendChild(hint); box.appendChild(btnRow);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  btnSave.onclick = function() {
+    const k = inp.value.trim();
+    if (k.startsWith('sk-ant')) {
+      localStorage.setItem('_ant_key', k); window._ANT=k; overlay.remove(); if(onSave) onSave(k);
+    } else { inp.style.borderColor='#ef4444'; }
   };
-  document.getElementById('ant-skip').onclick = function() { m.remove(); };
+  btnSkip.onclick = function() { overlay.remove(); };
+}
+
+function clearANTKey() {
+  localStorage.removeItem('_ant_key');
+  window._ANT = null;
 }
 
 async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
-  var key = getANTKey();
+  const key = getANTKey();
   if (!key) { showKeyPrompt(function(k){ window._ANT=k; runIAAnalysis(ticker,name,scoreData,resEl,btn); }); return; }
   btn.disabled=true; btn.textContent='⏳ Analyse...';
   resEl.style.display='block';
   resEl.innerHTML='<div style="color:#7C3AED;padding:8px;font-size:12px;">🔍 Recherche <b>'+name+'</b>...</div>';
-  var ctx = scoreData ? 'Score QARP '+scoreData.qarp+'/100, Grade '+scoreData.grade+', Prix '+(scoreData.price||'?')+'€, ROE '+(scoreData.roe||'?')+'%, Div '+(scoreData.dy||'?')+'%, Beneish '+(scoreData.beneish||'?') : '';
-  var prompt = 'Analyse rapide de '+name+' ('+ticker+') PEA. '+ctx+'.'
-    + '\n\n5 points concis:'
-    + '\n1) Actualité récente et catalyseurs'
-    + '\n2) Risques principaux'
-    + '\n3) Valorisation vs secteur'
-    + '\n4) Signal: ACHETER / ATTENDRE / VENDRE'
-    + '\n5) Horizon recommandé'
-    + '\n\nStyle cabinet, direct, sans disclaimers.';
+  const ctx = scoreData ? 'Score QARP '+scoreData.qarp+'/100, Grade '+scoreData.grade+', Prix '+(scoreData.price||'?')+'€, ROE '+(scoreData.roe||'?')+'%, Div '+(scoreData.dy||'?')+'%, Beneish '+(scoreData.beneish||'?') : '';
+  const prompt = 'Analyse rapide de '+name+' ('+ticker+') PEA. '+ctx+'.\n\n5 points concis:\n1) Actualité récente et catalyseurs\n2) Risques principaux\n3) Valorisation vs secteur\n4) Signal: ACHETER / ATTENDRE / VENDRE\n5) Horizon recommandé\n\nStyle cabinet, direct, sans disclaimers.';
   try {
-    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05','anthropic-dangerous-direct-browser-access':'true'},
       body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
     });
-    if (!resp.ok) { var e=await resp.json().catch(function(){return{};}); throw new Error(e.error&&e.error.message?e.error.message:'HTTP '+resp.status); }
-    var d = await resp.json();
-    var text = (d.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
+    if (!resp.ok) { const e=await resp.json().catch(function(){return{};}); throw new Error(e.error&&e.error.message?e.error.message:'HTTP '+resp.status); }
+    const d = await resp.json();
+    const text = (d.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
     if (text) {
-      var html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');
-      resEl.innerHTML='<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p>'+html+'</p></div>';
+      const html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');
+      resEl.innerHTML = '<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p>'+html+'</p></div>';
     } else { resEl.innerHTML='<div style="color:#888;font-size:12px;">Analyse non disponible</div>'; }
   } catch(e) {
     if (e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0) {
-      localStorage.removeItem('_ant_key'); window._ANT=null;
-      resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Clé invalide. <a href="#" onclick="localStorage.removeItem('_ant_key');window._ANT=null;location.reload();" style="color:#7C3AED;">Reconfigurer</a></div>';
+      clearANTKey();
+      const errDiv = document.createElement('div');
+      errDiv.style.cssText = 'color:#ef4444;font-size:12px;';
+      errDiv.textContent = 'Clé invalide. ';
+      const reconfBtn = document.createElement('a');
+      reconfBtn.href='#'; reconfBtn.style.color='#7C3AED'; reconfBtn.textContent='Reconfigurer';
+      reconfBtn.onclick = function(ev) { ev.preventDefault(); clearANTKey(); resEl.style.display='none'; btn.disabled=false; btn.textContent='🤖 Analyse IA'; };
+      errDiv.appendChild(reconfBtn);
+      resEl.innerHTML=''; resEl.appendChild(errDiv);
     } else { resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Erreur: '+e.message+'</div>'; }
   }
   btn.disabled=false; btn.textContent='🤖 Analyse IA';
 }
 
 function injectIAButton(ticker, name, scoreData) {
-  var fiche = document.getElementById('fiche');
+  const fiche = document.getElementById('fiche');
   if (!fiche||document.getElementById('ia-btn-'+ticker)) return;
-  var wrap=document.createElement('div'); wrap.style.cssText='padding:0 0 8px 0;';
-  var btn=document.createElement('button'); btn.id='ia-btn-'+ticker;
+  const wrap=document.createElement('div'); wrap.style.cssText='padding:0 0 8px 0;';
+  const btn=document.createElement('button'); btn.id='ia-btn-'+ticker;
   btn.textContent='🤖 Analyse IA';
   btn.style.cssText='width:100%;padding:10px;background:linear-gradient(135deg,#7C3AED,#5b21b6);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:opacity .2s;';
   btn.onmouseover=function(){btn.style.opacity='.85';};
   btn.onmouseout=function(){btn.style.opacity='1';};
-  var res=document.createElement('div'); res.id='ia-res-'+ticker;
+  const res=document.createElement('div'); res.id='ia-res-'+ticker;
   res.style.cssText='display:none;margin-top:6px;padding:12px;background:#f8f5ff;border-left:3px solid #7C3AED;border-radius:0 6px 6px 0;max-height:320px;overflow-y:auto;';
   btn.onclick=function(){runIAAnalysis(ticker,name,scoreData,res,btn);};
   wrap.appendChild(btn); wrap.appendChild(res); fiche.insertBefore(wrap,fiche.firstChild);
 }
 
-var _ficheObs = new MutationObserver(function(){
-  var fiche=document.getElementById('fiche');
+const _ficheObs = new MutationObserver(function(){
+  const fiche=document.getElementById('fiche');
   if (!fiche||fiche.style.display==='none') return;
-  var tickerEl=fiche.querySelector('.logo-s'); if (!tickerEl) return;
-  var ticker=tickerEl.textContent.trim().replace(/\s+.*/,'');
+  const tickerEl=fiche.querySelector('.logo-s'); if (!tickerEl) return;
+  const ticker=tickerEl.textContent.trim().replace(/\s+.*/,'');
   if (!ticker||ticker.length<2||ticker.length>6) return;
-  var nameEl=fiche.querySelector('.logo-m');
-  var name=nameEl?nameEl.textContent.trim():ticker;
-  var s=typeof S!=='undefined'?S.find(function(x){return x.ticker===ticker;}):null;
+  const nameEl=fiche.querySelector('.logo-m');
+  const name=nameEl?nameEl.textContent.trim():ticker;
+  const s=typeof S!=='undefined'?S.find(function(x){return x.ticker===ticker;}):null;
   setTimeout(function(){injectIAButton(ticker,name,s);},400);
 });
 _ficheObs.observe(document.body,{childList:true,subtree:true});
 
-var _k=localStorage.getItem('_ant_key'); if (_k) window._ANT=_k;
+const _k=localStorage.getItem('_ant_key'); if (_k) window._ANT=_k;
 setTimeout(function(){if (typeof window.fetchLive==='function') window.fetchLive(false);},2500);
-console.log('[live_patch v4.1] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
+console.log('[live_patch v4.2] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
