@@ -1,6 +1,6 @@
 
-// PEA SCREENER PRO — live_patch.js v4.3
-// Prix live multi-proxy + Analyse IA + patch buildETF
+// PEA SCREENER PRO — live_patch.js v4.4
+// Prix live multi-proxy + Analyse IA + patch ETF complet
 // ================================================================
 
 const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
@@ -83,7 +83,7 @@ window.fetchLive = async function(isAuto) {
   }
   const now = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   upd(ok>0 ? ok+' cours live · '+now : 'Hors marché · données statiques', ok>0?'#22c55e':'#6b7280');
-  console.log('[v4.3] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
+  console.log('[v4.4] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
 };
 
 function getANTKey() {
@@ -133,10 +133,7 @@ function showKeyPrompt(onSave) {
   btnSkip.onclick = function() { overlay.remove(); };
 }
 
-function clearANTKey() {
-  localStorage.removeItem('_ant_key');
-  window._ANT = null;
-}
+function clearANTKey() { localStorage.removeItem('_ant_key'); window._ANT = null; }
 
 async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
   const key = getANTKey();
@@ -162,14 +159,11 @@ async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
   } catch(e) {
     if (e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0) {
       clearANTKey();
-      const errDiv = document.createElement('div');
-      errDiv.style.cssText = 'color:#ef4444;font-size:12px;';
-      errDiv.textContent = 'Clé invalide. ';
-      const reconfBtn = document.createElement('a');
-      reconfBtn.href='#'; reconfBtn.style.color='#7C3AED'; reconfBtn.textContent='Reconfigurer';
-      reconfBtn.onclick = function(ev) { ev.preventDefault(); clearANTKey(); resEl.style.display='none'; btn.disabled=false; btn.textContent='🤖 Analyse IA'; };
-      errDiv.appendChild(reconfBtn);
-      resEl.innerHTML=''; resEl.appendChild(errDiv);
+      const errDiv=document.createElement('div'); errDiv.style.cssText='color:#ef4444;font-size:12px;';
+      errDiv.textContent='Clé invalide. ';
+      const rc=document.createElement('a'); rc.href='#'; rc.style.color='#7C3AED'; rc.textContent='Reconfigurer';
+      rc.onclick=function(ev){ev.preventDefault();clearANTKey();resEl.style.display='none';btn.disabled=false;btn.textContent='🤖 Analyse IA';};
+      errDiv.appendChild(rc); resEl.innerHTML=''; resEl.appendChild(errDiv);
     } else { resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Erreur: '+e.message+'</div>'; }
   }
   btn.disabled=false; btn.textContent='🤖 Analyse IA';
@@ -181,7 +175,7 @@ function injectIAButton(ticker, name, scoreData) {
   const wrap=document.createElement('div'); wrap.style.cssText='padding:0 0 8px 0;';
   const btn=document.createElement('button'); btn.id='ia-btn-'+ticker;
   btn.textContent='🤖 Analyse IA';
-  btn.style.cssText='width:100%;padding:10px;background:linear-gradient(135deg,#7C3AED,#5b21b6);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:opacity .2s;';
+  btn.style.cssText='width:100%;padding:10px;background:linear-gradient(135deg,#7C3AED,#5b21b6);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s;';
   btn.onmouseover=function(){btn.style.opacity='.85';};
   btn.onmouseout=function(){btn.style.opacity='1';};
   const res=document.createElement('div'); res.id='ia-res-'+ticker;
@@ -206,24 +200,27 @@ _ficheObs.observe(document.body,{childList:true,subtree:true});
 const _k=localStorage.getItem('_ant_key'); if (_k) window._ANT=_k;
 setTimeout(function(){if (typeof window.fetchLive==='function') window.fetchLive(false);},2500);
 
-// ─── PATCH buildETF : ajoute les propriétés manquantes et re-déclenche ──────
+// ─── PATCH ETF : mappe ter->frais + champs manquants + re-run buildETF ───────
 setTimeout(function() {
   try {
     if (typeof ETF !== 'undefined' && Array.isArray(ETF)) {
-      var patched = 0;
       ETF.forEach(function(etf) {
         if (!etf || typeof etf !== 'object') return;
-        if (!Array.isArray(etf.avantages)) { etf.avantages = []; patched++; }
-        if (!Array.isArray(etf.risques)) { etf.risques = []; patched++; }
-        if (!etf.verdict) etf.verdict = '';
+        if (etf.ter !== undefined && etf.frais === undefined) etf.frais = etf.ter;
+        if (!etf.frais && etf.frais !== 0) etf.frais = 0.20;
+        if (!Array.isArray(etf.avantages)) etf.avantages = etf.desc ? [etf.desc] : [];
+        if (!Array.isArray(etf.risques)) etf.risques = [];
+        if (!etf.verdict) etf.verdict = etf.desc || '';
         if (!etf.note) etf.note = 'B';
+        if (!etf.type) etf.type = 'Capitalisant';
+        if (!etf.emetteur) etf.emetteur = etf.name ? etf.name.split(' ')[0] : '';
+        if (!etf.replication) etf.replication = 'Synthétique';
+        if (!etf.indice) etf.indice = etf.name || '';
       });
-      if (typeof buildETF === 'function') {
-        buildETF();
-        console.log('[v4.3] buildETF patched: ' + patched + ' props, re-run OK');
-      }
+      if (typeof buildETF === 'function') buildETF();
+      console.log('[v4.4] ETF patch OK, buildETF re-run');
     }
-  } catch(e) { console.log('[v4.3] buildETF patch error:', e.message); }
-}, 3500);
+  } catch(e) { console.log('[v4.4] ETF patch error:', e.message); }
+}, 3000);
 
-console.log('[live_patch v4.3] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
+console.log('[live_patch v4.4] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
