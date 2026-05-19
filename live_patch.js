@@ -1,6 +1,7 @@
 
-// PEA SCREENER PRO — live_patch.js v4.4
-// Prix live multi-proxy + Analyse IA + patch ETF complet
+// PEA SCREENER PRO — live_patch.js v4.5 STABLE
+// Prix live multi-proxy + Bouton IA + patch ETF complet
+// SAUVEGARDE : https://github.com/valval73/val.pea/blob/main/live_patch.js
 // ================================================================
 
 const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
@@ -83,9 +84,10 @@ window.fetchLive = async function(isAuto) {
   }
   const now = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   upd(ok>0 ? ok+' cours live · '+now : 'Hors marché · données statiques', ok>0?'#22c55e':'#6b7280');
-  console.log('[v4.4] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
+  console.log('[v4.5] '+ok+' OK, '+fail+' fail, proxy#'+_activeProxyIdx);
 };
 
+// ─── CLÉ IA ─────────────────────────────────────────────────────
 function getANTKey() {
   if (window._ANT) return window._ANT;
   const k = localStorage.getItem('_ant_key');
@@ -93,84 +95,67 @@ function getANTKey() {
   return null;
 }
 
+function clearANTKey() { localStorage.removeItem('_ant_key'); window._ANT=null; }
+
 function showKeyPrompt(onSave) {
   if (document.getElementById('ia-key-modal')) return;
   const overlay = document.createElement('div');
-  overlay.id = 'ia-key-modal';
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:flex;align-items:center;justify-content:center;';
-  const box = document.createElement('div');
-  box.style.cssText = 'background:#0f2540;border-radius:14px;padding:28px;max-width:440px;width:92%;border:1px solid rgba(255,255,255,.1);';
-  const title = document.createElement('div');
-  title.style.cssText = 'font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;';
-  title.textContent = '🤖 Clé API Anthropic';
-  const sub = document.createElement('div');
-  sub.style.cssText = 'font-size:12px;color:#8899aa;margin-bottom:18px;';
-  sub.textContent = 'Pour analyser les actions avec IA + recherche web temps réel';
-  const inp = document.createElement('input');
-  inp.id = 'ant-inp'; inp.type = 'password'; inp.placeholder = 'sk-ant-api03-...';
-  inp.style.cssText = 'width:100%;padding:11px;background:#1a3050;border:1px solid #2a4060;border-radius:8px;color:#fff;font-size:12px;font-family:monospace;box-sizing:border-box;outline:none;';
-  const hint = document.createElement('div');
-  hint.style.cssText = 'font-size:11px;color:#8899aa;margin-top:8px;';
-  hint.textContent = 'Stockée localement dans votre navigateur';
-  const btnRow = document.createElement('div');
-  btnRow.style.cssText = 'display:flex;gap:10px;margin-top:18px;';
-  const btnSave = document.createElement('button');
-  btnSave.style.cssText = 'flex:1;padding:10px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-weight:700;cursor:pointer;';
-  btnSave.textContent = 'Activer l’IA';
-  const btnSkip = document.createElement('button');
-  btnSkip.style.cssText = 'padding:10px 16px;background:transparent;color:#8899aa;border:1px solid #2a4060;border-radius:7px;cursor:pointer;';
-  btnSkip.textContent = 'Plus tard';
-  btnRow.appendChild(btnSave); btnRow.appendChild(btnSkip);
-  box.appendChild(title); box.appendChild(sub); box.appendChild(inp); box.appendChild(hint); box.appendChild(btnRow);
-  overlay.appendChild(box);
-  document.body.appendChild(overlay);
-  btnSave.onclick = function() {
-    const k = inp.value.trim();
-    if (k.startsWith('sk-ant')) {
-      localStorage.setItem('_ant_key', k); window._ANT=k; overlay.remove(); if(onSave) onSave(k);
-    } else { inp.style.borderColor='#ef4444'; }
-  };
-  btnSkip.onclick = function() { overlay.remove(); };
+  overlay.id='ia-key-modal';
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:flex;align-items:center;justify-content:center;';
+  const box=document.createElement('div');
+  box.style.cssText='background:#0f2540;border-radius:14px;padding:28px;max-width:440px;width:92%;border:1px solid rgba(255,255,255,.1);';
+  const t=document.createElement('div'); t.style.cssText='font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;'; t.textContent='🤖 Clé API Anthropic';
+  const s=document.createElement('div'); s.style.cssText='font-size:12px;color:#8899aa;margin-bottom:18px;'; s.textContent='Pour analyser les actions avec IA + recherche web temps réel';
+  const inp=document.createElement('input'); inp.id='ant-inp'; inp.type='password'; inp.placeholder='sk-ant-api03-...';
+  inp.style.cssText='width:100%;padding:11px;background:#1a3050;border:1px solid #2a4060;border-radius:8px;color:#fff;font-size:12px;font-family:monospace;box-sizing:border-box;outline:none;';
+  const h=document.createElement('div'); h.style.cssText='font-size:11px;color:#8899aa;margin-top:8px;'; h.textContent='Stockée localement dans votre navigateur';
+  const row=document.createElement('div'); row.style.cssText='display:flex;gap:10px;margin-top:18px;';
+  const bSave=document.createElement('button'); bSave.style.cssText='flex:1;padding:10px;background:#7C3AED;color:#fff;border:none;border-radius:7px;font-weight:700;cursor:pointer;'; bSave.textContent='Activer l’IA';
+  const bSkip=document.createElement('button'); bSkip.style.cssText='padding:10px 16px;background:transparent;color:#8899aa;border:1px solid #2a4060;border-radius:7px;cursor:pointer;'; bSkip.textContent='Plus tard';
+  row.appendChild(bSave); row.appendChild(bSkip);
+  box.appendChild(t); box.appendChild(s); box.appendChild(inp); box.appendChild(h); box.appendChild(row);
+  overlay.appendChild(box); document.body.appendChild(overlay);
+  bSave.onclick=function(){const k=inp.value.trim();if(k.startsWith('sk-ant')){localStorage.setItem('_ant_key',k);window._ANT=k;overlay.remove();if(onSave)onSave(k);}else inp.style.borderColor='#ef4444';};
+  bSkip.onclick=function(){overlay.remove();};
 }
 
-function clearANTKey() { localStorage.removeItem('_ant_key'); window._ANT = null; }
-
+// ─── ANALYSE IA ──────────────────────────────────────────────────
 async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
-  const key = getANTKey();
-  if (!key) { showKeyPrompt(function(k){ window._ANT=k; runIAAnalysis(ticker,name,scoreData,resEl,btn); }); return; }
+  const key=getANTKey();
+  if (!key) { showKeyPrompt(function(k){window._ANT=k;runIAAnalysis(ticker,name,scoreData,resEl,btn);}); return; }
   btn.disabled=true; btn.textContent='⏳ Analyse...';
   resEl.style.display='block';
   resEl.innerHTML='<div style="color:#7C3AED;padding:8px;font-size:12px;">🔍 Recherche <b>'+name+'</b>...</div>';
-  const ctx = scoreData ? 'Score QARP '+scoreData.qarp+'/100, Grade '+scoreData.grade+', Prix '+(scoreData.price||'?')+'€, ROE '+(scoreData.roe||'?')+'%, Div '+(scoreData.dy||'?')+'%, Beneish '+(scoreData.beneish||'?') : '';
-  const prompt = 'Analyse rapide de '+name+' ('+ticker+') PEA. '+ctx+'.\n\n5 points concis:\n1) Actualité récente et catalyseurs\n2) Risques principaux\n3) Valorisation vs secteur\n4) Signal: ACHETER / ATTENDRE / VENDRE\n5) Horizon recommandé\n\nStyle cabinet, direct, sans disclaimers.';
+  const ctx=scoreData?'Score QARP '+scoreData.qarp+'/100, Grade '+scoreData.grade+', Prix '+(scoreData.price||'?')+'€, ROE '+(scoreData.roe||'?')+'%, Div '+(scoreData.dy||'?')+'%, Beneish '+(scoreData.beneish||'?'):'';
+  const prompt='Analyse rapide de '+name+' ('+ticker+') PEA. '+ctx+'.\n\n5 points concis:\n1) Actualité récente et catalyseurs\n2) Risques principaux\n3) Valorisation vs secteur\n4) Signal: ACHETER / ATTENDRE / VENDRE\n5) Horizon recommandé\n\nStyle cabinet, direct, sans disclaimers.';
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05','anthropic-dangerous-direct-browser-access':'true'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
     });
-    if (!resp.ok) { const e=await resp.json().catch(function(){return{};}); throw new Error(e.error&&e.error.message?e.error.message:'HTTP '+resp.status); }
-    const d = await resp.json();
-    const text = (d.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
-    if (text) {
-      const html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');
-      resEl.innerHTML = '<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p>'+html+'</p></div>';
+    if (!resp.ok){const e=await resp.json().catch(function(){return{};});throw new Error(e.error&&e.error.message?e.error.message:'HTTP '+resp.status);}
+    const d=await resp.json();
+    const text=(d.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
+    if (text){
+      const html=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');
+      resEl.innerHTML='<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p>'+html+'</p></div>';
     } else { resEl.innerHTML='<div style="color:#888;font-size:12px;">Analyse non disponible</div>'; }
-  } catch(e) {
-    if (e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0) {
+  } catch(e){
+    if (e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0){
       clearANTKey();
-      const errDiv=document.createElement('div'); errDiv.style.cssText='color:#ef4444;font-size:12px;';
-      errDiv.textContent='Clé invalide. ';
+      const ed=document.createElement('div'); ed.style.cssText='color:#ef4444;font-size:12px;'; ed.textContent='Clé invalide. ';
       const rc=document.createElement('a'); rc.href='#'; rc.style.color='#7C3AED'; rc.textContent='Reconfigurer';
       rc.onclick=function(ev){ev.preventDefault();clearANTKey();resEl.style.display='none';btn.disabled=false;btn.textContent='🤖 Analyse IA';};
-      errDiv.appendChild(rc); resEl.innerHTML=''; resEl.appendChild(errDiv);
+      ed.appendChild(rc); resEl.innerHTML=''; resEl.appendChild(ed);
     } else { resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Erreur: '+e.message+'</div>'; }
   }
   btn.disabled=false; btn.textContent='🤖 Analyse IA';
 }
 
+// ─── INJECTION BOUTON IA ─────────────────────────────────────────
 function injectIAButton(ticker, name, scoreData) {
-  const fiche = document.getElementById('fiche');
+  const fiche=document.getElementById('fiche');
   if (!fiche||document.getElementById('ia-btn-'+ticker)) return;
   const wrap=document.createElement('div'); wrap.style.cssText='padding:0 0 8px 0;';
   const btn=document.createElement('button'); btn.id='ia-btn-'+ticker;
@@ -181,46 +166,54 @@ function injectIAButton(ticker, name, scoreData) {
   const res=document.createElement('div'); res.id='ia-res-'+ticker;
   res.style.cssText='display:none;margin-top:6px;padding:12px;background:#f8f5ff;border-left:3px solid #7C3AED;border-radius:0 6px 6px 0;max-height:320px;overflow-y:auto;';
   btn.onclick=function(){runIAAnalysis(ticker,name,scoreData,res,btn);};
-  wrap.appendChild(btn); wrap.appendChild(res); fiche.insertBefore(wrap,fiche.firstChild);
+  wrap.appendChild(btn); wrap.appendChild(res);
+  fiche.insertBefore(wrap,fiche.firstChild);
 }
 
-const _ficheObs = new MutationObserver(function(){
+// ─── OBSERVER FICHE (sélecteurs corrects .ftkr / .fnm) ──────────
+function _tryInjectIA() {
   const fiche=document.getElementById('fiche');
   if (!fiche||fiche.style.display==='none') return;
-  const tickerEl=fiche.querySelector('.logo-s'); if (!tickerEl) return;
+  const tickerEl=fiche.querySelector('.ftkr')||fiche.querySelector('.logo-s');
+  if (!tickerEl) return;
   const ticker=tickerEl.textContent.trim().replace(/\s+.*/,'');
   if (!ticker||ticker.length<2||ticker.length>6) return;
-  const nameEl=fiche.querySelector('.logo-m');
+  const nameEl=fiche.querySelector('.fnm')||fiche.querySelector('.logo-m');
   const name=nameEl?nameEl.textContent.trim():ticker;
   const s=typeof S!=='undefined'?S.find(function(x){return x.ticker===ticker;}):null;
   setTimeout(function(){injectIAButton(ticker,name,s);},400);
-});
+}
+
+const _ficheObs=new MutationObserver(_tryInjectIA);
 _ficheObs.observe(document.body,{childList:true,subtree:true});
 
+// ─── INIT ────────────────────────────────────────────────────────
 const _k=localStorage.getItem('_ant_key'); if (_k) window._ANT=_k;
-setTimeout(function(){if (typeof window.fetchLive==='function') window.fetchLive(false);},2500);
+setTimeout(function(){if(typeof window.fetchLive==='function') window.fetchLive(false);},2500);
 
-// ─── PATCH ETF : mappe ter->frais + champs manquants + re-run buildETF ───────
-setTimeout(function() {
+// ─── PATCH ETF ───────────────────────────────────────────────────
+setTimeout(function(){
   try {
-    if (typeof ETF !== 'undefined' && Array.isArray(ETF)) {
-      ETF.forEach(function(etf) {
-        if (!etf || typeof etf !== 'object') return;
-        if (etf.ter !== undefined && etf.frais === undefined) etf.frais = etf.ter;
-        if (!etf.frais && etf.frais !== 0) etf.frais = 0.20;
-        if (!Array.isArray(etf.avantages)) etf.avantages = etf.desc ? [etf.desc] : [];
-        if (!Array.isArray(etf.risques)) etf.risques = [];
-        if (!etf.verdict) etf.verdict = etf.desc || '';
-        if (!etf.note) etf.note = 'B';
-        if (!etf.type) etf.type = 'Capitalisant';
-        if (!etf.emetteur) etf.emetteur = etf.name ? etf.name.split(' ')[0] : '';
-        if (!etf.replication) etf.replication = 'Synthétique';
-        if (!etf.indice) etf.indice = etf.name || '';
+    if (typeof ETF!=='undefined'&&Array.isArray(ETF)){
+      ETF.forEach(function(etf){
+        if (!etf||typeof etf!=='object') return;
+        if (etf.ter!==undefined&&etf.frais===undefined) etf.frais=etf.ter;
+        if (!etf.frais&&etf.frais!==0) etf.frais=0.20;
+        if (!Array.isArray(etf.avantages)) etf.avantages=etf.desc?[etf.desc]:[];
+        if (!Array.isArray(etf.risques)) etf.risques=[];
+        if (!etf.verdict) etf.verdict=etf.desc||'';
+        if (!etf.note) etf.note='B';
+        if (!etf.type) etf.type='Capitalisant';
+        if (!etf.emetteur) etf.emetteur=etf.name?etf.name.split(' ')[0]:'';
+        if (!etf.replication) etf.replication='Synthétique';
+        if (!etf.indice) etf.indice=etf.name||'';
       });
-      if (typeof buildETF === 'function') buildETF();
-      console.log('[v4.4] ETF patch OK, buildETF re-run');
+      if (typeof buildETF==='function') buildETF();
+      console.log('[v4.5] ETF patch OK');
     }
-  } catch(e) { console.log('[v4.4] ETF patch error:', e.message); }
-}, 3000);
+    // Inject IA on current fiche if open
+    _tryInjectIA();
+  } catch(e){console.log('[v4.5] patch error:',e.message);}
+},3000);
 
-console.log('[live_patch v4.4] OK | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
+console.log('[live_patch v4.5 STABLE] | cle IA:',!!window._ANT,'| proxies:',PROXIES.length);
