@@ -1,15 +1,12 @@
-name: Update Fundamentals & Earnings Calendar
+name: Update Fundamentals & Earnings
 
 on:
   schedule:
-    - cron: '0 */4 * * 1-5'
+    # Quotidien 7h UTC (9h Paris) : dates resultats uniquement
+    - cron: '0 7 * * 1-5'
+    # Dimanche 20h UTC : update complet bilans + ratios
     - cron: '0 20 * * 0'
   workflow_dispatch:
-    inputs:
-      force_all:
-        description: 'Force update complete'
-        required: false
-        default: 'false'
 
 permissions:
   contents: write
@@ -18,27 +15,21 @@ jobs:
   update-fundamentals:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python 3.11
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
       - name: Install dependencies
-        run: pip install yfinance requests pandas pytz --quiet
-
-      - name: Run fundamentals update
+        run: pip install yfinance requests pytz --quiet
+      - name: Update fundamentals (Buffett metrics + earnings dates)
         run: python fetch_fundamentals.py
-
-      - name: Commit if data changed
+      - name: Commit if changed
         run: |
           git config --local user.email "valpea-bot@github.com"
           git config --local user.name "VAL.PEA Bot"
-          git diff --quiet data.js fundamentals_log.json 2>/dev/null || (
-            git add data.js fundamentals_log.json &&
-            git commit -m "📊 Fundamentals $(date '+%Y-%m-%d %H:%M UTC') [skip ci]" &&
+          git diff --quiet fundamentals_log.json data.js 2>/dev/null || (
+            git add fundamentals_log.json data.js &&
+            git commit -m "📊 Fundamentals $(date '+%Y-%m-%d') [skip ci]" &&
             git push
           )
           echo "Done"
