@@ -1,7 +1,6 @@
 
-// PEA SCREENER PRO — live_patch.js v5.0
-// Prix live + IA + ETF + Calendrier Résultats long terme
-// BASE STABLE : v4.5 | NOUVEAUTé : Earnings calendar auto-sync
+// PEA SCREENER PRO — live_patch.js v5.1
+// Prompt IA pro (Quality Investing / Buffett) + fréquence optimisée
 // ================================================================
 
 const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
@@ -97,26 +96,85 @@ function showKeyPrompt(onSave){
   bK.onclick=function(){ov.remove();};
 }
 
-async function runIAAnalysis(ticker,name,scoreData,resEl,btn){
+// ─── ANALYSE IA v2 — Prompt Quality Investing / Buffett ──────────
+async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
   const key=getANTKey();
-  if(!key){showKeyPrompt(function(k){window._ANT=k;runIAAnalysis(ticker,name,scoreData,resEl,btn);});return;}
-  btn.disabled=true;btn.textContent='⏳ Analyse...';
+  if (!key) { showKeyPrompt(function(k){window._ANT=k;runIAAnalysis(ticker,name,scoreData,resEl,btn);}); return; }
+  btn.disabled=true; btn.textContent='⏳ Analyse...';
   resEl.style.display='block';
-  resEl.innerHTML='<div style="color:#7C3AED;padding:8px;font-size:12px;">🔍 Recherche <b>'+name+'</b>...</div>';
-  const ctx=scoreData?'Score QARP '+scoreData.qarp+'/100, Grade '+scoreData.grade+', Prix '+(scoreData.price||'?')+'€, ROE '+(scoreData.roe||'?')+'%, Div '+(scoreData.dy||'?')+'%, Beneish '+(scoreData.beneish||'?'):'';
-  const prompt='Analyse rapide de '+name+' ('+ticker+') PEA. '+ctx+'.\n\n5 points concis:\n1) Actualité récente et catalyseurs\n2) Risques principaux\n3) Valorisation vs secteur\n4) Signal: ACHETER / ATTENDRE / VENDRE\n5) Horizon recommandé\n\nStyle cabinet, direct, sans disclaimers.';
+  resEl.innerHTML='<div style="color:#7C3AED;padding:8px;font-size:12px;">🔍 Analyse Quality Investing <b>'+name+'</b>...</div>';
+
+  var ctx = scoreData ? [
+    'Score QARP '+scoreData.qarp+'/100',
+    'Grade '+scoreData.grade,
+    'Prix '+(scoreData.price||'?')+'€',
+    'PE '+(scoreData.pe||'?'),
+    'ROE '+(scoreData.roe||'?')+'%',
+    'Marge '+(scoreData.margin||'?')+'%',
+    'Dividende '+(scoreData.dy||scoreData.yield||'?')+'%',
+    'Dette/eq '+(scoreData.debt||'?'),
+    'Croissance rev '+(scoreData.revg||'?')+'%',
+    'Beneish '+(scoreData.beneish||'?')
+  ].join(' | ') : '';
+
+  var prompt = 'Tu es gérant de portefeuille long terme, Quality Investing / Buffett. Décision d'investissement pour PEA.\n'
+    + 'ACTION : '+name+' ('+ticker+') | PRIX : '+(scoreData&&scoreData.price?scoreData.price:'?')+'€ | '+ctx+'\n\n'
+    + 'RÈGLES STRICTES : zéro résumé de communiqué, tout chiffré, conclusion BINAIRE.\n\n'
+    + '## VERDICT : [INVESTIR / PASSER / ATTENDRE ZONE]\n*(une ligne, sans nuance)*\n\n'
+    + '## MOAT — Machine à cash durable ?\n'
+    + '- Avantage concurrentiel : [précis + chiffré]\n'
+    + '- Pricing power : marge brute % vs secteur\n'
+    + '- Risque disruption 5 ans : faible/moyen/fort + pourquoi\n\n'
+    + '## VALORISATION — Achète-t-on à bon prix ?\n'
+    + '- FCF Yield : [%]\n'
+    + '- PE actuel vs moyenne 10 ans historique : [comparaison]\n'
+    + '- Zone d'achat optimale : [X€ à Y€] (FCF Yield > 5%)\n'
+    + '- Si résultats -20% : cours cible = [Z€]\n\n'
+    + '## BILAN — Survie en récession ?\n'
+    + '- Dette nette/EBITDA : [x] → safe/limite/danger\n'
+    + '- Dividende couvert par FCF : oui/non\n\n'
+    + '## CATALYSEURS vs RISQUES\n'
+    + '- Catalyseur #1 : [impact estimé sur résultats en %]\n'
+    + '- Catalyseur #2 : [concret]\n'
+    + '- Risque #1 : [probabilité + impact si réalisé]\n'
+    + '- Risque #2 : [concret]\n\n'
+    + '## DÉCISION FINALE\n'
+    + '- Action : ACHETER / RENFORCER / CONSERVER / ALLÉGER / VENDRE / PASSER\n'
+    + '- Taille position : [X% portefeuille PEA]\n'
+    + '- Point d'entrée : [X€]\n'
+    + '- Objectif 3 ans : [Y€] (+X%)\n'
+    + '- Stop loss logique : [Z€]\n\n'
+    + 'Aucun disclaimer. Structure stricte obligatoire.';
+
   try {
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
+    });
     if(!resp.ok){const e=await resp.json().catch(function(){return{};});throw new Error(e.error&&e.error.message?e.error.message:'HTTP '+resp.status);}
     const d=await resp.json();
     const text=(d.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
-    if(text){const html=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');resEl.innerHTML='<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p>'+html+'</p></div>';}
-    else{resEl.innerHTML='<div style="color:#888;font-size:12px;">Analyse non disponible</div>';}
+    if(text){
+      const html=text
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/## (VERDICT.*)/g,'<div style="background:#7C3AED;color:#fff;padding:6px 10px;border-radius:5px;font-weight:700;margin:8px 0;">$1</div>')
+        .replace(/## ([A-ZÀ-ɏs—]+)/g,'<div style="font-weight:700;color:#1e3a5f;border-bottom:1px solid #e2e8f0;padding:4px 0;margin:10px 0 4px;">## $1</div>')
+        .replace(/**(.*?)**/g,'<b>$1</b>')
+        .replace(/\n\n/g,'</p><p style="margin:4px 0;">')
+        .replace(/\n/g,'<br>');
+      resEl.innerHTML='<div style="line-height:1.7;color:#1a1a2e;font-size:12px;"><p style="margin:4px 0;">'+html+'</p></div>';
+    } else { resEl.innerHTML='<div style="color:#888;font-size:12px;">Analyse non disponible</div>'; }
   } catch(e){
-    if(e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0){clearANTKey();const ed=document.createElement('div');ed.style.cssText='color:#ef4444;font-size:12px;';ed.textContent='Clé invalide. ';const rc=document.createElement('a');rc.href='#';rc.style.color='#7C3AED';rc.textContent='Reconfigurer';rc.onclick=function(ev){ev.preventDefault();clearANTKey();resEl.style.display='none';btn.disabled=false;btn.textContent='🤖 Analyse IA';};ed.appendChild(rc);resEl.innerHTML='';resEl.appendChild(ed);}
-    else{resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Erreur: '+e.message+'</div>';}
+    if(e.message.indexOf('401')>=0||e.message.indexOf('invalid_api_key')>=0){
+      clearANTKey();
+      const ed=document.createElement('div');ed.style.cssText='color:#ef4444;font-size:12px;';ed.textContent='Clé invalide. ';
+      const rc=document.createElement('a');rc.href='#';rc.style.color='#7C3AED';rc.textContent='Reconfigurer';
+      rc.onclick=function(ev){ev.preventDefault();clearANTKey();resEl.style.display='none';btn.disabled=false;btn.textContent='🤖 Analyse IA';};
+      ed.appendChild(rc);resEl.innerHTML='';resEl.appendChild(ed);
+    } else { resEl.innerHTML='<div style="color:#ef4444;font-size:12px;">Erreur: '+e.message+'</div>'; }
   }
-  btn.disabled=false;btn.textContent='🤖 Analyse IA';
+  btn.disabled=false; btn.textContent='🤖 Analyse IA';
 }
 
 function injectIAButton(ticker,name,scoreData){
@@ -125,7 +183,7 @@ function injectIAButton(ticker,name,scoreData){
   const btn=document.createElement('button');btn.id='ia-btn-'+ticker;btn.textContent='🤖 Analyse IA';
   btn.style.cssText='width:100%;padding:10px;background:linear-gradient(135deg,#7C3AED,#5b21b6);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s;';
   btn.onmouseover=function(){btn.style.opacity='.85';};btn.onmouseout=function(){btn.style.opacity='1';};
-  const res=document.createElement('div');res.id='ia-res-'+ticker;res.style.cssText='display:none;margin-top:6px;padding:12px;background:#f8f5ff;border-left:3px solid #7C3AED;border-radius:0 6px 6px 0;max-height:320px;overflow-y:auto;';
+  const res=document.createElement('div');res.id='ia-res-'+ticker;res.style.cssText='display:none;margin-top:6px;padding:12px;background:#f8f5ff;border-left:3px solid #7C3AED;border-radius:0 6px 6px 0;max-height:400px;overflow-y:auto;';
   btn.onclick=function(){runIAAnalysis(ticker,name,scoreData,res,btn);};
   wrap.appendChild(btn);wrap.appendChild(res);fiche.insertBefore(wrap,fiche.firstChild);
 }
@@ -141,7 +199,7 @@ function _tryInjectIA(){
 }
 new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree:true});
 
-// ─── EARNINGS CALENDAR ────────────────────────────────────────
+// ─── EARNINGS CALENDAR ──────────────────────────────────────────
 (function initEarnings(){
   var EKEY='valpea_earnings_v2';
   function getE(){try{var r=localStorage.getItem(EKEY);return r?JSON.parse(r).items||[]:[]}catch(e){return[];}}
@@ -154,12 +212,8 @@ new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree
       if(!r.ok)return;
       var log=await r.json();
       if(!log.earnings||!log.earnings.length)return;
-      var enriched=log.earnings.map(function(e){
-        var fd=log.data&&log.data[e.ticker];
-        return Object.assign({},e,{target_price:fd?fd.target_price:null,recommendation:fd?fd.recommendation:'',nb_analysts:fd?fd.nb_analysts:0,revg:fd?fd.revg:null});
-      });
-      localStorage.setItem(EKEY,JSON.stringify({updated:new Date().toISOString(),items:enriched}));
-      console.log('[earnings] '+enriched.length+' dates syncées depuis fundamentals_log.json');
+      localStorage.setItem(EKEY,JSON.stringify({updated:new Date().toISOString(),items:log.earnings}));
+      console.log('[earnings] '+log.earnings.length+' dates syncées');
       injectSidebar();
     }catch(e){}
   }
@@ -173,32 +227,12 @@ new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree
     var badge=document.createElement('div');badge.id='earn-badge-'+ticker;
     var clr=days<=3?'rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.5);color:#ef4444':days<=14?'rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#f59e0b':'rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#818cf8';
     badge.style.cssText='margin:4px 0 8px 0;padding:8px 12px;border-radius:7px;font-size:11px;cursor:pointer;background:'+clr+';';
-    var icon=days<0?'📋':days<=3?'🔴':days<=14?'🟠':'📅';
-    var lbl=days<0?'Résultats publiés il y a '+Math.abs(days)+'j':days===0?'⚡ RéSULTATS AUJOURD’HUI':days===1?'⚡ Résultats DEMAIN':'Résultats dans '+days+'j';
-    var html=icon+' <b>'+lbl+'</b> · '+fmtDate(next.date)+' <span style="opacity:.7">('+((next.type||'Publication')+(next.confirmed?' ✓':' estimé'))+')</span>';
-    if(next.target_price&&next.nb_analysts>0){html+='<br><span style="font-size:10px;opacity:.8">Consensus: '+(next.recommendation||'-')+' · Objectif: '+next.target_price+'€ ('+next.nb_analysts+' analystes)</span>';}
-    if(next.revg&&next.revg!==0){html+='<br><span style="font-size:10px;opacity:.8">Croissance CA attendue: '+(next.revg>0?'+':'')+next.revg+'%</span>';}
-    badge.innerHTML=html;
-    badge.onclick=function(){showHistory(ticker);};
+    var icon=days<0?'📋':days<=3?'🔴':days<=14?'🟠':'🟡';
+    var lbl=days<0?'Résultats publiés il y a '+Math.abs(days)+'j':days===0?'⚡ RÉSULTATS AUJOURD’HUI':days===1?'⚡ Résultats DEMAIN':'Résultats dans '+days+'j';
+    badge.innerHTML=icon+' <b>'+lbl+'</b> · '+fmtDate(next.date);
+    if(next.target_price&&next.nb_analysts>0){badge.innerHTML+='<br><span style="font-size:10px;opacity:.8">Consensus: '+(next.recommendation||'-')+' · Obj: '+next.target_price+'€ ('+next.nb_analysts+' analystes)</span>';}
     var ins=fiche.querySelector('.verdict')||fiche.querySelector('.ftop');
     if(ins&&ins.parentNode===fiche)fiche.insertBefore(badge,ins.nextSibling);
-    else{var fb=fiche.querySelector('button');if(fb)fiche.insertBefore(badge,fb);}
-  }
-
-  function showHistory(ticker){
-    var m=document.getElementById('earn-modal');if(m){m.remove();return;}
-    var all=getE().filter(function(e){return e.ticker===ticker;});if(!all.length)return;
-    var modal=document.createElement('div');modal.id='earn-modal';
-    modal.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#0f1e35;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px;z-index:9999;min-width:280px;max-width:380px;color:#e2e8f0;font-size:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);';
-    var html='<div style="font-weight:700;font-size:14px;margin-bottom:12px;">📅 Publications '+ticker+'</div>';
-    all.sort(function(a,b){return new Date(a.date)-new Date(b.date);}).forEach(function(e){
-      var d=daysTo(e.date);
-      var badge2=d<0?'<span style="color:#6b7280">Passé</span>':d===0?'<span style="color:#ef4444;font-weight:700">Aujourd’hui</span>':'<span style="color:#22c55e">J+'+d+'</span>';
-      html+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);">'+
-            '<span>'+fmtDate(e.date)+' · '+(e.type||'Publication')+(e.confirmed?' ✓':' ~')+'</span>'+badge2+'</div>';
-    });
-    html+='<div style="margin-top:12px;text-align:center;"><button onclick="document.getElementById('earn-modal').remove()" style="padding:6px 16px;background:rgba(255,255,255,.1);border:none;border-radius:5px;color:#e2e8f0;cursor:pointer;font-size:11px;">Fermer</button></div>';
-    modal.innerHTML=html;document.body.appendChild(modal);
   }
 
   function injectSidebar(){
@@ -211,9 +245,7 @@ new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree
     var html='<div style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.8px;margin-bottom:8px;">📅 PROCHAINS RÉSULTATS</div>';
     upcoming.forEach(function(e){
       var icon=e.days<=3?'🔴':e.days<=7?'🟠':'🟡';
-      var dStr=e.days===0?"Aujourd’hui":e.days===1?'Demain':'J+'+e.days;
-      html+='<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:10px;">'+
-            '<span>'+icon+' <b>'+e.ticker+'</b></span><span style="color:#94a3b8">'+dStr+'</span></div>';
+      html+='<div style="display:flex;justify-content:space-between;padding:3px 0;font-size:10px;"><span>'+icon+' <b>'+e.ticker+'</b></span><span style="color:#94a3b8">'+(e.days===0?"Auj":e.days===1?"Demain":"J+"+e.days)+'</span></div>';
     });
     sb.innerHTML=html;pile.appendChild(sb);
   }
@@ -225,10 +257,9 @@ new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree
     setTimeout(function(){injectBadge(ticker,fiche);},700);
   }).observe(document.body,{childList:true,subtree:true});
 
-  sync();
-  setInterval(sync,4*60*60*1000);
-  window._earningsSync=sync;window._earningsGet=getE;
-  console.log('[earnings v2] Calendrier résultats activé');
+  sync(); setInterval(sync,4*60*60*1000);
+  window._earningsSync=sync;
+  console.log('[earnings] Calendrier résultats activé');
 })();
 
 // ─── INIT ─────────────────────────────────────────────────────
@@ -252,7 +283,7 @@ setTimeout(function(){
       if(typeof buildETF==='function')buildETF();
     }
     _tryInjectIA();
-  }catch(e){console.log('[v5] patch error:',e.message);}
+  }catch(e){}
 },3000);
 
-console.log('[live_patch v5.0] | cle IA:',!!window._ANT,'| proxies:',PROXIES.length,'| earnings: actif');
+console.log('[live_patch v5.1] Prompt IA Buffett/Quality | cle:',!!window._ANT,'| proxies:',PROXIES.length);
