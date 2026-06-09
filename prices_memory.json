@@ -1,652 +1,652 @@
 {
   "MC": {
-    "price": 482.45,
-    "date": "08/06 \u00e0 18:12",
+    "price": 492.3,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AI": {
-    "price": 165.38,
-    "date": "08/06 \u00e0 18:12",
+    "price": 168.42,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "OR": {
-    "price": 378.45,
-    "date": "08/06 \u00e0 18:12",
+    "price": 384.55,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RMS": {
-    "price": 1643.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 1665.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SAN": {
-    "price": 76.67,
-    "date": "08/06 \u00e0 18:12",
+    "price": 77.04,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "TTE": {
-    "price": 77.34,
-    "date": "08/06 \u00e0 18:12",
+    "price": 76.47,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SAF": {
-    "price": 294.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 295.6,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SU": {
-    "price": 270.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 263.45,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AXA": {
-    "price": 39.7,
-    "date": "08/06 \u00e0 18:12",
+    "price": 40.17,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BNP": {
-    "price": 93.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 93.39,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ACA": {
-    "price": 16.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 16.43,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "GLE": {
-    "price": 69.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 70.36,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AIR": {
-    "price": 176.96,
-    "date": "08/06 \u00e0 18:12",
+    "price": 175.74,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "KER": {
-    "price": 249.0,
-    "date": "08/06 \u00e0 18:12",
+    "price": 255.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PUB": {
-    "price": 87.98,
-    "date": "08/06 \u00e0 18:12",
+    "price": 88.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ORA": {
-    "price": 17.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 17.66,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VIE": {
-    "price": 34.67,
-    "date": "08/06 \u00e0 18:12",
+    "price": 34.13,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RNO": {
-    "price": 26.97,
-    "date": "08/06 \u00e0 18:12",
+    "price": 27.12,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SGO": {
-    "price": 74.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 75.46,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "CAP": {
-    "price": 102.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 100.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DG": {
-    "price": 123.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 122.75,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VIV": {
-    "price": 2.2,
-    "date": "08/06 \u00e0 18:12",
+    "price": 2.14,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RI": {
-    "price": 62.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 63.38,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LR": {
-    "price": 140.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 138.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DSY": {
-    "price": 19.9,
-    "date": "08/06 \u00e0 18:12",
+    "price": 19.69,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EL": {
-    "price": 173.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 179.7,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ENGI": {
-    "price": 26.72,
-    "date": "08/06 \u00e0 18:12",
+    "price": 26.76,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "MT": {
-    "price": 58.74,
-    "date": "08/06 \u00e0 18:12",
+    "price": 56.4,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SW": {
-    "price": 49.26,
-    "date": "08/06 \u00e0 18:12",
+    "price": 48.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "TEP": {
-    "price": 58.66,
-    "date": "08/06 \u00e0 18:12",
+    "price": 57.48,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EN": {
-    "price": 49.2,
-    "date": "08/06 \u00e0 18:12",
+    "price": 48.57,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "COFA": {
-    "price": 14.64,
-    "date": "08/06 \u00e0 18:12",
+    "price": 14.78,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "MERY": {
-    "price": 11.48,
-    "date": "08/06 \u00e0 18:12",
+    "price": 11.58,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SPIE": {
-    "price": 47.82,
-    "date": "08/06 \u00e0 18:12",
+    "price": 47.32,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "NEXANS": {
-    "price": 153.9,
-    "date": "08/06 \u00e0 18:12",
+    "price": 148.8,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DASSAV": {
-    "price": 298.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 295.4,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ELIS": {
-    "price": 25.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 25.78,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SEB": {
-    "price": 52.7,
-    "date": "08/06 \u00e0 18:12",
+    "price": 53.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ERF": {
-    "price": 64.88,
-    "date": "08/06 \u00e0 18:12",
+    "price": 64.98,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "IPSOS": {
-    "price": 38.94,
-    "date": "08/06 \u00e0 18:12",
+    "price": 38.56,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VK": {
-    "price": 24.35,
-    "date": "08/06 \u00e0 18:12",
+    "price": 23.92,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "FNAC": {
     "price": 34.55,
-    "date": "08/06 \u00e0 18:12",
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LNA": {
-    "price": 34.0,
-    "date": "08/06 \u00e0 18:12",
+    "price": 34.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SOP": {
-    "price": 152.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 152.3,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AF": {
-    "price": 11.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 11.12,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BN": {
-    "price": 64.18,
-    "date": "08/06 \u00e0 18:12",
+    "price": 65.3,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "CA": {
-    "price": 16.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 16.26,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "HO": {
-    "price": 232.3,
-    "date": "08/06 \u00e0 18:12",
+    "price": 231.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PRX": {
-    "price": 39.52,
-    "date": "08/06 \u00e0 18:12",
+    "price": 39.84,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ADYEN": {
-    "price": 833.3,
-    "date": "08/06 \u00e0 18:12",
+    "price": 823.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "HEIA": {
-    "price": 66.46,
-    "date": "08/06 \u00e0 18:12",
+    "price": 68.84,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "NOVO": {
-    "price": 36.46,
-    "date": "08/06 \u00e0 18:12",
+    "price": 36.13,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SAP": {
-    "price": 158.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 154.7,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SIEMENS": {
-    "price": 268.0,
-    "date": "08/06 \u00e0 18:12",
+    "price": 264.3,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ALV": {
-    "price": 374.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 377.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EIFFAGE": {
-    "price": 124.25,
-    "date": "08/06 \u00e0 18:12",
+    "price": 123.15,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ALTAREA": {
-    "price": 104.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 106.0,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "COVIVIO": {
-    "price": 53.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 53.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "TRIGANO": {
-    "price": 153.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 146.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BOIRON": {
-    "price": 28.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 28.7,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "FORVIA": {
-    "price": 10.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 9.76,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PLUXEE": {
-    "price": 11.25,
-    "date": "08/06 \u00e0 18:12",
+    "price": 11.18,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EDENRED": {
-    "price": 21.88,
-    "date": "08/06 \u00e0 18:12",
+    "price": 21.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DERICHEBOURG": {
-    "price": 10.14,
-    "date": "08/06 \u00e0 18:12",
+    "price": 9.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "THERMADOR": {
-    "price": 69.9,
-    "date": "08/06 \u00e0 18:12",
+    "price": 68.6,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "STEF": {
-    "price": 119.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 118.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VIRBAC": {
-    "price": 347.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 344.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "INTERPARFUMS": {
-    "price": 25.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 26.32,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ARGAN": {
     "price": 58.6,
-    "date": "08/06 \u00e0 18:12",
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LECTRA": {
-    "price": 16.6,
-    "date": "08/06 \u00e0 18:12",
+    "price": 16.64,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LACROIX": {
-    "price": 18.65,
-    "date": "08/06 \u00e0 18:12",
+    "price": 17.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ELIOR": {
-    "price": 1.95,
-    "date": "08/06 \u00e0 18:12",
+    "price": 1.96,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LISI": {
-    "price": 62.9,
-    "date": "08/06 \u00e0 18:12",
+    "price": 63.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "IPSEN": {
-    "price": 157.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 157.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "REXEL": {
-    "price": 36.43,
-    "date": "08/06 \u00e0 18:12",
+    "price": 36.04,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "FIGEAC": {
-    "price": 10.62,
-    "date": "08/06 \u00e0 18:12",
+    "price": 10.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ABIVAX": {
-    "price": 89.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 85.8,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SAMSE": {
     "price": 124.0,
-    "date": "08/06 \u00e0 18:12",
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "MANITOU": {
-    "price": 21.7,
-    "date": "08/06 \u00e0 18:12",
+    "price": 21.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EMEIS": {
-    "price": 14.15,
-    "date": "08/06 \u00e0 18:12",
+    "price": 14.01,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "NRO": {
-    "price": 38.35,
-    "date": "08/06 \u00e0 18:12",
+    "price": 37.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BVI": {
-    "price": 25.32,
-    "date": "08/06 \u00e0 18:12",
+    "price": 25.27,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "TALY": {
-    "price": 58.66,
-    "date": "08/06 \u00e0 18:12",
+    "price": 57.48,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ALSTOM": {
-    "price": 16.84,
-    "date": "08/06 \u00e0 18:12",
+    "price": 16.41,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RUI": {
-    "price": 35.44,
-    "date": "08/06 \u00e0 18:12",
+    "price": 35.34,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "SOI": {
-    "price": 156.45,
-    "date": "08/06 \u00e0 18:12",
+    "price": 140.15,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "GFC": {
-    "price": 71.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 72.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "NXI": {
-    "price": 7.76,
-    "date": "08/06 \u00e0 18:12",
+    "price": 7.59,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AC": {
-    "price": 45.36,
-    "date": "08/06 \u00e0 18:12",
+    "price": 45.62,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DIOR": {
-    "price": 448.2,
-    "date": "08/06 \u00e0 18:12",
+    "price": 455.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "GTT": {
-    "price": 203.6,
-    "date": "08/06 \u00e0 18:12",
+    "price": 198.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "IMERYS": {
-    "price": 21.54,
-    "date": "08/06 \u00e0 18:12",
+    "price": 21.52,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DBG": {
-    "price": 10.14,
-    "date": "08/06 \u00e0 18:12",
+    "price": 9.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "AMF": {
-    "price": 85.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 80.65,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BIOM": {
-    "price": 72.35,
-    "date": "08/06 \u00e0 18:12",
+    "price": 71.3,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "BNENF": {
-    "price": 6.73,
-    "date": "08/06 \u00e0 18:12",
+    "price": 6.65,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "CDRCK": {
-    "price": 16.16,
-    "date": "08/06 \u00e0 18:12",
+    "price": 16.42,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "CHSR": {
-    "price": 8.48,
-    "date": "08/06 \u00e0 18:12",
+    "price": 8.49,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ELECOR": {
-    "price": 211.0,
-    "date": "08/06 \u00e0 18:12",
+    "price": 209.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "FREY": {
     "price": 34.8,
-    "date": "08/06 \u00e0 18:12",
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ASML": {
-    "price": 1514.6,
-    "date": "08/06 \u00e0 18:12",
+    "price": 1508.4,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "WAGA": {
     "price": 23.3,
-    "date": "08/06 \u00e0 18:12",
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LEGRAND": {
-    "price": 140.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 138.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PERNOD": {
-    "price": 62.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 63.38,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DCAM": {
-    "price": 5.96,
-    "date": "08/06 \u00e0 18:12",
+    "price": 5.87,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PAEEM": {
-    "price": 35.09,
-    "date": "08/06 \u00e0 18:12",
+    "price": 34.76,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "DIORCDI": {
-    "price": 448.2,
-    "date": "08/06 \u00e0 18:12",
+    "price": 455.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "EUFSCI": {
-    "price": 64.88,
-    "date": "08/06 \u00e0 18:12",
+    "price": 64.98,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "FGAERO": {
-    "price": 10.62,
-    "date": "08/06 \u00e0 18:12",
+    "price": 10.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "INTPRF": {
-    "price": 25.4,
-    "date": "08/06 \u00e0 18:12",
+    "price": 26.32,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "IPSNF": {
-    "price": 157.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 157.9,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "JACMETL": {
-    "price": 22.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 22.35,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "NEXTY": {
-    "price": 7.76,
-    "date": "08/06 \u00e0 18:12",
+    "price": 7.59,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "PRNRD": {
-    "price": 62.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 63.38,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RXLSA": {
-    "price": 36.43,
-    "date": "08/06 \u00e0 18:12",
+    "price": 36.04,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "STEF2": {
-    "price": 119.8,
-    "date": "08/06 \u00e0 18:12",
+    "price": 118.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "THERMD": {
-    "price": 69.9,
-    "date": "08/06 \u00e0 18:12",
+    "price": 68.6,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "TRGO": {
-    "price": 153.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 146.1,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VIRB2": {
-    "price": 347.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 344.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ATO": {
-    "price": 36.66,
-    "date": "08/06 \u00e0 18:12",
+    "price": 35.12,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ICAD": {
-    "price": 20.66,
-    "date": "08/06 \u00e0 18:12",
+    "price": 20.86,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "IDLG": {
-    "price": 363.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 355.0,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "KLPI": {
-    "price": 35.1,
-    "date": "08/06 \u00e0 18:12",
+    "price": 35.6,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "ML": {
-    "price": 31.79,
-    "date": "08/06 \u00e0 18:12",
+    "price": 32.11,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "MLAEP": {
-    "price": 105.5,
-    "date": "08/06 \u00e0 18:12",
+    "price": 103.2,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "RCO": {
-    "price": 42.7,
-    "date": "08/06 \u00e0 18:12",
+    "price": 44.0,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "VALO": {
-    "price": 15.22,
-    "date": "08/06 \u00e0 18:12",
+    "price": 14.52,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "GENIE": {
-    "price": 8.77,
-    "date": "08/06 \u00e0 18:12",
+    "price": 8.48,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "GLEVT": {
-    "price": 32.7,
-    "date": "08/06 \u00e0 18:12",
+    "price": 32.75,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   },
   "LACBX": {
-    "price": 18.65,
-    "date": "08/06 \u00e0 18:12",
+    "price": 17.5,
+    "date": "09/06 \u00e0 17:34",
     "source": "yahoo"
   }
 }
