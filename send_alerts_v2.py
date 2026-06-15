@@ -1,222 +1,194 @@
 #!/usr/bin/env python3
 """
-send_alerts_v2.py — Mail du dimanche/soir enrichi
-- Format QARP avec score /100
-- Indicateurs macro (VIX, or, taux 10 ans, dollar)
-- Condensé des dernières vidéos des 4 influenceurs via l'API Anthropic
-- Analyse des signaux Beneish suspects
+send_alerts_v2.py — Mail enrichi VAL.PEA (CORRIGÉ)
+Corrections :
+  - Bug html+= avant définition → déplacé dans return
+  - insights traité en texte HTML brut (pas dict)
+  - Secrets MAIL_USER/MAIL_PASS/MAIL_TO + compat GMAIL_USER/GMAIL_PASSWORD
+  - Modèle Sonnet pour qualité
 """
-
 import re, json, os, sys, smtplib, urllib.request, time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
-# ─── FETCH MACRO DATA ─────────────────────────────────────────────────────
+# ─── CONFIG SECRETS (double compat) ───────────────────────────────────────
+ANTHROPIC_KEY  = os.environ.get('ANTHROPIC_API_KEY', '').strip()
+GMAIL_USER     = (os.environ.get('MAIL_USER') or os.environ.get('GMAIL_USER', '')).strip()
+GMAIL_PASS     = (os.environ.get('MAIL_PASS') or os.environ.get('GMAIL_PASSWORD', '')).strip()
+EMAIL_TO       = (os.environ.get('MAIL_TO') or GMAIL_USER).strip()
+TG_TOKEN       = os.environ.get('TELEGRAM_TOKEN', '').strip()
+TG_CHAT        = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+
+print(f"ANTHROPIC_API_KEY: {'✅ ' + str(len(ANTHROPIC_KEY)) + ' chars' if ANTHROPIC_KEY else '❌ manquant'}")
+print(f"MAIL_USER: {'✅ ' + GMAIL_USER if GMAIL_USER else '❌ manquant'}")
+print(f"MAIL_TO: {'✅ ' + EMAIL_TO if EMAIL_TO else '❌ manquant'}")
+
+# ─── MACRO ────────────────────────────────────────────────────────────────
 def fetch_macro():
-    """Récupère VIX, or, taux US 10 ans, dollar index depuis Yahoo Finance"""
     macro = {}
     tickers = {
-        'VIX':   ('^VIX',   'VIX (peur marchés)'),
-        'OR':    ('GC=F',   'Or ($/oz)'),
-        'TAUX':  ('^TNX',   'Taux US 10 ans (%)'),
-        'DXY':   ('DX-Y.NYB','Dollar Index'),
-        'CAC40': ('^FCHI',  'CAC 40'),
+        'VIX':   ('^VIX',      'VIX (peur)'),
+        'OR':    ('GC=F',      'Or ($/oz)'),
+        'TAUX':  ('^TNX',      'Taux US 10 ans'),
+        'DXY':   ('DX-Y.NYB',  'Dollar Index'),
+        'CAC40': ('^FCHI',     'CAC 40'),
     }
     for key, (yf, label) in tickers.items():
         try:
             url = f"https://query2.finance.yahoo.com/v8/finance/chart/{yf}?interval=1d&range=5d"
-            req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=8) as r:
                 data = json.loads(r.read())
-            meta = data['chart']['result'][0]['meta']
+            meta  = data['chart']['result'][0]['meta']
             price = meta.get('regularMarketPrice', 0)
             prev  = meta.get('previousClose', price)
             chg   = round((price - prev) / prev * 100, 2) if prev else 0
             macro[key] = {'label': label, 'value': round(price, 2), 'chg': chg}
-        except Exception as e:
+        except:
             macro[key] = {'label': label, 'value': 0, 'chg': 0}
         time.sleep(0.3)
-
-    # Cuivre — indicateur avancé des cycliques
-    try:
-        cu = yf.download('HG=F', period='5d', progress=False)['Close']
-        if not cu.empty and len(cu) >= 2:
-            cu_price = round(float(cu.iloc[-1]), 2)
-            cu_chg = round((float(cu.iloc[-1]) - float(cu.iloc[-5])) / float(cu.iloc[-5]) * 100, 2) if len(cu) >= 5 else 0
-            macro['cuivre'] = {'label': 'Cuivre (cycle)', 'value': f'{cu_price}$/t', 'chg': cu_chg,
-                               'signal': '🟢 CYCLIQUES FAVORIS' if cu_chg > 3 else '🔴 CYCLIQUES DÉFAVORABLES' if cu_chg < -3 else '⚪ Neutre'}
-    except: macro['cuivre'] = {'label': 'Cuivre', 'value': None, 'chg': 0, 'signal': ''}
     return macro
 
 def macro_sentiment(macro):
-    """Détermine le sentiment macro global"""
-    vix = macro.get('VIX', {}).get('value', 20)
+    vix  = macro.get('VIX',  {}).get('value', 20)
     taux = macro.get('TAUX', {}).get('value', 4)
-    dxy = macro.get('DXY', {}).get('value', 104)
-
+    dxy  = macro.get('DXY',  {}).get('value', 104)
+    score = 0
     signals = []
-    score = 0  # positif = favorable, négatif = prudence
-
-    if vix < 15:
-        signals.append(('✅', 'VIX bas', 'Calme des marchés'))
-        score += 1
-    elif vix < 20:
-        signals.append(('🟡', 'VIX modéré', 'Légère prudence'))
-    elif vix < 30:
-        signals.append(('⚠️', 'VIX élevé', 'Volatilité importante'))
-        score -= 1
-    else:
-        signals.append(('🚨', 'VIX très élevé', 'Stress extrême'))
-        score -= 2
-
-    if taux < 3.5:
-        signals.append(('✅', 'Taux bas', 'Favorable aux actions'))
-        score += 1
-    elif taux < 4.5:
-        signals.append(('🟡', 'Taux neutres', f'{taux}% — zone neutre'))
-    else:
-        signals.append(('⚠️', 'Taux élevés', f'{taux}% — freine la valorisation'))
-        score -= 1
-
-    if dxy < 100:
-        signals.append(('✅', 'Dollar faible', 'Favorable aux émergents/Europe'))
-        score += 1
-    elif dxy > 106:
-        signals.append(('⚠️', 'Dollar fort', 'Pression sur les devises'))
-        score -= 1
-
-    if score >= 2:
-        verdict = ('✅ FAVORABLE', '#16a34a', '#dcfce7')
-    elif score >= 0:
-        verdict = ('🟡 NEUTRE', '#d97706', '#fef3c7')
-    else:
-        verdict = ('⚠️ PRUDENCE', '#dc2626', '#fee2e2')
-
+    if   vix < 15: score += 1;  signals.append(('✅', 'VIX bas',        'Calme des marchés'))
+    elif vix < 20: signals.append(('🟡', 'VIX modéré',  'Légère prudence'))
+    elif vix < 30: score -= 1;  signals.append(('⚠️', 'VIX élevé',      'Volatilité importante'))
+    else:          score -= 2;  signals.append(('🚨', 'VIX très élevé', 'Stress extrême'))
+    if   taux < 3.5: score += 1; signals.append(('✅', 'Taux bas',    'Favorable aux actions'))
+    elif taux < 4.5: signals.append(('🟡', 'Taux neutres', f'{taux}%'))
+    else:            score -= 1; signals.append(('⚠️', 'Taux élevés', f'{taux}% — freine valorisation'))
+    if   dxy < 100: score += 1; signals.append(('✅', 'Dollar faible', 'Favorable émergents/Europe'))
+    elif dxy > 106: score -= 1; signals.append(('⚠️', 'Dollar fort',   'Pression devises'))
+    if   score >= 2: verdict = ('✅ FAVORABLE', '#16a34a', '#dcfce7')
+    elif score >= 0: verdict = ('🟡 NEUTRE',    '#d97706', '#fef3c7')
+    else:            verdict = ('⚠️ PRUDENCE',  '#dc2626', '#fee2e2')
     return verdict, signals
 
-# ─── FETCH YOUTUBE RÉSUMÉS VIA ANTHROPIC API ──────────────────────────────
-def fetch_youtube_insights():
-    """Resume hebdomadaire des 4 influenceurs via API Anthropic web_search"""
-    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
-    if not api_key:
+# ─── YOUTUBE + SOURCES WEB via Claude ─────────────────────────────────────
+def fetch_youtube_and_web_insights():
+    """Retourne du HTML brut — 4 influenceurs + consensus + pépites"""
+    if not ANTHROPIC_KEY:
         return None
     prompt = (
-        f"Tu es un analyste boursier. Nous sommes le {datetime.now().strftime('%d/%m/%Y')}.\n\n"
-        "MISSION: Resumes les analyses de ces 4 influenceurs bourse francais cette semaine.\n\n"
-        "1. Guillaume Fournier (@guillaumefournier13 YouTube) - QARP, dividendes, FCF yield\n"
-        "2. Rique Trading (@riquetrading YouTube / @rique.trading Instagram) - Technique + fondamentale, PEA sous-evalues\n"
-        "3. Nicolas Cheron (@NCheron_bourse X + YouTube) - Macro + sentiment + technique, ZoneBourse\n"
-        "4. Jean-Benoit Gambet (@jeanbenoit_gambet Instagram) - Institutionnel, qualite + valorisation\n\n"
-        "Recherche leurs publications des 7 derniers jours. Pour chaque influenceur (2 lignes max):\n"
-        "- Sentiment bull/bear/neutre + raison\n"
-        "- Actions/secteurs mentionnes positivement\n\n"
-        "Synthese finale: consensus semaine + 2-3 tickers PEA qui ressortent.\n"
-        "Format HTML avec <b>noms et tickers</b>. Sois direct et factuel."
+        f"Date: {datetime.now().strftime('%d/%m/%Y')}.\n\n"
+        "MISSION en HTML direct (pas de markdown) :\n"
+        "1. INFLUENCEURS BOURSE FR — dernières publications (7 jours) :\n"
+        "   • Guillaume Fournier (YouTube @GuillaumeFournier_Invest)\n"
+        "   • Rique Trading (YouTube @riquetrading + Instagram @rique.trading)\n"
+        "   • Nicolas Chéron (@NCheron_bourse X + ZoneBourse)\n"
+        "   • Jean-Benoît Gambet (@jeanbenoit_gambet Instagram)\n"
+        "   Pour chacun : sentiment bull/bear/neutre + 1 ticker mentionné\n\n"
+        "2. CONSENSUS analystes ZoneBourse sur les actions CAC40/SBF120 du moment\n"
+        "3. RÉSULTATS trimestriels publiés cette semaine (Europe)\n"
+        "4. PÉPITE cachée : 1 small/mid cap européenne sous-évaluée\n\n"
+        "Format HTML avec <b>noms</b> et <span style='color:#1d4ed8'>tickers</span>. "
+        "Chaque section avec un titre <h4>. Direct, factuel, chiffres réels."
     )
     try:
         payload = json.dumps({
-            'model': 'claude-sonnet-4-20250514',
-            'max_tokens': 900,
+            'model': 'claude-sonnet-4-6',
+            'max_tokens': 1200,
             'tools': [{'type': 'web_search_20250305', 'name': 'web_search'}],
             'messages': [{'role': 'user', 'content': prompt}]
         }).encode('utf-8')
         req = urllib.request.Request(
             'https://api.anthropic.com/v1/messages', data=payload,
-            headers={'Content-Type': 'application/json', 'x-api-key': api_key,
-                     'anthropic-version': '2023-06-01', 'anthropic-beta': 'web-search-2025-03-05'}
+            headers={
+                'Content-Type': 'application/json',
+                'x-api-key': ANTHROPIC_KEY,
+                'anthropic-version': '2023-06-01',
+                'anthropic-beta': 'web-search-2025-03-05'
+            }
         )
-        with urllib.request.urlopen(req, timeout=50) as resp:
+        with urllib.request.urlopen(req, timeout=60) as resp:
             data = json.loads(resp.read())
-        text = ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text')
+        # Extraire tout le texte (ignorer tool_use blocks)
+        text = ''.join(b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text')
         return text.strip() if text else None
     except Exception as e:
-        print(f"  fetch_youtube_insights error: {e}")
+        print(f"  insights error: {e}")
         return None
 
+def fetch_extra_sources(top_tickers_str):
+    """Analyse marché + pépites small cap"""
+    if not ANTHROPIC_KEY:
+        return None
+    prompt = (
+        f"Date: {datetime.now().strftime('%d/%m/%Y')}. Top QARP: {top_tickers_str}\n\n"
+        "En HTML direct :\n"
+        "1. CAC40 niveaux techniques clés cette semaine\n"
+        "2. Consensus analystes pour ces tickers (ZoneBourse/Reuters)\n"
+        "3. 1 pépite small cap européenne PEA-éligible sous-évaluée\n"
+        "Chiffres précis uniquement."
+    )
+    try:
+        payload = json.dumps({
+            'model': 'claude-sonnet-4-6',
+            'max_tokens': 600,
+            'tools': [{'type': 'web_search_20250305', 'name': 'web_search'}],
+            'messages': [{'role': 'user', 'content': prompt}]
+        }).encode('utf-8')
+        req = urllib.request.Request(
+            'https://api.anthropic.com/v1/messages', data=payload,
+            headers={
+                'Content-Type': 'application/json',
+                'x-api-key': ANTHROPIC_KEY,
+                'anthropic-version': '2023-06-01',
+                'anthropic-beta': 'web-search-2025-03-05'
+            }
+        )
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read())
+        text = ''.join(b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text')
+        return text.strip() if text else None
+    except Exception as e:
+        print(f"  extra error: {e}")
+        return None
+
+# ─── PARSER STOCKS ────────────────────────────────────────────────────────
 def get_stocks(html_content):
     s_start = html_content.find("const S=[")
-    s_end_m = re.search(r'\n\];\s*\n\s*\n\s*// ═+\s*CALENDRIER', html_content[s_start:])
-    if not s_end_m:
+    if s_start < 0:
         return []
-    s_end = s_start + s_end_m.start()
-    s_code = html_content[s_start:s_end]
-
     stocks = []
     seen = set()
-    for m in re.finditer(r"\{ticker:'([^']+)'(.*?)(?=\n\n\{ticker:|\n\n\];)", s_code, re.DOTALL):
+    for m in re.finditer(r"\{ticker:'([^']+)'(.*?)(?=\n\n\{ticker:|\n\n\];)", html_content[s_start:], re.DOTALL):
         ticker = m.group(1)
-        if ticker in seen:
-            continue
+        if ticker in seen: continue
         seen.add(ticker)
         block = m.group(0)
-
         def gn(key, default=0.0):
             mx = re.search(r'\b'+key+r':([-\d.]+)', block)
             return float(mx.group(1)) if mx else default
         def gs(key, default=''):
             mx = re.search(r"\b"+key+r":'([^']*)'", block)
-            if mx: return mx.group(1)
-            mx = re.search(r'\b'+key+r':["](.*?)["]\.', block)
-            if mx: return mx.group(1)
-            mx = re.search(r'\b'+key+r':\"([^\"]*)\"|\b'+key+r':\'([^\']*)\'', block)
-            return mx.group(1) or mx.group(2) if mx and mx.lastindex else default
-
+            return mx.group(1) if mx else default
         def gdb(key, default=''):
-            """Extrait les valeurs entre doubles guillemets."""
             mx = re.search(r'\b'+key+r':"([^"]*)"', block)
             return mx.group(1) if mx else default
-
-        def extract_moat():
-            m = re.search(r'moat:\[([^\]]*)', block)
-            if not m: return []
-            return re.findall(r"'([^']+)'", m.group(1))[::2]
-
-        def extract_cats():
-            m = re.search(r'cats:\[(.+?)\]', block)
-            if not m: return []
-            return re.findall(r"t:'([^']+)'", m.group(1))
-
-        def extract_ins():
-            m = re.search(r'ins:\[([^\]]*)', block)
-            if not m: return ''
-            parts = re.findall(r"'([^']+)'", m.group(1))
-            return f"{parts[0]} {parts[1]} {parts[2]}" if len(parts) >= 3 else ''
-
+        price = gn('price'); dcfm = gn('dcfm')
         s = {
-            'ticker': ticker,
-            'name': gs('name'),
-            'sector': gs('sector'),
-            'score': gs('score'),
-            'price': gn('price'),
-            'el': gn('el'), 'eh': gn('eh'),
-            'stop': gn('stop'), 'o1': gn('o1'),
-            'dcfb': gn('dcfb'), 'dcfm': gn('dcfm'), 'dcfu': gn('dcfu'),
-            'roe': gn('roe'), 'margin': gn('margin'),
-            'fcf': gn('fcf'), 'debt': gn('debt'),
-            'pio': gn('pio'), 'rsi': gn('rsi'),
-            'mm200': gn('mm200'), 'mm50': gn('mm50'),
-            'yield_val': gn('yield'),
-            'revg': gn('revg'), 'epsg': gn('epsg'),
-            'om': gn('om'), 'marg_n': gn('marg_n'),
-            'marg_n1': gn('marg_n1'), 'pb': gn('pb'),
+            'ticker': ticker, 'name': gs('name'), 'sector': gs('sector'), 'score': gs('score'),
+            'price': price, 'el': gn('el'), 'eh': gn('eh'), 'stop': gn('stop'),
+            'o1': gn('o1'), 'dcfb': gn('dcfb'), 'dcfm': dcfm, 'dcfu': gn('dcfu'),
+            'roe': gn('roe'), 'margin': gn('margin'), 'fcf': gn('fcf'), 'debt': gn('debt'),
+            'pio': gn('pio'), 'rsi': gn('rsi'), 'mm200': gn('mm200'), 'mm50': gn('mm50'),
+            'revg': gn('revg'), 'epsg': gn('epsg'), 'pb': gn('pb'),
             'pe': gn('pe'), 'ev_ebitda': gn('ev_ebitda'),
-            'thesis': gdb('thesis'),
-            'contra': gdb('contra'),
-            'moat': extract_moat(),
-            'cats': extract_cats(),
-            'insider': extract_ins(),
+            'om': gn('om'), 'marg_n': gn('marg_n'), 'marg_n1': gn('marg_n1'),
+            'thesis': gdb('thesis'), 'contra': gdb('contra'),
         }
-
-        # Calculs dérivés
-        s['in_zone'] = (s['price'] > 0 and s['dcfm'] > 0
-                        and s['price'] <= s['dcfm'] * 0.88
-                        and s['score'] in ['A','B'])
-        s['above_mm200'] = s['price'] > s['mm200'] if s['mm200'] else False
-        s['good_rsi'] = 25 <= s['rsi'] <= 60 if s['rsi'] else False
-        s['upside'] = round((s['dcfm'] - s['price']) / s['price'] * 100, 1) if s['price'] and s['dcfm'] else 0
-
-        # Beneish M-Score
+        s['in_zone']     = price > 0 and dcfm > 0 and price <= dcfm * 0.88 and s['score'] in ['A','B']
+        s['above_mm200'] = price > s['mm200'] if s['mm200'] else False
+        s['good_rsi']    = 25 <= s['rsi'] <= 60 if s['rsi'] else False
+        s['upside']      = round((dcfm - price) / price * 100, 1) if price and dcfm else 0
+        # Beneish
         gmix = (s['marg_n1']/100) / max(s['margin']/100, 0.01) if s['marg_n1'] and s['margin'] else 1.0
         gmix = max(0.5, min(2.5, gmix))
         aqi  = min(1.5, 1 + (0.15 if s['pb'] > 3 else 0))
@@ -225,330 +197,111 @@ def get_stocks(html_content):
         lvgi = min(2.0, 1 + s['debt'] * 0.1) if s['debt'] > 0 else 1.0
         tata = max(-0.1, min(0.15, (s['margin'] - s['fcf'])/100)) if s['margin'] and s['fcf'] else 0
         s['beneish'] = round(-4.84 + 0.920*1.0 + 0.528*gmix + 0.404*aqi +
-                             0.892*sgi + 0.115*1.0 - 0.172*sgai +
-                             4.679*tata - 0.327*lvgi, 2)
-
-        # Score QARP simplifié
+                             0.892*sgi + 0.115*1.0 - 0.172*sgai + 4.679*tata - 0.327*lvgi, 2)
+        # QARP
         q = 20 if s['roe'] >= 25 else 16 if s['roe'] >= 18 else 11 if s['roe'] >= 12 else 6
         r_avg = (s['margin'] + s['fcf']) / 2
         r = 20 if r_avg >= 20 else 15 if r_avg >= 12 else 10 if r_avg >= 7 else 5
         b = 20 if s['debt'] <= 0.5 and s['pio'] >= 8 else 16 if s['debt'] <= 1 and s['pio'] >= 7 else 11 if s['debt'] <= 2 else 6
         v = 20 if s['upside'] >= 35 else 15 if s['upside'] >= 20 else 10 if s['upside'] >= 10 else 5 if s['upside'] >= 0 else 1
-        # Malus Beneish
         if s['beneish'] > -1.49: v = max(1, v - 8)
         elif s['beneish'] > -1.78: v = max(1, v - 3)
         mnt = 3
-        if s['in_zone']: mnt += 7
+        if s['in_zone']:     mnt += 7
         if s['above_mm200']: mnt += 7
-        if s['good_rsi']: mnt += 3
+        if s['good_rsi']:    mnt += 3
         s['qarp'] = q + r + b + v + mnt
-
         # Signal
-        s['signal'] = ('ULTIME' if s['qarp'] >= 70 and s['in_zone'] and s['upside'] > 5 else
-                        'FORT' if s['qarp'] >= 58 and s['score'] in ['A','B'] and s['upside'] > 8 else
+        s['signal'] = ('ULTIME'    if s['qarp'] >= 70 and s['in_zone'] and s['upside'] > 5 else
+                        'FORT'      if s['qarp'] >= 58 and s['score'] in ['A','B'] and s['upside'] > 8 else
                         'SURVEILLER' if s['qarp'] >= 50 and s['score'] == 'A' else None)
-
-        # R/R
-        risk = s['price'] - s['stop'] if s['stop'] else 1
+        risk   = s['price'] - s['stop'] if s['stop'] else 1
         reward = s['o1'] - s['price'] if s['o1'] else 0
         s['rr'] = round(reward / risk, 1) if risk > 0 else 0
-
         stocks.append(s)
-
     return stocks
 
-# ─── HTML DU MAIL ─────────────────────────────────────────────────────────
+# ─── CARTE ACTION ─────────────────────────────────────────────────────────
 def stock_card(s, highlight=False):
-    sc = '#22c55e' if s['qarp'] >= 70 else '#d97706' if s['qarp'] >= 55 else '#2563eb'
-    gc = {'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}.get(s['score'], '#6b7280')
-    bg = '#f0fdf4' if highlight else '#f8fafc'
-    border_col = '#22c55e' if highlight else '#e2e8f0'
-    zone_html = ('<span style="background:#dcfce7;color:#16a34a;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">EN ZONE</span>'
-                 if s['in_zone'] else
-                 '<span style="background:#f1f5f9;color:#64748b;padding:1px 5px;border-radius:3px;font-size:9px">hors zone</span>')
-    beneish_html = ''
+    sc  = '#22c55e' if s['qarp'] >= 70 else '#d97706' if s['qarp'] >= 55 else '#2563eb'
+    gc  = {'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}.get(s['score'],'#6b7280')
+    bg  = '#f0fdf4' if highlight else '#f8fafc'
+    brd = '#22c55e' if highlight else '#e2e8f0'
+    zone_h = ('<span style="background:#dcfce7;color:#16a34a;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">EN ZONE</span>'
+              if s['in_zone'] else
+              '<span style="background:#f1f5f9;color:#64748b;padding:1px 5px;border-radius:3px;font-size:9px">hors zone</span>')
+    b_h = ''
     if s['beneish'] > -1.78:
-        bc = '#dc2626' if s['beneish'] > -1.49 else '#d97706'
-        beneish_html = '<span style="background:#fee2e2;color:' + bc + ';padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">Beneish ' + str(s["beneish"]) + '</span>'
-    # Triptyque
-    rsi_ok = 25 <= s.get('rsi',50) <= 60
-    mm_ok = s.get('price',0) > s.get('mm200',0) if s.get('mm200',0) else False
-    zone_ok = s['in_zone']
-    tri_score = sum([rsi_ok, mm_ok, zone_ok])
-    tri_html = ('RSI ' + ('OK' if rsi_ok else 'NON') + ' &nbsp;|&nbsp; ' +
-                'MM200 ' + ('OK' if mm_ok else 'NON') + ' &nbsp;|&nbsp; ' +
-                'Zone ' + ('OK' if zone_ok else 'NON'))
-    tri_col = '#16a34a' if tri_score >= 2 else '#d97706' if tri_score == 1 else '#dc2626'
-    # SITUATION — FAITS NEUTRES (pas de recommandation d'achat/vente)
-    rr = s['rr']; upside = s['upside']; in_zone = s['in_zone']
-    stop = s.get('stop',0); price = s['price']; o1 = s.get('o1',0)
-    margin_val = s.get('margin', 0)
-    debt_val   = s.get('debt', 0)
-    o1_pct = round((o1 - price) / price * 100) if o1 and price else 0
-    dist_stop = round((price - stop) / price * 100, 1) if stop and price else 0
-    dist_o1   = round((o1 - price)   / price * 100, 1) if o1 and price else 0
-    sit = [
-        ('Zone',     '#16a34a' if in_zone else '#888', ('EN ZONE' if in_zone else 'Hors zone')),
-        ('Stop',     '#dc2626' if dist_stop < 8 else '#888', '-' + str(dist_stop) + '%'),
-        ('Obj.1',    '#16a34a', '+' + str(dist_o1) + '%'),
-        ('Upside DCF','#16a34a' if upside > 10 else '#888', ('+' if upside > 0 else '') + str(upside) + '%'),
-        ('R/R',      '#16a34a' if rr >= 1.5 else '#888', str(rr) + 'x'),
-        ('Piotroski','#16a34a' if s['pio'] >= 7 else '#888', str(int(s['pio'])) + '/9'),
-    ]
-    alerte_html = ''
+        bc  = '#dc2626' if s['beneish'] > -1.49 else '#d97706'
+        b_h = f'<span style="background:#fee2e2;color:{bc};padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700">Beneish {s["beneish"]}</span>'
+    upside = s['upside']; price = s['price']; stop = s.get('stop',0); o1 = s.get('o1',0)
+    o1_pct    = round((o1 - price)/price*100) if o1 and price else 0
+    dist_stop = round((price-stop)/price*100,1) if stop and price else 0
+    dist_o1   = round((o1-price)/price*100,1) if o1 and price else 0
+    rr = s['rr']
+    alerte = ''
     if stop > 0 and price <= stop * 1.05:
-        alerte_html = '<div style="background:#fee2e2;border-left:4px solid #dc2626;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#dc2626"><b>ATTENTION : ' + str(dist_stop) + '% du stop (' + str(stop) + 'EUR)</b></div>'
-    elif upside < -10 and not in_zone:
-        alerte_html = '<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#ea580c"><b>PV latente : cours depasse le DCF de ' + str(abs(upside)) + '%</b></div>'
-    # Thèse / contra
-    thesis = s.get('thesis','')[:220] + ('...' if len(s.get('thesis','')) > 220 else '')
-    contra = s.get('contra','')[:180] + ('...' if len(s.get('contra','')) > 180 else '')
-    thesis_html = ''
-    if thesis:
-        thesis_html = ('<div style="margin-top:10px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 4px 4px 0">'
-                       '<div style="font-size:8px;color:#16a34a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Pourquoi investir</div>'
-                       '<div style="font-size:10px;color:#1a4730;line-height:1.5">' + thesis + '</div></div>')
-    contra_html = ''
-    if contra:
-        contra_html = ('<div style="margin-top:6px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0">'
-                       '<div style="font-size:8px;color:#dc2626;font-weight:700;text-transform:uppercase;margin-bottom:3px">Ce que le marche craint</div>'
-                       '<div style="font-size:10px;color:#7c2d2d;line-height:1.5">' + contra + '</div></div>')
-    situation_html = ('<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px">'
-        + ''.join('<div style="background:#f8fafc;border-radius:4px;padding:4px 6px;text-align:center">'
-                  + '<div style="font-size:12px;font-weight:700;color:' + col + '">' + val + '</div>'
-                  + '<div style="font-size:8px;color:#aaa">' + label + '</div></div>'
-                  for label, col, val in sit)
-        + '</div>' + alerte_html)
-    return ('<div style="background:' + bg + ';border:1px solid ' + border_col + ';border-radius:8px;padding:14px 16px;margin-bottom:12px' + (';border-left:4px solid #22c55e' if highlight else '') + '">'
-        + '<table width="100%" cellpadding="0" cellspacing="0"><tr>'
-        + '<td style="vertical-align:top">'
-        + '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">'
-        + '<span style="background:' + gc + ';color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;font-family:monospace">' + s['score'] + '</span>'
-        + '<b style="font-size:15px;color:#0f2540;font-family:monospace">' + s['ticker'] + '</b>'
-        + '<span style="color:#888;font-size:10px">' + s['name'][:20] + '</span>'
-        + zone_html + beneish_html
-        + '</div>'
-        + '<div style="font-size:9px;color:#888;margin-bottom:6px">' + s.get('sector','') + '</div>'
-        + '</td>'
-        + '<td style="vertical-align:top;text-align:right;min-width:90px">'
-        + '<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:10px 14px;text-align:center">'
-        + '<div style="font-size:26px;font-weight:700;color:' + sc + ';font-family:monospace">' + str(s['qarp']) + '</div>'
-        + '<div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">/100 QARP</div>'
-        + '<div style="margin-top:4px;font-size:9px;color:#f0d080;font-weight:700">' + ('ULTIME' if s['signal']=='ULTIME' else 'FORT' if s['signal']=='FORT' else 'SURVEILLER') + '</div>'
-        + '</div></td></tr></table>'
-        + '<table width="100%" cellpadding="3" cellspacing="0" style="font-size:10px;margin-bottom:6px">'
-        + '<tr><td style="color:#888;width:22%">Cours</td><td><b style="font-family:monospace">' + str(price) + 'EUR</b></td>'
-        + '<td style="color:#888">Zone</td><td><b style="font-family:monospace">' + str(s['el']) + '-' + str(s['eh']) + 'EUR</b></td></tr>'
-        + '<tr><td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">' + str(stop) + 'EUR</b></td>'
-        + '<td style="color:#888">Objectif 1</td><td><b style="color:#16a34a;font-family:monospace">' + str(s['o1']) + 'EUR (+' + str(o1_pct) + '%)</b></td></tr>'
-        + '<tr><td style="color:#888">Upside DCF</td><td><b style="color:' + ('#16a34a' if upside>15 else '#d97706') + ';font-family:monospace">' + ('+' if upside>0 else '') + str(upside) + '%</b></td>'
-        + '<td style="color:#888">R/R</td><td><b style="font-family:monospace;color:' + ('#16a34a' if rr>=1.5 else '#d97706') + '">' + str(rr) + 'x</b></td></tr>'
-        + '<tr><td style="color:#888">ROE</td><td><b style="font-family:monospace">' + str(s['roe']) + '%</b></td>'
-        + '<td style="color:#888">Piotroski</td><td><b style="font-family:monospace">' + str(int(s['pio'])) + '/9</b></td></tr>'
-        + '<tr><td style="color:#888">Marge</td><td><b style="font-family:monospace">' + str(margin_val) + '%</b></td>'
-        + '<td style="color:#888">Dette</td><td><b style="font-family:monospace">' + str(debt_val) + 'x</b></td></tr>'
-        + '</table>'
-        + '<div style="font-size:9px;padding:4px 8px;background:#f8fafc;border-radius:4px;margin-bottom:6px;color:' + tri_col + '">'
-        + '<b>Triptyque ' + str(tri_score) + '/3 :</b> ' + tri_html
-        + '</div>'
-        + thesis_html
-        + contra_html
-        + situation_html
-        + '</div>')
+        alerte = f'<div style="background:#fee2e2;border-left:4px solid #dc2626;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#dc2626"><b>ATTENTION : {dist_stop}% du stop ({stop}€)</b></div>'
+    elif upside < -10 and not s['in_zone']:
+        alerte = f'<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:5px 8px;margin-top:6px;border-radius:0 4px 4px 0;font-size:9px;color:#ea580c"><b>PV latente : cours dépasse le DCF de {abs(upside)}%</b></div>'
+    thesis = s.get('thesis','')[:220]
+    contra = s.get('contra','')[:180]
+    th_h = (f'<div style="margin-top:10px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 4px 4px 0">'
+            f'<div style="font-size:8px;color:#16a34a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Pourquoi investir</div>'
+            f'<div style="font-size:10px;color:#1a4730;line-height:1.5">{thesis}</div></div>') if thesis else ''
+    ct_h = (f'<div style="margin-top:6px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0">'
+            f'<div style="font-size:8px;color:#dc2626;font-weight:700;text-transform:uppercase;margin-bottom:3px">Ce que le marché craint</div>'
+            f'<div style="font-size:10px;color:#7c2d2d;line-height:1.5">{contra}</div></div>') if contra else ''
+    return (f'<div style="background:{bg};border:1px solid {brd};border-radius:8px;padding:14px 16px;margin-bottom:12px'
+            f'{";border-left:4px solid #22c55e" if highlight else ""}">'
+            f'<table width="100%" cellpadding="0" cellspacing="0"><tr>'
+            f'<td style="vertical-align:top">'
+            f'<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">'
+            f'<span style="background:{gc};color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700">{s["score"]}</span>'
+            f'<b style="font-size:15px;color:#0f2540;font-family:monospace">{s["ticker"]}</b>'
+            f'<span style="color:#888;font-size:10px">{s["name"][:20]}</span>'
+            f'{zone_h}{b_h}</div>'
+            f'<div style="font-size:9px;color:#888;margin-bottom:6px">{s.get("sector","")}</div>'
+            f'</td><td style="vertical-align:top;text-align:right;min-width:90px">'
+            f'<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:10px 14px;text-align:center">'
+            f'<div style="font-size:26px;font-weight:700;color:{sc};font-family:monospace">{s["qarp"]}</div>'
+            f'<div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">/100 QARP</div>'
+            f'<div style="margin-top:4px;font-size:9px;color:#f0d080;font-weight:700">{s["signal"] or "—"}</div>'
+            f'</div></td></tr></table>'
+            f'<table width="100%" cellpadding="3" cellspacing="0" style="font-size:10px;margin-bottom:6px">'
+            f'<tr><td style="color:#888">Cours</td><td><b style="font-family:monospace">{price}€</b></td>'
+            f'<td style="color:#888">Zone</td><td><b style="font-family:monospace">{s["el"]}–{s["eh"]}€</b></td></tr>'
+            f'<tr><td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">{stop}€</b></td>'
+            f'<td style="color:#888">Obj.1</td><td><b style="color:#16a34a;font-family:monospace">{o1}€ (+{o1_pct}%)</b></td></tr>'
+            f'<tr><td style="color:#888">Upside</td><td><b style="color:{"#16a34a" if upside>15 else "#d97706"};font-family:monospace">{"+"+str(upside) if upside>0 else str(upside)}%</b></td>'
+            f'<td style="color:#888">R/R</td><td><b style="font-family:monospace;color:{"#16a34a" if rr>=1.5 else "#d97706"}">{rr}x</b></td></tr>'
+            f'<tr><td style="color:#888">ROE</td><td><b style="font-family:monospace">{s["roe"]}%</b></td>'
+            f'<td style="color:#888">Piotroski</td><td><b style="font-family:monospace">{int(s["pio"])}/9</b></td></tr>'
+            f'<tr><td style="color:#888">Marge</td><td><b style="font-family:monospace">{s["margin"]}%</b></td>'
+            f'<td style="color:#888">Dette</td><td><b style="font-family:monospace">{s["debt"]}x</b></td></tr>'
+            f'</table>'
+            + th_h + ct_h + alerte +
+            '</div>')
 
+def section_block(title, color, items, max_items=6):
+    if not items: return ''
+    cards = ''.join(stock_card(s, highlight=(s['signal']=='ULTIME')) for s in items[:max_items])
+    return (f'<div style="margin-bottom:20px">'
+            f'<div style="background:{color};color:#fff;padding:9px 14px;border-radius:6px 6px 0 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between">'
+            f'<span>{title}</span><span style="opacity:.8">{len(items)} action{"s" if len(items)>1 else ""}</span></div>'
+            f'<div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;padding:10px">{cards}</div>'
+            f'</div>')
 
-
-def grade_a_analyse_section(stocks):
-    """Analyse Grade A : thesis, contra, DCF, moat, catalysts, insider. Max 6."""
-    targets = sorted(
-        [s for s in stocks if s['score'] == 'A' and s['signal'] in ('ULTIME', 'FORT')
-         and s.get('thesis')],
-        key=lambda x: -x['qarp']
-    )[:6]
-    if not targets:
-        return ''
-
-    cards = []
-    for s in targets:
-        price   = s['price']
-        dcfb    = s.get('dcfb', 0)
-        dcfm    = s.get('dcfm', 0)
-        dcfu    = s.get('dcfu', 0)
-        upside  = s['upside']
-        moat    = s.get('moat', [])
-        cats    = s.get('cats', [])
-        insider = s.get('insider', '')
-        thesis  = s.get('thesis', '')
-        contra  = s.get('contra', '')
-
-        sig_col = '#16a34a' if s['signal'] == 'ULTIME' else '#d97706'
-        sig_lbl = '\U0001f680 ULTIME' if s['signal'] == 'ULTIME' else '\u2705 FORT'
-        up_col  = '#16a34a' if upside > 15 else '#d97706'
-
-        # Barre DCF
-        dcf_bar = ''
-        if dcfb and dcfm and dcfu and price:
-            pct = min(100, max(0, round((price - dcfb) / max(dcfu - dcfb, 1) * 100)))
-            dcf_bar = (
-                '<div style="margin:8px 0 4px">'
-                '<div style="font-size:9px;color:#888;margin-bottom:3px">Fourchette DCF</div>'
-                '<div style="position:relative;height:8px;background:#e2e8f0;border-radius:4px">'
-                f'<div style="position:absolute;left:{pct}%;top:-2px;width:4px;height:12px;background:{up_col};border-radius:2px"></div>'
-                '</div>'
-                '<div style="display:flex;justify-content:space-between;font-size:8px;color:#888;margin-top:2px">'
-                f'<span>Bas {dcfb}\u20ac</span><span>Milieu {dcfm}\u20ac</span><span>Haut {dcfu}\u20ac</span>'
-                '</div></div>'
-            )
-
-        moat_html = ''
-        if moat:
-            items = ''.join(
-                f'<span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:3px;font-size:9px;margin:1px 2px 1px 0;display:inline-block">\U0001f3f0 {m}</span>'
-                for m in moat[:3]
-            )
-            moat_html = f'<div style="margin:6px 0">{items}</div>'
-
-        cats_html = ''
-        if cats:
-            items = ''.join(
-                f'<span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:3px;font-size:9px;margin:1px 2px 1px 0;display:inline-block">\u26a1 {c}</span>'
-                for c in cats[:3]
-            )
-            cats_html = f'<div style="margin:4px 0">{items}</div>'
-
-        insider_html = (
-            f'<div style="margin-top:4px;font-size:9px;color:#7c3aed;background:#f5f3ff;padding:3px 8px;border-radius:3px;display:inline-block">\U0001f464 Insider: {insider}</div>'
-            if insider else ''
-        )
-
-        card = (
-            f'<div style="border:1px solid #e2e8f0;border-left:4px solid {sig_col};border-radius:0 6px 6px 0;padding:12px 14px;margin-bottom:10px;background:#fff">'
-            f'<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">'
-            f'<div>'
-            f'<span style="font-family:monospace;font-size:14px;font-weight:700;color:#0f2540">{s["ticker"]}</span>'
-            f'<span style="color:#64748b;font-size:11px;margin-left:6px">{s["name"]}</span>'
-            f'</div>'
-            f'<div style="text-align:right">'
-            f'<span style="background:{sig_col};color:#fff;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700">{sig_lbl}</span>'
-            f'<div style="font-family:monospace;font-weight:700;font-size:12px;margin-top:2px">{price}\u20ac'
-            f' <span style="color:{up_col};font-size:10px">+{upside}% DCF</span></div>'
-            f'</div></div>'
-            + dcf_bar + moat_html
-            + f'<div style="margin-top:8px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 4px 4px 0;font-size:10px;color:#1a4730;line-height:1.6">'
-            f'<b style="font-size:8px;color:#16a34a;text-transform:uppercase;display:block;margin-bottom:3px">Pourquoi investir</b>'
-            + thesis
-            + '</div>'
-            f'<div style="margin-top:5px;padding:8px 10px;background:#fff5f5;border-left:3px solid #dc2626;border-radius:0 4px 4px 0;font-size:10px;color:#7c2d2d;line-height:1.6">'
-            f'<b style="font-size:8px;color:#dc2626;text-transform:uppercase;display:block;margin-bottom:3px">Ce que le march\xe9 craint</b>'
-            + contra
-            + '</div>'
-            + cats_html + insider_html
-            + '</div>'
-        )
-        cards.append(card)
-
-    n = len(targets)
-    return (
-        '<div style="margin-bottom:20px">'
-        '<div style="background:#1e293b;color:#fff;padding:9px 14px;border-radius:6px 6px 0 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between">'
-        f'<span>\U0001f4cb Analyse Grade A \u2014 Th\xe8ses & Risques</span>'
-        f'<span style="opacity:.7">{n} dossier{"s" if n>1 else ""}</span>'
-        '</div>'
-        '<div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;padding:12px">'
-        + ''.join(cards)
-        + '</div></div>'
-    )
-
-
-def generate_ptf_fiches(stocks):
-    """
-    Génère une fiche condensée pour chaque action du portefeuille VAL
-    Utilisé dans le mail du dimanche uniquement
-    """
-    # Récupérer les positions Val depuis S[] (on simule le PTF avec les données disponibles)
-    # Les vraies positions sont dans localStorage — on génère pour les actions BPF
-    bpf_tickers = ['RMS','AI','LR','HO','SU','TTE','EL','GTT','MC','OR','DSY','SAF','ASML','EDEN','EL']
-    
-    fiches = []
-    for ticker in bpf_tickers:
-        s = next((x for x in stocks if x['ticker']==ticker), None)
-        if not s:
-            continue
-        
-        inZone = s['in_zone']
-        qarp = s['qarp']
-        upside = s['upside']
-        rr = s['rr']
-        
-        # Signal pour cette position
-        if inZone and qarp >= 65:
-            status_col = '#16a34a'
-            status_lbl = '✅ RENFORCER (zone + score)'
-        elif s['price'] <= s['stop'] * 1.05:
-            status_col = '#dc2626'
-            status_lbl = '🔴 ATTENTION STOP PROCHE'
-        elif qarp >= 55:
-            status_col = '#d97706'
-            status_lbl = '🟡 GARDER — conditions correctes'
-        else:
-            status_col = '#6b7280'
-            status_lbl = '⚪ SURVEILLER'
-        
-        gc = {'A':'#16a34a','B':'#d97706','C':'#6b7280','D':'#dc2626'}.get(s['score'],'#6b7280')
-        
-        fiche = f"""
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:10px">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <span style="background:{gc};color:#fff;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">{s["score"]}</span>
-      <b style="font-size:14px;font-family:monospace">{ticker}</b>
-      <span style="font-size:10px;color:#888">{s["name"][:16]}</span>
-    </div>
-    <div style="padding:3px 10px;background:{status_col}22;color:{status_col};border-radius:4px;font-size:10px;font-weight:700">{status_lbl}</div>
-  </div>
-  <table width="100%" cellpadding="3" cellspacing="0" style="font-size:10px">
-    <tr>
-      <td style="color:#888">Cours</td><td><b style="font-family:monospace">{s["price"]}€</b></td>
-      <td style="color:#888">Zone</td><td><b style="font-family:monospace">{s["el"]}–{s["eh"]}€</b></td>
-      <td style="color:#888">Stop</td><td><b style="color:#dc2626;font-family:monospace">{s["stop"]}€</b></td>
-    </tr>
-    <tr>
-      <td style="color:#888">QARP</td><td><b>{qarp}/100</b></td>
-      <td style="color:#888">Upside</td><td><b style="color:{"#16a34a" if upside>15 else "#d97706"}">{"+"+str(upside) if upside>0 else str(upside)}%</b></td>
-      <td style="color:#888">R/R</td><td><b>{rr}x</b></td>
-    </tr>
-    <tr>
-      <td style="color:#888">ROE</td><td>{s["roe"]}%</td>
-      <td style="color:#888">Marge</td><td>{s["margin"]}%</td>
-      <td style="color:#888">Pio.</td><td>{int(s["pio"])}/9</td>
-    </tr>
-  </table>
-</div>"""
-        fiches.append(fiche)
-    
-    if not fiches:
-        return ''
-    
-    return f"""
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">
-  <div style="font-size:11px;font-family:monospace;color:#0f2540;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">
-    📋 Fiches portefeuille — {'·'.join(bpf_tickers[:len(fiches)])}
-  </div>
-  {''.join(fiches)}
-</div>"""
-
-def build_email(stocks, macro, insights, date_str, is_sunday=False, extra=None):
-    ultimes = sorted([s for s in stocks if s['signal']=='ULTIME'], key=lambda x: -x['qarp'])
-    forts   = sorted([s for s in stocks if s['signal']=='FORT'],   key=lambda x: -x['qarp'])
-    surv    = sorted([s for s in stocks if s['signal']=='SURVEILLER' and s['score']=='A'], key=lambda x: -x['qarp'])
+# ─── BUILD EMAIL ─────────────────────────────────────────────────────────
+def build_email(stocks, macro, insights_html, extra_html, date_str, is_sunday=False):
+    ultimes  = sorted([s for s in stocks if s['signal']=='ULTIME'],    key=lambda x: -x['qarp'])
+    forts    = sorted([s for s in stocks if s['signal']=='FORT'],      key=lambda x: -x['qarp'])
+    surv     = sorted([s for s in stocks if s['signal']=='SURVEILLER' and s['score']=='A'], key=lambda x: -x['qarp'])
     suspects = [s for s in stocks if s['beneish'] > -1.78 and s['score'] in ['A','B']]
-
     macro_verdict, macro_signals = macro_sentiment(macro)
-
     today_label = "RADAR DU DIMANCHE" if is_sunday else "RADAR DU SOIR"
-    today_fr = datetime.now().strftime('%A %d %B %Y').capitalize()
-
-    # Section macro
+    today_fr    = datetime.now().strftime('%A %d %B %Y').capitalize()
+    # Macro rows
     macro_rows = ''
     for key in ['CAC40','VIX','OR','TAUX','DXY']:
         m = macro.get(key, {})
@@ -558,206 +311,177 @@ def build_email(stocks, macro, insights, date_str, is_sunday=False, extra=None):
         macro_rows += (f'<tr><td style="padding:3px 8px;font-size:10px;color:#888">{m["label"]}</td>'
                        f'<td style="padding:3px 8px;font-family:monospace;font-weight:700;font-size:11px">{m["value"]}</td>'
                        f'<td style="padding:3px 8px;color:{col};font-family:monospace;font-size:10px">{("+" if chg>0 else "")}{chg}%</td></tr>')
-
-    # Section insights YouTube
-    insights_html = ''
-    if extra:
-        html += '<div style="background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;border-left:4px solid #0f2540;"><div style="font-size:11px;font-weight:700;color:#0f2540;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📊 Consensus Analystes · Résultats · Pépites</div><div style="font-size:12px;line-height:1.7;color:#333;">' + extra + '</div></div>'
-
-    if insights:
-        insights_html = '''
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">
-  <div style="font-size:11px;font-family:monospace;color:#0f2540;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">
-    🎬 Condensé chaînes (Fournier · Chéron · Harrabi · Delmas)
-  </div>'''
-        if insights.get('actions_mentionnees'):
-            items = ''.join(f'<span style="background:#eff6ff;color:#1d4ed8;padding:2px 7px;border-radius:3px;font-size:10px;margin:2px;display:inline-block">{a}</span>'
-                           for a in insights['actions_mentionnees'][:8])
-            insights_html += f'<div style="margin-bottom:8px"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Mentionnées récemment</div>{items}</div>'
-        if insights.get('consensus'):
-            insights_html += f'<div style="font-size:10px;color:#444;line-height:1.5;margin-bottom:8px;padding:6px 8px;background:#f8fafc;border-radius:4px"><b>Consensus :</b> {insights["consensus"]}</div>'
-        if insights.get('a_retenir'):
-            items = ''.join(f'<li style="font-size:10px;color:#333;margin-bottom:3px">{pt}</li>' for pt in insights['a_retenir'])
-            insights_html += f'<div style="margin-bottom:8px"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">À retenir ce week-end</div><ul style="margin:0;padding-left:16px">{items}</ul></div>'
-        if insights.get('vigilance'):
-            items = ''.join(f'<li style="font-size:10px;color:#dc2626;margin-bottom:3px">{v}</li>' for v in insights['vigilance'])
-            insights_html += f'<div><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">⚠️ Vigilance</div><ul style="margin:0;padding-left:16px">{items}</ul></div>'
-        insights_html += '</div>'
-
-    # Section Beneish suspects
-    beneish_html = ''
+    # Section influenceurs/web
+    insights_section = ''
+    if insights_html:
+        insights_section = (
+            '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">'
+            '<div style="font-size:11px;font-family:monospace;color:#0f2540;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">'
+            '🎬 Influenceurs · Consensus · Résultats · Pépites</div>'
+            f'<div style="font-size:12px;line-height:1.7;color:#333">{insights_html}</div>'
+            '</div>'
+        )
+    # Section extra (marché + small cap)
+    extra_section = ''
+    if extra_html:
+        extra_section = (
+            '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">'
+            '<div style="font-size:11px;font-family:monospace;color:#0f2540;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">'
+            '📊 Marchés · Technique · Opportunités</div>'
+            f'<div style="font-size:12px;line-height:1.7;color:#333">{extra_html}</div>'
+            '</div>'
+        )
+    # Section Beneish
+    beneish_section = ''
     if suspects:
         cards = ''.join(f'<span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:3px;font-size:10px;margin:2px;display:inline-block">⚠️ {s["ticker"]} (M={s["beneish"]})</span>' for s in suspects[:6])
-        beneish_html = f'''
-<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:16px">
-  <b style="font-size:10px;color:#92400e">⚠️ Beneish M-Score — Vérification comptable recommandée</b>
-  <div style="margin-top:6px">{cards}</div>
-  <div style="font-size:9px;color:#78350f;margin-top:6px">Ces actions Grade A/B présentent un signal de manipulation potentielle. Consulter les états financiers primaires avant tout achat.</div>
-</div>'''
-
-    def section(title, color, items, max_items=6):
-        if not items: return ''
-        cards = ''.join(stock_card(s, highlight=(s['signal']=='ULTIME')) for s in items[:max_items])
-        return f'''<div style="margin-bottom:20px">
-  <div style="background:{color};color:#fff;padding:9px 14px;border-radius:6px 6px 0 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between">
-    <span>{title}</span><span style="opacity:.8">{len(items)} action{"s" if len(items)>1 else ""}</span>
-  </div>
-  <div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;padding:10px">{cards}</div>
-</div>'''
-
-    return f'''<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+        beneish_section = (
+            f'<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:16px">'
+            f'<b style="font-size:10px;color:#92400e">⚠️ Beneish M-Score — Vérification recommandée</b>'
+            f'<div style="margin-top:6px">{cards}</div>'
+            f'<div style="font-size:9px;color:#78350f;margin-top:6px">Vérifier les états financiers primaires avant tout achat.</div>'
+            f'</div>'
+        )
+    return f'''<!DOCTYPE html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f1f5f9;font-family:Helvetica Neue,Arial,sans-serif">
 <div style="max-width:680px;margin:0 auto;padding:16px">
 
-  <!-- HEADER -->
-  <div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:12px;padding:20px 24px;margin-bottom:16px">
-    <div style="font-size:8px;font-family:monospace;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px">VAL.PEA · CABINET QUANTITATIF · SBF250</div>
-    <div style="font-size:20px;font-weight:700;color:#f0d080;font-family:Georgia,serif;margin-bottom:3px">{today_label} — {today_fr}</div>
-    <div style="font-size:11px;color:rgba(255,255,255,.6)">{len(stocks)} valeurs · {sum(1 for s in stocks if s["score"]=="A")} Grade A · {len(ultimes)} signaux ultimes</div>
-    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-      {"".join(f'<div style="background:rgba(255,255,255,.08);border-radius:5px;padding:6px 12px;text-align:center"><div style="font-size:16px;font-weight:700;color:#f0d080;font-family:monospace">{v}</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">{l}</div></div>' for v,l in [(len(ultimes),"Ultimes"),(len(forts),"Forts"),(sum(1 for s in stocks if s["in_zone"]),"En zone"),(len(suspects),"⚠️ Beneish")])}
-    </div>
-  </div>
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:12px;padding:20px 24px;margin-bottom:16px">
+<div style="font-size:8px;font-family:monospace;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px">VAL.PEA · CABINET QUANTITATIF · SBF250</div>
+<div style="font-size:20px;font-weight:700;color:#f0d080;font-family:Georgia,serif;margin-bottom:3px">{today_label} — {today_fr}</div>
+<div style="font-size:11px;color:rgba(255,255,255,.6)">{len(stocks)} valeurs · {sum(1 for s in stocks if s["score"]=="A")} Grade A · {len(ultimes)} signaux ultimes</div>
+<div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+{''.join(f'<div style="background:rgba(255,255,255,.08);border-radius:5px;padding:6px 12px;text-align:center"><div style="font-size:16px;font-weight:700;color:#f0d080;font-family:monospace">{v}</div><div style="font-size:8px;color:rgba(255,255,255,.4);text-transform:uppercase">{l}</div></div>' for v,l in [(len(ultimes),"Ultimes"),(len(forts),"Forts"),(sum(1 for s in stocks if s["in_zone"]),"En zone"),(len(suspects),"⚠️ Beneish")])}
+</div>
+</div>
 
-  <!-- MACRO -->
-  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:16px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <b style="font-size:11px;color:#0f2540;text-transform:uppercase;letter-spacing:1px">Contexte Macro</b>
-      <span style="padding:3px 10px;background:{macro_verdict[2]};color:{macro_verdict[1]};border-radius:4px;font-size:10px;font-weight:700">{macro_verdict[0]}</span>
-    </div>
-    <table width="100%" cellpadding="0" cellspacing="0">
-      <tr><td colspan="3" style="padding-bottom:6px">
-        {"".join(f'<div style="font-size:9px;color:#444;margin-bottom:2px">{icon} <b>{label}</b> — {desc}</div>' for icon,label,desc in macro_signals)}
-      </td></tr>
-      {macro_rows}
-    </table>
-  </div>
+<!-- MACRO -->
+<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:16px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<b style="font-size:11px;color:#0f2540;text-transform:uppercase;letter-spacing:1px">Contexte Macro</b>
+<span style="padding:3px 10px;background:{macro_verdict[2]};color:{macro_verdict[1]};border-radius:4px;font-size:10px;font-weight:700">{macro_verdict[0]}</span>
+</div>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td colspan="3" style="padding-bottom:6px">
+{''.join(f'<div style="font-size:9px;color:#444;margin-bottom:2px">{icon} <b>{label}</b> — {desc}</div>' for icon,label,desc in macro_signals)}
+</td></tr>
+{macro_rows}
+</table>
+</div>
 
-  {insights_html}
-  {beneish_html}
-  {grade_a_analyse_section(stocks)}
-  {section("🚀 Signaux Ultimes — Score ≥70 + décote DCF", "#16a34a", ultimes)}
-  {section("✅ Signaux Forts — Score ≥58 (Grade A/B)", "#d97706", forts)}
-  {section("👁 À Surveiller — Grade A en approche", "#2563eb", surv, max_items=3)}
+{insights_section}
+{extra_section}
+{beneish_section}
 
-  <!-- RÈGLE DU DIMANCHE -->
-  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:16px">
-    <b style="font-size:10px;color:#d97706">⚡ Règle du dimanche</b><br>
-    <span style="font-size:10px;color:#78350f">Ce mail détecte, il n'ordonne pas. Toute décision se prend le dimanche matin après le protocole complet : Score A + Zone + Triptyque + Psycho + Taille. Beneish suspect = vérification obligatoire avant achat.</span>
-  </div>
+{section_block("🚀 Signaux Ultimes — Score ≥70 + décote DCF", "#16a34a", ultimes)}
+{section_block("✅ Signaux Forts — Score ≥58 (Grade A/B)", "#d97706", forts)}
+{section_block("👁 À Surveiller — Grade A en approche", "#2563eb", surv, max_items=3)}
 
-  <div style="text-align:center;font-size:9px;color:#94a3b8;padding:10px">VAL.PEA · Non-conseil · {date_str}</div>
+<!-- RÈGLE DU DIMANCHE -->
+<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:16px">
+<b style="font-size:10px;color:#d97706">⚡ Règle du dimanche</b><br>
+<span style="font-size:10px;color:#78350f">Ce mail détecte, il n'ordonne pas. Toute décision : le dimanche matin après le protocole complet — Score A + Zone + Triptyque + Psycho + Taille. Beneish suspect = vérification obligatoire avant achat.</span>
+</div>
+
+<div style="text-align:center;font-size:9px;color:#94a3b8;padding:10px">VAL.PEA · Non-conseil · {date_str}</div>
 </div></body></html>'''
 
-# ─── MAIN ──────────────────────────────────────────────────────────────────
-
-def fetch_extra_sources(stocks):
-    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
-    if not api_key: return None
-    top5 = ', '.join(s['ticker'] for s in sorted(stocks, key=lambda x: x.get('qarp',0), reverse=True)[:5])
-    prompt = ('Date: ' + datetime.now().strftime('%d/%m/%Y') + '. Top5 QARP: ' + top5 + '\n\nEn HTML: 1.CONSENSUS analystes ZoneBourse pour chaque ticker 2.RESULTATS cette semaine CAC40/SBF120 3.PEPITE cachee small cap europeenne 4.CAC40 technique niveaux cles. Direct et factuel.')
+# ─── SEND ─────────────────────────────────────────────────────────────────
+def send_email(subject, html):
+    with open('alert_preview.html', 'w', encoding='utf-8') as f:
+        f.write(html)
+    print("Preview: alert_preview.html")
+    if not GMAIL_USER or not GMAIL_PASS or not EMAIL_TO:
+        print("⚠️ SMTP non configuré — preview only")
+        return False
     try:
-        payload = json.dumps({'model':'claude-sonnet-4-20250514','max_tokens':700,'tools':[{'type':'web_search_20250305','name':'web_search'}],'messages':[{'role':'user','content':prompt}]}).encode('utf-8')
-        req = urllib.request.Request('https://api.anthropic.com/v1/messages',data=payload,headers={'Content-Type':'application/json','x-api-key':api_key,'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05'})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read())
-        return ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text').strip() or None
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = subject
+        msg['From']    = GMAIL_USER
+        msg['To']      = EMAIL_TO
+        msg.attach(MIMEText(html, 'html', 'utf-8'))
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
+            s.login(GMAIL_USER, GMAIL_PASS)
+            s.sendmail(GMAIL_USER, EMAIL_TO.split(','), msg.as_string())
+        print(f"✅ Mail envoyé à {EMAIL_TO}")
+        return True
     except Exception as e:
-        print(f'  extra: {e}')
-        return None
+        print(f"❌ SMTP: {e}")
+        return False
 
+def send_telegram(stocks, macro_verdict, is_sunday):
+    if not TG_TOKEN or not TG_CHAT: return
+    ultimes  = [s for s in stocks if s['signal']=='ULTIME']
+    forts    = [s for s in stocks if s['signal']=='FORT']
+    suspects = [s for s in stocks if s['beneish'] > -1.78 and s['score'] in ['A','B']]
+    def esc(t): return str(t).replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
+    msg = (f"📊 <b>VAL.PEA — {'Dimanche' if is_sunday else 'Soir'} {datetime.now().strftime('%d/%m')}</b>\n"
+           f"Macro: {esc(macro_verdict[0])}\n\n")
+    if ultimes:
+        msg += f"🚀 <b>ULTIMES ({len(ultimes)})</b>\n"
+        for s in ultimes[:5]:
+            msg += f" • <b>{esc(s['ticker'])}</b> {esc(s['name'][:12])} — {s['qarp']}/100 — {s['price']}€\n"
+    if forts:
+        msg += f"\n✅ <b>FORTS ({len(forts)})</b>\n"
+        for s in forts[:4]:
+            msg += f" • <b>{esc(s['ticker'])}</b> — {s['qarp']}/100\n"
+    if suspects:
+        msg += f"\n⚠️ <b>Beneish:</b> {esc(', '.join(s['ticker'] for s in suspects[:4]))}"
+    payload = json.dumps({'chat_id': TG_CHAT, 'text': msg[:3800], 'parse_mode': 'HTML'})
+    try:
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage",
+            data=payload.encode(), headers={'Content-Type':'application/json'})
+        urllib.request.urlopen(req, timeout=10)
+        print("✅ Telegram envoyé")
+    except Exception as e:
+        print(f"⚠️ Telegram: {e}")
+
+# ─── MAIN ─────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
-    html_file = 'index.html'
-    with open(html_file, 'r', encoding='utf-8') as f:
+    print("=" * 60)
+    print(f"VAL.PEA send_alerts_v2 — {datetime.now().strftime('%d/%m/%Y %H:%M')}")
+    print("=" * 60)
+
+    if not os.path.exists('index.html'):
+        print("❌ index.html introuvable"); sys.exit(1)
+    with open('index.html', 'r', encoding='utf-8') as f:
         content = f.read()
 
-    print("Parsing actions...")
+    print("\n📊 Parsing actions...")
     stocks = get_stocks(content)
     print(f"  {len(stocks)} actions parsées")
 
-    print("Récupération macro...")
+    print("\n📡 Récupération macro...")
     macro = fetch_macro()
-    for k,v in macro.items():
+    for k, v in macro.items():
         if v['value']: print(f"  {v['label']}: {v['value']} ({'+' if v['chg']>0 else ''}{v['chg']}%)")
 
-    is_saturday = datetime.now().weekday() == 5
-    extra = fetch_extra_sources(stocks) if is_saturday or '--extra' in sys.argv else None
-    if extra: print("  Extra sources OK")
-
-    print("Analyse YouTube influenceurs...")
-    is_saturday_or_sunday = datetime.now().weekday() in (5, 6)
     is_sunday = datetime.now().weekday() == 6
-    insights = fetch_youtube_insights() if is_saturday_or_sunday or '--insights' in sys.argv else None
-    if insights:
-        print("  ✅ Condensé YouTube généré")
-    else:
-        print("  ⏭  Insights ignorés (lundi-samedi)")
+    is_weekend = datetime.now().weekday() in (5, 6)
 
-    date_str = datetime.now().strftime('%d/%m/%Y %H:%M')
-    email_html = build_email(stocks, macro, insights, date_str, is_sunday, extra)
+    # Insights influenceurs + web (toujours si clé dispo)
+    print("\n🎬 Insights influenceurs & web...")
+    insights_html = fetch_youtube_and_web_insights() if ANTHROPIC_KEY else None
+    if insights_html: print(f"  ✅ {len(insights_html)} chars")
+    else: print("  ⏭ Ignoré (pas de clé)")
 
-    # Sauvegarder preview
-    with open('alert_preview.html', 'w', encoding='utf-8') as f:
-        f.write(email_html)
-    print("Preview: alert_preview.html")
+    # Extra sources
+    top5 = ', '.join(s['ticker'] for s in sorted(stocks, key=lambda x: x.get('qarp',0), reverse=True)[:5])
+    extra_html = fetch_extra_sources(top5) if ANTHROPIC_KEY and is_weekend else None
+    if extra_html: print(f"  ✅ Extra: {len(extra_html)} chars")
 
-    # Envoyer
-    gmail_user = os.environ.get('GMAIL_USER', '')
-    gmail_pass = os.environ.get('GMAIL_PASSWORD', '')
-    recipient  = os.environ.get('RECIPIENT_EMAIL', gmail_user)
+    date_str   = datetime.now().strftime('%d/%m/%Y %H:%M')
+    email_html = build_email(stocks, macro, insights_html, extra_html, date_str, is_sunday)
 
-    if gmail_user and gmail_pass:
-        ultimes = [s for s in stocks if s['signal']=='ULTIME']
-        forts   = [s for s in stocks if s['signal']=='FORT']
-        subject = f"VAL.PEA · {datetime.now().strftime('%d/%m')} · {len(ultimes)} ultime(s) · {len(forts)} fort(s)"
+    ultimes = [s for s in stocks if s['signal']=='ULTIME']
+    forts   = [s for s in stocks if s['signal']=='FORT']
+    subject = f"VAL.PEA · {datetime.now().strftime('%d/%m')} · {len(ultimes)} ultime(s) · {len(forts)} fort(s)"
 
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = gmail_user
-        msg['To'] = recipient
-        msg.attach(MIMEText(email_html, 'html', 'utf-8'))
+    send_email(subject, email_html)
+    macro_verdict, _ = macro_sentiment(macro)
+    send_telegram(stocks, macro_verdict, is_sunday)
 
-        try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-                smtp.login(gmail_user, gmail_pass)
-                smtp.sendmail(gmail_user, recipient, msg.as_string())
-            print(f"✅ Mail envoyé: {subject}")
-        except Exception as e:
-            print(f"❌ Erreur: {e}")
-    else:
-        print("⚠️  GMAIL non configuré — preview seulement")
-
-    # Telegram
-    tg_token = os.environ.get('TELEGRAM_TOKEN','')
-    tg_chat  = os.environ.get('TELEGRAM_CHAT_ID','')
-    if tg_token and tg_chat:
-        ultimes = [s for s in stocks if s['signal']=='ULTIME']
-        forts   = [s for s in stocks if s['signal']=='FORT']
-        suspects = [s for s in stocks if s['beneish'] > -1.78 and s['score'] in ['A','B']]
-        macro_v = macro_sentiment(macro)[0]
-        # HTML mode — évite les erreurs Markdown sur noms spéciaux
-        def esc(t): return str(t).replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
-        msg = (f"📊 <b>VAL.PEA — {'Dimanche' if is_sunday else 'Soir'} {datetime.now().strftime('%d/%m')}</b>\n"
-               f"Macro: {esc(macro_v[0])}\n\n")
-        if ultimes:
-            msg += f"🚀 <b>ULTIMES ({len(ultimes)})</b>\n"
-            for s in ultimes[:5]:
-                msg += f"  • <b>{esc(s['ticker'])}</b> {esc(s['name'][:12])} — {s['qarp']}/100 — {s['price']}€\n"
-        if forts:
-            msg += f"\n✅ <b>FORTS ({len(forts)})</b>\n"
-            for s in forts[:4]:
-                msg += f"  • <b>{esc(s['ticker'])}</b> — {s['qarp']}/100\n"
-        if suspects:
-            msg += f"\n⚠️ <b>Beneish suspects:</b> {esc(', '.join(s['ticker'] for s in suspects[:4]))}"
-
-        payload = json.dumps({'chat_id': tg_chat, 'text': msg[:3800], 'parse_mode': 'HTML'})
-        req = urllib.request.Request(
-            f"https://api.telegram.org/bot{tg_token}/sendMessage",
-            data=payload.encode(),
-            headers={'Content-Type':'application/json'}
-        )
-        try:
-            urllib.request.urlopen(req, timeout=10)
-            print("✅ Telegram envoyé")
-        except Exception as e:
-            print(f"⚠️ Telegram: {e}")
+    print("\n✅ Terminé")
