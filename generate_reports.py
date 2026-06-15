@@ -89,7 +89,7 @@ def http_get(url, timeout=10):
         return ''
 
 # ─── GMAIL IMAP — newsletters + Chéron ───────────────────────────────────
-def fetch_gmail_newsletters(days_back=15):
+def fetch_gmail_newsletters(days_back=7):
     """Lit toutes les newsletters financières dans Gmail des X derniers jours"""
     if not SMTP_USER or not SMTP_PASS:
         return []
@@ -104,7 +104,7 @@ def fetch_gmail_newsletters(days_back=15):
             try:
                 _, msgs = mail.search(None, f'(FROM "{source_kw}" SINCE {since})')
                 if not msgs[0]: continue
-                for msg_id in msgs[0].split()[-3:]:  # 3 derniers
+                for msg_id in msgs[0].split()[-1:]:  # dernier uniquement
                     try:
                         _, msg_data = mail.fetch(msg_id, '(RFC822)')
                         msg_obj = email.message_from_bytes(msg_data[0][1])
@@ -205,7 +205,8 @@ def fetch_social_media_summary(newsletters):
 
 MISSION : Résumé COMPLET de la semaine sur les réseaux sociaux et newsletters financières françaises.
 
-SOURCES À CHERCHER (7 derniers jours) :
+SOURCES À CHERCHER (7 derniers jours uniquement — semaine en cours) :
+Si un influenceur n'a rien publié cette semaine, indiquer clairement 'Pas de publication cette semaine'.
 
 1. GUILLAUME FOURNIER (@GuillaumeFournier_Invest YouTube, Instagram, Finance Optimale)
    → Ses dernières vidéos et posts : actions analysées, sentiment, méthode B.A.M appliquée
