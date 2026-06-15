@@ -1,0 +1,74 @@
+name: Update PEA Screener
+
+on:
+  schedule:
+    - cron: '35 15 * * 1-5'   # Lundi-vendredi 17h35 Paris
+    - cron: '0 7 * * 0'        # Dimanche 9h Paris
+    - cron: '0 17 * * 5'       # Vendredi 19h Paris
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer dependances
+        run: pip install yfinance requests
+
+      - name: Mise a jour des prix
+        run: python fetch_prices.py
+
+      - name: Analyse signaux et email enrichi
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+        run: python generate_reports.py
+
+      - name: Macro Digest (dimanche uniquement)
+        if: github.event.schedule == '0 7 * * 0' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python macro_digest.py
+
+      - name: Alertes signaux (send_alerts_v2)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python send_alerts_v2.py
+
+      - name: Supprimer les DOCX generes
+        run: |
+          git rm --ignore-unmatch "*.docx" 2>/dev/null || true
+          rm -f *.docx alert_preview.html mail_preview.html 2>/dev/null || true
+
+      - name: Commit et push
+        run: |
+          git config user.name "PEA Bot"
+          git config user.email "bot@pea.fr"
+          git add index.html prices.json prices_memory.json data.js fundamentals_log.json 2>/dev/null || true
+          git add .gitignore 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Update $(date '+%d/%m %H:%M') [skip ci]"
+          git push
