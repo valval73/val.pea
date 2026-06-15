@@ -2,72 +2,72 @@ name: Update PEA Screener
 
 on:
   schedule:
-    - cron: '0 16 * * 5'    # Vendredi 18h00 — prix + mail
-    - cron: '0 6 * * 6'     # Samedi 8h00 — fondamentaux
-    - cron: '0 7 * * 0'     # Dimanche 9h00 — signaux
-    - cron: '35 15 * * 1-4' # Lun-Jeu 17h35 — prix silencieux
+    - cron: '35 17 * * 1-5'   # Lundi-vendredi 17h35 Paris (UTC+2 = 15h35 UTC)
+    - cron: '0 7 * * 0'        # Dimanche 9h Paris (UTC+2 = 7h UTC)
+    - cron: '0 17 * * 5'       # Vendredi 19h Paris = 17h UTC
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install yfinance requests python-docx pandas numpy -q
+      - name: Installer dependances
+        run: pip install yfinance requests
 
-      - name: Determine day
-        id: day
-        run: |
-          DAY=$(date +%u)
-          echo "day=$DAY" >> $GITHUB_OUTPUT
-          echo "Day = $DAY (1=lun 2=mar 3=mer 4=jeu 5=ven 6=sam 7=dim)"
+      - name: Mise a jour des prix
+        run: python fetch_prices.py
 
-      - name: Update prices
-        if: steps.day.outputs.day != '6'
-        run: python update_prices_v2.py
-
-      - name: Update fundamentals
-        if: steps.day.outputs.day == '6'
-        run: python update_fundamentals.py
-
-      - name: Generate revue vendredi
-        if: steps.day.outputs.day == '5'
-        run: python generate_reports.py vendredi
-
-      - name: Generate signaux dimanche
-        if: steps.day.outputs.day == '7'
-        run: python generate_reports.py dimanche
-
-      - name: Send Friday email
-        if: steps.day.outputs.day == '5'
+      - name: Analyse signaux et email enrichi
         env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          # Compatibilite anciens secrets Gmail
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+        run: python generate_reports.py
+
+      - name: Macro Digest (dimanche uniquement)
+        if: github.event.schedule == '0 7 * * 0' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python macro_digest.py
+
+      - name: Alertes signaux (send_alerts_v2)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.MAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python send_alerts_v2.py
 
-      - name: Inject live_patch.js
-        run: python3 inject_patch.py
-
-      - name: Commit and push
+      - name: Commit et push
         run: |
-          git config user.name "VAL.PEA Bot"
-          git config user.email "bot@val.pea"
-          git add index.html prices_memory.json VAL_PEA_*.docx 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "Auto update $(date '+%Y-%m-%d %H:%M') [skip ci]"
+          git config user.name "PEA Bot"
+          git config user.email "bot@pea.fr"
+          git add -A
+          git diff --staged --quiet || git commit -m "Update $(date '+%d/%m %H:%M')"
           git push
+
+      - name: Upgrade Node.js actions (compatibilite)
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+        run: echo "Node24 force"
