@@ -17,14 +17,16 @@ from email.mime.text import MIMEText
 from email.header import decode_header
 
 # ─── CONFIG ──────────────────────────────────────────────────────────────
-ANTHROPIC_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
-SMTP_USER = (os.environ.get('MAIL_USER') or os.environ.get('GMAIL_USER', '')).strip()
-SMTP_PASS = (os.environ.get('MAIL_PASS') or os.environ.get('GMAIL_PASSWORD', '')).strip()
-SMTP_TO   = (os.environ.get('MAIL_TO') or SMTP_USER).strip()
+ANTHROPIC_KEY = (os.environ.get('ANTHROPIC_API_KEY') or '').strip()
+SMTP_USER = (os.environ.get('MAIL_USER') or os.environ.get('GMAIL_USER') or '').strip()
+SMTP_PASS = (os.environ.get('MAIL_PASS') or os.environ.get('GMAIL_PASSWORD') or '').strip()
+SMTP_TO   = (os.environ.get('MAIL_TO') or os.environ.get('RECIPIENT_EMAIL') or SMTP_USER or '').strip()
 UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
 
-print(f"ANTHROPIC: {'OK' if ANTHROPIC_KEY else 'MANQUANT'}")
-print(f"MAIL: {SMTP_USER or 'MANQUANT'}")
+print(f"ANTHROPIC: {'OK ' + str(len(ANTHROPIC_KEY)) + ' chars' if ANTHROPIC_KEY else 'MANQUANT'}")
+print(f"MAIL_USER: {SMTP_USER or 'MANQUANT'}")
+print(f"MAIL_PASS: {'OK' if SMTP_PASS else 'MANQUANT'}")
+print(f"MAIL_TO:   {SMTP_TO or 'MANQUANT'}")
 
 # ─── SOURCES RÉSEAUX SOCIAUX ─────────────────────────────────────────────
 INFLUENCEURS = {
@@ -72,10 +74,11 @@ NEWSLETTERS_SOURCES = [
 ]
 
 RSS_FEEDS = [
-    ('Les Echos Bourse', 'https://rss.lesechos.fr/lesechos-bourse'),
-    ('Reuters FR',       'https://fr.reuters.com/rssFeed/businessNews'),
-    ('ZoneBourse',       'https://www.zonebourse.com/rss/actualites-bourse/'),
-    ('Boursorama',       'https://www.boursorama.com/actualites/rss/'),
+    ('Les Echos',   'https://www.lesechos.fr/rss/rss_finance.xml'),
+    ('Reuters FR',  'https://feeds.reuters.com/reuters/businessNews'),
+    ('ZoneBourse',  'https://www.zonebourse.com/rss/news-bourse/'),
+    ('Boursorama',  'https://www.boursorama.com/bourse/actualites/rss/une'),
+    ('Investir',    'https://investir.lesechos.fr/rss/actualites.xml'),
 ]
 
 # ─── HTTP ────────────────────────────────────────────────────────────────
