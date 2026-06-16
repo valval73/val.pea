@@ -34,31 +34,43 @@ INFLUENCEURS = {
         'youtube': 'https://www.youtube.com/@GuillaumeFournier_Invest/videos',
         'instagram': 'guillaumefournier_invest',
         'x': 'GFournier_Inv',
+        'site': 'https://financeoptimale.fr',
         'desc': 'Finance Optimale · Méthode B.A.M · Quality Investing'
     },
     'Rique Trading': {
         'youtube': 'https://www.youtube.com/@riquetrading/videos',
         'instagram': 'rique.trading',
+        'x': 'Riquetrading',
+        'substack': 'https://riquetradingetbourse.substack.com',
         'newsletter_gmail': 'rique',
-        'desc': 'Analyse technique + fondamentale · PEA sous-évalués · Newsletter'
+        'desc': 'Analyse technique + fondamentale · PEA · Substack 4000 abonnés'
     },
     'Nicolas Chéron': {
         'youtube': 'https://www.youtube.com/@NicolasCheron/videos',
         'x': 'NCheron_bourse',
-        'zonebourse': True,
-        'newsletter_gmail': 'cheron',  # mot-clé pour trouver sa newsletter dans Gmail
-        'desc': 'Macro + technique + sentiment · ZoneBourse · Newsletter bimensuelle'
+        'zonebourse': 'https://www.zonebourse.com/analyses/nicolas-cheron/',
+        'newsletter_gmail': 'cheron',
+        'desc': 'Point marché bimensuel YouTube · ZoneBourse · Newsletter 60k abonnés'
     },
     'Jean-Benoît Gambet': {
         'instagram': 'jeanbenoit_gambet',
-        'desc': 'Institutionnel · Qualité + valorisation'
+        'linkedin': 'jean-benoit-gambet-eiffel',
+        'desc': 'Portfolio Manager Eiffel Investment · Instagram uniquement public'
     },
     "L'Analyste Curieux": {
-        'instagram': 'lanalystecurieux',
-        'x': 'AnalysteCurieux',
-        'desc': 'Analyse actions individuelles · Décryptage fondamental'
+        'instagram': 'analystecurieux',
+        'x': 'analystecurieux',
+        'substack': 'https://analystecurieux.substack.com',
+        'site': 'https://analystecurieux.fr',
+        'desc': 'Analyse fondamentale visuelle · Newsletter gratuite dimanche · MOAT + valorisation'
     },
 }
+
+# URLs Substack publiques — accessibles sans connexion
+SUBSTACK_FEEDS = [
+    ('Rique Trading', 'https://riquetradingetbourse.substack.com/feed'),
+    ("L'Analyste Curieux", 'https://analystecurieux.substack.com/feed'),
+]
 
 # Newsletters Gmail à lire
 NEWSLETTERS_SOURCES = [
@@ -75,10 +87,8 @@ NEWSLETTERS_SOURCES = [
 
 RSS_FEEDS = [
     ('Les Echos',   'https://www.lesechos.fr/rss/rss_finance.xml'),
-    ('Reuters FR',  'https://feeds.reuters.com/reuters/businessNews'),
     ('ZoneBourse',  'https://www.zonebourse.com/rss/news-bourse/'),
     ('Boursorama',  'https://www.boursorama.com/bourse/actualites/rss/une'),
-    ('Investir',    'https://investir.lesechos.fr/rss/actualites.xml'),
 ]
 
 # ─── HTTP ────────────────────────────────────────────────────────────────
@@ -164,9 +174,7 @@ def fetch_rss():
         if not xml: continue
         for m in re.finditer(r'<item>(.*?)</item>', xml, re.DOTALL):
             block = m.group(1)
-            def get(tag):
-                mx = re.search(r'<' + tag + r'[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</' + tag + r'>', block, re.DOTALL)
-                return html_lib.unescape(mx.group(1).strip()) if mx else ''
+
             title = get('title')
             if title:
                 all_news.append({
@@ -179,6 +187,39 @@ def fetch_rss():
         time.sleep(0.3)
     print(f'  Total RSS: {len(all_news)} articles')
     return all_news
+
+
+# ─── SUBSTACK PUBLIC ─────────────────────────────────────────────────────
+def fetch_substack_public():
+    """Lit les Substack publics de Rique et L'Analyste Curieux via RSS"""
+    results = {}
+    for name, url in SUBSTACK_FEEDS:
+        xml = http_get(url)
+        if not xml:
+            results[name] = []
+            continue
+        items = []
+        for block_m in _re.finditer(r'<item>(.*?)</item>', xml, _re.DOTALL):
+            block = block_m.group(1)
+            def gtag(t, b=block):
+                pat = '<' + t + '[^>]*>' + '(.*?)' + '</' + t + '>'
+                mx = _re.search(pat, b, _re.DOTALL)
+                if not mx: return ''
+                v = mx.group(1)
+                v = _re.sub(r'<!\[CDATA\[', '', v)
+                v = _re.sub(r'\]\]>', '', v)
+                return html_lib.unescape(v.strip())
+            title = gtag('title')
+            pub   = gtag('pubDate')[:16]
+            desc  = _re.sub(r'<[^>]+>', '', gtag('description'))[:600]
+            link  = gtag('link')
+            if title:
+                items.append({'title': title, 'pub': pub, 'desc': desc.strip(), 'link': link})
+        results[name] = items[:3]
+        print(f'  Substack [{name}]: {len(items)} articles')
+        time.sleep(0.3)
+    return results
+
 
 # ─── YOUTUBE ─────────────────────────────────────────────────────────────
 def fetch_youtube(url, max_videos=3):
@@ -193,7 +234,7 @@ def fetch_youtube(url, max_videos=3):
     return videos
 
 # ─── IA — RÉSUMÉ RÉSEAUX SOCIAUX COMPLET ─────────────────────────────────
-def fetch_social_media_summary(newsletters):
+def fetch_social_media_summary(newsletters, substack_data=None):
     """Claude fait une recherche web sur tous les influenceurs + résume les newsletters"""
     if not ANTHROPIC_KEY: return None
 
@@ -203,6 +244,14 @@ def fetch_social_media_summary(newsletters):
     nl_context = ''
     for nl in newsletters[:5]:
         nl_context += f"\n\nNEWSLETTER [{nl['source']}] — {nl['subject']}\n{nl['body'][:2000]}"
+    
+    # Ajouter contenu Substack public
+    if substack_data:
+        for name, articles in substack_data.items():
+            if articles:
+                nl_context += f"\n\nSUBSTACK PUBLIC [{name}] — {len(articles)} articles récents:"
+                for a in articles:
+                    nl_context += f"\n• {a['pub']} — {a['title']}\n  {a['desc'][:400]}"  
 
     prompt = f"""Date: {today}. Tu es un analyste financier pour une investisseuse PEA française.
 
@@ -500,8 +549,11 @@ def main():
     print('\n📡 Récupération RSS...')
     all_news = fetch_rss()
 
+    print('\n📖 Lecture Substack publics (Rique + Analyste Curieux)...')
+    substack_data = fetch_substack_public()
+
     print('\n📱 Résumé réseaux sociaux (Claude + web_search)...')
-    social_summary = fetch_social_media_summary(newsletters)
+    social_summary = fetch_social_media_summary(newsletters, substack_data)
 
     print('\n🤖 Analyse IA top 3 B.A.M...')
     top3 = [s for s in stocks if s['score']=='A'][:3]
