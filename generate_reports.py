@@ -231,27 +231,42 @@ Si un influenceur n'a rien publié cette semaine, indiquer clairement 'Pas de pu
 
 {('CONTENU NEWSLETTERS GMAIL REÇUES :' + nl_context) if nl_context else ''}
 
-FORMAT HTML STRICT — 5 sections :
+FORMAT HTML PUR — pas de markdown, pas d'astérisques, pas de tirets ---
+Utilise uniquement des balises HTML : <h4>, <b>, <span>, <div>, <ul>, <li>
+
+Pour chaque influenceur, structure OBLIGATOIRE :
+<h4>📱 [Nom] — <span style="color:#16a34a">BULLISH</span> ou <span style="color:#dc2626">BEARISH</span> ou <span style="color:#d97706">NEUTRE</span></h4>
+<b>Activité cette semaine :</b> [vidéo/post/reel publié — titre exact + date]<br>
+<b>Actions analysées :</b>
+<ul>
+<li><b>TICKER (Nom)</b> — [verdict BUY/HOLD/SELL] — [raison en 1 phrase chiffrée]</li>
+</ul>
+<b>Message clé :</b> [1 phrase résumant le sentiment]
 
 <h4>📱 Guillaume Fournier</h4>
-[sentiment bull/bear/neutre + 2-3 actions mentionnées + résumé en 3 phrases]
+[Cherche sur YouTube "Guillaume Fournier Finance Optimale" + Instagram + site financeoptimale.fr]
 
 <h4>📱 Rique Trading</h4>
-[idem]
+[Cherche sur YouTube "Rique Trading" + Instagram rique.trading + investing.com]
 
 <h4>📱 Nicolas Chéron</h4>
-[idem + résumé newsletter si reçue]
+[Cherche sur YouTube "Nicolas Cheron point de marche" + X @NCheron_bourse + zonebourse.com/nicolas-cheron]
+[IMPORTANT : Chéron publie une vidéo YouTube bimensuelle "Point de marché" avec revue détaillée de 5-10 actions — extraire TOUTES les actions mentionnées avec leur verdict]
 
 <h4>📱 Jean-Benoît Gambet</h4>
-[idem]
+[Cherche sur Instagram jeanbenoit_gambet + LinkedIn "Jean-Benoît Gambet Eiffel"]
 
 <h4>📱 L'Analyste Curieux</h4>
-[idem]
+[Cherche sur analystecurieux.fr + X @AnalysteCurieux + Instagram lanalystecurieux]
+[Extraire toutes les fiches entreprises publiées cette semaine]
 
 <h4>🎯 Consensus de la semaine</h4>
-[3-4 tickers PEA-éligibles qui ressortent de l'ensemble + sentiment global + 1 pépite]
+<b>Tickers cités par 2+ influenceurs :</b> [liste]<br>
+<b>Sentiment global :</b> [BULLISH/BEARISH/NEUTRE]<br>
+<b>Pépite PEA de la semaine :</b> [1 action sous-évaluée avec MOAT clair]<br>
+<b>Action à éviter :</b> [1 action sur laquelle plusieurs sont négatifs]
 
-Chiffres précis uniquement. Mentionner les tickers en <b>GRAS</b>. Si pas d'info récente sur quelqu'un, le dire clairement."""
+Si une info n'est pas trouvée : écris clairement "<i>Non trouvé publiquement cette semaine</i>" plutôt que d'inventer."""
 
     try:
         payload = json.dumps({
@@ -381,7 +396,10 @@ def build_mail(stocks, all_news, social_summary, ia_notes, newsletters):
             '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:16px">'
             '<div style="background:#0f2540;color:#f0d080;padding:8px 14px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">'
             '📱 Résumé réseaux sociaux & newsletters — semaine du ' + (now - timedelta(days=7)).strftime('%d/%m') + ' au ' + now.strftime('%d/%m') + '</div>'
-            '<div style="font-size:12px;line-height:1.75;color:#333">' + social_summary + '</div>'
+            '<style>h4{color:#0f2540;font-size:13px;margin:14px 0 6px;border-bottom:1px solid #e2e8f0;padding-bottom:4px}'
+            'ul{margin:4px 0 8px;padding-left:18px}li{margin:3px 0}'
+            'b{color:#0f2540}</style>'
+            '<div style="font-size:12px;line-height:1.8;color:#333">' + social_summary + '</div>'
             '</div>'
         )
 
