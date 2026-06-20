@@ -2,9 +2,8 @@ name: Update PEA Screener
 
 on:
   schedule:
-    - cron: '35 15 * * 1-5'   # Lundi-vendredi 17h35 Paris
-    - cron: '0 7 * * 0'        # Dimanche 9h Paris
-    - cron: '0 17 * * 5'       # Vendredi 19h Paris
+    - cron: '35 15 * * 1-5'   # Lun-Ven 17h35 Paris — MAJ prix uniquement
+    - cron: '0 6 * * 6'        # Samedi 8h Paris — MAIL hebdo
   workflow_dispatch:
 
 permissions:
@@ -23,49 +22,30 @@ jobs:
       - name: Installer dependances
         run: pip install yfinance requests
 
-      - name: Mise a jour des prix
+      - name: MAJ prix (tous les jours)
         run: python fetch_prices.py
 
-      - name: Analyse signaux et email enrichi
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MAIL_USER: ${{ secrets.GMAIL_USER }}
-          MAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
-          MAIL_TO: ${{ secrets.RECIPIENT_EMAIL }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
-        run: python generate_reports.py
+      - name: MAJ fundamentals (tous les jours)
+        run: python fetch_fundamentals.py || true
 
-      - name: Macro Digest (dimanche uniquement)
-        if: github.event.schedule == '0 7 * * 0' || github.event_name == 'workflow_dispatch'
+      - name: Mail hebdo BAM (samedi uniquement)
+        if: github.event.schedule == '0 6 * * 6' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
           MAIL_USER: ${{ secrets.GMAIL_USER }}
           MAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
-          MAIL_TO: ${{ secrets.RECIPIENT_EMAIL }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
-        run: python macro_digest.py
-
-      - name: Alertes signaux (send_alerts_v2)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-          MAIL_USER: ${{ secrets.GMAIL_USER }}
-          MAIL_PASS: ${{ secrets.GMAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.RECIPIENT_EMAIL }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python send_alerts_v2.py
+        run: python weekly_digest.py
 
-      - name: Supprimer les DOCX generes
+      - name: Supprimer fichiers temporaires
         run: |
           git rm --ignore-unmatch "*.docx" 2>/dev/null || true
-          rm -f *.docx alert_preview.html mail_preview.html 2>/dev/null || true
+          rm -f *.docx alert_preview.html mail_preview.html weekly_preview.html 2>/dev/null || true
 
       - name: Commit et push
         run: |
