@@ -9,7 +9,7 @@ const S=[
 // ══════════════════════════════════════════
 {ticker:'MC',name:'LVMH',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:499.25,chg:-115.8,mkt:'278Md€',b52h:654.7,b52l:436.55,beta:0.84,
- pe:22.85,pb:3.67,ev_ebitda:13.24,ps:3.8,pfcf:18,ev_ebit:16,
+ pe:22.83,pb:3.67,ev_ebitda:13.24,ps:3.8,pfcf:18,ev_ebit:16,
  roe:16.2,roic:1.58,roa:12,debt:0.53,de:1.2,ic:8.5,cr:1.4,qr:1.1,
  yield:260.0,epsg:-1.4,revg:-4.7,margin:13.5,gm:66.2,om:26,fcf:7.2,
  capex:2.8,capr:4.2,capda:0.6,
@@ -28,7 +28,7 @@ const S=[
 
 {ticker:'AI',name:'Air Liquide',sector:'Gaz industriels',cap:'large',srd:true,idx:'CAC40',
  price:164.16,chg:-177.1,mkt:'74Md€',b52h:189.8,b52l:154.86,beta:0.64,
- pe:29.74,pb:3.98,ev_ebitda:15.31,ps:3.1,pfcf:22,ev_ebit:19,
+ pe:29.69,pb:3.98,ev_ebitda:15.31,ps:3.1,pfcf:22,ev_ebit:19,
  roe:13.4,roic:1.17,roa:8,debt:0.51,de:0.8,ic:8.2,cr:1.2,qr:0.9,
  yield:205.0,epsg:5.3,revg:-3.4,margin:13.1,gm:64.2,om:18,fcf:5.8,
  capex:8.2,capr:12.4,capda:1.1,
@@ -201,7 +201,7 @@ const S=[
  price:17.7,chg:42.6,mkt:'38Md€',b52h:19.14,b52l:15.29,beta:0.81,
  pe:8.31,pb:0.68,ev_ebitda:999,ps:0.9,pfcf:999,ev_ebit:999,
  roe:9.3,roic:999,roa:0.6,debt:999,de:8.5,ic:999,cr:999,qr:999,
- yield:655.0,epsg:-8.4,revg:-1.1,margin:26.8,gm:999,om:999,fcf:999,
+ yield:639.0,epsg:-8.4,revg:-1.1,margin:26.8,gm:999,om:999,fcf:999,
  capex:0.8,capr:999,capda:999,
  dcfb:12,dcfm:17,dcfu:22,
  pio:6,alt:999,rsi:48,mm50:14.8,mm200:14.2,
@@ -275,9 +275,9 @@ const S=[
 
 {ticker:'PUB',name:'Publicis',sector:'Communication',cap:'large',srd:true,idx:'CAC40',
  price:89.88,chg:76.2,mkt:'16Md€',b52h:96.4,b52l:68.14,beta:0.59,
- pe:13.79,pb:2.16,ev_ebitda:8.54,ps:1.5,pfcf:12,ev_ebit:11,
+ pe:13.79,pb:2.16,ev_ebitda:8.35,ps:1.5,pfcf:12,ev_ebit:11,
  roe:15.5,roic:0.97,roa:7,debt:0.55,de:0.9,ic:6.2,cr:1.0,qr:0.9,
- yield:407.0,epsg:-6.6,revg:6.4,margin:9.5,gm:45.8,om:18,fcf:9.2,
+ yield:417.0,epsg:-6.6,revg:6.4,margin:9.5,gm:45.8,om:18,fcf:9.2,
  capex:1.2,capr:1.8,capda:0.4,
  dcfb:95,dcfm:130,dcfu:165,
  pio:7,alt:3.8,rsi:56,mm50:115,mm200:108,
@@ -427,7 +427,7 @@ const S=[
 
 {ticker:'RI',name:'Pernod Ricard',sector:'Spiritueux',cap:'large',srd:true,idx:'CAC40',
  price:64.14,chg:43.8,mkt:'24Md€',b52h:107.45,b52l:58.6,beta:0.46,
- pe:11.45,pb:1.04,ev_ebitda:9.86,ps:2.5,pfcf:15,ev_ebit:14,
+ pe:11.47,pb:1.04,ev_ebitda:9.86,ps:2.5,pfcf:15,ev_ebit:14,
  roe:8.6,roic:2.34,roa:6,debt:0.82,de:1.0,ic:5.8,cr:1.3,qr:1.0,
  yield:733.0,epsg:-18.0,revg:-14.9,margin:14.1,gm:58.4,om:25,fcf:7.8,
  capex:3.2,capr:4.8,capda:0.6,
@@ -579,7 +579,7 @@ const S=[
 
 {ticker:'MT',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
  price:54.98,chg:-157.5,mkt:'18Md€',b52h:62.6,b52l:25.94,beta:1.73,
- pe:16.66,pb:0.87,ev_ebitda:12.11,ps:0.3,pfcf:6,ev_ebit:5,
+ pe:16.51,pb:0.87,ev_ebitda:12.11,ps:0.3,pfcf:6,ev_ebit:5,
  roe:5.4,roic:1.39,roa:4,debt:0.24,de:0.4,ic:8.5,cr:1.5,qr:1.2,
  yield:93.0,epsg:-27.9,revg:4.5,margin:4.7,gm:7.4,om:7,fcf:7.2,
  capex:3.5,capr:2.8,capda:0.5,
@@ -677,9 +677,9 @@ const S=[
 // ══════════════════════════════════════════
 {ticker:'GTT',name:'Gaztransport & Technigaz',sector:'LNG Technology',cap:'mid',srd:true,idx:'SBF120',
  price:194.2,chg:98.8,mkt:'7.2Md€',b52h:215.0,b52l:147.3,beta:0.44,
- pe:17.48,pb:12.24,ev_ebitda:13.37,ps:9.2,pfcf:18,ev_ebit:16,
+ pe:17.48,pb:12.24,ev_ebitda:13.03,ps:9.2,pfcf:18,ev_ebit:16,
  roe:78.7,roic:2.0,roa:52,debt:0.21,de:0.1,ic:999,cr:3.2,qr:2.8,
- yield:496.0,epsg:31.4,revg:19.6,margin:51.5,gm:97.5,om:58,fcf:18.5,
+ yield:509.0,epsg:31.4,revg:19.6,margin:51.5,gm:97.5,om:58,fcf:18.5,
  capex:0.8,capr:1.2,capda:0.3,
  dcfb:165,dcfm:235,dcfu:295,
  pio:9,alt:6.8,rsi:62,mm50:188,mm200:152,
@@ -1193,7 +1193,7 @@ const S=[
 // ═══ Actions européennes éligibles PEA ═══
 {ticker:'ASML',name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
  price:1657.8,chg:-108.6,mkt:'246Md€',b52h:1691.4,b52l:587.8,beta:1.4,
- pe:63.91,pb:30.67,ev_ebitda:49.84,ps:8.5,pfcf:22,ev_ebit:20,
+ pe:64.11,pb:30.67,ev_ebitda:49.84,ps:8.5,pfcf:22,ev_ebit:20,
  roe:52.2,roic:1.36,roa:18,debt:0.13,de:0.4,ic:22.5,cr:1.8,qr:1.5,
  yield:65.0,epsg:19.2,revg:13.2,margin:29.7,gm:52.6,om:32,fcf:9.5,
  capex:2.5,capr:3.8,capda:0.4,dcfb:520,dcfm:720,dcfu:920,
