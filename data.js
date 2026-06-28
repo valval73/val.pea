@@ -104,7 +104,7 @@ const S=[
 
 {ticker:'TTE',name:'TotalEnergies',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
  price:68.36,chg:-131.4,mkt:'146Md€',b52h:81.34,b52l:49.24,beta:0.04,
- pe:11.51,pb:1.37,ev_ebitda:4.99,ps:0.6,pfcf:7,ev_ebit:6,
+ pe:11.53,pb:1.37,ev_ebitda:4.99,ps:0.6,pfcf:7,ev_ebit:6,
  roe:12.5,roic:1.08,roa:7,debt:0.51,de:0.4,ic:18.5,cr:1.3,qr:1.0,
  yield:527.0,epsg:57.1,revg:3.4,margin:8.2,gm:38.4,om:12,fcf:9.8,
  capex:14.2,capr:5.8,capda:0.7,
@@ -255,7 +255,7 @@ const S=[
  contra:"Supply chain en crise. Objectifs de livraison manqués plusieurs années consécutives. Marge opérationnelle trop faible (8%)."},
 
 {ticker:'KER',name:'Kering',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:267.05,chg:-31.7,mkt:'24Md€',b52h:354.2,b52l:176.72,beta:0.98,
+ price:267.05,chg:-31.7,mkt:'24Md€',b52h:354.2,b52l:183.52,beta:0.98,
  pe:27.18,pb:2.23,ev_ebitda:18.8,ps:1.2,pfcf:12,ev_ebit:11,
  roe:0.2,roic:1.34,roa:7,debt:1.2,de:1.0,ic:5.2,cr:1.1,qr:0.9,
  yield:112.0,epsg:-5,revg:-8,margin:0.5,gm:72.6,om:18,fcf:7.5,
@@ -293,7 +293,7 @@ const S=[
  contra:"L'IA générative menace les métiers créatifs. WPP contre-attaque agressivement."},
 
 {ticker:'ORA',name:'Orange',sector:'Télécoms',cap:'large',srd:true,idx:'CAC40',
- price:16.98,chg:-14.7,mkt:'30Md€',b52h:18.8,b52l:12.68,beta:0.26,
+ price:16.98,chg:-14.7,mkt:'30Md€',b52h:18.8,b52l:12.82,beta:0.26,
  pe:141.5,pb:1.52,ev_ebitda:7.84,ps:0.5,pfcf:8,ev_ebit:7,
  roe:3.2,roic:1.11,roa:3,debt:1.38,de:1.4,ic:4.2,cr:0.8,qr:0.7,
  yield:442.0,epsg:3,revg:2,margin:1.3,gm:36.9,om:12,fcf:6.5,
@@ -1070,7 +1070,7 @@ const S=[
  contra:"Croissance structurellement limitée dans le lait infantile. Concurrence marques distributeurs."},
 
 {ticker:'CA',name:'Carrefour',sector:'Distribution alimentaire',cap:'large',srd:true,idx:'CAC40',
- price:16.39,chg:80.0,mkt:'11Md€',b52h:17.54,b52l:11.66,beta:0.62,
+ price:16.39,chg:80.0,mkt:'11Md€',b52h:17.54,b52l:11.77,beta:0.62,
  pe:11.54,pb:1.05,ev_ebitda:7.6,ps:0.1,pfcf:7,ev_ebit:7,
  roe:8.6,roic:0.88,roa:3,debt:1.81,de:1.2,ic:4.8,cr:0.8,qr:0.7,
  yield:592.0,epsg:6,revg:4,margin:0.4,gm:17.9,om:3,fcf:6.8,
