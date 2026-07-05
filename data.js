@@ -123,7 +123,7 @@ const S=[
 
 {ticker:'SAF',name:'Safran',sector:'Aéronautique',cap:'large',srd:true,idx:'CAC40',
  price:356.7,chg:96.2,mkt:'112Md€',b52h:358.2,b52l:262.6,beta:0.96,
- pe:20.77,pb:10.02,ev_ebitda:25.03,ps:3.8,pfcf:26,ev_ebit:22,
+ pe:20.79,pb:10.02,ev_ebitda:25.03,ps:3.8,pfcf:26,ev_ebit:22,
  roe:55.6,roic:0.93,roa:12,debt:0.34,de:0.6,ic:14.2,cr:1.5,qr:1.2,
  yield:94.0,epsg:18,revg:12.5,margin:23.0,gm:48.0,om:19,fcf:7.8,
  capex:4.2,capr:6.8,capda:0.7,
@@ -217,7 +217,7 @@ const S=[
  contra:"Structure mutualiste complexe. Exposition immobilier résidentiel. Marges retail sous pression des néobanques."},
 
 {ticker:'GLE',name:'Société Générale',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:77.34,chg:-23.2,mkt:'24Md€',b52h:79.07,b52l:48.06,beta:0.98,
+ price:77.34,chg:-23.2,mkt:'24Md€',b52h:79.07,b52l:48.61,beta:0.98,
  pe:10.99,pb:0.8,ev_ebitda:999,ps:0.8,pfcf:999,ev_ebit:999,
  roe:8.9,roic:999,roa:0.4,debt:999,de:10.2,ic:999,cr:999,qr:999,
  yield:208.0,epsg:14.1,revg:0.2,margin:23.6,gm:999,om:999,fcf:999,
@@ -256,7 +256,7 @@ const S=[
 
 {ticker:'KER',name:'Kering',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:248.45,chg:-162.3,mkt:'24Md€',b52h:354.2,b52l:190.24,beta:0.98,
- pe:25.36,pb:2.07,ev_ebitda:17.9,ps:1.2,pfcf:12,ev_ebit:11,
+ pe:25.38,pb:2.07,ev_ebitda:17.9,ps:1.2,pfcf:12,ev_ebit:11,
  roe:0.2,roic:1.34,roa:7,debt:1.2,de:1.0,ic:5.2,cr:1.1,qr:0.9,
  yield:121.0,epsg:-5,revg:-8,margin:0.5,gm:72.6,om:18,fcf:7.5,
  capex:4.2,capr:5.8,capda:0.7,
@@ -445,7 +445,7 @@ const S=[
  contra:"La Chine déçoit depuis 18 mois. Objectifs manqués régulièrement. Dette élevée."},
 
 {ticker:'LR',name:'Legrand',sector:'Électricité bâtiment',cap:'large',srd:true,idx:'CAC40',
- price:143.35,chg:159.5,mkt:'26Md€',b52h:166.95,b52l:110.8,beta:1.0,
+ price:143.35,chg:159.5,mkt:'26Md€',b52h:166.95,b52l:111.55,beta:1.0,
  pe:29.5,pb:4.84,ev_ebitda:19.6,ps:3.8,pfcf:20,ev_ebit:18,
  roe:16.9,roic:1.96,roa:10,debt:0.85,de:0.7,ic:8.5,cr:1.5,qr:1.2,
  yield:166.0,epsg:13.8,revg:11.4,margin:13.2,gm:50.4,om:21,fcf:8.5,
@@ -465,7 +465,7 @@ const S=[
 
 {ticker:'WLN',name:'Wendel',sector:'Holdings',cap:'large',srd:true,idx:'CAC40',
  price:10.83,chg:46.4,mkt:'4.8Md€',b52h:40.91,b52l:9.61,beta:1.8,
- pe:2.77,pb:0.95,ev_ebitda:7.25,ps:0.8,pfcf:9,ev_ebit:9,
+ pe:2.69,pb:0.95,ev_ebitda:7.25,ps:0.8,pfcf:9,ev_ebit:9,
  roe:-77.9,roic:1.09,roa:4,debt:0.77,de:0.6,ic:6.2,cr:1.5,qr:1.2,
  yield:3.2,epsg:6,revg:4,margin:-128.0,gm:66.0,om:16,fcf:7.2,
  capex:1.2,capr:2.8,capda:0.4,
@@ -636,7 +636,7 @@ const S=[
 
 {ticker:'TEP',name:'Teleperformance',sector:'BPO',cap:'large',srd:true,idx:'CAC40',
  price:51.9,chg:244.8,mkt:'5.2Md€',b52h:90.72,b52l:43.65,beta:0.62,
- pe:6.03,pb:0.74,ev_ebitda:4.36,ps:0.5,pfcf:7,ev_ebit:7,
+ pe:6.18,pb:0.74,ev_ebitda:4.36,ps:0.5,pfcf:7,ev_ebit:7,
  roe:11.5,roic:1.18,roa:8,debt:1.21,de:1.0,ic:6.2,cr:1.2,qr:1.0,
  yield:867.0,epsg:8.6,revg:-2.1,margin:4.9,gm:31.0,om:13,fcf:9.2,
  capex:2.8,capr:3.5,capda:0.5,
@@ -1330,9 +1330,9 @@ const S=[
 
 {ticker:'ALV',name:'Allianz',sector:'Assurance mondiale',cap:'large',srd:false,idx:'XETRA',
  price:419.8,chg:33.5,mkt:'142Md€',b52h:421.5,b52l:334.1,beta:0.66,
- pe:13.51,pb:2.42,ev_ebitda:6.86,ps:0.7,pfcf:999,ev_ebit:999,
+ pe:13.57,pb:2.42,ev_ebitda:6.86,ps:0.7,pfcf:999,ev_ebit:999,
  roe:18.7,roic:174.87,roa:0.6,debt:999,de:7.2,ic:999,cr:999,qr:999,
- yield:409.0,epsg:52.4,revg:8.8,margin:10.4,gm:24.3,om:999,fcf:999,
+ yield:407.0,epsg:52.4,revg:8.8,margin:10.4,gm:24.3,om:999,fcf:999,
  capex:0.8,capr:999,capda:999,dcfb:245,dcfm:328,dcfu:412,
  pio:7,alt:999,rsi:55,mm50:295,mm200:278,
  el:265,eh:312,stop:242,o1:345,o2:385,cb:16,ch:5,cs:1,tp:348,score:'A',rec:'buy',zone:true,
