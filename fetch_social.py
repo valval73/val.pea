@@ -194,15 +194,23 @@ def build_mail(now, results, subs, cross):
         p += ['<div style="background:#fff;border-radius:10px;margin:12px 16px;padding:18px 20px;border:1px solid #e2e8f0;">',
               '<div style="color:#0F2540;font-size:16px;font-weight:bold;margin:0 0 12px;border-bottom:2px solid #F0D080;padding-bottom:6px;">🎯 Actions dans votre screener PEA</div>']
         for c in cross:
-            vd=c.get('verdict','NEUTRE').upper(); col=VC.get(vd,'#6B7280'); icon=VI.get(vd,'⚪')
-            p.append(f'<div style="background:#F0FDF4;border:1px solid #86EFAC;border-radius:8px;padding:10px 14px;margin:6px 0;">'
-                     f'<span style="background:#0F2540;color:#F0D080;padding:2px 8px;border-radius:4px;font-weight:bold;">{c.get("ticker","?")}</span> '
-                     f'<strong>{c.get("pea_name",c.get("name","?"))}</strong> '
-                     f'<span style="color:{col};font-size:12px;">{icon} {vd}</span> '
-                     f'<span style="font-size:11px;color:#666;">via {c.get("influenceur","?")}</span>'
-                     f'{"<div style=\"font-size:12px;color:#555;margin-top:4px;\">" + c["detail"] + "</div>" if c.get("detail") else ""}'
-                     f'{"<div style=\"font-size:11px;color:#888;\">💶 " + c["prix"] + "</div>" if c.get("prix") else ""}'
-                     f'<div style="font-size:11px;margin-top:4px;"><a href="{c.get("url","#")}" style="color:#7C3AED;">▶ Voir source</a></div></div>')
+            vd = c.get('verdict', 'NEUTRE').upper()
+            col = VC.get(vd, '#6B7280')
+            icon = VI.get(vd, '⚪')
+            tk = c.get('ticker', '?')
+            nm = c.get('pea_name', c.get('name', '?'))
+            infl_name = c.get('influenceur', '?')
+            detail_html = ('<div style="font-size:12px;color:#555;margin-top:4px;">' + c.get('detail','') + '</div>') if c.get('detail') else ''
+            prix_html = ('<div style="font-size:11px;color:#888;">💶 ' + c.get('prix','') + '</div>') if c.get('prix') else ''
+            src_url = c.get('url','#')
+            row = ('<div style="background:#F0FDF4;border:1px solid #86EFAC;border-radius:8px;padding:10px 14px;margin:6px 0;">'
+                   + '<span style="background:#0F2540;color:#F0D080;padding:2px 8px;border-radius:4px;font-weight:bold;">' + tk + '</span> '
+                   + '<strong>' + nm + '</strong> '
+                   + '<span style="color:' + col + ';font-size:12px;">' + icon + ' ' + vd + '</span> '
+                   + '<span style="font-size:11px;color:#666;">via ' + infl_name + '</span>'
+                   + detail_html + prix_html
+                   + '<div style="font-size:11px;margin-top:4px;"><a href="' + src_url + '" style="color:#7C3AED;">▶ Voir</a></div></div>')
+            p.append(row)
         p.append('</div>')
     # YouTube
     p += ['<div style="background:#fff;border-radius:10px;margin:12px 16px;padding:18px 20px;border:1px solid #e2e8f0;">',
@@ -274,7 +282,7 @@ def main():
                 time.sleep(1.5)
             enriched.append({**v,'ia_txt':ia_txt})
         results.append({'infl':infl,'vids':enriched}); time.sleep(2)
-fetch_social.py - veille YouTube transcriptions + Substack + IA samedi    for src in SUBSTACK:
+    for src in SUBSTACK:
         print(f'\n{src["name"]}...')
         arts=substack_articles(src['rss']); enriched=[]
         for a in arts:
