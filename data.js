@@ -9,7 +9,7 @@ const S=[
 // ══════════════════════════════════════════
 {ticker:'MC',name:'LVMH',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:480.0,chg:-30.1,mkt:'278Md€',b52h:654.7,b52l:440.0,beta:0.84,
- pe:21.87,pb:3.48,ev_ebitda:13.16,ps:3.8,pfcf:18,ev_ebit:16,
+ pe:21.87,pb:3.48,ev_ebitda:13.13,ps:3.8,pfcf:18,ev_ebit:16,
  roe:16.6,roic:1.63,roa:12,debt:0.53,de:1.2,ic:8.5,cr:1.4,qr:1.1,
  yield:270.0,epsg:0.8,revg:-2.9,margin:13.7,gm:66.4,om:26,fcf:7.2,
  capex:2.8,capr:4.2,capda:0.6,
@@ -28,7 +28,7 @@ const S=[
 
 {ticker:'AI',name:'Air Liquide',sector:'Gaz industriels',cap:'large',srd:true,idx:'CAC40',
  price:172.38,chg:-48.5,mkt:'74Md€',b52h:182.26,b52l:140.78,beta:0.65,
- pe:31.0,pb:4.14,ev_ebitda:16.48,ps:3.1,pfcf:22,ev_ebit:19,
+ pe:31.0,pb:4.14,ev_ebitda:16.41,ps:3.1,pfcf:22,ev_ebit:19,
  roe:14.0,roic:0.88,roa:8,debt:0.63,de:0.8,ic:8.2,cr:1.2,qr:0.9,
  yield:194.0,epsg:0.7,revg:0.8,margin:13.1,gm:64.6,om:18,fcf:5.8,
  capex:8.2,capr:12.4,capda:1.1,
@@ -47,7 +47,7 @@ const S=[
 
 {ticker:'OR',name:"L'Oréal",sector:'Cosmétiques',cap:'large',srd:true,idx:'CAC40',
  price:385.9,chg:-115.3,mkt:'183Md€',b52h:408.35,b52l:338.85,beta:0.89,
- pe:32.73,pb:6.07,ev_ebitda:21.31,ps:4.8,pfcf:28,ev_ebit:24,
+ pe:32.73,pb:6.07,ev_ebitda:21.08,ps:4.8,pfcf:28,ev_ebit:24,
  roe:19.4,roic:0.97,roa:14,debt:0.49,de:0.4,ic:15.2,cr:1.6,qr:1.4,
  yield:184.0,epsg:5.4,revg:5.8,margin:13.9,gm:74.4,om:22,fcf:7.8,
  capex:3.2,capr:4.8,capda:0.5,
@@ -66,7 +66,7 @@ const S=[
 
 {ticker:'RMS',name:'Hermès',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:1635.5,chg:58.4,mkt:'232Md€',b52h:2300.0,b52l:1465.5,beta:1.0,
- pe:38.1,pb:9.01,ev_ebitda:22.72,ps:12.8,pfcf:42,ev_ebit:36,
+ pe:38.1,pb:9.01,ev_ebitda:22.86,ps:12.8,pfcf:42,ev_ebit:36,
  roe:25.5,roic:4.54,roa:22,debt:0.12,de:0.2,ic:999,cr:3.8,qr:3.2,
  yield:111.0,epsg:-0.3,revg:1.6,margin:28.0,gm:71.3,om:42,fcf:10.5,
  capex:4.2,capr:5.8,capda:0.6,
@@ -85,7 +85,7 @@ const S=[
 
 {ticker:'SAN',name:'Sanofi',sector:'Pharmacie',cap:'large',srd:true,idx:'CAC40',
  price:75.31,chg:134.6,mkt:'124Md€',b52h:91.15,b52l:71.25,beta:0.28,
- pe:23.24,pb:1.3,ev_ebitda:7.87,ps:2.4,pfcf:16,ev_ebit:15,
+ pe:23.24,pb:1.3,ev_ebitda:7.96,ps:2.4,pfcf:16,ev_ebit:15,
  roe:5.7,roic:0.99,roa:8,debt:0.34,de:0.5,ic:12.4,cr:1.8,qr:1.5,
  yield:554.0,epsg:-91.2,revg:14.6,margin:8.1,gm:73.5,om:20,fcf:7.2,
  capex:3.8,capr:7.4,capda:0.8,
@@ -104,7 +104,7 @@ const S=[
 
 {ticker:'TTE',name:'TotalEnergies',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
  price:74.09,chg:-60.4,mkt:'146Md€',b52h:81.34,b52l:49.24,beta:0.06,
- pe:10.71,pb:1.47,ev_ebitda:5.03,ps:0.6,pfcf:7,ev_ebit:6,
+ pe:10.71,pb:1.47,ev_ebitda:5.01,ps:0.6,pfcf:7,ev_ebit:6,
  roe:14.5,roic:1.06,roa:7,debt:0.48,de:0.4,ic:18.5,cr:1.3,qr:1.0,
  yield:483.0,epsg:106.0,revg:27.8,margin:9.1,gm:37.7,om:12,fcf:9.8,
  capex:14.2,capr:5.8,capda:0.7,
@@ -122,8 +122,8 @@ const S=[
  contra:"Le pétrole à 60$ détruit la thèse si ça dure. Transition ENR consomme du capital sans retour immédiat."},
 
 {ticker:'SAF',name:'Safran',sector:'Aéronautique',cap:'large',srd:true,idx:'CAC40',
- price:357.4,chg:61.9,mkt:'112Md€',b52h:360.8,b52l:262.6,beta:0.96,
- pe:38.39,pb:10.21,ev_ebitda:23.89,ps:3.8,pfcf:26,ev_ebit:22,
+ price:357.4,chg:61.9,mkt:'112Md€',b52h:361.9,b52l:262.6,beta:0.96,
+ pe:38.39,pb:10.21,ev_ebitda:24.04,ps:3.8,pfcf:26,ev_ebit:22,
  roe:27.5,roic:0.92,roa:12,debt:0.34,de:0.6,ic:14.2,cr:1.5,qr:1.2,
  yield:94.0,epsg:-65.1,revg:16.0,margin:11.6,gm:46.8,om:19,fcf:7.8,
  capex:4.2,capr:6.8,capda:0.7,
@@ -142,7 +142,7 @@ const S=[
 
 {ticker:'SU',name:'Schneider Electric',sector:'Énergie & Automatisation',cap:'large',srd:true,idx:'CAC40',
  price:303.7,chg:103.1,mkt:'136Md€',b52h:306.25,b52l:208.8,beta:1.15,
- pe:35.81,pb:6.98,ev_ebitda:21.78,ps:3.6,pfcf:22,ev_ebit:20,
+ pe:35.81,pb:6.98,ev_ebitda:21.99,ps:3.6,pfcf:22,ev_ebit:20,
  roe:18.6,roic:1.09,roa:11,debt:0.84,de:0.7,ic:11.8,cr:1.4,qr:1.1,
  yield:140.0,epsg:29.3,revg:9.8,margin:11.3,gm:42.1,om:18,fcf:7.5,
  capex:3.8,capr:5.2,capda:0.6,
@@ -179,7 +179,7 @@ const S=[
  contra:"Exposition catastrophes naturelles croissante. Régulation Solvabilité II contraignante. Business model complexe."},
 
 {ticker:'BNP',name:'BNP Paribas',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:112.44,chg:-14.2,mkt:'83Md€',b52h:113.04,b52l:65.12,beta:1.04,
+ price:112.44,chg:-14.2,mkt:'83Md€',b52h:113.62,b52l:65.12,beta:1.04,
  pe:9.73,pb:0.95,ev_ebitda:999,ps:1.2,pfcf:999,ev_ebit:999,
  roe:9.6,roic:999,roa:0.5,debt:999,de:9.8,ic:999,cr:999,qr:999,
  yield:884.0,epsg:50.4,revg:12.4,margin:26.9,gm:999,om:999,fcf:999,
@@ -217,7 +217,7 @@ const S=[
  contra:"Structure mutualiste complexe. Exposition immobilier résidentiel. Marges retail sous pression des néobanques."},
 
 {ticker:'GLE',name:'Société Générale',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:83.92,chg:-36.8,mkt:'24Md€',b52h:84.48,b52l:50.9,beta:0.98,
+ price:83.92,chg:-36.8,mkt:'24Md€',b52h:84.82,b52l:50.9,beta:0.98,
  pe:11.03,pb:0.86,ev_ebitda:999,ps:0.8,pfcf:999,ev_ebit:999,
  roe:9.5,roic:999,roa:0.4,debt:999,de:10.2,ic:999,cr:999,qr:999,
  yield:208.0,epsg:34.9,revg:4.1,margin:24.7,gm:999,om:999,fcf:999,
@@ -237,7 +237,7 @@ const S=[
 
 {ticker:'AIR',name:'Airbus',sector:'Aéronautique',cap:'large',srd:true,idx:'CAC40',
  price:213.6,chg:54.1,mkt:'132Md€',b52h:221.3,b52l:157.42,beta:0.88,
- pe:28.48,pb:6.53,ev_ebitda:18.81,ps:1.8,pfcf:24,ev_ebit:20,
+ pe:28.48,pb:6.53,ev_ebitda:18.91,ps:1.8,pfcf:24,ev_ebit:20,
  roe:23.2,roic:1.15,roa:8,debt:0.55,de:8.2,ic:5.2,cr:0.8,qr:0.6,
  yield:151.0,epsg:125.8,revg:27.7,margin:7.7,gm:16.3,om:8,fcf:5.8,
  capex:3.8,capr:5.2,capda:0.8,
@@ -256,7 +256,7 @@ const S=[
 
 {ticker:'KER',name:'Kering',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:286.65,chg:-107.0,mkt:'24Md€',b52h:354.2,b52l:208.45,beta:1.0,
- pe:28.75,pb:2.43,ev_ebitda:18.21,ps:1.2,pfcf:12,ev_ebit:11,
+ pe:28.75,pb:2.43,ev_ebitda:18.06,ps:1.2,pfcf:12,ev_ebit:11,
  roe:-1.6,roic:2.05,roa:7,debt:1.17,de:1.0,ic:5.2,cr:1.1,qr:0.9,
  yield:104.0,epsg:-60.1,revg:-2.9,margin:-1.5,gm:72.1,om:18,fcf:7.5,
  capex:4.2,capr:5.8,capda:0.7,
@@ -275,7 +275,7 @@ const S=[
 
 {ticker:'PUB',name:'Publicis',sector:'Communication',cap:'large',srd:true,idx:'CAC40',
  price:100.0,chg:72.5,mkt:'16Md€',b52h:100.85,b52l:68.14,beta:0.59,
- pe:15.58,pb:2.37,ev_ebitda:9.6,ps:1.5,pfcf:12,ev_ebit:11,
+ pe:15.58,pb:2.37,ev_ebitda:9.66,ps:1.5,pfcf:12,ev_ebit:11,
  roe:16.2,roic:0.94,roa:7,debt:0.52,de:0.9,ic:6.2,cr:1.0,qr:0.9,
  yield:378.0,epsg:-3.1,revg:3.0,margin:9.2,gm:46.7,om:18,fcf:9.2,
  capex:1.2,capr:1.8,capda:0.4,
@@ -294,7 +294,7 @@ const S=[
 
 {ticker:'ORA',name:'Orange',sector:'Télécoms',cap:'large',srd:true,idx:'CAC40',
  price:16.45,chg:82.7,mkt:'30Md€',b52h:18.8,b52l:13.07,beta:0.25,
- pe:11.12,pb:1.47,ev_ebitda:7.6,ps:0.5,pfcf:8,ev_ebit:7,
+ pe:11.12,pb:1.47,ev_ebitda:7.63,ps:0.5,pfcf:8,ev_ebit:7,
  roe:14.2,roic:0.87,roa:3,debt:1.61,de:1.4,ic:4.2,cr:0.8,qr:0.7,
  yield:460.0,epsg:3,revg:5.5,margin:10.0,gm:41.1,om:12,fcf:6.5,
  capex:14.8,capr:8.2,capda:0.9,
@@ -313,7 +313,7 @@ const S=[
 
 {ticker:'VIE',name:'Veolia',sector:'Eau & Déchets',cap:'large',srd:true,idx:'CAC40',
  price:35.19,chg:34.2,mkt:'20Md€',b52h:37.66,b52l:27.43,beta:1.0,
- pe:20.46,pb:2.63,ev_ebitda:9.11,ps:0.5,pfcf:14,ev_ebit:10,
+ pe:20.46,pb:2.63,ev_ebitda:9.12,ps:0.5,pfcf:14,ev_ebit:10,
  roe:13.4,roic:0.82,roa:4,debt:2.5,de:1.2,ic:4.8,cr:1.0,qr:0.8,
  yield:428.0,epsg:5.6,revg:0.7,margin:2.8,gm:17.9,om:8,fcf:5.2,
  capex:8.2,capr:5.8,capda:0.8,
@@ -332,7 +332,7 @@ const S=[
 
 {ticker:'RNO',name:'Renault',sector:'Automobile',cap:'mid',srd:true,idx:'CAC40',
  price:28.64,chg:156.0,mkt:'13Md€',b52h:37.97,b52l:24.66,beta:0.82,
- pe:4.24,pb:0.4,ev_ebitda:9.79,ps:0.2,pfcf:6,ev_ebit:4,
+ pe:4.24,pb:0.4,ev_ebitda:9.81,ps:0.2,pfcf:6,ev_ebit:4,
  roe:5.0,roic:1.03,roa:3,debt:3.28,de:1.8,ic:3.2,cr:1.1,qr:0.9,
  yield:780.0,epsg:8,revg:9.4,margin:1.6,gm:17.9,om:6,fcf:5.5,
  capex:6.2,capr:3.8,capda:0.6,
@@ -351,7 +351,7 @@ const S=[
 
 {ticker:'SGO',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
  price:85.44,chg:85.0,mkt:'36Md€',b52h:100.75,b52l:65.88,beta:1.22,
- pe:15.85,pb:1.72,ev_ebitda:8.15,ps:0.6,pfcf:10,ev_ebit:9,
+ pe:15.85,pb:1.72,ev_ebitda:8.2,ps:0.6,pfcf:10,ev_ebit:9,
  roe:11.0,roic:1.27,roa:6,debt:0.66,de:0.8,ic:6.2,cr:1.2,qr:1.0,
  yield:271.0,epsg:-12.0,revg:-1.1,margin:5.8,gm:27.2,om:10,fcf:7.2,
  capex:5.8,capr:4.2,capda:0.7,
@@ -370,7 +370,7 @@ const S=[
 
 {ticker:'CAP',name:'Capgemini',sector:'Services informatiques',cap:'large',srd:true,idx:'CAC40',
  price:109.25,chg:210.4,mkt:'24Md€',b52h:153.05,b52l:85.62,beta:0.67,
- pe:13.88,pb:1.59,ev_ebitda:8.54,ps:1.5,pfcf:14,ev_ebit:12,
+ pe:13.88,pb:1.58,ev_ebitda:8.54,ps:1.5,pfcf:14,ev_ebit:12,
  roe:12.2,roic:1.28,roa:8,debt:0.88,de:0.6,ic:8.2,cr:1.4,qr:1.2,
  yield:311.0,epsg:-30.7,revg:8.8,margin:5.9,gm:26.8,om:13,fcf:7.8,
  capex:1.8,capr:2.2,capda:0.4,
@@ -389,7 +389,7 @@ const S=[
 
 {ticker:'DG',name:'Vinci',sector:'Construction & Concessions',cap:'large',srd:true,idx:'CAC40',
  price:125.35,chg:-98.7,mkt:'88Md€',b52h:143.15,b52l:112.4,beta:0.74,
- pe:13.91,pb:2.27,ev_ebitda:7.79,ps:0.8,pfcf:12,ev_ebit:11,
+ pe:13.91,pb:2.27,ev_ebitda:7.74,ps:0.8,pfcf:12,ev_ebit:11,
  roe:16.3,roic:0.82,roa:8,debt:1.21,de:0.8,ic:7.2,cr:1.2,qr:1.0,
  yield:399.0,epsg:10.8,revg:2.3,margin:6.6,gm:17.8,om:9,fcf:8.2,
  capex:3.8,capr:4.5,capda:0.6,
@@ -427,7 +427,7 @@ const S=[
 
 {ticker:'RI',name:'Pernod Ricard',sector:'Spiritueux',cap:'large',srd:true,idx:'CAC40',
  price:70.32,chg:188.4,mkt:'24Md€',b52h:107.45,b52l:58.6,beta:0.48,
- pe:12.56,pb:1.14,ev_ebitda:10.29,ps:2.5,pfcf:15,ev_ebit:14,
+ pe:12.56,pb:1.14,ev_ebitda:10.4,ps:2.5,pfcf:15,ev_ebit:14,
  roe:8.6,roic:2.34,roa:6,debt:0.82,de:1.0,ic:5.8,cr:1.3,qr:1.0,
  yield:681.0,epsg:-18.0,revg:-14.9,margin:14.1,gm:58.4,om:25,fcf:7.8,
  capex:3.2,capr:4.8,capda:0.6,
@@ -446,7 +446,7 @@ const S=[
 
 {ticker:'LR',name:'Legrand',sector:'Électricité bâtiment',cap:'large',srd:true,idx:'CAC40',
  price:140.2,chg:82.7,mkt:'26Md€',b52h:166.95,b52l:121.95,beta:0.99,
- pe:28.27,pb:4.9,ev_ebitda:19.05,ps:3.8,pfcf:20,ev_ebit:18,
+ pe:28.27,pb:4.9,ev_ebitda:19.18,ps:3.8,pfcf:20,ev_ebit:18,
  roe:18.2,roic:1.58,roa:10,debt:1.03,de:0.7,ic:8.5,cr:1.5,qr:1.2,
  yield:171.0,epsg:8.5,revg:14.7,margin:13.0,gm:50.2,om:21,fcf:8.5,
  capex:2.2,capr:3.2,capda:0.5,
@@ -465,7 +465,7 @@ const S=[
 
 {ticker:'WLN',name:'Wendel',sector:'Holdings',cap:'large',srd:true,idx:'CAC40',
  price:12.6,chg:-512.0,mkt:'4.8Md€',b52h:34.62,b52l:9.05,beta:1.82,
- pe:3.66,pb:0.03,ev_ebitda:9.88,ps:0.8,pfcf:9,ev_ebit:9,
+ pe:3.66,pb:0.03,ev_ebitda:9.74,ps:0.8,pfcf:9,ev_ebit:9,
  roe:-21.2,roic:1.1,roa:4,debt:0.67,de:0.6,ic:6.2,cr:1.5,qr:1.2,
  yield:3.2,epsg:6,revg:-3.7,margin:-25.2,gm:66.1,om:16,fcf:7.2,
  capex:1.2,capr:2.8,capda:0.4,
@@ -484,7 +484,7 @@ const S=[
 
 {ticker:'DSY',name:'Dassault Systèmes',sector:'Logiciels',cap:'large',srd:true,idx:'CAC40',
  price:22.25,chg:239.3,mkt:'42Md€',b52h:30.36,b52l:15.82,beta:0.54,
- pe:22.94,pb:3.16,ev_ebitda:15.73,ps:4.8,pfcf:24,ev_ebit:20,
+ pe:22.94,pb:3.16,ev_ebitda:16.14,ps:4.8,pfcf:24,ev_ebit:20,
  roe:15.1,roic:1.99,roa:10,debt:0.36,de:0.5,ic:12.5,cr:2.1,qr:1.8,
  yield:124.0,epsg:31.8,revg:2.2,margin:21.3,gm:84.2,om:24,fcf:8.2,
  capex:1.8,capr:2.8,capda:0.4,
@@ -522,7 +522,7 @@ const S=[
 
 {ticker:'EL',name:'EssilorLuxottica',sector:'Optique',cap:'large',srd:true,idx:'CAC40',
  price:172.3,chg:58.4,mkt:'85Md€',b52h:323.8,b52l:160.6,beta:0.55,
- pe:32.27,pb:2.02,ev_ebitda:15.86,ps:3.2,pfcf:22,ev_ebit:20,
+ pe:32.27,pb:2.02,ev_ebitda:15.94,ps:3.2,pfcf:22,ev_ebit:20,
  roe:6.7,roic:0.89,roa:6,debt:0.38,de:0.6,ic:8.2,cr:1.5,qr:1.2,
  yield:234.0,epsg:12.3,revg:5.7,margin:8.5,gm:60.0,om:18,fcf:7.5,
  capex:3.5,capr:5.2,capda:0.5,
@@ -560,7 +560,7 @@ const S=[
 
 {ticker:'ENGI',name:'Engie',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
  price:26.72,chg:60.2,mkt:'44Md€',b52h:29.89,b52l:17.2,beta:0.56,
- pe:16.39,pb:1.99,ev_ebitda:9.73,ps:0.3,pfcf:8,ev_ebit:8,
+ pe:16.39,pb:1.99,ev_ebitda:9.76,ps:0.3,pfcf:8,ev_ebit:8,
  roe:12.2,roic:1.0,roa:3,debt:1.44,de:1.5,ic:3.8,cr:1.0,qr:0.8,
  yield:508.0,epsg:14.3,revg:-3.6,margin:6.0,gm:32.1,om:6,fcf:6.8,
  capex:6.5,capr:4.8,capda:0.6,
@@ -578,8 +578,8 @@ const S=[
  contra:"CAPEX permanent massif. Politique énergétique volatile. Dette élevée."},
 
 {ticker:'MT',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
- price:62.98,chg:-137.8,mkt:'18Md€',b52h:64.46,b52l:27.42,beta:1.75,
- pe:30.57,pb:0.99,ev_ebitda:10.96,ps:0.3,pfcf:6,ev_ebit:5,
+ price:62.98,chg:-137.8,mkt:'18Md€',b52h:65.24,b52l:27.42,beta:1.75,
+ pe:30.57,pb:0.99,ev_ebitda:10.84,ps:0.3,pfcf:6,ev_ebit:5,
  roe:3.3,roic:1.43,roa:4,debt:0.25,de:0.4,ic:8.5,cr:1.5,qr:1.2,
  yield:80.0,epsg:-61.7,revg:5.2,margin:2.9,gm:9.0,om:7,fcf:7.2,
  capex:3.5,capr:2.8,capda:0.5,
@@ -636,7 +636,7 @@ const S=[
 
 {ticker:'TEP',name:'Teleperformance',sector:'BPO',cap:'large',srd:true,idx:'CAC40',
  price:70.0,chg:192.2,mkt:'5.2Md€',b52h:78.14,b52l:43.65,beta:0.67,
- pe:8.85,pb:0.97,ev_ebitda:5.06,ps:0.5,pfcf:7,ev_ebit:7,
+ pe:8.85,pb:0.97,ev_ebitda:5.11,ps:0.5,pfcf:7,ev_ebit:7,
  roe:11.4,roic:1.4,roa:8,debt:1.2,de:1.0,ic:6.2,cr:1.2,qr:1.0,
  yield:655.0,epsg:-11.6,revg:-4.6,margin:4.7,gm:30.7,om:13,fcf:9.2,
  capex:2.8,capr:3.5,capda:0.5,
@@ -677,7 +677,7 @@ const S=[
 // ══════════════════════════════════════════
 {ticker:'GTT',name:'Gaztransport & Technigaz',sector:'LNG Technology',cap:'mid',srd:true,idx:'SBF120',
  price:197.0,chg:10.2,mkt:'7.2Md€',b52h:215.0,b52l:147.3,beta:0.45,
- pe:16.54,pb:11.9,ev_ebitda:12.94,ps:9.2,pfcf:18,ev_ebit:16,
+ pe:16.51,pb:11.9,ev_ebitda:12.96,ps:9.2,pfcf:18,ev_ebit:16,
  roe:79.6,roic:1.95,roa:52,debt:0.17,de:0.1,ic:999,cr:3.2,qr:2.8,
  yield:437.0,epsg:16.6,revg:-0.4,margin:55.4,gm:96.8,om:58,fcf:18.5,
  capex:0.8,capr:1.2,capda:0.3,
@@ -810,7 +810,7 @@ const S=[
 
 {ticker:'ALO',name:'Alstom',sector:'Ferroviaire',cap:'large',srd:true,idx:'SBF120',
  price:16.66,chg:-156.6,mkt:'6.2Md€',b52h:30.23,b52l:14.72,beta:1.06,
- pe:27.77,pb:0.78,ev_ebitda:7.96,ps:0.5,pfcf:12,ev_ebit:11,
+ pe:27.77,pb:0.78,ev_ebitda:7.86,ps:0.5,pfcf:12,ev_ebit:11,
  roe:3.4,roic:0.94,roa:3,debt:0.33,de:1.2,ic:3.8,cr:1.0,qr:0.8,
  yield:0.0,epsg:-29.5,revg:4.1,margin:1.7,gm:12.3,om:5,fcf:5.5,
  capex:2.5,capr:3.2,capda:0.5,
@@ -848,7 +848,7 @@ const S=[
 
 {ticker:'SEB',name:'SEB',sector:'Électroménager',cap:'mid',srd:true,idx:'SBF120',
  price:59.5,chg:-66.8,mkt:'3.2Md€',b52h:68.6,b52l:40.84,beta:1.24,
- pe:27.29,pb:1.07,ev_ebitda:8.11,ps:0.5,pfcf:10,ev_ebit:9,
+ pe:27.29,pb:1.07,ev_ebitda:8.08,ps:0.5,pfcf:10,ev_ebit:9,
  roe:4.9,roic:1.16,roa:7,debt:1.06,de:0.7,ic:6.8,cr:1.4,qr:1.2,
  yield:467.0,epsg:238.7,revg:-0.1,margin:1.5,gm:8.0,om:10,fcf:7.5,
  capex:1.5,capr:2.5,capda:0.4,
@@ -924,7 +924,7 @@ const S=[
 
 {ticker:'VK',name:'Vallourec',sector:'Tubes acier',cap:'mid',srd:true,idx:'SBF120',
  price:18.54,chg:-267.7,mkt:'2.8Md€',b52h:27.67,b52l:14.76,beta:0.43,
- pe:13.84,pb:1.75,ev_ebitda:4.91,ps:0.4,pfcf:5,ev_ebit:5,
+ pe:13.84,pb:1.75,ev_ebitda:4.77,ps:0.4,pfcf:5,ev_ebit:5,
  roe:15.8,roic:2.13,roa:8,debt:0.36,de:0.5,ic:8.5,cr:1.4,qr:1.1,
  yield:935.0,epsg:30.2,revg:2.6,margin:9.6,gm:29.7,om:12,fcf:8.5,
  capex:2.2,capr:5.2,capda:0.7,
@@ -1054,7 +1054,7 @@ const S=[
 
 {ticker:'BN',name:'Danone',sector:'Agroalimentaire',cap:'large',srd:true,idx:'CAC40',
  price:68.22,chg:8.8,mkt:'40Md€',b52h:80.14,b52l:60.64,beta:0.19,
- pe:22.59,pb:2.49,ev_ebitda:11.75,ps:1.5,pfcf:14,ev_ebit:12,
+ pe:22.59,pb:2.49,ev_ebitda:11.76,ps:1.5,pfcf:14,ev_ebit:12,
  roe:12.2,roic:0.97,roa:6,debt:0.99,de:1.1,ic:5.8,cr:1.0,qr:0.8,
  yield:330.0,epsg:12.4,revg:1.4,margin:7.1,gm:50.0,om:12,fcf:7.2,
  capex:2.8,capr:3.5,capda:0.5,dcfb:50,dcfm:68,dcfu:85,
@@ -1071,7 +1071,7 @@ const S=[
 
 {ticker:'CA',name:'Carrefour',sector:'Distribution alimentaire',cap:'large',srd:true,idx:'CAC40',
  price:15.77,chg:-97.3,mkt:'11Md€',b52h:17.54,b52l:11.94,beta:0.61,
- pe:12.13,pb:1.01,ev_ebitda:7.98,ps:0.1,pfcf:7,ev_ebit:7,
+ pe:12.13,pb:1.01,ev_ebitda:7.95,ps:0.1,pfcf:7,ev_ebit:7,
  roe:8.4,roic:0.9,roa:3,debt:1.85,de:1.2,ic:4.8,cr:0.8,qr:0.7,
  yield:609.0,epsg:6,revg:2.0,margin:0.9,gm:17.8,om:3,fcf:6.8,
  capex:1.8,capr:2.5,capda:0.3,dcfb:12,dcfm:17,dcfu:22,
@@ -1088,7 +1088,7 @@ const S=[
 
 {ticker:'HO',name:'Thales',sector:'Défense & Technologie',cap:'large',srd:true,idx:'CAC40',
  price:264.8,chg:7.6,mkt:'19Md€',b52h:279.3,b52l:212.6,beta:0.12,
- pe:36.52,pb:6.79,ev_ebitda:17.89,ps:2.0,pfcf:18,ev_ebit:15,
+ pe:36.52,pb:6.79,ev_ebitda:17.91,ps:2.0,pfcf:18,ev_ebit:15,
  roe:19.4,roic:0.83,roa:8,debt:0.7,de:0.7,ic:8.5,cr:1.4,qr:1.2,
  yield:147.0,epsg:-27.0,revg:6.7,margin:6.6,gm:26.9,om:12,fcf:8.2,
  capex:2.2,capr:3.5,capda:0.5,dcfb:162,dcfm:212,dcfu:265,
@@ -1192,8 +1192,8 @@ const S=[
 
 // ═══ Actions européennes éligibles PEA ═══
 {ticker:'ASML',name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
- price:1499.0,chg:33.5,mkt:'246Md€',b52h:1741.0,b52l:608.4,beta:1.36,
- pe:59.02,pb:26.38,ev_ebitda:42.13,ps:8.5,pfcf:22,ev_ebit:20,
+ price:1499.0,chg:33.5,mkt:'246Md€',b52h:1741.0,b52l:611.8,beta:1.36,
+ pe:59.02,pb:26.38,ev_ebitda:42.27,ps:8.5,pfcf:22,ev_ebit:20,
  roe:53.9,roic:1.33,roa:18,debt:0.09,de:0.4,ic:22.5,cr:1.8,qr:1.5,
  yield:52.0,epsg:28.5,revg:21.3,margin:30.1,gm:52.7,om:32,fcf:9.5,
  capex:2.5,capr:3.8,capda:0.4,dcfb:520,dcfm:720,dcfu:920,
@@ -1295,8 +1295,8 @@ const S=[
  contra:"45x PE n'accepte aucune erreur. Régulation VE européenne. Cyclicité luxe si récession sévère."},
 
 {ticker:'SAP',name:'SAP',sector:'ERP cloud',cap:'large',srd:false,idx:'XETRA',
- price:177.96,chg:408.2,mkt:'285Md€',b52h:253.15,b52l:127.5,beta:0.76,
- pe:26.6,pb:4.59,ev_ebitda:16.68,ps:6.8,pfcf:28,ev_ebit:24,
+ price:177.96,chg:408.2,mkt:'285Md€',b52h:251.7,b52l:127.5,beta:0.76,
+ pe:26.6,pb:4.59,ev_ebitda:17.37,ps:6.8,pfcf:28,ev_ebit:24,
  roe:18.3,roic:1.15,roa:8,debt:0.22,de:0.5,ic:12.5,cr:1.8,qr:1.5,
  yield:146.0,epsg:30.6,revg:9.4,margin:20.4,gm:73.7,om:20,fcf:8.2,
  capex:2.2,capr:3.5,capda:0.4,dcfb:192,dcfm:258,dcfu:325,
@@ -1329,7 +1329,7 @@ const S=[
  contra:"Conglomérat complexe. Cyclicité industrie. Chine représente 15% du CA."},
 
 {ticker:'ALV',name:'Allianz',sector:'Assurance mondiale',cap:'large',srd:false,idx:'XETRA',
- price:433.5,chg:-163.4,mkt:'142Md€',b52h:441.7,b52l:338.8,beta:0.67,
+ price:433.5,chg:-163.4,mkt:'142Md€',b52h:443.9,b52l:338.8,beta:0.67,
  pe:13.99,pb:2.5,ev_ebitda:7.26,ps:0.7,pfcf:999,ev_ebit:999,
  roe:18.7,roic:174.87,roa:0.6,debt:999,de:7.2,ic:999,cr:999,qr:999,
  yield:388.0,epsg:52.4,revg:8.8,margin:10.4,gm:24.3,om:999,fcf:999,
