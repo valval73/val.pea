@@ -254,14 +254,14 @@ Si info non trouvée : écrire <i>Non trouvé publiquement cette semaine</i>. Ne
 
     try:
         payload = json.dumps({
-            'model': 'claude-sonnet-4-6',
+            'model': 'claude-sonnet-5',
             'max_tokens': 2500,
             'tools': [{'type': 'web_search_20250305', 'name': 'web_search'}],
             'messages': [{'role': 'user', 'content': prompt}]
         }).encode()
         req = ur.Request('https://api.anthropic.com/v1/messages', data=payload,
             headers={'Content-Type':'application/json','x-api-key':ANTHROPIC_KEY,
-                     'anthropic-version':'2023-06-01','anthropic-beta':'web-search-2025-03-05'})
+                     'anthropic-version':'2023-06-01'})
         with ur.urlopen(req, timeout=90) as r:
             data = json.loads(r.read())
         text = ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text')
@@ -284,7 +284,7 @@ def ia_analyse(s):
               "RISQUE: [principal risque concret]\n"
               "SIGNAL: [ENTRER/CONSERVER/SORTIR] — [raison courte]")
     try:
-        payload = json.dumps({'model':'claude-sonnet-4-6','max_tokens':180,
+        payload = json.dumps({'model':'claude-sonnet-5','max_tokens':180,
             'messages':[{'role':'user','content':prompt}]}).encode()
         req = ur.Request('https://api.anthropic.com/v1/messages', data=payload,
             headers={'Content-Type':'application/json','x-api-key':ANTHROPIC_KEY,'anthropic-version':'2023-06-01'})
