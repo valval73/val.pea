@@ -268,7 +268,11 @@ Si info non trouvée : écrire <i>Non trouvé publiquement cette semaine</i>. Ne
         print(f'  ✅ Résumé social: {len(text)} chars')
         return text.strip() or None
     except Exception as e:
-        print(f'  ❌ Social error: {e}')
+        detail = ''
+        if hasattr(e, 'read'):
+            try: detail = ' | ' + e.read().decode('utf-8','ignore')[:400]
+            except: pass
+        print(f'  ❌ Social error: {e}{detail}')
         return None
 
 # ─── ANALYSE IA TOP 3 ─────────────────────────────────────────────────────
@@ -292,7 +296,11 @@ def ia_analyse(s):
             d = json.loads(r.read())
         return d['content'][0]['text'].strip()
     except Exception as e:
-        print(f'  IA {s["ticker"]}: {e}')
+        detail = ''
+        if hasattr(e, 'read'):
+            try: detail = ' | ' + e.read().decode('utf-8','ignore')[:400]
+            except: pass
+        print(f'  IA {s["ticker"]}: {e}{detail}')
         return ''
 
 # ─── MACRO ────────────────────────────────────────────────────────────────
