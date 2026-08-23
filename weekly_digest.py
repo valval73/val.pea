@@ -202,72 +202,82 @@ def fetch_social_summary(newsletters, substacks, stocks):
                 nl_ctx += f"\n• {a['pub']} — {a['title']}\n  {a['desc'][:400]}"
 
     prompt = f"""Date: {today}. Semaine analysée: {week_start} → {today}.
-Tu es analyste pour une investisseuse PEA française. Fais le résumé de la semaine.
+Tu es analyste senior pour une investisseuse PEA française expérimentée. Ta mission : lire tout ce qu'ont publié 5 influenceurs financiers cette semaine et en faire une synthèse DÉTAILLÉE et EXPLOITABLE — pas un résumé vague en une ligne.
+
+RÈGLE ABSOLUE : sois EXHAUSTIF, pas sélectif. Si Nicolas Chéron a passé en revue 15 actions dans son point de marché, liste les 15, pas 2 ou 3. Si L'Analyste Curieux a publié 3 fiches entreprise cette semaine, détaille les 3 séparément. Si Jean-Benoît Gambet a posté 5 fois, résume les 5 posts. N'invente jamais un chiffre, mais ne résume pas non plus par paresse — cherche vraiment sur le web pour chaque source.
 
 SOURCES À ANALYSER (cherche sur le web ET utilise le contenu ci-dessous) :
 
-1. GUILLAUME FOURNIER — YouTube @GuillaumeFournier_Invest + site financeoptimale.fr
-   → Dernière vidéo publiée cette semaine : titre + actions analysées + verdict
+1. NICOLAS CHÉRON — YouTube @NicolasCheron + X @NCheron_bourse + zonebourse.com
+   → Son point de marché de la semaine : liste CHAQUE action qu'il passe en revue, avec verdict technique (niveau, tendance, objectif chiffré)
+   → Le contexte macro qu'il donne (taux, indices, matières premières, devises)
+   → Ses posts X notables de la semaine (alertes, signaux)
 
-2. RIQUE TRADING — YouTube @riquetrading + Substack riquetradingetbourse.substack.com
-   → Dernière vidéo + dernier article Substack : actions PEA mentionnées + prix cibles
+2. JEAN-BENOÎT GAMBET — Instagram @jeanbenoit_gambet (~1 post/jour) + LinkedIn Eiffel Investment Group
+   → Résume CHAQUE post trouvé cette semaine (date + sujet + conviction + action citée), même s'il y en a 5 à 7
+   → Note : le contenu Instagram est souvent difficile d'accès par recherche web — si tu ne trouves rien, dis-le clairement plutôt que d'inventer
 
-3. NICOLAS CHÉRON — YouTube @NicolasCheron + X @NCheron_bourse + zonebourse.com
-   → Point de marché bimensuel : TOUTES les actions passées en revue + verdict technique
-   → Posts X de la semaine : alertes, signaux, analyses
+3. L'ANALYSTE CURIEUX — X @analystecurieux + Substack analystecurieux.substack.com + Instagram
+   → Détaille CHAQUE fiche entreprise publiée cette semaine, séparément : ticker, MOAT identifié, indicateurs financiers cités (scores, marges, ROE...), juste valeur / juste prix donné, verdict
 
-4. JEAN-BENOÎT GAMBET — Instagram @jeanbenoit_gambet + LinkedIn Eiffel Investment Group
-   → Posts récents : secteurs favoris, convictions, actions citées
+4. RIQUE TRADING — YouTube @riquetrading + Substack riquetradingetbourse.substack.com
+   → Vidéo(s) et article(s) Substack de la semaine : chaque action PEA mentionnée avec prix cible et raisonnement
 
-5. L'ANALYSTE CURIEUX — X @analystecurieux + Substack analystecurieux.substack.com + Instagram
-   → Fiches entreprises publiées cette semaine : analyse MOAT + valorisation + juste prix
+5. GUILLAUME FOURNIER — YouTube @GuillaumeFournier_Invest + site financeoptimale.fr
+   → Vidéo(s) de la semaine : chaque action analysée, verdict, arguments chiffrés
 
-MON UNIVERS PEA SUIVI ({len(stocks)} valeurs) — croise CHAQUE mention d'action des influenceurs avec cette liste. Si un ticker mentionné y figure, précise-le explicitement ("dans mon univers suivi") :
+MON UNIVERS PEA SUIVI ({len(stocks)} valeurs) — pour CHAQUE action mentionnée par un influenceur, indique si elle est dans cette liste ou non :
 {tickers_ctx}
 
 CONTENU REÇU (newsletters Gmail + Substack):{nl_ctx if nl_ctx else ' Aucun contenu reçu cette semaine.'}
 
 FORMAT HTML STRICT — pas de markdown, pas d'astérisques :
 
-<h4>📺 Guillaume Fournier</h4>
-<b>Sentiment :</b> <span style="color:#16a34a">BULLISH</span> / <span style="color:#dc2626">BEARISH</span> / <span style="color:#d97706">NEUTRE</span><br>
-<b>Activité :</b> [titre vidéo/article exact + date]<br>
-<b>Actions analysées :</b><ul>
-<li><b>TICKER</b> — [verdict] — [raison chiffrée]</li>
-</ul>
-
-<h4>📈 Rique Trading</h4>
-[même structure + prix cibles PER si disponibles]
-
 <h4>📊 Nicolas Chéron</h4>
-[même structure + TOUTES actions mentionnées dans point de marché]
+<b>Macro de la semaine :</b> [ce qu'il dit sur taux / indices / matières premières / devises]<br>
+<b>Actions passées en revue :</b>
+<ul>
+<li><b>TICKER</b> [✅ dans mon univers suivi ou rien] — [verdict technique + niveau/objectif cité]</li>
+</ul>
+(une ligne par action couverte, sois exhaustif)
 
 <h4>👔 Jean-Benoît Gambet</h4>
-[même structure]
+<ul>
+<li><b>[date]</b> — [sujet du post] — [conviction / action citée, ✅ si dans univers suivi]</li>
+</ul>
+(un post par ligne, tous les posts trouvés ; si rien trouvé : <i>Contenu Instagram non accessible publiquement cette semaine</i>)
 
 <h4>🔍 L'Analyste Curieux</h4>
-[même structure + MOAT identifié + zone d'achat]
+(pour chaque fiche entreprise publiée cette semaine, un bloc séparé :)
+<b>TICKER — Nom [✅ si dans univers suivi]</b><br>
+MOAT : [...] · Valorisation : [...] · Juste prix : [...] · Verdict : [...]<br><br>
+
+<h4>📈 Rique Trading</h4>
+<ul><li><b>TICKER</b> [✅ ou rien] — [prix cible + raisonnement]</li></ul>
+
+<h4>📺 Guillaume Fournier</h4>
+<ul><li><b>TICKER</b> [✅ ou rien] — [verdict + argument chiffré]</li></ul>
 
 <h4>🎯 Synthèse de la semaine</h4>
-<b>Tickers cités par 2+ influenceurs :</b> [liste en gras, avec ticker exact entre parenthèses]<br>
-<b>Dans mon univers suivi :</b> [tickers mentionnés qui font partie de MON UNIVERS PEA SUIVI ci-dessus, avec le verdict de chaque influenceur qui en parle]<br>
-<b>Consensus :</b> [BULLISH/BEARISH/NEUTRE + raison]<br>
-<b>Pépite PEA :</b> [1 action sous-évaluée avec MOAT, en priorité dans mon univers suivi]<br>
+<b>Tickers cités par 2+ influenceurs :</b> [liste en gras]<br>
+<b>Dans mon univers suivi, ce qui ressort cette semaine :</b> [tickers suivis mentionnés, avec qui en parle et le sens de l'avis]<br>
+<b>Consensus global :</b> [BULLISH/BEARISH/NEUTRE + raison]<br>
+<b>Pépite potentielle :</b> [1 action sous-évaluée avec MOAT, en priorité dans mon univers suivi]<br>
 <b>À éviter :</b> [1 action sur laquelle plusieurs sont négatifs]
 
-Chaque action citée doit être identifiée par son ticker exact (majuscules, tel que dans MON UNIVERS PEA SUIVI si elle y figure), jamais juste par un nom d'entreprise vague. Si info non trouvée : écrire <i>Non trouvé publiquement cette semaine</i>. Ne pas inventer."""
+Chaque action doit être identifiée par son ticker exact (majuscules, tel que dans MON UNIVERS PEA SUIVI si elle y figure), jamais juste par un nom d'entreprise vague. Si une source n'a rien publié de trouvable cette semaine, écris <i>Aucune publication trouvée cette semaine</i> pour cette section plutôt que de la sauter ou d'inventer."""
 
     try:
         payload = json.dumps({
             'model': 'claude-sonnet-5',
-            'max_tokens': 2500,
-            'tools': [{'type': 'web_search_20250305', 'name': 'web_search'}],
+            'max_tokens': 6000,
+            'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 25}],
             'messages': [{'role': 'user', 'content': prompt}]
         }).encode()
         req = ur.Request('https://api.anthropic.com/v1/messages', data=payload,
             headers={'Content-Type':'application/json','x-api-key':ANTHROPIC_KEY,
                      'anthropic-version':'2023-06-01'})
-        with ur.urlopen(req, timeout=90) as r:
+        with ur.urlopen(req, timeout=280) as r:
             data = json.loads(r.read())
         text = ''.join(b.get('text','') for b in data.get('content',[]) if b.get('type')=='text')
         print(f'  ✅ Résumé social: {len(text)} chars')
