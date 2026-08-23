@@ -351,7 +351,7 @@ const S=[
 
 {ticker:'SGO',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
  price:81.2,chg:49.5,mkt:'36Md€',b52h:97.84,b52l:65.88,beta:1.22,
- pe:15.06,pb:1.56,ev_ebitda:7.89,ps:0.6,pfcf:10,ev_ebit:9,
+ pe:15.06,pb:1.63,ev_ebitda:7.89,ps:0.6,pfcf:10,ev_ebit:9,
  roe:11.0,roic:1.27,roa:6,debt:0.66,de:0.8,ic:6.2,cr:1.2,qr:1.0,
  yield:283.0,epsg:-12.0,revg:-1.1,margin:5.8,gm:27.2,om:10,fcf:7.2,
  capex:5.8,capr:4.2,capda:0.7,
@@ -465,7 +465,7 @@ const S=[
 
 {ticker:'WLN',name:'Wendel',sector:'Holdings',cap:'large',srd:true,idx:'CAC40',
  price:12.28,chg:435.0,mkt:'4.8Md€',b52h:34.62,b52l:9.05,beta:1.82,
- pe:3.74,pb:0.03,ev_ebitda:9.68,ps:0.8,pfcf:9,ev_ebit:9,
+ pe:3.74,pb:1.07,ev_ebitda:9.68,ps:0.8,pfcf:9,ev_ebit:9,
  roe:-21.2,roic:1.1,roa:4,debt:0.67,de:0.6,ic:6.2,cr:1.5,qr:1.2,
  yield:3.2,epsg:6,revg:-3.7,margin:-25.2,gm:66.1,om:16,fcf:7.2,
  capex:1.2,capr:2.8,capda:0.4,
