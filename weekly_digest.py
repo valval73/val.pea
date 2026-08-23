@@ -183,10 +183,11 @@ def parse_stocks(html_content):
     return sorted(stocks, key=lambda x: -x['bam'])
 
 # ─── RÉSUMÉ RÉSEAUX SOCIAUX IA ────────────────────────────────────────────
-def fetch_social_summary(newsletters, substacks):
+def fetch_social_summary(newsletters, substacks, stocks):
     if not ANTHROPIC_KEY: return None
     today = datetime.now().strftime('%d/%m/%Y')
     week_start = (datetime.now() - timedelta(days=7)).strftime('%d/%m/%Y')
+    tickers_ctx = ', '.join(f"{s['ticker']} ({s['name'][:22]})" for s in stocks) if stocks else ''
 
     # Contexte newsletters Gmail
     nl_ctx = ''
@@ -221,6 +222,9 @@ SOURCES À ANALYSER (cherche sur le web ET utilise le contenu ci-dessous) :
 5. L'ANALYSTE CURIEUX — X @analystecurieux + Substack analystecurieux.substack.com + Instagram
    → Fiches entreprises publiées cette semaine : analyse MOAT + valorisation + juste prix
 
+MON UNIVERS PEA SUIVI ({len(stocks)} valeurs) — croise CHAQUE mention d'action des influenceurs avec cette liste. Si un ticker mentionné y figure, précise-le explicitement ("dans mon univers suivi") :
+{tickers_ctx}
+
 CONTENU REÇU (newsletters Gmail + Substack):{nl_ctx if nl_ctx else ' Aucun contenu reçu cette semaine.'}
 
 FORMAT HTML STRICT — pas de markdown, pas d'astérisques :
@@ -245,12 +249,13 @@ FORMAT HTML STRICT — pas de markdown, pas d'astérisques :
 [même structure + MOAT identifié + zone d'achat]
 
 <h4>🎯 Synthèse de la semaine</h4>
-<b>Tickers cités par 2+ influenceurs :</b> [liste en gras]<br>
+<b>Tickers cités par 2+ influenceurs :</b> [liste en gras, avec ticker exact entre parenthèses]<br>
+<b>Dans mon univers suivi :</b> [tickers mentionnés qui font partie de MON UNIVERS PEA SUIVI ci-dessus, avec le verdict de chaque influenceur qui en parle]<br>
 <b>Consensus :</b> [BULLISH/BEARISH/NEUTRE + raison]<br>
-<b>Pépite PEA :</b> [1 action sous-évaluée avec MOAT]<br>
+<b>Pépite PEA :</b> [1 action sous-évaluée avec MOAT, en priorité dans mon univers suivi]<br>
 <b>À éviter :</b> [1 action sur laquelle plusieurs sont négatifs]
 
-Si info non trouvée : écrire <i>Non trouvé publiquement cette semaine</i>. Ne pas inventer."""
+Chaque action citée doit être identifiée par son ticker exact (majuscules, tel que dans MON UNIVERS PEA SUIVI si elle y figure), jamais juste par un nom d'entreprise vague. Si info non trouvée : écrire <i>Non trouvé publiquement cette semaine</i>. Ne pas inventer."""
 
     try:
         payload = json.dumps({
@@ -621,7 +626,7 @@ if __name__ == '__main__':
     substacks = fetch_substacks()
 
     print('\n📱 Résumé réseaux sociaux...')
-    social_html = fetch_social_summary(newsletters, substacks)
+    social_html = fetch_social_summary(newsletters, substacks, stocks)
 
     print('\n📨 Construction mail...')
     html = build_email(stocks, macro, social_html, date_fr)
