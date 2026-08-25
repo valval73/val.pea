@@ -416,10 +416,13 @@ def run_backtest_223():
         buckets_m = pd.cut(mid_df['score_mid'] if len(mid_df)>5 else pd.Series([]),
                            bins=[0,40,55,65,75,100], labels=['<40','40-55','55-65','65-75','>75'])
         if len(large_df)>5 and len(mid_df)>5:
+            BKT_LABELS = ['<40','40-55','55-65','65-75','>75']
             large_df = large_df.copy(); large_df['bkt'] = buckets_l.values
             mid_df2 = mid_df.copy(); mid_df2['bkt'] = buckets_m.values
-            l_perf = large_df.groupby('bkt', observed=True)['ret_annual_pct'].mean()
-            m_perf = mid_df2.groupby('bkt', observed=True)['ret_annual_pct'].mean()
+            # reindex sur les 5 tranches fixes : une tranche sans action donne 0,
+            # au lieu de raccourcir le tableau et faire planter ax5.bar (mismatch de shape)
+            l_perf = large_df.groupby('bkt', observed=True)['ret_annual_pct'].mean().reindex(BKT_LABELS).fillna(0)
+            m_perf = mid_df2.groupby('bkt', observed=True)['ret_annual_pct'].mean().reindex(BKT_LABELS).fillna(0)
             ax5.bar(x_pos - width/2, l_perf.values, width, label='Large', color='#1d4ed8', alpha=0.8)
             ax5.bar(x_pos + width/2, m_perf.values, width, label='Mid', color='#7c3aed', alpha=0.8)
             ax5.set_xticks(x_pos)
