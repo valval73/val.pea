@@ -1,0 +1,70 @@
+name: Backtest QARP Mensuel
+
+on:
+  schedule:
+    # 1er de chaque mois, 5h UTC (7h Paris) — avant l'ouverture des marchés
+    - cron: '0 5 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install yfinance pandas numpy matplotlib --quiet
+
+      - name: Run QARP backtest (223 tickers, 2019-2024)
+        run: python backtest_qarp_223.py | tee backtest_run_output.txt
+
+      - name: Append run to historical log
+        run: |
+          python3 - <<'PYEOF'
+          from datetime import datetime
+          import re
+
+          with open('backtest_run_output.txt', encoding='utf-8') as f:
+              out = f.read()
+
+          # Isole la section CONCLUSIONS pour un suivi lisible dans le temps
+          m = re.search(r'CONCLUSIONS.*', out, re.S)
+          conclusions = m.group(0) if m else '(section CONCLUSIONS introuvable dans la sortie)'
+
+          date_str = datetime.utcnow().strftime('%Y-%m-%d')
+          entry = f"\n## {date_str}\n\n```\n{conclusions.strip()}\n```\n"
+
+          try:
+              with open('backtest_history.md', 'r', encoding='utf-8') as f:
+                  existing = f.read()
+          except FileNotFoundError:
+              existing = "# Historique des backtests QARP\n\nSuivi mensuel : corrélation du score aux rendements réels, alpha, poids suggérés.\nPermet de vérifier que le screener reste calibré dans le temps, pas seulement au lancement.\n"
+
+          with open('backtest_history.md', 'w', encoding='utf-8') as f:
+              f.write(existing + entry)
+          PYEOF
+
+      - name: Commit results if changed
+        run: |
+          git config --local user.email "valpea-bot@github.com"
+          git config --local user.name "VAL.PEA Bot"
+          git add backtest_223_results.csv backtest_223_chart.png backtest_history.md 2>/dev/null || true
+          git diff --quiet --cached || (
+            git commit -m "📈 Backtest QARP $(date '+%Y-%m-%d') [skip ci]" &&
+            git push
+          )
+          echo "Done"
+
+      - name: Upload run output as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backtest-run-output
+          path: backtest_run_output.txt
+          retention-days: 90
