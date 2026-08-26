@@ -2,7 +2,7 @@ name: Update PEA Screener
 
 on:
   schedule:
-    - cron: '35 15 * * 1-5'   # Lun-Ven 17h35 Paris — MAJ prix uniquement
+    - cron: '35 15 * * 1-5'   # Lun-Ven 17h35 Paris — MAJ prix + fundamentals
     - cron: '0 6 * * 6'        # Samedi 8h Paris — MAIL hebdo
   workflow_dispatch:
 
@@ -22,10 +22,7 @@ jobs:
       - name: Installer dependances
         run: pip install yfinance requests
 
-      - name: MAJ prix (tous les jours)
-        run: python fetch_prices.py
-
-      - name: MAJ fundamentals (tous les jours)
+      - name: MAJ prix + fundamentals (tous les jours)
         run: python fetch_fundamentals.py || true
 
       - name: Mail hebdo BAM (samedi uniquement)
@@ -51,7 +48,8 @@ jobs:
         run: |
           git config user.name "PEA Bot"
           git config user.email "bot@pea.fr"
-          git add index.html prices.json prices_memory.json data.js fundamentals_log.json 2>/dev/null || true
+          git add index.html data.js fundamentals_log.json 2>/dev/null || true
           git add .gitignore 2>/dev/null || true
           git diff --staged --quiet || git commit -m "Update $(date '+%d/%m %H:%M') [skip ci]"
           git push
+
