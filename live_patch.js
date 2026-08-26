@@ -124,7 +124,7 @@ async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
     +'- Chaque affirmation chiffrée et sourced'+NL
     +'- Conclusion BINAIRE : INVESTIR ou PASSER (pas de nuance)'+NL+NL
     +'## VERDICT : [INVESTIR / PASSER / ATTENDRE ZONE]'+NL
-    +'(une ligne, sans nuance, avec le prix d'entrée si ATTENDRE)'+NL+NL
+    +'(une ligne, sans nuance, avec le prix d\'entrée si ATTENDRE)'+NL+NL
     +'## MOAT — Machine à cash durable ?'+NL
     +'- Avantage concurrentiel : [nom précis + chiffre qui le prouve]'+NL
     +'- Pricing power : marge brute % vs moyenne secteur %'+NL
@@ -132,7 +132,7 @@ async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
     +'## VALORISATION — Prix payé ?'+NL
     +'- FCF Yield estimé : [%] → cher/juste/opportunité'+NL
     +'- PE actuel vs historique 10 ans : [X]x vs [Y]x'+NL
-    +'- Zone d'achat optimale : [X€ à Y€]'+NL
+    +'- Zone d\'achat optimale : [X€ à Y€]'+NL
     +'- Scénario baissier (-20% résultats) : cours = [Z€]'+NL+NL
     +'## BILAN — Solidité récession ?'+NL
     +'- Dette nette/EBITDA : [x] → safe/limite/danger'+NL
@@ -145,7 +145,7 @@ async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
     +'## DÉCISION FINALE'+NL
     +'- Action : ACHETER/RENFORCER/CONSERVER/ALLÉGER/VENDRE/PASSER'+NL
     +'- Taille position : [X% du portefeuille PEA]'+NL
-    +'- Point d'entrée : [X€ ou déjà en zone]'+NL
+    +'- Point d\'entrée : [X€ ou déjà en zone]'+NL
     +'- Objectif 3 ans : [Y€] (+X%)'+NL
     +'- Stop loss logique : [Z€]'+NL+NL
     +'Aucun disclaimer. Structure stricte obligatoire.';

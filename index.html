@@ -434,7 +434,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
           <button class="eb" onclick="window.print()"><span class="ei">📄</span><div><div>Imprimer / PDF</div><div class="ed">Fiche courante · Optimisé</div></div></button>
           <button class="eb" onclick="showPg('tb',document.querySelectorAll('.ntab')[1])"><span class="ei">📋</span><div><div>Tableau comparatif</div><div class="ed">Toutes valeurs · Tri multi-colonnes</div></div></button>
           <button class="eb" onclick="showPg('lx',document.querySelectorAll('.ntab')[2])"><span class="ei">📖</span><div><div>Lexique</div><div class="ed">80+ termes expliqués</div></div></button>
-          <button class="eb" onclick="fetchLive()"><span class="ei">🔄</span><div><div>Actualiser prix</div><div class="ed">Yahoo Finance (temps réel)</div></div></button>
+          <button class="eb" onclick="fetchLive()"><span class="ei">🔄</span><div><div>Recharger la page</div><div class="ed">Prix serveur, maj toutes les heures</div></div></button>
         </div>
       </div>
     </div>
@@ -5897,140 +5897,17 @@ function xls(){
 
 // ═══════════ LIVE DATA ═══════════
 async function fetchLive(isAuto){
-  // ─── Throttle : éviter un fetch auto à chaque rechargement ───
-  const THROTTLE_MIN = 30;
-  const LS_KEY = 'valpea_last_fetch';
-  if(isAuto){
-    try{
-      const last = parseInt(localStorage.getItem(LS_KEY)||'0');
-      if(Date.now()-last < THROTTLE_MIN*60*1000){
-        console.log(`fetchLive: throttled (dernier fetch il y a ${Math.round((Date.now()-last)/60000)} min)`);
-        return;
-      }
-    }catch(e){}
-  }
-
-  // ═══ Mapping ticker interne → symbole Yahoo Finance ═══
-  const YF_MAP = {
-    "MC":"MC.PA","AI":"AI.PA","OR":"OR.PA","RMS":"RMS.PA","SAN":"SAN.PA",
-    "TTE":"TTE.PA","SAF":"SAF.PA","SU":"SU.PA","AXA":"CS.PA","BNP":"BNP.PA",
-    "ACA":"ACA.PA","GLE":"GLE.PA","AIR":"AIR.PA","KER":"KER.PA","PUB":"PUB.PA",
-    "ORA":"ORA.PA","VIE":"VIE.PA","RNO":"RNO.PA","SGO":"SGO.PA","CAP":"CAP.PA",
-    "DG":"DG.PA","VIV":"VIV.PA","LR":"LR.PA","DSY":"DSY.PA","EL":"EL.PA",
-    "ENGI":"ENGI.PA","HO":"HO.PA","EN":"EN.PA","BN":"BN.PA","AC":"AC.PA",
-    "AF":"AF.PA","CA":"CA.PA","RI":"RI.PA","URW":"URW.AS","TEP":"TEP.PA",
-    "STM":"STM.MI","ML":"ML.PA","WLN":"WLN.PA","SEB":"SK.PA","IPSOS":"IPS.PA",
-    "GTT":"GTT.PA","ELIS":"ELIS.PA","ERF":"ERF.PA","COFA":"COFA.PA",
-    "SPIE":"SPIE.PA","FNAC":"FNAC.PA","LNA":"LNA.PA","SOP":"SOP.PA",
-    "NEXANS":"NEX.PA","VK":"VK.PA","SW":"SW.PA","MERY":"MERY.PA",
-    "IPSEN":"IPN.PA","REXEL":"RXL.PA","ALTEN":"ATE.PA","IMERYS":"NK.PA",
-    "FORVIA":"FRVIA.PA","EIFFAGE":"FGR.PA","TRIGANO":"TRI.PA","DASSAV":"AM.PA",
-    "ASML":"ASML.AS","PRX":"PRX.AS","ADYEN":"ADYEN.AS","MT":"MT.AS",
-    "SAP":"SAP.DE","ALV":"ALV.DE","HEIA":"HEIA.AS","SIEMENS":"SIE.DE",
-    "NOVO":"NOVO-B.CO","COVIVIO":"COV.PA","STEF":"STF.PA","ARGAN":"ARG.PA",
-    "INTERPARFUMS":"ITP.PA","LECTRA":"LSS.PA","LISI":"FII.PA","VIRBAC":"VIRP.PA",
-    "ABIVAX":"ABVX.PA","BOIRON":"BOI.PA","THERMADOR":"THEP.PA","WAGA":"WAGA.PA",
-    "LACROIX":"LACR.PA","MANITOU":"MTU.PA","FIGEAC":"FGA.PA","SAMSE":"SAMS.PA",
-    "ALTAREA":"ALTA.PA","DERICHEBOURG":"DBG.PA","NRO":"NRO.PA","RUI":"RUI.PA",
-    "DCAM":"DCAM.PA","EWLD":"EWLD.PA","PAEEM":"PAEEM.PA","GTI":"GTT.PA",
-    "JXS":"JCQ.PA","CNP":"CNP.PA","ABCA":"ABCA.PA",
-    "ATO":"ATO.PA","SYENSQO":"SYENSQO.BR","ICAD":"ICAD.PA","NXI":"NXI.PA",
-    "GFC":"GFC.PA","EMEIS":"EMEIS.PA","ELIOR":"ELIOR.PA","DBG":"DBG.PA",
-    "ALSTOM":"ALO.PA"
-  };
-  // Taux DKK→EUR pour NOVO
-  const NON_EUR = {"NOVO-B.CO": 7.46};
-
+  // ─── Ancienne version : proxies CORS publics (corsproxy.io,
+  // allorigins.win) morts depuis mai 2026 -- 0 succès sur 441 runs,
+  // cf audit du 26/08/2026. Remplacés par un rafraîchissement serveur
+  // (refresh_intraday_prices.py, toutes les heures en Bourse) qui
+  // écrit directement dans data.js. Ici on se contente de recharger
+  // la page pour repartir sur le data.js le plus frais.
   const st = document.getElementById('live-st');
   const setStatus = (msg, color) => { if(st){ st.textContent=msg; st.style.color=color||''; } };
-
-  setStatus('⏳ Connexion Yahoo Finance…', '#f59e0b');
-
-  // Bouton en état chargement
-  const btn = document.querySelector('[onclick="fetchLive()"]');
-  if(btn){ btn.disabled=true; btn.style.opacity='0.6'; }
-
-  // Construire liste des tickers à fetcher
-  const toFetch = S
-    .filter(s => YF_MAP[s.ticker])
-    .map(s => ({tk: s.ticker, yf: YF_MAP[s.ticker]}));
-
-  // Groupes de 20 (limite Yahoo v7)
-  const chunks = [];
-  for(let i=0; i<toFetch.length; i+=20) chunks.push(toFetch.slice(i,i+20));
-
-  // Proxies CORS à essayer dans l'ordre
-  const PROXIES = [
-    sym => `https://corsproxy.io/?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym+'&fields=regularMarketPrice,regularMarketChangePercent,fiftyTwoWeekHigh,fiftyTwoWeekLow')}`,
-    sym => `https://api.allorigins.win/raw?url=${encodeURIComponent('https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym)}`
-  ];
-
-  async function fetchChunk(chunk, proxyIdx){
-    const symbols = chunk.map(x=>x.yf).join(',');
-    const url = PROXIES[proxyIdx||0](symbols);
-    const res = await fetch(url, {headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data = await res.json();
-    return data?.quoteResponse?.result || [];
-  }
-
-  let updated=0;
-  // Reverse map YF symbol → internal ticker
-  const revMap = {};
-  Object.entries(YF_MAP).forEach(([tk,yf])=>{ revMap[yf]=tk; });
-
-  for(let ci=0; ci<chunks.length; ci++){
-    const chunk = chunks[ci];
-    setStatus(`⏳ Lot ${ci+1}/${chunks.length}…`, '#f59e0b');
-    let quotes=[], proxyIdx=0;
-    while(proxyIdx < PROXIES.length && !quotes.length){
-      try { quotes = await fetchChunk(chunk, proxyIdx); }
-      catch(e){ console.warn('Proxy',proxyIdx,'failed:',e); proxyIdx++; }
-    }
-    quotes.forEach(q=>{
-      const tk = revMap[q.symbol];
-      if(!tk) return;
-      const s = S.find(x=>x.ticker===tk);
-      if(!s) return;
-      let price = q.regularMarketPrice;
-      if(!price || price<=0.05) return;
-      // Conversion devises non-EUR
-      const fx = NON_EUR[q.symbol]||1;
-      price = Math.round(price/fx*100)/100;
-      s.price = price;
-      s.chg = Math.round((q.regularMarketChangePercent||0)*100)/100;
-      // ─── Mise à jour plage 52 semaines ───
-      if(q.fiftyTwoWeekHigh && q.fiftyTwoWeekLow){
-        s.b52h = Math.round(q.fiftyTwoWeekHigh/fx*100)/100;
-        s.b52l = Math.round(q.fiftyTwoWeekLow/fx*100)/100;
-      }
-      updated++;
-    });
-    if(ci < chunks.length-1) await new Promise(r=>setTimeout(r,150));
-  }
-
-  // Re-render
-  try{
-    if(typeof buildT==='function') buildT(fil.length?fil:S);
-    if(typeof render==='function' && fil[idx]) render(fil[idx]);
-    if(typeof updHK==='function') updHK();
-  }catch(e){ console.warn('Render error:',e); }
-
-  // Réactiver bouton
-  if(btn){ btn.disabled=false; btn.style.opacity='1'; }
-
-  if(updated>0){
-    try{ localStorage.setItem(LS_KEY, String(Date.now())); }catch(e){}
-    setStatus(`✅ ${updated} cours mis à jour`, '#16a34a');
-    const notif = document.createElement('div');
-    notif.style.cssText='position:fixed;bottom:20px;right:20px;background:#0f2540;color:#fff;padding:12px 18px;border-radius:8px;font-size:11px;z-index:9999;border-left:4px solid #22c55e';
-    notif.innerHTML=`<b>✅ Cours actualisés</b><br>${updated} valeurs mises à jour (prix + plages 52s)`;
-    document.body.appendChild(notif);
-    setTimeout(()=>{ notif.remove(); setStatus('Données temps réel',''); },6000);
-  } else {
-    setStatus('⚠️ Échec fetch — réessayez', '#ef4444');
-    console.error('fetchLive: 0 cours mis à jour le 15/06 à 20:28');
-  }
+  if(isAuto) return; // pas de rechargement auto silencieux au chargement de page
+  setStatus('⏳ Rechargement…', '#f59e0b');
+  location.reload();
 }
 
 
@@ -9960,7 +9837,9 @@ function dataFreshness(s){
 
 document.addEventListener('DOMContentLoaded',function(){
   fil=[...S];buildQ();buildT(S);buildLex();buildETF();show(0);startR();
-  setTimeout(()=>fetchLive(true),3000);
+  // Plus d'auto-fetch client (ancien mécanisme proxy CORS supprimé,
+  // cf fetchLive()) -- les prix arrivent déjà à jour via data.js,
+  // rafraîchi côté serveur toutes les heures en Bourse.
   setTimeout(fetchMacro, 1500);
   setTimeout(checkAlerts,2000);
   setTimeout(checkBpfResultats,3000);
