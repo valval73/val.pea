@@ -1,0 +1,33 @@
+name: Rafraîchissement Prix Intraday
+
+on:
+  schedule:
+    # Toutes les heures, Lun-Ven, 8h30-15h30 UTC (~10h30-17h30 Paris été)
+    - cron: '30 8-15 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install yfinance pytz --quiet
+      - name: Rafraîchir les prix
+        run: python refresh_intraday_prices.py
+      - name: Commit si changement
+        run: |
+          git config --local user.email "valpea-bot@github.com"
+          git config --local user.name "VAL.PEA Bot"
+          git diff --quiet data.js 2>/dev/null || (
+            git add data.js &&
+            git commit -m "⚡ Prix intraday $(date '+%Y-%m-%d %H:%M')" &&
+            git push
+          )
+          echo "Done"
