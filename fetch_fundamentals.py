@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 """
 VAL.PEA -- Mise a jour automatique des donnees fondamentales
-Declenche par GitHub Actions toutes les 4h + dimanche 20h UTC
-Met a jour : PE, PB, ROE, dividende, bilan, prochains resultats
+Declenche par GitHub Actions 2x/jour (7h + 17h35 Paris)
+Met a jour : PE, PB, ROE, dividende, bilan, prochains resultats,
+ainsi que le DCF (dcfb/dcfm/dcfu) et les zones d'achat (el/eh/stop/o1/o2).
+
+Le DCF etait fige depuis la creation de chaque fiche (jamais recalcule --
+audit du 26/08/2026). Il est maintenant recalcule a chaque run, avec une
+vraie classification sectorielle (18 categories couvrant les 193 secteurs
+reels du screener, contre 4/193 avant).
 """
 import yfinance as yf
-import re, json, sys, math
+import re, json, sys, math, unicodedata
 from datetime import datetime
 import pytz
 
@@ -24,8 +30,183 @@ YF_MAP = {
     'SIE':'SIE.DE','BAYN':'BAYN.DE','BMW':'BMW.DE','ALV':'ALV.DE',
     'ENEL':'ENEL.MI','ENI':'ENI.MI','UCG':'UCG.MI','RACE':'RACE.MI',
     'CABK':'CABK.MC','BBVA':'BBVA.MC','IBE':'IBE.MC','ITX':'ITX.MC',
-    'TEF':'TEF.MC','NN':'NN.AS','INGA':'INGA.AS','AD':'AD.AS'
+    'TEF':'TEF.MC','NN':'NN.AS','INGA':'INGA.AS','AD':'AD.AS',
+    # Elargissement de couverture (fusion avec le mapping cote client)
+    'URW':'URW.AS','ELIS':'ELIS.PA','ERF':'ERF.PA','COFA':'COFA.PA',
+    'SPIE':'SPIE.PA','FNAC':'FNAC.PA','LNA':'LNA.PA','SOP':'SOP.PA',
+    'NEXANS':'NEX.PA','SW':'SW.PA','MERY':'MERY.PA','IPSEN':'IPN.PA',
+    'REXEL':'RXL.PA','ALTEN':'ATE.PA','IMERYS':'NK.PA','FORVIA':'FRVIA.PA',
+    'EIFFAGE':'FGR.PA','TRIGANO':'TRI.PA','DASSAV':'AM.PA','PRX':'PRX.AS',
+    'ADYEN':'ADYEN.AS','NOVO':'NOVO-B.CO','COVIVIO':'COV.PA','STEF':'STF.PA',
+    'ARGAN':'ARG.PA','INTERPARFUMS':'ITP.PA','LECTRA':'LSS.PA','LISI':'FII.PA',
+    'VIRBAC':'VIRP.PA','ABIVAX':'ABVX.PA','BOIRON':'BOI.PA','THERMADOR':'THEP.PA',
+    'WAGA':'WAGA.PA','LACROIX':'LACR.PA','MANITOU':'MTU.PA','FIGEAC':'FGA.PA',
+    'SAMSE':'SAMS.PA','ALTAREA':'ALTA.PA','DERICHEBOURG':'DBG.PA','NRO':'NRO.PA',
+    'RUI':'RUI.PA','JXS':'JCQ.PA','CNP':'CNP.PA','ABCA':'ABCA.PA','ATO':'ATO.PA',
+    'SYENSQO':'SYENSQO.BR','ICAD':'ICAD.PA','NXI':'NXI.PA','GFC':'GFC.PA',
+    'EMEIS':'EMEIS.PA','ELIOR':'ELIOR.PA','ALSTOM':'ALO.PA',
 }
+
+# ─── Classification sectorielle (mots-cles, couvre 193/193 secteurs reels
+#      du screener -- audit du 26/08/2026 avait trouve 4/193 seulement) ───
+def strip_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+
+SECTOR_RULES = [
+    ('luxe', 'Luxe'), ('maroquinerie', 'Luxe'), ('parfum', 'Luxe'),
+    ('champagne', 'Luxe'), ('cosmetique', 'Luxe'), ('bijou', 'Luxe'),
+    ('spiritueux', 'Luxe'), ('vins bordeaux', 'Luxe'), ('licences parfums', 'Luxe'),
+    ('semi-conducteur', 'Semiconducteurs'), ('connecteurs rf', 'Semiconducteurs'),
+    ('instruments mesure', 'Semiconducteurs'), ('instruments scientifiques', 'Semiconducteurs'),
+    ('electronique embarquee', 'Semiconducteurs'), ('optique', 'Semiconducteurs'),
+    ('saas', 'Logiciel'), ('erp cloud', 'Logiciel'), ('logiciel', 'Logiciel'),
+    ('cybersecurite', 'Logiciel'), ('industrie digitale', 'Logiciel'),
+    ('esn ', 'Logiciel'), ('services it', 'Logiciel'), ('services informatiques', 'Logiciel'),
+    ('recrutement tech', 'Logiciel'), ('tech investissement', 'Logiciel'),
+    ('visioconference', 'Logiciel'), ('diagnostic medical ia', 'Logiciel'),
+    ('iot industriel', 'Logiciel'),
+    ('biotech', 'Biotech'), ('pharma', 'Biotech'), ('homeopathie', 'Biotech'),
+    ('radioenhancement', 'Biotech'), ('chimie pharmaceutique', 'Biotech'),
+    ('laboratoires analyses', 'Biotech'), ('diagnostics medicaux', 'Biotech'),
+    ('sante materiel medical', 'Biotech'), ('sante services', 'Biotech'),
+    ('aviation', 'Defense'), ('aeronautique', 'Defense'), ('defense', 'Defense'),
+    ('drones', 'Defense'), ('pyrotechnie', 'Defense'), ('simulation combat', 'Defense'),
+    ('fixations aeronautiques', 'Defense'), ('usinage aeronautique', 'Defense'),
+    ('ingenierie thermique spatial', 'Defense'), ('infrastructure aeroports', 'Defense'),
+    ('transport aerien', 'Defense'),
+    ('energie', 'Energie'), ('electrique', 'Energie'), ('electricite', 'Energie'), ('eolien', 'Energie'),
+    ('solaire', 'Energie'), ('biogaz', 'Energie'), ('biomethane', 'Energie'),
+    ('bienergie', 'Energie'), ('uranium', 'Energie'), ('gaz industriels', 'Energie'),
+    ('lng technology', 'Energie'), ('membranes methaniers', 'Energie'),
+    ('data energie', 'Energie'), ('data souterrain', 'Energie'), ('option achat gtt', 'Energie'),
+    ('assurance', 'Financier'), ('banque', 'Financier'), ('paiements', 'Financier'),
+    ('arbitrage', 'Financier'), ('holding', 'Financier'), ('avantages salariaux', 'Financier'),
+    ('immobilier', 'Immobilier'), ('centres commerciaux', 'Immobilier'),
+    ('entrepots logistiques', 'Immobilier'), ('retail parks', 'Immobilier'),
+    ('promotion immobiliere', 'Immobilier'), ('tourisme residences', 'Immobilier'),
+    ('ehpad', 'Immobilier'),
+    ('dechets', 'Environnement'), ('recyclage', 'Environnement'),
+    ('environnementaux', 'Environnement'), ('eau traitement', 'Environnement'),
+    ('distribution eau', 'Environnement'), ('mesure pollution', 'Environnement'),
+    ('eau & dechets', 'Environnement'),
+    ('ferroviaire', 'Transport'), ('wagons fret', 'Transport'), ('logistique', 'Transport'),
+    ('transit international', 'Transport'), ('ports logistique', 'Transport'),
+    ('transport frigorifique', 'Transport'), ('commission fret', 'Transport'),
+    ('bateaux', 'Transport'), ('catamarans', 'Transport'), ('propulsion velique', 'Transport'),
+    ('camping-car', 'Transport'), ('vehicules loisirs', 'Transport'),
+    ('telecom', 'Telecoms'), ('media', 'Telecoms'), ('communication', 'Telecoms'),
+    ('publicite', 'Telecoms'), ('evenementiel', 'Telecoms'),
+    ('distribution', 'Distribution'), ('ecommerce', 'Distribution'),
+    ('agroalimentaire', 'Conso'), ('agriculture tropicale', 'Conso'),
+    ('gastronomie', 'Conso'), ('brasseries', 'Conso'), ('restauration collective', 'Conso'),
+    ('emballage', 'Conso'), ('electromenager', 'Conso'),
+    ('bpo', 'Services'), ('services techniques', 'Services'), ('services collectifs', 'Services'),
+    ('services location-entretien', 'Services'), ('tests & analyses', 'Services'),
+    ('etudes de marche', 'Services'), ('construction & concessions', 'Services'),
+    ('automobile', 'Automobile'), ('equipementier auto', 'Automobile'),
+    ('plasturgie auto', 'Automobile'),
+    ('hotellerie', 'Hotellerie'),
+    ('industrie', 'Industrie'), ('engins manutention', 'Industrie'), ('fours industriels', 'Industrie'),
+    ('isolation phonique', 'Industrie'), ('menuiserie', 'Industrie'), ('materiaux', 'Industrie'),
+    ('plasturgie', 'Industrie'), ('pneumatiques', 'Industrie'), ('tubes acier', 'Industrie'),
+    ('acier', 'Industrie'), ('tuyaux flexibles', 'Industrie'), ('films protection', 'Industrie'),
+    ('cables', 'Industrie'), ('piscines acier', 'Industrie'), ('maintenance ascenseurs', 'Industrie'),
+    ('materiel brasserie', 'Industrie'), ('chimie', 'Industrie'), ('conglomerat', 'Industrie'),
+]
+FAIR_PE = {
+    'Luxe': 28, 'Semiconducteurs': 32, 'Logiciel': 26, 'Biotech': 24, 'Defense': 20,
+    'Energie': 14, 'Financier': 12, 'Immobilier': 16, 'Environnement': 17, 'Transport': 15,
+    'Telecoms': 14, 'Distribution': 16, 'Conso': 18, 'Services': 16, 'Automobile': 12,
+    'Hotellerie': 18, 'Industrie': 18, 'default': 18,
+}
+DECOTE = {
+    'Luxe': 0.22, 'Semiconducteurs': 0.28, 'Logiciel': 0.24, 'Biotech': 0.30, 'Defense': 0.16,
+    'Energie': 0.20, 'Financier': 0.20, 'Immobilier': 0.20, 'Environnement': 0.17, 'Transport': 0.18,
+    'Telecoms': 0.16, 'Distribution': 0.17, 'Conso': 0.16, 'Services': 0.16, 'Automobile': 0.20,
+    'Hotellerie': 0.18, 'Industrie': 0.17, 'default': 0.18,
+}
+
+def classify_sector(sector):
+    s = strip_accents(sector or '').lower().strip()
+    if s == 'it':
+        return 'Logiciel'
+    for kw, cat in SECTOR_RULES:
+        if kw in s:
+            return cat
+    return 'default'
+
+def load_sectors_from_data_js():
+    """Lit le secteur de chaque ticker directement depuis data.js (source
+    de verite : la taxonomie maison, pas celle -- differente -- de Yahoo)."""
+    sectors = {}
+    try:
+        with open('data.js', 'r', encoding='utf-8') as f:
+            content = f.read()
+        for m in re.finditer(r"ticker:'([A-Z0-9]+)'.*?sector:'([^']*)'", content):
+            sectors[m.group(1)] = m.group(2)
+    except Exception as e:
+        print(f"  WARN lecture secteurs: {e}")
+    return sectors
+
+def compute_dcf_and_zones(ticker, sector, price, info):
+    """Recalcule le DCF (3 methodes consolidees) et les zones d'achat.
+    Repris de zones_dynamiques.py (jamais branche en prod -- audit du
+    26/08/2026), avec la classification sectorielle complete ci-dessus."""
+    try:
+        eps_ttm = info.get('trailingEps') or 0
+        eps_fwd = info.get('forwardEps') or (eps_ttm * 1.08 if eps_ttm else 0)
+        eps_growth = info.get('earningsGrowth') or info.get('revenueGrowth') or 0.05
+        dividend = info.get('dividendYield') or 0
+        roe = info.get('returnOnEquity') or 0
+        book_value = info.get('bookValue') or 0
+        pe_ttm = info.get('trailingPE') or (price / eps_ttm if eps_ttm else 0)
+
+        cat = classify_sector(sector)
+        pe_normal = FAIR_PE.get(cat, FAIR_PE['default'])
+        decote = DECOTE.get(cat, DECOTE['default'])
+
+        eps_3y = eps_fwd * ((1 + eps_growth) ** 3) if eps_fwd and eps_fwd > 0 else 0
+        dcf_pe = pe_normal * eps_3y if eps_3y > 0 else 0
+
+        dcf_gordon = 0
+        if dividend and dividend > 0.01 and price > 0:
+            div_amount = price * dividend
+            ke = 0.08
+            g = min(eps_growth, 0.07)
+            if ke > g:
+                dcf_gordon = div_amount * (1 + g) / (ke - g)
+
+        dcf_pb = 0
+        if roe and roe > 0.15 and book_value and book_value > 0:
+            ke = 0.09
+            dcf_pb = book_value * (roe / ke)
+
+        dcfs = [d for d in [dcf_pe, dcf_gordon, dcf_pb] if d > price * 0.3]
+        if not dcfs:
+            if pe_ttm and pe_ttm > 0:
+                dcfs = [price * (pe_normal / pe_ttm)]
+            else:
+                return None
+
+        dcfm = round(sum(dcfs) / len(dcfs), 2)
+        dcfb = round(dcfm * 0.85, 2)
+        dcfu = round(dcfm * 1.20, 2)
+
+        el = round(dcfm * (1 - decote), 2)
+        eh = round(dcfm * (1 - decote * 0.4), 2)
+        stop = round(el * 0.88, 2)
+        o1 = round(dcfm * 1.05, 2)
+        o2 = round(dcfm * 1.20, 2)
+
+        if not (el < eh and o1 > el):
+            return None
+
+        return {'dcfb': dcfb, 'dcfm': dcfm, 'dcfu': dcfu,
+                'el': el, 'eh': eh, 'stop': stop, 'o1': o1, 'o2': o2,
+                'sector_cat': cat}
+    except Exception as e:
+        print(f"  DCF SKIP {ticker}: {e}")
+        return None
 
 def safe(v, d=0, dec=2):
     try:
@@ -36,7 +217,7 @@ def safe(v, d=0, dec=2):
 
 def pct(v, d=0): return safe(v * 100 if v else 0, d, 1)
 
-def fetch_one(ticker, yf_sym):
+def fetch_one(ticker, yf_sym, sector):
     result = {'ticker': ticker, 'updated': datetime.now(PARIS).isoformat()}
     try:
         t = yf.Ticker(yf_sym)
@@ -64,6 +245,16 @@ def fetch_one(ticker, yf_sym):
         result['nb_analysts'] = int(safe(info.get('numberOfAnalystOpinions', 0), 0, 0))
         result['target_price'] = safe(info.get('targetMeanPrice'))
         result['recommendation'] = info.get('recommendationKey', '')
+        # DCF + zones d'achat (recalcule desormais a chaque run -- avant
+        # ces valeurs etaient figees depuis la creation de la fiche)
+        if result['price'] > 0:
+            dcf = compute_dcf_and_zones(ticker, sector, result['price'], info)
+            if dcf:
+                result.update({k: v for k, v in dcf.items() if k != 'sector_cat'})
+                print(f"  OK {ticker} [{dcf['sector_cat']}]: PE={result['pe']} ROE={result['roe']}% "
+                      f"DCF={dcf['dcfm']}€ Zone={dcf['el']}-{dcf['eh']}€")
+            else:
+                print(f"  OK {ticker}: PE={result['pe']} ROE={result['roe']}% (DCF non calculable)")
         # Prochaine publication resultats
         try:
             cal = t.calendar
@@ -73,7 +264,6 @@ def fetch_one(ticker, yf_sym):
                     ed = row.get('Earnings Date') if hasattr(row, 'get') else None
                     if ed: result['next_earnings'] = str(ed)
         except: pass
-        print(f"  OK {ticker}: PE={result['pe']} ROE={result['roe']}% Div={result['yield']}% Earnings={result.get('next_earnings','?')}")
     except Exception as e:
         print(f"  SKIP {ticker}: {e}")
         result['error'] = str(e)
@@ -85,7 +275,9 @@ def patch_data_js(all_results):
     updated = 0
     FIELDS = {'price':'price','chg':'chg','pe':'pe','pb':'pb','ev_ebitda':'ev_ebitda',
                'roe':'roe','margin':'margin','gm':'gm','debt':'debt','ic':'ic',
-               'revg':'revg','epsg':'epsg','yield':'yield','beta':'beta','b52h':'b52h','b52l':'b52l'}
+               'revg':'revg','epsg':'epsg','yield':'yield','beta':'beta','b52h':'b52h','b52l':'b52l',
+               'dcfb':'dcfb','dcfm':'dcfm','dcfu':'dcfu',
+               'el':'el','eh':'eh','stop':'stop','o1':'o1','o2':'o2'}
     for ticker, data in all_results.items():
         if 'error' in data and 'price' not in data: continue
         tp = content.find(f"ticker:'{ticker}'")
@@ -129,12 +321,14 @@ def build_earnings_calendar(all_results):
 def main():
     print(f"VAL.PEA Fundamentals -- {datetime.now(PARIS).strftime('%Y-%m-%d %H:%M')} Paris")
     print('='*50)
+    sectors = load_sectors_from_data_js()
+    print(f"Secteurs charges pour {len(sectors)} tickers")
     all_results = {}
     items = list(YF_MAP.items())
     import time
     for i in range(0, len(items), 5):
         for ticker, sym in items[i:i+5]:
-            all_results[ticker] = fetch_one(ticker, sym)
+            all_results[ticker] = fetch_one(ticker, sym, sectors.get(ticker, ''))
         time.sleep(2)
     updated = patch_data_js(all_results)
     calendar = build_earnings_calendar(all_results)
@@ -146,3 +340,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
