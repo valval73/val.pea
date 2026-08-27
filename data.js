@@ -8,7 +8,7 @@ const S=[
 // CAC 40
 // ══════════════════════════════════════════
 {ticker:'MC',name:'LVMH',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:447.4,chg:-141.0,mkt:'278Md€',b52h:654.7,b52l:440.0,beta:0.84,
+ price:447.4,chg:-1.45,mkt:'278Md€',b52h:654.7,b52l:440.0,beta:0.84,
  pe:20.41,pb:3.24,ev_ebitda:12.48,ps:3.8,pfcf:18,ev_ebit:16,
  roe:16.6,roic:1.63,roa:12,debt:0.53,de:1.2,ic:8.5,cr:1.4,qr:1.1,
  yield:286.0,epsg:0.8,revg:-2.9,margin:13.7,gm:66.4,om:26,fcf:7.2,
@@ -27,7 +27,7 @@ const S=[
  contra:"La Chine représente 27% des ventes dans un contexte de nationalisme croissant. La correction depuis 900€ n'est peut-être pas terminée."},
 
 {ticker:'AI',name:'Air Liquide',sector:'Gaz industriels',cap:'large',srd:true,idx:'CAC40',
- price:166.78,chg:-115.0,mkt:'74Md€',b52h:182.26,b52l:140.78,beta:0.65,
+ price:166.78,chg:-1.17,mkt:'74Md€',b52h:182.26,b52l:140.78,beta:0.65,
  pe:30.05,pb:4.0,ev_ebitda:16.1,ps:3.1,pfcf:22,ev_ebit:19,
  roe:14.0,roic:0.88,roa:8,debt:0.63,de:0.8,ic:8.2,cr:1.2,qr:0.9,
  yield:199.0,epsg:0.7,revg:0.8,margin:13.1,gm:64.6,om:18,fcf:5.8,
@@ -46,7 +46,7 @@ const S=[
  contra:"Valorisation premium. CAPEX très lourd (12.4% CA) pour l'hydrogène dont le retour reste incertain."},
 
 {ticker:'OR',name:"L'Oréal",sector:'Cosmétiques',cap:'large',srd:true,idx:'CAC40',
- price:384.85,chg:-60.7,mkt:'183Md€',b52h:408.35,b52l:338.85,beta:0.89,
+ price:384.85,chg:-0.72,mkt:'183Md€',b52h:408.35,b52l:338.85,beta:0.89,
  pe:32.7,pb:6.05,ev_ebitda:21.15,ps:4.8,pfcf:28,ev_ebit:24,
  roe:19.4,roic:0.97,roa:14,debt:0.49,de:0.4,ic:15.2,cr:1.6,qr:1.4,
  yield:186.0,epsg:5.4,revg:5.8,margin:13.9,gm:74.4,om:22,fcf:7.8,
@@ -65,7 +65,7 @@ const S=[
  contra:"32x PE pour une croissance qui ralentit. La Chine déçoit. Marques DTC gagnent des parts."},
 
 {ticker:'RMS',name:'Hermès',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:1563.0,chg:100.2,mkt:'232Md€',b52h:2300.0,b52l:1465.5,beta:1.0,
+ price:1563.0,chg:0.58,mkt:'232Md€',b52h:2300.0,b52l:1465.5,beta:1.0,
  pe:36.33,pb:8.61,ev_ebitda:21.55,ps:12.8,pfcf:42,ev_ebit:36,
  roe:25.5,roic:4.54,roa:22,debt:0.12,de:0.2,ic:999,cr:3.8,qr:3.2,
  yield:116.0,epsg:-0.3,revg:1.6,margin:28.0,gm:71.3,om:42,fcf:10.5,
@@ -84,7 +84,7 @@ const S=[
  contra:"50x PE ne permet aucune erreur. Risque succession familiale. Contrefaçon croissante en Asie."},
 
 {ticker:'SAN',name:'Sanofi',sector:'Pharmacie',cap:'large',srd:true,idx:'CAC40',
- price:77.28,chg:-129.0,mkt:'124Md€',b52h:91.15,b52l:71.25,beta:0.28,
+ price:77.28,chg:-1.43,mkt:'124Md€',b52h:91.15,b52l:71.25,beta:0.28,
  pe:23.85,pb:1.34,ev_ebitda:8.22,ps:2.4,pfcf:16,ev_ebit:15,
  roe:5.7,roic:0.99,roa:8,debt:0.34,de:0.5,ic:12.4,cr:1.8,qr:1.5,
  yield:526.0,epsg:-91.2,revg:14.6,margin:8.1,gm:73.5,om:20,fcf:7.2,
@@ -103,7 +103,7 @@ const S=[
  contra:"Dupixent = 40% des revenus : concentration dangereuse. R&D historiquement décevante sur 10 ans."},
 
 {ticker:'TTE',name:'TotalEnergies',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
- price:74.17,chg:-147.4,mkt:'146Md€',b52h:81.34,b52l:49.24,beta:0.06,
+ price:74.17,chg:-1.54,mkt:'146Md€',b52h:81.34,b52l:49.24,beta:0.06,
  pe:10.84,pb:1.48,ev_ebitda:5.07,ps:0.6,pfcf:7,ev_ebit:6,
  roe:14.5,roic:1.06,roa:7,debt:0.48,de:0.4,ic:18.5,cr:1.3,qr:1.0,
  yield:478.0,epsg:106.0,revg:27.8,margin:9.1,gm:37.7,om:12,fcf:9.8,
@@ -122,7 +122,7 @@ const S=[
  contra:"Le pétrole à 60$ détruit la thèse si ça dure. Transition ENR consomme du capital sans retour immédiat."},
 
 {ticker:'SAF',name:'Safran',sector:'Aéronautique',cap:'large',srd:true,idx:'CAC40',
- price:343.2,chg:-205.5,mkt:'112Md€',b52h:366.5,b52l:262.6,beta:0.96,
+ price:343.2,chg:-1.94,mkt:'112Md€',b52h:366.5,b52l:262.6,beta:0.96,
  pe:36.82,pb:9.8,ev_ebitda:23.57,ps:3.8,pfcf:26,ev_ebit:22,
  roe:27.5,roic:0.92,roa:12,debt:0.34,de:0.6,ic:14.2,cr:1.5,qr:1.2,
  yield:96.0,epsg:-65.1,revg:16.0,margin:11.6,gm:46.8,om:19,fcf:7.8,
@@ -141,7 +141,7 @@ const S=[
  contra:"Valorisation exigeante à 32x PE. Dépendance Airbus (50% CA). Baisse USD pénalise les revenus."},
 
 {ticker:'SU',name:'Schneider Electric',sector:'Énergie & Automatisation',cap:'large',srd:true,idx:'CAC40',
- price:297.55,chg:-55.1,mkt:'136Md€',b52h:312.3,b52l:208.9,beta:1.15,
+ price:297.55,chg:-0.58,mkt:'136Md€',b52h:312.3,b52l:208.9,beta:1.15,
  pe:35.01,pb:6.84,ev_ebitda:21.69,ps:3.6,pfcf:22,ev_ebit:20,
  roe:18.6,roic:1.09,roa:11,debt:0.84,de:0.7,ic:11.8,cr:1.4,qr:1.1,
  yield:140.0,epsg:29.3,revg:9.8,margin:11.3,gm:42.1,om:18,fcf:7.5,
@@ -160,7 +160,7 @@ const S=[
  contra:"Valorisation premium. Forte exposition USD. Concurrence ABB et Siemens sur les segments IA."},
 
 {ticker:'AXA',name:'Axa',sector:'Assurance',cap:'large',srd:true,idx:'CAC40',
- price:42.92,chg:-180.7,mkt:'62Md€',b52h:45.66,b52l:36.55,beta:0.59,
+ price:42.92,chg:-1.83,mkt:'62Md€',b52h:45.66,b52l:36.55,beta:0.59,
  pe:11.57,pb:1.94,ev_ebitda:7.54,ps:0.6,pfcf:999,ev_ebit:999,
  roe:14.9,roic:11.53,roa:0.5,debt:1.19,de:6.5,ic:999,cr:999,qr:999,
  yield:531.0,epsg:13.2,revg:4.5,margin:10.4,gm:14.9,om:999,fcf:999,
@@ -179,7 +179,7 @@ const S=[
  contra:"Exposition catastrophes naturelles croissante. Régulation Solvabilité II contraignante. Business model complexe."},
 
 {ticker:'BNP',name:'BNP Paribas',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:100.66,chg:-478.6,mkt:'83Md€',b52h:113.82,b52l:65.12,beta:1.04,
+ price:100.66,chg:-4.61,mkt:'83Md€',b52h:113.82,b52l:65.12,beta:1.04,
  pe:8.71,pb:0.92,ev_ebitda:999,ps:1.2,pfcf:999,ev_ebit:999,
  roe:10.5,roic:999,roa:0.5,debt:999,de:9.8,ic:999,cr:999,qr:999,
  yield:549.0,epsg:37.4,revg:18.8,margin:26.5,gm:999,om:999,fcf:999,
@@ -198,7 +198,7 @@ const S=[
  contra:"Banques européennes souffrent d'une décote structurelle. Régulation Basel IV. CIB pro-cyclique."},
 
 {ticker:'ACA',name:'Crédit Agricole',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:18.25,chg:-397.2,mkt:'38Md€',b52h:20.4,b52l:15.29,beta:0.81,
+ price:18.25,chg:-4.07,mkt:'38Md€',b52h:20.4,b52l:15.29,beta:0.81,
  pe:9.04,pb:0.79,ev_ebitda:999,ps:0.9,pfcf:999,ev_ebit:999,
  roe:8.6,roic:999,roa:0.6,debt:999,de:8.5,ic:999,cr:999,qr:999,
  yield:894.0,epsg:-14.8,revg:-6.3,margin:25.3,gm:999,om:999,fcf:999,
@@ -217,7 +217,7 @@ const S=[
  contra:"Structure mutualiste complexe. Exposition immobilier résidentiel. Marges retail sous pression des néobanques."},
 
 {ticker:'GLE',name:'Société Générale',sector:'Banque',cap:'large',srd:true,idx:'CAC40',
- price:71.03,chg:-498.9,mkt:'24Md€',b52h:84.82,b52l:51.74,beta:0.98,
+ price:71.03,chg:-4.89,mkt:'24Md€',b52h:84.82,b52l:51.74,beta:0.98,
  pe:9.33,pb:0.72,ev_ebitda:999,ps:0.8,pfcf:999,ev_ebit:999,
  roe:9.5,roic:999,roa:0.4,debt:999,de:10.2,ic:999,cr:999,qr:999,
  yield:234.0,epsg:34.9,revg:4.1,margin:24.7,gm:999,om:999,fcf:999,
@@ -236,7 +236,7 @@ const S=[
  contra:"Historique de restructurations non tenues. CIB boîte noire. La décote peut persister longtemps."},
 
 {ticker:'AIR',name:'Airbus',sector:'Aéronautique',cap:'large',srd:true,idx:'CAC40',
- price:203.4,chg:-119.0,mkt:'132Md€',b52h:221.3,b52l:157.42,beta:0.88,
+ price:203.4,chg:-1.67,mkt:'132Md€',b52h:221.3,b52l:157.42,beta:0.88,
  pe:27.08,pb:6.22,ev_ebitda:18.23,ps:1.8,pfcf:24,ev_ebit:20,
  roe:23.2,roic:1.15,roa:8,debt:0.55,de:8.2,ic:5.2,cr:0.8,qr:0.6,
  yield:155.0,epsg:125.8,revg:27.7,margin:7.7,gm:16.3,om:8,fcf:5.8,
@@ -255,7 +255,7 @@ const S=[
  contra:"Supply chain en crise. Objectifs de livraison manqués plusieurs années consécutives. Marge opérationnelle trop faible (8%)."},
 
 {ticker:'KER',name:'Kering',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
- price:250.55,chg:-87.0,mkt:'24Md€',b52h:354.2,b52l:225.1,beta:1.0,
+ price:250.55,chg:-0.42,mkt:'24Md€',b52h:354.2,b52l:225.1,beta:1.0,
  pe:25.11,pb:2.12,ev_ebitda:16.41,ps:1.2,pfcf:12,ev_ebit:11,
  roe:-1.6,roic:2.05,roa:7,debt:1.17,de:1.0,ic:5.2,cr:1.1,qr:0.9,
  yield:119.0,epsg:-60.1,revg:-2.9,margin:-1.5,gm:72.1,om:18,fcf:7.5,
@@ -274,7 +274,7 @@ const S=[
  contra:"Gucci = 60% des profits et est en crise depuis 2023. Sabato De Sarno n'a pas encore convaincu."},
 
 {ticker:'PUB',name:'Publicis',sector:'Communication',cap:'large',srd:true,idx:'CAC40',
- price:101.3,chg:-136.3,mkt:'16Md€',b52h:104.85,b52l:68.14,beta:0.59,
+ price:101.3,chg:-1.55,mkt:'16Md€',b52h:104.85,b52l:68.14,beta:0.59,
  pe:15.78,pb:2.4,ev_ebitda:9.89,ps:1.5,pfcf:12,ev_ebit:11,
  roe:16.2,roic:0.94,roa:7,debt:0.52,de:0.9,ic:6.2,cr:1.0,qr:0.9,
  yield:365.0,epsg:-3.1,revg:3.0,margin:9.2,gm:46.7,om:18,fcf:9.2,
@@ -293,7 +293,7 @@ const S=[
  contra:"L'IA générative menace les métiers créatifs. WPP contre-attaque agressivement."},
 
 {ticker:'ORA',name:'Orange',sector:'Télécoms',cap:'large',srd:true,idx:'CAC40',
- price:15.1,chg:-418.8,mkt:'30Md€',b52h:18.8,b52l:13.07,beta:0.25,
+ price:15.1,chg:-4.37,mkt:'30Md€',b52h:18.8,b52l:13.07,beta:0.25,
  pe:10.2,pb:1.26,ev_ebitda:7.48,ps:0.5,pfcf:8,ev_ebit:7,
  roe:14.2,roic:0.87,roa:3,debt:1.61,de:1.4,ic:4.2,cr:0.8,qr:0.7,
  yield:476.0,epsg:3,revg:5.5,margin:10.0,gm:41.1,om:12,fcf:6.5,
@@ -312,7 +312,7 @@ const S=[
  contra:"CAPEX permanent détruit la valeur. Marché français mature et hyper-concurrentiel."},
 
 {ticker:'VIE',name:'Veolia',sector:'Eau & Déchets',cap:'large',srd:true,idx:'CAC40',
- price:32.58,chg:-392.2,mkt:'20Md€',b52h:37.66,b52l:27.43,beta:1.0,
+ price:32.58,chg:-4.04,mkt:'20Md€',b52h:37.66,b52l:27.43,beta:1.0,
  pe:18.94,pb:2.43,ev_ebitda:8.96,ps:0.5,pfcf:14,ev_ebit:10,
  roe:13.4,roic:0.82,roa:4,debt:2.5,de:1.2,ic:4.8,cr:1.0,qr:0.8,
  yield:442.0,epsg:5.6,revg:0.7,margin:2.8,gm:17.9,om:8,fcf:5.2,
@@ -331,7 +331,7 @@ const S=[
  contra:"Dette élevée post-fusion. Régulation tarifaire peut bloquer la transmission des coûts."},
 
 {ticker:'RNO',name:'Renault',sector:'Automobile',cap:'mid',srd:true,idx:'CAC40',
- price:28.4,chg:433.5,mkt:'13Md€',b52h:37.97,b52l:24.66,beta:0.82,
+ price:28.4,chg:4.53,mkt:'13Md€',b52h:37.97,b52l:24.66,beta:0.82,
  pe:8.69,pb:0.4,ev_ebitda:9.74,ps:0.2,pfcf:6,ev_ebit:4,
  roe:5.0,roic:1.03,roa:3,debt:3.28,de:1.8,ic:3.2,cr:1.1,qr:0.9,
  yield:808.0,epsg:8,revg:9.4,margin:1.6,gm:17.9,om:6,fcf:5.5,
@@ -350,7 +350,7 @@ const S=[
  contra:"Transition VE incertaine. Alliance Nissan fragile. Concurrence chinoise déferle."},
 
 {ticker:'SGO',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
- price:79.46,chg:-345.1,mkt:'36Md€',b52h:95.86,b52l:65.88,beta:1.22,
+ price:79.46,chg:-3.57,mkt:'36Md€',b52h:95.86,b52l:65.88,beta:1.22,
  pe:14.74,pb:1.53,ev_ebitda:7.97,ps:0.6,pfcf:10,ev_ebit:9,
  roe:11.0,roic:1.27,roa:6,debt:0.66,de:0.8,ic:6.2,cr:1.2,qr:1.0,
  yield:279.0,epsg:-12.0,revg:-1.1,margin:5.8,gm:27.2,om:10,fcf:7.2,
@@ -369,7 +369,7 @@ const S=[
  contra:"Exposition forte à la construction neuve en baisse. Taux élevés pèsent sur l'immobilier."},
 
 {ticker:'CAP',name:'Capgemini',sector:'Services informatiques',cap:'large',srd:true,idx:'CAC40',
- price:109.5,chg:281.7,mkt:'24Md€',b52h:153.05,b52l:85.62,beta:0.67,
+ price:109.5,chg:3.35,mkt:'24Md€',b52h:153.05,b52l:85.62,beta:0.67,
  pe:13.91,pb:1.59,ev_ebitda:8.39,ps:1.5,pfcf:14,ev_ebit:12,
  roe:12.2,roic:1.28,roa:8,debt:0.88,de:0.6,ic:8.2,cr:1.4,qr:1.2,
  yield:319.0,epsg:-30.7,revg:8.8,margin:5.9,gm:26.8,om:13,fcf:7.8,
@@ -388,7 +388,7 @@ const S=[
  contra:"Croissance ralentit en Europe. Concurrence Accenture féroce."},
 
 {ticker:'DG',name:'Vinci',sector:'Construction & Concessions',cap:'large',srd:true,idx:'CAC40',
- price:114.85,chg:-389.1,mkt:'88Md€',b52h:143.15,b52l:112.4,beta:0.74,
+ price:114.85,chg:-3.97,mkt:'88Md€',b52h:143.15,b52l:112.4,beta:0.74,
  pe:12.75,pb:2.08,ev_ebitda:7.49,ps:0.8,pfcf:12,ev_ebit:11,
  roe:16.3,roic:0.82,roa:8,debt:1.21,de:0.8,ic:7.2,cr:1.2,qr:1.0,
  yield:423.0,epsg:10.8,revg:2.3,margin:6.7,gm:17.0,om:9,fcf:8.2,
@@ -407,7 +407,7 @@ const S=[
  contra:"Exposition bâtiment cyclique. Régulation autoroutière peut être remise en cause."},
 
 {ticker:'VIV',name:'Vivendi',sector:'Médias',cap:'large',srd:true,idx:'CAC40',
- price:3.2,chg:-0.5,mkt:'3.8Md€',b52h:4.8,b52l:2.8,beta:0.8,
+ price:1.63,chg:-1.27,mkt:'3.8Md€',b52h:4.8,b52l:2.8,beta:0.8,
  pe:12,pb:0.6,ev_ebitda:7,ps:0.4,pfcf:10,ev_ebit:8,
  roe:5,roic:4,roa:2,debt:2.2,de:0.8,ic:4.2,cr:1.0,qr:0.8,
  yield:4.5,epsg:5,revg:3,margin:8,gm:28,om:9,fcf:6.8,
@@ -426,7 +426,7 @@ const S=[
  contra:"Bolloré contrôle — risque gouvernance fort. Médias en déclin structurel."},
 
 {ticker:'RI',name:'Pernod Ricard',sector:'Spiritueux',cap:'large',srd:true,idx:'CAC40',
- price:64.5,chg:-458.6,mkt:'24Md€',b52h:107.45,b52l:58.6,beta:0.48,
+ price:64.5,chg:-4.61,mkt:'24Md€',b52h:107.45,b52l:58.6,beta:0.48,
  pe:11.52,pb:1.05,ev_ebitda:10.16,ps:2.5,pfcf:15,ev_ebit:14,
  roe:8.6,roic:2.34,roa:6,debt:0.82,de:1.0,ic:5.8,cr:1.3,qr:1.0,
  yield:695.0,epsg:-18.0,revg:-14.9,margin:14.1,gm:58.4,om:25,fcf:7.8,
@@ -445,7 +445,7 @@ const S=[
  contra:"La Chine déçoit depuis 18 mois. Objectifs manqués régulièrement. Dette élevée."},
 
 {ticker:'LR',name:'Legrand',sector:'Électricité bâtiment',cap:'large',srd:true,idx:'CAC40',
- price:136.4,chg:-69.2,mkt:'26Md€',b52h:166.95,b52l:121.95,beta:0.99,
+ price:136.4,chg:-0.8,mkt:'26Md€',b52h:166.95,b52l:121.95,beta:0.99,
  pe:27.44,pb:4.77,ev_ebitda:18.84,ps:3.8,pfcf:20,ev_ebit:18,
  roe:18.2,roic:1.58,roa:10,debt:1.03,de:0.7,ic:8.5,cr:1.5,qr:1.2,
  yield:173.0,epsg:8.5,revg:14.7,margin:13.0,gm:50.2,om:21,fcf:8.5,
@@ -464,7 +464,7 @@ const S=[
  contra:"Valorisation premium. Exposition bâtiment résidentiel qui souffre des taux."},
 
 {ticker:'WLN',name:'Wendel',sector:'Holdings',cap:'large',srd:true,idx:'CAC40',
- price:13.78,chg:286.7,mkt:'4.8Md€',b52h:34.62,b52l:9.05,beta:1.82,
+ price:13.78,chg:2.55,mkt:'4.8Md€',b52h:34.62,b52l:9.05,beta:1.82,
  pe:4.19,pb:0.21,ev_ebitda:9.91,ps:0.8,pfcf:9,ev_ebit:9,
  roe:-21.2,roic:1.1,roa:4,debt:0.67,de:0.6,ic:6.2,cr:1.5,qr:1.2,
  yield:3.2,epsg:6,revg:-3.7,margin:-25.2,gm:66.1,om:16,fcf:7.2,
@@ -483,7 +483,7 @@ const S=[
  contra:"Holdings décotés structurellement. Opacité de la valorisation."},
 
 {ticker:'DSY',name:'Dassault Systèmes',sector:'Logiciels',cap:'large',srd:true,idx:'CAC40',
- price:23.07,chg:235.1,mkt:'42Md€',b52h:30.36,b52l:15.82,beta:0.54,
+ price:23.07,chg:2.31,mkt:'42Md€',b52h:30.36,b52l:15.82,beta:0.54,
  pe:23.78,pb:3.28,ev_ebitda:16.37,ps:4.8,pfcf:24,ev_ebit:20,
  roe:15.1,roic:1.99,roa:10,debt:0.36,de:0.5,ic:12.5,cr:2.1,qr:1.8,
  yield:120.0,epsg:31.8,revg:2.2,margin:21.3,gm:84.2,om:24,fcf:8.2,
@@ -521,7 +521,7 @@ const S=[
  contra:"Ralentissement VE plus long que prévu. Inventaires encore élevés. Tesla a réduit ses commandes SiC."},
 
 {ticker:'EL',name:'EssilorLuxottica',sector:'Optique',cap:'large',srd:true,idx:'CAC40',
- price:157.5,chg:-106.8,mkt:'85Md€',b52h:323.8,b52l:156.15,beta:0.55,
+ price:157.5,chg:-1.59,mkt:'85Md€',b52h:323.8,b52l:156.15,beta:0.55,
  pe:29.44,pb:1.85,ev_ebitda:14.91,ps:3.2,pfcf:22,ev_ebit:20,
  roe:6.7,roic:0.89,roa:6,debt:0.38,de:0.6,ic:8.2,cr:1.5,qr:1.2,
  yield:251.0,epsg:12.3,revg:5.7,margin:8.5,gm:60.0,om:18,fcf:7.5,
@@ -540,7 +540,7 @@ const S=[
  contra:"28x PE pour 7-9% de croissance organique. Intégration encore en cours."},
 
 {ticker:'ML',name:'Michelin',sector:'Pneumatiques',cap:'large',srd:true,idx:'CAC40',
- price:30,chg:-0.3,mkt:'17Md€',b52h:36,b52l:25,beta:0.9,
+ price:34.34,chg:-2.53,mkt:'17Md€',b52h:36,b52l:25,beta:0.9,
  pe:9,pb:1.5,ev_ebitda:6,ps:0.5,pfcf:7,ev_ebit:7,
  roe:17,roic:13,roa:8,debt:1.2,de:0.6,ic:7.5,cr:1.3,qr:1.0,
  yield:4.2,epsg:6,revg:4,margin:8,gm:32,om:11,fcf:7.8,
@@ -559,7 +559,7 @@ const S=[
  contra:"Les marques locales Chine montent en gamme. E-commerce intense. Cyclicité auto forte."},
 
 {ticker:'ENGI',name:'Engie',sector:'Énergie',cap:'large',srd:true,idx:'CAC40',
- price:24.1,chg:-344.6,mkt:'44Md€',b52h:29.89,b52l:17.2,beta:0.56,
+ price:24.1,chg:-3.37,mkt:'44Md€',b52h:29.89,b52l:17.2,beta:0.56,
  pe:14.79,pb:1.8,ev_ebitda:9.43,ps:0.3,pfcf:8,ev_ebit:8,
  roe:12.2,roic:1.0,roa:3,debt:1.44,de:1.5,ic:3.8,cr:1.0,qr:0.8,
  yield:541.0,epsg:14.3,revg:-3.6,margin:6.0,gm:32.1,om:6,fcf:6.8,
@@ -578,7 +578,7 @@ const S=[
  contra:"CAPEX permanent massif. Politique énergétique volatile. Dette élevée."},
 
 {ticker:'MT',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
- price:63.9,chg:-102.2,mkt:'18Md€',b52h:65.24,b52l:27.42,beta:1.75,
+ price:63.9,chg:-1.21,mkt:'18Md€',b52h:65.24,b52l:27.42,beta:1.75,
  pe:31.32,pb:1.03,ev_ebitda:11.06,ps:0.3,pfcf:6,ev_ebit:5,
  roe:3.3,roic:1.43,roa:4,debt:0.25,de:0.4,ic:8.5,cr:1.5,qr:1.2,
  yield:80.0,epsg:-61.7,revg:5.2,margin:2.9,gm:9.0,om:7,fcf:7.2,
@@ -616,7 +616,7 @@ const S=[
  contra:"Dette massive. Taux élevés pèsent. E-commerce continue d'éroder la fréquentation."},
 
 {ticker:'SW',name:'Sodexo',sector:'Services collectifs',cap:'large',srd:true,idx:'CAC40',
- price:58.85,chg:243.7,mkt:'12Md€',b52h:59.0,b52l:35.5,beta:0.2,
+ price:58.85,chg:2.26,mkt:'12Md€',b52h:59.0,b52l:35.5,beta:0.2,
  pe:19.3,pb:2.38,ev_ebitda:11.1,ps:0.5,pfcf:12,ev_ebit:10,
  roe:11.9,roic:1.02,roa:8,debt:1.5,de:1.0,ic:6.5,cr:0.9,qr:0.8,
  yield:470.0,epsg:-56.5,revg:-3.7,margin:1.9,gm:11.0,om:5,fcf:6.8,
@@ -635,7 +635,7 @@ const S=[
  contra:"Marges très fines. Inflation pèse sur les coûts. Compass Group est redoutable."},
 
 {ticker:'TEP',name:'Teleperformance',sector:'BPO',cap:'large',srd:true,idx:'CAC40',
- price:71.5,chg:147.6,mkt:'5.2Md€',b52h:78.14,b52l:43.65,beta:0.67,
+ price:71.5,chg:1.85,mkt:'5.2Md€',b52h:78.14,b52l:43.65,beta:0.67,
  pe:9.04,pb:0.99,ev_ebitda:5.13,ps:0.5,pfcf:7,ev_ebit:7,
  roe:11.4,roic:1.4,roa:8,debt:1.2,de:1.0,ic:6.2,cr:1.2,qr:1.0,
  yield:639.0,epsg:-11.6,revg:-4.6,margin:4.7,gm:30.7,om:13,fcf:9.2,
@@ -654,7 +654,7 @@ const S=[
  contra:"L'IA générative automatisera 40-60% des tâches de centres d'appels. La disruption est réelle et inévitable."},
 
 {ticker:'EN',name:'Bouygues',sector:'Conglomérat',cap:'large',srd:true,idx:'CAC40',
- price:32,chg:0.3,mkt:'10Md€',b52h:38,b52l:28,beta:0.8,
+ price:43.99,chg:-3.66,mkt:'10Md€',b52h:38,b52l:28,beta:0.8,
  pe:10,pb:1.1,ev_ebitda:5,ps:0.2,pfcf:8,ev_ebit:6,
  roe:11,roic:7,roa:4,debt:1.5,de:0.7,ic:6.2,cr:1.1,qr:0.9,
  yield:5.2,epsg:5,revg:3,margin:3,gm:18,om:4,fcf:6.5,
@@ -676,7 +676,7 @@ const S=[
 // SBF 120 & SRD
 // ══════════════════════════════════════════
 {ticker:'GTT',name:'Gaztransport & Technigaz',sector:'LNG Technology',cap:'mid',srd:true,idx:'SBF120',
- price:208.0,chg:48.3,mkt:'7.2Md€',b52h:215.0,b52l:147.3,beta:0.45,
+ price:208.0,chg:0.29,mkt:'7.2Md€',b52h:215.0,b52l:147.3,beta:0.45,
  pe:17.45,pb:12.56,ev_ebitda:13.64,ps:9.2,pfcf:18,ev_ebit:16,
  roe:79.6,roic:1.95,roa:52,debt:0.17,de:0.1,ic:999,cr:3.2,qr:2.8,
  yield:415.0,epsg:16.6,revg:-0.4,margin:55.4,gm:96.8,om:58,fcf:18.5,
@@ -695,7 +695,7 @@ const S=[
  contra:"Pur jeu GNL dans un monde qui se décarbonise. Si les commandes s'effondrent, la thèse s'effondre."},
 
 {ticker:'COFA',name:'Coface',sector:'Assurance crédit',cap:'mid',srd:true,idx:'SBF120',
- price:15.86,chg:-124.5,mkt:'1.9Md€',b52h:16.66,b52l:14.02,beta:0.48,
+ price:15.86,chg:-1.31,mkt:'1.9Md€',b52h:16.66,b52l:14.02,beta:0.48,
  pe:11.49,pb:1.09,ev_ebitda:14.68,ps:0.8,pfcf:7,ev_ebit:6,
  roe:9.7,roic:1.43,roa:4,debt:1.93,de:0.6,ic:8.5,cr:1.2,qr:1.0,
  yield:778.0,epsg:-12.2,revg:3.5,margin:11.2,gm:59.8,om:14,fcf:9.8,
@@ -714,7 +714,7 @@ const S=[
  contra:"Assurance crédit cyclique sur les faillites. Un retournement économique fait exploser les sinistres."},
 
 {ticker:'MERY',name:'Mersen',sector:'Matériaux spéciaux',cap:'small',srd:true,idx:'SBF120',
- price:11.1,chg:-297.2,mkt:'0.62Md€',b52h:12.98,b52l:10.42,beta:0.85,
+ price:11.1,chg:-2.97,mkt:'0.62Md€',b52h:12.98,b52l:10.42,beta:0.85,
  pe:50.45,pb:0.67,ev_ebitda:20.35,ps:0.5,pfcf:8,ev_ebit:7,
  roe:2.2,roic:1.05,roa:5,debt:0.85,de:0.8,ic:5.2,cr:1.5,qr:1.2,
  yield:874.0,epsg:-28.0,revg:3.9,margin:11.4,gm:94.7,om:10,fcf:6.2,
@@ -733,7 +733,7 @@ const S=[
  contra:"VE ralentit. Taille limitée. Dette laisse peu de marge."},
 
 {ticker:'JXS',name:'Jacquet Metals',sector:'Aciers spéciaux',cap:'small',srd:true,idx:'SBF120',
- price:20.5,chg:-24.3,mkt:'0.43Md€',b52h:25.4,b52l:17.06,beta:0.96,
+ price:20.5,chg:0.0,mkt:'0.43Md€',b52h:25.4,b52l:17.06,beta:0.96,
  pe:41.0,pb:0.67,ev_ebitda:9.3,ps:0.2,pfcf:7,ev_ebit:5,
  roe:2.9,roic:3.86,roa:4,debt:0.62,de:0.5,ic:6.8,cr:1.8,qr:1.4,
  yield:97.0,epsg:310.0,revg:-1.7,margin:0.9,gm:24.6,om:5,fcf:6.5,
@@ -752,7 +752,7 @@ const S=[
  contra:"VE ralentit détruit les marges. Exposition cyclique maximale à l'industrie européenne."},
 
 {ticker:'SPIE',name:'Spie',sector:'Services techniques',cap:'mid',srd:true,idx:'SBF120',
- price:43.3,chg:-321.9,mkt:'5.2Md€',b52h:53.45,b52l:41.44,beta:0.76,
+ price:43.3,chg:-3.52,mkt:'5.2Md€',b52h:53.45,b52l:41.44,beta:0.76,
  pe:24.33,pb:3.51,ev_ebitda:12.69,ps:0.8,pfcf:14,ev_ebit:12,
  roe:15.1,roic:0.77,roa:8,debt:1.71,de:1.0,ic:5.8,cr:1.2,qr:1.0,
  yield:241.0,epsg:12,revg:3.5,margin:2.8,gm:9.2,om:6,fcf:7.2,
@@ -771,7 +771,7 @@ const S=[
  contra:"Valorisation élevée à 18x. Marges fines dans les services."},
 
 {ticker:'NEXANS',name:'Nexans',sector:'Câbles',cap:'mid',srd:true,idx:'SBF120',
- price:142.7,chg:120.6,mkt:'2.8Md€',b52h:169.0,b52l:109.7,beta:0.94,
+ price:142.7,chg:1.13,mkt:'2.8Md€',b52h:169.0,b52l:109.7,beta:0.94,
  pe:33.26,pb:2.93,ev_ebitda:9.7,ps:0.4,pfcf:9,ev_ebit:9,
  roe:9.8,roic:1.04,roa:8,debt:1.16,de:0.8,ic:6.5,cr:1.3,qr:1.1,
  yield:206.0,epsg:-72.3,revg:19.1,margin:1.0,gm:10.2,om:6,fcf:6.8,
@@ -790,7 +790,7 @@ const S=[
  contra:"Exposition forte au prix du cuivre. Prysmian reste plus large et plus rentable."},
 
 {ticker:'DASSAV',name:'Dassault Aviation',sector:'Aviation militaire',cap:'large',srd:true,idx:'SBF120',
- price:288.4,chg:-116.5,mkt:'24Md€',b52h:361.8,b52l:260.8,beta:0.42,
+ price:288.4,chg:-1.3,mkt:'24Md€',b52h:361.8,b52l:260.8,beta:0.42,
  pe:22.36,pb:3.39,ev_ebitda:13.33,ps:1.8,pfcf:10,ev_ebit:8,
  roe:15.7,roic:1.05,roa:12,debt:0.03,de:0.1,ic:999,cr:4.8,qr:4.2,
  yield:164.0,epsg:9.0,revg:45.1,margin:11.3,gm:33.9,om:16,fcf:9.2,
@@ -828,7 +828,7 @@ const S=[
  contra:"Crise trésorerie 2023-2024 a détruit la confiance. Intégration Bombardier = désastre. Exécution risquée."},
 
 {ticker:'ELIS',name:'Elis',sector:'Services location-entretien',cap:'mid',srd:true,idx:'SBF120',
- price:23.9,chg:-252.9,mkt:'4.5Md€',b52h:28.34,b52l:22.7,beta:1.19,
+ price:23.9,chg:-2.29,mkt:'4.5Md€',b52h:28.34,b52l:22.7,beta:1.19,
  pe:15.62,pb:1.49,ev_ebitda:6.33,ps:1.2,pfcf:10,ev_ebit:10,
  roe:10.7,roic:0.77,roa:6,debt:1.39,de:1.4,ic:4.2,cr:1.0,qr:0.8,
  yield:106.0,epsg:7.5,revg:4.9,margin:7.7,gm:33.6,om:12,fcf:7.5,
@@ -847,7 +847,7 @@ const S=[
  contra:"CAPEX permanent très lourd (8.5% CA). Dette élevée. Croissance lente."},
 
 {ticker:'SEB',name:'SEB',sector:'Électroménager',cap:'mid',srd:true,idx:'SBF120',
- price:58.4,chg:-201.3,mkt:'3.2Md€',b52h:66.45,b52l:40.84,beta:1.24,
+ price:58.4,chg:-1.93,mkt:'3.2Md€',b52h:66.45,b52l:40.84,beta:1.24,
  pe:26.79,pb:1.05,ev_ebitda:8.09,ps:0.5,pfcf:10,ev_ebit:9,
  roe:4.9,roic:1.16,roa:7,debt:1.06,de:0.7,ic:6.8,cr:1.4,qr:1.2,
  yield:470.0,epsg:238.7,revg:-0.1,margin:1.5,gm:8.0,om:10,fcf:7.5,
@@ -866,7 +866,7 @@ const S=[
  contra:"Concurrence locale Chine monte en gamme. E-commerce intense. Faibles barrières sur certains segments."},
 
 {ticker:'ERF',name:'Eurofins Scientific',sector:'Tests & Analyses',cap:'large',srd:true,idx:'SBF120',
- price:73.0,chg:24.7,mkt:'8.2Md€',b52h:74.62,b52l:54.86,beta:0.84,
+ price:73.0,chg:-0.19,mkt:'8.2Md€',b52h:74.62,b52l:54.86,beta:0.84,
  pe:25.35,pb:3.5,ev_ebitda:10.75,ps:1.5,pfcf:16,ev_ebit:14,
  roe:11.3,roic:1.13,roa:7,debt:0.96,de:1.2,ic:4.8,cr:1.2,qr:1.0,
  yield:99.0,epsg:28.4,revg:2.5,margin:7.2,gm:23.1,om:12,fcf:7.2,
@@ -885,7 +885,7 @@ const S=[
  contra:"La croissance COVID masquait la vraie rentabilité. Gouvernance familiale opaque. CAPEX chroniquement dépassé."},
 
 {ticker:'IPSOS',name:'Ipsos',sector:'Études de marché',cap:'mid',srd:true,idx:'SBF120',
- price:52,chg:0.2,mkt:'2.1Md€',b52h:62,b52l:42,beta:0.9,
+ price:39.3,chg:0.61,mkt:'2.1Md€',b52h:62,b52l:42,beta:0.9,
  pe:12,pb:2.0,ev_ebitda:7,ps:0.7,pfcf:9,ev_ebit:8,
  roe:17,roic:13,roa:7,debt:1.2,de:0.6,ic:7.8,cr:1.4,qr:1.2,
  yield:3.5,epsg:8,revg:5,margin:11,gm:38,om:13,fcf:8.2,
@@ -904,7 +904,7 @@ const S=[
  contra:"IA générative menace les études qualitatives traditionnelles."},
 
 {ticker:'ABCA',name:'ABC Arbitrage',sector:'Arbitrage',cap:'small',srd:false,idx:'SBF120',
- price:5.13,chg:0.1,mkt:'0.22Md€',b52h:6.19,b52l:4.87,beta:0.34,
+ price:5.13,chg:-0.0,mkt:'0.22Md€',b52h:6.19,b52l:4.87,beta:0.34,
  pe:12.21,pb:1.8,ev_ebitda:5.39,ps:2.2,pfcf:8,ev_ebit:8,
  roe:15.0,roic:12.72,roa:18,debt:0.02,de:0.1,ic:999,cr:5.2,qr:4.8,
  yield:663.0,epsg:-59.9,revg:-18.2,margin:41.9,gm:46.1,om:36,fcf:8.5,
@@ -923,7 +923,7 @@ const S=[
  contra:"Modèle opaque. Très peu liquide. Dépend de la volatilité pour performer."},
 
 {ticker:'VK',name:'Vallourec',sector:'Tubes acier',cap:'mid',srd:true,idx:'SBF120',
- price:17.83,chg:45.1,mkt:'2.8Md€',b52h:27.67,b52l:14.76,beta:0.43,
+ price:17.83,chg:-0.28,mkt:'2.8Md€',b52h:27.67,b52l:14.76,beta:0.43,
  pe:13.31,pb:1.67,ev_ebitda:4.57,ps:0.4,pfcf:5,ev_ebit:5,
  roe:15.8,roic:2.13,roa:8,debt:0.36,de:0.5,ic:8.5,cr:1.4,qr:1.1,
  yield:935.0,epsg:30.2,revg:2.6,margin:9.6,gm:29.7,om:12,fcf:8.5,
@@ -942,7 +942,7 @@ const S=[
  contra:"Pure cyclique. Pétrole sous 60$ = thèse détruite. Restructuration a dilué les actionnaires."},
 
 {ticker:'FNAC',name:'Fnac Darty',sector:'Distribution',cap:'mid',srd:true,idx:'SBF120',
- price:34.55,chg:-28.9,mkt:'0.88Md€',b52h:35.95,b52l:26.25,beta:1.07,
+ price:34.55,chg:-0.14,mkt:'0.88Md€',b52h:35.95,b52l:26.25,beta:1.07,
  pe:10.67,pb:0.77,ev_ebitda:10.78,ps:0.1,pfcf:6,ev_ebit:5,
  roe:-5.0,roic:0.86,roa:4,debt:1.9,de:0.9,ic:4.5,cr:0.9,qr:0.7,
  yield:289.0,epsg:4,revg:0.8,margin:-1.6,gm:28.2,om:3,fcf:6.2,
@@ -961,7 +961,7 @@ const S=[
  contra:"Amazon grignotent les parts structurellement. Marges sous pression permanente."},
 
 {ticker:'LNA',name:'LNA Santé',sector:'Santé services',cap:'small',srd:false,idx:'SBF120',
- price:34.2,chg:118.3,mkt:'0.32Md€',b52h:36.5,b52l:22.6,beta:0.5,
+ price:34.2,chg:0.59,mkt:'0.32Md€',b52h:36.5,b52l:22.6,beta:0.5,
  pe:14.55,pb:1.06,ev_ebitda:12.24,ps:0.8,pfcf:11,ev_ebit:10,
  roe:7.7,roic:0.91,roa:7,debt:2.66,de:1.0,ic:5.2,cr:1.2,qr:1.0,
  yield:281.0,epsg:35.3,revg:11.8,margin:2.6,gm:27.6,om:7,fcf:6.8,
@@ -999,7 +999,7 @@ const S=[
  contra:"Assurance vie française sous pression taux bas. Business model opaque."},
 
 {ticker:'SOP',name:'Sopra Steria',sector:'Services IT',cap:'mid',srd:true,idx:'CAC40',
- price:180.8,chg:237.8,mkt:'2.8Md€',b52h:202.2,b52l:109.4,beta:0.94,
+ price:180.8,chg:2.15,mkt:'2.8Md€',b52h:202.2,b52l:109.4,beta:0.94,
  pe:11.63,pb:1.67,ev_ebitda:8.2,ps:0.8,pfcf:11,ev_ebit:10,
  roe:14.6,roic:0.88,roa:7,debt:0.65,de:0.6,ic:8.2,cr:1.3,qr:1.1,
  yield:300.0,epsg:5.3,revg:4.1,margin:5.2,gm:14.9,om:8,fcf:6.8,
@@ -1019,7 +1019,7 @@ const S=[
 
 // ═══ CAC40 manquants ═══
 {ticker:'AC',name:'Accor',sector:'Hôtellerie',cap:'large',srd:true,idx:'CAC40',
- price:24,chg:0.6,mkt:'9.8Md€',b52h:28,b52l:19,beta:1.3,
+ price:46.65,chg:-1.87,mkt:'9.8Md€',b52h:28,b52l:19,beta:1.3,
  pe:18,pb:2.5,ev_ebitda:12,ps:1.2,pfcf:14,ev_ebit:13,
  roe:14,roic:10,roa:5,debt:2.8,de:1.2,ic:4.5,cr:0.9,qr:0.7,
  yield:2.8,epsg:12,revg:8,margin:8,gm:32,om:10,fcf:6.5,
@@ -1036,7 +1036,7 @@ const S=[
  contra:"Airbnb continue de prendre des parts sur le loisir. Exposition forte à la macro."},
 
 {ticker:'AF',name:'Air France-KLM',sector:'Transport aérien',cap:'large',srd:true,idx:'CAC40',
- price:9.8,chg:-0.5,mkt:'3.8Md€',b52h:13.2,b52l:8.5,beta:1.8,
+ price:11.87,chg:-3.06,mkt:'3.8Md€',b52h:13.2,b52l:8.5,beta:1.8,
  pe:5,pb:999,ev_ebitda:4,ps:0.1,pfcf:6,ev_ebit:4,
  roe:-5,roic:4,roa:1,debt:8.5,de:8.2,ic:2.8,cr:0.7,qr:0.6,
  yield:0.0,epsg:15,revg:8,margin:3,gm:22,om:5,fcf:4.5,
@@ -1053,7 +1053,7 @@ const S=[
  contra:"Dette insoutenable. Exposition carburant massive. Culture syndicale coûteuse. À éviter pour investisseur prudent."},
 
 {ticker:'BN',name:'Danone',sector:'Agroalimentaire',cap:'large',srd:true,idx:'CAC40',
- price:64.7,chg:-155.2,mkt:'40Md€',b52h:80.14,b52l:60.64,beta:0.19,
+ price:64.7,chg:-1.31,mkt:'40Md€',b52h:80.14,b52l:60.64,beta:0.19,
  pe:21.42,pb:2.36,ev_ebitda:11.4,ps:1.5,pfcf:14,ev_ebit:12,
  roe:12.2,roic:0.97,roa:6,debt:0.99,de:1.1,ic:5.8,cr:1.0,qr:0.8,
  yield:342.0,epsg:12.4,revg:1.4,margin:7.1,gm:50.0,om:12,fcf:7.2,
@@ -1070,7 +1070,7 @@ const S=[
  contra:"Croissance structurellement limitée dans le lait infantile. Concurrence marques distributeurs."},
 
 {ticker:'CA',name:'Carrefour',sector:'Distribution alimentaire',cap:'large',srd:true,idx:'CAC40',
- price:15.6,chg:-219.5,mkt:'11Md€',b52h:17.54,b52l:11.94,beta:0.61,
+ price:15.6,chg:-2.04,mkt:'11Md€',b52h:17.54,b52l:11.94,beta:0.61,
  pe:12.0,pb:1.0,ev_ebitda:7.98,ps:0.1,pfcf:7,ev_ebit:7,
  roe:8.4,roic:0.9,roa:3,debt:1.85,de:1.2,ic:4.8,cr:0.8,qr:0.7,
  yield:608.0,epsg:6,revg:2.0,margin:0.9,gm:17.8,om:3,fcf:6.8,
@@ -1087,7 +1087,7 @@ const S=[
  contra:"Lidl/Aldi prennent des parts. Marges structurellement très fines. Amazon Grocery monte en puissance."},
 
 {ticker:'HO',name:'Thales',sector:'Défense & Technologie',cap:'large',srd:true,idx:'CAC40',
- price:246.7,chg:-124.1,mkt:'19Md€',b52h:279.3,b52l:212.6,beta:0.12,
+ price:246.7,chg:-1.2,mkt:'19Md€',b52h:279.3,b52l:212.6,beta:0.12,
  pe:33.93,pb:6.33,ev_ebitda:16.9,ps:2.0,pfcf:18,ev_ebit:15,
  roe:19.4,roic:0.83,roa:8,debt:0.7,de:0.7,ic:8.5,cr:1.4,qr:1.2,
  yield:156.0,epsg:-27.0,revg:6.7,margin:6.6,gm:26.9,om:12,fcf:8.2,
@@ -1105,7 +1105,7 @@ const S=[
  contra:"Exposition exportations gouvernementales. Valorisation déjà bien pricée à 22x PE."},
 
 {ticker:'ATO',name:'Atos',sector:'IT',cap:'mid',srd:true,idx:'CAC40',
- price:28.52,chg:56.4,mkt:'0.38Md€',b52h:63.24,b52l:27.68,beta:1.54,
+ price:28.52,chg:-0.0,mkt:'0.38Md€',b52h:63.24,b52l:27.68,beta:1.54,
  pe:4.33,pb:-0.44,ev_ebitda:5.18,ps:0.02,pfcf:999,ev_ebit:999,
  roe:-45,roic:1.18,roa:-12,debt:4.2,de:8.5,ic:1.2,cr:0.6,qr:0.5,
  yield:0.0,epsg:0,revg:-15.2,margin:-16.4,gm:5.2,om:-8,fcf:-5.5,
@@ -1192,7 +1192,7 @@ const S=[
 
 // ═══ Actions européennes éligibles PEA ═══
 {ticker:'ASML',name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
- price:1486.4,chg:-74.8,mkt:'246Md€',b52h:1741.0,b52l:611.8,beta:1.36,
+ price:1486.4,chg:-0.52,mkt:'246Md€',b52h:1741.0,b52l:611.8,beta:1.36,
  pe:58.38,pb:26.16,ev_ebitda:42.23,ps:8.5,pfcf:22,ev_ebit:20,
  roe:53.9,roic:1.33,roa:18,debt:0.09,de:0.4,ic:22.5,cr:1.8,qr:1.5,
  yield:52.0,epsg:28.5,revg:21.3,margin:30.1,gm:52.7,om:32,fcf:9.5,
@@ -1209,7 +1209,7 @@ const S=[
  contra:"Cyclicité semi-conducteurs. Chine représente 25% des revenus avec risque géopolitique croissant. Correction de -30% depuis le pic."},
 
 {ticker:'PRX',name:'Prosus',sector:'Tech investissement',cap:'large',srd:false,idx:'AEX',
- price:38.01,chg:0.8,mkt:'68Md€',b52h:63.94,b52l:36.17,beta:0.79,
+ price:38.01,chg:-0.12,mkt:'68Md€',b52h:63.94,b52l:36.17,beta:0.79,
  pe:8.48,pb:1.77,ev_ebitda:307.87,ps:2.5,pfcf:15,ev_ebit:13,
  roe:22.2,roic:2.43,roa:3,debt:0.33,de:0.6,ic:8.2,cr:2.5,qr:2.2,
  yield:74.0,epsg:15,revg:12,margin:119.9,gm:46.4,om:18,fcf:7.5,
@@ -1226,7 +1226,7 @@ const S=[
  contra:"Décote de holding peut persister. Dépendance Tencent Chine. Gouvernance complexe Naspers/Prosus."},
 
 {ticker:'ADYEN',name:'Adyen',sector:'Paiements',cap:'large',srd:false,idx:'AEX',
- price:1079.6,chg:76.5,mkt:'37Md€',b52h:1600.8,b52l:772.4,beta:1.86,
+ price:1079.6,chg:0.78,mkt:'37Md€',b52h:1600.8,b52l:772.4,beta:1.86,
  pe:30.35,pb:5.77,ev_ebitda:16.91,ps:12,pfcf:35,ev_ebit:30,
  roe:21.3,roic:1.65,roa:10,debt:0.07,de:0.1,ic:999,cr:4.5,qr:4.2,
  yield:0.0,epsg:12.9,revg:18.9,margin:43.6,gm:68.5,om:30,fcf:8.5,
@@ -1243,7 +1243,7 @@ const S=[
  contra:"45x PE exige une exécution parfaite. Stripe prive reste un concurrent redoutable. Réglementation paiements croissante."},
 
 {ticker:'HEIA',name:'Heineken',sector:'Brasseries',cap:'large',srd:false,idx:'AEX',
- price:68,chg:0.2,mkt:'38Md€',b52h:82,b52l:60,beta:0.6,
+ price:72.14,chg:-0.66,mkt:'38Md€',b52h:82,b52l:60,beta:0.6,
  pe:18,pb:3.2,ev_ebitda:11,ps:1.5,pfcf:14,ev_ebit:12,
  roe:18,roic:12,roa:7,debt:3.2,de:1.2,ic:5.5,cr:0.9,qr:0.7,
  yield:2.8,epsg:8,revg:5,margin:10,gm:38,om:12,fcf:7.2,
@@ -1260,7 +1260,7 @@ const S=[
  contra:"Tendance santé pèse sur la bière. Matières premières volatiles. Dette moderee."},
 
 {ticker:'NOVO',name:'Novo Nordisk',sector:'Pharma diabète/obésité',cap:'large',srd:false,idx:'CSE',
- price:295.25,chg:-318.1,mkt:'280Md€',b52h:409.95,b52l:224.25,beta:0.35,
+ price:39.58,chg:-3.18,mkt:'280Md€',b52h:409.95,b52l:224.25,beta:0.35,
  pe:11.24,pb:5.91,ev_ebitda:8.32,ps:5.5,pfcf:15,ev_ebit:13,
  roe:59.8,roic:0.87,roa:22,debt:0.63,de:0.2,ic:25.5,cr:2.8,qr:2.5,
  yield:384.0,epsg:-20.6,revg:2.1,margin:35.3,gm:82.0,om:38,fcf:12.5,
@@ -1295,7 +1295,7 @@ const S=[
  contra:"45x PE n'accepte aucune erreur. Régulation VE européenne. Cyclicité luxe si récession sévère."},
 
 {ticker:'SAP',name:'SAP',sector:'ERP cloud',cap:'large',srd:false,idx:'XETRA',
- price:189.88,chg:547.7,mkt:'285Md€',b52h:244.3,b52l:127.5,beta:0.76,
+ price:189.88,chg:5.48,mkt:'285Md€',b52h:244.3,b52l:127.5,beta:0.76,
  pe:28.43,pb:4.9,ev_ebitda:17.57,ps:6.8,pfcf:28,ev_ebit:24,
  roe:18.3,roic:1.15,roa:8,debt:0.22,de:0.5,ic:12.5,cr:1.8,qr:1.5,
  yield:139.0,epsg:30.6,revg:9.4,margin:20.4,gm:73.7,om:20,fcf:8.2,
@@ -1312,7 +1312,7 @@ const S=[
  contra:"35x PE élevé. Transition cloud crée de la friction à court terme. Concurrence Oracle et Salesforce sur les nouveaux clients."},
 
 {ticker:'SIEMENS',name:'Siemens',sector:'Industrie digitale',cap:'large',srd:false,idx:'XETRA',
- price:188,chg:0.3,mkt:'152Md€',b52h:218,b52l:155,beta:1.0,
+ price:286.95,chg:-0.4,mkt:'152Md€',b52h:218,b52l:155,beta:1.0,
  pe:22,pb:4.5,ev_ebitda:14,ps:1.8,pfcf:18,ev_ebit:15,
  roe:18,roic:14,roa:7,debt:1.0,de:0.6,ic:9.5,cr:1.4,qr:1.2,
  yield:2.8,epsg:12,revg:9,margin:11,gm:38,om:13,fcf:7.8,
@@ -1329,7 +1329,7 @@ const S=[
  contra:"Conglomérat complexe. Cyclicité industrie. Chine représente 15% du CA."},
 
 {ticker:'ALV',name:'Allianz',sector:'Assurance mondiale',cap:'large',srd:false,idx:'XETRA',
- price:445.2,chg:-143.9,mkt:'142Md€',b52h:452.9,b52l:338.8,beta:0.67,
+ price:445.2,chg:-1.44,mkt:'142Md€',b52h:452.9,b52l:338.8,beta:0.67,
  pe:14.6,pb:2.68,ev_ebitda:3.36,ps:0.7,pfcf:999,ev_ebit:999,
  roe:19.6,roic:1.51,roa:0.6,debt:0.51,de:7.2,ic:999,cr:999,qr:999,
  yield:379.0,epsg:-8.0,revg:12.1,margin:9.9,gm:25.0,om:999,fcf:999,
@@ -1397,7 +1397,7 @@ const S=[
  contra:"La pression volumes dure bien plus que prévu. 6 trimestres consécutifs de déception."},
 
 {ticker:'EIFFAGE',name:'Eiffage',sector:'Construction & Concessions',cap:'large',srd:true,idx:'CAC40',
- price:108.8,chg:-740.4,mkt:'8.5Md€',b52h:147.5,b52l:103.05,beta:0.72,
+ price:108.8,chg:-7.48,mkt:'8.5Md€',b52h:147.5,b52l:103.05,beta:0.72,
  pe:10.17,pb:1.38,ev_ebitda:5.91,ps:0.4,pfcf:10,ev_ebit:9,
  roe:17.3,roic:0.95,roa:5,debt:1.77,de:1.0,ic:5.5,cr:1.1,qr:0.9,
  yield:409.0,epsg:7.0,revg:9.6,margin:3.9,gm:84.0,om:6,fcf:7.2,
@@ -1431,7 +1431,7 @@ const S=[
  contra:"Dette insoutenable. Scandales maltraitance. Perte de confiance totale. À éviter absolument."},
 
 {ticker:'ALTAREA',name:'Altarea',sector:'Immobilier mixte',cap:'mid',srd:true,idx:'SBF120',
- price:95.8,chg:-224.5,mkt:'1.5Md€',b52h:131.4,b52l:94.0,beta:0.79,
+ price:95.8,chg:-2.04,mkt:'1.5Md€',b52h:131.4,b52l:94.0,beta:0.79,
  pe:63.87,pb:1.48,ev_ebitda:31.24,ps:0.5,pfcf:8,ev_ebit:15,
  roe:3.5,roic:1.06,roa:2,debt:0.93,de:2.0,ic:2.8,cr:0.9,qr:0.7,
  yield:816.0,epsg:267.6,revg:-9.3,margin:1.9,gm:25.9,om:10,fcf:5.5,
@@ -1465,7 +1465,7 @@ const S=[
  contra:"Premium 24x PE. Bâtiment résidentiel souffre. Croissance data center peut décevoir."},
 
 {ticker:'COVIVIO',name:'Covivio',sector:'Immobilier hôtelier',cap:'mid',srd:true,idx:'SBF120',
- price:50.35,chg:-175.6,mkt:'3.8Md€',b52h:62.8,b52l:49.44,beta:1.13,
+ price:50.35,chg:-1.56,mkt:'3.8Md€',b52h:62.8,b52l:49.44,beta:1.13,
  pe:8.56,pb:0.66,ev_ebitda:19.79,ps:2.5,pfcf:7,ev_ebit:17,
  roe:8.5,roic:0.57,roa:1,debt:0.83,de:1.5,ic:2.8,cr:0.8,qr:0.6,
  yield:732.0,epsg:-25.0,revg:4.5,margin:55.9,gm:83.4,om:25,fcf:4.8,
@@ -1533,7 +1533,7 @@ const S=[
  contra:"Exposition ex-Casino problématique. Taux élevés pèsent. Commerce en mutation."},
 
 {ticker:'TRIGANO',name:'Trigano',sector:'Camping-cars',cap:'mid',srd:true,idx:'SBF120',
- price:152.1,chg:-19.7,mkt:'2.2Md€',b52h:178.8,b52l:131.4,beta:1.07,
+ price:152.1,chg:0.07,mkt:'2.2Md€',b52h:178.8,b52l:131.4,beta:1.07,
  pe:11.51,pb:1.36,ev_ebitda:6.75,ps:0.5,pfcf:7,ev_ebit:6,
  roe:12.3,roic:2.0,roa:10,debt:0.09,de:0.3,ic:15.5,cr:2.2,qr:1.5,
  yield:259.0,epsg:14.8,revg:6.2,margin:6.8,gm:32.8,om:9,fcf:7.8,
@@ -1550,7 +1550,7 @@ const S=[
  contra:"Forte cyclicité — le secteur a explosé post-COVID et se normalise. Macrosen sensibilité haute."},
 
 {ticker:'BOIRON',name:'Boiron',sector:'Homéopathie',cap:'small',srd:false,idx:'SBF120',
- price:25.7,chg:0.1,mkt:'0.38Md€',b52h:32.25,b52l:21.0,beta:0.22,
+ price:25.7,chg:-0.0,mkt:'0.38Md€',b52h:32.25,b52l:21.0,beta:0.22,
  pe:13.67,pb:1.14,ev_ebitda:5.76,ps:0.6,pfcf:8,ev_ebit:6,
  roe:8.5,roic:2.22,roa:7,debt:0.08,de:0.1,ic:999,cr:3.2,qr:2.5,
  yield:525.0,epsg:165.9,revg:-1.4,margin:6.5,gm:73.0,om:8,fcf:7.5,
@@ -1601,7 +1601,7 @@ const S=[
  contra:"Dette écrasante. VE ralentit et Valeo a parié dessus massivement. Les constructeurs pressent les marges des équipementiers. À éviter sauf spéculatif."},
 
 {ticker:'FORVIA',name:'Forvia (Faurecia)',sector:'Équipementier auto',cap:'large',srd:true,idx:'CAC40',
- price:8.6,chg:-139.9,mkt:'2.2Md€',b52h:15.03,b52l:8.42,beta:1.65,
+ price:8.6,chg:-0.99,mkt:'2.2Md€',b52h:15.03,b52l:8.42,beta:1.65,
  pe:3.66,pb:0.83,ev_ebitda:4.44,ps:0.07,pfcf:5,ev_ebit:4,
  roe:-25.7,roic:0.95,roa:1,debt:2.55,de:2.5,ic:2.2,cr:0.9,qr:0.7,
  yield:0.0,epsg:12,revg:-4.3,margin:-8.7,gm:15.0,om:3,fcf:3.5,
@@ -1737,7 +1737,7 @@ const S=[
  contra:"Forte intensité énergétique. Transition vers les canettes en aluminium. Dette moderee."},
 
 {ticker:'DERICHEBOURG',name:'Derichebourg',sector:'Recyclage & Services',cap:'mid',srd:true,idx:'SBF120',
- price:8.99,chg:-190.9,mkt:'1.1Md€',b52h:11.0,b52l:4.75,beta:1.77,
+ price:8.99,chg:-1.8,mkt:'1.1Md€',b52h:11.0,b52l:4.75,beta:1.77,
  pe:10.83,pb:1.21,ev_ebitda:8.82,ps:0.2,pfcf:6,ev_ebit:5,
  roe:11.9,roic:1.09,roa:5,debt:0.73,de:0.7,ic:6.2,cr:1.3,qr:1.0,
  yield:142.0,epsg:15.9,revg:7.8,margin:3.8,gm:25.2,om:7,fcf:7.5,
@@ -1754,7 +1754,7 @@ const S=[
  contra:"Cyclicité des prix des métaux. Aéronautique représente 40% du CA."}
 // Session 3
 ,{ticker:'IMERYS',name:'Imerys',sector:'Minéraux industriels',cap:'mid',srd:true,idx:'SBF120',
- price:23.98,chg:-147.9,mkt:'2.2Md€',b52h:28.54,b52l:19.68,beta:0.74,
+ price:23.98,chg:-2.12,mkt:'2.2Md€',b52h:28.54,b52l:19.68,beta:0.74,
  pe:16.42,pb:0.76,ev_ebitda:8.74,ps:0.5,pfcf:9,ev_ebit:8,
  roe:-15.0,roic:1.69,roa:4,debt:0.88,de:0.9,ic:4.8,cr:1.3,qr:1.1,
  yield:308.0,epsg:1.2,revg:2.2,margin:-12.8,gm:64.9,om:8,fcf:6.8,
@@ -1770,7 +1770,7 @@ const S=[
  contra:"Très cyclique. Intensité énergétique élevée."},
 
 {ticker:'THERMADOR',name:'Thermador',sector:'Distribution eau',cap:'small',srd:false,idx:'SRD',
- price:74.7,chg:-298.7,mkt:'0.35Md€',b52h:81.9,b52l:66.8,beta:0.8,
+ price:74.7,chg:-2.48,mkt:'0.35Md€',b52h:81.9,b52l:66.8,beta:0.8,
  pe:15.06,pb:1.65,ev_ebitda:8.84,ps:0.8,pfcf:9,ev_ebit:9,
  roe:12.0,roic:2.9,roa:9,debt:0.13,de:0.2,ic:18.5,cr:2.5,qr:2.0,
  yield:273.0,epsg:17.8,revg:11.3,margin:9.0,gm:37.4,om:9,fcf:7.8,
@@ -1786,7 +1786,7 @@ const S=[
  contra:"Très peu liquide. Bâtiment cyclique."},
 
 {ticker:'STEF',name:'STEF',sector:'Logistique frigorifique',cap:'small',srd:false,idx:'SRD',
- price:125.0,chg:-157.5,mkt:'0.68Md€',b52h:139.4,b52l:113.6,beta:0.76,
+ price:125.0,chg:-1.26,mkt:'0.68Md€',b52h:139.4,b52l:113.6,beta:0.76,
  pe:18.8,pb:1.21,ev_ebitda:9.21,ps:0.3,pfcf:8,ev_ebit:7,
  roe:6.5,roic:0.71,roa:7,debt:1.26,de:0.7,ic:7.5,cr:1.4,qr:1.1,
  yield:213.0,epsg:7,revg:5,margin:1.6,gm:10.5,om:5,fcf:7.2,
@@ -1820,7 +1820,7 @@ const S=[
  contra:"Cyclicité forte. Normalisation post-COVID. Sensibilité macro élevée."},
 
 {ticker:'VIRBAC',name:'Virbac',sector:'Pharmacie vétérinaire',cap:'mid',srd:true,idx:'SBF120',
- price:323.0,chg:-271.1,mkt:'1.8Md€',b52h:389.5,b52l:296.0,beta:0.78,
+ price:323.0,chg:-2.12,mkt:'1.8Md€',b52h:389.5,b52l:296.0,beta:0.78,
  pe:17.95,pb:2.4,ev_ebitda:10.63,ps:2.2,pfcf:16,ev_ebit:14,
  roe:13.9,roic:1.53,roa:9,debt:0.26,de:0.5,ic:10.5,cr:2.0,qr:1.6,
  yield:44.0,epsg:35.2,revg:4.6,margin:10.3,gm:66.7,om:14,fcf:7.5,
@@ -1837,7 +1837,7 @@ const S=[
  contra:"22x PE exigeant. Concurrence Zoetis/Boehringer. R&D limitée."},
 
 {ticker:'INTERPARFUMS',name:'Interparfums',sector:'Parfums sous licence',cap:'mid',srd:true,idx:'SBF120',
- price:27.98,chg:-21.4,mkt:'1.5Md€',b52h:31.07,b52l:20.74,beta:1.06,
+ price:27.98,chg:-0.07,mkt:'1.5Md€',b52h:31.07,b52l:20.74,beta:1.06,
  pe:18.53,pb:3.37,ev_ebitda:12.56,ps:2.5,pfcf:14,ev_ebit:13,
  roe:17.8,roic:2.95,roa:12,debt:0.21,de:0.2,ic:25.0,cr:3.5,qr:2.8,
  yield:357.0,epsg:-2.5,revg:-1.2,margin:14.1,gm:65.0,om:18,fcf:8.2,
@@ -1871,7 +1871,7 @@ const S=[
  contra:"Très peu liquide. Cyclicité fret forte. Normalisation post-COVID compresse les marges."},
 
 {ticker:'ARGAN',name:'Argan',sector:'Entrepôts logistiques',cap:'mid',srd:true,idx:'SBF120',
- price:73.2,chg:0.1,mkt:'1.5Md€',b52h:78.2,b52l:56.1,beta:1.09,
+ price:73.2,chg:-0.41,mkt:'1.5Md€',b52h:78.2,b52l:56.1,beta:1.09,
  pe:7.11,pb:0.76,ev_ebitda:18.91,ps:8.5,pfcf:7,ev_ebit:19,
  roe:11.1,roic:0.45,roa:2,debt:0.89,de:1.5,ic:3.2,cr:0.8,qr:0.6,
  yield:471.0,epsg:14.3,revg:4.8,margin:102.8,gm:82.3,om:58,fcf:4.8,
@@ -1921,7 +1921,7 @@ const S=[
  contra:"Valorisation 35x PE premium. SAP et Oracle attaquent avec des modules natifs."},
 
 {ticker:'LECTRA',name:'Lectra',sector:'Logiciel coupe textile',cap:'small',srd:true,idx:'SBF120',
- price:22.15,chg:-89.5,mkt:'0.85Md€',b52h:25.5,b52l:15.02,beta:0.83,
+ price:22.15,chg:-1.12,mkt:'0.85Md€',b52h:25.5,b52l:15.02,beta:0.83,
  pe:36.31,pb:2.49,ev_ebitda:15.51,ps:2.2,pfcf:14,ev_ebit:13,
  roe:7.0,roic:0.67,roa:8,debt:0.38,de:0.3,ic:12.5,cr:2.2,qr:1.8,
  yield:157.0,epsg:63.6,revg:-0.3,margin:4.8,gm:73.8,om:14,fcf:7.8,
@@ -1955,7 +1955,7 @@ const S=[
  contra:"Très peu liquide. Taille insuffisante pour institutionnels."},
 
 {ticker:'LACROIX',name:'Lacroix',sector:'Electronique embarquee',cap:'small',srd:true,idx:'SBF120',
- price:17.5,chg:0.3,mkt:'0.32Md€',b52h:20.9,b52l:7.26,beta:1.14,
+ price:17.5,chg:2.04,mkt:'0.32Md€',b52h:20.9,b52l:7.26,beta:1.14,
  pe:5.07,pb:0.9,ev_ebitda:5.07,ps:0.3,pfcf:10,ev_ebit:9,
  roe:7.6,roic:1.15,roa:4,debt:1.34,de:0.6,ic:5.5,cr:1.3,qr:1.0,
  yield:2.5,epsg:8,revg:-0.1,margin:-8.9,gm:35.4,om:5,fcf:6.5,
@@ -1989,7 +1989,7 @@ const S=[
  contra:"Marges fines (3%). Personnel intensif. Cyclicité e-commerce."},
 
 {ticker:'ELIOR',name:'Elior',sector:'Restauration collective',cap:'mid',srd:true,idx:'SBF120',
- price:2.08,chg:-234.3,mkt:'0.68Md€',b52h:3.2,b52l:1.85,beta:1.88,
+ price:2.08,chg:-2.62,mkt:'0.68Md€',b52h:3.2,b52l:1.85,beta:1.88,
  pe:8.34,pb:0.62,ev_ebitda:8.52,ps:0.1,pfcf:7,ev_ebit:6,
  roe:7.7,roic:0.55,roa:1,debt:1.48,de:1.5,ic:2.8,cr:0.8,qr:0.6,
  yield:187.0,epsg:-52.9,revg:-1.1,margin:1.1,gm:16.3,om:3,fcf:5.5,
@@ -2023,7 +2023,7 @@ const S=[
  contra:"CAPEX intense. Cycles de contrats pharma longs."},
 
 {ticker:'WAGA',name:'Waga Energy',sector:'Biogaz biomethane',cap:'small',srd:true,idx:'SRD',
- price:23.0,chg:-64.8,mkt:'0.52Md€',b52h:24.5,b52l:21.15,beta:0.45,
+ price:23.0,chg:-1.29,mkt:'0.52Md€',b52h:24.5,b52l:21.15,beta:0.45,
  pe:-71.49,pb:5.52,ev_ebitda:-338.91,ps:12.5,pfcf:999,ev_ebit:35,
  roe:-24.0,roic:1.81,roa:3,debt:1.98,de:0.8,ic:4.5,cr:1.8,qr:1.5,
  yield:0.0,epsg:40,revg:7.2,margin:-50.8,gm:51.7,om:18,fcf:3.5,
@@ -2124,7 +2124,7 @@ const S=[
  contra:"Microcap quasi-illiquide. Niche gouvernementale = croissance plafonnee. Marche adressable limite."},
 
 {ticker:'LISI',name:'Lisi',sector:'Fixations aeronautiques',cap:'mid',srd:true,idx:'SBF120',
- price:62.2,chg:-204.7,mkt:'0.65Md€',b52h:72.6,b52l:37.55,beta:1.12,
+ price:62.2,chg:-2.66,mkt:'0.65Md€',b52h:72.6,b52l:37.55,beta:1.12,
  pe:30.79,pb:2.51,ev_ebitda:13.0,ps:0.5,pfcf:10,ev_ebit:9,
  roe:8.7,roic:1.74,roa:6,debt:0.45,de:0.5,ic:7.5,cr:1.5,qr:1.2,
  yield:72.0,epsg:60.2,revg:4.4,margin:8.9,gm:50.9,om:7,fcf:7.2,
@@ -2175,7 +2175,7 @@ const S=[
  contra:"Jeune entite cotee = decouverte de prix en cours. Cyclicite chimique malgre la niche."},
 
 {ticker:'IPSEN',name:'Ipsen',sector:'Pharma maladies rares',cap:'mid',srd:true,idx:'SBF120',
- price:169.2,chg:198.9,mkt:'8.5Md€',b52h:174.0,b52l:109.9,beta:0.32,
+ price:169.2,chg:2.24,mkt:'8.5Md€',b52h:174.0,b52l:109.9,beta:0.32,
  pe:27.33,pb:2.96,ev_ebitda:8.71,ps:2.8,pfcf:14,ev_ebit:11,
  roe:11.4,roic:1.97,roa:10,debt:0.2,de:0.5,ic:10.5,cr:2.0,qr:1.6,
  yield:96.0,epsg:21.5,revg:18.7,margin:11.9,gm:81.0,om:22,fcf:8.5,
@@ -2192,7 +2192,7 @@ const S=[
  contra:"Exposition brevet Somatuline (expiration 2027-2028). Concurrence Novartis/Pfizer sur maladies rares. Pipeline a prouver."},
 
 {ticker:'REXEL',name:'Rexel',sector:'Distribution electrique',cap:'large',srd:true,idx:'SBF120',
- price:35.94,chg:-307.4,mkt:'4.8Md€',b52h:39.8,b52l:26.46,beta:1.0,
+ price:35.94,chg:-2.97,mkt:'4.8Md€',b52h:39.8,b52l:26.46,beta:1.0,
  pe:15.9,pb:1.92,ev_ebitda:12.95,ps:0.25,pfcf:8,ev_ebit:7,
  roe:12.6,roic:1.66,roa:6,debt:1.07,de:0.8,ic:7.5,cr:1.3,qr:1.0,
  yield:324.0,epsg:30.9,revg:2.2,margin:3.4,gm:25.2,om:5,fcf:7.2,
@@ -2209,7 +2209,7 @@ const S=[
  contra:"Distribution = marges fines. Cyclicite construction forte. Amazon B2B menace le modele."},
 
 {ticker:'FIGEAC',name:'Figeac Aero',sector:'Usinage aeronautique',cap:'small',srd:false,idx:'SRD',
- price:10.56,chg:57.1,mkt:'0.22Md€',b52h:13.05,b52l:9.02,beta:0.75,
+ price:10.56,chg:0.57,mkt:'0.22Md€',b52h:13.05,b52l:9.02,beta:0.75,
  pe:528.0,pb:5.4,ev_ebitda:9.67,ps:0.2,pfcf:7,ev_ebit:6,
  roe:1.1,roic:1.39,roa:3,debt:4.44,de:1.0,ic:4.2,cr:1.1,qr:0.8,
  yield:0.0,epsg:192.1,revg:16.8,margin:0.2,gm:36.7,om:6,fcf:5.5,
@@ -2242,7 +2242,7 @@ const S=[
  contra:"Decote de holding peut persister. Moins liquide que LVMH direct. Exposition concentree."},
 
 {ticker:'ABIVAX',name:'Abivax',sector:'Biotech immunologie',cap:'small',srd:true,idx:'SBF120',
- price:99.95,chg:-44.8,mkt:'0.52Md€',b52h:139.0,b52l:60.45,beta:-0.23,
+ price:99.95,chg:-0.45,mkt:'0.52Md€',b52h:139.0,b52l:60.45,beta:-0.23,
  pe:-37.62,pb:18.45,ev_ebitda:-29.54,ps:35,pfcf:999,ev_ebit:999,
  roe:-157.1,roic:8.25,roa:-25,debt:0.08,de:0.5,ic:999,cr:4.8,qr:4.5,
  yield:0.0,epsg:0,revg:35.2,margin:-80,gm:100.0,om:-70,fcf:-4.5,
@@ -2276,7 +2276,7 @@ const S=[
  contra:"Pari multiple FDA. Cash critique si JnJ ne declenche pas les milestones. Adoption lente."},
 
 {ticker:'ICAD',name:'iCade',sector:'Immobilier sante',cap:'mid',srd:true,idx:'SBF120',
- price:18.47,chg:-170.3,mkt:'1.2Md€',b52h:22.76,b52l:18.09,beta:0.8,
+ price:18.47,chg:-1.28,mkt:'1.2Md€',b52h:22.76,b52l:18.09,beta:0.8,
  pe:6.4,pb:0.39,ev_ebitda:18.39,ps:3.5,pfcf:7,ev_ebit:15,
  roe:-5.2,roic:1.11,roa:1,debt:1.12,de:1.8,ic:2.5,cr:0.8,qr:0.6,
  yield:1022.0,epsg:4,revg:-13.8,margin:-14.3,gm:36.2,om:25,fcf:4.5,
@@ -2377,7 +2377,7 @@ const S=[
  contra:"Tres peu liquide (famille 98%). Cyclicite defense sur les grands programmes. Taille limitee vs Amphenol 10Md€ CA."},
 
 {ticker:'SAMSE',name:'Samse',sector:'Distribution materiaux',cap:'small',srd:false,idx:'SBF120',
- price:120.0,chg:84.0,mkt:'0.88Md€',b52h:144.5,b52l:113.0,beta:0.43,
+ price:120.0,chg:0.84,mkt:'0.88Md€',b52h:144.5,b52l:113.0,beta:0.43,
  pe:15.85,pb:0.67,ev_ebitda:10.35,ps:0.4,pfcf:9,ev_ebit:7,
  roe:4.4,roic:1.54,roa:5,debt:0.98,de:0.8,ic:5.5,cr:1.4,qr:1.1,
  yield:420.0,epsg:39.4,revg:-5.3,margin:1.3,gm:29.4,om:5,fcf:7.2,
@@ -2394,7 +2394,7 @@ const S=[
  contra:"Cyclicite construction forte. Saint-Gobain Distribution attaque le marche pro. Famille peut privatiser."},
 
 {ticker:'MANITOU',name:'Manitou',sector:'Engins manutention',cap:'mid',srd:true,idx:'SBF120',
- price:20.95,chg:-141.2,mkt:'1.4Md€',b52h:24.35,b52l:16.9,beta:1.44,
+ price:20.95,chg:-1.41,mkt:'1.4Md€',b52h:24.35,b52l:16.9,beta:1.44,
  pe:11.7,pb:0.8,ev_ebitda:5.0,ps:0.5,pfcf:8,ev_ebit:7,
  roe:9.0,roic:1.48,roa:6,debt:0.32,de:0.6,ic:6.5,cr:1.5,qr:1.2,
  yield:353.0,epsg:57.6,revg:12.0,margin:3.2,gm:17.7,om:7,fcf:7.5,
@@ -2564,7 +2564,7 @@ const S=[
  contra:"Taille limitee. Si la reglementation se relache, la demande baisse. Peu liquide."},
 
 {ticker:'EMEIS',name:'Emeis EHPAD',sector:'EHPAD maisons retraite',cap:'large',srd:true,idx:'SBF120',
- price:12.66,chg:-656.8,mkt:'4.5Md€',b52h:16.19,b52l:10.72,beta:0.63,
+ price:12.66,chg:-6.84,mkt:'4.5Md€',b52h:16.19,b52l:10.72,beta:0.63,
  pe:63.3,pb:1.5,ev_ebitda:18.17,ps:0.8,pfcf:10,ev_ebit:10,
  roe:-10.6,roic:0.82,roa:3,debt:3.81,de:1.5,ic:4.5,cr:0.9,qr:0.7,
  yield:2.5,epsg:10,revg:3.5,margin:-3.4,gm:14.6,om:7,fcf:6.0,
