@@ -29,3 +29,30 @@ CONCLUSIONS
    Croiss.CA       corrél=0.215  → suggère ~14 pts
    Croiss.BPA      corrél=0.015  → suggère ~1 pts
 ```
+
+## 2026-09-01
+
+```
+CONCLUSIONS
+=================================================================
+
+1. Score Unifié : corrél. 0.398
+   ✅ Modèle valide
+
+2. Alpha Score ≥65 vs Score <50 : +11.6%/an
+   ✅ Alpha significatif
+
+3. Large Caps (n=50) :
+   Score Large corrél. 0.432
+
+4. Midcaps (n=35) :
+   Score Mid corrél. 0.405
+
+5. Poids optimaux suggérés (à implémenter dans calcQARPLarge) :
+   PE fwd          corrél=0.406  → suggère ~26 pts
+   ROE             corrél=0.324  → suggère ~21 pts
+   Dette           corrél=0.297  → suggère ~19 pts
+   Marge           corrél=0.285  → suggère ~19 pts
+   Croiss.CA       corrél=0.215  → suggère ~14 pts
+   Croiss.BPA      corrél=0.011  → suggère ~1 pts
+```
