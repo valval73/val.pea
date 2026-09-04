@@ -5934,28 +5934,28 @@ function buildETF(){
         <div class="etf-tkr">${e.ticker}</div>
         <div class="etf-mid">
           <div class="etf-name">${e.name}</div>
-          <div style="font-size:9px;color:rgba(255,255,255,.4)">${e.emetteur} · ${e.indice}</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.4)">${e.emetteur||''}${e.emetteur&&e.indice?' · ':''}${e.indice||''}</div>
           <div class="ftags" style="margin-top:4px">
-            <span class="tag t-pea">${e.type}</span>
-            <span class="tag t-sec">${e.replication}</span>
+            <span class="tag t-pea">${e.type||'PEA'}</span>
+            <span class="tag t-sec">${e.replication||'—'}</span>
             ${e.replication==='Synthétique'?'<span class="tag t-pea">✓ PEA</span>':'<span class="tag t-srd">CTO</span>'}
           </div>
         </div>
         <div><div class="qg ${noteCl[e.note]||'qC'}" style="width:30px;height:30px;font-size:14px">${e.note}</div></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:10px 14px;border-bottom:1px solid var(--bd)">
-        <div class="mb"><div class="ml">Frais/an</div><div class="mv" style="color:${fCol(e.frais)}">${e.frais}%</div></div>
+        <div class="mb"><div class="ml">Frais/an</div><div class="mv" style="color:${fCol(e.frais!=null?e.frais:e.ter)}">${e.frais!=null?e.frais:e.ter}%</div></div>
         <div class="mb"><div class="ml">Perf 1 an</div><div class="mv" style="color:${p1Col(e.perf1y)}">+${e.perf1y}%</div></div>
         <div class="mb"><div class="ml">Perf 5 ans/an</div><div class="mv" style="color:var(--gn)">+${e.perf5y}%</div></div>
         <div class="mb"><div class="ml">Encours</div><div class="mv" style="font-size:11px">${e.encours}</div></div>
         <div class="mb"><div class="ml">ISIN</div><div class="mv" style="font-size:8px;letter-spacing:0">${e.isin}</div></div>
-        <div class="mb"><div class="ml">Réplication</div><div class="mv" style="font-size:10px">${e.replication}</div></div>
+        <div class="mb"><div class="ml">Réplication</div><div class="mv" style="font-size:10px">${e.replication||'—'}</div></div>
       </div>
       <div style="padding:10px 14px;border-bottom:1px solid var(--bd)">
-        ${e.avantages.map(a=>`<div style="font-size:10px;color:var(--tx2);padding:2px 0">✅ ${a}</div>`).join('')}
-        ${e.risques.map(r=>`<div style="font-size:10px;color:var(--or);padding:2px 0">⚠️ ${r}</div>`).join('')}
+        ${(e.avantages||[]).map(a=>`<div style="font-size:10px;color:var(--tx2);padding:2px 0">✅ ${a}</div>`).join('')}
+        ${(e.risques||[]).map(r=>`<div style="font-size:10px;color:var(--or);padding:2px 0">⚠️ ${r}</div>`).join('')}
       </div>
-      <div class="thesis" style="margin:0;border-radius:0;font-size:11px">${e.verdict}</div>
+      <div class="thesis" style="margin:0;border-radius:0;font-size:11px">${e.verdict||e.desc||''}</div>
     </div>`).join('');
 }
 
