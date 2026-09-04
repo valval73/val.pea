@@ -1,78 +1,14 @@
-
 // PEA SCREENER PRO — live_patch.js v5.2
 // Prompt IA Quality Investing / Buffett — Décision binaire
 // ================================================================
 
-const YF_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
-const PROXIES = [
-  url => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
-  url => 'https://thingproxy.freeboard.io/fetch/' + encodeURIComponent(url),
-  url => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url)
-];
-const YF_MAP = {
-  MC:'MC.PA',AI:'AI.PA',OR:'OR.PA',RMS:'RMS.PA',SAN:'SAN.PA',
-  TTE:'TTE.PA',SAF:'SAF.PA',SU:'SU.PA',AXA:'CS.PA',BNP:'BNP.PA',
-  ACA:'ACA.PA',GLE:'GLE.PA',AIR:'AIR.PA',CAP:'CAP.PA',DSY:'DSY.PA',
-  LR:'LR.PA',PUB:'PUB.PA',RI:'RI.PA',SGO:'SGO.PA',VIE:'VIE.PA',
-  ORA:'ORA.PA',EL:'EL.PA',KER:'KER.PA',STM:'STM.PA',ENX:'ENX.PA',
-  ENGI:'ENGI.PA',DG:'DG.PA',HO:'HO.PA',BN:'BN.PA',CA:'CA.PA',
-  WLN:'WLN.PA',RNO:'RNO.PA',TEP:'TEP.PA',FTI:'FTI.PA',ALO:'ALO.PA',
-  EDEN:'EDEN.PA',SAM:'SAM.PA',GTT:'GTT.PA',SEB:'SK.PA',VK:'VK.PA',
-  MT:'MT.AS',STLA:'STLA.MI',SAP:'SAP.DE',ASML:'ASML.AS',
-  SIE:'SIE.DE',BAYN:'BAYN.DE',BMW:'BMW.DE',ALV:'ALV.DE',
-  ENEL:'ENEL.MI',ENI:'ENI.MI',UCG:'UCG.MI',RACE:'RACE.MI',
-  CABK:'CABK.MC',BBVA:'BBVA.MC',IBE:'IBE.MC',ITX:'ITX.MC',
-  TEF:'TEF.MC',NN:'NN.AS',INGA:'INGA.AS',AD:'AD.AS'
-};
-
-let _px = 0;
-async function fetchOnePrice(yfSym) {
-  const u0 = YF_BASE + yfSym + '?range=1d&interval=5m';
-  const order = [_px, ...PROXIES.map((_,i)=>i).filter(i=>i!==_px)];
-  for (const idx of order) {
-    try {
-      const r = await fetch(PROXIES[idx](u0), {signal:AbortSignal.timeout(8000)});
-      if (!r.ok) continue;
-      const d = await r.json();
-      const m = d && d.chart && d.chart.result && d.chart.result[0] && d.chart.result[0].meta;
-      if (!m || !m.regularMarketPrice) continue;
-      _px = idx;
-      return {
-        p: Math.round(m.regularMarketPrice*100)/100,
-        c: Math.round((m.regularMarketPrice-m.chartPreviousClose)/m.chartPreviousClose*10000)/100,
-        h52: Math.round((m.fiftyTwoWeekHigh||0)*100)/100,
-        l52: Math.round((m.fiftyTwoWeekLow||0)*100)/100
-      };
-    } catch(e) {}
-  }
-  return null;
-}
-
-window.fetchLive = async function(isAuto) {
-  const LS = 'valpea_fetch';
-  if (isAuto) { try { if (Date.now()-parseInt(localStorage.getItem(LS)||0)<15*60*1000) return; } catch(e){} }
-  try { localStorage.setItem(LS, Date.now()); } catch(e) {}
-  const lEl = document.getElementById('live-st');
-  const upd = function(m,c){ if(lEl){lEl.textContent=m;lEl.style.color=c||'#f59e0b';} };
-  upd('Connexion...','#f59e0b');
-  const tickers = typeof S!=='undefined'?S.map(function(s){return s.ticker;}).filter(function(t){return YF_MAP[t];}):Object.keys(YF_MAP);
-  let ok=0,fail=0;
-  for (let i=0;i<tickers.length;i+=6) {
-    await Promise.all(tickers.slice(i,i+6).map(async function(tk) {
-      try {
-        const data = await fetchOnePrice(YF_MAP[tk]);
-        if (data && typeof S!=='undefined') {
-          const s=S.find(function(x){return x.ticker===tk;});
-          if(s){s.price=data.p;s.chg=data.c;if(data.h52>0)s.b52h=data.h52;if(data.l52>0)s.b52l=data.l52;if(typeof render==='function')render(s);ok++;}
-        }
-      } catch(e){fail++;}
-    }));
-    upd(ok+'/'+tickers.length+' cours...','#f59e0b');
-    if(i+6<tickers.length) await new Promise(function(r){setTimeout(r,400);});
-  }
-  const now=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-  upd(ok>0?ok+' cours live · '+now:'Hors marché · données statiques',ok>0?'#22c55e':'#6b7280');
-};
+// Ancien mecanisme fetchLive() base sur proxies CORS morts (codetabs,
+// thingproxy, allorigins) retire ici -- il ecrasait window.fetchLive
+// (defini proprement dans index.html) ET se relancait automatiquement
+// a chaque chargement de page via un setTimeout, d'ou le flot d'erreurs
+// dans la console a chaque ouverture du site. Les prix sont desormais
+// rafraichis cote serveur (refresh_intraday_prices.py, toutes les heures
+// en Bourse) -- audit du 04/09/2026.
 
 function getANTKey(){if(window._ANT)return window._ANT;const k=localStorage.getItem('_ant_key');if(k){window._ANT=k;return k;}return null;}
 function clearANTKey(){localStorage.removeItem('_ant_key');window._ANT=null;}
@@ -142,7 +78,7 @@ async function runIAAnalysis(ticker, name, scoreData, resEl, btn) {
     +'- Catalyseur #2 : [concret]'+NL
     +'- Risque #1 : [probabilité] + [impact si réalisé]'+NL
     +'- Risque #2 : [concret]'+NL+NL
-    +'## DÉCISION FINALE'+NL
+    +'## D�CISION FINALE'+NL
     +'- Action : ACHETER/RENFORCER/CONSERVER/ALLÉGER/VENDRE/PASSER'+NL
     +'- Taille position : [X% du portefeuille PEA]'+NL
     +'- Point d\'entrée : [X€ ou déjà en zone]'+NL
@@ -209,7 +145,7 @@ function _tryInjectIA(){
 new MutationObserver(_tryInjectIA).observe(document.body,{childList:true,subtree:true});
 
 var _k=localStorage.getItem('_ant_key');if(_k)window._ANT=_k;
-setTimeout(function(){if(typeof window.fetchLive==='function')window.fetchLive(false);},2500);
+// (ancien auto-declenchement fetchLive retire -- cf commentaire plus haut)
 setTimeout(function(){
   try{
     if(typeof ETF!=='undefined'&&Array.isArray(ETF)){
@@ -232,3 +168,4 @@ setTimeout(function(){
   }catch(e){console.log('[v5.2] patch error:',e.message);}
 },3000);
 console.log('[live_patch v5.2] OK | prompt:Quality-Investing | cle IA:',!!window._ANT);
+
