@@ -225,6 +225,17 @@ def fetch_one(ticker, yf_sym, sector):
         t = yf.Ticker(yf_sym)
         info = t.info
         result['price']   = safe(info.get('currentPrice') or info.get('regularMarketPrice'))
+        if result['price'] <= 0:
+            # Repli : .info peut revenir vide pour un ticker donne sans
+            # lever d'erreur (cas reel observe sur EL.PA -- audit du
+            # 04/09/2026). history() est un endpoint different, plus
+            # fiable pour un simple cours de cloture.
+            try:
+                h = t.history(period='2d')
+                if not h.empty:
+                    result['price'] = safe(h['Close'].iloc[-1])
+            except Exception:
+                pass
         result['chg']     = pct(info.get('regularMarketChangePercent', 0))
         result['pe']      = safe(info.get('trailingPE') or info.get('forwardPE'))
         result['pe_fwd']  = safe(info.get('forwardPE'))
@@ -342,4 +353,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

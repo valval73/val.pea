@@ -7,7 +7,8 @@ sur 441 runs consecutifs, cf audit du 26/08/2026).
 
 Ne touche que price + chg (pas les fondamentaux, deja geres par
 fetch_fundamentals.py 2x/jour). Utilise yfinance.fast_info, beaucoup
-plus rapide que .info pour juste un prix.
+plus rapide que .info pour juste un prix, avec repli sur history()
+si un ticker donne echoue silencieusement (audit du 04/09/2026).
 
 Declenche par GitHub Actions toutes les heures, Lun-Ven, heures de marche.
 """
@@ -51,6 +52,38 @@ YF_MAP = {
 NON_EUR = {"NOVO-B.CO": 7.46}
 
 
+import time
+
+def fetch_one_with_retry(sym, tks):
+    """Essaie fast_info, retente une fois apres une pause, puis se
+    rabat sur history() -- un endpoint Yahoo different, generalement
+    plus fiable pour un simple cours de cloture -- si fast_info reste
+    muet. Avant ce correctif, un ticker capricieux (ex: EL.PA) restait
+    silencieusement fige indefiniment, sans aucune erreur visible
+    (audit du 04/09/2026)."""
+    for attempt in range(2):
+        try:
+            fi = tks.tickers[sym].fast_info
+            price = fi.get('last_price') or fi.get('lastPrice')
+            prev = fi.get('previous_close') or fi.get('previousClose')
+            if price and price > 0.05:
+                return price, prev
+        except Exception:
+            pass
+        if attempt == 0:
+            time.sleep(1.5)
+    try:
+        h = yf.Ticker(sym).history(period='2d')
+        if not h.empty:
+            price = float(h['Close'].iloc[-1])
+            prev = float(h['Close'].iloc[-2]) if len(h) > 1 else price
+            if price > 0.05:
+                return price, prev
+    except Exception:
+        pass
+    return None, None
+
+
 def fetch_all():
     yf_syms = list(dict.fromkeys(YF_MAP.values()))  # dedupe (ALSTOM/ALO doublon)
     rev = {}
@@ -58,21 +91,20 @@ def fetch_all():
         rev.setdefault(sym, []).append(tk)
 
     out = {}
+    failed = []
     tks = yf.Tickers(' '.join(yf_syms))
     for sym in yf_syms:
-        try:
-            fi = tks.tickers[sym].fast_info
-            price = fi.get('last_price') or fi.get('lastPrice')
-            prev = fi.get('previous_close') or fi.get('previousClose')
-            if not price or price <= 0.05:
-                continue
-            fx = NON_EUR.get(sym, 1)
-            price = round(price / fx, 2)
-            chg = round((price * fx / prev - 1) * 100, 2) if prev else 0
-            for tk in rev[sym]:
-                out[tk] = (price, chg)
-        except Exception as e:
-            print(f"  skip {sym}: {e}")
+        price, prev = fetch_one_with_retry(sym, tks)
+        if not price:
+            failed.append(sym)
+            continue
+        fx = NON_EUR.get(sym, 1)
+        price_eur = round(price / fx, 2)
+        chg = round((price / prev - 1) * 100, 2) if prev else 0
+        for tk in rev[sym]:
+            out[tk] = (price_eur, chg)
+    if failed:
+        print(f"  ECHEC malgre repli pour {len(failed)} valeur(s) : {', '.join(failed)}")
     return out
 
 
