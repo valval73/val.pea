@@ -92,17 +92,28 @@ def fetch_all():
 
     out = {}
     failed = []
-    tks = yf.Tickers(' '.join(yf_syms))
-    for sym in yf_syms:
-        price, prev = fetch_one_with_retry(sym, tks)
-        if not price:
-            failed.append(sym)
-            continue
-        fx = NON_EUR.get(sym, 1)
-        price_eur = round(price / fx, 2)
-        chg = round((price / prev - 1) * 100, 2) if prev else 0
-        for tk in rev[sym]:
-            out[tk] = (price_eur, chg)
+    # Traitement par petits paquets avec pause entre chacun -- ~95
+    # tickers tapes d'affilee sans respiration declenchait un
+    # rate-limit Yahoo qui faisait echouer des valeurs meme tres
+    # liquides (Air Liquide et d'autres, pas seulement les tickers
+    # capricieux) -- audit du 04/09/2026. Meme principe deja eprouve
+    # dans fetch_fundamentals.py (paquets de 5, pause 2s).
+    CHUNK = 6
+    for i in range(0, len(yf_syms), CHUNK):
+        chunk = yf_syms[i:i+CHUNK]
+        tks = yf.Tickers(' '.join(chunk))
+        for sym in chunk:
+            price, prev = fetch_one_with_retry(sym, tks)
+            if not price:
+                failed.append(sym)
+                continue
+            fx = NON_EUR.get(sym, 1)
+            price_eur = round(price / fx, 2)
+            chg = round((price / prev - 1) * 100, 2) if prev else 0
+            for tk in rev[sym]:
+                out[tk] = (price_eur, chg)
+        if i + CHUNK < len(yf_syms):
+            time.sleep(2)
     if failed:
         print(f"  ECHEC malgre repli pour {len(failed)} valeur(s) : {', '.join(failed)}")
     return out

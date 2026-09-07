@@ -282,6 +282,7 @@ def main():
                 time.sleep(1.5)
             enriched.append({**v,'ia_txt':ia_txt})
         results.append({'infl':infl,'vids':enriched}); time.sleep(2)
+    subs_out=[]
     for src in SUBSTACK:
         print(f'\n{src["name"]}...')
         arts=substack_articles(src['rss']); enriched=[]
