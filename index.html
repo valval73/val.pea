@@ -9841,7 +9841,10 @@ document.addEventListener('DOMContentLoaded',function(){
   // cf fetchLive()) -- les prix arrivent déjà à jour via data.js,
   // rafraîchi côté serveur toutes les heures en Bourse.
   setTimeout(fetchMacro, 1500);
-  setTimeout(checkAlerts,2000);
+  // Popup d'alertes au chargement retiree a la demande -- trop intrusive
+  // (confirm() natif qui bloque la page), et en navigation privee elle
+  // se redeclenche a chaque fois puisque localStorage repart a vide.
+  // setTimeout(checkAlerts,2000);
   setTimeout(checkBpfResultats,3000);
   setTimeout(function(){
     ptfInit();

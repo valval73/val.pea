@@ -158,6 +158,11 @@ def compute_dcf_and_zones(ticker, sector, price, info):
         eps_ttm = info.get('trailingEps') or 0
         eps_fwd = info.get('forwardEps') or (eps_ttm * 1.08 if eps_ttm else 0)
         eps_growth = info.get('earningsGrowth') or info.get('revenueGrowth') or 0.05
+        # earningsGrowth de yfinance est un YoY brut, parfois extreme (ex-effet
+        # de base sur creux/rebond) -- sans plafond, un exposant sur 3 ans
+        # (1+g)^3 peut exploser et inverser dcfb/dcfu (ex: LVMH dcfb>dcfu
+        # constate en prod). Plafonne a une croissance soutenable long terme.
+        eps_growth_proj = max(min(eps_growth, 0.25), -0.15)
         dividend = info.get('dividendYield') or 0
         roe = info.get('returnOnEquity') or 0
         book_value = info.get('bookValue') or 0
@@ -167,7 +172,7 @@ def compute_dcf_and_zones(ticker, sector, price, info):
         pe_normal = FAIR_PE.get(cat, FAIR_PE['default'])
         decote = DECOTE.get(cat, DECOTE['default'])
 
-        eps_3y = eps_fwd * ((1 + eps_growth) ** 3) if eps_fwd and eps_fwd > 0 else 0
+        eps_3y = eps_fwd * ((1 + eps_growth_proj) ** 3) if eps_fwd and eps_fwd > 0 else 0
         dcf_pe = pe_normal * eps_3y if eps_3y > 0 else 0
 
         dcf_gordon = 0
