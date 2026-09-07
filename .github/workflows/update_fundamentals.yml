@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: data-js-writer
+  cancel-in-progress: false
+
 jobs:
   update-fundamentals:
     runs-on: ubuntu-latest
@@ -27,9 +31,11 @@ jobs:
         run: |
           git config --local user.email "valpea-bot@github.com"
           git config --local user.name "VAL.PEA Bot"
+          git fetch origin main --quiet
           git diff --quiet fundamentals_log.json data.js 2>/dev/null || (
             git add fundamentals_log.json data.js &&
             git commit -m "📊 Fundamentals $(date '+%Y-%m-%d') [skip ci]" &&
+            git pull --rebase origin main &&
             git push
           )
           echo "Done"
