@@ -24,7 +24,7 @@ print(f"ANTHROPIC: {'✅ OK' if ANTHROPIC_KEY else '❌ MANQUANT'}")
 print(f"GMAIL:     {'✅ ' + GMAIL_USER if GMAIL_USER else '❌ MANQUANT'}")
 print(f"TO:        {'✅ ' + EMAIL_TO if EMAIL_TO else '❌ MANQUANT'}")
 
-UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
+UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
 
 SUBSTACK_FEEDS = [
     ('Rique Trading',       'https://riquetradingetbourse.substack.com/feed'),
@@ -34,7 +34,11 @@ SUBSTACK_FEEDS = [
 # ─── HTTP ─────────────────────────────────────────────────────────────────
 def http_get(url, timeout=10):
     try:
-        req = ur.Request(url, headers={'User-Agent': UA})
+        req = ur.Request(url, headers={
+            'User-Agent': UA,
+            'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+            'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
+        })
         with ur.urlopen(req, timeout=timeout) as r:
             return r.read().decode('utf-8', errors='ignore')
     except Exception as e:

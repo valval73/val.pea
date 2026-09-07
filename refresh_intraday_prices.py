@@ -152,7 +152,8 @@ def main():
         print("ECHEC total -- aucun commit, on ne veut pas ecraser data.js avec du vide")
         return
     updated = patch_data_js(quotes)
-    print(f"data.js : {updated} tickers mis a jour")
+    print(f"data.js : {updated} valeur(s) modifiee(s) sur {len(quotes)} cours recuperes "
+          f"({len(quotes)-updated} deja identiques -- rien a changer, pas une erreur)")
 
 
 if __name__ == '__main__':
