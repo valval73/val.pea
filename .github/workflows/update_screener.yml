@@ -45,7 +45,7 @@ jobs:
 
       - name: Supprimer fichiers temporaires
         run: |
-          git rm --ignore-unmatch "*.docx" alert_preview.html mail_preview.html weekly_preview.html 2>/dev/null || true
+          git rm -f --ignore-unmatch "*.docx" alert_preview.html mail_preview.html weekly_preview.html 2>/dev/null || true
           rm -f *.docx alert_preview.html mail_preview.html weekly_preview.html 2>/dev/null || true
 
       - name: Commit et push
