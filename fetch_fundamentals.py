@@ -172,8 +172,12 @@ def compute_dcf_and_zones(ticker, sector, price, info):
         pe_normal = FAIR_PE.get(cat, FAIR_PE['default'])
         decote = DECOTE.get(cat, DECOTE['default'])
 
-        eps_3y = eps_fwd * ((1 + eps_growth_proj) ** 3) if eps_fwd and eps_fwd > 0 else 0
-        dcf_pe = pe_normal * eps_3y if eps_3y > 0 else 0
+        # Fair PE x BPA prevu N+1 -- valeur d'aujourd'hui, pas une projection
+        # a 3 ans traitee a tort comme un prix actuel (cause reelle des DCF a
+        # 3-5x le cours meme avec la croissance plafonnee -- audit du
+        # 07/09/2026). Le PE sectoriel "normal" est deja une hypothese
+        # generuse ; l'appliquer a un profit a 3 ans double l'optimisme.
+        dcf_pe = pe_normal * eps_fwd if eps_fwd and eps_fwd > 0 else 0
 
         dcf_gordon = 0
         if dividend and dividend > 0.01 and price > 0:
@@ -187,6 +191,21 @@ def compute_dcf_and_zones(ticker, sector, price, info):
         if roe and roe > 0.15 and book_value and book_value > 0:
             ke = 0.09
             dcf_pb = book_value * (roe / ke)
+
+        # Garde-fou final : quelle que soit la cause (action decotee pour
+        # raison specifique -- ex Air France, Atos, Worldline -- pas un
+        # simple retard sectoriel), aucune methode individuelle ne doit
+        # pousser le "juste prix" au-dela d'un multiple raisonnable du
+        # cours actuel. Un DCF a 4-6x le cours n'est pas un signal
+        # d'opportunite fiable, c'est un artefact de calcul -- audit du
+        # 07/09/2026 (48/891 combinaisons testees hors [0.25x-2.5x]
+        # avant ce garde-fou).
+        def _clamp(v, lo=0.4, hi=2.2):
+            if not v or v <= 0 or price <= 0: return v
+            return max(min(v, price * hi), price * lo)
+        dcf_pe = _clamp(dcf_pe)
+        dcf_gordon = _clamp(dcf_gordon)
+        dcf_pb = _clamp(dcf_pb)
 
         dcfs = [d for d in [dcf_pe, dcf_gordon, dcf_pb] if d > price * 0.3]
         if not dcfs:
