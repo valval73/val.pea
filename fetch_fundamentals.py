@@ -368,6 +368,7 @@ def main():
             all_results[ticker] = fetch_one(ticker, sym, sectors.get(ticker, ''))
         time.sleep(2)
     updated = patch_data_js(all_results)
+    if updated: bump_index_html_version()
     calendar = build_earnings_calendar(all_results)
     log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
            'earnings': calendar, 'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
@@ -377,3 +378,22 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+def bump_index_html_version():
+    """Casse le cache CDN de GitHub Pages en changeant l'URL de data.js a
+    chaque ecriture reussie -- data.js etait fige depuis des semaines cote
+    site public car son URL ne changeait jamais (audit du 08/09/2026)."""
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            content = f.read()
+        new_content = re.sub(
+            r'data\.js\?v=\d+',
+            f'data.js?v={int(datetime.now(PARIS).timestamp())}',
+            content, count=1
+        )
+        if new_content != content:
+            with open('index.html', 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print("index.html : version data.js mise a jour (cache casse)")
+    except Exception as e:
+        print(f"  WARN bump version: {e}")

@@ -512,8 +512,17 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
   <div class="lex-grid" id="lex-grid"></div>
 </div>
 
-<script src="data.js"></script>
 <script>
+// ═══════════ DATA (chargee depuis data.js, plus codee en dur ici) ═══════════
+</script>
+<script src="data.js?v=1788886595"></script>
+<script>
+// Garde-fou : si data.js n'a pas charge (reseau, erreur), le signaler
+// au lieu de laisser la page planter silencieusement plus loin.
+if (typeof S === 'undefined') {
+  document.write('<div style="padding:40px;font-family:sans-serif;color:#c0392b">\u26a0\ufe0f data.js n\'a pas pu se charger. Rechargez la page (Cmd/Ctrl+Maj+R).</div>');
+  throw new Error('data.js absent -- arret pour eviter des erreurs en cascade');
+}
 function buildETF(){
   const g=document.getElementById('etf-grid');
   if(!g)return;

@@ -152,8 +152,29 @@ def main():
         print("ECHEC total -- aucun commit, on ne veut pas ecraser data.js avec du vide")
         return
     updated = patch_data_js(quotes)
+    if updated: bump_index_html_version()
     print(f"data.js : {updated} valeur(s) modifiee(s) sur {len(quotes)} cours recuperes "
           f"({len(quotes)-updated} deja identiques -- rien a changer, pas une erreur)")
+
+
+def bump_index_html_version():
+    """Casse le cache CDN de GitHub Pages en changeant l URL de data.js a
+    chaque ecriture reussie -- meme correctif que fetch_fundamentals.py
+    (audit du 08/09/2026)."""
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            content = f.read()
+        new_content = re.sub(
+            r'data\.js\?v=\d+',
+            f'data.js?v={int(datetime.now(PARIS).timestamp())}',
+            content, count=1
+        )
+        if new_content != content:
+            with open('index.html', 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print('index.html : version data.js mise a jour (cache casse)')
+    except Exception as e:
+        print(f'  WARN bump version: {e}')
 
 
 if __name__ == '__main__':
