@@ -579,7 +579,11 @@ function pdfFiche(){
     <td style="padding:4px 6px;text-align:right">${s.pe}x</td><td style="padding:4px 6px;text-align:right">${s.pb}x</td>
     <td style="padding:4px 6px;text-align:right">${s.roe}%</td><td style="padding:4px 6px;text-align:right">${s.yield}%</td>
     <td style="padding:4px 6px;text-align:right">${s.ev_ebitda}x</td></tr>
-    ${s.peers.map(p=>`<tr><td style="padding:4px 6px">${p.n}</td><td style="padding:4px 6px;text-align:right">${p.pe}x</td><td style="padding:4px 6px;text-align:right">${p.pb}x</td><td style="padding:4px 6px;text-align:right">${p.roe}%</td><td style="padding:4px 6px;text-align:right">${p.div}%</td><td style="padding:4px 6px;text-align:right">${p.evebitda}x</td></tr>`).join('')}
+    ${s.peers.map(p=>{
+      const live=S.find(x=>x.name===p.n);
+      const pv=live?{pe:live.pe,pb:live.pb,roe:live.roe,div:live.yield,evebitda:live.ev_ebitda}:p;
+      return `<tr><td style="padding:4px 6px">${p.n}${live?' <span style="color:var(--gn);font-size:8px">●</span>':''}</td><td style="padding:4px 6px;text-align:right">${pv.pe}x</td><td style="padding:4px 6px;text-align:right">${pv.pb}x</td><td style="padding:4px 6px;text-align:right">${pv.roe}%</td><td style="padding:4px 6px;text-align:right">${pv.div}%</td><td style="padding:4px 6px;text-align:right">${pv.evebitda}x</td></tr>`;
+    }).join('')}
   </tbody></table>`;
   const html=`<!DOCTYPE html><html><head><meta charset=UTF-8><title>${s.ticker} — ${s.name}</title>
   <style>body{font-family:Georgia,serif;max-width:820px;margin:20px auto;color:#1a1a1a;font-size:13px;line-height:1.5}
