@@ -234,6 +234,151 @@ def compute_dcf_and_zones(ticker, sector, price, info):
         print(f"  DCF SKIP {ticker}: {e}")
         return None
 
+def compute_rsi(closes, period=14):
+    """RSI (methode de Wilder), sans dependance pandas. closes = liste de
+    cours de cloture du plus ancien au plus recent. Rend None si pas
+    assez d'historique -- mieux vaut ne rien afficher qu'afficher un
+    chiffre invente."""
+    if len(closes) < period + 1:
+        return None
+    deltas = [closes[i] - closes[i-1] for i in range(1, len(closes))]
+    gains = [d if d > 0 else 0.0 for d in deltas]
+    losses = [-d if d < 0 else 0.0 for d in deltas]
+    avg_gain = sum(gains[:period]) / period
+    avg_loss = sum(losses[:period]) / period
+    for i in range(period, len(gains)):
+        avg_gain = (avg_gain * (period - 1) + gains[i]) / period
+        avg_loss = (avg_loss * (period - 1) + losses[i]) / period
+    if avg_loss == 0:
+        return 100.0 if avg_gain > 0 else 50.0
+    rs = avg_gain / avg_loss
+    return round(100 - (100 / (1 + rs)), 1)
+
+def compute_ma(closes, window):
+    if len(closes) < window:
+        return None
+    return round(sum(closes[-window:]) / window, 2)
+
+def _get_row(df, *names):
+    """Cherche une ligne de bilan/resultat en essayant plusieurs libelles
+    possibles -- yfinance a change ses noms de champs selon les versions,
+    et je n'ai pas d'acces reseau pour verifier en direct lesquels sont
+    actifs. Renvoie la valeur la plus recente (1ere colonne) ou None."""
+    if df is None or df.empty:
+        return None
+    for name in names:
+        if name in df.index:
+            try:
+                val = df.loc[name].iloc[0]
+                return float(val) if val is not None else None
+            except Exception:
+                continue
+    return None
+
+def _get_row_prev(df, *names):
+    """Meme chose mais pour l'annee precedente (2e colonne)."""
+    if df is None or df.empty or df.shape[1] < 2:
+        return None
+    for name in names:
+        if name in df.index:
+            try:
+                val = df.loc[name].iloc[1]
+                return float(val) if val is not None else None
+            except Exception:
+                continue
+    return None
+
+def compute_piotroski(t, info):
+    """F-Score de Piotroski (0-9). Echoue proprement (None) si le bilan
+    n'a pas assez d'historique -- mieux vaut ne rien afficher qu'un faux
+    chiffre. A verifier sur le premier run reel (cf note plus haut)."""
+    try:
+        bs = t.balance_sheet
+        inc = t.financials
+        cf = t.cashflow
+        if bs is None or bs.empty or inc is None or inc.empty:
+            return None
+
+        total_assets = _get_row(bs, 'Total Assets')
+        total_assets_prev = _get_row_prev(bs, 'Total Assets')
+        net_income = _get_row(inc, 'Net Income', 'Net Income Common Stockholders')
+        ocf = _get_row(cf, 'Operating Cash Flow', 'Total Cash From Operating Activities', 'Cash Flow From Continuing Operating Activities')
+        ltd = _get_row(bs, 'Long Term Debt', 'Long Term Debt And Capital Lease Obligation')
+        ltd_prev = _get_row_prev(bs, 'Long Term Debt', 'Long Term Debt And Capital Lease Obligation')
+        cur_assets = _get_row(bs, 'Total Current Assets', 'Current Assets')
+        cur_liab = _get_row(bs, 'Total Current Liabilities', 'Current Liabilities')
+        cur_assets_prev = _get_row_prev(bs, 'Total Current Assets', 'Current Assets')
+        cur_liab_prev = _get_row_prev(bs, 'Total Current Liabilities', 'Current Liabilities')
+        shares = _get_row(bs, 'Share Issued', 'Ordinary Shares Number')
+        shares_prev = _get_row_prev(bs, 'Share Issued', 'Ordinary Shares Number')
+        gross_profit = _get_row(inc, 'Gross Profit')
+        gross_profit_prev = _get_row_prev(inc, 'Gross Profit')
+        revenue = _get_row(inc, 'Total Revenue')
+        revenue_prev = _get_row_prev(inc, 'Total Revenue')
+        net_income_prev = _get_row_prev(inc, 'Net Income', 'Net Income Common Stockholders')
+
+        if total_assets is None or net_income is None or total_assets_prev is None:
+            return None
+
+        roa = net_income / total_assets if total_assets else None
+        roa_prev = (net_income_prev / total_assets_prev) if (net_income_prev is not None and total_assets_prev) else None
+
+        score = 0
+        # Rentabilite (4 points)
+        if roa is not None and roa > 0: score += 1
+        if ocf is not None and ocf > 0: score += 1
+        if roa is not None and roa_prev is not None and roa > roa_prev: score += 1
+        if ocf is not None and net_income is not None and ocf > net_income: score += 1
+        # Levier / liquidite (3 points)
+        if ltd is not None and ltd_prev is not None and ltd <= ltd_prev: score += 1
+        if cur_assets and cur_liab and cur_assets_prev and cur_liab_prev:
+            if (cur_assets/cur_liab) > (cur_assets_prev/cur_liab_prev): score += 1
+        if shares is not None and shares_prev is not None and shares <= shares_prev * 1.01: score += 1
+        # Efficacite operationnelle (2 points)
+        if gross_profit and revenue and gross_profit_prev and revenue_prev:
+            if (gross_profit/revenue) > (gross_profit_prev/revenue_prev): score += 1
+        if revenue and revenue_prev and total_assets_prev:
+            if (revenue/total_assets) > (revenue_prev/total_assets_prev): score += 1
+        return score
+    except Exception as e:
+        print(f"  Piotroski SKIP: {e}")
+        return None
+
+def compute_altman_z(t, info, price, shares_out):
+    """Z-Score d'Altman. Meme reserve que Piotroski sur les noms de
+    champs yfinance. Formule standard (entreprises industrielles cotees)."""
+    try:
+        bs = t.balance_sheet
+        inc = t.financials
+        if bs is None or bs.empty or inc is None or inc.empty:
+            return None
+
+        total_assets = _get_row(bs, 'Total Assets')
+        cur_assets = _get_row(bs, 'Total Current Assets', 'Current Assets')
+        cur_liab = _get_row(bs, 'Total Current Liabilities', 'Current Liabilities')
+        total_liab = _get_row(bs, 'Total Liab', 'Total Liabilities Net Minority Interest')
+        retained_earnings = _get_row(bs, 'Retained Earnings')
+        ebit = _get_row(inc, 'EBIT', 'Operating Income')
+        revenue = _get_row(inc, 'Total Revenue')
+
+        if not total_assets or not total_liab:
+            return None
+
+        working_capital = (cur_assets - cur_liab) if (cur_assets is not None and cur_liab is not None) else 0
+        market_cap = (price * shares_out) if (price and shares_out) else info.get('marketCap')
+
+        A = working_capital / total_assets
+        B = (retained_earnings or 0) / total_assets
+        C = (ebit or 0) / total_assets
+        D = (market_cap / total_liab) if (market_cap and total_liab) else 0
+        E = (revenue or 0) / total_assets
+
+        z = 1.2*A + 1.4*B + 3.3*C + 0.6*D + 1.0*E
+        return round(z, 2)
+    except Exception as e:
+        print(f"  Altman SKIP: {e}")
+        return None
+
 def safe(v, d=0, dec=2):
     try:
         f = float(v)
@@ -292,6 +437,27 @@ def fetch_one(ticker, yf_sym, sector):
                       f"DCF={dcf['dcfm']}€ Zone={dcf['el']}-{dcf['eh']}€")
             else:
                 print(f"  OK {ticker}: PE={result['pe']} ROE={result['roe']}% (DCF non calculable)")
+        # RSI + moyennes mobiles (recalcules a chaque run -- avant geles
+        # depuis la creation de chaque fiche, cf audit du 08/09/2026)
+        try:
+            hist = t.history(period='1y')
+            if not hist.empty and len(hist) > 15:
+                closes = hist['Close'].tolist()
+                rsi = compute_rsi(closes)
+                mm50 = compute_ma(closes, 50)
+                mm200 = compute_ma(closes, 200)
+                if rsi is not None: result['rsi'] = rsi
+                if mm50 is not None: result['mm50'] = mm50
+                if mm200 is not None: result['mm200'] = mm200
+        except Exception as e:
+            print(f"  RSI/MM SKIP {ticker}: {e}")
+        # Piotroski + Altman Z (a verifier sur le premier run reel --
+        # voir reserve dans compute_piotroski/compute_altman_z)
+        pio = compute_piotroski(t, info)
+        shares_out = info.get('sharesOutstanding')
+        alt = compute_altman_z(t, info, result['price'], shares_out)
+        if pio is not None: result['pio'] = pio
+        if alt is not None: result['alt'] = alt
         # Prochaine publication resultats
         try:
             cal = t.calendar
@@ -314,7 +480,8 @@ def patch_data_js(all_results):
                'roe':'roe','margin':'margin','gm':'gm','debt':'debt','ic':'ic',
                'revg':'revg','epsg':'epsg','yield':'yield','beta':'beta','b52h':'b52h','b52l':'b52l',
                'dcfb':'dcfb','dcfm':'dcfm','dcfu':'dcfu',
-               'el':'el','eh':'eh','stop':'stop','o1':'o1','o2':'o2'}
+               'el':'el','eh':'eh','stop':'stop','o1':'o1','o2':'o2',
+               'rsi':'rsi','mm50':'mm50','mm200':'mm200','pio':'pio','alt':'alt'}
     for ticker, data in all_results.items():
         if 'error' in data and 'price' not in data: continue
         tp = content.find(f"ticker:'{ticker}'")
