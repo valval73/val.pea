@@ -238,7 +238,11 @@ def compute_rsi(closes, period=14):
     """RSI (methode de Wilder), sans dependance pandas. closes = liste de
     cours de cloture du plus ancien au plus recent. Rend None si pas
     assez d'historique -- mieux vaut ne rien afficher qu'afficher un
-    chiffre invente."""
+    chiffre invente. Filtre les trous de cotation (NaN) en amont --
+    trouve en verifiant ce meme risque apres l'incident Altman du
+    08/09/2026 : un historique Yahoo troue peut sinon produire un NaN
+    qui casse tout data.js."""
+    closes = [c for c in closes if c is not None and not math.isnan(c)]
     if len(closes) < period + 1:
         return None
     deltas = [closes[i] - closes[i-1] for i in range(1, len(closes))]
@@ -252,38 +256,56 @@ def compute_rsi(closes, period=14):
     if avg_loss == 0:
         return 100.0 if avg_gain > 0 else 50.0
     rs = avg_gain / avg_loss
-    return round(100 - (100 / (1 + rs)), 1)
+    val = round(100 - (100 / (1 + rs)), 1)
+    return None if math.isnan(val) else val
 
 def compute_ma(closes, window):
+    closes = [c for c in closes if c is not None and not math.isnan(c)]
     if len(closes) < window:
         return None
-    return round(sum(closes[-window:]) / window, 2)
+    val = round(sum(closes[-window:]) / window, 2)
+    return None if math.isnan(val) else val
 
 def _get_row(df, *names):
     """Cherche une ligne de bilan/resultat en essayant plusieurs libelles
     possibles -- yfinance a change ses noms de champs selon les versions,
     et je n'ai pas d'acces reseau pour verifier en direct lesquels sont
-    actifs. Renvoie la valeur la plus recente (1ere colonne) ou None."""
+    actifs. Renvoie la valeur la plus recente (1ere colonne) ou None.
+    Traite NaN comme absent -- pandas utilise NaN (pas None) pour une
+    case vide, et 'val is not None' laissait passer NaN, qui s'ecrivait
+    ensuite tel quel dans data.js (litteral 'nan', invalide en JS) et
+    cassait le chargement de tout le site -- incident du 08/09/2026."""
     if df is None or df.empty:
         return None
     for name in names:
         if name in df.index:
             try:
                 val = df.loc[name].iloc[0]
-                return float(val) if val is not None else None
+                if val is None:
+                    continue
+                fval = float(val)
+                if math.isnan(fval) or math.isinf(fval):
+                    continue
+                return fval
             except Exception:
                 continue
     return None
 
 def _get_row_prev(df, *names):
-    """Meme chose mais pour l'annee precedente (2e colonne)."""
+    """Meme chose mais pour l'annee precedente (2e colonne). Meme
+    traitement NaN que _get_row (cf note ci-dessus)."""
     if df is None or df.empty or df.shape[1] < 2:
         return None
     for name in names:
         if name in df.index:
             try:
                 val = df.loc[name].iloc[1]
-                return float(val) if val is not None else None
+                if val is None:
+                    continue
+                fval = float(val)
+                if math.isnan(fval) or math.isinf(fval):
+                    continue
+                return fval
             except Exception:
                 continue
     return None
@@ -374,6 +396,8 @@ def compute_altman_z(t, info, price, shares_out):
         E = (revenue or 0) / total_assets
 
         z = 1.2*A + 1.4*B + 3.3*C + 0.6*D + 1.0*E
+        if math.isnan(z) or math.isinf(z):
+            return None
         return round(z, 2)
     except Exception as e:
         print(f"  Altman SKIP: {e}")
@@ -492,6 +516,13 @@ def patch_data_js(all_results):
         for dk, jk in FIELDS.items():
             val = data.get(dk)
             if val is None or val == 0: continue
+            # Garde-fou universel : un NaN/Infinity ecrit tel quel (litteral
+            # 'nan'/'inf') casse la syntaxe JS de tout data.js et rend le
+            # site entier vide -- incident reel du 08/09/2026 (bug Altman
+            # Z, mais cette protection couvre n'importe quel champ futur).
+            if isinstance(val, float) and (math.isnan(val) or math.isinf(val)):
+                print(f"  IGNORE {ticker}.{dk}: valeur invalide ({val})")
+                continue
             nb = re.sub(jk + r':[+-]?\d+\.?\d*', jk + ':' + str(val), block, count=1)
             if nb != block: block = nb; updated += 1
         content = content[:tp] + block + content[block_end:]
