@@ -32,8 +32,8 @@ jobs:
           git config --local user.email "valpea-bot@github.com"
           git config --local user.name "VAL.PEA Bot"
           git fetch origin main --quiet
-          git diff --quiet fundamentals_log.json data.js 2>/dev/null || (
-            git add fundamentals_log.json data.js &&
+          git diff --quiet fundamentals_log.json data.js index.html 2>/dev/null || (
+            git add fundamentals_log.json data.js index.html &&
             git commit -m "📊 Fundamentals $(date '+%Y-%m-%d') [skip ci]" &&
             git pull --rebase origin main &&
             git push

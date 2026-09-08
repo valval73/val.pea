@@ -29,8 +29,8 @@ jobs:
         run: |
           git config --local user.email "valpea-bot@github.com"
           git config --local user.name "VAL.PEA Bot"
-          git diff --quiet data.js 2>/dev/null || (
-            git add data.js &&
+          git diff --quiet data.js index.html 2>/dev/null || (
+            git add data.js index.html &&
             git commit -m "⚡ Prix intraday $(date '+%Y-%m-%d %H:%M')" &&
             git fetch origin main --quiet &&
             git pull --rebase origin main &&
