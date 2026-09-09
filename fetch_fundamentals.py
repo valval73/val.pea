@@ -496,6 +496,85 @@ def fetch_one(ticker, yf_sym, sector):
         result['error'] = str(e)
     return result
 
+def bam_score(price, dcfm, pio, alt, roe, epsg):
+    """Score aligne methode BAM (Buffett-Ackman-Munger) : la marge de
+    securite DCF et la solidite financiere pesent plus que le momentum
+    ou la taille. Bareme continu (pas de paliers fixes) pour eviter les
+    gros paquets d'ex-aequo qui gonflaient artificiellement le nombre
+    de A -- corrige suite a une question directe du 09/09/2026."""
+    score = 0
+    if price > 0 and dcfm > 0:
+        upside = (dcfm/price - 1) * 100
+        score += min(35, max(0, upside * 0.7))
+    score += (max(0, min(9, pio)) / 9) * 25
+    score += min(15, max(0, alt * 4))
+    score += min(15, max(0, roe * 0.7))
+    score += min(10, max(0, epsg * 1.0))
+    return round(min(100, score))
+
+def compute_all_scores():
+    """Relit data.js apres la mise a jour des fondamentaux et recalcule
+    le score A/B/C/D de chaque action -- seuils calcules par categorie
+    (large/mid/small), pas sur l'univers entier mele, pour comparer
+    chaque valeur a ses pairs de taille comparable (cf audit du
+    09/09/2026 : comparer Safran a des small caps n'a pas de sens)."""
+    with open('data.js', 'r', encoding='utf-8') as f:
+        content = f.read()
+    entries = []
+    for m in re.finditer(r"\{ticker:'([A-Z0-9]+)'.*?(?=\{ticker:|\];)", content, re.DOTALL):
+        block = m.group()
+        tk = m.group(1)
+        def g(field, d=0):
+            mm = re.search(field + r":([\d.-]+)", block)
+            return float(mm.group(1)) if mm else d
+        cap_m = re.search(r"cap:'(\w+)'", block)
+        cap = cap_m.group(1) if cap_m else 'mid'
+        price = g('price')
+        if price <= 0: continue
+        cs = bam_score(price, g('dcfm'), g('pio'), g('alt'), g('roe'), g('epsg'))
+        entries.append({'ticker': tk, 'cap': cap, 'score': cs})
+
+    by_cap = {}
+    for e in entries:
+        by_cap.setdefault(e['cap'], []).append(e['score'])
+    thresholds = {}
+    for cap, vals in by_cap.items():
+        vs = sorted(vals, reverse=True)
+        n = len(vs)
+        if n < 5:
+            thresholds[cap] = (75, 60, 45)
+            continue
+        thresholds[cap] = (vs[max(0,int(n*0.10)-1)], vs[max(0,int(n*0.45)-1)], vs[max(0,int(n*0.80)-1)])
+
+    grades = {}
+    for e in entries:
+        a, b, cc = thresholds.get(e['cap'], (75, 60, 45))
+        if e['score'] >= a: g = 'A'
+        elif e['score'] >= b: g = 'B'
+        elif e['score'] >= cc: g = 'C'
+        else: g = 'D'
+        grades[e['ticker']] = g
+    return grades
+
+def patch_scores(grades):
+    with open('data.js', 'r', encoding='utf-8') as f:
+        content = f.read()
+    updated = 0
+    for ticker, grade in grades.items():
+        tp = content.find(f"ticker:'{ticker}'")
+        if tp == -1: continue
+        np_ = content.find("ticker:'", tp + 1)
+        block_end = np_ if np_ > -1 else len(content)
+        block = content[tp:block_end]
+        nb = re.sub(r"score:'[ABCD]'", f"score:'{grade}'", block, count=1)
+        if nb != block:
+            block = nb; updated += 1
+        content = content[:tp] + block + content[block_end:]
+    with open('data.js', 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"Scores A/B/C/D recalcules : {updated} valeurs mises a jour")
+    return updated
+
 def patch_data_js(all_results):
     with open('data.js', 'r', encoding='utf-8') as f:
         content = f.read()
@@ -567,6 +646,8 @@ def main():
         time.sleep(2)
     updated = patch_data_js(all_results)
     if updated: bump_index_html_version()
+    grades = compute_all_scores()
+    patch_scores(grades)
     calendar = build_earnings_calendar(all_results)
     log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
            'earnings': calendar, 'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
