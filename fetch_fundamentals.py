@@ -714,9 +714,6 @@ def main():
         except Exception as e2:
             print(f"❌ ECHEC MEME de la version minimale : {e2}")
 
-if __name__ == '__main__':
-    main()
-
 def bump_index_html_version():
     """Casse le cache CDN de GitHub Pages en changeant l'URL de data.js a
     chaque ecriture reussie -- data.js etait fige depuis des semaines cote
@@ -735,3 +732,6 @@ def bump_index_html_version():
             print("index.html : version data.js mise a jour (cache casse)")
     except Exception as e:
         print(f"  WARN bump version: {e}")
+
+if __name__ == '__main__':
+    main()
