@@ -653,16 +653,24 @@ def main():
         time.sleep(2)
     updated = patch_data_js(all_results)
     if updated: bump_index_html_version()
+    score_status = {'ok': False, 'error': None, 'distribution': None, 'count': 0}
     try:
         grades = compute_all_scores()
-        patch_scores(grades)
+        n = patch_scores(grades)
+        from collections import Counter
+        score_status = {'ok': True, 'error': None,
+                         'distribution': dict(Counter(grades.values())),
+                         'count': n, 'total_computed': len(grades)}
     except Exception as e:
         import traceback
+        tb = traceback.format_exc()
         print(f"❌ ECHEC recalcul des scores A/B/C/D : {e}")
-        traceback.print_exc()
+        print(tb)
         print("(les scores existants restent inchanges pour ce run -- prix et fondamentaux, eux, sont bien a jour)")
+        score_status = {'ok': False, 'error': str(e), 'traceback': tb, 'distribution': None, 'count': 0}
     calendar = build_earnings_calendar(all_results)
     log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
+           'score_computation': score_status,
            'earnings': calendar, 'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
     with open('fundamentals_log.json', 'w', encoding='utf-8') as f:
         json.dump(log, f, ensure_ascii=False, indent=2, default=str)
