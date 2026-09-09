@@ -443,7 +443,12 @@ def fetch_one(ticker, yf_sym, sector):
         result['ic']      = safe(info.get('currentRatio'))
         result['revg']    = pct(info.get('revenueGrowth', 0))
         result['epsg']    = pct(info.get('earningsGrowth', 0))
-        result['yield']   = pct(info.get('dividendYield', 0))
+        # dividendYield de yfinance est deja exprime en pourcentage direct
+        # (ex: 3.05 pour 3.05%), pas en fraction -- utiliser pct() ici
+        # multipliait par 100 une deuxieme fois (LVMH affichait 305%,
+        # Credit Agricole 910%, sur pres de la moitie de l'univers --
+        # signale par Val le 09/09/2026, trouve via GTT).
+        result['yield']   = safe(info.get('dividendYield', 0), 0, 1)
         result['payout']  = pct(info.get('payoutRatio', 0))
         result['beta']    = safe(info.get('beta'))
         result['b52h']    = safe(info.get('fiftyTwoWeekHigh'))
