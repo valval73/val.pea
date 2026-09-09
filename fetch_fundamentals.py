@@ -673,13 +673,46 @@ def main():
         print(tb)
         print("(les scores existants restent inchanges pour ce run -- prix et fondamentaux, eux, sont bien a jour)")
         score_status = {'ok': False, 'error': str(e), 'traceback': tb, 'distribution': None, 'count': 0}
-    calendar = build_earnings_calendar(all_results)
-    log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
-           'score_computation': score_status,
-           'earnings': calendar, 'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
-    with open('fundamentals_log.json', 'w', encoding='utf-8') as f:
-        json.dump(log, f, ensure_ascii=False, indent=2, default=str)
-    print(f"\nfundamentals_log.json sauvegarde")
+    calendar_status = {'ok': False, 'error': None}
+    try:
+        calendar = build_earnings_calendar(all_results)
+        calendar_status = {'ok': True, 'error': None}
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        print(f"❌ ECHEC calendrier de resultats : {e}")
+        print(tb)
+        calendar = []
+        calendar_status = {'ok': False, 'error': str(e), 'traceback': tb}
+
+    # Ecriture du journal isolee dans son propre garde-fou -- si la
+    # construction du dict 'data' (tous les tickers) plante pour une
+    # raison quelconque, on ecrit quand meme un journal minimal avec le
+    # statut du score, plutot que de tout perdre silencieusement comme
+    # le 09/09/2026 (1 seul fichier commite au lieu de 3, signe d'un
+    # plantage juste apres l'ecriture de data.js).
+    try:
+        log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
+               'score_computation': score_status, 'calendar_computation': calendar_status,
+               'earnings': calendar,
+               'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
+        with open('fundamentals_log.json', 'w', encoding='utf-8') as f:
+            json.dump(log, f, ensure_ascii=False, indent=2, default=str)
+        print(f"\nfundamentals_log.json sauvegarde (complet)")
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        print(f"❌ ECHEC ecriture fundamentals_log.json (version complete) : {e}")
+        print(tb)
+        try:
+            minimal_log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
+                            'score_computation': score_status, 'calendar_computation': calendar_status,
+                            'write_error': str(e)}
+            with open('fundamentals_log.json', 'w', encoding='utf-8') as f:
+                json.dump(minimal_log, f, ensure_ascii=False, indent=2, default=str)
+            print("fundamentals_log.json sauvegarde (version minimale de secours)")
+        except Exception as e2:
+            print(f"❌ ECHEC MEME de la version minimale : {e2}")
 
 if __name__ == '__main__':
     main()
