@@ -4423,6 +4423,10 @@ function render(s){
     </div>
   </div>
 </div>
+  <div class="sec">
+    <div class="sct">Grille Moat Notée (12 critères, façon "SCORE FONDA")</div>
+    <div id="moatgrid-${s.ticker}">${renderMoatGrid(s)}</div>
+  </div>
 
 <div class="sec">
   <div class="sct">Avantages Compétitifs (Moat) & Consensus Analystes</div>
@@ -4568,6 +4572,74 @@ function filt(f,btn){
    fort30:()=>S.filter(s=>s.score==='A'&&s.pio>=7&&s.price>=s.el&&s.price<=s.eh&&s.price>s.mm200&&s.rsi<65)};
   fil=(m[f]||m.all)();idx=0;cycles=0;show(0);buildQ();
 }
+const MOAT_CRITERIA = [
+  "Modele economique clair et comprehensible",
+  "Produits essentiels (pas juste souhaites)",
+  "Achats reguliers / recurrents",
+  "Base de clients large et diversifiee",
+  "Attachement client / cout de changement eleve",
+  "Effet de reseau",
+  "Leadership sur son secteur",
+  "Avantage competitif durable",
+  "Pouvoir de fixation des prix (pricing power)",
+  "Potentiel de croissance long terme",
+  "Faible dependance a une technologie externe",
+  "Management aligne avec les actionnaires"
+];
+window._moatWork = window._moatWork || {};
+
+function moatVal(s, i) {
+  const w = window._moatWork[s.ticker];
+  if (w && w[i] !== undefined) return w[i];
+  if (s.moatChk && s.moatChk[i] !== undefined) return s.moatChk[i];
+  return null;
+}
+function moatScoreInfo(s) {
+  let sum = 0, n = 0;
+  for (let i = 0; i < MOAT_CRITERIA.length; i++) {
+    const v = moatVal(s, i);
+    if (v !== null) { sum += v; n++; }
+  }
+  return { pct: n > 0 ? Math.round(sum / n * 100) : null, answered: n, total: MOAT_CRITERIA.length };
+}
+function setMoatCrit(ticker, idx, val) {
+  window._moatWork[ticker] = window._moatWork[ticker] || {};
+  window._moatWork[ticker][idx] = val;
+  const el = document.getElementById('moatgrid-' + ticker);
+  const s = S.find(x => x.ticker === ticker);
+  if (el && s) el.innerHTML = renderMoatGrid(s);
+}
+function copyMoatSummary(ticker) {
+  const s = S.find(x => x.ticker === ticker);
+  const info = moatScoreInfo(s);
+  let txt = `${ticker} moat: ${info.pct !== null ? info.pct + '%' : 'non evalue'} (${info.answered}/${info.total})\n`;
+  MOAT_CRITERIA.forEach((c, i) => {
+    const v = moatVal(s, i);
+    txt += `- ${c}: ${v === null ? '?' : v === 1 ? 'Bien' : v === 0.5 ? 'Moyen' : 'Pas bien'}\n`;
+  });
+  if (navigator.clipboard) navigator.clipboard.writeText(txt);
+  return txt;
+}
+function renderMoatGrid(s) {
+  const info = moatScoreInfo(s);
+  const scoreTxt = info.pct !== null
+    ? `<b style="font-size:18px;color:var(--gd)">${info.pct}%</b> <span style="font-size:10px;color:var(--mu)">(${info.answered}/${info.total} évalués)</span>`
+    : `<span style="font-size:11px;color:var(--mu)">Non évalué -- coche les critères ci-dessous</span>`;
+  const rows = MOAT_CRITERIA.map((c, i) => {
+    const v = moatVal(s, i);
+    const btn = (val, label) => {
+      const active = v === val;
+      return `<button onclick="setMoatCrit('${s.ticker}',${i},${val})" style="padding:2px 8px;font-size:9px;border-radius:3px;border:1px solid var(--bd);cursor:pointer;background:${active ? 'var(--gd)' : 'transparent'};color:${active ? '#fff' : 'var(--tx)'}">${label}</button>`;
+    };
+    return `<div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid var(--bd)">
+      <span style="flex:1;font-size:10px">${c}</span>
+      <div style="display:flex;gap:3px">${btn(0,'Pas bien')}${btn(0.5,'Moyen')}${btn(1,'Bien')}</div>
+    </div>`;
+  }).join('');
+  return `<div style="margin-bottom:8px">${scoreTxt}</div>${rows}
+    <button onclick="copyMoatSummary('${s.ticker}')" style="margin-top:8px;padding:4px 10px;font-size:10px;border-radius:4px;border:1px solid var(--bd);cursor:pointer;background:transparent;color:var(--tx)">📋 Copier le résumé (à me donner pour enregistrer)</button>`;
+}
+
 function filterFile(query){
   const q=(query||'').trim().toLowerCase();
   fil=q?S.filter(s=>s.ticker.toLowerCase().includes(q)||(s.name||'').toLowerCase().includes(q)):[...S];
