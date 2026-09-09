@@ -517,13 +517,20 @@ def compute_all_scores():
     le score A/B/C/D de chaque action -- seuils calcules par categorie
     (large/mid/small), pas sur l'univers entier mele, pour comparer
     chaque valeur a ses pairs de taille comparable (cf audit du
-    09/09/2026 : comparer Safran a des small caps n'a pas de sens)."""
+    09/09/2026 : comparer Safran a des small caps n'a pas de sens).
+    Extraction par blocs simples (meme methode que patch_data_js,
+    deja eprouvee) plutot que par regex complexe -- suite a un echec
+    silencieux en environnement reel non reproduit localement, on
+    reduit le risque en reutilisant ce qui marche deja ailleurs."""
     with open('data.js', 'r', encoding='utf-8') as f:
         content = f.read()
     entries = []
-    for m in re.finditer(r"\{ticker:'([A-Z0-9]+)'.*?(?=\{ticker:|\];)", content, re.DOTALL):
-        block = m.group()
+    tickers_found = list(re.finditer(r"\{ticker:'([A-Z0-9]+)'", content))
+    for i, m in enumerate(tickers_found):
         tk = m.group(1)
+        start = m.start()
+        end = tickers_found[i+1].start() if i+1 < len(tickers_found) else len(content)
+        block = content[start:end]
         def g(field, d=0):
             mm = re.search(field + r":([\d.-]+)", block)
             return float(mm.group(1)) if mm else d
@@ -646,8 +653,14 @@ def main():
         time.sleep(2)
     updated = patch_data_js(all_results)
     if updated: bump_index_html_version()
-    grades = compute_all_scores()
-    patch_scores(grades)
+    try:
+        grades = compute_all_scores()
+        patch_scores(grades)
+    except Exception as e:
+        import traceback
+        print(f"❌ ECHEC recalcul des scores A/B/C/D : {e}")
+        traceback.print_exc()
+        print("(les scores existants restent inchanges pour ce run -- prix et fondamentaux, eux, sont bien a jour)")
     calendar = build_earnings_calendar(all_results)
     log = {'generated': datetime.now(PARIS).isoformat(), 'updated_count': updated,
            'earnings': calendar, 'data': {k: {f:v for f,v in d.items() if f!='error'} for k,d in all_results.items()}}
