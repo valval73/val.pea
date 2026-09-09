@@ -2,8 +2,7 @@ name: Update PEA Screener
 
 on:
   schedule:
-    - cron: '35 15 * * 1-5'   # Lun-Ven 17h35 Paris — MAJ prix + fundamentals
-    - cron: '0 6 * * 6'        # Samedi 8h Paris — MAIL hebdo
+    - cron: '0 16 * * 5'   # Vendredi 18h Paris — MAJ prix + fundamentals complet, puis mail
   workflow_dispatch:
 
 permissions:
@@ -26,11 +25,10 @@ jobs:
       - name: Installer dependances
         run: pip install yfinance requests
 
-      - name: MAJ prix + fundamentals (tous les jours)
+      - name: MAJ prix + fundamentals (hebdomadaire, vendredi soir)
         run: python fetch_fundamentals.py || true
 
-      - name: Mail hebdo BAM (samedi uniquement)
-        if: github.event.schedule == '0 6 * * 6' || github.event_name == 'workflow_dispatch'
+      - name: Mail hebdo Grade A
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
