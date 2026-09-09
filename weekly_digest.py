@@ -102,6 +102,80 @@ def parse_stocks(datajs_content):
         stocks.append(s)
     return sorted(stocks, key=lambda x: (-1 if x['in_zone'] else 0, -(x['upside'] or 0)))
 
+def research_moat(s):
+    """Recherche reelle (web search active) des 12 criteres de la grille
+    moat pour une action Grade A -- c'est la vraie valeur-ajoutee du mail
+    par rapport a juste regarder le screener en direct (demande du
+    09/09/2026). Regle d'honnetete stricte : si la recherche ne trouve
+    pas assez d'info sur un critere precis, le score est null et la note
+    dit "information insuffisante" -- jamais invente. Meme principe que
+    la correction "recherche infructueuse" faite plus tot sur les
+    influenceurs."""
+    if not ANTHROPIC_KEY: return None
+    criteres_txt = '\n'.join(f"{i+1}. {c}" for i, c in enumerate(MOAT_CRITERIA_LABELS))
+    prompt = (f"Tu es analyste actions. Recherche sur le web des informations reelles et "
+              f"recentes sur {s['name']} ({s['ticker']}, cotee a Paris) -- rapport annuel, "
+              f"lettre aux actionnaires, presentations investisseurs, articles d'analystes serieux.\n\n"
+              f"Pour CHACUN des 12 criteres suivants, donne une note basee UNIQUEMENT sur ce que "
+              f"tu trouves reellement en cherchant -- jamais une supposition :\n{criteres_txt}\n\n"
+              f"Note : 1 = Bien, 0.5 = Moyen, 0 = Pas bien, null = information insuffisante trouvee "
+              f"(n'invente JAMAIS une note sans base reelle -- null est une reponse honnete valide).\n\n"
+              f"Reponds UNIQUEMENT en JSON strict, rien d'autre :\n"
+              f'{{"scores":[note1,note2,...note12],"notes":["justification courte 1",...],"sources":["url ou nom de source",...]}}')
+    try:
+        payload = json.dumps({
+            'model': 'claude-sonnet-5', 'max_tokens': 1200,
+            'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 8}],
+            'messages': [{'role': 'user', 'content': prompt}]
+        }).encode()
+        req = ur.Request('https://api.anthropic.com/v1/messages', data=payload,
+            headers={'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01'})
+        with ur.urlopen(req, timeout=60) as r:
+            d = json.loads(r.read())
+        text_blocks = [b['text'] for b in d.get('content', []) if b.get('type') == 'text']
+        full_text = ' '.join(text_blocks)
+        jm = re.search(r'\{.*\}', full_text, re.DOTALL)
+        if not jm: return None
+        parsed = json.loads(jm.group())
+        scores = parsed.get('scores', [])
+        notes = parsed.get('notes', [])
+        sources = parsed.get('sources', [])
+        if len(scores) != 12: return None
+        clean_scores = [float(v) if v is not None and str(v).lower() != 'null' else None for v in scores]
+        return {'scores': clean_scores, 'notes': notes[:12], 'sources': sources[:5]}
+    except Exception as e:
+        print(f"  Recherche moat {s['ticker']}: {e}")
+        return None
+
+def patch_moat_scores(results):
+    """Ecrit les scores moat trouves dans data.js -- pour que ca reste
+    sur le screener, pas juste dans le mail (demande explicite du
+    09/09/2026)."""
+    if not results: return 0
+    with open('data.js', 'r', encoding='utf-8') as f:
+        content = f.read()
+    updated = 0
+    for ticker, r in results.items():
+        tp = content.find(f"ticker:'{ticker}'")
+        if tp == -1: continue
+        np_ = content.find("ticker:'", tp + 1)
+        block_end = np_ if np_ > -1 else len(content)
+        block = content[tp:block_end]
+        vals_str = ','.join('null' if v is None else str(v) for v in r['scores'])
+        new_field = f"moatChk:[{vals_str}]"
+        if 'moatChk:[' in block:
+            nb = re.sub(r"moatChk:\[[^\]]*\]", new_field, block, count=1)
+        else:
+            nb = block.replace("score:'", new_field + ",score:'", 1)
+        if nb != block:
+            block = nb
+            updated += 1
+        content = content[:tp] + block + content[block_end:]
+    with open('data.js', 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"Grille moat ecrite dans data.js pour {updated} action(s)")
+    return updated
+
 def ia_analyse(s):
     if not ANTHROPIC_KEY: return ''
     moat_str = f"{s['moat_pct']}% ({s['moat_answered']}/12 criteres évalués)" if s['moat_pct'] is not None else 'non encore évalué'
@@ -164,11 +238,19 @@ def stock_card(s, ia_note=''):
     if s['moat_pct'] is not None:
         moat_col = '#16a34a' if s['moat_pct']>=70 else '#d97706' if s['moat_pct']>=45 else '#dc2626'
         complet = s['moat_answered'] >= 12
+        notes_html = ''
+        if s.get('moat_notes'):
+            items = ''.join(f'<li style="margin:2px 0">{n}</li>' for n in s['moat_notes'][:6] if n)
+            notes_html = f'<ul style="margin:6px 0 0 0;padding-left:16px;font-size:9px;color:#555">{items}</ul>'
+        sources_html = ''
+        if s.get('moat_sources'):
+            sources_html = f'<div style="font-size:8px;color:#aaa;margin-top:4px">Sources : {", ".join(s["moat_sources"][:3])}</div>'
         moat_html = (f'<div style="margin:6px 0;padding:8px;background:{moat_col}15;border:1px solid {moat_col}40;border-radius:6px;font-size:10px">'
                      f'<b style="color:{moat_col}">Grille Moat : {s["moat_pct"]}%</b> '
-                     f'<span style="color:#888">({s["moat_answered"]}/12 critères{"" if complet else " -- évaluation partielle"})</span></div>')
+                     f'<span style="color:#888">({s["moat_answered"]}/12 critères{"" if complet else " -- évaluation partielle, recherche web"})</span>'
+                     f'{notes_html}{sources_html}</div>')
     else:
-        moat_html = '<div style="font-size:9px;color:#d97706;margin:4px 0;padding:6px;background:#fffbeb;border-radius:4px">⏳ Grille moat non encore évaluée -- à lire</div>'
+        moat_html = '<div style="font-size:9px;color:#d97706;margin:4px 0;padding:6px;background:#fffbeb;border-radius:4px">⏳ Grille moat -- recherche prévue prochain envoi</div>'
 
     thesis_html = ''
     if s.get('thesis'):
@@ -362,6 +444,25 @@ if __name__ == '__main__':
     n_zone = sum(1 for s in stocks if s['in_zone'])
     n_moat = sum(1 for s in stocks if s['moat_pct'] is not None)
     print(f'  {len(stocks)} actions Grade A · {n_zone} en zone d\'achat · {n_moat} avec grille moat évaluée')
+
+    print('\n🔎 Recherche moat (web) -- actions non encore évaluées, max 10 par run...')
+    to_research = [s for s in stocks if s['moat_pct'] is None][:10]
+    moat_results = {}
+    for s in to_research:
+        print(f'  Recherche {s["ticker"]}...')
+        r = research_moat(s)
+        if r:
+            moat_results[s['ticker']] = r
+            answered = sum(1 for v in r['scores'] if v is not None)
+            pct = round(sum(v for v in r['scores'] if v is not None) / answered * 100) if answered else None
+            s['moat_pct'] = pct
+            s['moat_answered'] = answered
+            s['moat_notes'] = r['notes']
+            s['moat_sources'] = r['sources']
+            print(f'    -> {pct}% ({answered}/12 trouvés)')
+        time.sleep(2)
+    if moat_results:
+        patch_moat_scores(moat_results)
 
     print('\n📡 Macro...')
     macro = fetch_macro()
