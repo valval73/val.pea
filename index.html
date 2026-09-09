@@ -708,7 +708,7 @@ function pdfFiche(){
   <p><b>Cours :</b> ${s.price}€ &nbsp; <b>Note :</b> ${s.score} &nbsp; <b>Rec. :</b> ${s.rec.toUpperCase()} &nbsp; <b>Cap. :</b> ${s.mkt}</p>
   <h2>Points Entrée / Sortie</h2>
   <div class=ep>
-    <div class="ep-b ep-e"><div class=lbl>Zone Achat</div><div class=val style="color:#1a6b3a">${dynZone(s).el}–${dynZone(s).eh}€</div><div style="font-size:10px">${s.price>=s.el&&s.price<=s.eh?'✅ Dans la zone':'Attendre'}</div></div>
+    <div class="ep-b ep-e"><div class=lbl>Zone Achat</div><div class=val style="color:#1a6b3a">${dynZone(s).el}–${dynZone(s).eh}€</div><div style="font-size:10px">${dynZone(s).inZone?'✅ Dans la zone':'Attendre'}</div></div>
     <div class="ep-b ep-s"><div class=lbl>Stop Loss</div><div class=val style="color:#c0392b">${dynZone(s).stop}€</div><div style="font-size:10px">Risque ${((s.price-s.stop)/s.price*100).toFixed(1)}%</div></div>
     <div class="ep-b ep-o"><div class=lbl>Objectif 1</div><div class=val style="color:#1a4a7a">${s.o1}€</div><div style="font-size:10px">+${((s.o1-s.price)/s.price*100).toFixed(1)}%</div></div>
     <div class="ep-b ep-r"><div class=lbl>R/R</div><div class=val style="color:#b8860b">${rr}x</div><div style="font-size:10px">${rr>=2?'Favorable':rr>=1?'Correct':'Faible'}</div></div>
