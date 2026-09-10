@@ -1076,7 +1076,7 @@ const S=[
  yield:5.8,epsg:6,revg:2.0,margin:0.9,gm:17.8,om:3,fcf:6.8,
  capex:1.8,capr:2.5,capda:0.3,dcfb:28.07,dcfm:33.02,dcfu:39.62,
  pio:5,alt:1.75,rsi:66.2,mm50:15.99,mm200:14.85,
- el:27.41,eh:30.77,stop:24.12,o1:34.67,o2:39.62,cb:8,ch:5,cs:3,tp:18,score:'B',rec:'watch',zone:true,
+ el:27.41,eh:30.77,stop:24.12,o1:34.67,o2:39.62,cb:8,ch:5,cs:3,tp:18,moatChk:[1,1,1,1,0,0,0.5,0.5,0,0.5,null,0.5],score:'B',rec:'watch',zone:true,
  moat:[['Réseau 13000 magasins mondial','modere'],['Hard discount transition','modere']],
  cats:[{t:'Brésil croissance accélérée',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Famille Moulin','18M€','Jan 2026']],

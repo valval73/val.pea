@@ -75,6 +75,7 @@ def parse_stocks(datajs_content):
         moat_m = re.search(r'moatChk:\[([^\]]*)\]', block)
         moat_pct = None
         moat_answered = 0
+        moat_attempted = moat_m is not None  # distingue "jamais tente" de "tente, rien trouve"
         if moat_m:
             vals = [x.strip() for x in moat_m.group(1).split(',') if x.strip() != '']
             nums = []
@@ -96,90 +97,12 @@ def parse_stocks(datajs_content):
             'dcfm': dcfm, 'roe': roe, 'margin': margin,
             'debt': debt, 'pio': pio, 'mm200': mm200,
             'in_zone': in_zone, 'moat_pct': moat_pct, 'moat_answered': moat_answered,
+            'moat_attempted': moat_attempted,
             'thesis': gdb('thesis'), 'contra': gdb('contra'),
             'rr': rr,
         }
         stocks.append(s)
     return sorted(stocks, key=lambda x: (-1 if x['in_zone'] else 0, -(x['upside'] or 0)))
-
-def research_moat(s):
-    """Recherche reelle (web search active) des 12 criteres de la grille
-    moat pour une action Grade A -- c'est la vraie valeur-ajoutee du mail
-    par rapport a juste regarder le screener en direct (demande du
-    09/09/2026). Regle d'honnetete stricte : si la recherche ne trouve
-    pas assez d'info sur un critere precis, le score est null et la note
-    dit "information insuffisante" -- jamais invente. Meme principe que
-    la correction "recherche infructueuse" faite plus tot sur les
-    influenceurs."""
-    if not ANTHROPIC_KEY: return None
-    criteres_txt = '\n'.join(f"{i+1}. {c}" for i, c in enumerate(MOAT_CRITERIA_LABELS))
-    prompt = (f"Tu es analyste actions experimente. Utilise l'outil de recherche web -- fais "
-              f"PLUSIEURS recherches reelles (au moins 3-4) -- sur {s['name']} ({s['ticker']}, "
-              f"cotee a Paris) : son modele economique, son dernier rapport annuel ou presentation "
-              f"investisseurs, sa position concurrentielle, des articles d'analystes.\n\n"
-              f"Pour CHACUN des 12 criteres suivants, donne ton evaluation d'analyste en te basant "
-              f"sur ce que tu sais de l'entreprise ET ce que tu trouves en cherchant :\n{criteres_txt}\n\n"
-              f"Note : 1 = Bien, 0.5 = Moyen, 0 = Pas bien. Une entreprise connue et documentee "
-              f"(grande capitalisation, leader sectoriel) doit pouvoir etre evaluee sur la plupart "
-              f"des criteres -- ne mets null QUE pour une entreprise vraiment tres peu documentee "
-              f"ou un critere genuinement impossible a estimer meme approximativement. Pour une "
-              f"grande valeur connue, avoir 10+ criteres sur 12 renseignes est l'attendu normal, "
-              f"pas l'exception -- ne sois pas excessivement prudent.\n\n"
-              f"Reponds UNIQUEMENT en JSON strict, rien d'autre :\n"
-              f'{{"scores":[note1,note2,...note12],"notes":["justification courte 1",...],"sources":["url ou nom de source",...]}}')
-    try:
-        payload = json.dumps({
-            'model': 'claude-sonnet-5', 'max_tokens': 1200,
-            'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 8}],
-            'messages': [{'role': 'user', 'content': prompt}]
-        }).encode()
-        req = ur.Request('https://api.anthropic.com/v1/messages', data=payload,
-            headers={'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01'})
-        with ur.urlopen(req, timeout=60) as r:
-            d = json.loads(r.read())
-        text_blocks = [b['text'] for b in d.get('content', []) if b.get('type') == 'text']
-        full_text = ' '.join(text_blocks)
-        jm = re.search(r'\{.*\}', full_text, re.DOTALL)
-        if not jm: return None
-        parsed = json.loads(jm.group())
-        scores = parsed.get('scores', [])
-        notes = parsed.get('notes', [])
-        sources = parsed.get('sources', [])
-        if len(scores) != 12: return None
-        clean_scores = [float(v) if v is not None and str(v).lower() != 'null' else None for v in scores]
-        return {'scores': clean_scores, 'notes': notes[:12], 'sources': sources[:5]}
-    except Exception as e:
-        print(f"  Recherche moat {s['ticker']}: {e}")
-        return None
-
-def patch_moat_scores(results):
-    """Ecrit les scores moat trouves dans data.js -- pour que ca reste
-    sur le screener, pas juste dans le mail (demande explicite du
-    09/09/2026)."""
-    if not results: return 0
-    with open('data.js', 'r', encoding='utf-8') as f:
-        content = f.read()
-    updated = 0
-    for ticker, r in results.items():
-        tp = content.find(f"ticker:'{ticker}'")
-        if tp == -1: continue
-        np_ = content.find("ticker:'", tp + 1)
-        block_end = np_ if np_ > -1 else len(content)
-        block = content[tp:block_end]
-        vals_str = ','.join('null' if v is None else str(v) for v in r['scores'])
-        new_field = f"moatChk:[{vals_str}]"
-        if 'moatChk:[' in block:
-            nb = re.sub(r"moatChk:\[[^\]]*\]", new_field, block, count=1)
-        else:
-            nb = block.replace("score:'", new_field + ",score:'", 1)
-        if nb != block:
-            block = nb
-            updated += 1
-        content = content[:tp] + block + content[block_end:]
-    with open('data.js', 'w', encoding='utf-8') as f:
-        f.write(content)
-    print(f"Grille moat ecrite dans data.js pour {updated} action(s)")
-    return updated
 
 def ia_analyse(s):
     if not ANTHROPIC_KEY: return ''
@@ -449,30 +372,11 @@ if __name__ == '__main__':
     n_zone = sum(1 for s in stocks if s['in_zone'])
     n_moat = sum(1 for s in stocks if s['moat_pct'] is not None)
     print(f'  {len(stocks)} actions Grade A · {n_zone} en zone d\'achat · {n_moat} avec grille moat évaluée')
-
-    print('\n🔎 Recherche moat (web) -- actions non encore évaluées, max 10 par run...')
-    to_research = [s for s in stocks if s['moat_pct'] is None][:10]
-    moat_results = {}
-    for s in to_research:
-        print(f'  Recherche {s["ticker"]}...')
-        try:
-            r = research_moat(s)
-            if r:
-                moat_results[s['ticker']] = r
-                answered = sum(1 for v in r['scores'] if v is not None)
-                pct = round(sum(v for v in r['scores'] if v is not None) / answered * 100) if answered else None
-                s['moat_pct'] = pct
-                s['moat_answered'] = answered
-                s['moat_notes'] = r['notes']
-                s['moat_sources'] = r['sources']
-                print(f'    -> {pct}% ({answered}/12 trouvés)')
-            else:
-                print(f'    -> aucun résultat exploitable')
-        except Exception as e:
-            print(f'    -> ECHEC {s["ticker"]}: {e} (on continue avec les suivantes)')
-        time.sleep(2)
-    if moat_results:
-        patch_moat_scores(moat_results)
+    # La recherche moat n'est plus faite ici -- elle tourne a part, une
+    # fois par trimestre (quarterly_moat_research.py), car le moat d'une
+    # entreprise ne change pas d'une semaine a l'autre contrairement au
+    # prix. Ce mail se contente de lire ce qui existe deja (rapide,
+    # simple) -- demande du 09/09/2026.
 
     print('\n📡 Macro...')
     macro = fetch_macro()
