@@ -4567,6 +4567,7 @@ function filt(f,btn){
   btn.classList.add('active');
   const m={all:()=>S,large:()=>S.filter(s=>s.cap==='large'),mid:()=>S.filter(s=>s.cap==='mid'),
    small:()=>S.filter(s=>s.cap==='small'),srd:()=>S.filter(s=>s.srd),A:()=>S.filter(s=>s.score==='A'),
+   B:()=>S.filter(s=>s.score==='B'),C:()=>S.filter(s=>s.score==='C'),D:()=>S.filter(s=>s.score==='D'),
    buy:()=>S.filter(s=>s.rec==='buy'),rend:()=>S.filter(s=>s.yield>=5),
    zone:()=>S.filter(s=>s.price>=s.el&&s.price<=s.eh||s.zone),
    fort30:()=>S.filter(s=>s.score==='A'&&s.pio>=7&&s.price>=s.el&&s.price<=s.eh&&s.price>s.mm200&&s.rsi<65)};
