@@ -172,6 +172,27 @@ def patch_moat_scores(results):
     return updated
 
 
+def bump_index_html_version():
+    """Meme mecanisme anti-cache que fetch_fundamentals.py -- sans ca,
+    data.js est bien a jour sur GitHub mais le CDN de Pages peut
+    continuer a servir l'ancienne version sous la meme URL versionnee
+    (trouve en repondant a une question de Val, 10/09/2026, avant que
+    ca ne cause le meme probleme que la cause racine d'origine)."""
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            content = f.read()
+        new_content = re.sub(
+            r'data\.js\?v=\d+',
+            f'data.js?v={int(datetime.now().timestamp())}',
+            content, count=1
+        )
+        if new_content != content:
+            with open('index.html', 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print("index.html : version data.js mise a jour (cache casse)")
+    except Exception as e:
+        print(f"  WARN bump version: {e}")
+
 if __name__ == '__main__':
     if not os.path.exists('data.js'):
         print('❌ data.js introuvable'); sys.exit(1)
@@ -219,4 +240,5 @@ if __name__ == '__main__':
 
     if results:
         patch_moat_scores(results)
+        bump_index_html_version()
     print(f'\n✅ Terminé : {ok_count}/{len(to_research)} actions avec au moins une donnée trouvée')
