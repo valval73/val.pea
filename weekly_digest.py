@@ -113,13 +113,18 @@ def research_moat(s):
     influenceurs."""
     if not ANTHROPIC_KEY: return None
     criteres_txt = '\n'.join(f"{i+1}. {c}" for i, c in enumerate(MOAT_CRITERIA_LABELS))
-    prompt = (f"Tu es analyste actions. Recherche sur le web des informations reelles et "
-              f"recentes sur {s['name']} ({s['ticker']}, cotee a Paris) -- rapport annuel, "
-              f"lettre aux actionnaires, presentations investisseurs, articles d'analystes serieux.\n\n"
-              f"Pour CHACUN des 12 criteres suivants, donne une note basee UNIQUEMENT sur ce que "
-              f"tu trouves reellement en cherchant -- jamais une supposition :\n{criteres_txt}\n\n"
-              f"Note : 1 = Bien, 0.5 = Moyen, 0 = Pas bien, null = information insuffisante trouvee "
-              f"(n'invente JAMAIS une note sans base reelle -- null est une reponse honnete valide).\n\n"
+    prompt = (f"Tu es analyste actions experimente. Utilise l'outil de recherche web -- fais "
+              f"PLUSIEURS recherches reelles (au moins 3-4) -- sur {s['name']} ({s['ticker']}, "
+              f"cotee a Paris) : son modele economique, son dernier rapport annuel ou presentation "
+              f"investisseurs, sa position concurrentielle, des articles d'analystes.\n\n"
+              f"Pour CHACUN des 12 criteres suivants, donne ton evaluation d'analyste en te basant "
+              f"sur ce que tu sais de l'entreprise ET ce que tu trouves en cherchant :\n{criteres_txt}\n\n"
+              f"Note : 1 = Bien, 0.5 = Moyen, 0 = Pas bien. Une entreprise connue et documentee "
+              f"(grande capitalisation, leader sectoriel) doit pouvoir etre evaluee sur la plupart "
+              f"des criteres -- ne mets null QUE pour une entreprise vraiment tres peu documentee "
+              f"ou un critere genuinement impossible a estimer meme approximativement. Pour une "
+              f"grande valeur connue, avoir 10+ criteres sur 12 renseignes est l'attendu normal, "
+              f"pas l'exception -- ne sois pas excessivement prudent.\n\n"
               f"Reponds UNIQUEMENT en JSON strict, rien d'autre :\n"
               f'{{"scores":[note1,note2,...note12],"notes":["justification courte 1",...],"sources":["url ou nom de source",...]}}')
     try:
@@ -450,16 +455,21 @@ if __name__ == '__main__':
     moat_results = {}
     for s in to_research:
         print(f'  Recherche {s["ticker"]}...')
-        r = research_moat(s)
-        if r:
-            moat_results[s['ticker']] = r
-            answered = sum(1 for v in r['scores'] if v is not None)
-            pct = round(sum(v for v in r['scores'] if v is not None) / answered * 100) if answered else None
-            s['moat_pct'] = pct
-            s['moat_answered'] = answered
-            s['moat_notes'] = r['notes']
-            s['moat_sources'] = r['sources']
-            print(f'    -> {pct}% ({answered}/12 trouvés)')
+        try:
+            r = research_moat(s)
+            if r:
+                moat_results[s['ticker']] = r
+                answered = sum(1 for v in r['scores'] if v is not None)
+                pct = round(sum(v for v in r['scores'] if v is not None) / answered * 100) if answered else None
+                s['moat_pct'] = pct
+                s['moat_answered'] = answered
+                s['moat_notes'] = r['notes']
+                s['moat_sources'] = r['sources']
+                print(f'    -> {pct}% ({answered}/12 trouvés)')
+            else:
+                print(f'    -> aucun résultat exploitable')
+        except Exception as e:
+            print(f'    -> ECHEC {s["ticker"]}: {e} (on continue avec les suivantes)')
         time.sleep(2)
     if moat_results:
         patch_moat_scores(moat_results)
