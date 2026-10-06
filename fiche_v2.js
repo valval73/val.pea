@@ -226,7 +226,7 @@ function ceBlock(s){
   var L = ceList(s.ticker);
   var items = L.map(function(c,i){
     var k = CEL[c.concl]||['À LIRE','#6b7487','#f5f3ee'];
-    var kpi = (c.kpi||[]).map(function(r){ return '<tr><td>'+esc(r[0])+'</td><td class="v2-mono">'+esc(r[1])+'</td><td><b style="color:'+(r[2]==='OK'?C.gn:C.rd)+'">'+esc(r[2])+'</b></td></tr>'; }).join('');
+    var kpi = (c.kpi||[]).map(function(r){ return '<tr><td>'+esc(r[0])+'</td><td class="v2-mono">'+esc(r[1])+'</td><td><b style="color:'+(/^OK/.test(r[2])?C.gn:/^NON/.test(r[2])?C.mu:C.rd)+'">'+esc(r[2])+'</b></td></tr>'; }).join('');
     var src = (c.sources||[]).map(function(x){ return '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'; }).join(' · ');
     var body = c.html ? '<div class="v2-small" style="color:#1a2233;line-height:1.55">'+c.html+'</div>' :
       '<p>'+esc(c.resume||'')+'</p>'+
