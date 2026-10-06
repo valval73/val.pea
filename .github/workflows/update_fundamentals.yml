@@ -1,0 +1,41 @@
+name: Update Fundamentals & Earnings
+
+on:
+  schedule:
+    # Quotidien 7h UTC (9h Paris) : dates resultats uniquement
+    - cron: '0 7 * * 1-5'
+    # Dimanche 20h UTC : update complet bilans + ratios
+    - cron: '0 20 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-js-writer
+  cancel-in-progress: false
+
+jobs:
+  update-fundamentals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install yfinance requests pytz --quiet
+      - name: Update fundamentals (Buffett metrics + earnings dates)
+        run: python fetch_fundamentals.py
+      - name: Commit if changed
+        run: |
+          git config --local user.email "valpea-bot@github.com"
+          git config --local user.name "VAL.PEA Bot"
+          git fetch origin main --quiet
+          git diff --quiet fundamentals_log.json data.js index.html 2>/dev/null || (
+            git add fundamentals_log.json data.js index.html &&
+            git commit -m "📊 Fundamentals $(date '+%Y-%m-%d') [skip ci]" &&
+            git pull --rebase origin main &&
+            git push
+          )
+          echo "Done"

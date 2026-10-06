@@ -1,0 +1,24 @@
+name: Lettre Macro Hebdomadaire
+
+on:
+  schedule:
+    - cron: '0 7 * * 0'   # Dimanche 9h Paris (heure d'été, UTC+2)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macro-letter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Générer et envoyer la lettre macro
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+        run: python macro_digest.py

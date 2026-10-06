@@ -1,0 +1,70 @@
+/* VAL.PEA — fiche v2 et liste de décision (05/10/2026) */
+#macro-banner{display:none!important}
+.v2{display:flex;flex-direction:column;gap:14px;padding:14px;background:#f4f2ec;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1a2233}
+.v2 h1{margin:0;font-family:'Libre Baskerville',Georgia,serif;font-size:32px;line-height:1.15}
+.v2 h2{margin:0;font-family:'Libre Baskerville',Georgia,serif;font-size:20px}
+.v2 p{margin:0;line-height:1.55}
+.v2-top{background:#0e1c33;color:#f4efe3;border-radius:8px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end}
+.v2-kick{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#c9a45c;text-transform:uppercase}
+.v2-px{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:600}
+.v2-card{background:#fff;border:1px solid #ddd8cb;border-radius:8px;padding:18px 22px;display:flex;flex-direction:column;gap:12px}
+.v2-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.v2-verdict{flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px}
+.v2-verdict p{flex:1 1 420px;font-size:16px}
+.v2-badge{color:#fff;font-weight:700;font-size:13px;letter-spacing:1px;padding:10px 16px;border-radius:999px;white-space:nowrap}
+.v2-pos{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#5a6275;min-width:200px}
+.v2-pos b{color:#1a2233}
+.v2-pill{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 9px;border-radius:999px}
+.v2-small{font-size:12px;color:#5a6275}
+.v2-mono{font-family:'IBM Plex Mono',monospace}
+.v2-k{font-weight:700;font-size:14px;margin-bottom:3px}
+.v2-big{font-family:'IBM Plex Mono',monospace;font-size:21px;font-weight:600}
+.v2-grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;font-size:14px;line-height:1.5}
+.v2-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.v2-scen{border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:3px}
+.v2-note{display:flex;flex-direction:column;gap:5px;background:#f5f3ee;border-radius:8px;padding:10px 12px;font-size:13px}
+.v2-bar{position:relative;height:98px;margin:6px 6px 0}
+.v2-track{position:absolute;left:0;right:0;top:40px;height:10px;border-radius:5px;background:#e7e3d8}
+.v2-zone{position:absolute;top:36px;height:18px;border-radius:4px;background:#9fd0b4}
+.v2-tick{position:absolute;top:30px;width:3px;height:30px;border-radius:2px}
+.v2-lbl{position:absolute;font-size:11px;font-weight:600;white-space:nowrap;transform:translateX(-10%)}
+.v2-price{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.v2-price span{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;background:#0e1c33;color:#fff;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.v2-price i{width:2px;height:24px;background:#0e1c33}
+.v2-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));font-size:11px;font-weight:600;text-align:center;color:#fff;border-radius:6px;overflow:hidden}
+.v2-scale div{padding:5px}
+.v2-ratio{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:6px 14px;align-items:center;font-size:13px}
+.v2-faded{opacity:.5}
+.v2-gauge{position:relative;height:12px;border-radius:6px;background:linear-gradient(90deg,#1d6b45 0 25%,#3f9a68 25% 50%,#a8790f 50% 75%,#a8322b 75% 100%)}
+.v2-gauge span{position:absolute;top:-5px;width:4px;height:22px;background:#0e1c33;border-radius:2px}
+.v2-crit{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee9de;padding-bottom:7px;font-size:14px}
+.v2-reg{border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.v2-bars{display:flex;gap:8px;align-items:flex-end;height:96px}
+.v2-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px}
+.v2-col i{width:70%;border-radius:3px 3px 0 0}
+.v2-comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;font-size:13px}
+.v2-comp div{background:#f5f3ee;border-radius:6px;padding:9px}
+.v2-scroll{overflow-x:auto}
+.v2-tab{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.v2-tab th{text-align:left;font-size:11px;color:#5a6275;padding:6px 8px;border-bottom:2px solid #0e1c33}
+.v2-tab td{padding:7px 8px;border-bottom:1px solid #eee9de}
+.v2-num td+td,.v2-num th+th{text-align:right;font-family:'IBM Plex Mono',monospace}
+.v2-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;font-size:12px}
+.v2-tiles div{background:#f5f3ee;border-radius:6px;padding:9px}
+.v2-tiles b{font-family:'IBM Plex Mono',monospace;font-size:16px}
+.v2-det summary,.v2-old summary{cursor:pointer;font-weight:600;font-size:14px;padding:4px 0}
+.v2-old{margin:14px;border:1px dashed #c9c2b2;border-radius:8px;padding:8px 12px;background:#faf9f5}
+.v2 a{color:#1d4f91}
+#v2-home{padding:14px 18px 0}
+.v2-home{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;font-family:'IBM Plex Sans',system-ui,sans-serif}
+.v2-hgrp{background:#fff;border:1px solid #ddd8cb;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;max-height:360px;overflow-y:auto}
+.v2-hgrp h3{margin:0;font-family:'Libre Baskerville',Georgia,serif;font-size:18px;display:flex;justify-content:space-between}
+.v2-hgrp h3 span{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#5a6275}
+.v2-it{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;text-align:left;background:#f5f3ee;border:1px solid transparent;border-radius:6px;padding:8px 10px;cursor:pointer;font-size:13px;color:#1a2233;min-height:44px}
+.v2-it:hover{border-color:#b8862b}
+.v2-it span:nth-of-type(1){flex:1 1 120px}
+.v2-leg{padding:8px 12px;font-size:12px;line-height:1.5}
+@media (max-width:640px){.v2{padding:8px}.v2-px{font-size:24px}.v2 h1{font-size:24px}}
+.v2-ce{border:1px solid #eee9de;border-radius:8px;padding:8px 12px}
+.v2-ce summary{cursor:pointer;display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:32px}
+.v2-ce p{margin:6px 0}

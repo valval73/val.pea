@@ -1,0 +1,6 @@
+*.docx
+alert_preview.html
+mail_preview.html
+__pycache__/
+*.pyc
+routine_preview.html
