@@ -546,3 +546,49 @@ if(typeof showPg==='function'){
 function go(){ try{ tabs(); guide(); }catch(e){ console.error('v2 tabs', e); } }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', go); else go();
 })();
+
+// ═══ 07/10/2026 : sauvegarde / restauration de tes données (portefeuilles, journal, contre-expertises) ═══
+(function(){
+'use strict';
+window.v2backup = function(){
+  var out = {app:'VAL.PEA', version:1, date:new Date().toISOString(), data:{}};
+  for(var i=0;i<localStorage.length;i++){
+    var k=localStorage.key(i);
+    if(!k || k==='_ant_key') continue; // jamais la clé API dans une sauvegarde
+    out.data[k]=localStorage.getItem(k);
+  }
+  var blob=new Blob([JSON.stringify(out,null,1)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='valpea-sauvegarde-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  try{ localStorage.setItem('v2_last_backup', new Date().toISOString()); }catch(e){}
+  var s=document.getElementById('v2-bk-st'); if(s) s.textContent='Sauvegardé aujourd’hui.';
+};
+window.v2restore = function(input){
+  var f=input.files&&input.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){
+    var s=document.getElementById('v2-bk-st');
+    try{
+      var o=JSON.parse(r.result);
+      if(!o||o.app!=='VAL.PEA'||!o.data) throw new Error('fichier non reconnu');
+      Object.keys(o.data).forEach(function(k){ if(k!=='_ant_key') localStorage.setItem(k,o.data[k]); });
+      if(s) s.textContent='Restauré ('+Object.keys(o.data).length+' éléments du '+String(o.date).slice(0,10)+'). Rechargement…';
+      setTimeout(function(){ location.reload(); }, 900);
+    }catch(e){ if(s) s.textContent='Échec : '+e.message; }
+  };
+  r.readAsText(f);
+};
+function box(){
+  var pg=document.getElementById('pg-ptf'); if(!pg||document.getElementById('v2-bk')) return;
+  var last=null; try{ last=localStorage.getItem('v2_last_backup'); }catch(e){}
+  var age=last?Math.round((Date.now()-new Date(last).getTime())/864e5):null;
+  var d=document.createElement('div'); d.id='v2-bk';
+  d.style.cssText='display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:4px 18px 8px;font-family:IBM Plex Sans,system-ui,sans-serif;font-size:13px';
+  d.innerHTML='<button onclick="v2backup()" style="min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid #0e1c33;background:#fff;cursor:pointer">Sauvegarder mes données (fichier)</button>'+
+    '<label style="min-height:40px;padding:9px 14px;border-radius:999px;border:1px solid #ddd8cb;background:#fff;cursor:pointer;box-sizing:border-box">Restaurer depuis un fichier<input type="file" accept=".json,application/json" onchange="v2restore(this)" style="display:none"></label>'+
+    '<span id="v2-bk-st" style="color:'+(age==null||age>30?'#a8322b':'#5a6275')+'">'+(age==null?'Jamais sauvegardé : tes portefeuilles n’existent que dans ce navigateur.':'Dernière sauvegarde il y a '+age+' jour(s).')+'</span>';
+  var bar=document.querySelector('.v2-prof'); if(bar&&bar.nextSibling) pg.insertBefore(d, bar.nextSibling); else pg.insertBefore(d, pg.firstChild);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', box); else box();
+})();
