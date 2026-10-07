@@ -11,6 +11,7 @@ function fr(n, d){
   return Number(n).toLocaleString('fr-FR',{minimumFractionDigits:d===undefined?0:d,maximumFractionDigits:d===undefined?2:d});
 }
 function esc(t){ return String(t===undefined||t===null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function dqAll(s){ return [s.dq, s.x2].filter(function(x){return x;}).join(' · '); }
 function pct(a,b){ return (a&&b)? ((a/b-1)*100) : null; }
 function sgn(x,d){ if(x===null||isNaN(x)) return '—'; return (x>=0?'+':'')+fr(x,d===undefined?0:d)+' %'; }
 var C = {gn:'#1d6b45', gn2:'#3f9a68', or:'#a8790f', rd:'#a8322b', ink:'#0e1c33', mu:'#5a6275', bg:'#f5f3ee', line:'#eee9de'};
@@ -218,6 +219,7 @@ function technical(s){
 function sources(s){
   var q = encodeURIComponent(s.name||s.ticker);
   return '<section class="v2-card v2-small"><p>Sources : cours et ratios Yahoo Finance (mise à jour automatique) · croissance : '+esc(s.gsrc||'Yahoo')+' · '+
+    (s.x2s?'contrôle croisé du cours : '+esc(s.x2s)+(s.x2?' (écart)':' (concordant)')+' · ':'')+
     '<a href="https://www.zonebourse.com/recherche/?q='+q+'" target="_blank" rel="noopener">Zonebourse</a> · '+
     '<a href="https://www.boursorama.com/recherche/'+q+'/" target="_blank" rel="noopener">Boursorama</a></p></section>';
 }
@@ -270,8 +272,8 @@ function decision(s){
   if(g!=='buy'){
     var v = verdict(s);
     r = {t:'ACHAT : NON', c:'#6b7487', x:v.t.charAt(0)+v.t.slice(1).toLowerCase()+'. '+(s.qok&&s.eh>0?'On attend un cours sous '+fr(s.eh)+' € et une contre-expertise favorable.':'La méthode n’achète pas cette valeur.')};
-  } else if(s.dq){
-    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais une donnée est suspecte ('+esc(s.dq)+'). Vérifie-la sur Zonebourse ou le rapport annuel avant d’acheter.'};
+  } else if(dqAll(s)){
+    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais une donnée est suspecte ('+esc(dqAll(s))+'). Vérifie-la sur Zonebourse ou le rapport annuel avant d’acheter.'};
   } else if(!last || age>90){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais '+(last?'la dernière contre-expertise date de '+age+' jours':'il n’y a pas encore de contre-expertise')+'. Règle : pas d’achat sans contre-expertise de moins de 3 mois.'};
   } else if(last.concl==='cassee'){
@@ -314,7 +316,7 @@ function renderV2(s){
   return '<div class="v2">'+
     '<header class="v2-top"><div><div class="v2-kick">'+esc(s.ticker)+' · '+esc(s.place||'')+' · '+esc(s.sector||'')+'</div><h1>'+esc(s.name)+'</h1></div>'+
     '<div class="v2-px"><div>'+fr(s.price)+' €</div><div class="v2-small" style="color:#c7cede">'+chg+'</div></div></header>'+
-    (s.dq?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(s.dq)+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
+    (dqAll(s)?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(dqAll(s))+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
     priceBlock(s)+ratios(s)+
     '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
