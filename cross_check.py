@@ -30,7 +30,7 @@ def stooq_price(y):
     if not s:
         return None
     try:
-        r = requests.get(f'https://stooq.com/q/l/?s={s}&f=sd2t2ohlcv&h&e=csv', headers=UA, timeout=15)
+        r = requests.get(f'https://stooq.com/q/l/?s={s}&f=sd2t2ohlcv&h&e=csv', headers=UA, timeout=8)
         rows = list(csv.DictReader(io.StringIO(r.text)))
         c = rows[0].get('Close') if rows else None
         return float(c) if c and c not in ('N/D', '') else None
@@ -61,7 +61,7 @@ def load_stocks():
 
 def main():
     S = load_stocks()
-    res, n_ok, n_src = {}, 0, 0
+    res, n_ok, n_src, miss = {}, 0, 0, 0
     for tk, y in YF_MAP.items():
         if tk not in S or not S[tk]['price']:
             continue
@@ -70,9 +70,10 @@ def main():
         q = fmp_quote(y)
         if q and q.get('price'):
             alt, src, pe_alt = float(q['price']), 'FMP', q.get('pe')
-        else:
+        elif miss < 10 or n_src:  # arret rapide si la source ne repond pas
             alt = stooq_price(y)
             src = 'Stooq' if alt else None
+            miss = 0 if alt else miss + 1
         time.sleep(0.3)
         if not alt:
             continue
