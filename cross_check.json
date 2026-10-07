@@ -1,5 +1,11 @@
 {
 "date": "2026-10-07",
+"probe": [
+"mc.fr 404 '<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p'",
+"mc.pa 404 '<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p'",
+"aapl.us 404 '<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p'",
+"asml.nl 404 '<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p'"
+],
 "n": 0,
 "ok": 0,
 "res": {}
