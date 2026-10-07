@@ -738,10 +738,6 @@ def hist_multiples(t, info):
     moyenne pour cette entreprise' au lieu d'un bareme general."""
     out = {'pe_h': None, 'pfcf_h': None, 'eveb_h': None, 'hn': 0}
     try:
-        if (info.get('financialCurrency') and info.get('currency')
-                and info.get('financialCurrency') != info.get('currency')):
-            out['hcur'] = 1  # devises differentes : ratios historiques non fiables
-            return out
         fin, bs, cf = t.financials, t.balance_sheet, t.cashflow
         h = t.history(period='5y', interval='1wk')
         if fin is None or fin.empty or h is None or h.empty:
@@ -751,6 +747,23 @@ def hist_multiples(t, info):
             closes.index = closes.index.tz_localize(None)
         except Exception:
             pass
+        # comptes dans une autre devise que le cours (ex. TotalEnergies en USD) :
+        # on convertit le cours dans la devise des comptes a chaque date
+        fc_, c_ = info.get('financialCurrency'), info.get('currency')
+        if fc_ and c_ and fc_ != c_:
+            try:
+                fx = yf.Ticker(f'{c_}{fc_}=X').history(period='5y', interval='1wk')['Close']
+                try:
+                    fx.index = fx.index.tz_localize(None)
+                except Exception:
+                    pass
+                fx = fx.reindex(closes.index, method='nearest')
+                if fx.isna().all():
+                    raise ValueError('fx vide')
+                closes = closes * fx
+            except Exception:
+                out['hcur'] = 1
+                return out
         ni = _row_series(fin, 'Net Income', 'Net Income Common Stockholders')
         ebitda = _row_series(fin, 'EBITDA', 'Normalized EBITDA')
         fcf = _row_series(cf, 'Free Cash Flow')
@@ -978,7 +991,9 @@ def fetch_one(ticker, yf_sym, sector):
                 # methode 2 : multiples historiques (controle croise)
                 vm = mult_value(info.get('forwardEps'), eps_ttm, g_c, result.get('pe_h'),
                                 info.get('payoutRatio'))
-                result['vmult'] = clamp(vm) if vm else None
+                same_cur = not (info.get('financialCurrency') and info.get('currency')
+                                and info.get('financialCurrency') != info.get('currency'))
+                result['vmult'] = clamp(vm) if (vm and same_cur) else None
         if 'vmeth' not in result:
             result['vmeth'] = 'per'
         # Etape 3 : "qualite delaissee" = cours >10 % sous la MM200 et RSI < 40
@@ -992,11 +1007,12 @@ def fetch_one(ticker, yf_sym, sector):
             dq.append('benefice 12 mois anormal (PER %s contre %s attendu)' % (round(pe_, 1), round(pf_, 1)))
         if result.get('hcur'):
             dq.append('comptes publies dans une autre devise que le cours')
-        if result.get('gused') is not None and result.get('cagr') is not None \
-                and abs(result['gused'] - result['cagr']) > 15:
-            dq.append('croissance retenue (%s %%) tres differente de Yahoo (%s %%)' % (result['gused'], result['cagr']))
-        if result.get('vmult') and result.get('dcfm') and abs(result['vmult'] / result['dcfm'] - 1) > 0.35:
-            dq.append('les deux methodes de valeur divergent de plus de 35 %')
+        # croissance Yahoo aberrante seulement si c'est elle qui est retenue
+        # (si le communique officiel est utilise, l'ecart est normal)
+        if not str(result.get('gsrc', '')).startswith('communique') and result.get('cagr') is not None \
+                and abs(result['cagr']) > 30:
+            dq.append('croissance Yahoo %s %%/an : probablement faussee par une acquisition ou une cession' % result['cagr'])
+        # la divergence entre les 2 methodes est affichee dans la fiche, pas bloquante
         result['dq'] = ' · '.join(dq)
         # Couche moat (evaluation qualitative, moat.py)
         mo = MOAT.get(ticker)
