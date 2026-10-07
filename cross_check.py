@@ -59,8 +59,21 @@ def load_stocks():
     return out
 
 
+def probe():
+    # diagnostic ecrit dans cross_check.json (les journaux GitHub ne sont pas toujours lisibles)
+    out = []
+    for s_ in ('mc.fr', 'mc.pa', 'aapl.us', 'asml.nl'):
+        try:
+            r = requests.get(f'https://stooq.com/q/l/?s={s_}&f=sd2t2ohlcv&h&e=csv', headers=UA, timeout=8)
+            out.append(f'{s_} {r.status_code} {r.text[:90]!r}')
+        except Exception as e:
+            out.append(f'{s_} ERR {e!s:.80}')
+    return out
+
+
 def main():
     S = load_stocks()
+    pr = probe()
     res, n_ok, n_src, miss = {}, 0, 0, 0
     for tk, y in YF_MAP.items():
         if tk not in S or not S[tk]['price']:
@@ -87,7 +100,7 @@ def main():
         if not issues:
             n_ok += 1
         res[tk] = {'src': src, 'alt': round(alt, 2), 'diff': round(d, 1), 'issues': issues}
-    json.dump({'date': time.strftime('%Y-%m-%d'), 'n': n_src, 'ok': n_ok, 'res': res},
+    json.dump({'date': time.strftime('%Y-%m-%d'), 'probe': pr, 'n': n_src, 'ok': n_ok, 'res': res},
               open('cross_check.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print(f'2e source : {n_src} valeurs comparees, {n_ok} concordantes')
     for tk, r in res.items():
