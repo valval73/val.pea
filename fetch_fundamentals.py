@@ -730,6 +730,84 @@ def safe(v, d=0, dec=2):
 
 def pct(v, d=0): return safe(v * 100 if v else 0, d, 1)
 
+
+# ═══ 07/10/2026 : multiples historiques et 2e methode de valeur ═══
+def hist_multiples(t, info):
+    """PER, cours/cash libre et VE/EBITDA a chaque cloture annuelle publiee
+    (jusqu'a 4 ans), puis leur mediane. Permet de dire 'PER 17 contre 24 en
+    moyenne pour cette entreprise' au lieu d'un bareme general."""
+    out = {'pe_h': None, 'pfcf_h': None, 'eveb_h': None, 'hn': 0}
+    try:
+        if (info.get('financialCurrency') and info.get('currency')
+                and info.get('financialCurrency') != info.get('currency')):
+            out['hcur'] = 1  # devises differentes : ratios historiques non fiables
+            return out
+        fin, bs, cf = t.financials, t.balance_sheet, t.cashflow
+        h = t.history(period='5y', interval='1wk')
+        if fin is None or fin.empty or h is None or h.empty:
+            return out
+        closes = h['Close']
+        try:
+            closes.index = closes.index.tz_localize(None)
+        except Exception:
+            pass
+        ni = _row_series(fin, 'Net Income', 'Net Income Common Stockholders')
+        ebitda = _row_series(fin, 'EBITDA', 'Normalized EBITDA')
+        fcf = _row_series(cf, 'Free Cash Flow')
+        sh = _row_series(bs, 'Ordinary Shares Number', 'Share Issued')
+        debt = _row_series(bs, 'Total Debt')
+        cash = _row_series(bs, 'Cash And Cash Equivalents', 'Cash Cash Equivalents And Short Term Investments')
+        g = lambda lst, i: lst[i] if i < len(lst) else None
+        pes, pfs, evs = [], [], []
+        for i, col in enumerate(list(fin.columns)[:4]):
+            try:
+                dt = col.to_pydatetime().replace(tzinfo=None) if hasattr(col, 'to_pydatetime') else col
+                px_ = closes[closes.index <= dt]
+                if px_.empty:
+                    continue
+                px = float(px_.iloc[-1])
+            except Exception:
+                continue
+            n_ = g(sh, i) or info.get('sharesOutstanding')
+            if not n_:
+                continue
+            mcap = px * n_
+            if g(ni, i) and g(ni, i) > 0:
+                pes.append(mcap / g(ni, i))
+            if g(fcf, i) and g(fcf, i) > 0:
+                pfs.append(mcap / g(fcf, i))
+            if g(ebitda, i) and g(ebitda, i) > 0:
+                evs.append((mcap + (g(debt, i) or 0) - (g(cash, i) or 0)) / g(ebitda, i))
+        med = lambda v: round(sorted(v)[len(v) // 2] if len(v) % 2 else (sorted(v)[len(v) // 2 - 1] + sorted(v)[len(v) // 2]) / 2, 1) if v else None
+        ok = lambda v: [x for x in v if 0 < x < 300]
+        out.update({'pe_h': med(ok(pes)), 'pfcf_h': med(ok(pfs)), 'eveb_h': med(ok(evs)), 'hn': len(pes)})
+    except Exception as e:
+        print(f"  HIST SKIP: {e}")
+    return out
+
+def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R):
+    """Methode 2 (multiples) : benefice qui croit de g pendant 5 ans,
+    dividendes encaisses, puis revente au PER habituel de l'entreprise
+    (borne 10-30), le tout actualise a 8,5 %."""
+    if not pe_exit or g_pct is None:
+        return None
+    base = None
+    g1 = max(0.0, min(g_pct, QV_GMAX * 100)) / 100
+    if eps_fwd and eps_fwd > 0 and eps_ttm and eps_ttm > 0:
+        base = min(eps_fwd, eps_ttm * (1 + g1) * 1.10)
+    elif eps_ttm and eps_ttm > 0:
+        base = eps_ttm * (1 + g1)
+    if not base:
+        return None
+    pay = max(0.0, min(payout or 0.0, 0.9))
+    v, e = 0.0, base
+    for t_ in range(1, years + 1):
+        if t_ > 1:
+            e *= (1 + g1)
+        v += e * pay / (1 + r) ** t_
+    v += e * max(10.0, min(pe_exit, 30.0)) / (1 + r) ** years
+    return v
+
 def fetch_one(ticker, yf_sym, sector):
     result = {'ticker': ticker, 'updated': datetime.now(PARIS).isoformat()}
     # Place de cotation (05/10/2026) : toutes les valeurs sont eligibles PEA
@@ -816,6 +894,7 @@ def fetch_one(ticker, yf_sym, sector):
         # Filtre qualite QARP (ROIC median 4 ans, cash, dette)
         cat = TICKER_CAT.get(ticker) or classify_sector(sector)
         result.update(compute_quality(t, cat))
+        result.update(hist_multiples(t, info))
         # Croissance officielle (communiques) prioritaire sur Yahoo, y compris
         # pour le critere 'croissance >= 3 %' du filtre qualite
         off = OFFICIAL_GROWTH.get(ticker)
@@ -896,12 +975,29 @@ def fetch_one(ticker, yf_sym, sector):
                 if result['vopt']:
                     result['o1'] = result['vopt']
                     result['o2'] = round(result['vopt'] * 1.10, 2)
+                # methode 2 : multiples historiques (controle croise)
+                vm = mult_value(info.get('forwardEps'), eps_ttm, g_c, result.get('pe_h'),
+                                info.get('payoutRatio'))
+                result['vmult'] = clamp(vm) if vm else None
         if 'vmeth' not in result:
             result['vmeth'] = 'per'
         # Etape 3 : "qualite delaissee" = cours >10 % sous la MM200 et RSI < 40
         mm200, rsi_ = result.get('mm200'), result.get('rsi')
         result['neglect'] = bool(mm200 and rsi_ is not None
                                  and result.get('price', 0) < mm200 * 0.9 and rsi_ < 40)
+        # Controles de vraisemblance (07/10/2026) : signaler, ne pas corriger
+        dq = []
+        pe_, pf_ = result.get('pe') or 0, result.get('pe_fwd') or 0
+        if pe_ > 150 or (pe_ and pf_ and pe_ / pf_ > 3):
+            dq.append('benefice 12 mois anormal (PER %s contre %s attendu)' % (round(pe_, 1), round(pf_, 1)))
+        if result.get('hcur'):
+            dq.append('comptes publies dans une autre devise que le cours')
+        if result.get('gused') is not None and result.get('cagr') is not None \
+                and abs(result['gused'] - result['cagr']) > 15:
+            dq.append('croissance retenue (%s %%) tres differente de Yahoo (%s %%)' % (result['gused'], result['cagr']))
+        if result.get('vmult') and result.get('dcfm') and abs(result['vmult'] / result['dcfm'] - 1) > 0.35:
+            dq.append('les deux methodes de valeur divergent de plus de 35 %')
+        result['dq'] = ' · '.join(dq)
         # Couche moat (evaluation qualitative, moat.py)
         mo = MOAT.get(ticker)
         if mo:
@@ -1103,6 +1199,9 @@ def set_quality_fields(block, data):
     for k in ('regu', 'regn', 'nregu', 'vpess', 'vopt'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult'):
+        block = _set_field(block, k, num(data.get(k)))
+    block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
         if data.get(k):
             block = _set_field(block, k, txt(data.get(k)))

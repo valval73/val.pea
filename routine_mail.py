@@ -127,6 +127,8 @@ def main():
             dec = f"OUI À 50 % : demi-position ({'environ ' + fr(tot * 0.025, 0) + ' €, ' if tot else ''}2,5 % du portefeuille), ordre limité {fr(min(s['el'], s['price']))} €"
         else:
             dec = f"OUI : position normale ({'environ ' + fr(tot * 0.05, 0) + ' €, ' if tot else ''}5 % du portefeuille), ordre limité {fr(min(s['eh'], s['price']))} €"
+        if s.get('dq'):
+            dec = 'PAS ENCORE : donnée à vérifier (' + s['dq'] + ')'
         buys.append((s, f"zone {fr(s['el'])}–{fr(s['eh'])} € · {dec}"))
 
     watch_close = sorted([s for s in S if group(s) == 'watch' and (s.get('eh') or 0) > 0 and s['price'] > s['eh']],

@@ -99,6 +99,14 @@ function ratios(s){
     gauge('VE / EBITDA', s.ev_ebitda, '<8 · 8-12 · 12-18 · >18', [8,12,18], hiMargin?'élevé normal si marge forte':'', fin) +
     gauge('Cours / actif net', s.pb, '<1 · 1-2 · 2-4 · >4', [1,2,4], (fin||re)?'ratio clé ici':'peu utile hors banques/foncières', !(fin||re)) +
     gauge('Cours / ventes', s.ps, '<1 · 1-3 · 3-6 · >6', [1,3,6], hiMargin?'marge nette '+fr(s.margin,0)+' %':'', hiMargin);
+  // 07/10/2026 : comparaison avec l'historique propre de l'entreprise
+  var hc = function(lbl, now, past){
+    if(!(now>0) || !(past>0)) return '';
+    var d = (now/past-1)*100, col = d<=-10?C.gn:d>=10?C.rd:C.mu;
+    return '<div class="v2-crit"><span>'+lbl+' <span class="v2-small">aujourd’hui '+fr(now,1)+' · médiane '+(s.hn||'')+' clôtures annuelles '+fr(past,1)+'</span></span><b class="v2-mono" style="color:'+col+'">'+(d<=-10?'moins cher que d’habitude':d>=10?'plus cher que d’habitude':'dans ses habitudes')+' ('+sgn(d,0)+')</b></div>';
+  };
+  var hx = fin ? '' : hc('PER', s.pe, s.pe_h)+hc('Cours / cash libre', pfcf, s.pfcf_h)+hc('VE / EBITDA', s.ev_ebitda, s.eveb_h);
+  if(hx) h += '<div class="v2-k" style="margin-top:8px">Par rapport à sa propre histoire</div>'+hx+'<div class="v2-small">Plus parlant que le barème général : une entreprise de qualité se paie souvent cher, la question est « plus cher que d’habitude ? ».</div>';
   return h ? '<section class="v2-card"><div class="v2-head"><h2>Est-ce cher ? Les 6 ratios</h2><span class="v2-small">Barème général · les ratios grisés ne sont pas pertinents pour ce métier</span></div>'+
     '<div class="v2-scale"><div style="background:'+C.gn+'">ATTRACTIF</div><div style="background:'+C.gn2+'">JUSTE PRIX</div><div style="background:'+C.or+'">ÉLEVÉ</div><div style="background:'+C.rd+'">TRÈS ÉLEVÉ</div></div>'+h+'</section>' : '';
 }
@@ -197,6 +205,7 @@ function priceBlock(s){
       card('CENTRAL',C.ink,C.bg,s.dcfm,(gc!=null?fr(gc,1)+' %/an au départ':'croissance retenue')+', qui ralentit vers 2,5 %.',true)+
       card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(12,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.')+
     '</div>'+priceBar(s)+
+    (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
     (s.gimp!=null?'<div class="v2-note"><span><b>Ce que le cours suppose :</b> <span class="v2-mono">'+fr(s.gimp,1)+' %/an</span> contre <span class="v2-mono" style="color:'+C.gn+'">'+fr(s.gused,1)+' %/an retenus</span></span></div>':'')+
     '<div class="v2-small">Décote exigée selon l’incertitude : faible 10-20 % · moyenne 15-25 % · élevée 20-30 %. Sous le seuil de revue : relire la thèse, pas de vente automatique.</div></section>';
 }
@@ -261,6 +270,8 @@ function decision(s){
   if(g!=='buy'){
     var v = verdict(s);
     r = {t:'ACHAT : NON', c:'#6b7487', x:v.t.charAt(0)+v.t.slice(1).toLowerCase()+'. '+(s.qok&&s.eh>0?'On attend un cours sous '+fr(s.eh)+' € et une contre-expertise favorable.':'La méthode n’achète pas cette valeur.')};
+  } else if(s.dq){
+    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais une donnée est suspecte ('+esc(s.dq)+'). Vérifie-la sur Zonebourse ou le rapport annuel avant d’acheter.'};
   } else if(!last || age>90){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais '+(last?'la dernière contre-expertise date de '+age+' jours':'il n’y a pas encore de contre-expertise')+'. Règle : pas d’achat sans contre-expertise de moins de 3 mois.'};
   } else if(last.concl==='cassee'){
@@ -303,6 +314,7 @@ function renderV2(s){
   return '<div class="v2">'+
     '<header class="v2-top"><div><div class="v2-kick">'+esc(s.ticker)+' · '+esc(s.place||'')+' · '+esc(s.sector||'')+'</div><h1>'+esc(s.name)+'</h1></div>'+
     '<div class="v2-px"><div>'+fr(s.price)+' €</div><div class="v2-small" style="color:#c7cede">'+chg+'</div></div></header>'+
+    (s.dq?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(s.dq)+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
     priceBlock(s)+ratios(s)+
     '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
