@@ -201,9 +201,10 @@ function priceBlock(s){
   var gc = s.gused!=null ? Math.max(0,Math.min(12,s.gused)) : null;
   return '<section class="v2-card"><div class="v2-head"><h2>Le prix : trois scénarios, une zone</h2>'+
     (s.unc?'<span class="v2-pill" style="background:#f5f3ee;color:'+C.ink+'">INCERTITUDE '+(UNC[s.unc]||'NON ÉVALUÉE').toUpperCase()+'</span>':'')+'</div>'+
+    (s.irr!=null?'<div class="v2-note" style="background:'+(s.irr>=8.5?'#eef6f1':'#fbecea')+'"><span><b>En clair : si tu achètes à '+fr(s.price)+' €</b> et que la croissance retenue ('+fr(s.gused,1)+' %/an) se réalise, l’action devrait rapporter <b class="v2-mono">≈ '+fr(s.irr,1)+' %/an</b> (dividendes compris). La méthode exige 8,5 %/an'+(s.irr>=8.5?' : <b style="color:'+C.gn+'">le prix le permet</b>.':' : <b style="color:'+C.rd+'">trop cher pour ton exigence</b>. La valeur centrale ci-dessous est le prix qui donnerait 8,5 %/an.')+'</span></div>':'')+
     '<div class="v2-grid3">'+
       card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Plus aucune croissance pendant 10 ans.')+
-      card('CENTRAL',C.ink,C.bg,s.dcfm,(gc!=null?fr(gc,1)+' %/an au départ':'croissance retenue')+', qui ralentit vers 2,5 %.',true)+
+      card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 8,5 %/an si '+(gc!=null?fr(gc,1)+' %/an au départ':'la croissance retenue')+', ralentissant vers 2,5 %.',true)+
       card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(12,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.')+
     '</div>'+priceBar(s)+
     (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+

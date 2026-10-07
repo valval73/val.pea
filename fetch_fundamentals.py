@@ -497,7 +497,8 @@ def compute_quality(t, sector_cat):
 # se realisent.
 QV_R, QV_G2, QV_YEARS, QV_GMAX, QV_ROIC_CAP = 0.085, 0.025, 10, 0.12, 60.0
 
-def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None):
+def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
+    R = QV_R if r is None else r
     if roic_pct is None:
         return None
     if g1_override is not None:
@@ -526,10 +527,32 @@ def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None):
         g = g1 + (QV_G2 - g1) * (t_ - 1) / (QV_YEARS - 1)
         e *= (1 + g)
         pay = max(0.2, 1 - g / roic)
-        v += e * pay / (1 + QV_R) ** t_
-    tv = e * (1 + QV_G2) * pay2 / (QV_R - QV_G2)
-    v += tv / (1 + QV_R) ** QV_YEARS
+        v += e * pay / (1 + R) ** t_
+    tv = e * (1 + QV_G2) * pay2 / (R - QV_G2)
+    v += tv / (1 + R) ** QV_YEARS
     return v
+
+def expected_return(eps_fwd, eps_ttm, g_pct, roic_pct, price):
+    """Rendement annuel attendu si on achete au cours actuel et que la
+    croissance retenue se realise (taux qui egalise valeur et cours).
+    Plus parlant qu'une 'valeur centrale' : 'a 169 EUR, Air Liquide
+    rapporterait environ 6 %/an, contre 8,5 % exiges' (07/10/2026)."""
+    if not price or g_pct is None:
+        return None
+    f = lambda r: qarp_value(eps_fwd, eps_ttm, None, None, roic_pct, g1_override=g_pct / 100, r=r)
+    lo, hi = 0.03, 0.25
+    try:
+        if f(lo) is None or f(lo) < price or f(hi) > price:
+            return None
+        for _ in range(40):
+            mid = (lo + hi) / 2
+            if f(mid) > price:
+                lo = mid
+            else:
+                hi = mid
+        return round((lo + hi) / 2 * 100, 1)
+    except Exception:
+        return None
 
 def normalized_eps(t, info):
     """BPA publie, remplace par le BPA median 4 ans s'il est plus eleve.
@@ -994,6 +1017,7 @@ def fetch_one(ticker, yf_sym, sector):
                 same_cur = not (info.get('financialCurrency') and info.get('currency')
                                 and info.get('financialCurrency') != info.get('currency'))
                 result['vmult'] = clamp(vm) if (vm and same_cur) else None
+                result['irr'] = expected_return(info.get('forwardEps'), eps_ttm, g_c, roic_v, p_)
         if 'vmeth' not in result:
             result['vmeth'] = 'per'
         # Etape 3 : "qualite delaissee" = cours >10 % sous la MM200 et RSI < 40
@@ -1215,7 +1239,7 @@ def set_quality_fields(block, data):
     for k in ('regu', 'regn', 'nregu', 'vpess', 'vopt'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):

@@ -15,7 +15,7 @@ publication annuelle (et semestrielle si l'objectif change).
 
 # ticker: (croissance retenue %/an, detail, date de mise a jour)
 OFFICIAL_GROWTH = {
-    'AI':     (2.0,  "ventes comparables 2025 +2,0 % (refacturation energie) ; RN recurrent +6,2 %", '2026-10-05'),
+    'AI':     (6.2,  "RN recurrent +6,2 % (07/10 : les ventes comparables +2 % sont faussees par la refacturation de l'energie, on retient le benefice)", '2026-10-07'),
     'OR':     (4.0,  "ventes comparables 2025 +4 %", '2026-10-05'),
     'RMS':    (7.5,  "2025 +9 % a changes constants ; S1 2026 +6 %", '2026-10-05'),
     'SAF':    (15.0, "CA ajuste 2025 +15 % ; objectif 2026 ~+15 %", '2026-10-05'),
