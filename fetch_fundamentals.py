@@ -532,6 +532,11 @@ def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
     v += tv / (1 + R) ** QV_YEARS
     return v
 
+# Retenue a la source standard sur dividendes par place (non recuperable en PEA).
+# Source : Lightyear, centre d'aide 'Impots sur les dividendes' (08/10/2026) ; Italie 26 % (taux legal).
+WHT = {'DE': 26.375, 'AS': 15.0, 'MC': 19.0, 'MI': 26.0, 'CO': 27.0, 'ST': 30.0,
+       'HE': 35.0, 'OL': 25.0, 'BR': 30.0, 'PA': 0.0}
+
 def expected_return(eps_fwd, eps_ttm, g_pct, roic_pct, price):
     """Rendement annuel attendu si on achete au cours actuel et que la
     croissance retenue se realise (taux qui egalise valeur et cours).
@@ -1018,6 +1023,12 @@ def fetch_one(ticker, yf_sym, sector):
                                 and info.get('financialCurrency') != info.get('currency'))
                 result['vmult'] = clamp(vm) if (vm and same_cur) else None
                 result['irr'] = expected_return(info.get('forwardEps'), eps_ttm, g_c, roic_v, p_)
+                # 08/10/2026 : en PEA, la retenue a la source etrangere sur les
+                # dividendes est perdue -> rendement net pour l'investisseur PEA
+                wht = WHT.get(yf_sym.rsplit('.', 1)[-1] if '.' in yf_sym else '', 0.0)
+                result['wht'] = wht
+                result['irrn'] = (round(result['irr'] - (result.get('yield') or 0) * wht / 100, 1)
+                                  if (result['irr'] is not None and wht) else result['irr'])
         if 'vmeth' not in result:
             result['vmeth'] = 'per'
         # Etape 3 : "qualite delaissee" = cours >10 % sous la MM200 et RSI < 40
@@ -1239,7 +1250,7 @@ def set_quality_fields(block, data):
     for k in ('regu', 'regn', 'nregu', 'vpess', 'vopt'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
