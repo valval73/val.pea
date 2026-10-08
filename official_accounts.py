@@ -71,7 +71,7 @@ def fiche_tickers():
 SKIP = {'RACE': 'homonyme Ferrari Group plc'}
 # Ecarts de definition connus (pas des erreurs) : controle du CA desactive
 NO_REV = {'TTE': 'CA officiel avec droits d accise, Yahoo sans'}
-SEARCH_NAME = {'ITX': 'INDUSTRIA DE DISENO TEXTIL', 'OR': 'OREAL', 'AIR': 'AIRBUS', 'TTE': 'TOTALENERGIES',
+SEARCH_NAME = {'AMS': 'AMADEUS IT GROUP', 'ITX': 'INDUSTRIA DE DISENO TEXTIL', 'OR': 'OREAL', 'AIR': 'AIRBUS', 'TTE': 'TOTALENERGIES',
                'RACE': 'FERRARI', 'NSIS': 'NOVONESIS', 'RBT': 'ROBERTET'}
 
 
