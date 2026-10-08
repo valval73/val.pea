@@ -131,7 +131,27 @@ function hist(s){
   return {yrs:yrs, rv:rv, ni:ni, fc:fc};
 }
 function quality(s){
-  if(isFin(s)) return '<section class="v2-card"><h2>Qualité</h2><p>Banque ou assurance : grille dédiée (rentabilité des fonds propres, solvabilité, coût du risque) <b>en préparation</b>. Pas de verdict qualité en attendant.</p></section>';
+  if(s.grid==='banque'){
+    var b1=s.roem!=null&&s.roem>=10, b2=s.roemin!=null&&s.roemin>=6, b4=s.bvg!=null&&s.bvg>=2;
+    var nn=(s.nih||'').split('|').filter(function(x){return x!=='';}).map(Number), b3=nn.length>0&&nn.every(function(x){return x>0;});
+    return '<section class="v2-card"><h2>Qualité (grille banque / assurance) : '+[b1,b2,b3,b4].filter(Boolean).length+' / 4</h2>'+
+      crit('Rentabilité des fonds propres (médiane 4 ans)','≥ 10 %', s.roem==null?'—':fr(s.roem,1)+' %', s.roem==null?null:b1)+
+      crit('Pire année','≥ 6 %', s.roemin==null?'—':fr(s.roemin,1)+' %', s.roemin==null?null:b2)+
+      crit('Aucune perte sur 4 ans','oui', nn.length?(b3?'oui':'non'):'—', nn.length?b3:null)+
+      crit('Croissance de l’actif net par action','≥ 2 %/an', s.bvg==null?'—':fr(s.bvg,1)+' %', s.bvg==null?null:b4)+
+      '<div class="v2-note" style="background:#fbf4e6"><span><b>À vérifier dans la contre-expertise</b> (pas dans les données gratuites) : solvabilité (ratio CET1 ≥ 12 % pour une banque, Solvabilité II ≥ 170 % pour un assureur) et coût du risque.</span></div>'+
+      (s.qwhy?'<div class="v2-small">'+esc(s.qwhy)+'</div>':'')+'</section>';
+  }
+  if(s.grid==='fonciere'){
+    var f1=s.ltv!=null&&s.ltv<=45, f2=s.icr!=null&&s.icr>=2.5, f3=s.cagr!=null&&s.cagr>=0;
+    return '<section class="v2-card"><h2>Qualité (grille foncière) : '+[f1,f2,f3].filter(Boolean).length+' / 3 + exploitation</h2>'+
+      crit('Dette nette / actifs (approche du LTV)','≤ 45 %', s.ltv==null?'—':fr(s.ltv,1)+' %', s.ltv==null?null:f1)+
+      crit('Couverture des intérêts (résultat d’exploitation / intérêts)','≥ 2,5', s.icr==null?'—':fr(s.icr,1), s.icr==null?null:f2)+
+      crit('Loyers (chiffre d’affaires) sur 4 ans','stables ou en hausse', s.cagr==null?'—':fr(s.cagr,1)+' %/an', s.cagr==null?null:f3)+
+      '<div class="v2-note" style="background:#fbf4e6"><span><b>À vérifier dans la contre-expertise :</b> actif net réévalué officiel (EPRA NTA), LTV publié, taux d’occupation, échéance de la dette.</span></div>'+
+      (s.qwhy?'<div class="v2-small">'+esc(s.qwhy)+'</div>':'')+'</section>';
+  }
+  if(isFin(s)) return '<section class="v2-card"><h2>Qualité</h2><p>Holding : grille dédiée (décote sur actif net réévalué) <b>en préparation</b>. Pas de verdict qualité en attendant.</p></section>';
   var n=0, h='';
   var c1 = s.roicx!=null && s.roicx>=15, c2 = s.roic!=null && s.roic>=12, c3 = s.fcfc!=null && s.fcfc>=80, c4 = s.nde!=null && s.nde<=2.5, c5 = s.gused!=null && s.gused>=3;
   [c1,c2,c3,c4,c5].forEach(function(x){ if(x) n++; });
@@ -202,7 +222,7 @@ function figures(s){
 
 // ---- prix : scénarios et zone ----
 function priceBlock(s){
-  if(!(s.qok||s.near) || s.vmeth!=='qarp' || !s.vpess){
+  if(!(s.qok||s.near) || (s.vmeth!=='qarp'&&s.vmeth!=='pb') || !s.vpess){
     return '<section class="v2-card"><h2>Le prix</h2><p>Pas de zone d’achat : la valeur ne passe pas le filtre qualité, la méthode ne cherche donc pas à l’acheter. '+
       (s.tp>0?'Pour information, objectif moyen des analystes : <b>'+fr(s.tp)+' €</b>.':'')+'</p></section>';
   }
@@ -210,11 +230,20 @@ function priceBlock(s){
   var gc = s.gused!=null ? Math.max(0,Math.min(12,s.gused)) : null;
   return '<section class="v2-card"><div class="v2-head"><h2>Le prix : trois scénarios, une zone</h2>'+
     (s.unc?'<span class="v2-pill" style="background:#f5f3ee;color:'+C.ink+'">INCERTITUDE '+(UNC[s.unc]||'NON ÉVALUÉE').toUpperCase()+'</span>':'')+'</div>'+
-    (s.irr!=null?(function(){ var R=(s.irrn!=null?s.irrn:s.irr); return '<div class="v2-note" style="background:'+(R>=8.5?'#eef6f1':'#fbecea')+'"><span><b>En clair : si tu achètes à '+fr(s.price)+' €</b> et que la croissance retenue ('+fr(s.gused,1)+' %/an) se réalise, l’action devrait rapporter <b class="v2-mono">≈ '+fr(R,1)+' %/an</b> (dividendes compris'+(s.wht>0?', <b>net de la retenue à la source de '+fr(s.wht,1)+' % perdue en PEA</b> ; '+fr(s.irr,1)+' % avant':'')+'). La méthode exige 8,5 %/an'+(R>=8.5?' : <b style="color:'+C.gn+'">le prix le permet</b>.':' : <b style="color:'+C.rd+'">trop cher pour ton exigence</b>. La valeur centrale ci-dessous est le prix qui donnerait 8,5 %/an.')+'</span></div>'; })():'')+
+    (s.irr!=null?(function(){ var R=(s.irrn!=null?s.irrn:s.irr), RQ=(s.grid==='banque'?10:8.5), RQs=fr(RQ,1); var hyp=(s.grid==='banque'?'la rentabilité des fonds propres ('+fr(s.roem,1)+' %) se maintient':s.grid==='fonciere'?'les loyers suivent l’inflation (estimation simple : rendement + 2 %)':'la croissance retenue ('+fr(s.gused,1)+' %/an) se réalise'); return '<div class="v2-note" style="background:'+(R>=RQ?'#eef6f1':'#fbecea')+'"><span><b>En clair : si tu achètes à '+fr(s.price)+' €</b> et que '+hyp+', l’action devrait rapporter <b class="v2-mono">≈ '+fr(R,1)+' %/an</b> (dividendes compris'+(s.wht>0?', <b>net de la retenue à la source de '+fr(s.wht,1)+' % perdue en PEA</b> ; '+fr(s.irr,1)+' % avant':'')+'). La méthode exige '+RQs+' %/an'+(s.grid==='banque'?' (banque ou assurance : plus risqué)':'')+(R>=RQ?' : <b style="color:'+C.gn+'">le prix le permet</b>.':' : <b style="color:'+C.rd+'">trop cher pour ton exigence</b>. La valeur centrale ci-dessous est le prix qui donnerait '+RQs+' %/an.')+'</span></div>'; })():'')+
     '<div class="v2-grid3">'+
+      (s.grid==='banque' ?
+        card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Rentabilité des fonds propres '+fr(s.roem-3,1)+' % (3 points de moins).')+
+        card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 10 %/an si la rentabilité reste à '+fr(s.roem,1)+' %.',true)+
+        card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,'Rentabilité '+fr(s.roem+2,1)+' % (2 points de plus).')
+      : s.grid==='fonciere' ?
+        card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Patrimoine dévalué de 20 %.')+
+        card('CENTRAL',C.ink,C.bg,s.dcfm,'Actif net comptable par action (approche de l’actif net réévalué).',true)+
+        card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,'Patrimoine réévalué de 10 %.')
+      :
       card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Plus aucune croissance pendant 10 ans.')+
       card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 8,5 %/an si '+(gc!=null?fr(gc,1)+' %/an au départ':'la croissance retenue')+', ralentissant vers 2,5 %.',true)+
-      card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(12,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.')+
+      card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(12,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.'))+
     '</div>'+priceBar(s)+
     (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
     (s.gimp!=null?'<div class="v2-note"><span><b>Ce que le cours suppose :</b> <span class="v2-mono">'+fr(s.gimp,1)+' %/an</span> contre <span class="v2-mono" style="color:'+C.gn+'">'+fr(s.gused,1)+' %/an retenus</span></span></div>':'')+

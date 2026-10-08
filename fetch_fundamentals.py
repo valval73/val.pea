@@ -383,16 +383,124 @@ def _median(vals):
     n = len(v)
     return v[n//2] if n % 2 else (v[n//2-1] + v[n//2]) / 2
 
+# ═══ 08/10/2026 : grilles dediees banques/assurances et foncieres ═══
+# Le ROIC et la dette/EBITDA n'ont pas de sens pour un bilan de banque ou de
+# fonciere. Criteres calculables avec les comptes publies (Yahoo) ; la
+# solvabilite (CET1, Solvabilite II) et l'actif net reevalue officiel ne sont
+# PAS disponibles : a verifier dans la contre-expertise (obligatoire avant achat).
+FIN_R, FIN_G = 0.10, 0.02     # rendement exige banques/assurances (plus risque que 8,5 %)
+Q_ROE, Q_ROE_MIN, Q_BVG = 10.0, 6.0, 2.0
+Q_LTV, Q_ICR = 45.0, 2.5
+
+def kind_of(sector, cat):
+    s_ = (sector or '').lower()
+    if cat == 'Financier' and ('banque' in s_ or 'assur' in s_):
+        return 'Banque'
+    if cat == 'Financier' and ('paiement' in s_ or 'avantages' in s_):
+        return 'Services'   # metier de services : grille standard (ROIC)
+    if cat == 'Immobilier' and not any(k in s_ for k in ('promotion', 'ehpad', 'maisons retraite', 'residences')):
+        return 'Fonciere'
+    return cat
+
+def compute_quality_bank(t, res):
+    try:
+        fin, bs = t.financials, t.balance_sheet
+        ni = _row_series(fin, 'Net Income Common Stockholders', 'Net Income')
+        eq = _row_series(bs, 'Common Stock Equity', 'Stockholders Equity')
+        sh = _row_series(bs, 'Ordinary Shares Number', 'Share Issued')
+        n = min(len(ni), len(eq), 4)
+        roes = [ni[i] / eq[i] * 100 for i in range(n) if ni[i] is not None and eq[i] and eq[i] > 0]
+        nis = [x for x in ni[:4] if x is not None]
+        bv = [(eq[i] / sh[i]) if (i < len(sh) and sh[i] and eq[i]) else eq[i] for i in range(n) if eq[i]]
+        res['yrs'] = '|'.join(str(c.year) for c in list(fin.columns)[:4])
+        res['nih'] = '|'.join('' if x is None else f"{x / 1e6:.0f}" for x in ni[:4])
+        res['roem'] = round(_median(roes), 1) if roes else None
+        res['roemin'] = round(min(roes), 1) if roes else None
+        if len(bv) >= 2 and bv[-1] > 0 and bv[0] > 0:
+            res['bvg'] = round(((bv[0] / bv[-1]) ** (1 / (len(bv) - 1)) - 1) * 100, 1)
+        if len(nis) >= 3:
+            res['regn'] = len(nis) - 1
+            res['regu'] = res['nregu'] = sum(1 for i in range(len(nis) - 1) if nis[i] > nis[i + 1])
+        if len(nis) >= 2 and nis[-1] > 0 and nis[0] > 0:
+            res['nig'] = round(((nis[0] / nis[-1]) ** (1 / (len(nis) - 1)) - 1) * 100, 1)
+        why = []
+        if res['roem'] is None or res['roem'] < Q_ROE:          why.append(f"rentabilite fonds propres {res['roem']}%")
+        if res['roemin'] is None or res['roemin'] < Q_ROE_MIN:  why.append(f"pire annee {res['roemin']}%")
+        if not nis or any(x <= 0 for x in nis):                 why.append('perte sur 4 ans')
+        if res.get('bvg') is None or res['bvg'] < Q_BVG:        why.append(f"croissance actif net {res.get('bvg')}%")
+        res['qok'], res['qwhy'], res['grid'] = not why, ', '.join(why), 'banque'
+    except Exception as e:
+        res['qwhy'] = f'donnees indisponibles ({e})'[:80]
+    return res
+
+def compute_quality_re(t, res):
+    try:
+        fin, bs = t.financials, t.balance_sheet
+        rev = _row_series(fin, 'Total Revenue', 'Operating Revenue')
+        op = _row_series(fin, 'Operating Income', 'EBIT')
+        ie = _row_series(fin, 'Interest Expense', 'Interest Expense Non Operating')
+        debt = _row_series(bs, 'Total Debt')
+        cash = _row_series(bs, 'Cash And Cash Equivalents')
+        ta = _row_series(bs, 'Total Assets')
+        g = lambda lst, i: lst[i] if i < len(lst) else None
+        res['yrs'] = '|'.join(str(c.year) for c in list(fin.columns)[:4])
+        res['revh'] = '|'.join('' if x is None else f"{x / 1e6:.0f}" for x in rev[:4])
+        if g(debt, 0) is not None and g(ta, 0):
+            res['ltv'] = round(((g(debt, 0) or 0) - (g(cash, 0) or 0)) / g(ta, 0) * 100, 1)
+        if g(op, 0) and g(ie, 0):
+            res['icr'] = round(g(op, 0) / abs(g(ie, 0)), 1)
+        revs = [x for x in rev[:4] if x is not None]
+        if len(revs) >= 2 and revs[-1] > 0 and revs[0] > 0:
+            res['cagr'] = round(((revs[0] / revs[-1]) ** (1 / (len(revs) - 1)) - 1) * 100, 1)
+        if len(revs) >= 3:
+            res['regn'] = len(revs) - 1
+            res['regu'] = sum(1 for i in range(len(revs) - 1) if revs[i] >= revs[i + 1])
+        ops = [x for x in op[:4] if x is not None]
+        why = []
+        if res.get('ltv') is None or res['ltv'] > Q_LTV:   why.append(f"endettement/actifs {res.get('ltv')}%")
+        if res.get('icr') is None or res['icr'] < Q_ICR:   why.append(f"couverture des interets {res.get('icr')}")
+        if res.get('cagr') is None or res['cagr'] < 0:     why.append(f"loyers en baisse {res.get('cagr')}%")
+        if not ops or any(x <= 0 for x in ops):             why.append('perte exploitation')
+        res['qok'], res['qwhy'], res['grid'] = not why, ', '.join(why), 'fonciere'
+    except Exception as e:
+        res['qwhy'] = f'donnees indisponibles ({e})'[:80]
+    return res
+
+def value_bank_re(kind, info, res, unc):
+    """Valeur centrale, scenarios et rendement attendu pour banques et foncieres."""
+    bvps, p = info.get('bookValue'), res.get('price')
+    if not bvps or bvps <= 0 or not p:
+        return {}
+    o = {'vmeth': 'pb', 'unc': unc}
+    if kind == 'Banque':
+        roe = res.get('roem')
+        if roe is None:
+            return {}
+        f = lambda r_: bvps * max(0.3, (min(r_, 20) / 100 - FIN_G) / (FIN_R - FIN_G))
+        c, lo_, hi_ = f(roe), f(roe - 3), f(roe + 2)
+        o['irr'] = round((FIN_G + (min(roe, 20) / 100 - FIN_G) / (p / bvps)) * 100, 1)
+    else:
+        c, lo_, hi_ = bvps, bvps * 0.8, bvps * 1.1
+        o['irr'] = round((res.get('yield') or 0) + 2.0, 1)   # rendement + indexation des loyers (approximatif)
+    lo_m, hi_m = MARGIN.get(unc, (0.30, 0.20))
+    o.update({'dcfm': round(c, 2), 'vpess': round(lo_, 2), 'vopt': round(hi_, 2),
+              'el': round(c * (1 - lo_m), 2), 'eh': round(c * (1 - hi_m), 2),
+              'stop': round(lo_ * 0.9, 2), 'o1': round(hi_, 2), 'o2': round(hi_ * 1.1, 2)})
+    return o
+
 def compute_quality(t, sector_cat):
     """Calcule les 5 criteres et renvoie un dict :
     roic (mediane avec ecart d'acquisition), roicx (sans), fcfc (%),
     nde (dette nette/EBITDA), qok (bool), qwhy (criteres en echec)."""
     res = {'roic': None, 'roicx': None, 'fcfc': None, 'nde': None, 'cagr': None,
            'nig': None, 'qok': False, 'qwhy': ''}
+    if sector_cat == 'Banque':
+        return compute_quality_bank(t, res)
+    if sector_cat == 'Fonciere':
+        return compute_quality_re(t, res)
     if sector_cat == 'Financier':
-        # ROIC / EBITDA n'ont pas de sens pour une banque ou un assureur :
-        # grille dediee a construire (ROE + solvabilite). En attendant, hors filtre.
-        res['qwhy'] = 'financiere (grille dediee a venir)'
+        # holdings : actif net reevalue non disponible -> hors filtre
+        res['qwhy'] = 'holding (grille dediee a venir)'
         return res
     try:
         fin, bs, cf = t.financials, t.balance_sheet, t.cashflow
@@ -934,7 +1042,8 @@ def fetch_one(ticker, yf_sym, sector):
         if alt is not None: result['alt'] = alt
         # Filtre qualite QARP (ROIC median 4 ans, cash, dette)
         cat = TICKER_CAT.get(ticker) or classify_sector(sector)
-        result.update(compute_quality(t, cat))
+        kind = kind_of(sector, cat)
+        result.update(compute_quality(t, kind if kind in ('Banque', 'Fonciere') else cat if kind != 'Services' else 'Services'))
         result.update(hist_multiples(t, info))
         # Croissance officielle (communiques) prioritaire sur Yahoo, y compris
         # pour le critere 'croissance >= 3 %' du filtre qualite
@@ -976,7 +1085,13 @@ def fetch_one(ticker, yf_sym, sector):
         if pio is not None and pio <= 4:
             result['alarm'] = f'Piotroski {pio}/9'
         # Etape 2 : juste prix ajuste a la qualite pour les valeurs du filtre
-        if (result.get('qok') or result.get('near')) and result.get('price', 0) > 0:
+        if kind in ('Banque', 'Fonciere') and (result.get('qok') or result.get('near')) and result.get('price', 0) > 0:
+            result.update(value_bank_re(kind, info, result, UNCERTAINTY.get(ticker) or 'elevee'))
+            wht = WHT.get(yf_sym.rsplit('.', 1)[-1] if '.' in yf_sym else '', 0.0)
+            result['wht'] = wht
+            if result.get('irr') is not None:
+                result['irrn'] = round(result['irr'] - (result.get('yield') or 0) * wht / 100, 1)
+        elif (result.get('qok') or result.get('near')) and result.get('price', 0) > 0:
             g_in = off[0] if off else None
             eps_ttm = normalized_eps(t, info)
             v = qarp_value(info.get('forwardEps'), eps_ttm,
@@ -1067,7 +1182,7 @@ def fetch_one(ticker, yf_sym, sector):
         fx = NON_EUR.get(yf_sym)
         if fx:
             for k in ('price','b52h','b52l','dcfb','dcfm','dcfu','el','eh','stop',
-                      'o1','o2','mm50','mm200','target_price'):
+                      'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult'):
                 if result.get(k): result[k] = round(result[k] / fx, 2)
         # Objectif de cours = consensus analystes (si >= 3 analystes),
         # au lieu d'un 'tp' saisi a la main a la creation et jamais mis a jour.
@@ -1250,7 +1365,8 @@ def set_quality_fields(block, data):
     for k in ('regu', 'regn', 'nregu', 'vpess', 'vopt'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht'):
+    block = _set_field(block, 'grid', txt(data.get('grid')))
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
