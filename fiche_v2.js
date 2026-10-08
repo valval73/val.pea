@@ -229,7 +229,7 @@ function technical(s){
 function sources(s){
   var q = encodeURIComponent(s.name||s.ticker);
   return '<section class="v2-card v2-small"><p>Sources : cours et ratios Yahoo Finance (mise à jour automatique) · croissance : '+esc(s.gsrc||'Yahoo')+' · '+
-    (s.x2s?'contrôle croisé du cours : '+esc(s.x2s)+(s.x2?' (écart)':' (concordant)')+' · ':'')+
+    (s.x2s?'contrôle par les '+esc(s.x2s)+' (filings.xbrl.org)'+(s.x2?' : <b>écart</b>':' : concordant')+' · ':'')+
     '<a href="https://www.zonebourse.com/recherche/?q='+q+'" target="_blank" rel="noopener">Zonebourse</a> · '+
     '<a href="https://www.boursorama.com/recherche/'+q+'/" target="_blank" rel="noopener">Boursorama</a></p></section>';
 }
