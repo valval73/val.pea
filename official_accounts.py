@@ -67,6 +67,10 @@ def fiche_tickers():
 
 
 # Noms officiels quand le nom usuel ne suffit pas (verifies le 08/10/2026)
+# Correspondance impossible a garantir (homonymes) : on n'affirme rien plutot que de se tromper
+SKIP = {'RACE': 'homonyme Ferrari Group plc'}
+# Ecarts de definition connus (pas des erreurs) : controle du CA desactive
+NO_REV = {'TTE': 'CA officiel avec droits d accise, Yahoo sans'}
 SEARCH_NAME = {'ITX': 'INDUSTRIA DE DISENO TEXTIL', 'OR': 'OREAL', 'AIR': 'AIRBUS', 'TTE': 'TOTALENERGIES',
                'RACE': 'FERRARI', 'NSIS': 'NOVONESIS', 'RBT': 'ROBERTET'}
 
@@ -122,14 +126,16 @@ def official(lei):
     fl = get(f'/api/entities/{lei}/filings?page[size]=50')
     items = [x.get('attributes', {}) for x in (fl or {}).get('data', [])]
     items = [a for a in items if a.get('json_url') and a.get('period_end')]
-    if not items:
-        return None
-    a = sorted(items, key=lambda x: (x['period_end'], x.get('date_added') or ''))[-1]
-    j = get(a['json_url'])
-    if not j:
-        return None
-    facts = j.get('facts', {})
-    return {'period_end': a['period_end'], 'rev': year_values(facts, REV), 'ni': year_values(facts, NI)}
+    # du plus recent au plus ancien ; si un rapport est illisible, on prend le precedent
+    for a in sorted(items, key=lambda x: (x['period_end'], x.get('date_added') or ''), reverse=True)[:3]:
+        j = get(a['json_url'])
+        if not j:
+            continue
+        facts = j.get('facts', {})
+        o = {'period_end': a['period_end'], 'rev': year_values(facts, REV), 'ni': year_values(facts, NI)}
+        if o['rev'] or o['ni']:
+            return o
+    return None
 
 
 def main():
@@ -144,6 +150,9 @@ def main():
       try:
         y = YF_MAP.get(tk, '')
         country = COUNTRY.get(y.rsplit('.', 1)[-1]) if '.' in y else None
+        if tk in SKIP:
+            res[tk] = {'status': 'non controle : ' + SKIP[tk]}
+            continue
         ent = resolve(tk, S[tk]['name'], country, cache)
         if not ent:
             res[tk] = {'status': 'societe introuvable'}
@@ -154,7 +163,7 @@ def main():
             continue
         yrs = (S[tk]['yrs'] or '').split('|')
         issues, checked = [], []
-        for lab, key, src in (('CA', 'revh', o['rev']), ('resultat net', 'nih', o['ni'])):
+        for lab, key, src in (('CA', 'revh', {} if tk in NO_REV else o['rev']), ('resultat net', 'nih', o['ni'])):
             ys = (S[tk][key] or '').split('|')
             for yr, (val, unit) in sorted(src.items(), reverse=True)[:2]:
                 if yr not in yrs or unit != (S[tk]['fcur'] or unit):
