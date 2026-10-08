@@ -15,6 +15,7 @@ portefeuille ; palier 1 -> jusqu'a 2,5 % ; le reste va sur l'ETF Monde.
 Aucune vente (on garde tout jusqu'a la fin).
 
 BIAIS CONNUS (a lire avant de conclure) :
+  - filtres du screener appliques (chute, regularite, moat d'aujourd'hui) ;
   - univers = les valeurs de qualite D'AUJOURD'HUI (biais du survivant :
     flatte les strategies B et C) ;
   - rentabilite du capital et incertitude = valeurs d'aujourd'hui ;
@@ -29,9 +30,10 @@ import pandas as pd
 import yfinance as yf
 from tickers import YF_MAP
 from fetch_fundamentals import qarp_value, QV_GMAX
-from moat import UNCERTAINTY, MARGIN
+from moat import UNCERTAINTY, MARGIN, MOAT, MOAT_MIN_BUY
 
 ETF = 'EUNL.DE'           # iShares Core MSCI World (EUR)
+EUR_IDX = 'MEUD.PA'       # Amundi Stoxx Europe 600 (capitalisant) : reference europeenne
 Z2M = {'faible': 0.20, 'moyenne': 0.30, 'elevee': 0.40}
 LAG = 75                  # jours entre cloture et publication
 MONTHLY = 1000.0
@@ -84,8 +86,11 @@ def valuations(tk, roic):
         if e <= 0:
             continue
         v = qarp_value(None, e, None, None, roic, g1_override=g / 100)
+        rs = [float(rev[y]) for y in years[:i + 1]]
+        ups = sum(1 for a_, b_ in zip(rs, rs[1:]) if b_ > a_)
+        regular = ups >= len(rs) - 2 if len(rs) >= 3 else True
         if v:
-            pts.append((pd.Timestamp(y1).tz_localize(None) + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1)))
+            pts.append((pd.Timestamp(y1).tz_localize(None) + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1), regular))
     return pts, None
 
 
@@ -106,6 +111,11 @@ def main():
             skipped[tk] = str(ex)[:80]
     etf = yf.Ticker(ETF).history(period='6y', interval='1mo', auto_adjust=True)['Close']
     etf.index = etf.index.tz_localize(None)
+    try:
+        eu = yf.Ticker(EUR_IDX).history(period='6y', interval='1mo', auto_adjust=True)['Close']
+        eu.index = eu.index.tz_localize(None)
+    except Exception:
+        eu = None
     start = min(p[0][0] for p in vals.values())
     months = [d for d in etf.index if d >= start]
     print('Periode :', months[0].date(), '->', months[-1].date(), len(months), 'mois')
@@ -119,12 +129,14 @@ def main():
         return L[-1] if L else None
 
     # A : ETF seul ; B : actions chaque mois (parts egales) ; C : paliers + ETF
-    A, B, C_etf, C = 0.0, {}, 0.0, {}
-    events, invested = [], 0.0
+    A, B, C_etf, C, D_ = 0.0, {}, 0.0, {}, 0.0
+    events, invested, blocked = [], 0.0, {}
     for d in months:
         pe = float(etf[etf.index <= d].iloc[-1])
         invested += MONTHLY
         A += MONTHLY / pe
+        if eu is not None and len(eu[eu.index <= d]):
+            D_ += MONTHLY / float(eu[eu.index <= d].iloc[-1])
         live = [tk for tk in closes if px(tk, d) and cur_val(tk, d)]
         for tk in live:
             B[tk] = B.get(tk, 0.0) + MONTHLY / len(live) / px(tk, d)
@@ -134,6 +146,14 @@ def main():
         cands = []
         for tk in live:
             p, v = px(tk, d), cur_val(tk, d)
+            # memes filtres que le screener : chute > 35 % sur 12 mois, croissance
+            # irreguliere, moat < 3 (moat = note d'aujourd'hui)
+            hist12 = closes[tk][(closes[tk].index <= d) & (closes[tk].index > d - pd.Timedelta(days=366))]
+            knife = len(hist12) and p < 0.65 * float(hist12.max())
+            weak = (MOAT.get(tk, (0,))[0] or 0) < MOAT_MIN_BUY
+            if knife or weak or not v[5]:
+                blocked[tk] = blocked.get(tk, 0) + 1
+                continue
             if p <= v[2]:
                 cands.append((0, p / v[3], tk, 0.05, 2))
             elif p <= v[1]:
@@ -151,6 +171,7 @@ def main():
     dl = months[-1]
     pe = float(etf.iloc[-1])
     vA = A * pe
+    vD = D_ * float(eu.iloc[-1]) if eu is not None and D_ else None
     vB = sum(q * px(tk, dl) for tk, q in B.items())
     vC = C_etf * pe + sum(q * px(tk, dl) for tk, q in C.items())
 
@@ -176,16 +197,18 @@ def main():
         'periode': [str(months[0].date()), str(dl.date())], 'mois': len(months), 'verse': invested,
         'univers': sorted(closes), 'exclues': skipped,
         'A_etf_seul': {'valeur': round(vA), 'rendement_annuel': irr(vA)},
+        'D_europe_stoxx600': {'valeur': round(vD), 'rendement_annuel': irr(vD)} if vD else None,
         'B_actions_chaque_mois': {'valeur': round(vB), 'rendement_annuel': irr(vB)},
         'C_paliers_plus_etf': {'valeur': round(vC), 'rendement_annuel': irr(vC),
                                'part_actions_finale_pct': round((vC - C_etf * pe) / vC * 100, 1)},
         'achats': {'palier1': n1, 'palier2': n2, 'battent_etf': beat, 'total': len(events)},
+        'bloques_par_filtres': blocked,
         'evenements': events[-60:],
         'biais': ['univers = qualite d aujourd hui (survivant)', 'ROIC et incertitude d aujourd hui',
                   'test court : comptes Yahoo limites a 4-5 ans', 'sans frais ni impots'],
     }
     json.dump(out, open('backtest_paliers.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
+    print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
 
 
 if __name__ == '__main__':
