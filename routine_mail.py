@@ -123,10 +123,16 @@ def main():
             dec = 'PAS ENCORE : contre-expertise à faire avant d’acheter'
         elif c.get('concl') == 'cassee':
             dec = 'NON : thèse cassée'
-        elif c.get('concl') == 'fragilisee':
-            dec = f"OUI À 50 % : demi-position ({'environ ' + fr(tot * 0.025, 0) + ' €, ' if tot else ''}2,5 % du portefeuille), ordre limité {fr(min(s['el'], s['price']))} €"
         else:
-            dec = f"OUI : position normale ({'environ ' + fr(tot * 0.05, 0) + ' €, ' if tot else ''}5 % du portefeuille), ordre limité {fr(min(s['eh'], s['price']))} €"
+            z2 = round(s['dcfm'] * (1 - {'faible': 0.20, 'elevee': 0.40}.get(s.get('unc'), 0.30)), 2) if s.get('dcfm') else None
+            P = 2 if (z2 and s['price'] <= z2) else 1
+            lvl = P - 1 if c.get('concl') == 'fragilisee' else P
+            if lvl >= 2:
+                dec = f"OUI, POSITION COMPLÈTE (palier 2, 5 % du portefeuille), ordre limité {fr(min(z2, s['price']))} €"
+            elif lvl == 1:
+                dec = f"OUI À 50 % (palier 1, 2,5 %), ordre limité {fr(min(s['eh'], s['price']))} € ; le reste sous {fr(z2)} €"
+            else:
+                dec = f"PAS ENCORE : thèse fragilisée au palier 1, on attend {fr(z2)} € (palier 2)"
         dq_ = ' · '.join(x for x in (s.get('dq'), s.get('x2')) if x)
         if dq_:
             dec = 'PAS ENCORE : donnée à vérifier (' + dq_ + ')'

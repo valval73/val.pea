@@ -17,6 +17,12 @@ function sgn(x,d){ if(x===null||isNaN(x)) return '—'; return (x>=0?'+':'')+fr(
 var C = {gn:'#1d6b45', gn2:'#3f9a68', or:'#a8790f', rd:'#a8322b', ink:'#0e1c33', mu:'#5a6275', bg:'#f5f3ee', line:'#eee9de'};
 var UNC = {faible:'faible', moyenne:'moyenne', elevee:'élevée'};
 var UNCM = {faible:'10-20 %', moyenne:'15-25 %', elevee:'20-30 %'};
+// 08/10/2026 : deux paliers d'achat. Palier 1 = zone actuelle (demi-position) ;
+// palier 2 = decote Morningstar 5 etoiles (20/30/40 % sous la valeur centrale) -> position complete.
+var Z2M = {faible:0.20, moyenne:0.30, elevee:0.40};
+function z2(s){ return s.dcfm>0 ? Math.round(s.dcfm*(1-(Z2M[s.unc]||0.30))*100)/100 : null; }
+function palier(s){ if(!(s.qok&&s.eh>0)) return 0; var p2=z2(s); if(p2 && s.price<=p2) return 2; return s.price<=s.eh?1:0; }
+window.v2palier = palier; window.v2z2 = z2;
 function isFin(s){ return /banque|assur|bancaire|financ/i.test(s.sector||''); }
 function isRealEstate(s){ return /fonci|immobil|reit/i.test(s.sector||''); }
 
@@ -31,7 +37,7 @@ function verdict(s){
   if(!s.qok && !s.near) return {t:'HORS QUALITÉ', c:'#6b7487', x:'Ne passe pas le filtre qualité ('+(s.qwhy||'critères')+'). La méthode n’achète pas cette action, quel que soit son prix.'};
   if(!s.qok && s.near) return {t:'LIMITE · À SURVEILLER', c:C.or, x:'Un seul critère manque de peu ('+(s.qwhy||'')+'). Pas d’achat tant qu’il n’est pas rempli.'};
   var base = s.gimp!=null && s.gused!=null ? ' Le cours suppose '+fr(s.gimp,1)+' %/an de croissance, contre '+fr(s.gused,1)+' % retenus.' : '';
-  if(s.rec==='buy') return {t:'ACHAT POSSIBLE', c:C.gn, x:'Qualité OK, cours dans la zone d’achat ('+fr(el)+' – '+fr(eh)+' €).'+base};
+  if(s.rec==='buy') return palier(s)===2 ? {t:'ACHAT POSSIBLE · PALIER 2', c:C.gn, x:'Qualité OK, cours sous le palier 2 ('+fr(z2(s))+' €) : vraie occasion, position complète possible.'+base} : {t:'ACHAT POSSIBLE · PALIER 1', c:C.gn, x:'Qualité OK, cours dans la zone d’achat ('+fr(el)+' – '+fr(eh)+' €) : demi-position ; position complète sous '+fr(z2(s))+' € (palier 2).'+base};
   if(eh>0 && p<=eh){
     var why = s.knife ? 'mais chute en cours (cours très sous son plus haut d’un an) : comprendre la cause avant d’acheter.'
       : (s.mscore==null||s.mscore<3) ? 'mais moat jugé insuffisant (< 3/5).'
@@ -65,13 +71,16 @@ function position(s){
 
 // ---- barre de prix ----
 function priceBar(s){
-  var pts = [s.price, s.el, s.eh, s.stop, s.dcfm, s.vopt, s.vpess, s.tp].filter(function(x){return x>0;});
+  var pts = [s.price, s.el, s.eh, z2(s), s.stop, s.dcfm, s.vopt, s.vpess, s.tp].filter(function(x){return x>0;});
   var lo = Math.min.apply(null,pts)*0.95, hi = Math.max.apply(null,pts)*1.03, span = hi-lo;
   var pos = function(x){ return Math.max(0,Math.min(100,(x-lo)/span*100)); };
   var h = '<div class="v2-bar"><div class="v2-track"></div>';
   if(s.el>0&&s.eh>0) h += '<div class="v2-zone" style="left:'+pos(s.el)+'%;width:'+(pos(s.eh)-pos(s.el))+'%"></div>'+
     '<div class="v2-lbl" style="left:'+pos(s.el)+'%;top:62px;color:'+C.gn+'">Zone '+fr(s.el,0)+' – '+fr(s.eh,0)+' €</div>';
-  if(s.stop>0) h += '<div class="v2-tick" style="left:'+pos(s.stop)+'%;background:'+C.rd+'"></div><div class="v2-lbl" style="left:'+pos(s.stop)+'%;top:80px;color:'+C.rd+'">Relire la thèse '+fr(s.stop,0)+'</div>';
+  var Z=z2(s), near_=(Z>0&&s.stop>0&&Math.abs(pos(Z)-pos(s.stop))<9);
+  if(Z>0) h += '<div class="v2-tick" style="left:'+pos(Z)+'%;background:'+C.gn+';width:4px"></div>';
+  if(s.stop>0) h += '<div class="v2-tick" style="left:'+pos(s.stop)+'%;background:'+C.rd+'"></div><div class="v2-lbl" style="left:'+pos(s.stop)+'%;top:80px;color:'+C.rd+'">'+(near_?'<span style="color:'+C.gn+'">palier 2 '+fr(Z,0)+'</span> · ':'')+'relire la thèse '+fr(s.stop,0)+'</div>';
+  if(Z>0 && !near_) h += '<div class="v2-lbl" style="left:'+pos(Z)+'%;top:80px;color:'+C.gn+'">palier 2 '+fr(Z,0)+'</div>';
   if(s.tp>0) h += '<div class="v2-tick" style="left:'+pos(s.tp)+'%;background:#6b7487;width:2px"></div><div class="v2-lbl" style="left:'+pos(s.tp)+'%;top:80px;color:'+C.mu+'">analystes '+fr(s.tp,0)+'</div>';
   if(s.dcfm>0) h += '<div class="v2-tick" style="left:'+pos(s.dcfm)+'%;background:'+C.ink+';height:38px;top:26px"></div><div class="v2-lbl" style="left:'+pos(s.dcfm)+'%;top:62px;color:'+C.ink+'">central '+fr(s.dcfm,0)+'</div>';
   if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">alléger &gt; '+fr(s.vopt,0)+'</div>';
@@ -209,7 +218,7 @@ function priceBlock(s){
     '</div>'+priceBar(s)+
     (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
     (s.gimp!=null?'<div class="v2-note"><span><b>Ce que le cours suppose :</b> <span class="v2-mono">'+fr(s.gimp,1)+' %/an</span> contre <span class="v2-mono" style="color:'+C.gn+'">'+fr(s.gused,1)+' %/an retenus</span></span></div>':'')+
-    '<div class="v2-small">Décote exigée selon l’incertitude : faible 10-20 % · moyenne 15-25 % · élevée 20-30 %. Sous le seuil de revue : relire la thèse, pas de vente automatique.</div></section>';
+    '<div class="v2-small">Deux paliers : <b>palier 1</b> = zone d’achat (décote 10-20 % / 15-25 % / 20-30 % selon l’incertitude) → demi-position ; <b>palier 2</b> = décote Morningstar 5 étoiles (20 / 30 / 40 %) → position complète. Sous le seuil de revue : relire la thèse, pas de vente automatique.</div></section>';
 }
 
 function technical(s){
@@ -279,10 +288,17 @@ function decision(s){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais '+(last?'la dernière contre-expertise date de '+age+' jours':'il n’y a pas encore de contre-expertise')+'. Règle : pas d’achat sans contre-expertise de moins de 3 mois.'};
   } else if(last.concl==='cassee'){
     r = {t:'ACHAT : NON', c:C.rd, x:'La contre-expertise du '+last.date+' conclut que la thèse est cassée.'};
-  } else if(last.concl==='fragilisee'){
-    r = {t:'ACHAT : OUI À 50 %', c:C.or, x:'Thèse fragilisée ('+esc(last.point||'')+') : demi-position seulement'+(tot>0?', environ <b>'+fr(half,0)+' €</b> (2,5 % du portefeuille)':'')+', ordre à cours limité <b>'+fr(lim)+' €</b> (bas de la zone). Le reste après la prochaine publication si la thèse se renforce.'};
   } else {
-    r = {t:'ACHAT : OUI', c:C.gn, x:'Achat possible et thèse intacte (contre-expertise du '+last.date+'). Position normale'+(tot>0?' : environ <b>'+fr(full,0)+' €</b> (5 % du portefeuille, plafond 10 %)':'')+', ordre à cours limité <b>'+fr(Math.min(s.eh,s.price))+' €</b> maximum.'};
+    var P = palier(s), p2 = z2(s), frag = last.concl==='fragilisee';
+    var lvl = frag ? P-1 : P;   // these fragilisee : on descend d'un palier
+    var why = frag ? 'Thèse fragilisée ('+esc(last.point||'')+') : on descend d’un palier. ' : 'Thèse intacte (contre-expertise du '+last.date+'). ';
+    if(lvl>=2){
+      r = {t:'ACHAT : OUI, POSITION COMPLÈTE', c:C.gn, x:why+'Cours sous le palier 2 ('+fr(p2)+' €) : vraie occasion. Position complète'+(tot>0?' : environ <b>'+fr(full,0)+' €</b> (5 % du portefeuille, plafond 10 %)':' (5 % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(p2,s.price))+' €</b> maximum. Si tu as déjà la demi-position, tu la complètes.'};
+    } else if(lvl===1){
+      r = {t:'ACHAT : OUI À 50 % (PALIER 1)', c:C.or, x:why+'Demi-position'+(tot>0?' : environ <b>'+fr(half,0)+' €</b> (2,5 % du portefeuille)':' (2,5 % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(s.eh,s.price))+' €</b> maximum. Le complément seulement sous <b>'+fr(p2)+' €</b> (palier 2)'+(frag?' et après une contre-expertise « intacte »':'')+'. Si tu as déjà la demi-position : rien à faire, on attend.'};
+    } else {
+      r = {t:'ACHAT : PAS ENCORE', c:C.or, x:why+'Au palier 1 avec une thèse fragilisée, on n’achète pas. On attend le palier 2 (<b>'+fr(p2)+' €</b>) ou une contre-expertise « intacte ».'};
+    }
   }
   var stop = (s.stop>0 && (s.qok||s.near)) ? '<p class="v2-small"><b>Stop :</b> pas d’ordre stop automatique sur une valeur de qualité (il vendrait au pire moment). Sous <b>'+fr(s.stop)+' €</b> (seuil de revue) : contre-expertise obligatoire ; si elle conclut « thèse cassée », on vend.</p>' : '';
   return '<section class="v2-card" style="border:2px solid '+r.c+'"><div class="v2-head"><h2>Décision</h2><span class="v2-small">'+esc(window.v2profName?('Portefeuille : '+window.v2profName()):'')+'</span></div>'+
@@ -348,7 +364,7 @@ function item(s){
   var gap = s.eh>0 ? pct(s.price,s.eh) : null;
   return '<button class="v2-it" onclick="v2open(\''+s.ticker+'\')"><b>'+esc(s.ticker)+'</b> <span>'+esc(s.name)+'</span>'+
     '<span class="v2-mono">'+fr(s.price)+' €</span>'+
-    (gap!=null&&(s.qok||s.near)?'<span class="v2-small">'+(gap<=0?'en zone':'doit baisser de '+fr(gap,0)+' %')+'</span>':'<span class="v2-small">'+esc((s.qwhy||'').split(',')[0])+'</span>')+
+    (gap!=null&&(s.qok||s.near)?'<span class="v2-small">'+(gap<=0?(s.rec==='buy'?(palier(s)===2?'palier 2':'palier 1'):'en zone, bloquée'):'doit baisser de '+fr(gap,0)+' %')+'</span>':'<span class="v2-small">'+esc((s.qwhy||'').split(',')[0])+'</span>')+
     (s.mscore!=null?'<span class="v2-small">moat '+s.mscore+'/5</span>':'')+'</button>';
 }
 function buildHome(){
@@ -513,7 +529,7 @@ function alerts(){
   var zone=[], out=[], review=[], high=[], big=[], ce=[];
   S.forEach(function(s){
     if(!s||!s.ticker||!(s.price>0)) return;
-    if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · zone '+fr(s.el)+'–'+fr(s.eh)+' €', !seen[s.ticker])); }
+    if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · '+(palier(s)===2?'<b>palier 2</b> (sous '+fr(z2(s))+' €)':'palier 1 · palier 2 sous '+fr(z2(s))+' €'), !seen[s.ticker])); }
     var p=held[s.ticker]; if(!p) return;
     if(!s.qok && !s.near) out.push(row(s,'hors qualité : '+esc(s.qwhy||'')+(s.ticker==='TTE'?' → exception « poche cyclique » à écrire (stop proposé 68 €)':' → vendre si confirmé à la prochaine publication')));
     if(s.stop>0 && s.price<s.stop && (s.qok||s.near)) review.push(row(s,'sous le seuil de revue ('+fr(s.stop)+' €) → contre-expertise obligatoire'));
@@ -541,8 +557,8 @@ function guide(){
   '<header class="v2-top"><div><div class="v2-kick">Mode d’emploi · méthode qualité à prix raisonnable</div><h1>Comment je décide</h1></div></header>'+
   '<section class="v2-card"><h2>1. La règle d’or</h2><p>J’achète des entreprises <b>excellentes</b>, seulement quand leur prix est <b>raisonnable</b>, et je les garde tant qu’elles restent excellentes. Je ne vends <b>jamais</b> sur le prix seul.</p></section>'+
   '<section class="v2-card"><h2>2. Le filtre qualité (médianes sur 4 ans)</h2><p>Rentabilité du capital hors écarts d’acquisition ≥ 15 % · rentabilité du capital total ≥ 12 % · bénéfice transformé en cash ≥ 80 % · dette nette ≤ 2,5 × EBITDA · croissance ≥ 3 %/an (chiffres officiels quand ils existent). Plus : moat ≥ 3/5 et chiffre d’affaires en hausse au moins 2 ans sur 3 pour pouvoir acheter.</p></section>'+
-  '<section class="v2-card"><h2>3. Le prix</h2><p>Trois scénarios (pessimiste, central, optimiste). Zone d’achat = valeur centrale moins une décote qui dépend de l’incertitude : faible 10-20 %, moyenne 15-25 %, élevée 20-30 %. « Ce que le cours suppose » compare la croissance que le marché paie à la croissance réelle.</p></section>'+
-  '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → achat normal (≈ 5 % du portefeuille) ; fragilisée → demi-position ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
+  '<section class="v2-card"><h2>3. Le prix</h2><p>Trois scénarios (pessimiste, central, optimiste). Deux paliers d’achat sous la valeur centrale, selon l’incertitude : <b>palier 1</b> (décote 10-20 % / 15-25 % / 20-30 %) → demi-position ; <b>palier 2</b> (décote 20 / 30 / 40 %, le niveau « 5 étoiles » de Morningstar) → position complète. On apprend à acheter en deux fois. « Ce que le cours suppose » compare la croissance que le marché paie à la croissance réelle.</p></section>'+
+  '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → palier 1 : demi-position (2,5 %), palier 2 : position complète (5 %) ; fragilisée → on descend d’un palier (rien au palier 1, demi-position au palier 2) ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
   '<section class="v2-card"><h2>5. La routine du mois (1er dimanche, 15 min)</h2><p>1. Versement. 2. Onglet portefeuille : une ligne « REVOIR » deux publications de suite → je vends. 3. Une action « achat possible » avec contre-expertise favorable et ligne &lt; 10 % → j’achète ; sinon le versement va sur l’ETF Monde. 4. Une ligne dans le journal. Le reste du mois : aucune décision.</p></section>'+
   '<section class="v2-card"><h2>6. Garde-fous</h2><p>Maximum 10 % par action · 13 à 15 lignes · seuil de revue = scénario pessimiste − 10 % (contre-expertise obligatoire, pas de vente automatique) · exceptions écrites seulement (Air Liquide ; poche cyclique avec vrai stop pour TotalEnergies).</p></section>'+
   '<section class="v2-card v2-small"><p>Les notes A-D, le « triptyque », les scores Large/Mid et l’ancien radar d’alertes ne servent plus à décider. Le screener informe ; c’est toi qui décides, avec ces règles écrites.</p></section>'+
