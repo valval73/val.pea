@@ -51,7 +51,7 @@ def load_stocks():
     out = {}
     for b in re.split(r"\{ticker:'", t)[1:]:
         tk = b.split("'")[0]
-        g = lambda k: (re.search(r'\b' + k + r":'([^']*)'", b) or [None, None])[1]
+        g = lambda k: ((re.search(r'\b' + k + r":'((?:[^'\\]|\\.)*)'", b) or [None, None])[1] or '').replace("\\'", "'") or None
         gb = lambda k: (re.search(r'\b' + k + r":(true|false)", b) or [None, 'false'])[1] == 'true'
         out[tk] = {'name': g('name'), 'yrs': g('yrs'), 'revh': g('revh'), 'nih': g('nih'), 'fcur': g('fcur'),
                    'qok': gb('qok'), 'near': gb('near')}
@@ -66,27 +66,30 @@ def fiche_tickers():
         return set()
 
 
+# Noms officiels quand le nom usuel ne suffit pas (verifies le 08/10/2026)
+SEARCH_NAME = {'ITX': 'INDUSTRIA DE DISENO TEXTIL', 'OR': 'OREAL', 'AIR': 'AIRBUS', 'TTE': 'TOTALENERGIES',
+               'RACE': 'FERRARI', 'NSIS': 'NOVONESIS', 'RBT': 'ROBERTET'}
+
+
 def resolve(tk, name, country, cache):
-    if tk in cache:
+    """Retrouve l'identifiant LEI. Tous les mots du nom doivent figurer dans le
+    nom officiel (evite Brunel International pour ASM International, ou
+    Dassault Systemes pour Dassault Aviation). Pas de filtre pays : Airbus ou
+    Ferrari deposent aux Pays-Bas tout en etant cotees a Paris ou Milan."""
+    if tk in cache and cache[tk]:
         return cache[tk]
-    words = norm(name)
+    words = norm(SEARCH_NAME.get(tk) or name)
     if not words:
         return None
     key = max(words, key=len)
-    d = get('/api/entities?page[size]=25&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": f"%{key}%"}]))
+    d = get('/api/entities?page[size]=50&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": f"%{key}%"}]))
     best = None
     for e in (d or {}).get('data', []):
         a = e.get('attributes', {})
         ew = norm(a.get('name'))
-        score = sum(1 for w in words if w in ew) / len(words)
-        if ew and ew[0] == words[0]:
-            score += 0.5
-        if score < 0.5:
+        if not ew or not all(w in ew for w in words):
             continue
-        f = get(f"/api/entities/{a.get('identifier')}/filings?page[size]=1")
-        c = ((f or {}).get('data') or [{}])[0].get('attributes', {}).get('country')
-        if country and c and c != country:
-            continue
+        score = (ew[0] == words[0]) * 1.0 - len(ew) * 0.01   # nom court et qui commence pareil
         if not best or score > best[0]:
             best = (score, a.get('identifier'), a.get('name'))
     cache[tk] = {'lei': best[1], 'name': best[2]} if best else None
