@@ -1,0 +1,399 @@
+{
+"date": "2026-10-08",
+"scope": 37,
+"compared": 27,
+"ok": 24,
+"res": {
+"AI": {
+"status": "compare",
+"lei": "969500MMPQVHK671GT54",
+"entity": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"AIR": {
+"status": "societe introuvable"
+},
+"AMS": {
+"status": "compare",
+"lei": "9598004A3FTY3TEHHN09",
+"entity": "AMADEUS IT GROUP SOCIEDAD ANONIMA",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"ASM": {
+"status": "compare",
+"lei": "724500Y5L5UIEYCJCZ03",
+"entity": "Brunel International N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"CA 2025 officiel 1 218 M contre Yahoo 3 173 M",
+"CA 2024 officiel 1 365 M contre Yahoo 2 933 M",
+"resultat net 2025 officiel 3 M contre Yahoo 724 M",
+"resultat net 2024 officiel 30 M contre Yahoo 686 M"
+]
+},
+"ASML": {
+"status": "compare",
+"lei": "724500Y6DUVHQD6OXN27",
+"entity": "ASML Holding N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": []
+},
+"ASSA": {
+"status": "compare",
+"lei": "549300YECS8HKCIMMB67",
+"entity": "ASSA ABLOY AB",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"ATCO": {
+"status": "compare",
+"lei": "213800T8PC8Q4FYJZR07",
+"entity": "ATLAS COPCO AKTIEBOLAG",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"ATE": {
+"status": "compare",
+"lei": "969500Y7G9TY7Y24GN07",
+"entity": "ALTEN",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"DASSAV": {
+"status": "compare",
+"lei": "96950065LBWY0APQIM86",
+"entity": "DASSAULT SYSTEMES",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"CA 2025 officiel 6 236 M contre Yahoo 7 426 M",
+"resultat net 2025 officiel 1 196 M contre Yahoo 977 M",
+"resultat net 2024 officiel 1 200 M contre Yahoo 924 M"
+]
+},
+"DG": {
+"status": "compare",
+"lei": "213800WFQ334R8UXUG83",
+"entity": "VINCI",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"DSY": {
+"status": "compare",
+"lei": "96950065LBWY0APQIM86",
+"entity": "DASSAULT SYSTEMES",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"EL": {
+"status": "compare",
+"lei": "549300M3VH1A3ER1TB49",
+"entity": "ESSILORLUXOTTICA",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"ELIS": {
+"status": "compare",
+"lei": "969500UX71LCE8MAY492",
+"entity": "ELIS",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"EPI": {
+"status": "compare",
+"lei": "5493004Q73OEYW1SPE91",
+"entity": "Epiroc Aktiebolag",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"EXENS": {
+"status": "compare",
+"lei": "969500R3AKTPEDO9EG76",
+"entity": "EXOSENS",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [
+"CA 2025 officiel 468 M contre Yahoo 383 M",
+"CA 2024 officiel 383 M contre Yahoo 468 M"
+]
+},
+"GTT": {
+"status": "compare",
+"lei": "969500BVOHVZUUFWDT54",
+"entity": "GAZTRANSPORT ET TECHNIGAZ",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"HO": {
+"status": "compare",
+"lei": "529900FNDVTQJOVVPZ19",
+"entity": "THALES",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"INTERPARFUMS": {
+"status": "compare",
+"lei": "969500SARWF33OPQED48",
+"entity": "INTERPARFUMS",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"IPSEN": {
+"status": "compare",
+"lei": "549300M6SGDPB4Z94P11",
+"entity": "IPSEN",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
+},
+"ITX": {
+"status": "societe introuvable"
+},
+"LR": {
+"status": "compare",
+"lei": "969500XXRPGD7HCAFA90",
+"entity": "LEGRAND",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"MONC": {
+"status": "compare",
+"lei": "815600EBD7FB00525B20",
+"entity": "MONCLER S.P.A.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"NEM": {
+"status": "societe introuvable"
+},
+"NRO": {
+"status": "compare",
+"lei": "9695008Y07TSG8SZCG57",
+"entity": "NEURONES",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"NSIS": {
+"status": "societe introuvable"
+},
+"OR": {
+"status": "societe introuvable"
+},
+"PLNW": {
+"status": "compare",
+"lei": "969500356FAUM2X41Q59",
+"entity": "PLANISWARE",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"RAA": {
+"status": "aucun rapport lisible",
+"lei": "529900K139N6UFJ1A758"
+},
+"RACE": {
+"status": "societe introuvable"
+},
+"RBT": {
+"status": "societe introuvable"
+},
+"RHM": {
+"status": "aucun rapport lisible",
+"lei": "5299001OU9CSE29O6S05"
+},
+"RMS": {
+"status": "compare",
+"lei": "969500Y4IJGHJE2MTJ13",
+"entity": "HERMES INTERNATIONAL",
+"period_end": "2026-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"SAF": {
+"status": "compare",
+"lei": "969500UIC89GT3UL7L24",
+"entity": "SAFRAN",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"SU": {
+"status": "compare",
+"lei": "969500A1YF1XUYYXS284",
+"entity": "SCHNEIDER ELECTRIC SE",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"TTE": {
+"status": "societe introuvable"
+},
+"UMG": {
+"status": "compare",
+"lei": "724500GJBUL3D9TW9Y18",
+"entity": "Universal Music Group N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"WKL": {
+"status": "compare",
+"lei": "724500TEM53I0U077B74",
+"entity": "Wolters Kluwer N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+}
+}
+}
