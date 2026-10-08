@@ -1,8 +1,8 @@
 {
 "date": "2026-10-08",
 "scope": 37,
-"compared": 27,
-"ok": 24,
+"compared": 30,
+"ok": 27,
 "res": {
 "AI": {
 "status": "compare",
@@ -18,25 +18,9 @@
 "issues": []
 },
 "AIR": {
-"status": "societe introuvable"
-},
-"AMS": {
 "status": "compare",
-"lei": "9598004A3FTY3TEHHN09",
-"entity": "AMADEUS IT GROUP SOCIEDAD ANONIMA",
-"period_end": "2024-12-31",
-"checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
-],
-"issues": []
-},
-"ASM": {
-"status": "compare",
-"lei": "724500Y5L5UIEYCJCZ03",
-"entity": "Brunel International N.V.",
+"lei": "MINO79WLOO247M1IL051",
+"entity": "AIRBUS SE",
 "period_end": "2025-12-31",
 "checked": [
 "CA 2025",
@@ -44,12 +28,24 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": [
-"CA 2025 officiel 1 218 M contre Yahoo 3 173 M",
-"CA 2024 officiel 1 365 M contre Yahoo 2 933 M",
-"resultat net 2025 officiel 3 M contre Yahoo 724 M",
-"resultat net 2024 officiel 30 M contre Yahoo 686 M"
-]
+"issues": []
+},
+"AMS": {
+"status": "aucun rapport lisible",
+"lei": "391200TJJ820ZDHNFJ33"
+},
+"ASM": {
+"status": "compare",
+"lei": "7245001I22ND6ZFHX623",
+"entity": "ASM International N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
 },
 "ASML": {
 "status": "compare",
@@ -102,21 +98,7 @@
 "issues": []
 },
 "DASSAV": {
-"status": "compare",
-"lei": "96950065LBWY0APQIM86",
-"entity": "DASSAULT SYSTEMES",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [
-"CA 2025 officiel 6 236 M contre Yahoo 7 426 M",
-"resultat net 2025 officiel 1 196 M contre Yahoo 977 M",
-"resultat net 2024 officiel 1 200 M contre Yahoo 924 M"
-]
+"status": "societe introuvable"
 },
 "DG": {
 "status": "compare",
@@ -250,7 +232,17 @@
 "issues": []
 },
 "ITX": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "549300TTCXZOGZM2EY83",
+"entity": "INDUSTRIA DE DISEÑO TEXTIL, S.A.",
+"period_end": "2025-01-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
 },
 "LR": {
 "status": "compare",
@@ -298,7 +290,17 @@
 "status": "societe introuvable"
 },
 "OR": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "529900JI1GG6F7RKVI53",
+"entity": "L'OREAL",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
 },
 "PLNW": {
 "status": "compare",
@@ -318,7 +320,18 @@
 "lei": "529900K139N6UFJ1A758"
 },
 "RACE": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "984500Y7F9EB3DRC4406",
+"entity": "FERRARI GROUP PLC",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"resultat net 2025 officiel 51 M contre Yahoo 1 597 M",
+"resultat net 2024 officiel 55 M contre Yahoo 1 522 M"
+]
 },
 "RBT": {
 "status": "societe introuvable"
@@ -367,7 +380,20 @@
 "issues": []
 },
 "TTE": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "529900S21EQ1BO4ESM68",
+"entity": "TotalEnergies SE",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"CA 2025 officiel 201 196 M contre Yahoo 182 344 M",
+"CA 2024 officiel 214 550 M contre Yahoo 195 610 M"
+]
 },
 "UMG": {
 "status": "compare",
