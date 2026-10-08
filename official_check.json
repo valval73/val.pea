@@ -1,9 +1,23 @@
 {
 "date": "2026-10-08",
-"scope": 45,
-"compared": 36,
-"ok": 34,
+"scope": 51,
+"compared": 42,
+"ok": 37,
 "res": {
+"ACA": {
+"status": "compare",
+"lei": "969500TJ5KRTCJQWXH05",
+"entity": "CREDIT AGRICOLE SA",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"resultat net 2025 officiel 7 074 M contre Yahoo 6 598 M",
+"resultat net 2024 officiel 7 087 M contre Yahoo 6 358 M"
+]
+},
 "AI": {
 "status": "compare",
 "lei": "969500MMPQVHK671GT54",
@@ -35,8 +49,17 @@
 "lei": "529900K9B0N5BT694847"
 },
 "AMS": {
-"status": "aucun rapport lisible",
-"lei": "391200TJJ820ZDHNFJ33"
+"status": "compare",
+"lei": "9598004A3FTY3TEHHN09",
+"entity": "AMADEUS IT GROUP SOCIEDAD ANONIMA",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": []
 },
 "ARGAN": {
 "status": "compare",
@@ -122,6 +145,20 @@
 "resultat net 2024"
 ],
 "issues": []
+},
+"BNP": {
+"status": "compare",
+"lei": "R0MUWSFPU8MPRO8K5P83",
+"entity": "BNP PARIBAS",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"resultat net 2025 officiel 12 225 M contre Yahoo 11 520 M",
+"resultat net 2024 officiel 11 688 M contre Yahoo 10 843 M"
+]
 },
 "CDRCK": {
 "status": "compare",
@@ -398,6 +435,22 @@
 ],
 "issues": []
 },
+"PLUXEE": {
+"status": "compare",
+"lei": "213800RQNIQT48SEEO85",
+"entity": "PLUXEE N.V.",
+"period_end": "2025-08-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [
+"CA 2025 officiel 1 125 M contre Yahoo 1 287 M",
+"CA 2024 officiel 1 055 M contre Yahoo 1 210 M"
+]
+},
 "RAA": {
 "status": "aucun rapport lisible",
 "lei": "529900K139N6UFJ1A758"
@@ -438,10 +491,26 @@
 ],
 "issues": []
 },
+"SCBSM": {
+"status": "societe introuvable"
+},
 "SU": {
 "status": "compare",
 "lei": "969500A1YF1XUYYXS284",
 "entity": "SCHNEIDER ELECTRIC SE",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"TE": {
+"status": "compare",
+"lei": "724500FLODI49NSCIP70",
+"entity": "Technip Energies N.V.",
 "period_end": "2025-12-31",
 "checked": [
 "CA 2025",
@@ -470,6 +539,17 @@
 "checked": [
 "CA 2025",
 "CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"URW": {
+"status": "compare",
+"lei": "969500SHQITWXSIS7N89",
+"entity": "UNIBAIL-RODAMCO-WESTFIELD SE",
+"period_end": "2025-12-31",
+"checked": [
 "resultat net 2025",
 "resultat net 2024"
 ],

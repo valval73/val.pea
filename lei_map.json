@@ -1,4 +1,8 @@
 {
+"ACA": {
+"lei": "969500TJ5KRTCJQWXH05",
+"name": "CREDIT AGRICOLE SA"
+},
 "AI": {
 "lei": "969500MMPQVHK671GT54",
 "name": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE"
@@ -42,6 +46,10 @@
 "AXA": {
 "lei": "F5WCUMTUM4RKZ1MAIE39",
 "name": "AXA"
+},
+"BNP": {
+"lei": "R0MUWSFPU8MPRO8K5P83",
+"name": "BNP PARIBAS"
 },
 "CDRCK": {
 "lei": "222100P6D3QKU33LZQ72",
@@ -130,6 +138,10 @@
 "lei": "969500356FAUM2X41Q59",
 "name": "PLANISWARE"
 },
+"PLUXEE": {
+"lei": "213800RQNIQT48SEEO85",
+"name": "PLUXEE N.V."
+},
 "RAA": {
 "lei": "529900K139N6UFJ1A758",
 "name": "RATIONAL Aktiengesellschaft"
@@ -147,9 +159,14 @@
 "lei": "969500UIC89GT3UL7L24",
 "name": "SAFRAN"
 },
+"SCBSM": null,
 "SU": {
 "lei": "969500A1YF1XUYYXS284",
 "name": "SCHNEIDER ELECTRIC SE"
+},
+"TE": {
+"lei": "724500FLODI49NSCIP70",
+"name": "Technip Energies N.V."
 },
 "TTE": {
 "lei": "529900S21EQ1BO4ESM68",
@@ -158,6 +175,10 @@
 "UMG": {
 "lei": "724500GJBUL3D9TW9Y18",
 "name": "Universal Music Group N.V."
+},
+"URW": {
+"lei": "969500SHQITWXSIS7N89",
+"name": "UNIBAIL-RODAMCO-WESTFIELD SE"
 },
 "WKL": {
 "lei": "724500TEM53I0U077B74",
