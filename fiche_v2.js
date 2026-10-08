@@ -585,13 +585,27 @@ function guide(){
   g.innerHTML='<div class="v2" style="max-width:980px;margin:0 auto">'+
   '<header class="v2-top"><div><div class="v2-kick">Mode d’emploi · méthode qualité à prix raisonnable</div><h1>Comment je décide</h1></div></header>'+
   '<section class="v2-card"><h2>1. La règle d’or</h2><p>J’achète des entreprises <b>excellentes</b>, seulement quand leur prix est <b>raisonnable</b>, et je les garde tant qu’elles restent excellentes. Je ne vends <b>jamais</b> sur le prix seul.</p></section>'+
-  '<section class="v2-card"><h2>2. Le filtre qualité (médianes sur 4 ans)</h2><p>Rentabilité du capital hors écarts d’acquisition ≥ 15 % · rentabilité du capital total ≥ 12 % · bénéfice transformé en cash ≥ 80 % · dette nette ≤ 2,5 × EBITDA · croissance ≥ 3 %/an (chiffres officiels quand ils existent). Plus : moat ≥ 3/5 et chiffre d’affaires en hausse au moins 2 ans sur 3 pour pouvoir acheter.</p></section>'+
+  '<section class="v2-card"><h2>2. Le filtre qualité (médianes sur 4 ans)</h2><p>Rentabilité du capital hors écarts d’acquisition ≥ 15 % · rentabilité du capital total ≥ 12 % · bénéfice transformé en cash ≥ 80 % · dette nette ≤ 2,5 × EBITDA · croissance ≥ 3 %/an (chiffres officiels quand ils existent). Plus : moat ≥ 3/5 et chiffre d’affaires en hausse au moins 2 ans sur 3 pour pouvoir acheter. Banques, assurances et foncières : grilles dédiées (point 7).</p></section>'+
   '<section class="v2-card"><h2>3. Le prix</h2><p>Trois scénarios (pessimiste, central, optimiste). Deux paliers d’achat sous la valeur centrale, selon l’incertitude : <b>palier 1</b> (décote 10-20 % / 15-25 % / 20-30 %) → demi-position ; <b>palier 2</b> (décote 20 / 30 / 40 %, le niveau « 5 étoiles » de Morningstar) → position complète. On apprend à acheter en deux fois. « Ce que le cours suppose » compare la croissance que le marché paie à la croissance réelle.</p></section>'+
   '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → palier 1 : demi-position (2,5 %), palier 2 : position complète (5 %) ; fragilisée → on descend d’un palier (rien au palier 1, demi-position au palier 2) ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
   '<section class="v2-card"><h2>5. La routine du mois (1er dimanche, 15 min)</h2><p>1. Versement. 2. Onglet portefeuille : une ligne « REVOIR » deux publications de suite → je vends. 3. Une action « achat possible » avec contre-expertise favorable et ligne &lt; 10 % → j’achète ; sinon le versement va sur l’ETF Monde. 4. Une ligne dans le journal. Le reste du mois : aucune décision.</p></section>'+
   '<section class="v2-card"><h2>6. Garde-fous</h2><p>Maximum 10 % par action · 13 à 15 lignes · seuil de revue = scénario pessimiste − 10 % (contre-expertise obligatoire, pas de vente automatique) · exceptions écrites seulement (Air Liquide ; poche cyclique avec vrai stop pour TotalEnergies).</p></section>'+
+  '<section class="v2-card"><h2>7. Banques, assurances, foncières</h2><p>Grilles dédiées. <b>Banque / assurance</b> : rentabilité des fonds propres ≥ 10 % (pire année ≥ 6 %), aucune perte sur 4 ans, actif net par action en hausse ≥ 2 %/an ; valeur = actif net × rentabilité, rendement exigé 10 %/an. <b>Foncière</b> : dette nette / actifs ≤ 45 %, intérêts couverts 2,5 fois, loyers stables ou en hausse ; valeur ≈ actif net comptable. La solvabilité (CET1, Solvabilité II) et l’actif net réévalué officiel se vérifient dans la contre-expertise.</p></section>'+
+  '<section class="v2-card"><h2>8. Deux sources de chiffres</h2><p>Yahoo (mise à jour automatique) est recoupé chaque lundi avec les <b>comptes officiels</b> déposés au format européen (filings.xbrl.org). Écart de plus de 5 % sur le chiffre d’affaires ou le résultat net → « donnée à vérifier » : l’achat est bloqué tant que ce n’est pas éclairci.</p></section>'+
+  '<section class="v2-card"><h2>9. Ce que dit le test sur le passé</h2><div id="v2-bt" class="v2-small">Chargement…</div></section>'+
   '<section class="v2-card v2-small"><p>Les notes A-D, le « triptyque », les scores Large/Mid et l’ancien radar d’alertes ne servent plus à décider. Le screener informe ; c’est toi qui décides, avec ces règles écrites.</p></section>'+
   '</div>';
+  try{
+    fetch('backtest_paliers.json?d='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(b){
+      var el=document.getElementById('v2-bt'); if(!el||!b) return;
+      var row=function(l,o){ return o?'<tr><td>'+l+'</td><td class="v2-mono">'+fr(o.rendement_annuel,1)+' %/an</td><td class="v2-mono">'+fr(o.valeur,0)+'</td></tr>':''; };
+      el.innerHTML='<p>Versement de 1 000 par mois du '+b.periode[0]+' au '+b.periode[1]+' ('+b.mois+' mois), mêmes règles que le screener.</p>'+
+        '<table class="v2-tab"><thead><tr><th>Stratégie</th><th>Rendement</th><th>Valeur finale</th></tr></thead><tbody>'+
+        row('ETF Monde seul',b.A_etf_seul)+row('Europe (Stoxx 600)',b.D_europe_stoxx600)+row('Les actions de qualité, achetées chaque mois sans regarder le prix',b.B_actions_chaque_mois)+row('<b>Les deux paliers + ETF Monde</b> (méthode)',b.C_paliers_plus_etf)+'</tbody></table>'+
+        '<p>'+b.achats.total+' achats aux paliers ('+b.achats.palier1+' au palier 1, '+b.achats.palier2+' au palier 2) ; '+b.achats.battent_etf+' ont fait mieux que l’ETF sur la même période.</p>'+
+        '<p><b>Limites :</b> '+(b.biais||[]).join(' · ')+'. Test refait automatiquement chaque mois.</p>';
+    }).catch(function(){});
+  }catch(e){}
 }
 function tabs(){
   document.querySelectorAll('.ntab').forEach(function(b){

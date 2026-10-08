@@ -204,8 +204,10 @@ def main():
         'achats': {'palier1': n1, 'palier2': n2, 'battent_etf': beat, 'total': len(events)},
         'bloques_par_filtres': blocked,
         'evenements': events[-60:],
-        'biais': ['univers = qualite d aujourd hui (survivant)', 'ROIC et incertitude d aujourd hui',
-                  'test court : comptes Yahoo limites a 4-5 ans', 'sans frais ni impots'],
+        'biais': ['actions = celles de qualité aujourd’hui (biais du survivant, flatte les actions)',
+                  'rentabilité, moat et incertitude d’aujourd’hui',
+                  'test court : Yahoo ne donne que 4 à 5 ans de comptes, pas de krach 2020',
+                  'sans frais ni impôts'],
     }
     json.dump(out, open('backtest_paliers.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
