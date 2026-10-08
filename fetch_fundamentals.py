@@ -541,6 +541,10 @@ def compute_quality(t, sector_cat):
             rate = min(max(rate, 0.0), 0.40)
             nopat = e * (1 - rate)
             ic = (g(debt, i) or 0) + q - (g(cash, i) or 0)
+            if ic <= 0:
+                # tresorerie > capitaux investis (ex. Adyen, Edenred : fonds clients
+                # en caisse) : on ne deduit pas la tresorerie
+                ic = (g(debt, i) or 0) + q
             if ic > 0:
                 roics.append(nopat / ic * 100)
             icx = ic - (g(gw, i) or 0)
@@ -1073,6 +1077,8 @@ def fetch_one(ticker, yf_sym, sector):
                 return False
             v = float(m.group(1))
             if f.startswith('croissance'):   return v >= Q_GROWTH - 1.0
+            if f.startswith('rentabilite fonds propres'): return v >= Q_ROE - 2.0
+            if f.startswith('couverture des interets'):   return v >= Q_ICR - 0.5
             if f.startswith('ROIC hors EA'): return v >= Q_ROIC_X - 2.0
             if f.startswith('ROIC'):         return v >= Q_ROIC - 2.0
             if f.startswith('cash'):         return v >= Q_FCF - 10.0

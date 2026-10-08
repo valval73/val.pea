@@ -127,7 +127,7 @@ def official(lei):
     items = [x.get('attributes', {}) for x in (fl or {}).get('data', [])]
     items = [a for a in items if a.get('json_url') and a.get('period_end')]
     # du plus recent au plus ancien ; si un rapport est illisible, on prend le precedent
-    for a in sorted(items, key=lambda x: (x['period_end'], x.get('date_added') or ''), reverse=True)[:3]:
+    for a in sorted(items, key=lambda x: (x['period_end'], x.get('date_added') or ''), reverse=True)[:6]:
         j = get(a['json_url'])
         if not j:
             continue
