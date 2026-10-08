@@ -70,7 +70,12 @@ def fiche_tickers():
 # Correspondance impossible a garantir (homonymes) : on n'affirme rien plutot que de se tromper
 SKIP = {'RACE': 'homonyme Ferrari Group plc'}
 # Ecarts de definition connus (pas des erreurs) : controle du CA desactive
-NO_REV = {'TTE': 'CA officiel avec droits d accise, Yahoo sans'}
+NO_REV = {'TTE': 'CA officiel avec droits d accise, Yahoo sans',
+          'PLUXEE': 'CA Yahoo avec revenus financiers du float, officiel sans',
+          'EDENRED': 'CA Yahoo avec revenus financiers du float, officiel sans'}
+# Banques : Yahoo retire les coupons des obligations perpetuelles (AT1) du resultat
+NO_NI = {'BNP': 'coupons AT1', 'ACA': 'coupons AT1', 'GLE': 'coupons AT1'}
+MIN_ABS = 5e6   # ecart absolu minimal (les chiffres Yahoo sont arrondis au million)
 SEARCH_NAME = {'AMS': 'AMADEUS IT GROUP', 'ITX': 'INDUSTRIA DE DISENO TEXTIL', 'OR': 'OREAL', 'AIR': 'AIRBUS', 'TTE': 'TOTALENERGIES',
                'RACE': 'FERRARI', 'NSIS': 'NOVONESIS', 'RBT': 'ROBERTET'}
 
@@ -163,7 +168,7 @@ def main():
             continue
         yrs = (S[tk]['yrs'] or '').split('|')
         issues, checked = [], []
-        for lab, key, src in (('CA', 'revh', {} if tk in NO_REV else o['rev']), ('resultat net', 'nih', o['ni'])):
+        for lab, key, src in (('CA', 'revh', {} if tk in NO_REV else o['rev']), ('resultat net', 'nih', {} if tk in NO_NI else o['ni'])):
             ys = (S[tk][key] or '').split('|')
             for yr, (val, unit) in sorted(src.items(), reverse=True)[:2]:
                 if yr not in yrs or unit != (S[tk]['fcur'] or unit):
@@ -173,7 +178,7 @@ def main():
                 except Exception:
                     continue
                 checked.append(f'{lab} {yr}')
-                if val and abs(yv / val - 1) > TOL:
+                if val and abs(yv / val - 1) > TOL and abs(yv - val) > MIN_ABS:
                     issues.append(f'{lab} {yr} officiel {val / 1e6:,.0f} M contre Yahoo {yv / 1e6:,.0f} M'.replace(',', ' '))
         if checked:
             n_cmp += 1
