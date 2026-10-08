@@ -1,8 +1,8 @@
 {
 "date": "2026-10-08",
 "scope": 37,
-"compared": 30,
-"ok": 27,
+"compared": 29,
+"ok": 28,
 "res": {
 "AI": {
 "status": "compare",
@@ -320,18 +320,7 @@
 "lei": "529900K139N6UFJ1A758"
 },
 "RACE": {
-"status": "compare",
-"lei": "984500Y7F9EB3DRC4406",
-"entity": "FERRARI GROUP PLC",
-"period_end": "2025-12-31",
-"checked": [
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [
-"resultat net 2025 officiel 51 M contre Yahoo 1 597 M",
-"resultat net 2024 officiel 55 M contre Yahoo 1 522 M"
-]
+"status": "non controle : homonyme Ferrari Group plc"
 },
 "RBT": {
 "status": "societe introuvable"
@@ -385,15 +374,10 @@
 "entity": "TotalEnergies SE",
 "period_end": "2025-12-31",
 "checked": [
-"CA 2025",
-"CA 2024",
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": [
-"CA 2025 officiel 201 196 M contre Yahoo 182 344 M",
-"CA 2024 officiel 214 550 M contre Yahoo 195 610 M"
-]
+"issues": []
 },
 "UMG": {
 "status": "compare",
