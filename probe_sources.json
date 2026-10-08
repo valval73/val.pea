@@ -1,104 +1,222 @@
 {
- "xbrl_status": 200,
- "xbrl_n": 3,
- "xbrl_keys": [
-  "fxo_id",
-  "error_count",
-  "processed",
-  "viewer_url",
-  "sha256",
-  "json_url",
-  "date_added",
-  "country",
-  "warning_count",
-  "inconsistency_count",
-  "period_end",
-  "report_url",
-  "package_url"
- ],
- "xbrl_first": {
-  "fxo_id": "969500M5EQJVDASURW53-2025-12-31-ESEF-FR-0",
-  "period_end": "2025-12-31",
-  "json_url": "/969500M5EQJVDASURW53/2025-12-31/ESEF/FR/0/vrankenpommery-2025-12-31-1-fr.json",
-  "date_added": "2026-09-08 12:46:03.257806"
+ "entity": {
+  "type": "entity",
+  "relationships": {
+   "filings": {
+    "links": {
+     "related": "/api/entities/IOG4E947OATN0KJYSD45/filings"
+    }
+   }
+  },
+  "attributes": {
+   "name": "LVMH MOET HENNESSY LOUIS VUITTON",
+   "identifier": "IOG4E947OATN0KJYSD45"
+  },
+  "id": "14",
+  "links": {
+   "self": "/api/entities/IOG4E947OATN0KJYSD45"
+  }
  },
- "xbrl_facts": 423,
- "xbrl_sample": {
-  "ifrs-full:ProfitLoss": [
+ "rel": "/api/entities/IOG4E947OATN0KJYSD45/filings",
+ "filings": [
+  [
+   "2022-12-31",
+   "/IOG4E947OATN0KJYSD45/2022-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2022-12-31AR.json",
+   "2023-03-30 16:36:17.630975"
+  ],
+  [
+   "2023-12-31",
+   "/IOG4E947OATN0KJYSD45/2023-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2023-12-31AR.json",
+   "2024-04-02 11:50:34.696617"
+  ],
+  [
+   "2021-12-31",
+   "/IOG4E947OATN0KJYSD45/2021-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2021-12-31AR.json",
+   "2022-03-31 00:00:00"
+  ],
+  [
+   "2024-12-31",
+   "/IOG4E947OATN0KJYSD45/2024-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2024-12-31-0-fr.json",
+   "2025-04-15 12:08:42.191163"
+  ]
+ ],
+ "has_filter": [
+  200,
+  [
    [
-    "31868000.0",
-    "2025-01-01T00:00:00/2026-01-01T00:00:00",
-    4
+    "2024-12-31",
+    "/IOG4E947OATN0KJYSD45/2024-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2024-12-31-0-fr.json"
    ],
    [
-    "827000.0",
-    "2024-01-01T00:00:00/2025-01-01T00:00:00",
-    4
+    "2023-12-31",
+    "/IOG4E947OATN0KJYSD45/2023-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2023-12-31AR.json"
    ],
    [
-    "31868000.0",
-    "2025-01-01T00:00:00/2026-01-01T00:00:00",
-    4
+    "2022-12-31",
+    "/IOG4E947OATN0KJYSD45/2022-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2022-12-31AR.json"
+   ],
+   [
+    "2021-12-31",
+    "/IOG4E947OATN0KJYSD45/2021-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2021-12-31AR.json"
+   ]
+  ]
+ ],
+ "facts": {
+  "ifrs-full:Revenue": [
+   [
+    "79184000000",
+    "2022-01-01T00:00:00/2023-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "period",
+     "unit"
+    ],
+    -6
+   ],
+   [
+    "64215000000",
+    "2021-01-01T00:00:00/2022-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "period",
+     "unit"
+    ],
+    -6
+   ],
+   [
+    "44651000000",
+    "2020-01-01T00:00:00/2021-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "ifrs-full:RetrospectiveApplicationAndRetrospectiveRestatementAxis",
+     "period",
+     "unit"
+    ],
+    -6
    ]
   ],
   "ifrs-full:ProfitLossAttributableToOwnersOfParent": [
    [
-    "31973000.0",
-    "2025-01-01T00:00:00/2026-01-01T00:00:00",
-    4
+    "14084000000",
+    "2022-01-01T00:00:00/2023-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "period",
+     "unit"
+    ],
+    -6
    ],
    [
-    "915000.0",
-    "2024-01-01T00:00:00/2025-01-01T00:00:00",
-    4
-   ]
-  ],
-  "ifrs-full:BasicEarningsLossPerShare": [
-   [
-    "3.6",
-    "2025-01-01T00:00:00/2026-01-01T00:00:00",
-    4
+    "12036000000",
+    "2021-01-01T00:00:00/2022-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "period",
+     "unit"
+    ],
+    -6
    ],
    [
-    "0.1",
-    "2024-01-01T00:00:00/2025-01-01T00:00:00",
-    4
-   ]
-  ],
-  "ifrs-full:Equity": [
-   [
-    "430219000.0",
-    "2026-01-01T00:00:00",
-    4
-   ],
-   [
-    "406679000.0",
-    "2025-01-01T00:00:00",
-    4
-   ],
-   [
-    "134056000.0",
-    "2024-01-01T00:00:00",
-    5
-   ]
-  ],
-  "ifrs-full:CashFlowsFromUsedInOperatingActivities": [
-   [
-    "23714000.0",
-    "2025-01-01T00:00:00/2026-01-01T00:00:00",
-    4
-   ],
-   [
-    "24508000.0",
-    "2024-01-01T00:00:00/2025-01-01T00:00:00",
-    4
+    "4702000000",
+    "2020-01-01T00:00:00/2021-01-01T00:00:00",
+    "iso4217:EUR",
+    [
+     "concept",
+     "entity",
+     "ifrs-full:RetrospectiveApplicationAndRetrospectiveRestatementAxis",
+     "period",
+     "unit"
+    ],
+    -6
    ]
   ]
  },
- "xbrl_entity": [
-  [
-   "LVMH MOET HENNESSY LOUIS VUITTON",
-   "IOG4E947OATN0KJYSD45"
+ "names": {
+  "AIR LIQUIDE": [
+   [
+    "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE",
+    "969500MMPQVHK671GT54"
+   ]
+  ],
+  "HERMES": [
+   [
+    "HERMES INTERNATIONAL",
+    "969500Y4IJGHJE2MTJ13"
+   ]
+  ],
+  "SCHNEIDER": [
+   [
+    "SNP Schneider-Neureither & Partner SE",
+    "529900VKQHIQKPDF7811"
+   ],
+   [
+    "SCHNEIDER ELECTRIC SE",
+    "969500A1YF1XUYYXS284"
+   ]
+  ],
+  "AMADEUS": [
+   [
+    "AMADEUS IT GROUP SOCIEDAD ANONIMA",
+    "9598004A3FTY3TEHHN09"
+   ],
+   [
+    "AMADEUS FIRE AG",
+    "391200TJJ820ZDHNFJ33"
+   ]
+  ],
+  "ASML": [
+   [
+    "ASML Holding N.V.",
+    "724500Y6DUVHQD6OXN27"
+   ]
+  ],
+  "THALES": [
+   [
+    "THALES",
+    "529900FNDVTQJOVVPZ19"
+   ]
+  ],
+  "ELIS": [
+   [
+    "ELIS",
+    "969500UX71LCE8MAY492"
+   ],
+   [
+    "Elisa Oyj",
+    "743700TU2S3DXWGU7H32"
+   ],
+   [
+    "Azelis Group",
+    "699400M9RRMTV264FM70"
+   ]
+  ],
+  "INTERPARFUMS": [
+   [
+    "INTERPARFUMS",
+    "969500SARWF33OPQED48"
+   ]
+  ],
+  "TOTALENERGIES": [
+   [
+    "TotalEnergies SE",
+    "529900S21EQ1BO4ESM68"
+   ]
+  ],
+  "WOLTERS": [
+   [
+    "Wolters Kluwer N.V.",
+    "724500TEM53I0U077B74"
+   ]
   ]
- ]
+ }
 }
