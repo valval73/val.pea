@@ -1,34 +1,40 @@
-"""Sonde des sources de donnees gratuites (resultat ecrit dans probe_sources.json)."""
+"""Sonde filings.xbrl.org (resultat dans probe_sources.json)."""
 import json, requests
-out = {}
 B = 'https://filings.xbrl.org'
+out = {}
+def get(u):
+    r = requests.get(u if u.startswith('http') else B + u, timeout=30)
+    return r.status_code, r.json()
 try:
-    q = B + '/api/filings?page[size]=3&sort=-date_added&filter=' + json.dumps([{"name": "country", "op": "eq", "val": "FR"}])
-    r = requests.get(q, timeout=20)
-    d = r.json()
-    out['xbrl_status'] = r.status_code
-    items = d.get('data', [])
-    out['xbrl_n'] = len(items)
-    if items:
-        a = items[0].get('attributes', {})
-        out['xbrl_keys'] = list(a)[:30]
-        out['xbrl_first'] = {k: a.get(k) for k in ('fxo_id', 'period_end', 'json_url', 'date_added')}
-        ju = a.get('json_url')
-        if ju:
-            j = requests.get(B + ju if ju.startswith('/') else ju, timeout=60).json()
-            facts = j.get('facts', {})
-            out['xbrl_facts'] = len(facts)
-            cs = {}
-            for f in facts.values():
-                c = f.get('dimensions', {}).get('concept', '')
-                if c in ('ifrs-full:Revenue', 'ifrs-full:ProfitLoss', 'ifrs-full:ProfitLossAttributableToOwnersOfParent',
-                         'ifrs-full:CashFlowsFromUsedInOperatingActivities', 'ifrs-full:Equity', 'ifrs-full:BasicEarningsLossPerShare'):
-                    cs.setdefault(c, []).append([f.get('value'), f.get('dimensions', {}).get('period'), len(f.get('dimensions', {}))])
-            out['xbrl_sample'] = {k: v[:3] for k, v in cs.items()}
-    # recherche par nom d'entite
-    r2 = requests.get(B + '/api/entities?page[size]=3&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": "%LVMH%"}]), timeout=20)
-    out['xbrl_entity'] = [(e.get('attributes', {}).get('name'), e.get('attributes', {}).get('identifier')) for e in r2.json().get('data', [])]
-except Exception as e:
-    out['xbrl_error'] = str(e)[:300]
+    st, d = get('/api/entities?page[size]=2&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": "%LVMH%"}]))
+    e = d['data'][0]
+    out['entity'] = e
+    rel = e.get('relationships', {}).get('filings', {}).get('links', {}).get('related')
+    out['rel'] = rel
+    if rel:
+        st, f = get(rel + ('&' if '?' in rel else '?') + 'page[size]=10')
+        out['filings'] = [(x['attributes'].get('period_end'), x['attributes'].get('json_url'), x['attributes'].get('date_added')) for x in f.get('data', [])]
+    # filtre relationnel direct
+    flt = [{"name": "entity", "op": "has", "val": {"name": "identifier", "op": "eq", "val": e['attributes']['identifier']}}]
+    st, f2 = get('/api/filings?page[size]=5&sort=-period_end&filter=' + json.dumps(flt))
+    out['has_filter'] = [st, [(x['attributes'].get('period_end'), x['attributes'].get('json_url')) for x in f2.get('data', [])] if isinstance(f2, dict) else str(f2)[:200]]
+    # faits d'un rapport LVMH
+    ju = (out.get('filings') or [[None, None]])[0][1]
+    if ju:
+        st, j = get(ju)
+        facts = j.get('facts', {})
+        sample = {}
+        for f in facts.values():
+            dm = f.get('dimensions', {})
+            c = dm.get('concept', '')
+            if c in ('ifrs-full:Revenue', 'ifrs-full:RevenueFromContractsWithCustomers', 'ifrs-full:ProfitLossAttributableToOwnersOfParent'):
+                sample.setdefault(c, []).append([f.get('value'), dm.get('period'), dm.get('unit'), sorted(dm.keys()), f.get('decimals')])
+        out['facts'] = {k: v[:6] for k, v in sample.items()}
+    # autres entites test
+    out['names'] = {}
+    for n in ('AIR LIQUIDE', 'HERMES', 'SCHNEIDER', 'AMADEUS', 'ASML', 'THALES', 'ELIS', 'INTERPARFUMS', 'TOTALENERGIES', 'WOLTERS'):
+        st, d = get('/api/entities?page[size]=5&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": f"%{n}%"}]))
+        out['names'][n] = [(x['attributes'].get('name'), x['attributes'].get('identifier')) for x in d.get('data', [])]
+except Exception as ex:
+    out['error'] = repr(ex)[:400]
 json.dump(out, open('probe_sources.json', 'w'), indent=1, ensure_ascii=False)
-print(json.dumps(out, indent=1)[:3000])
