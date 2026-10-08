@@ -652,3 +652,17 @@ function box(){
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', box); else box();
 })();
+
+// ---- 08/10/2026 : contrôle par les comptes officiels (official_check.json) ----
+(function(){
+  try{
+    fetch('official_check.json?d='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(o){
+      if(!o||!o.res||typeof S==='undefined') return;
+      S.forEach(function(s){
+        var r=o.res[s.ticker]; if(!r) return;
+        s.x2=(r.issues||[]).join(' · ');
+        s.x2s=(r.checked&&r.checked.length)?'comptes officiels '+String(r.period_end||'').slice(0,4):'';
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();

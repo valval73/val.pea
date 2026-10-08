@@ -11,7 +11,7 @@ Pour chaque valeur suivie (qualite OK, proche, ou avec une fiche) :
   3. compare chiffre d'affaires et resultat net part du groupe aux chiffres
      Yahoo de la meme annee (revh / nih de data.js) ;
   4. ecart > 5 % -> champ x2 de la fiche ("donnee a verifier", achat bloque).
-Champs ecrits : x2 (ecarts, texte), x2s (source + annee controlee).
+Resultat : official_check.json (lu par la fiche et le mail du samedi).
 Limites : rapports annuels seulement, deposes avec plusieurs mois de retard ;
 toutes les societes ne sont pas presentes. Ne corrige jamais : signale.
 """
@@ -138,6 +138,7 @@ def main():
         cache = {}
     res, n_ok, n_cmp = {}, 0, 0
     for tk in sorted(scope):
+      try:
         y = YF_MAP.get(tk, '')
         country = COUNTRY.get(y.rsplit('.', 1)[-1]) if '.' in y else None
         ent = resolve(tk, S[tk]['name'], country, cache)
@@ -168,22 +169,14 @@ def main():
         res[tk] = {'status': 'compare' if checked else 'annees non comparables', 'lei': ent['lei'], 'entity': ent['name'],
                    'period_end': o['period_end'], 'checked': checked, 'issues': issues}
         time.sleep(0.3)
+      except Exception as ex:
+        res[tk] = {'status': 'erreur ' + str(ex)[:80]}
     json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=0, sort_keys=True)
     json.dump({'date': time.strftime('%Y-%m-%d'), 'scope': len(scope), 'compared': n_cmp, 'ok': n_ok, 'res': res},
               open('official_check.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print(f'Comptes officiels : {len(scope)} valeurs, {n_cmp} comparees, {n_ok} concordantes')
-    # ecriture dans data.js : x2 / x2s (efface les anciennes valeurs)
-    js = open('data.js', encoding='utf-8').read()
-    head, sep, tail = js.partition('const ETF')
-
-    def patch(m):
-        tk = m.group(1)
-        r = res.get(tk) or {}
-        iss = ' · '.join(r.get('issues', [])).replace("'", ' ')
-        src = ('comptes officiels ' + r['period_end'][:4]) if r.get('checked') else ''
-        return "{ticker:'" + tk + "',x2:'" + iss + "',x2s:'" + src + "'"
-    head = re.sub(r"\{ticker:'([^']+)'(?:,x2:'[^']*',x2s:'[^']*')?", patch, head)
-    open('data.js', 'w', encoding='utf-8').write(head + sep + tail)
+    # 08/10/2026 : resultat dans official_check.json uniquement (lu par le site et
+    # le mail) : pas d'ecriture concurrente de data.js avec la mise a jour Yahoo.
 
 
 if __name__ == '__main__':

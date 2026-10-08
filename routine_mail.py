@@ -76,6 +76,12 @@ def last_ce(ce, t):
 def main():
     D = load()
     S = [s for s in D['S'] if s and s.get('ticker') and (s.get('price') or 0) > 0]
+    try:  # controle par les comptes officiels (official_accounts.py)
+        oc = json.load(open('official_check.json', encoding='utf-8')).get('res', {})
+        for s in S:
+            s['x2'] = ' · '.join((oc.get(s['ticker']) or {}).get('issues', []))
+    except Exception:
+        pass
     by = {s['ticker']: s for s in S}
     etf = {e['ticker']: e.get('price') for e in D['ETF']}
     # 06/10/2026 : positions jamais dans le code public. Optionnel : variable
