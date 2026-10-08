@@ -1,222 +1,115 @@
 {
- "entity": {
-  "type": "entity",
-  "relationships": {
-   "filings": {
-    "links": {
-     "related": "/api/entities/IOG4E947OATN0KJYSD45/filings"
-    }
-   }
-  },
-  "attributes": {
-   "name": "LVMH MOET HENNESSY LOUIS VUITTON",
-   "identifier": "IOG4E947OATN0KJYSD45"
-  },
-  "id": "14",
-  "links": {
-   "self": "/api/entities/IOG4E947OATN0KJYSD45"
-  }
+ "CW8.PA": {
+  "nom": "Amundi MSCI World (CW8)",
+  "debut": "2009-06-16",
+  "dernier": 712.18,
+  "1a": 18.6,
+  "3a": 19.3,
+  "5a": 12.2,
+  "10a": 12.8,
+  "pire_baisse_5a": -21.7
  },
- "rel": "/api/entities/IOG4E947OATN0KJYSD45/filings",
- "filings": [
-  [
-   "2022-12-31",
-   "/IOG4E947OATN0KJYSD45/2022-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2022-12-31AR.json",
-   "2023-03-30 16:36:17.630975"
-  ],
-  [
-   "2023-12-31",
-   "/IOG4E947OATN0KJYSD45/2023-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2023-12-31AR.json",
-   "2024-04-02 11:50:34.696617"
-  ],
-  [
-   "2021-12-31",
-   "/IOG4E947OATN0KJYSD45/2021-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2021-12-31AR.json",
-   "2022-03-31 00:00:00"
-  ],
-  [
-   "2024-12-31",
-   "/IOG4E947OATN0KJYSD45/2024-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2024-12-31-0-fr.json",
-   "2025-04-15 12:08:42.191163"
-  ]
- ],
- "has_filter": [
-  200,
-  [
-   [
-    "2024-12-31",
-    "/IOG4E947OATN0KJYSD45/2024-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2024-12-31-0-fr.json"
-   ],
-   [
-    "2023-12-31",
-    "/IOG4E947OATN0KJYSD45/2023-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2023-12-31AR.json"
-   ],
-   [
-    "2022-12-31",
-    "/IOG4E947OATN0KJYSD45/2022-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2022-12-31AR.json"
-   ],
-   [
-    "2021-12-31",
-    "/IOG4E947OATN0KJYSD45/2021-12-31/ESEF/FR/0/IOG4E947OATN0KJYSD45-2021-12-31AR.json"
-   ]
-  ]
- ],
- "facts": {
-  "ifrs-full:Revenue": [
-   [
-    "79184000000",
-    "2022-01-01T00:00:00/2023-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "period",
-     "unit"
-    ],
-    -6
-   ],
-   [
-    "64215000000",
-    "2021-01-01T00:00:00/2022-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "period",
-     "unit"
-    ],
-    -6
-   ],
-   [
-    "44651000000",
-    "2020-01-01T00:00:00/2021-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "ifrs-full:RetrospectiveApplicationAndRetrospectiveRestatementAxis",
-     "period",
-     "unit"
-    ],
-    -6
-   ]
-  ],
-  "ifrs-full:ProfitLossAttributableToOwnersOfParent": [
-   [
-    "14084000000",
-    "2022-01-01T00:00:00/2023-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "period",
-     "unit"
-    ],
-    -6
-   ],
-   [
-    "12036000000",
-    "2021-01-01T00:00:00/2022-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "period",
-     "unit"
-    ],
-    -6
-   ],
-   [
-    "4702000000",
-    "2020-01-01T00:00:00/2021-01-01T00:00:00",
-    "iso4217:EUR",
-    [
-     "concept",
-     "entity",
-     "ifrs-full:RetrospectiveApplicationAndRetrospectiveRestatementAxis",
-     "period",
-     "unit"
-    ],
-    -6
-   ]
-  ]
+ "DCAM.PA": {
+  "nom": "Amundi PEA Monde (DCAM)",
+  "debut": "2025-03-04",
+  "dernier": 6.355,
+  "1a": 18.9,
+  "pire_baisse_5a": -16.9
  },
- "names": {
-  "AIR LIQUIDE": [
-   [
-    "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE",
-    "969500MMPQVHK671GT54"
-   ]
-  ],
-  "HERMES": [
-   [
-    "HERMES INTERNATIONAL",
-    "969500Y4IJGHJE2MTJ13"
-   ]
-  ],
-  "SCHNEIDER": [
-   [
-    "SNP Schneider-Neureither & Partner SE",
-    "529900VKQHIQKPDF7811"
-   ],
-   [
-    "SCHNEIDER ELECTRIC SE",
-    "969500A1YF1XUYYXS284"
-   ]
-  ],
-  "AMADEUS": [
-   [
-    "AMADEUS IT GROUP SOCIEDAD ANONIMA",
-    "9598004A3FTY3TEHHN09"
-   ],
-   [
-    "AMADEUS FIRE AG",
-    "391200TJJ820ZDHNFJ33"
-   ]
-  ],
-  "ASML": [
-   [
-    "ASML Holding N.V.",
-    "724500Y6DUVHQD6OXN27"
-   ]
-  ],
-  "THALES": [
-   [
-    "THALES",
-    "529900FNDVTQJOVVPZ19"
-   ]
-  ],
-  "ELIS": [
-   [
-    "ELIS",
-    "969500UX71LCE8MAY492"
-   ],
-   [
-    "Elisa Oyj",
-    "743700TU2S3DXWGU7H32"
-   ],
-   [
-    "Azelis Group",
-    "699400M9RRMTV264FM70"
-   ]
-  ],
-  "INTERPARFUMS": [
-   [
-    "INTERPARFUMS",
-    "969500SARWF33OPQED48"
-   ]
-  ],
-  "TOTALENERGIES": [
-   [
-    "TotalEnergies SE",
-    "529900S21EQ1BO4ESM68"
-   ]
-  ],
-  "WOLTERS": [
-   [
-    "Wolters Kluwer N.V.",
-    "724500TEM53I0U077B74"
-   ]
-  ]
+ "WPEA.PA": {
+  "nom": "iShares MSCI World PEA (WPEA)",
+  "debut": "2024-04-02",
+  "dernier": 7.18,
+  "1a": 18.9,
+  "pire_baisse_5a": -21.6
+ },
+ "PSP5.PA": {
+  "nom": "Amundi PEA S&P 500 (PSP5)",
+  "debut": "2014-05-20",
+  "dernier": 61.01,
+  "1a": 20.3,
+  "3a": 20.8,
+  "5a": 14.0,
+  "10a": 15.3,
+  "pire_baisse_5a": -23.2
+ },
+ "ESE.PA": {
+  "nom": "BNP Easy S&P 500 (ESE)",
+  "debut": "2013-09-16",
+  "dernier": 35.19,
+  "1a": 20.2,
+  "3a": 20.7,
+  "5a": 14.0,
+  "10a": 15.3,
+  "pire_baisse_5a": -23.3
+ },
+ "PE500.PA": {
+  "nom": "Amundi PEA S&P 500 ESG (PE500)",
+  "debut": "2019-04-25",
+  "dernier": 57.38,
+  "1a": 21.4,
+  "3a": 20.2,
+  "5a": 13.7,
+  "pire_baisse_5a": -23.7
+ },
+ "PUST.PA": {
+  "nom": "Amundi PEA Nasdaq-100 (PUST)",
+  "debut": "2014-05-20",
+  "dernier": 111.06,
+  "1a": 28.3,
+  "3a": 25.6,
+  "5a": 16.9,
+  "10a": 20.8,
+  "pire_baisse_5a": -31.4
+ },
+ "PCEU.PA": {
+  "nom": "Amundi PEA MSCI Europe (PCEU)",
+  "debut": "2019-04-25",
+  "dernier": 38.68,
+  "1a": 11.8,
+  "3a": 14.8,
+  "5a": 9.5,
+  "pire_baisse_5a": -19.5
+ },
+ "MEUD.PA": {
+  "nom": "Amundi Stoxx Europe 600 (MEUD)",
+  "debut": "2024-02-19",
+  "dernier": 308.6,
+  "1a": 12.0,
+  "pire_baisse_5a": -16.2
+ },
+ "PAEEM.PA": {
+  "nom": "Amundi PEA Emergents ESG (PAEEM)",
+  "debut": "2019-04-25",
+  "dernier": 36.805,
+  "1a": 29.7,
+  "3a": 22.1,
+  "5a": 9.3,
+  "pire_baisse_5a": -22.8
+ },
+ "PAASI.PA": {
+  "nom": "Amundi PEA Asie emergente (PAASI)",
+  "debut": "2019-04-25",
+  "dernier": 40.235,
+  "1a": 35.4,
+  "3a": 24.0,
+  "5a": 10.2,
+  "pire_baisse_5a": -27.5
+ },
+ "GPEA.PA": {
+  "nom": "Amundi PEA Global ACWI (GPEA)",
+  "debut": "2026-07-06",
+  "dernier": 5.168,
+  "pire_baisse_5a": -3.0
+ },
+ "C40.PA": {
+  "nom": "Amundi CAC 40 (C40)",
+  "debut": "2008-01-02",
+  "dernier": 135.3,
+  "1a": -5.1,
+  "3a": 6.1,
+  "5a": 6.1,
+  "10a": 8.5,
+  "pire_baisse_5a": -22.2
  }
 }
