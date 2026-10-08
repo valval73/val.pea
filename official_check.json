@@ -1,8 +1,8 @@
 {
 "date": "2026-10-08",
-"scope": 37,
-"compared": 29,
-"ok": 28,
+"scope": 45,
+"compared": 36,
+"ok": 34,
 "res": {
 "AI": {
 "status": "compare",
@@ -30,9 +30,24 @@
 ],
 "issues": []
 },
+"ALV": {
+"status": "aucun rapport lisible",
+"lei": "529900K9B0N5BT694847"
+},
 "AMS": {
 "status": "aucun rapport lisible",
 "lei": "391200TJJ820ZDHNFJ33"
+},
+"ARGAN": {
+"status": "compare",
+"lei": "529900FXM41XSCUSGH04",
+"entity": "ARGAN",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
 },
 "ASM": {
 "status": "compare",
@@ -92,6 +107,52 @@
 "checked": [
 "CA 2025",
 "CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"AXA": {
+"status": "compare",
+"lei": "F5WCUMTUM4RKZ1MAIE39",
+"entity": "AXA",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"CDRCK": {
+"status": "compare",
+"lei": "222100P6D3QKU33LZQ72",
+"entity": "Carmila",
+"period_end": "2024-12-31",
+"checked": [
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": [
+"resultat net 2023 officiel 3 M contre Yahoo 3 M"
+]
+},
+"COFA": {
+"status": "compare",
+"lei": "96950025N07LTJYFSN57",
+"entity": "COFACE SA",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"COVIVIO": {
+"status": "compare",
+"lei": "969500P8M3W2XX376054",
+"entity": "COVIVIO",
+"period_end": "2025-12-31",
+"checked": [
 "resultat net 2025",
 "resultat net 2024"
 ],
@@ -179,6 +240,17 @@
 "CA 2024 officiel 383 M contre Yahoo 468 M"
 ]
 },
+"GFC": {
+"status": "compare",
+"lei": "9695003E4MMA10IBTR26",
+"entity": "GECINA",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
 "GTT": {
 "status": "compare",
 "lei": "969500BVOHVZUUFWDT54",
@@ -239,6 +311,17 @@
 "checked": [
 "CA 2025",
 "CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": []
+},
+"KLPI": {
+"status": "compare",
+"lei": "969500PB4U31KEFHZ621",
+"entity": "KLEPIERRE",
+"period_end": "2025-12-31",
+"checked": [
 "resultat net 2025",
 "resultat net 2024"
 ],

@@ -7,9 +7,17 @@
 "lei": "MINO79WLOO247M1IL051",
 "name": "AIRBUS SE"
 },
+"ALV": {
+"lei": "529900K9B0N5BT694847",
+"name": "Allianz SE"
+},
 "AMS": {
 "lei": "391200TJJ820ZDHNFJ33",
 "name": "AMADEUS FIRE AG"
+},
+"ARGAN": {
+"lei": "529900FXM41XSCUSGH04",
+"name": "ARGAN"
 },
 "ASM": {
 "lei": "7245001I22ND6ZFHX623",
@@ -30,6 +38,22 @@
 "ATE": {
 "lei": "969500Y7G9TY7Y24GN07",
 "name": "ALTEN"
+},
+"AXA": {
+"lei": "F5WCUMTUM4RKZ1MAIE39",
+"name": "AXA"
+},
+"CDRCK": {
+"lei": "222100P6D3QKU33LZQ72",
+"name": "Carmila"
+},
+"COFA": {
+"lei": "96950025N07LTJYFSN57",
+"name": "COFACE SA"
+},
+"COVIVIO": {
+"lei": "969500P8M3W2XX376054",
+"name": "COVIVIO"
 },
 "DASSAV": null,
 "DG": {
@@ -56,6 +80,10 @@
 "lei": "969500R3AKTPEDO9EG76",
 "name": "EXOSENS"
 },
+"GFC": {
+"lei": "9695003E4MMA10IBTR26",
+"name": "GECINA"
+},
 "GTT": {
 "lei": "969500BVOHVZUUFWDT54",
 "name": "GAZTRANSPORT ET TECHNIGAZ"
@@ -75,6 +103,10 @@
 "ITX": {
 "lei": "549300TTCXZOGZM2EY83",
 "name": "INDUSTRIA DE DISEÑO TEXTIL, S.A."
+},
+"KLPI": {
+"lei": "969500PB4U31KEFHZ621",
+"name": "KLEPIERRE"
 },
 "LR": {
 "lei": "969500XXRPGD7HCAFA90",
