@@ -1,22 +1,16 @@
 {
 "date": "2026-10-08",
 "scope": 51,
-"compared": 42,
-"ok": 37,
+"compared": 40,
+"ok": 39,
 "res": {
 "ACA": {
-"status": "compare",
+"status": "annees non comparables",
 "lei": "969500TJ5KRTCJQWXH05",
 "entity": "CREDIT AGRICOLE SA",
 "period_end": "2025-12-31",
-"checked": [
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [
-"resultat net 2025 officiel 7 074 M contre Yahoo 6 598 M",
-"resultat net 2024 officiel 7 087 M contre Yahoo 6 358 M"
-]
+"checked": [],
+"issues": []
 },
 "AI": {
 "status": "compare",
@@ -147,18 +141,12 @@
 "issues": []
 },
 "BNP": {
-"status": "compare",
+"status": "annees non comparables",
 "lei": "R0MUWSFPU8MPRO8K5P83",
 "entity": "BNP PARIBAS",
 "period_end": "2025-12-31",
-"checked": [
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [
-"resultat net 2025 officiel 12 225 M contre Yahoo 11 520 M",
-"resultat net 2024 officiel 11 688 M contre Yahoo 10 843 M"
-]
+"checked": [],
+"issues": []
 },
 "CDRCK": {
 "status": "compare",
@@ -169,9 +157,7 @@
 "resultat net 2024",
 "resultat net 2023"
 ],
-"issues": [
-"resultat net 2023 officiel 3 M contre Yahoo 3 M"
-]
+"issues": []
 },
 "COFA": {
 "status": "compare",
@@ -441,15 +427,10 @@
 "entity": "PLUXEE N.V.",
 "period_end": "2025-08-31",
 "checked": [
-"CA 2025",
-"CA 2024",
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": [
-"CA 2025 officiel 1 125 M contre Yahoo 1 287 M",
-"CA 2024 officiel 1 055 M contre Yahoo 1 210 M"
-]
+"issues": []
 },
 "RAA": {
 "status": "aucun rapport lisible",
