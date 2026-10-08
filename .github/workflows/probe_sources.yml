@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install requests --quiet
+      - run: pip install requests yfinance pandas --quiet
       - run: python tools/probe_sources.py
       - run: |
           git config user.name "VAL.PEA"; git config user.email "valpea@users.noreply.github.com"

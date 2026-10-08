@@ -1,40 +1,26 @@
-"""Sonde filings.xbrl.org (resultat dans probe_sources.json)."""
-import json, requests
-B = 'https://filings.xbrl.org'
+"""Performances des ETF eligibles PEA (yfinance, cours ajustes, en euros) -> etf_perf.json"""
+import json, yfinance as yf, pandas as pd
+T = {'CW8.PA': 'Amundi MSCI World (CW8)', 'DCAM.PA': 'Amundi PEA Monde (DCAM)', 'WPEA.PA': 'iShares MSCI World PEA (WPEA)',
+     'PSP5.PA': 'Amundi PEA S&P 500 (PSP5)', 'ESE.PA': 'BNP Easy S&P 500 (ESE)', 'PE500.PA': 'Amundi PEA S&P 500 ESG (PE500)',
+     'PUST.PA': 'Amundi PEA Nasdaq-100 (PUST)', 'PCEU.PA': 'Amundi PEA MSCI Europe (PCEU)', 'MEUD.PA': 'Amundi Stoxx Europe 600 (MEUD)',
+     'PAEEM.PA': 'Amundi PEA Emergents ESG (PAEEM)', 'PAASI.PA': 'Amundi PEA Asie emergente (PAASI)', 'GPEA.PA': 'Amundi PEA Global ACWI (GPEA)',
+     'C40.PA': 'Amundi CAC 40 (C40)'}
 out = {}
-def get(u):
-    r = requests.get(u if u.startswith('http') else B + u, timeout=30)
-    return r.status_code, r.json()
-try:
-    st, d = get('/api/entities?page[size]=2&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": "%LVMH%"}]))
-    e = d['data'][0]
-    out['entity'] = e
-    rel = e.get('relationships', {}).get('filings', {}).get('links', {}).get('related')
-    out['rel'] = rel
-    if rel:
-        st, f = get(rel + ('&' if '?' in rel else '?') + 'page[size]=10')
-        out['filings'] = [(x['attributes'].get('period_end'), x['attributes'].get('json_url'), x['attributes'].get('date_added')) for x in f.get('data', [])]
-    # filtre relationnel direct
-    flt = [{"name": "entity", "op": "has", "val": {"name": "identifier", "op": "eq", "val": e['attributes']['identifier']}}]
-    st, f2 = get('/api/filings?page[size]=5&sort=-period_end&filter=' + json.dumps(flt))
-    out['has_filter'] = [st, [(x['attributes'].get('period_end'), x['attributes'].get('json_url')) for x in f2.get('data', [])] if isinstance(f2, dict) else str(f2)[:200]]
-    # faits d'un rapport LVMH
-    ju = (out.get('filings') or [[None, None]])[0][1]
-    if ju:
-        st, j = get(ju)
-        facts = j.get('facts', {})
-        sample = {}
-        for f in facts.values():
-            dm = f.get('dimensions', {})
-            c = dm.get('concept', '')
-            if c in ('ifrs-full:Revenue', 'ifrs-full:RevenueFromContractsWithCustomers', 'ifrs-full:ProfitLossAttributableToOwnersOfParent'):
-                sample.setdefault(c, []).append([f.get('value'), dm.get('period'), dm.get('unit'), sorted(dm.keys()), f.get('decimals')])
-        out['facts'] = {k: v[:6] for k, v in sample.items()}
-    # autres entites test
-    out['names'] = {}
-    for n in ('AIR LIQUIDE', 'HERMES', 'SCHNEIDER', 'AMADEUS', 'ASML', 'THALES', 'ELIS', 'INTERPARFUMS', 'TOTALENERGIES', 'WOLTERS'):
-        st, d = get('/api/entities?page[size]=5&filter=' + json.dumps([{"name": "name", "op": "ilike", "val": f"%{n}%"}]))
-        out['names'][n] = [(x['attributes'].get('name'), x['attributes'].get('identifier')) for x in d.get('data', [])]
-except Exception as ex:
-    out['error'] = repr(ex)[:400]
+for s, n in T.items():
+    try:
+        h = yf.Ticker(s).history(period='max', interval='1d', auto_adjust=True)['Close'].dropna()
+        h.index = h.index.tz_localize(None)
+        last = h.index[-1]
+        r = {'nom': n, 'debut': str(h.index[0].date()), 'dernier': round(float(h.iloc[-1]), 3)}
+        for y in (1, 3, 5, 10):
+            past = h[h.index <= last - pd.DateOffset(years=y)]
+            if len(past):
+                r[f'{y}a'] = round(((float(h.iloc[-1]) / float(past.iloc[-1])) ** (1 / y) - 1) * 100, 1)
+        # pire baisse sur 5 ans
+        h5 = h[h.index >= last - pd.DateOffset(years=5)]
+        r['pire_baisse_5a'] = round(float((h5 / h5.cummax() - 1).min()) * 100, 1)
+        out[s] = r
+    except Exception as e:
+        out[s] = {'nom': n, 'erreur': str(e)[:80]}
 json.dump(out, open('probe_sources.json', 'w'), indent=1, ensure_ascii=False)
+print(json.dumps(out, indent=1, ensure_ascii=False))
