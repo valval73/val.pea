@@ -29,7 +29,7 @@ from datetime import timedelta
 import pandas as pd
 import yfinance as yf
 from tickers import YF_MAP
-from fetch_fundamentals import qarp_value, QV_GMAX
+from fetch_fundamentals import qarp_value, QV_GMAX, effective_growth
 from moat import UNCERTAINTY, MARGIN, MOAT, MOAT_MIN_BUY
 
 ETF = 'EUNL.DE'           # iShares Core MSCI World (EUR)
@@ -59,8 +59,37 @@ def row(df, *names):
     return None
 
 
+def xbrl_history(tk):
+    """Comptes officiels (filings.xbrl.org) : {annee: (BPA, chiffre d'affaires)}.
+    Les rapports europeens existent depuis l'exercice 2020 : ils allongent le
+    test d'environ 2 ans (dont la baisse de 2022) par rapport a Yahoo seul."""
+    try:
+        import official_accounts as OA
+        lei = (json.load(open('lei_map.json', encoding='utf-8')).get(tk) or {}).get('lei')
+        if not lei:
+            return {}
+        fl = OA.get(f'/api/entities/{lei}/filings?page[size]=50') or {}
+        out = {}
+        for a in sorted([x.get('attributes', {}) for x in fl.get('data', [])], key=lambda x: x.get('period_end') or ''):
+            if not a.get('json_url'):
+                continue
+            j = OA.get(a['json_url'])
+            if not j:
+                continue
+            facts = j.get('facts', {})
+            rev = OA.year_values(facts, OA.REV)
+            eps = OA.year_values(facts, ('ifrs-full:DilutedEarningsLossPerShare', 'ifrs-full:BasicEarningsLossPerShare'))
+            for y in set(rev) & set(eps):
+                out[int(y)] = (eps[y][0], rev[y][0])
+        return out
+    except Exception as ex:
+        print('  XBRL', tk, str(ex)[:60])
+        return {}
+
+
 def valuations(tk, roic):
-    """Serie mensuelle (date -> (palier1, palier2, valeur)) a partir des comptes publies."""
+    """Serie (date de publication -> paliers, valeur) a partir des comptes publies :
+    Yahoo (4-5 ans) complete par les comptes officiels plus anciens."""
     t = yf.Ticker(YF_MAP[tk])
     info = t.info or {}
     if info.get('financialCurrency') and info.get('currency') and info['financialCurrency'] != info['currency']:
@@ -68,29 +97,35 @@ def valuations(tk, roic):
     fin = t.income_stmt
     eps = row(fin, 'Diluted EPS', 'Basic EPS')
     rev = row(fin, 'Total Revenue', 'Operating Revenue')
-    if eps is None or rev is None:
-        return None, 'comptes incomplets'
-    years = sorted([c for c in fin.columns if pd.notna(eps.get(c)) and pd.notna(rev.get(c))])
-    if len(years) < 2:
+    data = {}   # annee -> (date de cloture, bpa, ca)
+    for y, (e_, r_) in xbrl_history(tk).items():
+        data[y] = (pd.Timestamp(year=y, month=12, day=31), e_, r_)
+    if eps is not None and rev is not None:
+        for c in fin.columns:
+            if pd.notna(eps.get(c)) and pd.notna(rev.get(c)):
+                d = pd.Timestamp(c).tz_localize(None)
+                data[d.year] = (d, float(eps[c]), float(rev[c]))
+    ys = sorted(data)
+    if len(ys) < 2:
         return None, 'moins de 2 ans de comptes'
     unc = UNCERTAINTY.get(tk) or 'moyenne'
     hi = MARGIN.get(unc, (0.25, 0.15))[1]
+    moat_s = (MOAT.get(tk) or (None,))[0]
     pts = []
-    for i in range(1, len(years)):
-        y0, y1 = years[0], years[i]
-        n = (y1 - y0).days / 365.25
-        r0, r1 = float(rev[y0]), float(rev[y1])
+    for i in range(1, len(ys)):
+        d0, _, r0 = data[ys[0]]
+        d1, e, r1 = data[ys[i]]
+        n = (d1 - d0).days / 365.25
         g = ((r1 / r0) ** (1 / n) - 1) * 100 if r0 > 0 and r1 > 0 and n > 0 else 0.0
-        g = max(0.0, min(g, QV_GMAX * 100))
-        e = float(eps[y1])
+        g, _cap = effective_growth(max(0.0, g), roic, moat_s, False)
         if e <= 0:
             continue
         v = qarp_value(None, e, None, None, roic, g1_override=g / 100)
-        rs = [float(rev[y]) for y in years[:i + 1]]
+        rs = [data[y][2] for y in ys[:i + 1]]
         ups = sum(1 for a_, b_ in zip(rs, rs[1:]) if b_ > a_)
         regular = ups >= len(rs) - 2 if len(rs) >= 3 else True
         if v:
-            pts.append((pd.Timestamp(y1).tz_localize(None) + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1), regular))
+            pts.append((d1 + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1), regular))
     return pts, None
 
 
@@ -206,7 +241,7 @@ def main():
         'evenements': events[-60:],
         'biais': ['actions = celles de qualité aujourd’hui (biais du survivant, flatte les actions)',
                   'rentabilité, moat et incertitude d’aujourd’hui',
-                  'test court : Yahoo ne donne que 4 à 5 ans de comptes, pas de krach 2020',
+                  'comptes : Yahoo + rapports officiels européens (depuis 2020) ; pas de krach 2020 dans le test',
                   'sans frais ni impôts'],
     }
     json.dump(out, open('backtest_paliers.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
