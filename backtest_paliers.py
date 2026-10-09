@@ -33,7 +33,7 @@ from fetch_fundamentals import qarp_value, QV_GMAX, effective_growth
 from moat import UNCERTAINTY, MARGIN, MOAT, MOAT_MIN_BUY
 
 ETF = 'EUNL.DE'           # iShares Core MSCI World (EUR)
-EUR_IDX = 'MEUD.PA'       # Amundi Stoxx Europe 600 (capitalisant) : reference europeenne
+EUR_IDX = 'EXSA.DE'       # iShares STOXX Europe 600 (historique long) : reference europeenne
 Z2M = {'faible': 0.20, 'moyenne': 0.30, 'elevee': 0.40}
 LAG = 75                  # jours entre cloture et publication
 MONTHLY = 1000.0
@@ -206,7 +206,8 @@ def main():
     dl = months[-1]
     pe = float(etf.iloc[-1])
     vA = A * pe
-    vD = D_ * float(eu.iloc[-1]) if eu is not None and D_ else None
+    # reference Europe seulement si son historique couvre toute la periode
+    vD = D_ * float(eu.iloc[-1]) if (eu is not None and D_ and eu.index[0] <= months[0]) else None
     vB = sum(q * px(tk, dl) for tk, q in B.items())
     vC = C_etf * pe + sum(q * px(tk, dl) for tk, q in C.items())
 
