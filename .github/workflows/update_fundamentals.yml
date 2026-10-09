@@ -2,10 +2,13 @@ name: Update Fundamentals & Earnings
 
 on:
   schedule:
-    # Quotidien 7h UTC (9h Paris) : dates resultats uniquement
-    - cron: '0 7 * * 1-5'
-    # Dimanche 20h UTC : update complet bilans + ratios
-    - cron: '0 20 * * 0'
+    # 09/10/2026 : apres la cloture de Paris (17h35) -> cours de cloture propres.
+    # 17h47 UTC = 19h47 Paris (ete) / 18h47 (hiver). Gratuit : aucun credit IA.
+    - cron: '47 17 * * 1-5'
+    # Secours : GitHub saute parfois ses taches programmees ; ne fait rien si
+    # la mise a jour du soir a deja tourne.
+    - cron: '13 21 * * 1-5'
+    # (Le samedi, le mail de routine refait une mise a jour complete avant l'envoi.)
   workflow_dispatch:
 
 permissions:
@@ -25,9 +28,28 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install yfinance requests pytz --quiet
+      - name: Skip backup run if the evening run already succeeded
+        id: guard
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime as dt
+          skip = False
+          if os.environ.get('SCHED') == '13 21 * * 1-5':
+              try:
+                  g = dt.datetime.fromisoformat(json.load(open('fundamentals_log.json'))['generated'])
+                  skip = (dt.datetime.now(dt.timezone.utc) - g).total_seconds() < 5 * 3600
+              except Exception:
+                  pass
+          open(os.environ['GITHUB_OUTPUT'], 'a').write(f"skip={'true' if skip else 'false'}\n")
+          print('skip' if skip else 'run')
+          PY
+        env:
+          SCHED: ${{ github.event.schedule }}
       - name: Update fundamentals (Buffett metrics + earnings dates)
+        if: steps.guard.outputs.skip != 'true'
         run: python fetch_fundamentals.py
       - name: Commit if changed
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config --local user.email "valpea@users.noreply.github.com"
           git config --local user.name "VAL.PEA"
