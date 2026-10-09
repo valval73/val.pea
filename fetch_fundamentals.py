@@ -649,6 +649,23 @@ def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
 WHT = {'DE': 26.375, 'AS': 15.0, 'MC': 19.0, 'MI': 26.0, 'CO': 27.0, 'ST': 30.0,
        'HE': 35.0, 'OL': 25.0, 'BR': 30.0, 'PA': 0.0}
 
+# 09/10/2026 : les tres fortes croissances (ASML 25 %, Rheinmetall 36 %) etaient
+# toutes ramenees a 12 %, ce qui sous-estimait ces entreprises. Regle : au-dela
+# de 12 %, on retient la MOITIE de l'excedent, plafond 20 %, et seulement si
+# la croissance vient d'un communique officiel, avec une rentabilite du capital
+# >= 20 % et un moat >= 4 (une croissance forte durable exige un avantage
+# durable). Sinon : 12 % comme avant. Retourne (croissance utilisee, plafond
+# du scenario optimiste).
+QV_GMAX_HI = 20.0
+
+def effective_growth(g, roic, moat_score, official):
+    cap = QV_GMAX * 100
+    if g <= cap:
+        return g, cap
+    if official and roic and roic >= 20 and moat_score and moat_score >= 4:
+        return min(QV_GMAX_HI, cap + 0.5 * (g - cap)), QV_GMAX_HI
+    return cap, cap
+
 def expected_return(eps_fwd, eps_ttm, g_pct, roic_pct, price):
     """Rendement annuel attendu si on achete au cours actuel et que la
     croissance retenue se realise (taux qui egalise valeur et cours).
@@ -938,14 +955,14 @@ def hist_multiples(t, info):
         print(f"  HIST SKIP: {e}")
     return out
 
-def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R):
+def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R, gmax=None):
     """Methode 2 (multiples) : benefice qui croit de g pendant 5 ans,
     dividendes encaisses, puis revente au PER habituel de l'entreprise
     (borne 10-30), le tout actualise a 8,5 %."""
     if not pe_exit or g_pct is None:
         return None
     base = None
-    g1 = max(0.0, min(g_pct, QV_GMAX * 100)) / 100
+    g1 = max(0.0, min(g_pct, gmax if gmax else QV_GMAX * 100)) / 100
     if eps_fwd and eps_fwd > 0 and eps_ttm and eps_ttm > 0:
         base = min(eps_fwd, eps_ttm * (1 + g1) * 1.10)
     elif eps_ttm and eps_ttm > 0:
@@ -1100,26 +1117,23 @@ def fetch_one(ticker, yf_sym, sector):
         elif (result.get('qok') or result.get('near')) and result.get('price', 0) > 0:
             g_in = off[0] if off else None
             eps_ttm = normalized_eps(t, info)
-            v = qarp_value(info.get('forwardEps'), eps_ttm,
-                           g_in if off else result.get('cagr'),
-                           g_in if off else result.get('nig'),
-                           result.get('roicx') or result.get('roic'))
-            result['gimp'] = implied_growth(info.get('forwardEps'), eps_ttm,
-                                            result.get('roicx') or result.get('roic'),
-                                            result['price'])
+            roic_v = result.get('roicx') or result.get('roic')
+            # 09/10/2026 : croissance utilisee dans le calcul (voir effective_growth)
+            g_c = g_in if off else None
+            if g_c is None:
+                gs_ = [x for x in (result.get('cagr'), result.get('nig')) if x is not None]
+                g_c = sum(gs_) / len(gs_) if gs_ else 0.0
+            g_c, g_cap = effective_growth(max(0.0, g_c), roic_v, (MOAT.get(ticker) or (None,))[0], bool(off))
+            result['gmod'] = round(g_c, 1)
+            v = qarp_value(info.get('forwardEps'), eps_ttm, None, None, roic_v, g1_override=g_c / 100)
+            result['gimp'] = implied_growth(info.get('forwardEps'), eps_ttm, roic_v, result['price'])
             if v:
                 result.update(zones_from_value(v, result['price'], cat))
                 result['vmeth'] = 'qarp'
                 # 05/10/2026 : trois scenarios et zone selon l'incertitude
-                roic_v = result.get('roicx') or result.get('roic')
-                g_c = g_in if off else None
-                if g_c is None:
-                    gs_ = [x for x in (result.get('cagr'), result.get('nig')) if x is not None]
-                    g_c = sum(gs_) / len(gs_) if gs_ else 0.0
-                g_c = max(0.0, min(g_c, QV_GMAX * 100))
                 vp = qarp_value(info.get('forwardEps'), eps_ttm, 0.0, 0.0, roic_v)
-                vo = qarp_value(info.get('forwardEps'), eps_ttm, min(g_c + 3, QV_GMAX * 100),
-                                min(g_c + 3, QV_GMAX * 100), roic_v)
+                vo = qarp_value(info.get('forwardEps'), eps_ttm, None, None, roic_v,
+                                g1_override=min(g_c + 3, g_cap) / 100)
                 p_ = result['price']
                 clamp = lambda x: round(max(min(x, p_ * 3.0), p_ * 0.3), 2)
                 unc = UNCERTAINTY.get(ticker)
@@ -1139,7 +1153,7 @@ def fetch_one(ticker, yf_sym, sector):
                     result['o2'] = round(result['vopt'] * 1.10, 2)
                 # methode 2 : multiples historiques (controle croise)
                 vm = mult_value(info.get('forwardEps'), eps_ttm, g_c, result.get('pe_h'),
-                                info.get('payoutRatio'))
+                                info.get('payoutRatio'), gmax=g_cap)
                 same_cur = not (info.get('financialCurrency') and info.get('currency')
                                 and info.get('financialCurrency') != info.get('currency'))
                 result['vmult'] = clamp(vm) if (vm and same_cur) else None
@@ -1372,7 +1386,7 @@ def set_quality_fields(block, data):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
