@@ -665,7 +665,34 @@ function box(){
     '<span id="v2-bk-st" style="color:'+(age==null||age>30?'#a8322b':'#5a6275')+'">'+(age==null?'Jamais sauvegardé : tes portefeuilles n’existent que dans ce navigateur.':'Dernière sauvegarde il y a '+age+' jour(s).')+'</span>';
   var bar=document.querySelector('.v2-prof'); if(bar&&bar.nextSibling) pg.insertBefore(d, bar.nextSibling); else pg.insertBefore(d, pg.firstChild);
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', box); else box();
+// 09/10/2026 : rappel de sauvegarde dès qu'une donnée personnelle change
+// (portefeuilles, historique, journal, convictions, thèses, contre-expertises).
+var DIRTY=/^(pea_ptf_(?!.*_ver$)|pea_hist_|valpea_journal|valpea_convictions|these_|v2_ce_|v2_prof_names|pea_notes|ptf_positions)/;
+try{
+  var _set=Storage.prototype.setItem;
+  Storage.prototype.setItem=function(k,v){
+    var old=null; try{ old=this.getItem(k); }catch(e){}
+    _set.apply(this,arguments);
+    if(this===window.localStorage && DIRTY.test(k) && old!==String(v)){
+      try{ _set.call(this,'v2_dirty',new Date().toISOString()); }catch(e){}
+      setTimeout(banner,50);
+    }
+  };
+}catch(e){}
+function banner(){
+  var d=null,b=null; try{ d=localStorage.getItem('v2_dirty'); b=localStorage.getItem('v2_last_backup'); }catch(e){}
+  var el=document.getElementById('v2-dirty');
+  var need = d && (!b || new Date(d)>new Date(b));
+  if(!need){ if(el) el.remove(); return; }
+  if(el) return;
+  el=document.createElement('div'); el.id='v2-dirty';
+  el.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;max-width:560px;margin:0 auto;background:#fbf4e6;border:1px solid #c9a45c;border-radius:10px;padding:10px 14px;font:14px system-ui,sans-serif;color:#1a2233;box-shadow:0 4px 16px rgba(0,0,0,.15);display:flex;gap:10px;align-items:center;flex-wrap:wrap';
+  el.innerHTML='<span style="flex:1;min-width:200px"><b>Données modifiées</b> depuis la dernière sauvegarde : elles n’existent que dans ce navigateur.</span><button style="min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid #0e1c33;background:#0e1c33;color:#f4efe3;cursor:pointer" onclick="v2backup();document.getElementById(\'v2-dirty\')&&document.getElementById(\'v2-dirty\').remove()">Sauvegarder</button>';
+  document.body.appendChild(el);
+}
+window.v2banner=banner;
+function init(){ box(); banner(); }
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
 // ---- 08/10/2026 : contrôle par les comptes officiels (official_check.json) ----
