@@ -1,10 +1,10 @@
 {
  "periode": [
-  "2024-04-01",
+  "2021-04-01",
   "2026-10-01"
  ],
- "mois": 31,
- "verse": 31000.0,
+ "mois": 67,
+ "verse": 67000.0,
  "univers": [
   "AI",
   "AIR",
@@ -21,61 +21,238 @@
   "NRO",
   "OR",
   "PLNW",
+  "PLUXEE",
   "RAA",
   "RHM",
   "RMS",
   "SAF",
   "SU",
+  "TE",
   "UMG",
   "WKL"
  ],
  "exclues": {},
  "A_etf_seul": {
-  "valeur": 38176,
-  "rendement_annuel": 16.3
+  "valeur": 101584,
+  "rendement_annuel": 14.8
  },
  "D_europe_stoxx600": {
-  "valeur": 35770,
-  "rendement_annuel": 11.1
+  "valeur": 37420,
+  "rendement_annuel": -20.5
  },
  "B_actions_chaque_mois": {
-  "valeur": 32064,
-  "rendement_annuel": 2.5
+  "valeur": 95605,
+  "rendement_annuel": 12.6
  },
  "C_paliers_plus_etf": {
-  "valeur": 37796,
-  "rendement_annuel": 15.5,
-  "part_actions_finale_pct": 14.2
+  "valeur": 100645,
+  "rendement_annuel": 14.5,
+  "part_actions_finale_pct": 10.6
  },
  "achats": {
-  "palier1": 7,
-  "palier2": 6,
-  "battent_etf": 3,
-  "total": 13
+  "palier1": 15,
+  "palier2": 13,
+  "battent_etf": 17,
+  "total": 28
  },
  "bloques_par_filtres": {
-  "IPSEN": 31,
-  "NRO": 31,
-  "ASML": 3,
+  "TE": 67,
+  "SAF": 55,
+  "IPSEN": 55,
+  "NRO": 55,
+  "RMS": 3,
+  "ASML": 5,
+  "MONC": 1,
+  "DSY": 10,
+  "GTT": 43,
+  "PLUXEE": 33,
   "AI": 19,
   "PLNW": 3,
   "WKL": 13,
-  "DSY": 8,
-  "NEM": 10,
+  "NEM": 9,
   "UMG": 5,
-  "RHM": 5,
-  "RMS": 2
+  "RHM": 5
  },
  "evenements": [
   {
-   "date": "2024-06-01",
+   "date": "2021-04-01",
    "ticker": "GTT",
+   "palier": 2,
+   "cours": 56.58,
+   "valeur": 140.72,
+   "montant": 50,
+   "perf_a_ce_jour": 277.9,
+   "etf_meme_periode": 96.0
+  },
+  {
+   "date": "2021-05-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 54.63,
+   "valeur": 140.72,
+   "montant": 51,
+   "perf_a_ce_jour": 291.4,
+   "etf_meme_periode": 96.6
+  },
+  {
+   "date": "2021-06-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 55.69,
+   "valeur": 140.72,
+   "montant": 53,
+   "perf_a_ce_jour": 283.9,
+   "etf_meme_periode": 87.7
+  },
+  {
+   "date": "2021-07-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 55.28,
+   "valeur": 140.72,
+   "montant": 54,
+   "perf_a_ce_jour": 286.8,
+   "etf_meme_periode": 84.3
+  },
+  {
+   "date": "2021-08-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 57.69,
+   "valeur": 140.72,
+   "montant": 48,
+   "perf_a_ce_jour": 270.6,
+   "etf_meme_periode": 78.8
+  },
+  {
+   "date": "2021-09-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 52.95,
+   "valeur": 140.72,
+   "montant": 66,
+   "perf_a_ce_jour": 303.8,
+   "etf_meme_periode": 82.3
+  },
+  {
+   "date": "2021-10-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 58.39,
+   "valeur": 140.72,
+   "montant": 35,
+   "perf_a_ce_jour": 266.2,
+   "etf_meme_periode": 73.4
+  },
+  {
+   "date": "2021-11-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 59.3,
+   "valeur": 140.72,
+   "montant": 47,
+   "perf_a_ce_jour": 260.5,
+   "etf_meme_periode": 72.3
+  },
+  {
+   "date": "2021-12-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 68.6,
+   "valeur": 140.72,
+   "montant": 3,
+   "perf_a_ce_jour": 211.7,
+   "etf_meme_periode": 65.6
+  },
+  {
+   "date": "2022-01-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 67.69,
+   "valeur": 140.72,
+   "montant": 31,
+   "perf_a_ce_jour": 215.9,
+   "etf_meme_periode": 75.2
+  },
+  {
+   "date": "2022-02-01",
+   "ticker": "GTT",
+   "palier": 2,
+   "cours": 71.48,
+   "valeur": 140.72,
+   "montant": 14,
+   "perf_a_ce_jour": 199.1,
+   "etf_meme_periode": 78.2
+  },
+  {
+   "date": "2022-06-01",
+   "ticker": "LR",
    "palier": 1,
-   "cours": 110.31,
-   "valeur": 142.56,
-   "montant": 78,
-   "perf_a_ce_jour": 96.2,
-   "etf_meme_periode": 37.6
+   "cours": 65.14,
+   "valeur": 83.97,
+   "montant": 360,
+   "perf_a_ce_jour": 113.5,
+   "etf_meme_periode": 93.4
+  },
+  {
+   "date": "2022-08-01",
+   "ticker": "LR",
+   "palier": 1,
+   "cours": 66.82,
+   "valeur": 83.97,
+   "montant": 69,
+   "perf_a_ce_jour": 108.2,
+   "etf_meme_periode": 78.8
+  },
+  {
+   "date": "2022-09-01",
+   "ticker": "LR",
+   "palier": 1,
+   "cours": 61.62,
+   "valeur": 83.97,
+   "montant": 33,
+   "perf_a_ce_jour": 125.7,
+   "etf_meme_periode": 89.5
+  },
+  {
+   "date": "2022-09-01",
+   "ticker": "AIR",
+   "palier": 1,
+   "cours": 82.72,
+   "valeur": 98.87,
+   "montant": 436,
+   "perf_a_ce_jour": 126.8,
+   "etf_meme_periode": 89.5
+  },
+  {
+   "date": "2022-09-01",
+   "ticker": "AI",
+   "palier": 1,
+   "cours": 90.17,
+   "valeur": 100.28,
+   "montant": 436,
+   "perf_a_ce_jour": 88.4,
+   "etf_meme_periode": 89.5
+  },
+  {
+   "date": "2022-12-01",
+   "ticker": "LR",
+   "palier": 1,
+   "cours": 69.17,
+   "valeur": 83.97,
+   "montant": 18,
+   "perf_a_ce_jour": 101.1,
+   "etf_meme_periode": 91.7
+  },
+  {
+   "date": "2023-10-01",
+   "ticker": "LR",
+   "palier": 1,
+   "cours": 76.95,
+   "valeur": 92.32,
+   "montant": 243,
+   "perf_a_ce_jour": 80.8,
+   "etf_meme_periode": 75.9
   },
   {
    "date": "2024-11-01",
@@ -83,125 +260,105 @@
    "palier": 1,
    "cours": 44.05,
    "valeur": 52.73,
-   "montant": 220,
-   "perf_a_ce_jour": -2.4,
+   "montant": 1000,
+   "perf_a_ce_jour": -0.4,
+   "etf_meme_periode": 25.3
+  },
+  {
+   "date": "2025-07-01",
+   "ticker": "MONC",
+   "palier": 1,
+   "cours": 45.62,
+   "valeur": 55.02,
+   "montant": 688,
+   "perf_a_ce_jour": -3.8,
    "etf_meme_periode": 25.0
   },
   {
-   "date": "2025-04-01",
-   "ticker": "GTT",
-   "palier": 2,
-   "cours": 133.81,
-   "valeur": 246.79,
-   "montant": 531,
-   "perf_a_ce_jour": 61.7,
-   "etf_meme_periode": 40.3
+   "date": "2025-08-01",
+   "ticker": "UMG",
+   "palier": 1,
+   "cours": 23.19,
+   "valeur": 27.73,
+   "montant": 1000,
+   "perf_a_ce_jour": -36.1,
+   "etf_meme_periode": 25.5
+  },
+  {
+   "date": "2025-10-01",
+   "ticker": "UMG",
+   "palier": 1,
+   "cours": 22.57,
+   "valeur": 27.73,
+   "montant": 944,
+   "perf_a_ce_jour": -34.4,
+   "etf_meme_periode": 17.4
+  },
+  {
+   "date": "2025-11-01",
+   "ticker": "UMG",
+   "palier": 1,
+   "cours": 21.42,
+   "valeur": 27.73,
+   "montant": 114,
+   "perf_a_ce_jour": -30.8,
+   "etf_meme_periode": 17.8
+  },
+  {
+   "date": "2025-12-01",
+   "ticker": "UMG",
+   "palier": 1,
+   "cours": 21.56,
+   "valeur": 27.73,
+   "montant": 10,
+   "perf_a_ce_jour": -31.3,
+   "etf_meme_periode": 17.4
   },
   {
    "date": "2026-01-01",
-   "ticker": "AMS",
+   "ticker": "UMG",
    "palier": 1,
-   "cours": 55.5,
-   "valeur": 70.28,
-   "montant": 613,
-   "perf_a_ce_jour": -7.6,
-   "etf_meme_periode": 16.6
-  },
-  {
-   "date": "2026-02-01",
-   "ticker": "AMS",
-   "palier": 1,
-   "cours": 51.7,
-   "valeur": 70.28,
-   "montant": 75,
-   "perf_a_ce_jour": -0.8,
-   "etf_meme_periode": 15.4
+   "cours": 20.06,
+   "valeur": 27.73,
+   "montant": 166,
+   "perf_a_ce_jour": -26.1,
+   "etf_meme_periode": 16.9
   },
   {
    "date": "2026-02-01",
    "ticker": "UMG",
-   "palier": 1,
+   "palier": 2,
    "cours": 18.54,
-   "valeur": 22.27,
-   "montant": 646,
-   "perf_a_ce_jour": -20.8,
-   "etf_meme_periode": 15.4
-  },
-  {
-   "date": "2026-03-01",
-   "ticker": "AMS",
-   "palier": 2,
-   "cours": 47.72,
-   "valeur": 70.28,
-   "montant": 683,
-   "perf_a_ce_jour": 7.5,
-   "etf_meme_periode": 21.2
-  },
-  {
-   "date": "2026-04-01",
-   "ticker": "AMS",
-   "palier": 2,
-   "cours": 48.03,
-   "valeur": 75.82,
-   "montant": 139,
-   "perf_a_ce_jour": 6.8,
-   "etf_meme_periode": 11.9
-  },
-  {
-   "date": "2026-04-01",
-   "ticker": "SAF",
-   "palier": 1,
-   "cours": 269.97,
-   "valeur": 376.08,
-   "montant": 713,
-   "perf_a_ce_jour": 15.1,
-   "etf_meme_periode": 11.9
-  },
-  {
-   "date": "2026-06-01",
-   "ticker": "AMS",
-   "palier": 2,
-   "cours": 50.07,
-   "valeur": 75.82,
-   "montant": 135,
-   "perf_a_ce_jour": 2.4,
-   "etf_meme_periode": 4.7
+   "valeur": 27.73,
+   "montant": 1000,
+   "perf_a_ce_jour": -20.1,
+   "etf_meme_periode": 15.6
   },
   {
    "date": "2026-09-01",
-   "ticker": "AMS",
-   "palier": 2,
-   "cours": 51.82,
-   "valeur": 75.82,
-   "montant": 142,
-   "perf_a_ce_jour": -1.0,
-   "etf_meme_periode": 1.4
-  },
-  {
-   "date": "2026-10-01",
-   "ticker": "AMS",
-   "palier": 2,
-   "cours": 51.28,
-   "valeur": 75.82,
-   "montant": 89,
-   "perf_a_ce_jour": -0.0,
-   "etf_meme_periode": 0.0
+   "ticker": "MONC",
+   "palier": 1,
+   "cours": 44.64,
+   "valeur": 53.71,
+   "montant": 767,
+   "perf_a_ce_jour": -1.7,
+   "etf_meme_periode": 1.7
   },
   {
    "date": "2026-10-01",
    "ticker": "WKL",
-   "palier": 1,
-   "cours": 71.78,
-   "valeur": 101.42,
-   "montant": 911,
+   "palier": 2,
+   "cours": 73.7,
+   "valeur": 111.16,
+   "montant": 1000,
    "perf_a_ce_jour": -0.0,
    "etf_meme_periode": 0.0
   }
  ],
  "biais": [
-  "univers = qualite d aujourd hui (survivant)",
-  "ROIC et incertitude d aujourd hui",
-  "test court : comptes Yahoo limites a 4-5 ans",
-  "sans frais ni impots"
+  "actions = celles de qualité aujourd’hui (biais du survivant, flatte les actions)",
+  "rentabilité, moat et incertitude d’aujourd’hui",
+  "comptes : Yahoo + rapports officiels européens (depuis 2020) ; pas de krach 2020 dans le test",
+  "sans frais ni impôts"
  ]
 }
