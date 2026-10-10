@@ -101,6 +101,12 @@ def main():
         prev = json.load(open(STATE, encoding='utf-8'))
     except Exception:
         pass
+    # 10/10/2026 : GitHub lance parfois les taches programmees avec plusieurs
+    # heures de retard ; si le mail a deja ete envoye aujourd'hui (lancement
+    # manuel), on n'en renvoie pas un second.
+    if prev.get('date') == date.today().isoformat() and not os.environ.get('FORCE_MAIL'):
+        print('Mail deja envoye aujourd hui : rien a faire')
+        return
     in_zone = {s['ticker'] for s in S if s.get('qok') and (s.get('eh') or 0) > 0 and s['price'] <= s['eh']}
     new_zone = sorted(in_zone - set(prev.get('in_zone', [])))
 
