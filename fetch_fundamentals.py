@@ -896,7 +896,7 @@ def hist_multiples(t, info):
     out = {'pe_h': None, 'pfcf_h': None, 'eveb_h': None, 'hn': 0, 'pe_lo': None}
     try:
         fin, bs, cf = t.financials, t.balance_sheet, t.cashflow
-        h = t.history(period='5y', interval='1wk')
+        h = t.history(period='5y', interval='1wk', auto_adjust=False)  # 11/10/2026 : cours bruts (les cours ajustes des dividendes sous-estimaient les PER passes)
         if fin is None or fin.empty or h is None or h.empty:
             return out
         closes = h['Close']
@@ -1023,7 +1023,7 @@ def div_history(t, price):
             d.index = d.index.tz_localize(None)
         except Exception:
             pass
-        h = t.history(period='10y', interval='1mo')['Close']
+        h = t.history(period='10y', interval='1mo', auto_adjust=False)['Close']  # 11/10/2026 : cours bruts (sinon rendements passes surestimes : TTE 8,6 % au lieu de ~5,5 %)
         try:
             h.index = h.index.tz_localize(None)
         except Exception:
