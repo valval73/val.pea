@@ -82,6 +82,36 @@ function position(s){
     '<span>'+(g>=0?'Plus-value':'Moins-value')+' : <b style="color:'+(g>=0?C.gn:C.rd)+'">'+sgn(g,1)+'</b> · poids <b style="color:'+(w>10?C.rd:C.ink)+'">'+fr(w,1)+' %</b> (plafond 10 %)</span></div>';
 }
 
+
+// ---- 11/10/2026 : plan d'achat en un ou deux paliers (lisible d'un coup d'oeil) ----
+function myPos(s){
+  var list = (typeof PTF!=='undefined' && (PTF.length || (window._ptfProfile && window._ptfProfile!=='val'))) ? PTF : null;
+  if(!list){ try{ list = JSON.parse(localStorage.getItem('pea_ptf_val')||'[]'); }catch(e){ list=[]; } }
+  var pos = list.find(function(x){return x&&x.ticker===s.ticker;}), tot=0;
+  list.forEach(function(x){
+    var st = S.find(function(y){return y&&y.ticker===x.ticker;});
+    var et = (typeof ETF!=='undefined') ? ETF.find(function(y){return y&&y.ticker===x.ticker;}) : null;
+    tot += (st ? st.price : (et && et.price ? et.price : x.pru)) * x.qty;
+  });
+  return {pos:pos, tot:tot};
+}
+function buyPlan(s){
+  if(!(s.qok&&s.eh>0)) return '<section class="v2-card"><h2>Mes paliers d’achat</h2><p class="v2-small">Aucun palier : la valeur ne passe pas le filtre qualité, on ne cherche pas à l’acheter.</p></section>';
+  var p1=s.eh, p2=z2(s), P=myPos(s), tot=P.tot, held=P.pos?P.pos.qty*s.price:0, wNow=tot>0?held/tot*100:0;
+  var amt=function(w){ if(!(tot>0)) return ''; var e=Math.max(0,tot*w/100-held); return e>0?' · ≈ <b>'+fr(e,0)+' €</b>, soit '+Math.max(1,Math.round(e/s.price))+' action'+(Math.round(e/s.price)>1?'s':''):' · <b>déjà atteint</b>'; };
+  var dist=function(x){ var d=pct(x,s.price); return d>=0?'<b style="color:'+C.gn+'">atteint</b>':'le cours doit baisser de <b>'+fr(-d,0)+' %</b>'; };
+  var row=function(n,lbl,x,w,txt){ return '<div class="v2-scen" style="background:'+(s.price<=x?'#eef6f1':C.bg)+'"><div class="v2-k" style="color:'+C.gn+'">'+n+'</div><div class="v2-big">sous '+fr(x,0)+' €</div><div class="v2-small">'+lbl+amt(w)+'<br>'+dist(x)+'<br>'+txt+'</div></div>'; };
+  return '<section class="v2-card" style="border-left:4px solid '+C.gn+'"><div class="v2-head"><h2>Mes paliers d’achat</h2><span class="v2-small">'+(P.pos?'déjà '+fr(wNow,1)+' % du PEA':'pas encore en portefeuille')+'</span></div>'+
+    '<div class="v2-grid3">'+
+      row('PALIER 1 · DEMI-POSITION','2,5 % du PEA',p1,2.5,'Première moitié.')+
+      (p2?row('PALIER 2 · POSITION COMPLÈTE','compléter jusqu’à 5 %',p2,5,'Seconde moitié.'):'')+
+      '<div class="v2-scen" style="background:#fbf4e6"><div class="v2-k" style="color:'+C.or+'">PAS UN PRIX D’ACHAT</div><div class="v2-big">'+(s.vopt>0?'&gt; '+fr(s.vopt,0)+' €':'—')+'</div><div class="v2-small">Au-dessus du scénario optimiste : <b>alléger</b> (vendre une partie, jamais tout). Le « central » ('+fr(s.dcfm,0)+' €) est une estimation de valeur, pas un prix d’achat.</div></div>'+
+    '</div>'+
+    '<p class="v2-small"><b>En deux fois</b> : demi-position au palier 1, le reste au palier 2. <b>En une fois</b> : si le cours tombe directement sous le palier 2, position complète d’un coup. Si le palier 2 n’arrive jamais, tu restes à demi-position : c’est voulu. '+
+    '<b>Condition</b> : contre-expertise de moins de 3 mois « intacte » ; « fragilisée » → un palier plus bas ; « cassée » → rien. '+
+    '<b>À faire</b> : poser deux alertes de cours chez ton courtier, à '+fr(p1,0)+' €'+(p2?' et '+fr(p2,0)+' €':'')+'. Les paliers sont recalculés après chaque publication de résultats.</p></section>';
+}
+
 // ---- barre de prix ----
 function priceBar(s){
   var pts = [s.price, s.el, s.eh, z2(s), s.stop, s.dcfm, s.vopt, s.vpess, s.tp].filter(function(x){return x>0;});
@@ -249,7 +279,7 @@ function priceBlock(s){
   var card = function(t,col,bg,v,txt,out){ return '<div class="v2-scen" style="background:'+bg+(out?';outline:2px solid '+C.ink:'')+'"><div class="v2-k" style="color:'+col+'">'+t+'</div><div class="v2-big">'+fr(v,0)+' € <span style="font-size:14px;color:'+(v>=s.price?C.gn:C.rd)+'">'+sgn(pct(v,s.price))+'</span></div><div class="v2-small">'+txt+'</div></div>'; };
   var gc = s.gmod!=null ? s.gmod : (s.gused!=null ? Math.max(0,Math.min(12,s.gused)) : null);
   var gcap = (gc!=null && gc>12) ? 20 : 12;
-  return '<section class="v2-card"><div class="v2-head"><h2>Le prix : trois scénarios, une zone</h2>'+
+  return '<section class="v2-card"><div class="v2-head"><h2>Ce que vaut l’action : trois estimations</h2>'+
     (s.unc?'<span class="v2-pill" style="background:#f5f3ee;color:'+C.ink+'">INCERTITUDE '+(UNC[s.unc]||'NON ÉVALUÉE').toUpperCase()+'</span>':'')+'</div>'+
     (s.irr!=null?(function(){ var R=(s.irrn!=null?s.irrn:s.irr), RQ=(s.grid==='banque'?10:8.5), RQs=fr(RQ,1); var hyp=(s.grid==='banque'?'la rentabilité des fonds propres ('+fr(s.roem,1)+' %) se maintient':s.grid==='fonciere'?'les loyers suivent l’inflation (estimation simple : rendement + 2 %)':'la croissance retenue ('+fr(s.gused,1)+' %/an'+(s.gmod!=null&&s.gused!=null&&s.gmod<s.gused-0.05?', dont '+fr(s.gmod,1)+' % pris en compte : au-delà de 12 %, on ne retient que la moitié, plafond 20 %, et seulement pour un moat ≥ 4':'')+') se réalise'); return '<div class="v2-note" style="background:'+(R>=RQ?'#eef6f1':'#fbecea')+'"><span><b>En clair : si tu achètes à '+fr(s.price)+' €</b> et que '+hyp+', l’action devrait rapporter <b class="v2-mono">≈ '+fr(R,1)+' %/an</b> (dividendes compris'+(s.wht>0?', <b>net de la retenue à la source de '+fr(s.wht,1)+' % perdue en PEA</b> ; '+fr(s.irr,1)+' % avant':'')+'). La méthode exige '+RQs+' %/an'+(s.grid==='banque'?' (banque ou assurance : plus risqué)':'')+(R>=RQ?' : <b style="color:'+C.gn+'">le prix le permet</b>.':' : <b style="color:'+C.rd+'">trop cher pour ton exigence</b>. La valeur centrale ci-dessous est le prix qui donnerait '+RQs+' %/an.')+'</span></div>'; })():'')+
     '<div class="v2-grid3">'+
@@ -386,7 +416,7 @@ function renderV2(s){
     moveBanner(s)+
     (dqAll(s)?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(dqAll(s))+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
-    priceBlock(s)+ratios(s)+
+    buyPlan(s)+priceBlock(s)+ratios(s)+
     '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
     thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+decision(s)+sources(s)+
   '</div>';
