@@ -980,27 +980,36 @@ def news_titles(t, n=3):
 
 def news_google(name, n=3):
     """Repli (11/10/2026) : Yahoo renvoie souvent zero titre pour les valeurs
-    europeennes. Flux RSS Google Actualites, en francais, 7 derniers jours."""
-    import urllib.request, urllib.parse, xml.etree.ElementTree as ET
-    out = []
+    europeennes. Flux RSS Google Actualites, en francais, 7 derniers jours.
+    On ecarte les pages de cotation (objectif de cours, fiche societe...) et on
+    garde les plus recentes."""
+    import urllib.request, urllib.parse, re as _re, xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    junk = _re.compile(r"objectif de cours|consensus|cours de bourse|cotation|secteur d|actionnaire|"
+                       r"fiche|historique|dividende [0-9]{4}|\b[A-Z]{2}[0-9]{10}\b|forum", _re.I)
+    rows = []
     try:
         q = urllib.parse.quote('"%s" when:7d' % name)
         url = 'https://news.google.com/rss/search?q=%s&hl=fr&gl=FR&ceid=FR:fr' % q
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         root = ET.fromstring(urllib.request.urlopen(req, timeout=15).read())
-        clean = lambda x: str(x or '').replace("'", "’").replace('|', '/').replace(';;', ';').replace('\\', ' ')[:200]
+        cl = lambda x, m: str(x or '').replace("'", "’").replace('|', '/').replace(';;', ';').replace('\\', ' ')[:m]
         for it in root.iter('item'):
             title = it.findtext('title') or ''
             src = it.findtext('source') or ''
             if src and title.endswith(' - ' + src):
                 title = title[:-len(src) - 3]
-            if title:
-                out.append(clean(title) + '|' + clean(it.findtext('link')) + '|' + clean(src))
-            if len(out) >= n:
-                break
+            if not title or junk.search(title):
+                continue
+            try:
+                ts = parsedate_to_datetime(it.findtext('pubDate')).timestamp()
+            except Exception:
+                ts = 0
+            rows.append((ts, cl(title, 200) + '|' + cl(it.findtext('link'), 1000) + '|' + cl(src, 60)))
     except Exception as e:
         print(f"  NEWS GOOGLE SKIP {name}: {e}")
-    return ' ;; '.join(out)
+    rows.sort(key=lambda r: -r[0])
+    return ' ;; '.join(r[1] for r in rows[:n])
 
 def div_history(t, price):
     """11/10/2026 : rendement du dividende compare a sa mediane (jusqu'a 10 ans).
