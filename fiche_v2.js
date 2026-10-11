@@ -98,10 +98,18 @@ function myPos(s){
 function buyPlan(s){
   if(!(s.qok&&s.eh>0)) return '<section class="v2-card"><h2>Mes paliers d’achat</h2><p class="v2-small">Aucun palier : la valeur ne passe pas le filtre qualité, on ne cherche pas à l’acheter.</p></section>';
   var p1=s.eh, p2=z2(s), P=myPos(s), tot=P.tot, held=P.pos?P.pos.qty*s.price:0, wNow=tot>0?held/tot*100:0;
-  var amt=function(w){ if(!(tot>0)) return ''; var e=Math.max(0,tot*w/100-held); return e>0?' · ≈ <b>'+fr(e,0)+' €</b>, soit '+Math.max(1,Math.round(e/s.price))+' action'+(Math.round(e/s.price)>1?'s':''):' · <b>déjà atteint</b>'; };
-  var dist=function(x){ var d=pct(x,s.price); return d>=0?'<b style="color:'+C.gn+'">atteint</b>':'le cours doit baisser de <b>'+fr(-d,0)+' %</b>'; };
+  var amt=function(w){ if(!(tot>0)) return ''; var e=Math.max(0,tot*w/100-held); return e>0?' · ≈ <b>'+fr(e,0)+' €</b>, soit '+Math.max(1,Math.round(e/s.price))+' action'+(Math.round(e/s.price)>1?'s':''):' · <b>poids déjà détenu</b>'; };
+  var dist=function(x){ var d=pct(x,s.price); return d>=0?'<b style="color:'+C.gn+'">atteint</b> (cours '+fr(s.price)+' €)':'le cours doit baisser de <b>'+fr(-d,0)+' %</b>'; };
   var row=function(n,lbl,x,w,txt){ return '<div class="v2-scen" style="background:'+(s.price<=x?'#eef6f1':C.bg)+'"><div class="v2-k" style="color:'+C.gn+'">'+n+'</div><div class="v2-big">sous '+fr(x,0)+' €</div><div class="v2-small">'+lbl+amt(w)+'<br>'+dist(x)+'<br>'+txt+'</div></div>'; };
+  // 11/10/2026 : une phrase d'etat en tete, pour ne pas avoir a deduire la situation des cartes
+  var st, stc, deco = s.dcfm>0 ? (1 - s.price/s.dcfm)*100 : 0;
+  if(dqAll(s)){ st='<b>Achat bloqué pour l’instant</b> : une donnée est à vérifier ('+esc(dqAll(s))+'). Tant qu’elle n’est pas vérifiée, les paliers ne comptent pas.'; stc='#fbf4e6'; }
+  else if(p2 && s.price<=p2){ st='<b>Le cours ('+fr(s.price)+' €) est déjà sous les deux paliers</b> : position complète possible, <b>après</b> une contre-expertise « intacte ».'; stc='#eef6f1'; }
+  else if(s.price<=p1){ st='<b>Le cours ('+fr(s.price)+' €) est sous le palier 1</b> : demi-position possible après contre-expertise ; le reste si le cours passe sous '+fr(p2,0)+' €.'; stc='#eef6f1'; }
+  else { st='<b>Aucun palier atteint</b> : il faudrait une baisse de '+fr(-pct(p1,s.price),0)+' % pour le palier 1. On attend.'; stc=C.bg; }
+  var warn = deco>=40 ? '<div class="v2-note" style="background:#fbecea"><span><b>Décote de '+fr(deco,0)+' % : trop beau pour être vrai tant qu’on ne sait pas pourquoi le marché refuse ce prix.</b> '+(s.grid==='fonciere'?'Pour une foncière, la valeur centrale est l’actif net comptable (la valeur des immeubles inscrite au bilan). Depuis la hausse des taux, les foncières européennes se paient souvent 30 à 50 % sous cet actif net : le marché pense que les immeubles valent moins que ce qui est écrit. La décote n’est donc pas une aubaine automatique.':'Soit le marché se trompe, soit nos chiffres (bénéfice, croissance) sont faux ou dépassés : la contre-expertise doit trancher.')+'</span></div>' : '';
   return '<section class="v2-card" style="border-left:4px solid '+C.gn+'"><div class="v2-head"><h2>Mes paliers d’achat</h2><span class="v2-small">'+(P.pos?'déjà '+fr(wNow,1)+' % du PEA':'pas encore en portefeuille')+'</span></div>'+
+    '<div class="v2-note" style="background:'+stc+'"><span>'+st+'</span></div>'+warn+
     '<div class="v2-grid3">'+
       row('PALIER 1 · DEMI-POSITION','2,5 % du PEA',p1,2.5,'Première moitié.')+
       (p2?row('PALIER 2 · POSITION COMPLÈTE','compléter jusqu’à 5 %',p2,5,'Seconde moitié.'):'')+
@@ -295,7 +303,7 @@ function priceBlock(s){
       card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Plus aucune croissance pendant 10 ans.')+
       card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 8,5 %/an si '+(gc!=null?fr(gc,1)+' %/an au départ':'la croissance retenue')+', ralentissant vers 2,5 %.',true)+
       card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(gcap,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.'))+
-    '</div>'+priceBar(s)+
+    '</div><p class="v2-small">Ce ne sont <b>pas des prévisions de cours</b> : c’est ce que l’entreprise vaut selon trois hypothèses. Le « +x % » est l’écart avec le cours d’aujourd’hui, rien ne garantit que le marché le comble.</p>'+priceBar(s)+
     (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise, plafonné à 20 — 25 pour un moat de 5) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
     (s.gimp!=null?'<div class="v2-note"><span><b>Ce que le cours suppose :</b> <span class="v2-mono">'+fr(s.gimp,1)+' %/an</span> contre <span class="v2-mono" style="color:'+C.gn+'">'+fr(s.gused,1)+' %/an retenus</span></span></div>':'')+
     '<div class="v2-small">Deux paliers : <b>palier 1</b> = zone d’achat (décote 10-20 % / 15-25 % / 20-30 % selon l’incertitude) → demi-position ; <b>palier 2</b> = décote Morningstar 5 étoiles (20 / 30 / 40 %) → position complète. Sous le seuil de revue : relire la thèse, pas de vente automatique.</div></section>';
