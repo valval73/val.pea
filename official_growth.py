@@ -39,7 +39,7 @@ OFFICIAL_GROWTH = {
     'PLNW':   (10.15,"2025 +10,3 % a changes constants ; objectif 2026 ~+10 %", '2026-10-05'),
     'WAVE':   (1.0,  "organique 2025/26 +1 % ; objectif 2026/27 -1 % a faible croissance", '2026-10-05'),
     # --- leaders europeens (ajoutes le 05/10/2026) ---
-    'WKL':    (6.0,  "organique 2025 ~+6 % ; 2026 annonce comparable", '2026-10-05'),
+    'WKL':    (5.0,  "organique S1 2026 +5 % (+6 % hors papier) ; objectif 2026 'bonne croissance', BPA ajuste 'high single digit'", '2026-10-11'),
     'ITX':    (8.0,  "exercice 2025 +7,0 % a changes constants ; debut 2026 +9 %", '2026-10-05'),
     'AMS':    (5.5,  "S1 2026 +5,1 % a changes constants (reservations +1,1 %) ; objectif 2026 'moyen a haut a un chiffre' -- contre-expertise du 06/10", '2026-10-06'),
     'RAA':    (8.0,  "2025 +8 % hors effet change", '2026-10-05'),
