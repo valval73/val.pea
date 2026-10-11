@@ -893,7 +893,7 @@ def hist_multiples(t, info):
     """PER, cours/cash libre et VE/EBITDA a chaque cloture annuelle publiee
     (jusqu'a 4 ans), puis leur mediane. Permet de dire 'PER 17 contre 24 en
     moyenne pour cette entreprise' au lieu d'un bareme general."""
-    out = {'pe_h': None, 'pfcf_h': None, 'eveb_h': None, 'hn': 0}
+    out = {'pe_h': None, 'pfcf_h': None, 'eveb_h': None, 'hn': 0, 'pe_lo': None}
     try:
         fin, bs, cf = t.financials, t.balance_sheet, t.cashflow
         h = t.history(period='5y', interval='1wk')
@@ -950,12 +950,49 @@ def hist_multiples(t, info):
                 evs.append((mcap + (g(debt, i) or 0) - (g(cash, i) or 0)) / g(ebitda, i))
         med = lambda v: round(sorted(v)[len(v) // 2] if len(v) % 2 else (sorted(v)[len(v) // 2 - 1] + sorted(v)[len(v) // 2]) / 2, 1) if v else None
         ok = lambda v: [x for x in v if 0 < x < 300]
-        out.update({'pe_h': med(ok(pes)), 'pfcf_h': med(ok(pfs)), 'eveb_h': med(ok(evs)), 'hn': len(pes)})
+        out.update({'pe_h': med(ok(pes)), 'pfcf_h': med(ok(pfs)), 'eveb_h': med(ok(evs)), 'hn': len(pes),
+                    # 11/10/2026 : PER le plus bas des clotures (repere d'entree)
+                    'pe_lo': round(min(ok(pes)), 1) if len(ok(pes)) >= 3 else None})
     except Exception as e:
         print(f"  HIST SKIP: {e}")
     return out
 
-def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R, gmax=None):
+def div_history(t, price):
+    """11/10/2026 : rendement du dividende compare a sa mediane (jusqu'a 10 ans).
+    Prix repere = dividende des 12 derniers mois / rendement median."""
+    out = {'div12': None, 'dy_med': None, 'dy_n': 0}
+    try:
+        d = t.dividends
+        if d is None or d.empty or not price:
+            return out
+        try:
+            d.index = d.index.tz_localize(None)
+        except Exception:
+            pass
+        h = t.history(period='10y', interval='1mo')['Close']
+        try:
+            h.index = h.index.tz_localize(None)
+        except Exception:
+            pass
+        import pandas as _pd
+        now = _pd.Timestamp.now()
+        div12 = float(d[d.index > now - _pd.DateOffset(years=1)].sum())
+        ys = []
+        for y in range(now.year - 10, now.year):
+            dy = float(d[(d.index.year == y)].sum())
+            px = h[h.index.year == y]
+            if dy > 0 and len(px):
+                ys.append(dy / float(px.mean()) * 100)
+        if div12 > 0 and len(ys) >= 5:
+            ys.sort()
+            n = len(ys)
+            out.update({'div12': round(div12, 3), 'dy_n': n,
+                        'dy_med': round(ys[n // 2] if n % 2 else (ys[n // 2 - 1] + ys[n // 2]) / 2, 2)})
+    except Exception as e:
+        print(f"  DIV SKIP: {e}")
+    return out
+
+def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R, gmax=None, pe_cap=20.0):
     """Methode 2 (multiples) : benefice qui croit de g pendant 5 ans,
     dividendes encaisses, puis revente au PER habituel de l'entreprise
     (borne 10-30), le tout actualise a 8,5 %."""
@@ -975,7 +1012,9 @@ def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R, gmax=N
         if t_ > 1:
             e *= (1 + g1)
         v += e * pay / (1 + r) ** t_
-    v += e * max(10.0, min(pe_exit, 30.0)) / (1 + r) ** years
+    # 11/10/2026 : PER de revente plafonne a 20 (25 pour un moat de 5), meme si
+    # l'entreprise s'est payee plus cher : un multiple eleve n'est jamais garanti.
+    v += e * max(10.0, min(pe_exit, pe_cap)) / (1 + r) ** years
     return v
 
 def fetch_one(ticker, yf_sym, sector):
@@ -1066,6 +1105,7 @@ def fetch_one(ticker, yf_sym, sector):
         kind = kind_of(sector, cat)
         result.update(compute_quality(t, kind if kind in ('Banque', 'Fonciere') else cat if kind != 'Services' else 'Services'))
         result.update(hist_multiples(t, info))
+        result.update(div_history(t, result.get('price')))
         # Croissance officielle (communiques) prioritaire sur Yahoo, y compris
         # pour le critere 'croissance >= 3 %' du filtre qualite
         off = OFFICIAL_GROWTH.get(ticker)
@@ -1153,7 +1193,8 @@ def fetch_one(ticker, yf_sym, sector):
                     result['o2'] = round(result['vopt'] * 1.10, 2)
                 # methode 2 : multiples historiques (controle croise)
                 vm = mult_value(info.get('forwardEps'), eps_ttm, g_c, result.get('pe_h'),
-                                info.get('payoutRatio'), gmax=g_cap)
+                                info.get('payoutRatio'), gmax=g_cap,
+                                pe_cap=25.0 if (MOAT.get(ticker) or (0,))[0] == 5 else 20.0)
                 same_cur = not (info.get('financialCurrency') and info.get('currency')
                                 and info.get('financialCurrency') != info.get('currency'))
                 result['vmult'] = clamp(vm) if (vm and same_cur) else None
@@ -1202,7 +1243,7 @@ def fetch_one(ticker, yf_sym, sector):
         fx = NON_EUR.get(yf_sym)
         if fx:
             for k in ('price','b52h','b52l','dcfb','dcfm','dcfu','el','eh','stop',
-                      'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult'):
+                      'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult','div12'):
                 if result.get(k): result[k] = round(result[k] / fx, 2)
         # Objectif de cours = consensus analystes (si >= 3 analystes),
         # au lieu d'un 'tp' saisi a la main a la creation et jamais mis a jour.
@@ -1386,7 +1427,7 @@ def set_quality_fields(block, data):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):

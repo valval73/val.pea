@@ -116,6 +116,11 @@ function ratios(s){
     return '<div class="v2-crit"><span>'+lbl+' <span class="v2-small">aujourd’hui '+fr(now,1)+' · médiane '+(s.hn||'')+' clôtures annuelles '+fr(past,1)+'</span></span><b class="v2-mono" style="color:'+col+'">'+(d<=-10?'moins cher que d’habitude':d>=10?'plus cher que d’habitude':'dans ses habitudes')+' ('+sgn(d,0)+')</b></div>';
   };
   var hx = fin ? '' : hc('PER', s.pe, s.pe_h)+hc('Cours / cash libre', pfcf, s.pfcf_h)+hc('VE / EBITDA', s.ev_ebitda, s.eveb_h);
+  // 11/10/2026 : repères d'entrée (méthode de l'Analyste Curieux)
+  var eps = (s.pe>0) ? s.price/s.pe : null;
+  if(!fin && eps && s.pe_lo>0) hx += '<div class="v2-crit"><span>Prix si l’action retombait à son PER le plus bas des dernières années <span class="v2-small">('+fr(s.pe_lo,1)+' × bénéfice)</span></span><b class="v2-mono">'+fr(eps*s.pe_lo,0)+' € <span class="v2-small">('+sgn(pct(eps*s.pe_lo,s.price),0)+')</span></b></div>';
+  if(s.div12>0 && s.dy_med>0){ var dyn=s.div12/s.price*100, pdy=s.div12/(s.dy_med/100);
+    hx += '<div class="v2-crit"><span>Rendement du dividende <span class="v2-small">aujourd’hui '+fr(dyn,1)+' % · médiane '+s.dy_n+' ans '+fr(s.dy_med,1)+' %</span></span><b class="v2-mono">prix au rendement médian '+fr(pdy,0)+' € <span class="v2-small">('+sgn(pct(pdy,s.price),0)+')</span></b></div>'; }
   if(hx) h += '<div class="v2-k" style="margin-top:8px">Par rapport à sa propre histoire</div>'+hx+'<div class="v2-small">Plus parlant que le barème général : une entreprise de qualité se paie souvent cher, la question est « plus cher que d’habitude ? ».</div>';
   return h ? '<section class="v2-card"><div class="v2-head"><h2>Est-ce cher ? Les 6 ratios</h2><span class="v2-small">Barème général · les ratios grisés ne sont pas pertinents pour ce métier</span></div>'+
     '<div class="v2-scale"><div style="background:'+C.gn+'">ATTRACTIF</div><div style="background:'+C.gn2+'">JUSTE PRIX</div><div style="background:'+C.or+'">ÉLEVÉ</div><div style="background:'+C.rd+'">TRÈS ÉLEVÉ</div></div>'+h+'</section>' : '';
@@ -246,7 +251,7 @@ function priceBlock(s){
       card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 8,5 %/an si '+(gc!=null?fr(gc,1)+' %/an au départ':'la croissance retenue')+', ralentissant vers 2,5 %.',true)+
       card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(gcap,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.'))+
     '</div>'+priceBar(s)+
-    (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
+    (s.vmult>0?'<div class="v2-note"><span><b>Contrôle par une 2e méthode</b> (bénéfice sur 5 ans revendu au PER habituel de l’entreprise, plafonné à 20 — 25 pour un moat de 5) : <span class="v2-mono">'+fr(s.vmult,0)+' €</span>, soit '+sgn(pct(s.vmult,s.dcfm),0)+' par rapport au scénario central. '+(Math.abs(s.vmult/s.dcfm-1)>0.35?'<b style="color:'+C.rd+'">Les deux méthodes divergent : zone d’achat à prendre avec prudence.</b>':'Les deux méthodes concordent.')+'</span></div>':'')+
     (s.gimp!=null?'<div class="v2-note"><span><b>Ce que le cours suppose :</b> <span class="v2-mono">'+fr(s.gimp,1)+' %/an</span> contre <span class="v2-mono" style="color:'+C.gn+'">'+fr(s.gused,1)+' %/an retenus</span></span></div>':'')+
     '<div class="v2-small">Deux paliers : <b>palier 1</b> = zone d’achat (décote 10-20 % / 15-25 % / 20-30 % selon l’incertitude) → demi-position ; <b>palier 2</b> = décote Morningstar 5 étoiles (20 / 30 / 40 %) → position complète. Sous le seuil de revue : relire la thèse, pas de vente automatique.</div></section>';
 }
