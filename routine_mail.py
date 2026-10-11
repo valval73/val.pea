@@ -150,6 +150,17 @@ def main():
             dec = 'PAS ENCORE : donnée à vérifier (' + dq_ + ')'
         buys.append((s, f"zone {fr(s['el'])}–{fr(s['eh'])} € · {dec}"))
 
+    # 11/10/2026 : mouvements forts de la semaine (>= 10 % en 5 seances)
+    moves = []
+    for s_ in sorted([x for x in S if x.get('chg5') is not None and abs(x['chg5']) >= 10 and (x.get('qok') or x.get('near'))],
+                     key=lambda x: x['chg5']):
+        first = (s_.get('news5') or '').split(' ;; ')[0].split('|')
+        txt_ = f"{'+' if s_['chg5'] > 0 else ''}{fr(s_['chg5'], 1)} % en 5 séances"
+        if first and first[0]:
+            link = first[1] if len(first) > 1 and first[1].startswith('http') else ''
+            txt_ += ' · ' + (f'<a href="{link}">{first[0]}</a>' if link else first[0])
+        moves.append((s_, txt_))
+
     watch_close = sorted([s for s in S if group(s) == 'watch' and (s.get('eh') or 0) > 0 and s['price'] > s['eh']],
                          key=lambda s: s['price'] / s['eh'])[:5]
     nexts = [(by[t], FICHE_next) for t in held if t in by and (FICHE_next := (D['FICHE'].get(t) or {}).get('next'))]
@@ -183,6 +194,7 @@ def main():
 {sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend seulement si la perte de qualité est confirmée à la publication suivante, ou si une contre-expertise conclut « thèse cassée ». Jamais sur le prix seul.</p>')}
 {sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>.</p>'))}
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}
+{sec('Mouvements de plus de 10 % cette semaine', li(moves, '#24508a') + '<p style="font-size:12px;color:#5a6275">La thèse est-elle touchée, ou seulement le prix ? On ne décide jamais sur un mouvement de prix seul.</p>')}
 {sec('Entrées en zone d’achat depuis le dernier mail', li([(by[t], 'nouvelle en zone · ' + ('achat possible' if group(by[t]) == 'buy' else 'à surveiller (chute, moat ou régularité)')) for t in new_zone], '#1d6b45'))}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
 {sec('Contre-expertises à faire (mes lignes)', li(ce_todo, '#6b7487'))}

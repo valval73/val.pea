@@ -11,6 +11,19 @@ function fr(n, d){
   return Number(n).toLocaleString('fr-FR',{minimumFractionDigits:d===undefined?0:d,maximumFractionDigits:d===undefined?2:d});
 }
 function esc(t){ return String(t===undefined||t===null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function newsHtml(s){
+  if(!s.news5) return '';
+  return '<ul style="margin:4px 0 0 18px;padding:0">'+String(s.news5).split(' ;; ').map(function(x){ var a=x.split('|'); var t=esc(a[0]||''), u=a[1]||'', pv=esc(a[2]||'');
+    return '<li>'+(/^https?:/.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':t)+(pv?' <span class="v2-small">('+pv+')</span>':'')+'</li>'; }).join('')+'</ul>';
+}
+function moveBanner(s){
+  if(!(s.chg5!=null && Math.abs(s.chg5)>=10)) return '';
+  var dn=s.chg5<0;
+  return '<section class="v2-card" style="background:'+(dn?'#fbecea':'#eef6f1')+';border-left:4px solid '+(dn?C.rd:C.gn)+'"><b>Mouvement fort : '+sgn(s.chg5,1)+' en 5 séances.</b> '+
+    (s.news5?'Actualités du moment (Yahoo) :':'Aucune actualité trouvée automatiquement : regarder Zonebourse ou Boursorama.')+newsHtml(s)+
+    '<div class="v2-small" style="margin-top:4px">Question à se poser : la <b>thèse</b> est-elle touchée (voir « ce qui prouverait que j’ai tort ») ou est-ce seulement le prix ? On ne vend ni n’achète sur un mouvement de prix seul.</div></section>';
+}
+window.v2moveBanner=moveBanner;
 function dqAll(s){ return [s.dq, s.x2].filter(function(x){return x;}).join(' · '); }
 function pct(a,b){ return (a&&b)? ((a/b-1)*100) : null; }
 function sgn(x,d){ if(x===null||isNaN(x)) return '—'; return (x>=0?'+':'')+fr(x,d===undefined?0:d)+' %'; }
@@ -370,6 +383,7 @@ function renderV2(s){
   return '<div class="v2">'+
     '<header class="v2-top"><div><div class="v2-kick">'+esc(s.ticker)+' · '+esc(s.place||'')+' · '+esc(s.sector||'')+'</div><h1>'+esc(s.name)+'</h1></div>'+
     '<div class="v2-px"><div>'+fr(s.price)+' €</div><div class="v2-small" style="color:#c7cede">'+chg+'</div></div></header>'+
+    moveBanner(s)+
     (dqAll(s)?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(dqAll(s))+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
     priceBlock(s)+ratios(s)+
@@ -563,10 +577,11 @@ function alerts(){
   var now={}, held={}, tot=0;
   mineList().forEach(function(p){ var s=S.find(function(x){return x.ticker===p.ticker;}); held[p.ticker]=p; if(s) tot+=s.price*p.qty;
     else { var e=(typeof ETF!=='undefined')?ETF.find(function(x){return x&&x.ticker===p.ticker;}):null; tot+=(e&&e.price?e.price:p.pru)*p.qty; } });
-  var zone=[], out=[], review=[], high=[], big=[], ce=[];
+  var zone=[], out=[], review=[], high=[], big=[], ce=[], moves=[];
   S.forEach(function(s){
     if(!s||!s.ticker||!(s.price>0)) return;
-    if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · '+(palier(s)===2?'<b>palier 2</b> (sous '+fr(z2(s))+' €)':'palier 1 · palier 2 sous '+fr(z2(s))+' €'), !seen[s.ticker])); }
+    if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · '+(window.v2palier(s)===2?'<b>palier 2</b> (sous '+fr(window.v2z2(s))+' €)':'palier 1 · palier 2 sous '+fr(window.v2z2(s))+' €'), !seen[s.ticker])); }
+    if(s.chg5!=null && Math.abs(s.chg5)>=10 && (held[s.ticker]||s.qok||s.near)) moves.push(row(s, (held[s.ticker]?'<b>ma ligne</b> · ':'')+(s.chg5>0?'+':'')+String(s.chg5).replace('.',',')+' % en 5 séances'+(s.news5?' · '+esc(String(s.news5).split(' ;; ')[0].split('|')[0]):'')));
     var p=held[s.ticker]; if(!p) return;
     if(!s.qok && !s.near) out.push(row(s,'hors qualité : '+esc(s.qwhy||'')+(s.ticker==='TTE'?' → exception « poche cyclique » à écrire (stop proposé 68 €)':' → vendre si confirmé à la prochaine publication')));
     if(s.stop>0 && s.price<s.stop && (s.qok||s.near)) review.push(row(s,'sous le seuil de revue ('+fr(s.stop)+' €) → contre-expertise obligatoire'));
@@ -579,6 +594,7 @@ function alerts(){
   var who=window.v2profName?v2profName():'Moi';
   box.innerHTML='<div class="v2" style="max-width:1100px;margin:0 auto">'+
     '<header class="v2-top"><div><div class="v2-kick">Alertes · règles de la méthode</div><h1>Ce qui demande ton attention</h1></div><div class="v2-small" style="color:#c7cede">Portefeuille : '+esc(who)+'</div></header>'+
+    card('Mouvements de plus de 10 % en 5 séances','mes lignes et les valeurs de qualité · ouvrir la fiche pour les actualités',moves,'#24508a')+
     card('Mes lignes hors qualité','vente si la prochaine publication confirme',out,'#a8322b')+
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
     card('Valeurs de qualité en zone d’achat','« NOUVEAU » = entrée en zone depuis ta dernière visite',zone,'#1d6b45')+

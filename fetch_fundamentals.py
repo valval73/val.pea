@@ -957,6 +957,27 @@ def hist_multiples(t, info):
         print(f"  HIST SKIP: {e}")
     return out
 
+def news_titles(t, n=3):
+    """Titres d'actualite recents (Yahoo) : 'titre|lien|source' separes par ' ;; '."""
+    out = []
+    try:
+        for it in (t.news or [])[:8]:
+            c = it.get('content', it) if isinstance(it, dict) else {}
+            title = c.get('title') or it.get('title')
+            url = ((c.get('canonicalUrl') or {}).get('url') if isinstance(c.get('canonicalUrl'), dict) else None) \
+                or ((c.get('clickThroughUrl') or {}).get('url') if isinstance(c.get('clickThroughUrl'), dict) else None) \
+                or it.get('link') or ''
+            prov = ((c.get('provider') or {}).get('displayName') if isinstance(c.get('provider'), dict) else None) \
+                or it.get('publisher') or ''
+            if title:
+                clean = lambda x: str(x).replace("'", "’").replace('|', '/').replace(';;', ';').replace('\\', ' ')[:200]
+                out.append(clean(title) + '|' + clean(url) + '|' + clean(prov))
+            if len(out) >= n:
+                break
+    except Exception as e:
+        print(f"  NEWS SKIP: {e}")
+    return ' ;; '.join(out)
+
 def div_history(t, price):
     """11/10/2026 : rendement du dividende compare a sa mediane (jusqu'a 10 ans).
     Prix repere = dividende des 12 derniers mois / rendement median."""
@@ -1091,6 +1112,12 @@ def fetch_one(ticker, yf_sym, sector):
                 if rsi is not None: result['rsi'] = rsi
                 if mm50 is not None: result['mm50'] = mm50
                 if mm200 is not None: result['mm200'] = mm200
+                # 11/10/2026 : variation sur 5 seances ; au-dela de 10 %, on
+                # recupere les titres d'actualite Yahoo (gratuit, sans IA)
+                if len(closes) >= 6 and closes[-6]:
+                    result['chg5'] = round((closes[-1] / closes[-6] - 1) * 100, 1)
+                    if abs(result['chg5']) >= 10:
+                        result['news5'] = news_titles(t)
         except Exception as e:
             print(f"  RSI/MM SKIP {ticker}: {e}")
         # Piotroski + Altman Z (a verifier sur le premier run reel --
@@ -1427,7 +1454,8 @@ def set_quality_fields(block, data):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n'):
+    block = _set_field(block, 'news5', txt(data.get('news5')))
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
