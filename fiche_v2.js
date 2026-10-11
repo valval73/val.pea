@@ -118,7 +118,9 @@ function ratios(s){
   var hx = fin ? '' : hc('PER', s.pe, s.pe_h)+hc('Cours / cash libre', pfcf, s.pfcf_h)+hc('VE / EBITDA', s.ev_ebitda, s.eveb_h);
   // 11/10/2026 : repères d'entrée (méthode de l'Analyste Curieux)
   var eps = (s.pe>0) ? s.price/s.pe : null;
-  if(!fin && eps && s.pe_lo>0) hx += '<div class="v2-crit"><span>Prix si l’action retombait à son PER le plus bas des dernières années <span class="v2-small">('+fr(s.pe_lo,1)+' × bénéfice)</span></span><b class="v2-mono">'+fr(eps*s.pe_lo,0)+' € <span class="v2-small">('+sgn(pct(eps*s.pe_lo,s.price),0)+')</span></b></div>';
+  if(!fin && eps && s.pe_lo>0) hx += (s.pe < s.pe_lo)
+    ? '<div class="v2-crit"><span>PER le plus bas des dernières années : '+fr(s.pe_lo,1)+' <span class="v2-small">(aujourd’hui '+fr(s.pe,1)+')</span></span><b class="v2-mono" style="color:'+C.gn+'">déjà moins cher qu’à son point le plus bas — chercher pourquoi</b></div>'
+    : '<div class="v2-crit"><span>Prix si l’action retombait à son PER le plus bas des dernières années <span class="v2-small">('+fr(s.pe_lo,1)+' × bénéfice)</span></span><b class="v2-mono">'+fr(eps*s.pe_lo,0)+' € <span class="v2-small">('+sgn(pct(eps*s.pe_lo,s.price),0)+')</span></b></div>';
   if(s.div12>0 && s.dy_med>0){ var dyn=s.div12/s.price*100, pdy=s.div12/(s.dy_med/100);
     hx += '<div class="v2-crit"><span>Rendement du dividende <span class="v2-small">aujourd’hui '+fr(dyn,1)+' % · médiane '+s.dy_n+' ans '+fr(s.dy_med,1)+' %</span></span><b class="v2-mono">prix au rendement médian '+fr(pdy,0)+' € <span class="v2-small">('+sgn(pct(pdy,s.price),0)+')</span></b></div>'; }
   if(hx) h += '<div class="v2-k" style="margin-top:8px">Par rapport à sa propre histoire</div>'+hx+'<div class="v2-small">Plus parlant que le barème général : une entreprise de qualité se paie souvent cher, la question est « plus cher que d’habitude ? ».</div>';
