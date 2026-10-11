@@ -978,6 +978,30 @@ def news_titles(t, n=3):
         print(f"  NEWS SKIP: {e}")
     return ' ;; '.join(out)
 
+def news_google(name, n=3):
+    """Repli (11/10/2026) : Yahoo renvoie souvent zero titre pour les valeurs
+    europeennes. Flux RSS Google Actualites, en francais, 7 derniers jours."""
+    import urllib.request, urllib.parse, xml.etree.ElementTree as ET
+    out = []
+    try:
+        q = urllib.parse.quote('"%s" when:7d' % name)
+        url = 'https://news.google.com/rss/search?q=%s&hl=fr&gl=FR&ceid=FR:fr' % q
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        root = ET.fromstring(urllib.request.urlopen(req, timeout=15).read())
+        clean = lambda x: str(x or '').replace("'", "’").replace('|', '/').replace(';;', ';').replace('\\', ' ')[:200]
+        for it in root.iter('item'):
+            title = it.findtext('title') or ''
+            src = it.findtext('source') or ''
+            if src and title.endswith(' - ' + src):
+                title = title[:-len(src) - 3]
+            if title:
+                out.append(clean(title) + '|' + clean(it.findtext('link')) + '|' + clean(src))
+            if len(out) >= n:
+                break
+    except Exception as e:
+        print(f"  NEWS GOOGLE SKIP {name}: {e}")
+    return ' ;; '.join(out)
+
 def div_history(t, price):
     """11/10/2026 : rendement du dividende compare a sa mediane (jusqu'a 10 ans).
     Prix repere = dividende des 12 derniers mois / rendement median."""
@@ -1117,7 +1141,8 @@ def fetch_one(ticker, yf_sym, sector):
                 if len(closes) >= 6 and closes[-6]:
                     result['chg5'] = round((closes[-1] / closes[-6] - 1) * 100, 1)
                     if abs(result['chg5']) >= 10:
-                        result['news5'] = news_titles(t)
+                        result['news5'] = news_titles(t) or news_google(info.get('longName') or info.get('shortName') or ticker)
+                        print(f"  NEWS {ticker} ({result['chg5']}%): {result['news5'][:160] or 'aucun titre'}")
         except Exception as e:
             print(f"  RSI/MM SKIP {ticker}: {e}")
         # Piotroski + Altman Z (a verifier sur le premier run reel --
