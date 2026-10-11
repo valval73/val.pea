@@ -11,6 +11,11 @@ Regle : croissance retenue = moyenne(croissance organique du dernier exercice,
 milieu de l'objectif annonce pour l'exercice suivant). Croissance organique =
 hors rachats et a taux de change constants. A METTRE A JOUR apres chaque
 publication annuelle (et semestrielle si l'objectif change).
+
+Exception (11/10/2026, contre-expertise Baggr sur GTT) : si l'objectif de
+l'exercice suivant est en BAISSE, on ne fait pas la moyenne avec l'annee
+precedente (souvent un pic de cycle) : on retient la croissance attendue par
+le consensus a 3-5 ans, plafonnee a 3 %.
 """
 
 # ticker: (croissance retenue %/an, detail, date de mise a jour)
@@ -24,7 +29,7 @@ OFFICIAL_GROWTH = {
     'DG':     (2.6,  "organique 2025 +2,6 %", '2026-10-05'),
     'LR':     (8.35, "organique 2025 +7,7 % ; objectif 2026 releve a +8 a +10 % (S1 2026 +9,8 %)", '2026-10-06'),
     'DSY':    (4.0,  "2025 +4 % a changes constants ; objectif 2026 +3 a +5 %", '2026-10-05'),
-    'GTT':    (9.8,  "CA 2025 +25 % ; objectif 2026 740-780 M EUR (-5 %)", '2026-10-05'),
+    'GTT':    (3.0,  "CA 2025 +25 % (pic de commandes 2023-24) ; objectif 2026 740-780 M EUR (-5 %) ; consensus BPA 3-5 ans ~+3,6 % : pas de moyenne avec le pic", '2026-10-11'),
     'SOP':    (1.5,  "2025 en recul ; objectif 2026 organique +1 a +2 %", '2026-10-05'),
     'HO':     (8.4, "organique 2025 +8,8 % ; objectif 2026 +7 a +9 % (S1 2026 +7,8 %)", '2026-10-06'),
     'ASML':   (25.0, "CA 2025 +15,5 % ; objectif 2026 releve a 43-45 Md EUR (~+35 %) -- plafonne a 12 % dans le calcul", '2026-10-06'),
