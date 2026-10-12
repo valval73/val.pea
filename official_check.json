@@ -1,8 +1,8 @@
 {
-"date": "2026-10-08",
-"scope": 51,
-"compared": 40,
-"ok": 39,
+"date": "2026-10-12",
+"scope": 49,
+"compared": 38,
+"ok": 37,
 "res": {
 "ACA": {
 "status": "annees non comparables",
@@ -113,19 +113,6 @@
 "CA 2023",
 "resultat net 2024",
 "resultat net 2023"
-],
-"issues": []
-},
-"ATE": {
-"status": "compare",
-"lei": "969500Y7G9TY7Y24GN07",
-"entity": "ALTEN",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
 ],
 "issues": []
 },
@@ -416,17 +403,6 @@
 "checked": [
 "CA 2025",
 "CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": []
-},
-"PLUXEE": {
-"status": "compare",
-"lei": "213800RQNIQT48SEEO85",
-"entity": "PLUXEE N.V.",
-"period_end": "2025-08-31",
-"checked": [
 "resultat net 2025",
 "resultat net 2024"
 ],
