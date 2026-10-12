@@ -41,7 +41,12 @@ def basket_return(items, now):
 
 
 def main():
-    D = load()
+    import subprocess
+    try:
+        D = load()
+    except subprocess.CalledProcessError as e:
+        print('ERREUR NODE :', (e.stderr or '')[-1500:])
+        raise
     try:
         H = json.load(open(OUT, encoding='utf-8'))
     except Exception:
