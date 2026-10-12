@@ -48,4 +48,17 @@ OFFICIAL_GROWTH = {
     'UMG':    (8.7,  "2025 +8,7 % a changes constants", '2026-10-05'),
     'RHM':    (35.75,"2025 +29 % ; objectif 2026 +40 a +45 % (plafonne a 12 % dans le calcul)", '2026-10-05'),
     'ATCO':   (2.0,  "approximatif : T4 2025 revenus organiques 0 %, commandes +4 % (bas de cycle) -- chiffre annuel a confirmer", '2026-10-05'),
+    # --- 12/10/2026 : valeurs du filtre encore valorisees avec la croissance Yahoo ---
+    'ASM':    (12.0, "2025 +12 % a changes constants ; pas d'objectif annuel 2026 chiffre (T2 2026 +24 %, S2 > S1 de plus de 20 %) : on garde 2025", '2026-10-12'),
+    'ASSA':   (3.0,  "organique 2025 +3 % ; S1 2026 +3 % (la croissance publiee vient surtout des rachats)", '2026-10-12'),
+    'ATE':    (1.8,  "objectif 2026 releve le 24/09 a +1,7 a +1,9 % organique (S1 2026 +1,6 %) ; 2025 non retrouve", '2026-10-12'),
+    'DASSAV': (16.8, "CA ajuste 2025 +19 % (7,42 Md EUR) ; objectif 2026 ~8,5 Md EUR (~+14,6 %) -- livraisons Rafale, activite par a-coups", '2026-10-12'),
+    'EXENS':  (11.4, "organique S1 2026 +11,4 % ; objectif 2026 releve a 558-570 M EUR (~+20 % total, rachats inclus, non retenu)", '2026-10-12'),
+    'NSIS':   (7.5,  "objectif 2026 releve a +7 a +8 % organique (S1 2026 +8 %) ; 2025 non verifie", '2026-10-12'),
+    'PLUXEE': (0.0,  "objectif exercice 2026 (clos fin aout) : CA stable (reglementation Bresil) ; pas de moyenne avec l'annee precedente -- a revoir aux resultats annuels fin octobre", '2026-10-12'),
+    'RACE':   (6.6,  "CA 2025 7,15 Md EUR (~+7 %) ; objectif 2026 releve a ~7,60 Md EUR (+6,3 %)", '2026-10-12'),
+    'RBT':    (5.8,  "organique 2025 +7,6 % ; objectif 2026 abaisse a +3 a +5 % (S1 2026 -0,5 % publie)", '2026-10-12'),
+    # Non renseignees faute d'objectif annuel officiel (restent sur Yahoo) :
+    # EPI (Epiroc : organique 2025 +2 %, T2 2026 +11 %, cyclique, pas d'objectif)
+    # TE  (Technip Energies : objectifs 2026 par segment abaisses le 30/04, pas de croissance globale publiee)
 }
