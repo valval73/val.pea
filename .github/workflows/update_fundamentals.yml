@@ -56,6 +56,10 @@ jobs:
         run: |
           git config --local user.email "valpea@users.noreply.github.com"
           git config --local user.name "VAL.PEA"
+          # 12/10/2026 : ne jamais publier un data.js illisible (site vide)
+          if ! node -e "new Function(require('fs').readFileSync('data.js','utf8'))"; then
+            echo "data.js INVALIDE : on garde la version precedente"; git checkout -- data.js
+          fi
           git add fundamentals_log.json data.js index.html
           [ -f signals_history.json ] && git add signals_history.json || echo 'pas de signals_history.json'
           git add -f signals_log.txt || true

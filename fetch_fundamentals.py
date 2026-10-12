@@ -1464,7 +1464,7 @@ def patch_scores(grades):
 
 def _set_field(block, key, js_value):
     """Remplace key:valeur si present, sinon l'insere juste apres price:."""
-    pat = r"(?<![A-Za-z0-9_])" + key + r":(?:'[^']*'|true|false|null|[+-]?\d+\.?\d*)"
+    pat = r"(?<![A-Za-z0-9_])" + key + r":(?:'[^']*'|true|false|null|nan|-?inf|[+-]?\d+\.?\d*)"
     if re.search(pat, block):
         return re.sub(pat, lambda m: f"{key}:{js_value}", block, count=1)
     return re.sub(r"(price:[+-]?\d+\.?\d*)", lambda m: f"{m.group(1)},{key}:{js_value}", block, count=1)
@@ -1472,7 +1472,7 @@ def _set_field(block, key, js_value):
 def set_quality_fields(block, data):
     if 'qok' not in data:
         return block
-    def num(v): return 'null' if v is None else str(v)
+    def num(v): return 'null' if (v is None or (isinstance(v, float) and (math.isnan(v) or math.isinf(v)))) else str(v)
     def txt(v): return "'" + str(v or '').replace("'", " ").replace("\\", " ") + "'"
     # roic=null si incalculable (ex. banques) : efface les anciens 999 figes
     block = _set_field(block, 'roic', num(data.get('roic')))
@@ -1546,6 +1546,12 @@ def patch_data_js(all_results):
             if nb != block: block = nb; updated += 1
         block = set_quality_fields(block, data)
         content = content[:tp] + block + content[block_end:]
+    # 12/10/2026 : dernier filet avant ecriture. Un 'nan' (Yahoo a renvoye un
+    # cours vide pour Kone) passait par set_quality_fields et rendait tout
+    # data.js illisible : site vide. Toute valeur invalide devient null.
+    content, n_bad = re.subn(r"(?<=:)(?:nan|-?inf)(?=[,}\s])", "null", content)
+    if n_bad:
+        print(f"  ATTENTION : {n_bad} valeur(s) invalide(s) remplacee(s) par null")
     with open('data.js', 'w', encoding='utf-8') as f:
         f.write(content)
     print(f"\nMaj data.js: {updated} champs")
