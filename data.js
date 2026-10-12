@@ -47,7 +47,7 @@ const S=[
 
 {ticker:'OR',x2:'',x2s:'',name:"L'Oréal",sector:'Cosmétiques',cap:'large',srd:true,idx:'CAC40',
  price:383.05,chg5:2.6,news5:'',dy_n:10,dy_med:1.6,div12:7.2,pe_lo:27.7,gmod:4.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:6.0,irr:6.0,dq:'',vmult:244.63,hn:4,eveb_h:19.0,pfcf_h:31.7,pe_h:31.5,fcur:'EUR',fcfh:'7162|6644|6116|4935',nih:'6127|6409|6184|5707',revh:'44052|43487|41182|38261',yrs:'2025|2024|2023|2022',unc:'faible',vopt:252.34,vpess:186.54,nregu:2,regn:3,regu:3,place:'Paris',mthreat:'Chine, marques challengers digitales',mtype:'portefeuille de marques mondial, echelle R&D et distribution',mscore:4,near:false,gsrc:'communique 2026-10-05',gused:4.0,gimp:17.2,knife:false,neglect:false,vmeth:'qarp',nig:2.4,cagr:4.8,alarm:'',qwhy:'',qok:true,nde:0.19,fcfc:102.0,roicx:29.8,chg:0.49,mkt:'183Md€',b52h:405.8,b52l:338.85,beta:0.86,
- pe:32.52,pb:6.03,ev_ebitda:20.84,ps:4.5,pfcf:28,ev_ebit:24.3,
+ pe:32.52,pb:6.03,ev_ebitda:20.93,ps:4.5,pfcf:28,ev_ebit:24.4,
  roe:19.4,roic:18.4,roa:9.5,debt:0.49,de:0.49,ic:23.7,cr:0.97,qr:1.4,
  yield:1.9,epsg:5.4,revg:5.8,margin:13.9,gm:74.4,om:22,fcf:3.5,
  capex:3.2,capr:3.4,capda:0.82,
@@ -85,7 +85,7 @@ const S=[
 
 {ticker:'SAN',x2:'',x2s:'',name:'Sanofi',sector:'Pharmacie',cap:'large',srd:true,idx:'CAC40',
  price:71.6,chg5:2.3,news5:'',dy_n:10,dy_med:3.82,div12:4.12,pe_lo:12.7,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:9.9,pfcf_h:14.5,pe_h:17.2,fcur:'EUR',fcfh:'7212|5886|7352|8423',nih:'7813|5560|5400|8371',revh:'46716|44286|41618|40561',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:1.2,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-2.3,cagr:4.8,alarm:'',qwhy:'ROIC 6.9',qok:false,nde:1.02,fcfc:106.0,roicx:15.2,chg:0.11,mkt:'124Md€',b52h:91.15,b52l:69.75,beta:0.28,
- pe:22.03,pb:1.24,ev_ebitda:7.62,ps:1.75,pfcf:16,ev_ebit:15.2,
+ pe:22.03,pb:1.24,ev_ebitda:7.63,ps:1.75,pfcf:16,ev_ebit:15.2,
  roe:5.7,roic:6.9,roa:5.1,debt:0.34,de:0.34,ic:10.9,cr:0.99,qr:1.5,
  yield:5.8,epsg:-91.2,revg:14.6,margin:8.1,gm:73.5,om:20,fcf:8.4,
  capex:3.8,capr:7.6,capda:0.62,
@@ -108,9 +108,9 @@ const S=[
  roe:14.5,roic:14.4,roa:5.5,debt:0.48,de:0.48,ic:9.8,cr:1.06,qr:1.0,
  yield:4.6,epsg:106.0,revg:27.8,margin:9.1,gm:37.7,om:12,fcf:6.0,
  capex:14.2,capr:9.3,capda:1.22,
- dcfb:84.23,dcfm:99.09,dcfu:118.91,
+ dcfb:84.63,dcfm:99.56,dcfu:119.47,
  pio:5,alt:1.5,rsi:59.1,mm50:76.36,mm200:70.7,
- el:79.27,eh:91.16,stop:69.76,o1:104.04,o2:118.91,
+ el:79.65,eh:91.6,stop:70.09,o1:104.54,o2:119.47,
  cb:14,ch:5,cs:3,tp:88.96,score:'C',rec:'avoid',zone:false,
  moat:[['Actifs LNG de classe mondiale','fort'],['Transition énergétique avancée','modere']],
  cats:[{t:'LNG Canada pleine production',w:'T2 2026',c:'var(--gn)'}],
@@ -256,7 +256,7 @@ const S=[
 
 {ticker:'KER',x2:'',x2s:'',name:'Kering',sector:'Luxe',cap:'large',srd:true,idx:'CAC40',
  price:213.1,chg5:1.8,news5:'',dy_n:10,dy_med:2.09,div12:4.0,pe_lo:16.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:10.0,pfcf_h:18.9,pe_h:16.4,fcur:'EUR',fcfh:'2270|1400|1848|3207',nih:'72|1133|2983|3614',revh:'14675|16874|19566|20351',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-41.6,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-72.9,cagr:-10.3,alarm:'',qwhy:'ROIC hors EA 10.9, ROIC 8.3, dette/EBITDA 4.43, croissance CA -10.3%',qok:false,nde:4.43,fcfc:112.0,roicx:10.9,chg:0.8,mkt:'24Md€',b52h:354.2,b52l:203.2,beta:1.0,
- pe:21.81,pb:1.8,ev_ebitda:14.39,ps:1.81,pfcf:12,ev_ebit:33.7,
+ pe:21.81,pb:1.8,ev_ebitda:14.48,ps:1.81,pfcf:12,ev_ebit:33.9,
  roe:-1.6,roic:8.3,roa:2.5,debt:1.17,de:1.17,ic:1.7,cr:2.05,qr:0.9,
  yield:1.4,epsg:-60.1,revg:-2.9,margin:-1.5,gm:72.1,om:18,fcf:8.7,
  capex:4.2,capr:5.7,capda:0.41,
@@ -275,13 +275,13 @@ const S=[
 
 {ticker:'PUB',x2:'',x2s:'',name:'Publicis',sector:'Communication',cap:'large',srd:true,idx:'CAC40',
  price:98.74,chg5:4.8,news5:'',dy_n:9,dy_med:3.7,div12:3.75,pe_lo:12.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:7.9,pfcf_h:9.7,pe_h:14.2,fcur:'EUR',fcfh:'2693|2063|1868|2219',nih:'1653|1660|1312|1222',revh:'17399|16030|14802|14196',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:8.8,gimp:null,knife:false,neglect:false,vmeth:'per',nig:10.6,cagr:7.0,alarm:'',qwhy:'ROIC hors EA None',qok:false,nde:0.51,fcfc:151.0,roicx:null,chg:1.5,mkt:'16Md€',b52h:104.85,b52l:68.14,beta:0.64,
- pe:15.38,pb:2.34,ev_ebitda:9.43,ps:1.4,pfcf:12,ev_ebit:11.3,
+ pe:15.38,pb:2.34,ev_ebitda:9.43,ps:null,pfcf:12,ev_ebit:11.3,
  roe:16.2,roic:13.9,roa:4.3,debt:0.52,de:0.52,ic:12.1,cr:0.94,qr:0.9,
- yield:3.9,epsg:-3.1,revg:3.0,margin:9.2,gm:46.7,om:18,fcf:10.9,
+ yield:3.9,epsg:-3.1,revg:3.0,margin:9.2,gm:46.7,om:18,fcf:null,
  capex:1.2,capr:1.4,capda:0.34,
- dcfb:67.17,dcfm:79.02,dcfu:94.82,
- pio:6,alt:1.11,rsi:57.9,mm50:98.69,mm200:83.67,
- el:66.38,eh:73.96,stop:58.41,o1:82.97,o2:94.82,
+ dcfb:67.15,dcfm:79.0,dcfu:94.8,
+ pio:6,alt:0.61,rsi:57.9,mm50:98.69,mm200:83.67,
+ el:66.36,eh:73.94,stop:58.4,o1:82.95,o2:94.8,
  cb:14,ch:6,cs:2,tp:113.0,score:'D',rec:'avoid',zone:false,
  moat:[['Epsilon data assets 250M profils','fort'],['Sapient tech consulting','modere']],
  cats:[{t:'IA générative pub révolution',w:'2026',c:'var(--gn)'}],
@@ -298,9 +298,9 @@ const S=[
  roe:14.2,roic:9.9,roa:3.3,debt:1.61,de:1.61,ic:2.6,cr:0.87,qr:0.7,
  yield:5.4,epsg:3,revg:5.5,margin:10.0,gm:41.1,om:12,fcf:9.1,
  capex:14.8,capr:18.5,capda:0.89,
- dcfb:12.3,dcfm:14.47,dcfu:17.36,
+ dcfb:12.31,dcfm:14.48,dcfu:17.38,
  pio:6,alt:0.78,rsi:31.7,mm50:15.24,mm200:16.27,
- el:12.15,eh:13.54,stop:10.69,o1:15.19,o2:17.36,
+ el:12.16,eh:13.55,stop:10.7,o1:15.2,o2:17.38,
  cb:8,ch:6,cs:4,tp:18.99,score:'D',rec:'avoid',zone:false,
  moat:[['Réseau fibre/5G France','modere'],['Afrique forte croissance','modere']],
  cats:[{t:'Afrique MoMo scaling',w:'2026',c:'var(--gn)'}],
@@ -313,7 +313,7 @@ const S=[
 
 {ticker:'VIE',x2:'',x2s:'',name:'Veolia',sector:'Eau & Déchets',cap:'large',srd:true,idx:'CAC40',
  price:31.28,chg5:2.7,news5:'',dy_n:10,dy_med:4.26,div12:1.5,pe_lo:17.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.5,pfcf_h:4.1,pe_h:20.0,fcur:'EUR',fcfh:'5153|5038|5005|4148',nih:'1217|1098|937|716',revh:'44396|44692|45351|42886',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:10.2,gimp:null,knife:false,neglect:false,vmeth:'per',nig:19.3,cagr:1.2,alarm:'',qwhy:'ROIC 8.8, croissance CA 1.2%',qok:false,nde:2.03,fcfc:488.0,roicx:17.4,chg:0.61,mkt:'20Md€',b52h:37.66,b52l:27.85,beta:0.98,
- pe:18.19,pb:2.34,ev_ebitda:8.61,ps:0.52,pfcf:14,ev_ebit:15.5,
+ pe:18.19,pb:2.34,ev_ebitda:8.63,ps:0.52,pfcf:14,ev_ebit:15.6,
  roe:13.4,roic:8.8,roa:3.1,debt:2.5,de:2.5,ic:3.7,cr:0.82,qr:0.8,
  yield:4.8,epsg:5.6,revg:0.7,margin:2.8,gm:17.9,om:8,fcf:22.2,
  capex:8.2,capr:null,capda:null,
@@ -351,7 +351,7 @@ const S=[
 
 {ticker:'SGO',x2:'',x2s:'',name:'Saint-Gobain',sector:'Matériaux construction',cap:'large',srd:true,idx:'CAC40',
  price:65.2,chg5:-1.4,news5:'',dy_n:9,dy_med:2.91,div12:2.3,pe_lo:7.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:6.3,pfcf_h:10.1,pe_h:13.6,fcur:'EUR',fcfh:'3448|3486|4064|3790',nih:'2883|2844|2669|3003',revh:'46483|46571|47944|51197',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-2.3,gimp:null,knife:false,neglect:true,vmeth:'per',nig:-1.4,cagr:-3.2,alarm:'',qwhy:'ROIC 10.9, croissance CA -3.2%',qok:false,nde:1.35,fcfc:130.0,roicx:19.0,chg:0.4,mkt:'36Md€',b52h:91.56,b52l:63.52,beta:1.23,
- pe:12.1,pb:1.26,ev_ebitda:6.68,ps:0.69,pfcf:10,ev_ebit:9.0,
+ pe:12.1,pb:1.26,ev_ebitda:6.7,ps:0.69,pfcf:10,ev_ebit:9.0,
  roe:11.0,roic:10.9,roa:5.1,debt:0.66,de:0.66,ic:5.2,cr:1.27,qr:1.0,
  yield:3.5,epsg:-12.0,revg:-1.1,margin:5.8,gm:27.2,om:10,fcf:10.8,
  capex:5.8,capr:4.7,capda:0.83,
@@ -370,7 +370,7 @@ const S=[
 
 {ticker:'CAP',x2:'',x2s:'',name:'Capgemini',sector:'Services informatiques',cap:'large',srd:true,idx:'CAC40',
  price:115.35,chg5:6.4,news5:'',dy_n:10,dy_med:1.64,div12:3.4,pe_lo:14.9,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:9.8,pfcf_h:12.0,pe_h:16.5,fcur:'EUR',fcfh:'2195|2211|2266|2227',nih:'1601|1671|1663|1547',revh:'22465|22096|22522|21995',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:0.9,gimp:null,knife:false,neglect:false,vmeth:'per',nig:1.2,cagr:0.7,alarm:'',qwhy:'croissance CA 0.7%',qok:false,nde:2.17,fcfc:137.0,roicx:68.3,chg:0.26,mkt:'24Md€',b52h:153.05,b52l:85.62,beta:0.66,
- pe:14.66,pb:1.67,ev_ebitda:8.86,ps:0.82,pfcf:14,ev_ebit:11.5,
+ pe:14.66,pb:1.67,ev_ebitda:8.87,ps:0.82,pfcf:14,ev_ebit:11.6,
  roe:12.2,roic:12.2,roa:6.0,debt:0.88,de:0.88,ic:12.0,cr:1.28,qr:1.2,
  yield:3.0,epsg:-30.7,revg:8.8,margin:5.9,gm:26.8,om:13,fcf:11.5,
  capex:1.8,capr:1.3,capda:0.41,
@@ -388,14 +388,14 @@ const S=[
  contra:"Croissance ralentit en Europe. Concurrence Accenture féroce."},
 
 {ticker:'DG',x2:'',x2s:'',name:'Vinci',sector:'Construction & Concessions',cap:'large',srd:true,idx:'CAC40',
- price:107.6,chg5:1.4,news5:'',dy_n:10,dy_med:3.06,div12:5.0,pe_lo:11.4,gmod:2.6,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:11.0,irr:11.0,dq:'',vmult:119.41,hn:4,eveb_h:6.6,pfcf_h:8.7,pe_h:13.0,fcur:'EUR',fcfh:'8013|7662|7208|5886',nih:'4903|4863|4702|4259',revh:'75702|72768|69885|62514',yrs:'2025|2024|2023|2022',unc:'faible',vopt:166.34,vpess:138.91,nregu:3,regn:3,regu:3,place:'Paris',mthreat:'fin des concessions autoroutieres francaises (annees 2030), fiscalite',mtype:'concessions (autoroutes, aeroports) : actifs uniques a revenus indexes',mscore:4,near:true,gsrc:'communique 2026-10-05',gused:2.6,gimp:-5.0,knife:false,neglect:false,vmeth:'qarp',nig:4.8,cagr:6.6,alarm:'',qwhy:'croissance officielle 2.6%',qok:false,nde:1.5,fcfc:154.0,roicx:21.4,chg:0.51,mkt:'88Md€',b52h:143.15,b52l:104.25,beta:0.74,
+ price:107.6,chg5:1.4,news5:'',dy_n:10,dy_med:3.06,div12:5.0,pe_lo:11.4,gmod:2.6,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:11.0,irr:11.0,dq:'',vmult:119.41,hn:4,eveb_h:6.6,pfcf_h:8.7,pe_h:13.0,fcur:'EUR',fcfh:'8013|7662|7208|5886',nih:'4903|4863|4702|4259',revh:'75702|72768|69885|62514',yrs:'2025|2024|2023|2022',unc:'faible',vopt:167.01,vpess:139.22,nregu:3,regn:3,regu:3,place:'Paris',mthreat:'fin des concessions autoroutieres francaises (annees 2030), fiscalite',mtype:'concessions (autoroutes, aeroports) : actifs uniques a revenus indexes',mscore:4,near:true,gsrc:'communique 2026-10-05',gused:2.6,gimp:-5.0,knife:false,neglect:false,vmeth:'qarp',nig:4.8,cagr:6.6,alarm:'',qwhy:'croissance officielle 2.6%',qok:false,nde:1.5,fcfc:154.0,roicx:21.9,chg:0.51,mkt:'88Md€',b52h:143.15,b52l:104.25,beta:0.74,
  pe:11.94,pb:1.95,ev_ebitda:6.97,ps:0.78,pfcf:12,ev_ebit:9.4,
- roe:16.3,roic:13.1,roa:4.4,debt:1.21,de:1.21,ic:6.3,cr:0.82,qr:1.0,
+ roe:16.3,roic:13.4,roa:4.4,debt:1.21,de:1.21,ic:6.3,cr:0.82,qr:1.0,
  yield:4.7,epsg:10.8,revg:2.3,margin:6.7,gm:17.0,om:9,fcf:13.5,
  capex:3.8,capr:5.1,capda:0.92,
- dcfb:129.34,dcfm:152.17,dcfu:182.6,
+ dcfb:129.74,dcfm:152.63,dcfu:183.16,
  pio:7,alt:1.14,rsi:40.9,mm50:114.59,mm200:122.33,
- el:121.74,eh:136.95,stop:125.02,o1:166.34,o2:182.97,
+ el:122.1,eh:137.37,stop:125.3,o1:167.01,o2:183.71,
  cb:16,ch:5,cs:1,tp:142.45,score:'C',rec:'avoid',zone:false,
  moat:[['Concessions autoroutes/aéroports','fort'],['Énergie renouvelable Cobra IS','fort']],
  cats:[{t:'Aéroports trafic record',w:'2026',c:'var(--gn)'}],
@@ -408,7 +408,7 @@ const S=[
 
 {ticker:'VIV',x2:'',x2s:'',name:'Vivendi',sector:'Médias',cap:'large',srd:true,idx:'CAC40',
  price:1.47,chg5:3.5,news5:'',dy_n:9,dy_med:5.09,div12:0.04,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 73.3 contre 14.3 attendu) · croissance Yahoo -68.3 %/an : probablement faussee par une acquisition ou une cession',vmult:null,hn:2,eveb_h:48.2,pfcf_h:10.5,pe_h:70.7,fcur:'EUR',fcfh:'-68|1837|946|363',nih:'20|-6004|405|-1010',revh:'307|297|312|9595',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-68.3,gimp:null,knife:true,neglect:false,vmeth:'per',nig:null,cagr:-68.3,alarm:'',qwhy:'ROIC hors EA 0.4, ROIC 0.1, cash None%, dette/EBITDA 7.05, perte exploitation, croissance CA -68.3%',qok:false,nde:7.05,fcfc:null,roicx:0.4,chg:0.89,mkt:'3.8Md€',b52h:3.21,b52l:1.4,beta:1.04,
- pe:73.35,pb:0.32,ev_ebitda:-48.64,ps:4.84,pfcf:10,ev_ebit:26.2,
+ pe:73.35,pb:0.31,ev_ebitda:-48.85,ps:4.84,pfcf:10,ev_ebit:26.3,
  roe:0.3,roic:0.1,roa:-0.9,debt:0.39,de:0.39,ic:1.2,cr:0.49,qr:0.8,
  yield:2.8,epsg:-6.6,revg:-3.4,margin:6.0,gm:32.1,om:9,fcf:-4.6,
  capex:1.2,capr:1.0,capda:0.06,
@@ -427,7 +427,7 @@ const S=[
 
 {ticker:'RI',x2:'',x2s:'',name:'Pernod Ricard',sector:'Spiritueux',cap:'large',srd:true,idx:'CAC40',
  price:62.46,chg5:7.6,news5:'',dy_n:10,dy_med:1.91,div12:4.7,pe_lo:13.4,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:11.9,pfcf_h:26.8,pe_h:17.7,fcur:'EUR',fcfh:'1188|1121|954|1331',nih:'1203|1626|1476|2262',revh:'9403|10959|11598|12137',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-13.6,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-19.0,cagr:-8.2,alarm:'',qwhy:'ROIC hors EA 9.9, ROIC 7.4, cash 70.0%, dette/EBITDA 4.06, croissance CA -8.2%',qok:false,nde:4.06,fcfc:70.0,roicx:9.9,chg:1.4,mkt:'24Md€',b52h:90.34,b52l:57.86,beta:0.52,
- pe:13.09,pb:1.01,ev_ebitda:10.38,ps:1.67,pfcf:15,ev_ebit:12.3,
+ pe:13.09,pb:1.02,ev_ebitda:10.46,ps:1.67,pfcf:15,ev_ebit:12.4,
  roe:7.6,roic:7.4,roa:4.1,debt:0.77,de:0.77,ic:4.5,cr:2.47,qr:1.0,
  yield:7.6,epsg:-47.8,revg:-13.2,margin:12.8,gm:58.4,om:25,fcf:7.6,
  capex:3.2,capr:4.2,capda:0.95,
@@ -453,7 +453,7 @@ const S=[
  dcfb:98.06,dcfm:115.36,dcfu:138.43,
  pio:6,alt:3.78,rsi:50.2,mm50:138.61,mm200:139.66,
  el:86.52,eh:98.06,stop:71.58,o1:131.65,o2:144.82,
- cb:14,ch:6,cs:2,tp:169.22,score:'C',rec:'hold',zone:false,
+ cb:14,ch:6,cs:2,tp:169.22,score:'B',rec:'hold',zone:false,
  moat:[['Électricité bâtiment spécialisée','fort'],['Data center power management','fort']],
  cats:[{t:'Data center infrastructure boom',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Famille Verspieren','5.8M€','Jan 2026']],
@@ -484,7 +484,7 @@ const S=[
 
 {ticker:'DSY',x2:'',x2s:'',name:'Dassault Systèmes',sector:'Logiciels',cap:'large',srd:true,idx:'CAC40',
  price:22.17,chg5:3.6,news5:'',dy_n:10,dy_med:0.53,div12:0.27,pe_lo:25.8,gmod:4.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:7.6,irr:7.6,dq:'',vmult:18.58,hn:4,eveb_h:21.5,pfcf_h:30.4,pe_h:41.4,fcur:'EUR',fcfh:'1469|1466|1420|1393',nih:'1196|1200|1051|932',revh:'6236|6214|5951|5665',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:21.33,vpess:15.57,nregu:2,regn:3,regu:3,place:'Paris',mthreat:'transition cloud/IA mal negociee, croissance faible',mtype:'couts de changement eleves (CATIA, SolidWorks standards de l industrie)',mscore:4,near:false,gsrc:'communique 2026-10-05',gused:4.0,gimp:7.9,knife:false,neglect:false,vmeth:'qarp',nig:8.7,cagr:3.2,alarm:'',qwhy:'',qok:true,nde:-0.47,fcfc:131.0,roicx:37.2,chg:1.93,mkt:'42Md€',b52h:30.36,b52l:15.82,beta:0.57,
- pe:22.86,pb:3.15,ev_ebitda:15.75,ps:4.69,pfcf:24,ev_ebit:17.7,
+ pe:22.86,pb:3.15,ev_ebitda:16.08,ps:4.69,pfcf:24,ev_ebit:18.0,
  roe:15.1,roic:14.4,roa:6.3,debt:0.36,de:0.36,ic:35.6,cr:1.99,qr:1.8,
  yield:1.2,epsg:31.8,revg:2.2,margin:21.3,gm:84.2,om:24,fcf:5.0,
  capex:1.8,capr:2.6,capda:0.29,
@@ -502,15 +502,15 @@ const S=[
  contra:"Transition cloud plus lente que prévu. Croissance en dessous des attentes sur 18 mois."},
 
 {ticker:'STM',x2:'',x2s:'',name:'STMicroelectronics',sector:'Semi-conducteurs',cap:'large',srd:true,idx:'CAC40',
- price:45.56,chg5:-10.4,news5:'Le commissaire aux comptes de Right Season Investments Corp. émet des doutes sur la continuité d’exploitation|https://news.google.com/rss/articles/CBMi8gFBVV95cUxNSjh1UmRONmdUdDJFZy1PdTZGMS1veFBCRTQ4b0VFUjVnZEFIYU03OFVSR2xXa0NEQ0M0c21BOWVYaUx1a0JZcElxTzVRaVNkblRBZ21ERmN5Ym11R2laOVNPeWNJY3Nwb2tCX09WLTZzRy1mVXlOaTdRaGI5OXV6bUhUUFNhVmhBX2RCZHEydGx0RVdjRXdUaE5RSGtQVzZPdnVubUlPN3JPVUg5RkxtVWJaUnU5X29CSHpkekZ1UnFibmpHSVdHX2xUT0I4MGNpYWtnczhMQjRiTnNmVVhPQTVrUUw5RklaOUpLeVE4QjhtUQ?oc=5|Zonebourse ;; Paris termine en rebond, mais recul sur la semaine|https://news.google.com/rss/articles/CBMirwFBVV95cUxNSlBOQW9IMk5waHRMRkU2WDEwemk5LUdnYnE4cGx1dzkyWDdZREhfUS1MM3pNQUNnQnJuaUJXTHZPT2ZNaVNteU1CWmdNZVZ1QU42cUotYnlNY2ctQnNYX1ZMSFh1TWFhczdlOU1tSG40cVRuUmhER2NFd1BUcElWRWNmZGtsdE1CYXBCb0JqOGxQbW1BOGZpRTBqRk56bm1JeTZ3Rks3R3dyUko0c180?oc=5|Zonebourse ;; Point marchés-L’Europe finit en hausse, le CAC 40 pénalisé par l’incertitude budgétaire|https://news.google.com/rss/articles/CBMi4AFBVV95cUxPV0JoUEMxcWt3Q1FISWZ4WHlWdjlseloxbmR1NW41YVIyMW5yNGNYMFljcU1rZUNYZkp6WUt2MDhBZWZ5OURiTWY5MjFJSDNRX0VvaDRGd01QUkpZY2lmR2JnUU12SVZWdEdLWFJ2cnFmNlNXVnpVNUhwVnBlb2VsUFFEa1duZkJITVpJRnNUVFQzOUhFUEhKZWIwS2FhcG9xNmFLQXJJbkpzYld4dS1kV19xdGxBSlEwemw5TFZ5VTZabW9IZG5FeXFlUHJuTzJHZmpBbGJOWTJMcl9ILXoxLQ?oc=5|Zonebourse',dy_n:10,dy_med:1.08,div12:0.323,pe_lo:8.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 1518.8 contre 19.0 attendu)',vmult:null,hn:4,eveb_h:6.6,pfcf_h:25.7,pe_h:12.3,fcur:'USD',fcfh:'-52|-216|1456|1566',nih:'166|1557|4211|3960',revh:'11800|13269|17286|16128',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-37.6,gimp:null,knife:true,neglect:false,vmeth:'per',nig:-65.3,cagr:-9.9,alarm:'',qwhy:'cash 28.0%, croissance CA -9.9%',qok:false,nde:-0.21,fcfc:28.0,roicx:17.6,chg:-2.11,mkt:'20Md€',b52h:70.85,b52l:18.2,beta:1.48,
- pe:1518.83,pb:2.68,ev_ebitda:14.41,ps:3.12,pfcf:12,ev_ebit:88.2,
+ price:45.56,chg5:-10.4,news5:'Prévision action STMicroelectronics N.V. (STM) 2026–2030|https://news.google.com/rss/articles/CBMiYkFVX3lxTE1jSHpGT05DS3Y3UkZFc0FrcHRrdkhrN0VPazdqUjdsY204blotNWZ1LUtFX2d1cXpqeDNJVVNkckxsVmtwbU94T2NfTE1TREg4STJtMFV1RGhwTU5saDZBeUxR?oc=5|CoinCodex ;; Le commissaire aux comptes de Right Season Investments Corp. émet des doutes sur la continuité d’exploitation|https://news.google.com/rss/articles/CBMi8gFBVV95cUxNSjh1UmRONmdUdDJFZy1PdTZGMS1veFBCRTQ4b0VFUjVnZEFIYU03OFVSR2xXa0NEQ0M0c21BOWVYaUx1a0JZcElxTzVRaVNkblRBZ21ERmN5Ym11R2laOVNPeWNJY3Nwb2tCX09WLTZzRy1mVXlOaTdRaGI5OXV6bUhUUFNhVmhBX2RCZHEydGx0RVdjRXdUaE5RSGtQVzZPdnVubUlPN3JPVUg5RkxtVWJaUnU5X29CSHpkekZ1UnFibmpHSVdHX2xUT0I4MGNpYWtnczhMQjRiTnNmVVhPQTVrUUw5RklaOUpLeVE4QjhtUQ?oc=5|Zonebourse ;; Paris termine en rebond, mais recul sur la semaine|https://news.google.com/rss/articles/CBMirwFBVV95cUxNSlBOQW9IMk5waHRMRkU2WDEwemk5LUdnYnE4cGx1dzkyWDdZREhfUS1MM3pNQUNnQnJuaUJXTHZPT2ZNaVNteU1CWmdNZVZ1QU42cUotYnlNY2ctQnNYX1ZMSFh1TWFhczdlOU1tSG40cVRuUmhER2NFd1BUcElWRWNmZGtsdE1CYXBCb0JqOGxQbW1BOGZpRTBqRk56bm1JeTZ3Rks3R3dyUko0c180?oc=5|Zonebourse',dy_n:10,dy_med:1.08,div12:0.323,pe_lo:8.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 1518.8 contre 19.0 attendu)',vmult:null,hn:4,eveb_h:6.6,pfcf_h:25.7,pe_h:12.3,fcur:'USD',fcfh:'-52|-216|1456|1566',nih:'166|1557|4211|3960',revh:'11800|13269|17286|16128',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-37.6,gimp:null,knife:true,neglect:false,vmeth:'per',nig:-65.3,cagr:-9.9,alarm:'',qwhy:'cash 28.0%, croissance CA -9.9%',qok:false,nde:-0.21,fcfc:28.0,roicx:17.6,chg:-2.11,mkt:'20Md€',b52h:70.85,b52l:18.2,beta:1.48,
+ pe:1518.83,pb:2.68,ev_ebitda:14.1,ps:3.12,pfcf:12,ev_ebit:86.3,
  roe:2.7,roic:17.3,roa:2.1,debt:0.23,de:0.23,ic:8.3,cr:2.78,qr:1.8,
  yield:0.7,epsg:8,revg:26.1,margin:3.6,gm:34.5,om:14,fcf:-0.1,
  capex:12.5,capr:null,capda:null,
  dcfb:65.25,dcfm:76.77,dcfu:92.12,
  pio:6,alt:5.38,rsi:46.3,mm50:45.47,mm200:42.53,
  el:55.27,eh:68.17,stop:48.64,o1:80.61,o2:92.12,
- cb:12,ch:6,cs:4,tp:69.26,score:'C',rec:'avoid',zone:false,
+ cb:12,ch:6,cs:4,tp:69.27,score:'C',rec:'avoid',zone:false,
  moat:[['SiC véhicules électriques leader','fort'],['Microcontrôleurs embarqués','fort']],
  cats:[{t:'SiC rebond VE T3 2026',w:'T3 2026',c:'var(--gn)'}],
  ins:[['Achat','CEO Caulfield','4.2M€','Jan 2026']],
@@ -522,7 +522,7 @@ const S=[
 
 {ticker:'EL',x2:'',x2s:'',name:'EssilorLuxottica',sector:'Optique',cap:'large',srd:true,idx:'CAC40',
  price:146.75,chg5:1.6,news5:'',dy_n:10,dy_med:1.42,div12:4.0,pe_lo:34.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:16.1,pfcf_h:27.7,pe_h:39.8,fcur:'EUR',fcfh:'3766|3352|3330|3211',nih:'2315|2359|2289|2152',revh:'28491|26508|25395|24494',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:3.9,gimp:null,knife:true,neglect:false,vmeth:'per',nig:2.5,cagr:5.2,alarm:'Piotroski 4/9',qwhy:'ROIC hors EA 14.2, ROIC 5.3',qok:false,nde:1.64,fcfc:150.0,roicx:14.2,chg:0.27,mkt:'85Md€',b52h:323.8,b52l:138.3,beta:0.57,
- pe:27.43,pb:1.72,ev_ebitda:13.9,ps:2.3,pfcf:22,ev_ebit:23.2,
+ pe:27.43,pb:1.72,ev_ebitda:13.93,ps:2.3,pfcf:22,ev_ebit:23.2,
  roe:6.7,roic:5.3,roa:3.7,debt:0.38,de:0.38,ic:11.2,cr:0.89,qr:1.2,
  yield:2.7,epsg:12.3,revg:5.7,margin:8.5,gm:60.0,om:18,fcf:5.6,
  capex:3.5,capr:5.4,capda:0.49,
@@ -579,7 +579,7 @@ const S=[
 
 {ticker:'MT',x2:'',x2s:'',name:'ArcelorMittal',sector:'Acier',cap:'large',srd:true,idx:'CAC40',
  price:56.82,chg5:-1.4,news5:'',dy_n:7,dy_med:1.34,div12:0.645,pe_lo:2.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 28.0 contre 8.6 attendu)',vmult:null,hn:4,eveb_h:4.7,pfcf_h:22.9,pe_h:12.0,fcur:'USD',fcfh:'471|447|3032|6735',nih:'3152|1339|919|9302',revh:'61352|62441|68275|79844',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:0,place:'Amsterdam',near:false,gsrc:'yahoo (4 ans publies)',gused:-19.4,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-30.3,cagr:-8.4,alarm:'',qwhy:'ROIC hors EA 5.3, ROIC 4.9, cash 73.0%, croissance CA -8.4%',qok:false,nde:1.13,fcfc:73.0,roicx:5.3,chg:-0.8,mkt:'18Md€',b52h:68.56,b52l:31.87,beta:1.75,
- pe:27.99,pb:0.88,ev_ebitda:9.98,ps:0.68,pfcf:6,ev_ebit:13.0,
+ pe:27.99,pb:0.91,ev_ebitda:9.98,ps:0.68,pfcf:6,ev_ebit:13.0,
  roe:3.3,roic:4.9,roa:1.6,debt:0.25,de:0.25,ic:7.2,cr:1.43,qr:1.2,
  yield:0.9,epsg:-61.7,revg:5.2,margin:2.9,gm:9.0,om:7,fcf:1.1,
  capex:3.5,capr:7.1,capda:1.47,
@@ -636,12 +636,12 @@ const S=[
 
 {ticker:'TEP',x2:'',x2s:'',name:'Teleperformance',sector:'BPO',cap:'large',srd:true,idx:'CAC40',
  price:70.78,chg5:3.1,news5:'',dy_n:10,dy_med:1.21,div12:4.5,pe_lo:7.4,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:6.2,pfcf_h:5.0,pe_h:11.5,fcur:'EUR',fcfh:'1361|1594|1142|996',nih:'497|523|592|643',revh:'10209|10280|8345|8154',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-0.2,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-8.2,cagr:7.8,alarm:'',qwhy:'ROIC 8.2',qok:false,nde:2.19,fcfc:226.0,roicx:17.6,chg:-1.42,mkt:'5.2Md€',b52h:78.14,b52l:43.65,beta:0.64,
- pe:8.95,pb:0.98,ev_ebitda:5.17,ps:0.41,pfcf:7,ev_ebit:7.7,
+ pe:8.95,pb:0.98,ev_ebitda:5.17,ps:0.42,pfcf:7,ev_ebit:7.7,
  roe:11.4,roic:8.2,roa:6.0,debt:1.2,de:1.2,ic:3.9,cr:1.4,qr:1.0,
- yield:6.3,epsg:-11.6,revg:-4.6,margin:4.7,gm:30.7,om:13,fcf:33.1,
+ yield:6.3,epsg:-11.6,revg:-4.6,margin:4.7,gm:30.7,om:13,fcf:32.2,
  capex:2.8,capr:2.5,capda:0.34,
  dcfb:87.43,dcfm:102.86,dcfu:123.43,
- pio:6,alt:2.06,rsi:52.1,mm50:70.15,mm200:57.95,
+ pio:6,alt:2.07,rsi:52.1,mm50:70.15,mm200:57.95,
  el:86.4,eh:96.28,stop:76.03,o1:108.0,o2:123.43,
  cb:8,ch:6,cs:5,tp:76.98,score:'C',rec:'avoid',zone:false,
  moat:[['Scale mondiale BPO','modere']],
@@ -676,14 +676,14 @@ const S=[
 // SBF 120 & SRD
 // ══════════════════════════════════════════
 {ticker:'GTT',x2:'',x2s:'',name:'Gaztransport & Technigaz',sector:'LNG Technology',cap:'mid',srd:true,idx:'SBF120',
- price:216.6,chg5:1.7,news5:'',dy_n:10,dy_med:4.63,div12:8.94,pe_lo:13.9,gmod:3.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:8.1,irr:8.1,dq:'',vmult:204.57,hn:4,eveb_h:15.4,pfcf_h:21.4,pe_h:18.4,fcur:'EUR',fcfh:'383|300|173|119',nih:'414|348|201|128',revh:'803|641|428|307',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:226.4,vpess:180.2,nregu:3,regn:3,regu:3,place:'Paris',mthreat:'cycle des commandes, technologies concurrentes coreennes, sanctions',mtype:'brevets des membranes de cuves GNL, standard de l immense majorite des methaniers',mscore:4,near:false,gsrc:'communique 2026-10-11',gused:3.0,gimp:4.8,knife:false,neglect:false,vmeth:'qarp',nig:47.7,cagr:37.7,alarm:'',qwhy:'',qok:true,nde:-0.4,fcfc:89.0,roicx:324.5,chg:0.09,mkt:'7.2Md€',b52h:227.0,b52l:153.8,beta:0.42,
- pe:18.19,pb:13.08,ev_ebitda:14.28,ps:10.02,pfcf:18,ev_ebit:14.9,
+ price:216.6,chg5:1.7,news5:'',dy_n:10,dy_med:4.63,div12:8.94,pe_lo:13.9,gmod:3.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:8.1,irr:8.1,dq:'',vmult:204.53,hn:4,eveb_h:15.4,pfcf_h:21.4,pe_h:18.4,fcur:'EUR',fcfh:'383|300|173|119',nih:'414|348|201|128',revh:'803|641|428|307',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:226.35,vpess:180.16,nregu:3,regn:3,regu:3,place:'Paris',mthreat:'cycle des commandes, technologies concurrentes coreennes, sanctions',mtype:'brevets des membranes de cuves GNL, standard de l immense majorite des methaniers',mscore:4,near:false,gsrc:'communique 2026-10-11',gused:3.0,gimp:4.8,knife:false,neglect:false,vmeth:'qarp',nig:47.7,cagr:37.7,alarm:'',qwhy:'',qok:true,nde:-0.4,fcfc:89.0,roicx:324.5,chg:0.09,mkt:'7.2Md€',b52h:227.0,b52l:153.8,beta:0.42,
+ pe:18.17,pb:13.08,ev_ebitda:14.28,ps:10.02,pfcf:18,ev_ebit:14.9,
  roe:79.6,roic:261.2,roa:36.5,debt:0.17,de:0.17,ic:null,cr:1.95,qr:2.8,
  yield:4.0,epsg:16.6,revg:-0.4,margin:55.4,gm:96.8,om:58,fcf:4.8,
  capex:0.8,capr:5.0,capda:1.63,
- dcfb:171.73,dcfm:202.03,dcfu:242.44,
+ dcfb:171.69,dcfm:201.99,dcfu:242.39,
  pio:5,alt:13.92,rsi:53.2,mm50:211.65,mm200:194.19,
- el:141.42,eh:161.62,stop:162.18,o1:226.4,o2:249.04,
+ el:141.39,eh:161.59,stop:162.14,o1:226.35,o2:248.99,
  cb:8,ch:4,cs:2,tp:232.08,score:'B',rec:'hold',zone:false,
  moat:[['Monopole brevets membranes LNG','fort'],['30 ans de protection IP','fort']],
  cats:[{t:'Commande Samsung H1 2026',w:'T1 2026',c:'var(--gn)'}],
@@ -696,7 +696,7 @@ const S=[
 
 {ticker:'COFA',x2:'',x2s:'',name:'Coface',sector:'Assurance crédit',cap:'mid',srd:true,idx:'SBF120',
  price:15.65,chg5:-0.3,news5:'',dy_n:9,dy_med:8.35,div12:1.25,pe_lo:7.3,gmod:null,nih:'222|261|240|240',yrs:'2025|2024|2023|2022',icr:null,ltv:null,bvg:3.1,roemin:10.0,roem:11.8,grid:'banque',wht:0.0,irrn:11.1,irr:11.1,dq:'',vmult:null,hn:4,eveb_h:null,pfcf_h:6.6,pe_h:7.9,fcur:'EUR',unc:'elevee',vopt:21.39,vpess:12.33,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-2.6,gimp:null,knife:false,neglect:false,vmeth:'pb',nig:-2.6,cagr:null,alarm:'',qwhy:'',qok:true,nde:null,fcfc:null,roicx:null,chg:0.45,mkt:'1.9Md€',b52h:17.62,b52l:14.02,beta:0.49,
- pe:11.34,pb:1.08,ev_ebitda:14.49,ps:1.27,pfcf:7,ev_ebit:16.8,
+ pe:11.34,pb:1.08,ev_ebitda:14.52,ps:1.27,pfcf:7,ev_ebit:16.9,
  roe:9.7,roic:null,roa:2.8,debt:1.93,de:1.93,ic:8.1,cr:1.43,qr:1.0,
  yield:8.0,epsg:-12.2,revg:3.5,margin:11.2,gm:59.8,om:14,fcf:9.1,
  capex:0.5,capr:2.1,capda:1.05,
@@ -753,7 +753,7 @@ const S=[
 
 {ticker:'SPIE',x2:'',x2s:'',name:'Spie',sector:'Services techniques',cap:'mid',srd:true,idx:'SBF120',
  price:41.82,chg5:-1.2,news5:'',dy_n:9,dy_med:2.84,div12:1.1,pe_lo:18.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:9.0,pfcf_h:7.5,pe_h:23.1,fcur:'EUR',fcfh:'812|832|652|512',nih:'176|273|239|152',revh:'10397|9920|8725|8114',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:6.9,gimp:null,knife:false,neglect:false,vmeth:'per',nig:5.2,cagr:8.6,alarm:'',qwhy:'ROIC 7.0',qok:false,nde:2.35,fcfc:334.0,roicx:154.1,chg:-0.76,mkt:'5.2Md€',b52h:53.45,b52l:40.74,beta:0.76,
- pe:23.49,pb:3.39,ev_ebitda:12.18,ps:0.66,pfcf:14,ev_ebit:26.4,
+ pe:23.49,pb:3.39,ev_ebitda:12.11,ps:0.66,pfcf:14,ev_ebit:26.3,
  roe:15.1,roic:7.0,roa:4.2,debt:1.71,de:1.71,ic:3.9,cr:0.77,qr:1.0,
  yield:2.6,epsg:12,revg:3.5,margin:2.8,gm:9.2,om:6,fcf:11.5,
  capex:1.2,capr:0.7,capda:0.16,
@@ -772,7 +772,7 @@ const S=[
 
 {ticker:'NEXANS',x2:'',x2s:'',name:'Nexans',sector:'Câbles',cap:'mid',srd:true,idx:'SBF120',
  price:131.9,chg5:-1.2,news5:'',dy_n:8,dy_med:1.72,div12:2.9,pe_lo:15.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:8.4,pfcf_h:11.4,pe_h:15.8,fcur:'EUR',fcfh:'464|457|323|246',nih:'352|279|221|245',revh:'7810|6917|7790|8369',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:5.2,gimp:null,knife:false,neglect:false,vmeth:'per',nig:12.8,cagr:-2.3,alarm:'',qwhy:'croissance CA -2.3%',qok:false,nde:0.43,fcfc:136.0,roicx:16.6,chg:2.01,mkt:'2.8Md€',b52h:169.0,b52l:109.7,beta:0.94,
- pe:14.29,pb:2.71,ev_ebitda:9.01,ps:0.67,pfcf:9,ev_ebit:18.0,
+ pe:14.29,pb:2.71,ev_ebitda:9.16,ps:0.67,pfcf:9,ev_ebit:18.3,
  roe:9.8,roic:12.9,roa:3.5,debt:1.16,de:1.16,ic:6.5,cr:1.04,qr:1.1,
  yield:2.2,epsg:-72.3,revg:19.1,margin:1.0,gm:10.2,om:6,fcf:8.1,
  capex:3.5,capr:4.9,capda:1.55,
@@ -791,7 +791,7 @@ const S=[
 
 {ticker:'DASSAV',x2:'',x2s:'',name:'Dassault Aviation',sector:'Aviation militaire',cap:'large',srd:true,idx:'SBF120',
  price:287.4,chg5:-0.3,news5:'',dy_n:9,dy_med:1.66,div12:4.78,pe_lo:16.4,gmod:12.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:8.9,irr:8.9,dq:'',vmult:351.85,hn:4,eveb_h:11.6,pfcf_h:9.9,pe_h:19.4,fcur:'EUR',fcfh:'1654|1535|-1018|4935',nih:'977|924|693|716',revh:'7426|6240|4805|6950',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:311.98,vpess:197.49,nregu:2,regn:3,regu:2,place:'Paris',mthreat:'dependance aux grands contrats export',mtype:'Rafale et Falcon : duopole defense/aviation d affaires',mscore:4,near:false,gsrc:'communique 2026-10-12',gused:16.8,gimp:9.8,knife:false,neglect:false,vmeth:'qarp',nig:10.9,cagr:2.2,alarm:'',qwhy:'',qok:true,nde:-1.21,fcfc:215.0,roicx:19.8,chg:1.99,mkt:'24Md€',b52h:361.8,b52l:260.8,beta:0.42,
- pe:22.26,pb:3.38,ev_ebitda:12.52,ps:2.49,pfcf:10,ev_ebit:9.5,
+ pe:22.26,pb:3.38,ev_ebitda:12.97,ps:2.49,pfcf:10,ev_ebit:9.8,
  roe:15.7,roic:19.4,roa:1.5,debt:0.03,de:0.03,ic:199.1,cr:1.05,qr:4.2,
  yield:1.7,epsg:9.0,revg:45.1,margin:11.3,gm:33.9,om:16,fcf:7.5,
  capex:1.2,capr:2.6,capda:1.02,
@@ -810,12 +810,12 @@ const S=[
 
 {ticker:'ALO',x2:'',x2s:'',name:'Alstom',sector:'Ferroviaire',cap:'large',srd:true,idx:'SBF120',
  price:15.91,chg5:3.0,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 26.5 contre 8.3 attendu)',vmult:null,hn:2,eveb_h:10.7,pfcf_h:34.6,pe_h:45.7,fcur:'EUR',fcfh:'324|490|-567|175',nih:'324|149|-309|-132',revh:'19171|18489|17619|16507',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:5.1,gimp:null,knife:true,neglect:false,vmeth:'per',nig:null,cagr:5.1,alarm:'',qwhy:'ROIC hors EA 3.8, ROIC 0.8',qok:false,nde:0.96,fcfc:1319.0,roicx:3.8,chg:1.99,mkt:'6.2Md€',b52h:30.23,b52l:14.47,beta:1.05,
- pe:26.52,pb:0.74,ev_ebitda:7.56,ps:0.38,pfcf:12,ev_ebit:17.5,
+ pe:26.52,pb:0.74,ev_ebitda:7.56,ps:null,pfcf:12,ev_ebit:17.5,
  roe:3.4,roic:0.8,roa:1.2,debt:0.33,de:0.33,ic:4.2,cr:0.94,qr:0.8,
- yield:0.0,epsg:-29.5,revg:4.1,margin:1.7,gm:12.3,om:5,fcf:4.4,
- capex:2.5,capr:3.0,capda:0.7,
+ yield:0.0,epsg:-29.5,revg:4.1,margin:1.7,gm:12.3,om:5,fcf:null,
+ capex:2.5,capr:null,capda:null,
  dcfb:24.36,dcfm:28.66,dcfu:34.39,
- pio:7,alt:0.78,rsi:55.4,mm50:15.84,mm200:19.82,
+ pio:7,alt:0.6,rsi:55.4,mm50:15.84,mm200:19.82,
  el:23.5,eh:26.6,stop:20.68,o1:30.09,o2:34.39,
  cb:12,ch:5,cs:4,tp:20.7,score:'C',rec:'avoid',zone:false,
  moat:[['Leader TGV Europe','fort'],['Métros & signalisation','fort']],
@@ -829,7 +829,7 @@ const S=[
 
 {ticker:'ELIS',x2:'',x2s:'',name:'Elis',sector:'Services location-entretien',cap:'mid',srd:true,idx:'SBF120',
  price:21.64,chg5:1.0,news5:'',dy_n:8,dy_med:2.14,div12:0.74,pe_lo:12.9,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.6,pfcf_h:8.5,pe_h:15.4,fcur:'EUR',fcfh:'620|565|502|391',nih:'367|338|262|203',revh:'4797|4574|4309|3821',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:14.9,gimp:null,knife:false,neglect:false,vmeth:'per',nig:21.9,cagr:7.9,alarm:'',qwhy:'ROIC hors EA 12.8, ROIC 5.7',qok:false,nde:2.23,fcfc:178.0,roicx:12.8,chg:1.79,mkt:'4.5Md€',b52h:28.34,b52l:20.88,beta:1.25,
- pe:14.14,pb:1.35,ev_ebitda:5.87,ps:1.05,pfcf:10,ev_ebit:13.8,
+ pe:14.14,pb:1.35,ev_ebitda:5.93,ps:1.05,pfcf:10,ev_ebit:13.9,
  roe:10.7,roic:5.7,roa:4.2,debt:1.39,de:1.39,ic:4.2,cr:0.77,qr:0.8,
  yield:1.2,epsg:7.5,revg:4.9,margin:7.7,gm:33.6,om:12,fcf:12.0,
  capex:8.5,capr:18.6,capda:0.87,
@@ -848,7 +848,7 @@ const S=[
 
 {ticker:'SEB',x2:'',x2s:'',name:'SEB',sector:'Électroménager',cap:'mid',srd:true,idx:'SBF120',
  price:54.45,chg5:3.3,news5:'',dy_n:10,dy_med:1.5,div12:2.8,pe_lo:11.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 25.0 contre 7.0 attendu)',vmult:null,hn:4,eveb_h:8.3,pfcf_h:14.8,pe_h:14.9,fcur:'EUR',fcfh:'-17|316|845|43',nih:'245|232|386|316',revh:'8169|8266|8006|7960',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-3.6,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-8.2,cagr:0.9,alarm:'',qwhy:'ROIC hors EA 10.8, ROIC 7.0, dette/EBITDA 3.29, croissance CA 0.9%',qok:false,nde:3.29,fcfc:101.0,roicx:10.8,chg:-1.27,mkt:'3.2Md€',b52h:62.1,b52l:40.84,beta:1.23,
- pe:24.98,pb:0.98,ev_ebitda:7.76,ps:0.37,pfcf:10,ev_ebit:12.4,
+ pe:24.98,pb:0.98,ev_ebitda:7.71,ps:0.37,pfcf:10,ev_ebit:12.3,
  roe:4.9,roic:7.0,roa:4.0,debt:1.06,de:1.06,ic:4.8,cr:1.16,qr:1.2,
  yield:5.1,epsg:238.7,revg:-0.1,margin:1.5,gm:8.0,om:10,fcf:-0.6,
  capex:1.5,capr:2.7,capda:0.78,
@@ -867,7 +867,7 @@ const S=[
 
 {ticker:'ERF',x2:'',x2s:'',name:'Eurofins Scientific',sector:'Tests & Analyses',cap:'large',srd:true,idx:'SBF120',
  price:77.66,chg5:2.8,news5:'',dy_n:9,dy_med:0.71,div12:0.72,pe_lo:21.2,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:10.0,pfcf_h:21.8,pe_h:22.7,fcur:'EUR',fcfh:'564|790|468|476',nih:'475|406|310|610',revh:'7296|6951|6515|6712',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-2.6,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-8.0,cagr:2.8,alarm:'',qwhy:'ROIC 6.7, croissance CA 2.8%',qok:false,nde:2.37,fcfc:128.0,roicx:15.7,chg:0.7,mkt:'8.2Md€',b52h:79.22,b52l:54.86,beta:0.81,
- pe:26.97,pb:3.72,ev_ebitda:11.24,ps:1.8,pfcf:16,ev_ebit:21.3,
+ pe:26.97,pb:3.72,ev_ebitda:11.3,ps:1.8,pfcf:16,ev_ebit:21.4,
  roe:11.3,roic:6.7,roa:6.0,debt:0.96,de:0.96,ic:5.2,cr:1.13,qr:1.0,
  yield:0.9,epsg:28.4,revg:2.5,margin:7.2,gm:23.1,om:12,fcf:4.2,
  capex:5.5,capr:11.4,capda:1.33,
@@ -886,7 +886,7 @@ const S=[
 
 {ticker:'IPSOS',x2:'',x2s:'',name:'Ipsos',sector:'Études de marché',cap:'mid',srd:true,idx:'SBF120',
  price:35.82,chg5:2.1,news5:'',dy_n:10,dy_med:2.79,div12:2.0,pe_lo:7.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:6.2,pfcf_h:8.4,pe_h:10.8,fcur:'EUR',fcfh:'219|268|226|270',nih:'187|205|160|215',revh:'2525|2441|2390|2405',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-1.5,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-4.6,cagr:1.6,alarm:'Piotroski 4/9',qwhy:'ROIC 11.9, croissance CA 1.6%',qok:false,nde:0.9,fcfc:128.0,roicx:62.7,chg:-0.78,mkt:'2.1Md€',b52h:42.98,b52l:29.1,beta:0.65,
- pe:8.96,pb:0.98,ev_ebitda:5.9,ps:0.58,pfcf:9,ev_ebit:6.6,
+ pe:8.96,pb:0.98,ev_ebitda:5.86,ps:0.58,pfcf:9,ev_ebit:6.5,
  roe:11.9,roic:11.9,roa:6.5,debt:0.42,de:0.42,ic:10.0,cr:1.44,qr:1.2,
  yield:5.5,epsg:-22.0,revg:1.3,margin:6.9,gm:67.5,om:13,fcf:14.7,
  capex:1.2,capr:3.3,capda:0.82,
@@ -905,7 +905,7 @@ const S=[
 
 {ticker:'ABCA',x2:'',x2s:'',name:'ABC Arbitrage',sector:'Arbitrage',cap:'small',srd:false,idx:'SBF120',
  price:5.69,chg5:-2.4,news5:'',dy_n:10,dy_med:5.94,div12:0.24,pe_lo:10.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:null,pfcf_h:14.2,pe_h:12.9,fcur:'EUR',unc:'',vopt:null,vpess:null,nregu:null,regn:null,regu:null,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:null,gimp:null,knife:false,neglect:false,vmeth:'per',nig:null,cagr:null,alarm:'',qwhy:'holding (grille dediee a venir)',qok:false,nde:null,fcfc:null,roicx:null,chg:0.18,mkt:'0.22Md€',b52h:5.92,b52l:4.87,beta:0.28,
- pe:10.35,pb:1.79,ev_ebitda:4.59,ps:4.55,pfcf:8,ev_ebit:null,
+ pe:10.35,pb:1.79,ev_ebitda:4.61,ps:4.55,pfcf:8,ev_ebit:null,
  roe:18.4,roic:null,roa:10.3,debt:0.01,de:0.01,ic:null,cr:10.66,qr:4.8,
  yield:6.0,epsg:44.5,revg:39.8,margin:44.8,gm:48.0,om:36,fcf:6.7,
  capex:0.1,capr:null,capda:null,
@@ -962,7 +962,7 @@ const S=[
 
 {ticker:'LNA',x2:'',x2s:'',name:'LNA Santé',sector:'Santé services',cap:'small',srd:false,idx:'SBF120',
  price:23.7,chg5:0.9,news5:'',dy_n:10,dy_med:0.89,div12:0.95,pe_lo:8.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:7.0,pfcf_h:2.7,pe_h:10.8,fcur:'EUR',fcfh:'86|98|85|90',nih:'24|22|23|26',revh:'913|807|736|728',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:2.8,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-2.2,cagr:7.8,alarm:'',qwhy:'ROIC hors EA 4.4, ROIC 3.8, dette/EBITDA 5.28',qok:false,nde:5.28,fcfc:377.0,roicx:4.4,chg:-0.42,mkt:'0.32Md€',b52h:36.5,b52l:22.0,beta:0.52,
- pe:9.6,pb:0.73,ev_ebitda:11.13,ps:0.26,pfcf:11,ev_ebit:15.9,
+ pe:9.6,pb:0.73,ev_ebitda:11.12,ps:0.26,pfcf:11,ev_ebit:15.9,
  roe:8.0,roic:3.8,roa:2.9,debt:2.74,de:2.74,ic:2.3,cr:0.87,qr:1.0,
  yield:4.0,epsg:10.2,revg:8.4,margin:2.7,gm:27.7,om:7,fcf:35.4,
  capex:2.2,capr:1.4,capda:0.16,
@@ -1035,7 +1035,7 @@ const S=[
 
 {ticker:'BN',x2:'',x2s:'',name:'Danone',sector:'Agroalimentaire',cap:'large',srd:true,idx:'CAC40',
  price:59.3,chg5:2.7,news5:'',dy_n:10,dy_med:3.16,div12:2.25,pe_lo:20.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:12.4,pfcf_h:14.8,pe_h:29.8,fcur:'EUR',fcfh:'2724|2908|2595|2091',nih:'1825|2021|881|959',revh:'27283|27376|27619|27661',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:11.7,gimp:null,knife:false,neglect:false,vmeth:'per',nig:23.9,cagr:-0.5,alarm:'',qwhy:'ROIC hors EA 14.4, ROIC 5.9, dette/EBITDA 2.83, croissance CA -0.5%',qok:false,nde:2.83,fcfc:181.0,roicx:14.4,chg:1.02,mkt:'40Md€',b52h:80.14,b52l:57.26,beta:0.2,
- pe:19.64,pb:2.17,ev_ebitda:10.4,ps:1.39,pfcf:14,ev_ebit:15.5,
+ pe:19.64,pb:2.17,ev_ebitda:10.49,ps:1.39,pfcf:14,ev_ebit:15.6,
  roe:12.2,roic:5.9,roa:5.0,debt:0.99,de:0.99,ic:6.1,cr:0.97,qr:0.8,
  yield:3.8,epsg:12.4,revg:1.4,margin:7.1,gm:50.0,om:12,fcf:7.1,
  capex:2.8,capr:3.9,capda:0.78,dcfb:48.76,dcfm:57.37,dcfu:68.84,
@@ -1087,9 +1087,9 @@ const S=[
 
 {ticker:'ATO',x2:'',x2s:'',name:'Atos',sector:'IT',cap:'mid',srd:true,idx:'CAC40',
  price:22.0,chg5:1.9,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:1,eveb_h:1.2,pfcf_h:10.2,pe_h:1.7,fcur:'EUR',fcfh:'69|-1846|-618|176',nih:'-1404|248|-3441|-1012',revh:'8001|9577|10693|11270',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-10.8,gimp:null,knife:true,neglect:true,vmeth:'per',nig:null,cagr:-10.8,alarm:'Piotroski 4/9',qwhy:'ROIC hors EA -107.6, ROIC -40.0, cash None%, dette/EBITDA None, perte exploitation, croissance CA -10.8%',qok:false,nde:null,fcfc:null,roicx:-107.6,chg:3.97,mkt:'0.38Md€',b52h:61.95,b52l:19.59,beta:1.62,
- pe:5.67,pb:-0.34,ev_ebitda:4.91,ps:0.06,pfcf:999,ev_ebit:null,
+ pe:5.67,pb:-0.34,ev_ebitda:4.94,ps:0.06,pfcf:999,ev_ebit:null,
  roe:-45,roic:-40.0,roa:2.3,debt:4.2,de:null,ic:-1.8,cr:1.18,qr:0.5,
- yield:0.0,epsg:0,revg:-15.2,margin:-16.4,gm:5.2,om:-8,fcf:16.2,
+ yield:0.0,epsg:0,revg:-15.2,margin:-16.4,gm:5.2,om:-8,fcf:15.9,
  capex:0.8,capr:2.1,capda:0.36,dcfb:41.14,dcfm:48.4,dcfu:58.08,
  pio:4,alt:0.53,rsi:39.2,mm50:26.14,mm200:36.35,
  el:36.78,eh:43.75,stop:32.37,o1:50.82,o2:58.08,cb:2,ch:3,cs:10,tp:34.98,score:'C',rec:'avoid',zone:false,
@@ -1105,7 +1105,7 @@ const S=[
 // ═══ SBF120 & SRD supplémentaires ═══
 {ticker:'DBG',x2:'',x2s:'',name:'Derichebourg',sector:'Services environnementaux',cap:'mid',srd:true,idx:'SBF120',
  price:7.78,chg5:-2.3,news5:'',dy_n:9,dy_med:3.37,div12:0.13,pe_lo:2.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:4.2,pfcf_h:5.7,pe_h:6.5,fcur:'EUR',fcfh:'129|182|70|279',nih:'122|75|137|238',revh:'3345|3616|3630|4359',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-14.1,gimp:null,knife:false,neglect:true,vmeth:'per',nig:-19.9,cagr:-8.4,alarm:'',qwhy:'ROIC hors EA 11.0, ROIC 9.2, croissance CA -8.4%',qok:false,nde:2.15,fcfc:116.0,roicx:11.0,chg:-1.08,mkt:'1.1Md€',b52h:11.0,b52l:5.62,beta:1.8,
- pe:9.37,pb:1.05,ev_ebitda:7.96,ps:0.36,pfcf:6,ev_ebit:12.2,
+ pe:9.37,pb:1.05,ev_ebitda:7.91,ps:0.35,pfcf:6,ev_ebit:12.1,
  roe:11.9,roic:9.2,roa:4.2,debt:0.73,de:0.73,ic:4.2,cr:1.09,qr:1.0,
  yield:1.6,epsg:15.9,revg:7.8,margin:3.8,gm:25.2,om:7,fcf:10.5,
  capex:1.2,capr:3.0,capda:0.65,dcfb:8.59,dcfm:10.11,dcfu:12.13,
@@ -1122,7 +1122,7 @@ const S=[
 
 {ticker:'LPE',x2:'',x2s:'',name:'Laurent-Perrier',sector:'Champagne',cap:'small',srd:false,idx:'SBF120',
  price:77.2,chg5:4.0,news5:'',dy_n:10,dy_med:1.45,div12:2.1,pe_lo:10.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:9.3,pfcf_h:15.8,pe_h:11.6,fcur:'EUR',fcfh:'26|-13|-2|57',nih:'50|47|64|58',revh:'304|294|313|308',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-2.9,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-5.4,cagr:-0.4,alarm:'',qwhy:'ROIC hors EA 8.0, ROIC 7.7, cash 31.0%, croissance CA -0.4%',qok:false,nde:2.48,fcfc:31.0,roicx:8.0,chg:0.78,mkt:'0.45Md€',b52h:99.0,b52l:73.6,beta:0.16,
- pe:9.16,pb:0.68,ev_ebitda:7.83,ps:1.46,pfcf:14,ev_ebit:8.6,
+ pe:9.16,pb:0.68,ev_ebitda:7.87,ps:1.46,pfcf:14,ev_ebit:8.7,
  roe:7.7,roic:7.7,roa:4.4,debt:0.38,de:0.38,ic:8.2,cr:6.96,qr:1.8,
  yield:2.7,epsg:20.6,revg:4.5,margin:16.3,gm:56.6,om:19,fcf:5.8,
  capex:1.2,capr:3.5,capda:1.81,dcfb:87.51,dcfm:102.95,dcfu:123.54,
@@ -1139,7 +1139,7 @@ const S=[
 
 {ticker:'ASML',x2:'',x2s:'',name:'ASML',sector:'Semi-conducteurs EUV',cap:'large',srd:false,idx:'AEX',
  price:1575.8,chg5:-4.9,news5:'',dy_n:10,dy_med:0.91,div12:7.78,pe_lo:34.2,gmod:18.5,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:15.0,irrn:6.5,irr:6.6,dq:'',vmult:1182.79,hn:4,eveb_h:27.1,pfcf_h:32.1,pe_h:35.5,fcur:'EUR',fcfh:'11027|9083|3247|7168',nih:'9609|7572|7839|5624',revh:'32667|28263|27558|21173',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:1099.72,vpess:472.74,nregu:2,regn:3,regu:3,place:'Amsterdam',mthreat:'geopolitique (restrictions Chine), cycles des semi-conducteurs',mtype:'monopole mondial des machines EUV, indispensables aux puces avancees',mscore:5,near:false,gsrc:'communique 2026-10-06',gused:25.0,gimp:28.1,knife:false,neglect:false,vmeth:'qarp',nig:19.5,cagr:15.6,alarm:'',qwhy:'',qok:true,nde:-0.68,fcfc:100.0,roicx:137.2,chg:-1.61,mkt:'246Md€',b52h:1741.0,b52l:822.2,beta:1.3,
- pe:59.67,pb:27.73,ev_ebitda:45.19,ps:17.13,pfcf:22,ev_ebit:52.9,
+ pe:59.67,pb:27.73,ev_ebitda:44.46,ps:17.13,pfcf:22,ev_ebit:52.0,
  roe:53.9,roic:78.7,roa:16.5,debt:0.09,de:0.09,ic:97.4,cr:1.33,qr:1.5,
  yield:0.5,epsg:28.5,revg:21.3,margin:30.1,gm:52.7,om:32,fcf:1.8,
  capex:2.5,capr:5.0,capda:1.59,dcfb:873.46,dcfm:1027.6,dcfu:1233.12,
@@ -1156,12 +1156,12 @@ const S=[
 
 {ticker:'PRX',x2:'',x2s:'',name:'Prosus',sector:'Tech investissement',cap:'large',srd:false,idx:'AEX',
  price:35.87,chg5:1.7,news5:'',dy_n:6,dy_med:0.24,div12:0.2,pe_lo:7.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:10.2,pfcf_h:70.4,pe_h:10.2,fcur:'USD',fcfh:'1401|1814|978|-383',nih:'11638|12367|6606|10112',revh:'9705|6170|5467|4947',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:3,place:'Amsterdam',near:false,gsrc:'yahoo (4 ans publies)',gused:15.0,gimp:null,knife:true,neglect:false,vmeth:'per',nig:4.8,cagr:25.2,alarm:'',qwhy:'cash 9.0%, perte exploitation',qok:false,nde:0.84,fcfc:9.0,roicx:20.6,chg:-0.36,mkt:'68Md€',b52h:63.94,b52l:34.48,beta:0.78,
- pe:7.95,pb:1.66,ev_ebitda:291.76,ps:7.72,pfcf:15,ev_ebit:14.7,
+ pe:7.95,pb:1.61,ev_ebitda:291.76,ps:7.72,pfcf:15,ev_ebit:14.7,
  roe:22.2,roic:19.5,roa:0.3,debt:0.33,de:0.33,ic:19.3,cr:2.43,qr:2.2,
  yield:0.8,epsg:15,revg:12,margin:119.9,gm:46.4,om:18,fcf:1.9,
- capex:0.8,capr:2.1,capda:0.4,dcfb:56.22,dcfm:66.14,dcfu:79.37,
+ capex:0.8,capr:2.1,capda:0.4,dcfb:56.98,dcfm:67.03,dcfu:80.44,
  pio:5,alt:4.22,rsi:48.9,mm50:37.18,mm200:41.3,
- el:50.27,eh:59.79,stop:44.24,o1:69.45,o2:79.37,cb:10,ch:5,cs:2,tp:60.83,score:'C',rec:'avoid',zone:false,
+ el:50.94,eh:60.6,stop:44.83,o1:70.38,o2:80.44,cb:10,ch:5,cs:2,tp:60.83,score:'C',rec:'avoid',zone:false,
  moat:[['Tencent 25% participation','fort'],['iFood Brésil','fort']],
  cats:[{t:'Buyback Tencent stake',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Direction Naspers','45M€','Jan 2026']],
@@ -1206,13 +1206,13 @@ const S=[
  contra:"Tendance santé pèse sur la bière. Matières premières volatiles. Dette moderee."},
 
 {ticker:'NOVO',x2:'',x2s:'',name:'Novo Nordisk',sector:'Pharma diabète/obésité',cap:'large',srd:false,idx:'CSE',
- price:34.3,chg5:3.9,news5:'',dy_n:10,dy_med:2.21,div12:1.57,pe_lo:14.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:24.3,pfcf_h:42.6,pe_h:32.6,fcur:'DKK',fcfh:'28989|69659|70012|64134',nih:'102434|100988|83683|55525',revh:'309064|290403|232261|176954',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Copenhague',near:false,gsrc:'yahoo (4 ans publies)',gused:21.5,gimp:null,knife:true,neglect:false,vmeth:'per',nig:22.6,cagr:20.4,alarm:'',qwhy:'cash 68.0%',qok:false,nde:0.7,fcfc:68.0,roicx:54.6,chg:0.45,mkt:'280Md€',b52h:54.84,b52l:30.0,beta:0.38,
+ price:34.3,chg5:3.9,news5:'',dy_n:10,dy_med:2.21,div12:1.57,pe_lo:14.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:24.3,pfcf_h:42.6,pe_h:32.6,fcur:'DKK',fcfh:'28989|69659|70012|64134',nih:'102434|100988|83683|55525',revh:'309064|290403|232261|176954',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Copenhague',near:false,gsrc:'yahoo (4 ans publies)',gused:21.5,gimp:null,knife:true,neglect:false,vmeth:'per',nig:22.6,cagr:20.4,alarm:'',qwhy:'cash 68.0%',qok:false,nde:0.7,fcfc:68.0,roicx:54.6,chg:0.45,mkt:'280Md€',b52h:54.85,b52l:30.0,beta:0.38,
  pe:9.79,pb:5.13,ev_ebitda:7.06,ps:3.44,pfcf:15,ev_ebit:9.1,
  roe:59.8,roic:51.1,roa:18.7,debt:0.63,de:0.63,ic:32.0,cr:0.87,qr:2.5,
  yield:4.6,epsg:-20.6,revg:2.1,margin:35.3,gm:82.0,om:38,fcf:2.6,
- capex:3.5,capr:29.2,capda:6.14,dcfb:37.47,dcfm:44.09,dcfu:52.9,
- pio:5,alt:3.27,rsi:41.9,mm50:37.52,mm200:38.45,
- el:30.86,eh:38.79,stop:27.16,o1:46.29,o2:52.9,cb:18,ch:6,cs:2,tp:41.0,score:'C',rec:'avoid',zone:false,
+ capex:3.5,capr:29.2,capda:6.14,dcfb:37.48,dcfm:44.09,dcfu:52.91,
+ pio:5,alt:3.27,rsi:41.9,mm50:37.53,mm200:38.46,
+ el:30.86,eh:38.8,stop:27.16,o1:46.29,o2:52.91,cb:18,ch:6,cs:2,tp:41.01,score:'C',rec:'avoid',zone:false,
  moat:[['Ozempic/Wegovy monopole obésité','fort'],['Pipeline GLP-1 inégalable','fort']],
  cats:[{t:'Wegovy US volume record',w:'T2 2026',c:'var(--gn)'},
        {t:'CagriSema Phase 3',w:'2026',c:'var(--gd)'}],
@@ -1224,13 +1224,13 @@ const S=[
  contra:"Concurrence Eli Lilly (Zepbound) s'intensifie. Problèmes de production capacité. Remboursements assurances maladie sous pression. Valorisation encore élevée malgré la baisse."},
 
 {ticker:'RACE',x2:'',x2s:'',name:'Ferrari',sector:'Luxe automobile',cap:'large',srd:false,idx:'MIL',
- price:351.0,chg5:2.9,news5:'',dy_n:10,dy_med:0.71,div12:3.615,pe_lo:35.1,gmod:6.6,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.0,irrn:5.7,irr:6.0,dq:'',vmult:251.23,hn:4,eveb_h:23.1,pfcf_h:62.9,pe_h:41.5,fcur:'EUR',fcfh:'1406|938|848|599',nih:'1597|1522|1252|933',revh:'7146|6677|5970|5095',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:225.03,vpess:147.74,nregu:3,regn:3,regu:3,place:'Milan',mthreat:'succession du modele thermique, dependance aux plus riches',mtype:'marque iconique, rarete organisee, listes d attente',mscore:5,near:true,gsrc:'communique 2026-10-12',gused:6.6,gimp:22.4,knife:false,neglect:false,vmeth:'qarp',nig:19.6,cagr:11.9,alarm:'',qwhy:'cash 71.0%',qok:false,nde:0.51,fcfc:71.0,roicx:35.5,chg:0.91,mkt:'65Md€',b52h:377.5,b52l:269.0,beta:0.61,
+ price:351.0,chg5:2.9,news5:'',dy_n:10,dy_med:0.71,div12:3.615,pe_lo:35.1,gmod:6.6,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.0,irrn:5.7,irr:6.0,dq:'',vmult:251.23,hn:4,eveb_h:23.1,pfcf_h:62.9,pe_h:41.5,fcur:'EUR',fcfh:'1406|938|848|599',nih:'1597|1522|1252|933',revh:'7146|6677|5970|5095',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:224.36,vpess:147.74,nregu:3,regn:3,regu:3,place:'Milan',mthreat:'succession du modele thermique, dependance aux plus riches',mtype:'marque iconique, rarete organisee, listes d attente',mscore:5,near:true,gsrc:'communique 2026-10-12',gused:6.6,gimp:22.5,knife:false,neglect:false,vmeth:'qarp',nig:19.6,cagr:11.9,alarm:'',qwhy:'cash 71.0%',qok:false,nde:0.51,fcfc:71.0,roicx:35.5,chg:0.91,mkt:'65Md€',b52h:377.5,b52l:269.0,beta:0.61,
  pe:38.03,pb:16.88,ev_ebitda:25.47,ps:8.37,pfcf:38,ev_ebit:29.9,
  roe:45.4,roic:29.6,roa:13.6,debt:0.86,de:0.86,ic:51.1,cr:2.43,qr:1.8,
  yield:1.0,epsg:10.1,revg:8.4,margin:22.2,gm:51.6,om:25,fcf:2.3,
  capex:2.8,capr:13.2,capda:1.42,dcfb:168.63,dcfm:198.39,dcfu:238.07,
  pio:9,alt:8.79,rsi:50.6,mm50:354.68,mm200:316.07,
- el:148.79,eh:168.63,stop:132.97,o1:225.03,o2:247.53,cb:16,ch:5,cs:1,tp:387.86,score:'C',rec:'avoid',zone:false,
+ el:148.79,eh:168.63,stop:132.97,o1:224.36,o2:246.8,cb:16,ch:5,cs:1,tp:387.86,score:'C',rec:'avoid',zone:false,
  moat:[['Marque la plus exclusive voiture','fort'],['Liste attente 2+ ans','fort'],['Pricing power illimité','fort']],
  cats:[{t:'Ferrari hybride Purosangue',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Famille Agnelli','85M€','Jan 2026']],
@@ -1242,12 +1242,12 @@ const S=[
 
 {ticker:'SAP',x2:'',x2s:'',name:'SAP',sector:'ERP cloud',cap:'large',srd:false,idx:'XETRA',
  price:194.46,chg5:5.1,news5:'',dy_n:10,dy_med:1.4,div12:2.5,pe_lo:26.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:20.9,pfcf_h:28.9,pe_h:41.1,fcur:'EUR',fcfh:'8417|4410|5461|4770',nih:'7161|3124|6139|2284',revh:'36800|34176|31207|29519',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Francfort',near:false,gsrc:'yahoo (4 ans publies)',gused:27.0,gimp:null,knife:false,neglect:false,vmeth:'per',nig:46.4,cagr:7.6,alarm:'',qwhy:'ROIC 8.4',qok:false,nde:-0.06,fcfc:123.0,roicx:28.6,chg:1.57,mkt:'285Md€',b52h:244.3,b52l:127.5,beta:0.76,
- pe:28.51,pb:5.02,ev_ebitda:18.69,ps:5.88,pfcf:28,ev_ebit:20.4,
+ pe:28.51,pb:5.02,ev_ebitda:18.98,ps:5.88,pfcf:28,ev_ebit:20.7,
  roe:18.3,roic:8.4,roa:9.5,debt:0.22,de:0.22,ic:21.9,cr:1.15,qr:1.5,
  yield:1.3,epsg:30.6,revg:9.4,margin:20.4,gm:73.7,om:20,fcf:3.8,
- capex:2.2,capr:2.0,capda:0.56,dcfb:106.08,dcfm:124.8,dcfu:149.76,
+ capex:2.2,capr:2.0,capda:0.56,dcfb:106.03,dcfm:124.74,dcfu:149.69,
  pio:8,alt:7.34,rsi:63.8,mm50:183.46,mm200:163.96,
- el:94.85,eh:112.82,stop:83.47,o1:131.04,o2:149.76,cb:18,ch:5,cs:1,tp:210.39,score:'C',rec:'avoid',zone:false,
+ el:94.8,eh:112.76,stop:83.42,o1:130.98,o2:149.69,cb:18,ch:5,cs:1,tp:210.39,score:'C',rec:'avoid',zone:false,
  moat:[['ERP monopole entreprises mondiales','fort'],['Switching costs insupportables','fort']],
  cats:[{t:'Cloud migration 80% revenues 2026',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','CEO Klein','15M€','Jan 2026']],
@@ -1276,11 +1276,11 @@ const S=[
 
 {ticker:'ALV',x2:'',x2s:'',name:'Allianz',sector:'Assurance mondiale',cap:'large',srd:false,idx:'XETRA',
  price:420.5,chg5:0.3,news5:'',dy_n:10,dy_med:4.73,div12:17.1,pe_lo:11.1,gmod:null,nih:'10603|9788|8399|6302',yrs:'2025|2024|2023|2022',icr:null,ltv:null,bvg:6.8,roemin:11.6,roem:15.3,grid:'banque',wht:26.375,irrn:6.2,irr:7.3,dq:'',vmult:null,hn:4,eveb_h:null,pfcf_h:4.5,pe_h:12.1,fcur:'EUR',unc:'elevee',vopt:318.11,vpess:214.15,nregu:3,regn:3,regu:3,place:'Francfort',near:false,gsrc:'yahoo (4 ans publies)',gused:18.9,gimp:null,knife:false,neglect:false,vmeth:'pb',nig:18.9,cagr:null,alarm:'',qwhy:'',qok:true,nde:null,fcfc:null,roicx:null,chg:0.84,mkt:'142Md€',b52h:454.6,b52l:338.8,beta:0.69,
- pe:13.8,pb:2.53,ev_ebitda:2.81,ps:1.34,pfcf:999,ev_ebit:3.7,
+ pe:13.8,pb:2.53,ev_ebitda:2.81,ps:null,pfcf:999,ev_ebit:3.7,
  roe:19.6,roic:null,roa:1.2,debt:0.51,de:0.51,ic:21.4,cr:1.51,qr:999,
- yield:4.1,epsg:-8.0,revg:12.1,margin:9.9,gm:25.0,om:999,fcf:19.4,
+ yield:4.1,epsg:-8.0,revg:12.1,margin:9.9,gm:25.0,om:999,fcf:null,
  capex:0.8,capr:1.6,capda:1.04,dcfb:270.07,dcfm:276.52,dcfu:381.28,
- pio:6,alt:0.34,rsi:44.2,mm50:436.27,mm200:390.59,
+ pio:6,alt:0.24,rsi:44.2,mm50:436.27,mm200:390.59,
  el:193.57,eh:221.22,stop:192.73,o1:318.11,o2:349.92,cb:16,ch:5,cs:1,tp:447.27,score:'D',rec:'hold',zone:false,
  moat:[['PIMCO asset management','fort'],['Assurance monde top 3','fort']],
  cats:[{t:'PIMCO obligations record',w:'2026',c:'var(--gn)'}],
@@ -1293,12 +1293,12 @@ const S=[
 // ══ SESSION 2 — SBF120 + SRD ══
 ,{ticker:'BIOM',x2:'',x2s:'',name:'bioMérieux',sector:'Diagnostics médicaux',cap:'mid',srd:true,idx:'SBF120',
  price:84.25,chg5:7.8,news5:'',dy_n:10,dy_med:0.65,div12:0.98,pe_lo:25.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:14.5,pfcf_h:49.4,pe_h:30.2,fcur:'EUR',fcfh:'453|322|107|188',nih:'398|432|358|452',revh:'4070|3980|3675|3589',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:0.0,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-4.2,cagr:4.3,alarm:'',qwhy:'ROIC hors EA 12.5, ROIC 10.3, cash 65.0%',qok:false,nde:-0.13,fcfc:65.0,roicx:12.5,chg:1.26,mkt:'7.4Md€',b52h:116.1,b52l:65.6,beta:0.55,
- pe:21.6,pb:2.31,ev_ebitda:9.1,ps:2.49,pfcf:22,ev_ebit:17.7,
+ pe:21.6,pb:2.31,ev_ebitda:9.21,ps:2.48,pfcf:22,ev_ebit:17.9,
  roe:11.2,roic:10.3,roa:7.2,debt:0.1,de:0.1,ic:34.3,cr:2.3,qr:1.8,
  yield:1.2,epsg:41.9,revg:-3.9,margin:11.6,gm:56.1,om:16,fcf:4.6,
- capex:3.5,capr:8.2,capda:1.09,dcfb:61.97,dcfm:72.91,dcfu:87.49,
- pio:7,alt:5.53,rsi:75.0,mm50:74.93,mm200:81.51,
- el:51.04,eh:64.16,stop:44.92,o1:76.56,o2:87.49,cb:12,ch:6,cs:1,tp:79.9,score:'C',rec:'avoid',zone:false,
+ capex:3.5,capr:8.2,capda:1.09,dcfb:61.8,dcfm:72.71,dcfu:87.25,
+ pio:7,alt:5.52,rsi:75.0,mm50:74.93,mm200:81.51,
+ el:50.9,eh:63.98,stop:44.79,o1:76.35,o2:87.25,cb:12,ch:6,cs:1,tp:79.9,score:'C',rec:'avoid',zone:false,
  moat:[['Leader mondial diagnostics in vitro','fort'],['Accréditations réglementaires','fort']],
  cats:[{t:'Biosécurité alimentaire en hausse',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Famille Mérieux','18M€','Jan 2026']],
@@ -1310,10 +1310,10 @@ const S=[
 
 {ticker:'KLPI',x2:'',x2s:'',name:'Klépierre',sector:'Centres commerciaux',cap:'large',srd:true,idx:'SBF120',
  price:34.98,chg5:1.6,news5:'',dy_n:9,dy_med:6.81,div12:1.9,pe_lo:7.3,gmod:null,icr:3.6,ltv:34.2,bvg:null,roemin:null,roem:null,grid:'fonciere',wht:0.0,irrn:7.4,irr:7.4,dq:'',vmult:null,hn:4,eveb_h:15.3,pfcf_h:10.0,pe_h:11.1,fcur:'EUR',fcfh:'819|775|742|734',nih:'1299|1098|193|415',revh:'1567|1504|1420|1429',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:36.33,vpess:26.42,nregu:null,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:3.1,gimp:null,knife:false,neglect:false,vmeth:'pb',nig:null,cagr:3.1,alarm:'',qwhy:'',qok:true,nde:null,fcfc:null,roicx:null,chg:-0.57,mkt:'6.8Md€',b52h:40.38,b52l:30.86,beta:0.9,
- pe:7.52,pb:1.06,ev_ebitda:17.3,ps:5.73,pfcf:8,ev_ebit:10.5,
+ pe:7.33,pb:1.06,ev_ebitda:17.3,ps:5.73,pfcf:8,ev_ebit:10.5,
  roe:13.7,roic:null,roa:3.2,debt:0.69,de:0.69,ic:6.8,cr:0.3,qr:0.6,
  yield:5.4,epsg:11.2,revg:0.7,margin:78.1,gm:77.9,om:48,fcf:8.2,
- capex:0.8,capr:13.1,capda:9.39,dcfb:33.57,dcfm:33.03,dcfu:47.4,
+ capex:0.8,capr:13.1,capda:9.39,dcfb:33.49,dcfm:33.03,dcfu:47.28,
  pio:6,alt:0.94,rsi:38.3,mm50:37.33,mm200:34.5,
  el:23.12,eh:26.42,stop:23.78,o1:36.33,o2:39.96,cb:7,ch:5,cs:3,tp:38.14,score:'C',rec:'hold',zone:false,
  moat:[['Centres premium Europe','modere'],['Simon Property 22%','modere']],
@@ -1344,9 +1344,9 @@ const S=[
 
 {ticker:'EIFFAGE',x2:'',x2s:'',name:'Eiffage',sector:'Construction & Concessions',cap:'large',srd:true,idx:'CAC40',
  price:99.72,chg5:-0.6,news5:'',dy_n:9,dy_med:3.42,div12:4.8,pe_lo:7.4,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.1,pfcf_h:4.1,pe_h:9.4,fcur:'EUR',fcfh:'2303|2774|2456|1929',nih:'1022|1039|1013|896',revh:'26134|24037|22389|20884',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:6.2,gimp:null,knife:false,neglect:true,vmeth:'per',nig:4.5,cagr:7.8,alarm:'',qwhy:'ROIC hors EA 13.6, ROIC 10.2',qok:false,nde:2.31,fcfc:238.0,roicx:13.6,chg:1.01,mkt:'8.5Md€',b52h:147.5,b52l:97.36,beta:0.73,
- pe:9.08,pb:1.27,ev_ebitda:5.62,ps:0.37,pfcf:10,ev_ebit:8.1,
+ pe:9.08,pb:1.27,ev_ebitda:5.64,ps:0.37,pfcf:10,ev_ebit:8.1,
  roe:17.7,roic:10.2,roa:4.0,debt:1.72,de:1.72,ic:6.4,cr:0.93,qr:0.9,
- yield:4.9,epsg:9.6,revg:1.1,margin:4.0,gm:83.9,om:6,fcf:23.6,
+ yield:4.9,epsg:9.6,revg:1.1,margin:4.0,gm:83.9,om:6,fcf:23.8,
  capex:2.5,capr:4.5,capda:0.73,dcfb:123.33,dcfm:145.09,dcfu:174.11,
  pio:7,alt:1.05,rsi:33.7,mm50:110.61,mm200:122.93,
  el:121.88,eh:135.8,stop:107.25,o1:152.34,o2:174.11,cb:10,ch:5,cs:2,tp:156.35,score:'C',rec:'avoid',zone:false,
@@ -1361,7 +1361,7 @@ const S=[
 
 {ticker:'ALTAREA',x2:'',x2s:'',name:'Altarea',sector:'Immobilier mixte',cap:'mid',srd:true,idx:'SBF120',
  price:72.2,chg5:-5.5,news5:'',dy_n:10,dy_med:6.46,div12:8.0,pe_lo:null,gmod:null,icr:2.4,ltv:27.6,bvg:null,roemin:null,roem:null,grid:'fonciere',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 48.1 contre 7.8 attendu)',vmult:null,hn:3,eveb_h:19.0,pfcf_h:9.5,pe_h:7.8,fcur:'EUR',fcfh:'26|400|318|187',nih:'8|6|-473|327',revh:'2019|2710|2650|2959',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:null,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-12.0,gimp:null,knife:true,neglect:true,vmeth:'per',nig:null,cagr:-12.0,alarm:'',qwhy:'couverture des interets 2.4, loyers en baisse -12.0%, perte exploitation',qok:false,nde:null,fcfc:null,roicx:null,chg:-0.55,mkt:'1.5Md€',b52h:131.4,b52l:72.0,beta:0.81,
- pe:48.13,pb:1.12,ev_ebitda:28.19,ps:0.93,pfcf:8,ev_ebit:40.7,
+ pe:48.13,pb:1.12,ev_ebitda:28.14,ps:0.93,pfcf:8,ev_ebit:40.6,
  roe:3.5,roic:null,roa:1.5,debt:0.93,de:0.93,ic:1.8,cr:1.06,qr:0.7,
  yield:11.0,epsg:267.6,revg:-9.3,margin:1.9,gm:25.9,om:10,fcf:1.5,
  capex:0.8,capr:5.4,capda:3.22,dcfb:121.38,dcfm:142.8,dcfu:171.36,
@@ -1446,7 +1446,7 @@ const S=[
 
 {ticker:'FORVIA',x2:'',x2s:'',name:'Forvia (Faurecia)',sector:'Équipementier auto',cap:'large',srd:true,idx:'CAC40',
  price:8.55,chg5:-2.1,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:1,eveb_h:5.2,pfcf_h:4.8,pe_h:18.1,fcur:'EUR',fcfh:'1220|966|431|373',nih:'-2091|-185|222|-382',revh:'21347|21879|27248|24574',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-4.6,gimp:null,knife:true,neglect:false,vmeth:'per',nig:null,cagr:-4.6,alarm:'',qwhy:'ROIC hors EA 1.3, ROIC 0.7, cash None%, dette/EBITDA 6.64, croissance CA -4.6%',qok:false,nde:6.64,fcfc:null,roicx:1.3,chg:1.04,mkt:'2.2Md€',b52h:15.03,b52l:8.42,beta:1.66,
- pe:3.71,pb:0.82,ev_ebitda:4.41,ps:0.08,pfcf:5,ev_ebit:null,
+ pe:3.71,pb:0.82,ev_ebitda:4.42,ps:0.08,pfcf:5,ev_ebit:null,
  roe:-25.7,roic:0.7,roa:2.5,debt:2.55,de:2.55,ic:-13.6,cr:0.95,qr:0.7,
  yield:0.0,epsg:12,revg:-4.3,margin:-8.7,gm:15.0,om:3,fcf:77.5,
  capex:2.5,capr:6.2,capda:0.81,dcfb:15.99,dcfm:18.81,dcfu:22.57,
@@ -1463,7 +1463,7 @@ const S=[
 
 {ticker:'PLUXEE',x2:'',x2s:'',name:'Pluxee',sector:'Avantages salariaux',cap:'mid',srd:true,idx:'SBF120',
  price:14.67,chg5:2.7,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,fcfh:'410|322|443|143',nih:'197|133|81|174',revh:'1287|1210|1052|842',yrs:'2025|2024|2023|2022',icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:2,eveb_h:6.2,pfcf_h:7.9,pe_h:18.2,fcur:'EUR',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'communique 2026-10-12',gused:0.0,gimp:null,knife:false,neglect:false,vmeth:'per',nig:4.2,cagr:15.2,alarm:'',qwhy:'croissance officielle 0.0%',qok:false,nde:-0.45,fcfc:225.0,roicx:23.7,chg:1.24,mkt:'3.2Md€',b52h:17.93,b52l:9.9,beta:0.77,
- pe:10.4,pb:5.25,ev_ebitda:1.87,ps:1.54,pfcf:14,ev_ebit:2.4,
+ pe:10.4,pb:5.25,ev_ebitda:1.92,ps:1.54,pfcf:14,ev_ebit:2.4,
  roe:50.7,roic:165.2,roa:3.5,debt:2.64,de:2.64,ic:7.6,cr:1.04,qr:1.0,
  yield:2.6,epsg:11.0,revg:3.2,margin:15.7,gm:37.4,om:20,fcf:20.3,
  capex:0.8,capr:7.6,capda:0.9,dcfb:11.5,dcfm:13.53,dcfu:16.24,
@@ -1514,7 +1514,7 @@ const S=[
 
 {ticker:'IMERYS',x2:'',x2s:'',name:'Imerys',sector:'Minéraux industriels',cap:'mid',srd:true,idx:'SBF120',
  price:22.02,chg5:-1.1,news5:'',dy_n:10,dy_med:4.37,div12:0.75,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:2,eveb_h:7.3,pfcf_h:19.2,pe_h:29.9,fcur:'EUR',fcfh:'112|114|221|46',nih:'-409|-95|51|237',revh:'3384|3605|3794|4282',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-7.5,gimp:null,knife:false,neglect:false,vmeth:'per',nig:null,cagr:-7.5,alarm:'',qwhy:'ROIC hors EA 1.6, ROIC 1.0, cash None%, dette/EBITDA 3.27, croissance CA -7.5%',qok:false,nde:3.27,fcfc:null,roicx:1.6,chg:-1.96,mkt:'2.2Md€',b52h:28.54,b52l:19.68,beta:0.77,
- pe:15.08,pb:0.7,ev_ebitda:8.35,ps:0.55,pfcf:9,ev_ebit:null,
+ pe:15.08,pb:0.7,ev_ebitda:8.26,ps:0.55,pfcf:9,ev_ebit:null,
  roe:-15.0,roic:1.0,roa:2.0,debt:0.88,de:0.88,ic:-4.8,cr:1.69,qr:1.1,
  yield:3.3,epsg:1.2,revg:2.2,margin:-12.8,gm:64.9,om:8,fcf:6.0,
  capex:2.5,capr:9.4,capda:0.37,dcfb:18.68,dcfm:21.98,dcfu:26.38,
@@ -1546,7 +1546,7 @@ const S=[
 
 {ticker:'STEF',x2:'',x2s:'',name:'STEF',sector:'Logistique frigorifique',cap:'small',srd:false,idx:'SRD',
  price:120.6,chg5:0.3,news5:'',dy_n:10,dy_med:2.85,div12:2.7,pe_lo:7.4,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.9,pfcf_h:38.8,pe_h:9.0,fcur:'EUR',fcfh:'-2|42|21|39',nih:'84|157|192|146',revh:'5119|4801|4442|4160',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-4.8,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-16.8,cagr:7.2,alarm:'',qwhy:'ROIC hors EA 8.6, ROIC 7.4, cash 17.0%, dette/EBITDA 3.46',qok:false,nde:3.46,fcfc:17.0,roicx:8.6,chg:-0.33,mkt:'0.68Md€',b52h:138.4,b52l:113.6,beta:0.76,
- pe:12.31,pb:1.14,ev_ebitda:7.82,ps:0.29,pfcf:8,ev_ebit:17.9,
+ pe:12.31,pb:1.16,ev_ebitda:7.8,ps:0.29,pfcf:8,ev_ebit:17.8,
  roe:9.6,roic:7.4,roa:3.2,debt:1.29,de:1.29,ic:4.1,cr:0.72,qr:1.1,
  yield:2.2,epsg:252.0,revg:8.6,margin:2.3,gm:10.8,om:5,fcf:-0.1,
  capex:2.5,capr:6.0,capda:1.15,dcfb:109.31,dcfm:128.6,dcfu:154.32,
@@ -1580,7 +1580,7 @@ const S=[
 
 {ticker:'VIRBAC',x2:'',x2s:'',name:'Virbac',sector:'Pharmacie vétérinaire',cap:'mid',srd:true,idx:'SBF120',
  price:317.0,chg5:3.3,news5:'',dy_n:5,dy_med:0.39,div12:1.45,pe_lo:15.8,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:10.6,pfcf_h:36.5,pe_h:19.0,fcur:'EUR',fcfh:'97|124|59|45',nih:'151|145|121|122',revh:'1465|1397|1247|1216',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:6.9,gimp:null,knife:false,neglect:false,vmeth:'per',nig:7.4,cagr:6.4,alarm:'',qwhy:'cash 60.0%',qok:false,nde:0.58,fcfc:60.0,roicx:17.7,chg:-0.16,mkt:'1.8Md€',b52h:389.5,b52l:297.0,beta:0.79,
- pe:17.06,pb:2.18,ev_ebitda:9.76,ps:1.78,pfcf:16,ev_ebit:12.6,
+ pe:17.06,pb:2.36,ev_ebitda:9.76,ps:1.78,pfcf:16,ev_ebit:12.6,
  roe:13.6,roic:13.9,roa:7.6,debt:0.3,de:0.3,ic:25.6,cr:1.77,qr:1.6,
  yield:0.5,epsg:5.9,revg:4.0,margin:10.4,gm:67.2,om:14,fcf:3.6,
  capex:2.5,capr:7.0,capda:1.69,dcfb:469.63,dcfm:552.51,dcfu:663.01,
@@ -1600,9 +1600,9 @@ const S=[
  pe:23.08,pb:3.8,ev_ebitda:17.63,ps:3.11,pfcf:14,ev_ebit:15.7,
  roe:17.1,roic:19.3,roa:10.1,debt:0.18,de:0.18,ic:29.6,cr:3.15,qr:2.8,
  yield:3.3,epsg:-10.6,revg:-7.3,margin:13.7,gm:65.8,om:18,fcf:4.1,
- capex:0.8,capr:4.5,capda:1.32,dcfb:19.31,dcfm:22.72,dcfu:27.26,
+ capex:0.8,capr:4.5,capda:1.32,dcfb:19.35,dcfm:22.76,dcfu:27.31,
  pio:6,alt:7.11,rsi:62.7,mm50:27.97,mm200:24.19,
- el:17.72,eh:20.72,stop:15.59,o1:23.86,o2:27.26,cb:8,ch:5,cs:1,tp:30.37,score:'C',rec:'avoid',zone:false,
+ el:17.75,eh:20.76,stop:15.62,o1:23.9,o2:27.31,cb:8,ch:5,cs:1,tp:30.37,score:'C',rec:'avoid',zone:false,
  moat:[['Licences DKNY/Montblanc/Coach','fort'],['Cash flows récurrents','fort']],
  cats:[{t:'Nouvelles licences luxe 2026',w:'2026',c:'var(--gn)'}],
  ins:[['Achat','Famille Bennaim','6.5M€','Jan 2026']],
@@ -1715,7 +1715,7 @@ const S=[
 
 {ticker:'WAGA',x2:'',x2s:'',name:'Waga Energy',sector:'Biogaz biomethane',cap:'small',srd:true,idx:'SRD',
  price:21.7,chg5:-3.8,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'croissance Yahoo 46.0 %/an : probablement faussee par une acquisition ou une cession',vmult:null,hn:0,eveb_h:null,pfcf_h:null,pe_h:null,fcur:'EUR',fcfh:'-115|-73|-66|-48',nih:'-30|-18|-16|-10',revh:'60|56|33|19',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:46.0,gimp:null,knife:false,neglect:false,vmeth:'per',nig:null,cagr:46.0,alarm:'Piotroski 3/9',qwhy:'ROIC hors EA -7.0, ROIC -6.9, cash None%, dette/EBITDA None, perte exploitation',qok:false,nde:null,fcfc:null,roicx:-7.0,chg:0.46,mkt:'0.52Md€',b52h:24.5,b52l:21.15,beta:0.45,
- pe:-24.94,pb:5.58,ev_ebitda:554.11,ps:8.67,pfcf:999,ev_ebit:null,
+ pe:-24.94,pb:5.21,ev_ebitda:554.11,ps:8.67,pfcf:999,ev_ebit:null,
  roe:-27.8,roic:-6.9,roa:-1.3,debt:2.6,de:2.6,ic:-2.0,cr:0.87,qr:1.5,
  yield:0.0,epsg:40,revg:25.4,margin:-47.1,gm:52.1,om:18,fcf:-19.8,
  capex:3.5,capr:198.6,capda:10.87,dcfb:14,dcfm:22,dcfu:35,
@@ -1732,7 +1732,7 @@ const S=[
 
 {ticker:'LDLC',x2:'',x2s:'',name:'LDLC Group',sector:'Ecommerce high-tech',cap:'small',srd:false,idx:'SRD',
  price:9.73,chg5:-14.0,news5:'Action Groupe LDLC / Cours ALLDL Bourse Euronext Paris|https://news.google.com/rss/articles/CBMiaEFVX3lxTE9xWFJiWmtTU2FhY19rVUxVSXNLYUhGSlRBNG94N0NQa2JMdmFiOXhNcmdITHZLaHBYMkRVMEV2U0tnTk5KN0JGbk1nVjVaOTFpSTBSVXMxQmdPZkFvNDl5TTQ3dGVfQzlC?oc=5|Zonebourse',dy_n:5,dy_med:3.49,div12:0.73,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:2,eveb_h:9.6,pfcf_h:6.3,pe_h:58.0,fcur:'EUR',fcfh:'-37|-0|15|-11',nih:'10|-11|-0|1',revh:'554|534|572|568',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:50.6,gimp:null,knife:true,neglect:true,vmeth:'per',nig:102.0,cagr:-0.8,alarm:'',qwhy:'ROIC hors EA 2.1, ROIC 1.4, cash -9411.0%, perte exploitation, croissance CA -0.8%',qok:false,nde:1.85,fcfc:-9411.0,roicx:2.1,chg:1.35,mkt:'0.22Md€',b52h:20.6,b52l:9.48,beta:0.81,
- pe:5.9,pb:0.59,ev_ebitda:4.37,ps:0.11,pfcf:8,ev_ebit:6.6,
+ pe:5.9,pb:0.59,ev_ebitda:4.41,ps:0.11,pfcf:8,ev_ebit:6.7,
  roe:10.7,roic:1.4,roa:3.7,debt:0.49,de:0.49,ic:10.5,cr:1.25,qr:1.0,
  yield:7.6,epsg:5,revg:-1.2,margin:1.8,gm:24.5,om:3,fcf:-61.6,
  capex:0.8,capr:0.8,capda:null,dcfb:12.16,dcfm:14.3,dcfu:17.16,
@@ -1749,7 +1749,7 @@ const S=[
 
 ,{ticker:'DBV',x2:'',x2s:'',name:'DBV Technologies',sector:'Biotech allergie',cap:'small',srd:false,idx:'SRD',
  price:1.7,chg5:-8.5,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:0,eveb_h:null,pfcf_h:null,pe_h:null,fcur:'USD',fcfh:'-122|-107|-80|-56',nih:'-147|-114|-73|-96',revh:'0|0|0|0',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:null,gimp:null,knife:true,neglect:true,vmeth:'per',nig:null,cagr:null,alarm:'Piotroski 4/9',qwhy:'ROIC hors EA -570.6, ROIC -564.7, cash None%, dette/EBITDA None, perte exploitation, croissance CA None%',qok:false,nde:null,fcfc:null,roicx:-570.6,chg:1.19,mkt:'0.28Md€',b52h:4.5,b52l:1.68,beta:-0.24,
- pe:-11.4,pb:3.51,ev_ebitda:-1.89,ps:105.95,pfcf:999,ev_ebit:null,
+ pe:-11.4,pb:3.53,ev_ebitda:-1.92,ps:105.95,pfcf:999,ev_ebit:null,
  roe:-142.7,roic:-564.7,roa:-60.6,debt:0.05,de:0.05,ic:null,cr:3.72,qr:4.2,
  yield:0.0,epsg:0,revg:-53.3,margin:-40,gm:100.0,om:-30,fcf:-22.8,
  capex:0.2,capr:null,capda:0.17,dcfb:4,dcfm:8,dcfu:15,
@@ -1800,7 +1800,7 @@ const S=[
 
 {ticker:'SYENSQO',x2:'',x2s:'',name:'Syensqo',sector:'Chimie haute performance',cap:'mid',srd:false,idx:'EURONEXT',
  price:79.45,chg5:0.3,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:1,eveb_h:8.2,pfcf_h:29.3,pe_h:51.4,fcur:'EUR',fcfh:'243|217|425|745',nih:'-62|-5|193|950',revh:'5969|6445|7065|8123',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:0,place:'Bruxelles',near:false,gsrc:'yahoo (4 ans publies)',gused:-9.8,gimp:null,knife:false,neglect:false,vmeth:'per',nig:null,cagr:-9.8,alarm:'Piotroski 4/9',qwhy:'ROIC hors EA 5.5, ROIC 3.9, croissance CA -9.8%',qok:false,nde:2.36,fcfc:151.0,roicx:5.5,chg:-0.31,mkt:'5.8Md€',b52h:83.4,b52l:41.76,beta:0.52,
- pe:18.19,pb:1.33,ev_ebitda:9.07,ps:1.37,pfcf:14,ev_ebit:52.3,
+ pe:18.19,pb:1.33,ev_ebitda:9.05,ps:1.37,pfcf:14,ev_ebit:52.2,
  roe:-1.0,roic:3.9,roa:2.2,debt:0.46,de:0.46,ic:1.3,cr:1.65,qr:1.2,
  yield:2.0,epsg:-52.4,revg:4.1,margin:-0.4,gm:30.9,om:14,fcf:3.0,
  capex:2.8,capr:9.0,capda:0.77,dcfb:46.93,dcfm:55.21,dcfu:66.25,
@@ -1817,7 +1817,7 @@ const S=[
 
 {ticker:'IPSEN',x2:'',x2s:'',name:'Ipsen',sector:'Pharma maladies rares',cap:'mid',srd:true,idx:'SBF120',
  price:144.1,chg5:2.5,news5:'',dy_n:10,dy_med:1.15,div12:1.6,pe_lo:12.8,gmod:12.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:9.0,irr:9.0,dq:'',vmult:160.96,hn:4,eveb_h:7.5,pfcf_h:12.5,pe_h:17.7,fcur:'EUR',fcfh:'810|133|677|718',nih:'444|346|644|649',revh:'3929|3574|3306|3156',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:157.02,vpess:100.4,nregu:1,regn:3,regu:3,place:'Paris',mthreat:'expirations de brevets (generiques), dependance aux succes de R&D',mtype:'medicaments de specialite proteges par brevets',mscore:2,near:false,gsrc:'communique 2026-10-05',gused:12.0,gimp:9.7,knife:false,neglect:false,vmeth:'qarp',nig:-11.9,cagr:7.6,alarm:'',qwhy:'',qok:true,nde:-0.53,fcfc:112.0,roicx:18.8,chg:0.98,mkt:'8.5Md€',b52h:174.0,b52l:112.7,beta:0.35,
- pe:23.32,pb:2.52,ev_ebitda:7.2,ps:2.77,pfcf:14,ev_ebit:17.3,
+ pe:23.32,pb:2.52,ev_ebitda:7.28,ps:2.77,pfcf:14,ev_ebit:17.5,
  roe:11.4,roic:15.5,roa:10.3,debt:0.2,de:0.2,ic:14.1,cr:1.97,qr:1.6,
  yield:1.1,epsg:21.5,revg:18.7,margin:11.9,gm:81.0,om:22,fcf:6.8,
  capex:1.5,capr:8.4,capda:0.53,dcfb:133.47,dcfm:157.02,dcfu:188.42,
@@ -1837,9 +1837,9 @@ const S=[
  pe:15.29,pb:1.84,ev_ebitda:12.23,ps:0.54,pfcf:8,ev_ebit:13.9,
  roe:12.6,roic:9.0,roa:4.8,debt:1.07,de:1.07,ic:4.8,cr:1.66,qr:1.0,
  yield:3.5,epsg:30.9,revg:2.2,margin:3.4,gm:25.2,om:5,fcf:6.1,
- capex:0.8,capr:0.7,capda:0.33,dcfb:28.81,dcfm:33.9,dcfu:40.68,
+ capex:0.8,capr:0.7,capda:0.33,dcfb:28.84,dcfm:33.93,dcfu:40.72,
  pio:8,alt:2.91,rsi:44.9,mm50:36.14,mm200:35.61,
- el:28.14,eh:31.59,stop:24.76,o1:35.59,o2:40.68,cb:8,ch:5,cs:2,tp:41.44,score:'C',rec:'avoid',zone:false,
+ el:28.16,eh:31.62,stop:24.78,o1:35.63,o2:40.72,cb:8,ch:5,cs:2,tp:41.44,score:'C',rec:'avoid',zone:false,
  moat:[['Distribution electrique 2800 agences','fort'],['Transition energie captive','fort']],
  cats:[{t:'Renovation energetique EU',w:'Long terme',c:'var(--gn)'}],
  ins:[['Achat','CEO Gannaway','5.5M€','Jan 2026']],
@@ -1867,11 +1867,11 @@ const S=[
  contra:"Endettement post-COVID encore eleve. Dependance Airbus (70% CA). Titane sous pression post-Ukraine."}
 ,{ticker:'DIOR',x2:'',x2s:'',name:'Christian Dior',sector:'Luxe holding',cap:'large',srd:true,idx:'CAC40',
  price:419.6,chg5:1.1,news5:'',dy_n:10,dy_med:1.75,div12:14.3,pe_lo:20.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.3,pfcf_h:8.7,pe_h:20.7,fcur:'EUR',fcfh:'14190|13367|10590|12747',nih:'4531|5208|6304|5797',revh:'80807|84682|86153|79183',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-3.6,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-7.9,cagr:0.7,alarm:'',qwhy:'croissance CA 0.7%',qok:false,nde:1.07,fcfc:233.0,roicx:46.4,chg:1.6,mkt:'130Md€',b52h:611.5,b52l:363.8,beta:0.83,
- pe:16.63,pb:3.03,ev_ebitda:7.09,ps:0.95,pfcf:16,ev_ebit:8.0,
+ pe:16.63,pb:3.03,ev_ebitda:7.09,ps:null,pfcf:16,ev_ebit:8.0,
  roe:17.1,roic:28.2,roa:7.6,debt:0.55,de:0.55,ic:14.9,cr:1.64,qr:1.1,
- yield:3.5,epsg:0.9,revg:-2.9,margin:5.7,gm:66.4,om:22,fcf:18.7,
+ yield:3.5,epsg:0.9,revg:-2.9,margin:5.7,gm:66.4,om:22,fcf:null,
  capex:2.5,capr:5.8,capda:0.58,dcfb:341.27,dcfm:401.49,dcfu:481.79,
- pio:6,alt:1.83,rsi:58.4,mm50:405.27,mm200:453.82,
+ pio:6,alt:1.2,rsi:58.4,mm50:405.27,mm200:453.82,
  el:313.16,eh:366.16,stop:275.58,o1:421.56,o2:481.79,cb:12,ch:5,cs:2,tp:790,score:'D',rec:'avoid',zone:false,
  moat:[['Holding LVMH 41.5% a decote','fort'],['Christian Dior Couture direct','fort']],
  cats:[{t:'Decote holding resorption',w:'2026',c:'var(--gn)'}],
@@ -1901,7 +1901,7 @@ const S=[
 
 {ticker:'NANOBT',x2:'',x2s:'',name:'Nanobiotix',sector:'Radioenhancement cancer',cap:'small',srd:false,idx:'SRD',
  price:20.94,chg5:-6.4,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:0,eveb_h:null,pfcf_h:null,pe_h:null,fcur:'EUR',fcfh:'-34|-20|-13|-37',nih:'-24|-68|-40|-57',revh:'30|-12|30|0',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:null,gimp:null,knife:true,neglect:true,vmeth:'per',nig:null,cagr:null,alarm:'Piotroski 3/9',qwhy:'ROIC hors EA -94.0, ROIC -93.9, cash None%, dette/EBITDA None, perte exploitation, croissance CA None%',qok:false,nde:null,fcfc:null,roicx:-94.0,chg:-1.41,mkt:'0.38Md€',b52h:47.66,b52l:13.1,beta:0.59,
- pe:-83.76,pb:-31.87,ev_ebitda:-36.08,ps:92.67,pfcf:999,ev_ebit:null,
+ pe:-83.76,pb:-31.87,ev_ebitda:-35.57,ps:92.67,pfcf:999,ev_ebit:null,
  roe:-30,roic:-93.9,roa:-21.3,debt:0.4,de:null,ic:-1.3,cr:1.44,qr:4.0,
  yield:0.0,epsg:0,revg:-79.2,margin:-55,gm:100.0,om:-45,fcf:-3.2,
  capex:0.3,capr:1.8,capda:0.37,dcfb:6,dcfm:12,dcfu:22,
@@ -1952,7 +1952,7 @@ const S=[
 
 {ticker:'VRMTX',x2:'',x2s:'',name:'Verimatrix',sector:'Cybersecurite contenu',cap:'small',srd:true,idx:'SBF120',
  price:0.29,chg5:-4.3,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:0,eveb_h:30.0,pfcf_h:null,pe_h:null,fcur:'USD',fcfh:'-2|-4|-4|-1',nih:'-79|-10|-14|-18',revh:'47|57|62|61',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-8.7,gimp:null,knife:false,neglect:false,vmeth:'per',nig:null,cagr:-8.7,alarm:'Piotroski 3/9',qwhy:'ROIC hors EA -33.6, ROIC -5.2, cash None%, dette/EBITDA None, perte exploitation, croissance CA -8.7%',qok:false,nde:null,fcfc:null,roicx:-33.6,chg:0.35,mkt:'0.18Md€',b52h:0.38,b52l:0.14,beta:1.63,
- pe:-12.86,pb:0.81,ev_ebitda:-7.43,ps:0.6,pfcf:14,ev_ebit:null,
+ pe:-12.86,pb:0.84,ev_ebitda:-7.43,ps:0.6,pfcf:14,ev_ebit:null,
  roe:-39.8,roic:-5.2,roa:-3.7,debt:0.81,de:0.81,ic:-22.6,cr:1.07,qr:1.8,
  yield:0.0,epsg:12,revg:-18.2,margin:-37.8,gm:62.7,om:10,fcf:-9.3,
  capex:0.5,capr:4.4,capda:0.37,dcfb:3.0,dcfm:4.5,dcfu:6.2,
@@ -2053,7 +2053,7 @@ const S=[
 
 {ticker:'ALFPC',x2:'',x2s:'',name:'Fountaine Pajot',sector:'Catamarans voiliers',cap:'small',srd:true,idx:'SBF120',
  price:74.1,chg5:-2.1,news5:'',dy_n:10,dy_med:1.59,div12:2.52,pe_lo:5.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 23.8 contre 5.6 attendu)',vmult:null,hn:4,eveb_h:3.4,pfcf_h:6.9,pe_h:8.1,fcur:'EUR',fcfh:'-14|-10|19|46',nih:'30|33|11|16',revh:'323|351|277|220',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:18.5,gimp:null,knife:true,neglect:true,vmeth:'per',nig:23.4,cagr:13.7,alarm:'',qwhy:'cash 46.0%',qok:false,nde:0.13,fcfc:46.0,roicx:54.7,chg:-0.67,mkt:'0.88Md€',b52h:117.4,b52l:70.6,beta:0.72,
- pe:23.83,pb:0.91,ev_ebitda:1.49,ps:0.4,pfcf:10,ev_ebit:0.9,
+ pe:23.83,pb:0.91,ev_ebitda:1.45,ps:0.4,pfcf:10,ev_ebit:0.9,
  roe:11.3,roic:41.4,roa:3.1,debt:0.34,de:0.34,ic:26.1,cr:1.32,qr:2.0,
  yield:3.4,epsg:-66.3,revg:-12.3,margin:6.5,gm:50.3,om:14,fcf:-11.3,
  capex:1.5,capr:8.9,capda:1.54,dcfb:81.88,dcfm:96.33,dcfu:115.6,
@@ -2104,7 +2104,7 @@ const S=[
 
 {ticker:'ALTGX',x2:'',x2s:'',name:'Touax Rail',sector:'Location wagons fret',cap:'small',srd:false,idx:'SRD',
  price:3.08,chg5:-6.1,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:6.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.9,pfcf_h:2.0,pe_h:9.2,fcur:'EUR',fcfh:'3|16|19|-2',nih:'2|4|4|7',revh:'182|199|195|211',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-21.8,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-38.8,cagr:-4.7,alarm:'',qwhy:'ROIC hors EA 4.7, ROIC 4.6, dette/EBITDA 6.23, croissance CA -4.7%',qok:false,nde:6.23,fcfc:218.0,roicx:4.7,chg:1.32,mkt:'0.12Md€',b52h:4.94,b52l:3.01,beta:1.09,
- pe:2.59,pb:0.31,ev_ebitda:10.64,ps:0.13,pfcf:8,ev_ebit:20.5,
+ pe:2.59,pb:0.3,ev_ebitda:10.64,ps:0.13,pfcf:8,ev_ebit:20.5,
  roe:-4.2,roic:4.6,roa:1.1,debt:2.34,de:2.34,ic:1.0,cr:1.09,qr:0.7,
  yield:3.3,epsg:5,revg:-14.3,margin:-2.9,gm:45.4,om:10,fcf:14.9,
  capex:1.8,capr:0.3,capda:0.02,dcfb:3.4,dcfm:4.0,dcfu:4.8,
@@ -2174,7 +2174,7 @@ const S=[
 
 {ticker:'GENIE',x2:'',x2s:'',name:'Genfit',sector:'Biotech NASH hepatite',cap:'small',srd:true,idx:'SBF120',
  price:8.41,chg5:-8.9,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'croissance Yahoo 48.0 %/an : probablement faussee par une acquisition ou une cession',vmult:null,hn:1,eveb_h:19.2,pfcf_h:12.3,pe_h:119.1,fcur:'EUR',fcfh:'-30|15|-58|-73',nih:'-86|2|-29|-24',revh:'65|67|29|20',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:2,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:48.0,gimp:null,knife:true,neglect:true,vmeth:'per',nig:null,cagr:48.0,alarm:'Piotroski 3/9',qwhy:'ROIC hors EA -154.7, ROIC -36.4, cash None%, dette/EBITDA None, perte exploitation',qok:false,nde:null,fcfc:null,roicx:-154.7,chg:1.57,mkt:'0.28Md€',b52h:15.48,b52l:3.4,beta:1.19,
- pe:89.95,pb:-8.71,ev_ebitda:-7.93,ps:7.07,pfcf:999,ev_ebit:null,
+ pe:89.95,pb:-8.67,ev_ebitda:-7.93,ps:7.07,pfcf:999,ev_ebit:null,
  roe:-5189.6,roic:-36.4,roa:-21.1,debt:0.3,de:null,ic:-70.7,cr:1.58,qr:4.0,
  yield:0.0,epsg:0,revg:-32.0,margin:-171.7,gm:100.0,om:-25,fcf:-7.0,
  capex:0.2,capr:5.2,capda:1.86,dcfb:2.86,dcfm:3.36,dcfu:4.03,
@@ -2224,13 +2224,13 @@ const S=[
  risks:{Cyclicité:45,Concurrence:40,Réglementation:35,Devise:25,Exécution:35}},
 {ticker:'AKE',x2:'',x2s:'',name:'Arkema',sector:'Chimie specialites',cap:'mid',srd:true,idx:'Cac Next 20',
  price:54.3,chg5:-0.2,news5:'',dy_n:10,dy_med:2.75,div12:3.6,pe_lo:6.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'benefice 12 mois anormal (PER 217.2 contre 10.8 attendu)',vmult:null,hn:4,eveb_h:5.9,pfcf_h:12.4,pe_h:16.7,fcur:'EUR',fcfh:'337|360|593|766',nih:'63|354|418|965',revh:'9068|9544|9514|11550',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-33.7,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:-59.7,cagr:-7.7,alarm:'',qwhy:'ROIC hors EA 6.2, ROIC 4.2, croissance CA -7.7%',qok:false,nde:2.2,fcfc:114.0,roicx:6.2,chg:-1.27,mkt:'4.24Md€',b52h:67.05,b52l:48.3,beta:0.99,
- pe:217.2,pb:0.69,ev_ebitda:6.64,ps:0.46,pfcf:0,ev_ebit:30.0,
+ pe:217.2,pb:0.69,ev_ebitda:6.59,ps:0.46,pfcf:0,ev_ebit:29.8,
  roe:0.9,roic:4.2,roa:1.7,debt:0.61,de:0.61,ic:3.1,cr:1.52,qr:1,
  yield:6.5,epsg:-21.4,revg:1.3,margin:0.7,gm:17.8,om:0,fcf:8.2,
  capex:0,capr:7.3,capda:0.79,
- dcfb:55.5,dcfm:65.3,dcfu:78.36,
+ dcfb:55.44,dcfm:65.22,dcfu:78.26,
  pio:6,alt:1.68,rsi:36.2,mm50:58.25,mm200:56.12,
- el:54.2,eh:60.86,stop:47.7,o1:68.56,o2:78.36,
+ el:54.13,eh:60.79,stop:47.63,o1:68.48,o2:78.26,
  cb:0,ch:0,cs:0,tp:62.64,
  score:'C',rec:'avoid',zone:false,
  moat:[['A évaluer','faible']],
@@ -2256,7 +2256,7 @@ const S=[
  risks:{Cyclicité:45,Concurrence:40,Réglementation:35,Devise:25,Exécution:35}},
 {ticker:'BB',x2:'',x2s:'',name:'Bic',sector:'Distribution',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:65.4,chg5:0.6,news5:'',dy_n:10,dy_med:4.51,div12:2.4,pe_lo:11.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:6.0,pfcf_h:10.1,pe_h:13.2,fcur:'EUR',fcfh:'222|271|249|204',nih:'86|212|227|199',revh:'2090|2197|2263|2234',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-13.2,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:-24.3,cagr:-2.2,alarm:'',qwhy:'croissance CA -2.2%',qok:false,nde:-0.53,fcfc:131.0,roicx:16.7,chg:0.31,mkt:'2.46Md€',b52h:69.5,b52l:46.2,beta:-0.05,
- pe:22.63,pb:1.54,ev_ebitda:7.11,ps:1.28,pfcf:0,ev_ebit:16.3,
+ pe:22.63,pb:1.54,ev_ebitda:7.13,ps:1.28,pfcf:0,ev_ebit:16.4,
  roe:6.9,roic:13.1,roa:6.2,debt:0.19,de:0.19,ic:9.4,cr:2.21,qr:1,
  yield:3.7,epsg:43.0,revg:-3.5,margin:5.7,gm:50.1,om:0,fcf:8.4,
  capex:0,capr:4.1,capda:0.75,
@@ -2272,7 +2272,7 @@ const S=[
  risks:{Cyclicité:35,Concurrence:30,Réglementation:25,Devise:15,Exécution:25}},
 {ticker:'ATE',x2:'',x2s:'',name:'Alten',sector:'ESN ingenierie embarquee',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:81.2,chg5:3.8,news5:'',dy_n:9,dy_med:1.2,div12:1.5,pe_lo:8.7,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:7.5,pfcf_h:13.2,pe_h:17.3,fcur:'EUR',fcfh:'318|413|220|215',nih:'107|186|233|458',revh:'4099|4143|4069|3783',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:2,place:'Paris',mthreat:'IA, cycle automobile et aeronautique',mtype:'ingenierie externalisee, relations clients',mscore:2,near:false,gsrc:'communique 2026-10-12',gused:1.8,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:-38.4,cagr:2.7,alarm:'',qwhy:'croissance officielle 1.8%',qok:false,nde:-0.19,fcfc:118.0,roicx:29.0,chg:0.87,mkt:'2.14Md€',b52h:84.0,b52l:50.9,beta:1.18,
- pe:20.15,pb:1.27,ev_ebitda:7.61,ps:0.67,pfcf:0,ev_ebit:13.3,
+ pe:20.15,pb:1.27,ev_ebitda:7.68,ps:0.67,pfcf:0,ev_ebit:13.4,
  roe:6.2,roic:12.3,roa:5.6,debt:0.12,de:0.12,ic:26.2,cr:1.54,qr:1,
  yield:1.9,epsg:42.1,revg:1.2,margin:3.3,gm:18.3,om:0,fcf:11.5,
  capex:0,capr:0.3,capda:0.12,
@@ -2336,7 +2336,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'RF',x2:'',x2s:'',name:'Eurazeo',sector:'Holdings',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:45.68,chg5:2.2,news5:'',dy_n:9,dy_med:3.21,div12:2.92,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:2,eveb_h:4.7,pfcf_h:63.7,pe_h:5.1,fcur:'EUR',unc:'',vopt:null,vpess:null,nregu:null,regn:null,regu:null,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:null,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:null,cagr:null,alarm:'',qwhy:'holding (grille dediee a venir)',qok:false,nde:null,fcfc:null,roicx:null,chg:-0.35,mkt:'3.3Md€',b52h:61.8,b52l:37.54,beta:1.2,
- pe:5.3,pb:0.49,ev_ebitda:-1494.86,ps:8.23,pfcf:0,ev_ebit:null,
+ pe:5.3,pb:0.49,ev_ebitda:-1491.64,ps:8.23,pfcf:0,ev_ebit:null,
  roe:-1.8,roic:null,roa:-0.0,debt:0.26,de:0.26,ic:-5.0,cr:0.29,qr:1,
  yield:6.4,epsg:0,revg:-27,margin:-28.8,gm:70.2,om:0,fcf:4.2,
  capex:0,capr:1.2,capda:0.16,
@@ -2384,7 +2384,7 @@ const S=[
  risks:{Cyclicité:45,Concurrence:40,Réglementation:35,Devise:25,Exécution:35}},
 {ticker:'EXENS',x2:'',x2s:'',name:'Exosens',sector:'Connecteurs RF defense',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:57.9,chg5:-5.2,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:11.4,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:3.9,irr:3.9,dq:'benefice 12 mois anormal (PER 137.9 contre 23.9 attendu)',vmult:17.37,hn:2,eveb_h:13.6,pfcf_h:17.0,pe_h:53.2,fcur:'EUR',fcfh:'107|99|50|26',nih:'31|43|18|11',revh:'383|468|292|201',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:17.37,vpess:17.37,nregu:2,regn:3,regu:2,place:'Paris',mthreat:'dependance aux budgets de defense, niche',mtype:'leader des tubes intensificateurs de lumiere (vision nocturne)',mscore:3,near:true,gsrc:'communique 2026-10-12',gused:11.4,gimp:30.0,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'qarp',nig:39.9,cagr:24.1,alarm:'Piotroski 4/9',qwhy:'ROIC 11.9',qok:false,nde:-0.43,fcfc:274.0,roicx:25.3,chg:-0.86,mkt:'3.16Md€',b52h:74.0,b52l:40.0,beta:0.81,
- pe:137.86,pb:6.54,ev_ebitda:30.26,ps:5.85,pfcf:0,ev_ebit:39.4,
+ pe:137.86,pb:6.54,ev_ebitda:30.01,ps:5.85,pfcf:0,ev_ebit:39.1,
  roe:12.7,roic:11.9,roa:6.2,debt:0.6,de:0.6,ic:null,cr:2.35,qr:1,
  yield:0.5,epsg:-45.1,revg:15.3,margin:6.0,gm:60.1,om:0,fcf:3.7,
  capex:0,capr:null,capda:null,
@@ -2416,7 +2416,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'GFC',x2:'',x2s:'',name:'Gecina',sector:'Immobilier bureaux Paris',cap:'large',srd:true,idx:'Cac Next 20',
  price:61.1,chg5:1.5,news5:'',dy_n:10,dy_med:4.28,div12:5.5,pe_lo:13.3,gmod:null,icr:6.9,ltv:37.8,bvg:null,roemin:null,roem:null,grid:'fonciere',wht:0.0,irrn:11.1,irr:11.1,dq:'benefice 12 mois anormal (PER 28.0 contre 9.2 attendu)',vmult:null,hn:3,eveb_h:31.9,pfcf_h:56.3,pe_h:21.4,fcur:'EUR',fcfh:'-491|145|144|115',nih:'448|310|-1787|170',revh:'859|843|836|765',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:150.84,vpess:109.7,nregu:null,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:3.9,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:true,vmeth:'pb',nig:null,cagr:3.9,alarm:'',qwhy:'',qok:true,nde:null,fcfc:null,roicx:null,chg:0.83,mkt:'5.68Md€',b52h:83.8,b52l:58.9,beta:1.05,
- pe:28.03,pb:0.45,ev_ebitda:18.2,ps:5.11,pfcf:0,ev_ebit:20.8,
+ pe:28.03,pb:0.45,ev_ebitda:18.25,ps:5.11,pfcf:0,ev_ebit:20.9,
  roe:1.6,roic:null,roa:2.1,debt:0.7,de:0.7,ic:5.8,cr:0.27,qr:1,
  yield:9.1,epsg:-99.0,revg:4.1,margin:18.4,gm:79.1,om:0,fcf:-10.9,
  capex:0,capr:113.0,capda:95.8,
@@ -2452,9 +2452,9 @@ const S=[
  roe:16.1,roic:6.7,roa:3.7,debt:1.61,de:1.61,ic:3.4,cr:1.15,qr:1,
  yield:2.6,epsg:85.5,revg:3.8,margin:8.7,gm:51.7,om:0,fcf:16.7,
  capex:0,capr:8.3,capda:0.38,
- dcfb:14.92,dcfm:17.55,dcfu:21.06,
+ dcfb:14.87,dcfm:17.49,dcfu:20.99,
  pio:8,alt:1.28,rsi:55.4,mm50:24.33,mm200:19.74,
- el:14.74,eh:16.43,stop:12.97,o1:18.43,o2:21.06,
+ el:14.69,eh:16.37,stop:12.93,o1:18.36,o2:20.99,
  cb:0,ch:0,cs:0,tp:26.5,
  score:'C',rec:'avoid',zone:false,
  moat:[['Actionnariat stable (JCDecaux Holding 65.46%)','modéré'],['Position établie sur son marché','modéré']],
@@ -2464,7 +2464,7 @@ const S=[
  risks:{Cyclicité:35,Concurrence:30,Réglementation:25,Devise:15,Exécution:25}},
 {ticker:'MMB',x2:'',x2s:'',name:'Lagardère',sector:'Médias',cap:'mid',srd:true,idx:'Cac Small',
  price:18.12,chg5:0.7,news5:'',dy_n:8,dy_med:5.03,div12:0.67,pe_lo:13.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:5.9,pfcf_h:3.2,pe_h:17.1,fcur:'EUR',fcfh:'1076|995|711|545',nih:'203|168|144|161',revh:'9423|8999|8131|6977',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:9.2,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:8.0,cagr:10.5,alarm:'',qwhy:'ROIC hors EA 9.3, ROIC 6.1, dette/EBITDA 3.13',qok:false,nde:3.13,fcfc:492.0,roicx:9.3,chg:-0.66,mkt:'2.54Md€',b52h:20.4,b52l:16.96,beta:0.82,
- pe:12.33,pb:2.96,ev_ebitda:7.6,ps:0.27,pfcf:0,ev_ebit:12.1,
+ pe:12.33,pb:2.96,ev_ebitda:7.58,ps:0.27,pfcf:0,ev_ebit:12.0,
  roe:27.8,roic:6.1,roa:4.3,debt:5.0,de:5.0,ic:2.5,cr:0.78,qr:1,
  yield:3.7,epsg:23.7,revg:1.7,margin:2.2,gm:41.9,om:0,fcf:41.6,
  capex:0,capr:2.7,capda:0.31,
@@ -2480,7 +2480,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'LOUP',x2:'',x2s:'',name:'LDC',sector:'Agroalimentaire',cap:'mid',srd:true,idx:'',
  price:99.1,chg5:-2.8,news5:'',dy_n:10,dy_med:1.64,div12:2.25,pe_lo:7.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:4.2,pfcf_h:12.6,pe_h:9.4,fcur:'EUR',fcfh:'256|113|197|248',nih:'321|244|304|225',revh:'7283|6323|6198|5846',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:10.1,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:12.7,cagr:7.6,alarm:'',qwhy:'ROIC hors EA 13.7, ROIC 11.6, cash 74.0%',qok:false,nde:0.36,fcfc:74.0,roicx:13.7,chg:-0.9,mkt:'4.11Md€',b52h:127.4,b52l:84.2,beta:0.49,
- pe:10.55,pb:1.33,ev_ebitda:4.64,ps:0.48,pfcf:0,ev_ebit:7.4,
+ pe:10.7,pb:1.33,ev_ebitda:4.64,ps:0.48,pfcf:0,ev_ebit:7.4,
  roe:13.3,roic:11.6,roa:6.1,debt:0.28,de:0.28,ic:25.0,cr:1.41,qr:1,
  yield:2.2,epsg:54.5,revg:14.8,margin:4.4,gm:32.5,om:0,fcf:7.3,
  capex:0,capr:5.2,capda:1.26,
@@ -2496,7 +2496,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'MMT',x2:'',x2s:'',name:'M6',sector:'Médias',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:10.02,chg5:-1.2,news5:'',dy_n:9,dy_med:6.74,div12:1.25,pe_lo:7.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:4.2,pfcf_h:9.8,pe_h:10.1,fcur:'EUR',fcfh:'65|131|222|220',nih:'123|173|234|162',revh:'1256|1311|1316|1357',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:0,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:-5.6,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:true,vmeth:'per',nig:-8.6,cagr:-2.6,alarm:'',qwhy:'croissance CA -2.6%',qok:false,nde:-0.37,fcfc:92.0,roicx:23.6,chg:-0.4,mkt:'1.51Md€',b52h:13.04,b52l:9.76,beta:0.67,
- pe:12.53,pb:1.08,ev_ebitda:8.08,ps:0.99,pfcf:0,ev_ebit:8.1,
+ pe:12.53,pb:1.08,ev_ebitda:8.08,ps:1.0,pfcf:0,ev_ebit:8.1,
  roe:6.9,roic:16.7,roa:4.8,debt:0.08,de:0.08,ic:51.7,cr:1.6,qr:1,
  yield:12.4,epsg:-38.7,revg:1.8,margin:7.9,gm:20.5,om:0,fcf:5.1,
  capex:0,capr:5.9,capda:0.56,
@@ -2512,7 +2512,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'NRO',x2:'',x2s:'',name:'Neurones',sector:'Services informatiques',cap:'small',srd:true,idx:'Cac Small',
  price:36.65,chg5:6.2,news5:'',dy_n:10,dy_med:1.8,div12:1.4,pe_lo:19.6,gmod:5.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:0.0,irrn:9.0,irr:9.0,dq:'',vmult:41.48,hn:4,eveb_h:7.6,pfcf_h:18.2,pe_h:21.0,fcur:'EUR',fcfh:'61|72|54|44',nih:'52|53|49|44',revh:'857|810|741|665',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:44.45,vpess:32.74,nregu:2,regn:3,regu:3,place:'Paris',mthreat:'IA qui reduit les jours factures (cas Wavestone)',mtype:'services informatiques, relations clients et diversification',mscore:2,near:false,gsrc:'communique 2026-10-05',gused:5.05,gimp:3.0,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'qarp',nig:5.6,cagr:8.8,alarm:'',qwhy:'',qok:true,nde:-2.86,fcfc:117.0,roicx:148.5,chg:1.24,mkt:'852M€',b52h:45.0,b52l:31.9,beta:0.46,
- pe:16.07,pb:2.32,ev_ebitda:7.06,ps:0.98,pfcf:0,ev_ebit:7.6,
+ pe:16.07,pb:2.23,ev_ebitda:7.17,ps:0.98,pfcf:0,ev_ebit:7.7,
  roe:15.3,roic:62.1,roa:7.1,debt:0.1,de:0.1,ic:49.3,cr:2.23,qr:1,
  yield:3.9,epsg:15.1,revg:7.2,margin:6.2,gm:49.6,om:0,fcf:7.0,
  capex:0,capr:1.2,capda:0.53,
@@ -2560,7 +2560,7 @@ const S=[
  risks:{Cyclicité:35,Concurrence:30,Réglementation:25,Devise:15,Exécution:25}},
 {ticker:'GDS',x2:'',x2s:'',name:'Ramsay Générale de Santé',sector:'Santé services',cap:'mid',srd:true,idx:'Cac Small',
  price:9.88,chg5:-1.2,news5:'',dy_n:0,dy_med:null,div12:null,pe_lo:null,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:1,eveb_h:8.8,pfcf_h:3.7,pe_h:45.6,fcur:'EUR',fcfh:'381|551|418|427',nih:'-48|-54|-54|49',revh:'5381|5208|5006|4702',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:3,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:4.6,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:null,cagr:4.6,alarm:'',qwhy:'ROIC hors EA 4.7, ROIC 2.7, cash None%, dette/EBITDA 5.97',qok:false,nde:5.97,fcfc:null,roicx:4.7,chg:-0.8,mkt:'1.19Md€',b52h:11.55,b52l:8.72,beta:0.29,
- pe:0,pb:0.92,ev_ebitda:7.53,ps:0.2,pfcf:0,ev_ebit:25.6,
+ pe:0,pb:0.92,ev_ebitda:7.52,ps:0.2,pfcf:0,ev_ebit:25.6,
  roe:-2.3,roic:2.7,roa:1.8,debt:3.49,de:3.49,ic:1.0,cr:0.78,qr:1,
  yield:0,epsg:0,revg:921,margin:-0.9,gm:27.8,om:0,fcf:34.9,
  capex:0,capr:2.7,capda:0.33,
@@ -2704,7 +2704,7 @@ const S=[
  risks:{Cyclicité:60,Concurrence:55,Réglementation:50,Devise:40,Exécution:50}},
 {ticker:'VCT',x2:'',x2s:'',name:'Vicat',sector:'Matériaux construction',cap:'mid',srd:true,idx:'Cac Mid 60',
  price:58.4,chg5:0.3,news5:'',dy_n:10,dy_med:3.7,div12:2.0,pe_lo:5.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:4.0,pfcf_h:5.2,pe_h:6.3,fcur:'EUR',fcfh:'313|357|279|-65',nih:'275|273|258|156',revh:'3854|3884|3937|3642',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:1,place:'Paris',near:false,gsrc:'yahoo (4 ans publies)',gused:11.3,gimp:null,knife:false,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:20.7,cagr:1.9,alarm:'',qwhy:'ROIC hors EA 11.9, ROIC 8.6, croissance CA 1.9%',qok:false,nde:1.43,fcfc:92.0,roicx:11.9,chg:0.34,mkt:'2.7Md€',b52h:81.7,b52l:56.4,beta:0.73,
- pe:9.04,pb:0.86,ev_ebitda:5.95,ps:0.65,pfcf:0,ev_ebit:8.6,
+ pe:9.04,pb:0.86,ev_ebitda:5.96,ps:0.65,pfcf:0,ev_ebit:8.6,
  roe:10.2,roic:8.6,roa:4.4,debt:0.55,de:0.55,ic:7.7,cr:1.55,qr:1,
  yield:3.4,epsg:14.9,revg:8.0,margin:7.2,gm:36.2,om:0,fcf:12.0,
  capex:0,capr:8.7,capda:1.15,
@@ -2736,7 +2736,7 @@ const S=[
  risks:{Cyclicité:45,Concurrence:40,Réglementation:35,Devise:25,Exécution:35}},
 {ticker:'WAVE',x2:'',x2s:'',name:'Wavestone',sector:'Services informatiques',cap:'small',srd:true,idx:'Cac Small',
  price:30.0,chg5:2.6,news5:'',dy_n:9,dy_med:0.71,div12:0.5,pe_lo:14.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:9.7,pfcf_h:15.0,pe_h:16.0,fcur:'EUR',fcfh:'129|84|80|37',nih:'82|76|58|50',revh:'954|944|701|532',yrs:'2026|2025|2024|2023',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Paris',near:false,gsrc:'communique 2026-10-05',gused:1.0,gimp:null,knife:true,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],neglect:false,vmeth:'per',nig:17.9,cagr:21.5,alarm:'',qwhy:'croissance officielle 1.0%',qok:false,nde:-0.75,fcfc:125.0,roicx:93.3,chg:0.5,mkt:'969M€',b52h:64.6,b52l:28.55,beta:0.94,
- pe:8.98,pb:1.05,ev_ebitda:4.84,ps:0.77,pfcf:0,ev_ebit:5.6,
+ pe:8.98,pb:1.05,ev_ebitda:4.87,ps:0.77,pfcf:0,ev_ebit:5.7,
  roe:12.3,roic:13.3,roa:7.5,debt:0.03,de:0.03,ic:35.3,cr:1.59,qr:1,
  yield:1.7,epsg:5.8,revg:2.1,margin:8.6,gm:20.9,om:0,fcf:17.6,
  capex:0,capr:0.2,capda:0.11,
@@ -2752,29 +2752,29 @@ const S=[
  risks:{Cyclicité:45,Concurrence:40,Réglementation:35,Devise:25,Exécution:35}}
 
 ,{ticker:'WKL',x2:'',x2s:'',name:'Wolters Kluwer',sector:'Logiciel & information professionnelle',cap:'large',srd:false,idx:'Europe (EUR)',price:77.16,chg5:12.9,news5:'Action S&P Global, Inc. / Cours SPGI Bourse NYSE|https://news.google.com/rss/articles/CBMickFVX3lxTFB2RjcwcVhkd2V6QzhndnFlZzFGN2NQeDU0RDhjX2UtRUo0c3NyU3UybTRFWFM4bFZ0ODV3QTJJWmI4WUFSdDhmcnVVbWsxRGVLQlBMa2RWcDV2ZHpUNHJuTDh4cS1nQllhbXRSNUIzVWtHQQ?oc=5|Zonebourse ;; Les Bourses européennes terminent dans le vert|https://news.google.com/rss/articles/CBMiqwFBVV95cUxQNm8zcG84aTJ1dWlaVFdYczFlRzVzSGFHeUd1SXYxR2NiZFRvYkIydEJteDVuc3J3dHpRTE1UX0NtOF9UNTNudmRYbVFNVUJXQVdTand4MHJGenhLdzBBcEVfQ2JJM3RJSkNxMEtIMS1Od0tBVWEzY2hPbVpRWmFKRHNya2h4dFBKazA2Y1BaeFRIYnlRZkZndUQ2eXk5VGt6U3BDZno0UTlGLTg?oc=5|Zonebourse ;; L’Europe soutenue par la détente du pétrole et des taux|https://news.google.com/rss/articles/CBMitwFBVV95cUxNblRUZ29VZmp0RUktME5WT3dGRUxseks0bkM0M1BIQkJYcDJUdlZsTTNobEN3eHhYZEV1MkYzbS12S1BldTJNUHk5RTRTM1NNVy1GZV9rVnk3NnVlVUxyVFBXREpGazhHS1Q1Q01NX2EyU210b2xnTTVvTU1IMzd2Z2FELUloMm1UOWpZdFBUQjJzSlpQNi1rMV9OVWd1U2xGYm9CWGZpbDd5WWVNUzFzT2gyM1FGQnM?oc=5|Zonebourse',dy_n:10,dy_med:1.77,div12:2.6,pe_lo:15.2,gmod:5.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:15.0,irrn:10.6,irr:11.1,dq:'',vmult:111.53,hn:4,eveb_h:16.7,pfcf_h:22.1,pe_h:27.2,fcur:'EUR',fcfh:'1363|1340|1221|1287',nih:'1308|1079|1007|1027',revh:'6125|5916|5584|5453',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:124.76,vpess:92.07,nregu:2,regn:3,regu:3,place:'Amsterdam',mthreat:'IA generative qui banalise le contenu',mtype:'information professionnelle integree aux processus (fiscal, sante, droit)',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-11',gused:5.0,near:false,gimp:-4.5,knife:false,neglect:false,vmeth:'qarp',nig:8.4,cagr:3.9,nde:1.79,fcfc:118.0,roicx:3456.3,chg:2.88,mkt:'—',b52h:115.15,b52l:54.64,beta:0.18,pe:13.19,pb:18.32,ev_ebitda:10.93,ps:2.81,pfcf:0,ev_ebit:12.0,roe:146.1,roic:24.7,roa:9.8,debt:5.9,de:5.9,ic:15.1,cr:0.69,qr:0,yield:3.5,epsg:8.9,revg:-0.6,margin:21.9,gm:74.1,om:0,fcf:7.9,capex:0,capr:5.0,capda:0.66,dcfb:94.66,dcfm:111.37,dcfu:133.64,pio:7,alt:2.41,rsi:73.8,mm50:69.04,mm200:65.94,el:83.53,eh:94.66,stop:82.86,o1:124.76,o2:137.24,cb:0,ch:0,cs:0,tp:89.78,score:'A',rec:'buy',zone:true,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'ITX',x2:'',x2s:'',name:'Inditex',sector:'Distribution habillement',cap:'large',srd:false,idx:'Europe (EUR)',price:53.92,chg5:1.7,news5:'',dy_n:10,dy_med:3.05,div12:1.715,pe_lo:22.0,gmod:8.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:19.0,irrn:7.4,irr:7.6,dq:'',vmult:48.95,hn:4,eveb_h:13.5,pfcf_h:21.5,pe_h:25.2,fcur:'EUR',fcfh:'6520|6616|6795|5259',nih:'6220|5866|5381|4130',revh:'39864|38632|35947|32569',yrs:'2026|2025|2024|2023',unc:'moyenne',vopt:49.76,vpess:32.75,nregu:3,regn:3,regu:3,place:'Madrid',mthreat:'mode ultra-rapide (Shein), gout changeant',mtype:'chaine d approvisionnement rapide et echelle (Zara)',mscore:3,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:8.0,near:false,gimp:13.4,knife:false,neglect:false,vmeth:'qarp',nig:14.6,cagr:7.0,nde:0.07,fcfc:117.0,roicx:31.7,chg:0.11,mkt:'—',b52h:59.42,b52l:46.07,beta:0.96,pe:26.17,pb:9.41,ev_ebitda:16.74,ps:4.07,pfcf:0,ev_ebit:19.5,roe:36.8,roic:31.4,roa:14.7,debt:0.35,de:0.35,ic:22.7,cr:1.16,qr:0,yield:1.2,epsg:8.0,revg:9.1,margin:15.5,gm:56.5,om:0,fcf:3.9,capex:0,capr:6.8,capda:0.86,dcfb:38.18,dcfm:44.92,dcfu:53.9,pio:8,alt:9.47,rsi:49.6,mm50:55.64,mm200:54.08,el:33.69,eh:38.18,stop:29.48,o1:49.76,o2:54.74,cb:0,ch:0,cs:0,tp:60.39,score:'B',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'AMS',x2:'',x2s:'',name:'Amadeus',sector:'Logiciel voyage',cap:'large',srd:false,idx:'Europe (EUR)',price:52.8,chg5:-0.5,news5:'',dy_n:8,dy_med:1.75,div12:1.54,pe_lo:20.2,gmod:5.5,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:19.0,irrn:9.0,irr:9.6,dq:'',vmult:65.73,hn:4,eveb_h:14.0,pfcf_h:22.8,pe_h:24.5,fcur:'EUR',fcfh:'1386|1358|1194|874',nih:'1336|1253|1118|664',revh:'6517|6142|5441|4486',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:71.78,vpess:48.8,nregu:3,regn:3,regu:3,place:'Madrid',mthreat:'vente directe des compagnies (NDC)',mtype:'reservation aerienne (GDS) en quasi-duopole, logiciels compagnies',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-06',gused:5.5,near:false,gimp:1.7,knife:false,neglect:false,vmeth:'qarp',nig:26.2,cagr:13.3,nde:0.89,fcfc:110.0,roicx:39.9,chg:0.96,mkt:'—',b52h:69.1,b52l:46.21,beta:0.66,pe:17.43,pb:4.85,ev_ebitda:9.92,ps:3.36,pfcf:0,ev_ebit:13.7,roe:26.5,roic:17.9,roa:9.6,debt:0.79,de:0.79,ic:22.1,cr:0.74,qr:0,yield:2.9,epsg:-2.6,revg:1.5,margin:19.9,gm:44.6,om:0,fcf:6.3,capex:0,capr:12.5,capda:1.11,dcfb:53.3,dcfm:62.7,dcfu:75.24,pio:8,alt:3.73,rsi:45.3,mm50:55.43,mm200:52.59,el:47.03,eh:53.3,stop:43.92,o1:71.78,o2:78.96,cb:0,ch:0,cs:0,tp:69.16,score:'B',rec:'buy',zone:true,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'ITX',x2:'',x2s:'',name:'Inditex',sector:'Distribution habillement',cap:'large',srd:false,idx:'Europe (EUR)',price:53.92,chg5:1.7,news5:'',dy_n:10,dy_med:3.05,div12:1.715,pe_lo:22.0,gmod:8.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:19.0,irrn:7.3,irr:7.5,dq:'',vmult:48.92,hn:4,eveb_h:13.5,pfcf_h:21.5,pe_h:25.2,fcur:'EUR',fcfh:'6520|6616|6795|5259',nih:'6220|5866|5381|4130',revh:'39864|38632|35947|32569',yrs:'2026|2025|2024|2023',unc:'moyenne',vopt:49.74,vpess:32.75,nregu:3,regn:3,regu:3,place:'Madrid',mthreat:'mode ultra-rapide (Shein), gout changeant',mtype:'chaine d approvisionnement rapide et echelle (Zara)',mscore:3,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:8.0,near:false,gimp:13.4,knife:false,neglect:false,vmeth:'qarp',nig:14.6,cagr:7.0,nde:0.07,fcfc:117.0,roicx:31.7,chg:0.11,mkt:'—',b52h:59.42,b52l:46.07,beta:0.96,pe:26.17,pb:9.41,ev_ebitda:16.74,ps:4.07,pfcf:0,ev_ebit:19.5,roe:36.8,roic:31.4,roa:14.7,debt:0.35,de:0.35,ic:22.7,cr:1.16,qr:0,yield:1.2,epsg:8.0,revg:9.1,margin:15.5,gm:56.5,om:0,fcf:3.9,capex:0,capr:6.8,capda:0.86,dcfb:38.16,dcfm:44.89,dcfu:53.87,pio:8,alt:9.47,rsi:49.6,mm50:55.64,mm200:54.08,el:33.67,eh:38.16,stop:29.48,o1:49.74,o2:54.71,cb:0,ch:0,cs:0,tp:60.39,score:'B',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'AMS',x2:'',x2s:'',name:'Amadeus',sector:'Logiciel voyage',cap:'large',srd:false,idx:'Europe (EUR)',price:52.8,chg5:-0.5,news5:'',dy_n:8,dy_med:1.75,div12:1.54,pe_lo:20.2,gmod:5.5,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:19.0,irrn:9.0,irr:9.6,dq:'',vmult:65.73,hn:4,eveb_h:14.0,pfcf_h:22.8,pe_h:24.5,fcur:'EUR',fcfh:'1386|1358|1194|874',nih:'1336|1253|1118|664',revh:'6517|6142|5441|4486',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:71.78,vpess:48.8,nregu:3,regn:3,regu:3,place:'Madrid',mthreat:'vente directe des compagnies (NDC)',mtype:'reservation aerienne (GDS) en quasi-duopole, logiciels compagnies',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-06',gused:5.5,near:false,gimp:1.7,knife:false,neglect:false,vmeth:'qarp',nig:26.2,cagr:13.3,nde:0.89,fcfc:110.0,roicx:39.9,chg:0.96,mkt:'—',b52h:69.1,b52l:46.21,beta:0.66,pe:17.43,pb:4.85,ev_ebitda:10.01,ps:3.36,pfcf:0,ev_ebit:13.8,roe:26.5,roic:17.9,roa:9.6,debt:0.79,de:0.79,ic:22.1,cr:0.74,qr:0,yield:2.9,epsg:-2.6,revg:1.5,margin:19.9,gm:44.6,om:0,fcf:6.3,capex:0,capr:12.5,capda:1.11,dcfb:53.3,dcfm:62.7,dcfu:75.24,pio:8,alt:3.73,rsi:45.3,mm50:55.43,mm200:52.59,el:47.03,eh:53.3,stop:43.92,o1:71.78,o2:78.96,cb:0,ch:0,cs:0,tp:69.16,score:'B',rec:'buy',zone:true,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'RAA',x2:'',x2s:'',name:'Rational',sector:'Industrie equipements cuisine pro',cap:'mid',srd:false,idx:'Europe (EUR)',price:594.0,chg5:4.8,news5:'',dy_n:10,dy_med:1.73,div12:20.0,pe_lo:29.4,gmod:8.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.375,irrn:6.8,irr:7.5,dq:'',vmult:549.32,hn:4,eveb_h:23.7,pfcf_h:36.3,pe_h:35.6,fcur:'EUR',fcfh:'219|251|224|123',nih:'254|251|214|186',revh:'1260|1194|1126|1022',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:548.27,vpess:375.26,nregu:3,regn:3,regu:3,place:'Francfort',mthreat:'cycle restauration, concurrence asiatique',mtype:'leader mondial des fours mixtes professionnels (~50 % de part)',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:8.0,near:false,gimp:13.3,knife:false,neglect:false,vmeth:'qarp',nig:11.0,cagr:7.2,nde:-0.38,fcfc:90.0,roicx:33.2,chg:0.08,mkt:'—',b52h:776.5,b52l:553.5,beta:1.24,pe:24.23,pb:7.99,ev_ebitda:17.67,ps:5.22,pfcf:0,ev_ebit:18.5,roe:32.2,roic:33.2,roa:19.8,debt:0.03,de:0.03,ic:179.3,cr:3.92,qr:0,yield:2.8,epsg:15.3,revg:4.2,margin:20.5,gm:58.3,om:0,fcf:3.2,capex:0,capr:2.7,capda:0.91,dcfb:420.21,dcfm:494.37,dcfu:593.24,pio:5,alt:20.52,rsi:54.7,mm50:605.04,mm200:643.39,el:370.78,eh:420.21,stop:337.73,o1:548.27,o2:603.1,cb:0,ch:0,cs:0,tp:797.08,score:'B',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'NEM',x2:'',x2s:'',name:'Nemetschek',sector:'Logiciel construction',cap:'large',srd:false,idx:'Europe (EUR)',price:70.15,chg5:9.4,news5:'',dy_n:10,dy_med:0.58,div12:0.68,pe_lo:34.0,gmod:13.2,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.375,irrn:8.0,irr:8.3,dq:'',vmult:64.36,hn:4,eveb_h:30.8,pfcf_h:32.6,pe_h:52.1,fcur:'EUR',fcfh:'389|293|240|195',nih:'217|175|161|162',revh:'1191|996|852|802',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:77.27,vpess:36.02,nregu:2,regn:3,regu:3,place:'Francfort',mthreat:'Autodesk, IA',mtype:'logiciels BIM/construction, couts de changement eleves',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:14.5,near:false,gimp:14.1,knife:true,neglect:false,vmeth:'qarp',nig:10.3,cagr:14.1,nde:0.41,fcfc:156.0,roicx:882.5,chg:4.08,mkt:'—',b52h:108.3,b52l:50.45,beta:0.61,pe:31.89,pb:7.95,ev_ebitda:23.37,ps:6.43,pfcf:0,ev_ebit:27.5,roe:26.3,roic:24.7,roa:9.2,debt:0.52,de:0.52,ic:15.9,cr:0.93,qr:0,yield:1.0,epsg:26.7,revg:13.0,margin:19.6,gm:58.0,om:0,fcf:4.8,capex:0,capr:1.2,capda:0.19,dcfb:57.22,dcfm:67.32,dcfu:80.78,pio:8,alt:5.77,rsi:70.0,mm50:62.65,mm200:64.62,el:50.49,eh:57.22,stop:32.42,o1:77.27,o2:85.0,cb:0,ch:0,cs:0,tp:86.19,score:'C',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'BEI',x2:'',x2s:'',name:'Beiersdorf',sector:'Cosmetique (Nivea)',cap:'large',srd:false,idx:'Europe (EUR)',price:79.24,chg5:4.6,news5:'',dy_n:10,dy_med:0.74,div12:1.0,pe_lo:21.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:15.9,pfcf_h:67.8,pe_h:31.1,fcur:'EUR',fcfh:'322|794|424|249',nih:'939|912|736|755',revh:'9852|9850|9447|8799',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Francfort',alarm:'',qwhy:'ROIC hors EA 13.3, cash 54.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:5.7,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:7.5,cagr:3.8,nde:-0.64,fcfc:54.0,roicx:13.3,chg:1.41,mkt:'—',b52h:110.15,b52l:67.08,beta:0.47,pe:18.43,pb:1.92,ev_ebitda:9.06,ps:1.8,pfcf:0,ev_ebit:10.4,roe:10.9,roic:12.2,roa:6.2,debt:0.01,de:0.01,ic:40.6,cr:2.0,qr:0,yield:1.3,epsg:1.9,revg:-4.5,margin:9.8,gm:57.1,om:0,fcf:1.9,capex:0,capr:4.7,capda:1.41,dcfb:60.97,dcfm:71.73,dcfu:86.08,pio:6,alt:4.91,rsi:61.7,mm50:77.53,mm200:80.53,el:55.95,eh:65.42,stop:49.24,o1:75.32,o2:86.08,cb:0,ch:0,cs:0,tp:81.11,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'SY1',x2:'',x2s:'',name:'Symrise',sector:'Chimie aromes et parfums',cap:'large',srd:false,idx:'Europe (EUR)',price:93.26,chg5:2.7,news5:'',dy_n:10,dy_med:1.07,div12:1.25,pe_lo:29.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:17.1,pfcf_h:26.3,pe_h:39.6,fcur:'EUR',fcfh:'561|652|449|110',nih:'249|478|340|280',revh:'4929|4999|4730|4618',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Francfort',alarm:'',qwhy:'ROIC hors EA 9.6, ROIC 6.4, croissance CA 2.2%',qok:false,gsrc:'yahoo (4 ans publies)',gused:-0.8,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-3.8,cagr:2.2,nde:2.08,fcfc:131.0,roicx:9.6,chg:1.11,mkt:'—',b52h:95.0,b52l:64.7,beta:0.57,pe:52.69,pb:3.43,ev_ebitda:20.0,ps:2.6,pfcf:0,ev_ebit:30.4,roe:6.7,roic:6.4,roa:5.0,debt:0.61,de:0.61,ic:6.0,cr:2.98,qr:0,yield:1.4,epsg:-0.4,revg:-0.6,margin:5.0,gm:37.6,om:0,fcf:4.4,capex:0,capr:4.3,capda:0.7,dcfb:68.05,dcfm:80.06,dcfu:96.07,pio:6,alt:3.31,rsi:58.2,mm50:90.84,mm200:80.29,el:62.45,eh:73.01,stop:54.96,o1:84.06,o2:96.07,cb:0,ch:0,cs:0,tp:101.3,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'BEI',x2:'',x2s:'',name:'Beiersdorf',sector:'Cosmetique (Nivea)',cap:'large',srd:false,idx:'Europe (EUR)',price:79.24,chg5:4.6,news5:'',dy_n:10,dy_med:0.74,div12:1.0,pe_lo:21.6,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:15.9,pfcf_h:67.8,pe_h:31.1,fcur:'EUR',fcfh:'322|794|424|249',nih:'939|912|736|755',revh:'9852|9850|9447|8799',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Francfort',alarm:'',qwhy:'ROIC hors EA 13.3, cash 54.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:5.7,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:7.5,cagr:3.8,nde:-0.64,fcfc:54.0,roicx:13.3,chg:1.41,mkt:'—',b52h:110.15,b52l:67.08,beta:0.47,pe:18.22,pb:1.92,ev_ebitda:9.06,ps:1.8,pfcf:0,ev_ebit:10.4,roe:10.9,roic:12.2,roa:6.2,debt:0.01,de:0.01,ic:40.6,cr:2.0,qr:0,yield:1.3,epsg:1.9,revg:-4.5,margin:9.8,gm:57.1,om:0,fcf:1.9,capex:0,capr:4.7,capda:1.41,dcfb:60.94,dcfm:71.69,dcfu:86.03,pio:6,alt:4.9,rsi:61.7,mm50:77.53,mm200:80.53,el:55.92,eh:65.38,stop:49.21,o1:75.27,o2:86.03,cb:0,ch:0,cs:0,tp:81.11,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'SY1',x2:'',x2s:'',name:'Symrise',sector:'Chimie aromes et parfums',cap:'large',srd:false,idx:'Europe (EUR)',price:93.26,chg5:2.7,news5:'',dy_n:10,dy_med:1.07,div12:1.25,pe_lo:29.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:17.1,pfcf_h:26.3,pe_h:39.6,fcur:'EUR',fcfh:'561|652|449|110',nih:'249|478|340|280',revh:'4929|4999|4730|4618',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:2,place:'Francfort',alarm:'',qwhy:'ROIC hors EA 9.6, ROIC 6.4, croissance CA 2.2%',qok:false,gsrc:'yahoo (4 ans publies)',gused:-0.8,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-3.8,cagr:2.2,nde:2.08,fcfc:131.0,roicx:9.6,chg:1.11,mkt:'—',b52h:95.0,b52l:64.7,beta:0.57,pe:52.1,pb:3.43,ev_ebitda:20.0,ps:2.6,pfcf:0,ev_ebit:30.4,roe:6.7,roic:6.4,roa:5.0,debt:0.61,de:0.61,ic:6.0,cr:2.98,qr:0,yield:1.4,epsg:-0.4,revg:-0.6,margin:5.0,gm:37.6,om:0,fcf:4.4,capex:0,capr:4.3,capda:0.7,dcfb:68.05,dcfm:80.06,dcfu:96.07,pio:6,alt:3.31,rsi:58.2,mm50:90.84,mm200:80.29,el:62.45,eh:73.01,stop:54.96,o1:84.06,o2:96.07,cb:0,ch:0,cs:0,tp:101.3,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'MONC',x2:'',x2s:'',name:'Moncler',sector:'Luxe',cap:'large',srd:false,idx:'Europe (EUR)',price:44.09,chg5:0.7,news5:'',dy_n:9,dy_med:1.12,div12:1.4,pe_lo:20.9,gmod:3.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.0,irrn:7.1,irr:7.9,dq:'',vmult:44.47,hn:4,eveb_h:12.1,pfcf_h:20.2,pe_h:22.8,fcur:'EUR',fcfh:'740|794|738|493',nih:'627|640|612|607',revh:'3132|3109|2984|2603',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:43.75,vpess:36.2,nregu:2,regn:3,regu:3,place:'Milan',mthreat:'mode, dependance Chine',mtype:'marque de luxe (doudoune) a forte marge',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:3.0,near:false,gimp:6.2,knife:false,neglect:false,vmeth:'qarp',nig:1.1,cagr:6.4,nde:-0.08,fcfc:111.0,roicx:24.9,chg:1.31,mkt:'—',b52h:59.4,b52l:42.59,beta:1.08,pe:18.76,pb:3.29,ev_ebitda:13.11,ps:3.75,pfcf:0,ev_ebit:12.8,roe:18.1,roic:20.2,roa:10.7,debt:0.34,de:0.34,ic:21.7,cr:2.3,qr:0,yield:3.2,epsg:7.1,revg:5.2,margin:20.0,gm:78.2,om:0,fcf:6.2,capex:0,capr:7.0,capda:0.65,dcfb:33.81,dcfm:39.78,dcfu:47.74,pio:7,alt:4.88,rsi:47.2,mm50:46.06,mm200:50.07,el:29.84,eh:33.81,stop:32.58,o1:43.75,o2:48.13,cb:0,ch:0,cs:0,tp:59.22,score:'B',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'BC',x2:'',x2s:'',name:'Brunello Cucinelli',sector:'Luxe',cap:'mid',srd:false,idx:'Europe (EUR)',price:81.2,chg5:0.9,news5:'',dy_n:8,dy_med:0.84,div12:1.04,pe_lo:48.9,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:19.7,pfcf_h:55.0,pe_h:55.4,fcur:'EUR',fcfh:'101|90|136|153',nih:'135|119|115|81',revh:'1408|1279|1139|920',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Milan',alarm:'',qwhy:'ROIC hors EA 11.5, ROIC 11.5',qok:false,gsrc:'yahoo (4 ans publies)',gused:17.1,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:18.8,cagr:15.3,nde:2.35,fcfc:107.0,roicx:11.5,chg:0.79,mkt:'—',b52h:102.4,b52l:69.02,beta:0.89,pe:40.0,pb:10.08,ev_ebitda:21.46,ps:3.75,pfcf:0,ev_ebit:27.4,roe:26.8,roic:11.5,roa:7.6,debt:2.17,de:2.17,ic:5.9,cr:1.35,qr:0,yield:1.3,epsg:3.8,revg:9.5,margin:9.4,gm:54.6,om:0,fcf:1.8,capex:0,capr:10.1,capda:0.78,dcfb:39.24,dcfm:46.17,dcfu:55.4,pio:5,alt:3.59,rsi:50.5,mm50:83.75,mm200:82.54,el:36.01,eh:42.11,stop:31.69,o1:48.48,o2:55.4,cb:0,ch:0,cs:0,tp:99.27,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'REC',x2:'',x2s:'',name:'Recordati',sector:'Pharma specialites',cap:'large',srd:false,idx:'Europe (EUR)',price:52.95,chg5:1.4,news5:'',dy_n:10,dy_med:2.48,div12:1.34,pe_lo:22.2,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:16.2,pfcf_h:21.8,pe_h:25.5,fcur:'EUR',fcfh:'512|-281|102|365',nih:'444|417|389|312',revh:'2618|2342|2082|1853',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Milan',alarm:'',qwhy:'cash 45.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:12.3,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:12.4,cagr:12.2,nde:2.3,fcfc:45.0,roicx:15.9,chg:-0.09,mkt:'—',b52h:54.45,b52l:43.76,beta:0.5,pe:22.25,pb:5.09,ev_ebitda:12.6,ps:4.07,pfcf:0,ev_ebit:18.8,roe:24.9,roic:12.5,roa:9.8,debt:1.09,de:1.09,ic:6.9,cr:1.26,qr:0,yield:2.7,epsg:28.6,revg:8.3,margin:18.4,gm:71.5,om:0,fcf:4.6,capex:0,capr:3.3,capda:0.41,dcfb:40.62,dcfm:47.79,dcfu:57.35,pio:7,alt:3.71,rsi:55.8,mm50:52.61,mm200:49.81,el:33.45,eh:42.06,stop:29.44,o1:50.18,o2:57.35,cb:0,ch:0,cs:0,tp:60.1,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'REC',x2:'',x2s:'',name:'Recordati',sector:'Pharma specialites',cap:'large',srd:false,idx:'Europe (EUR)',price:52.95,chg5:1.4,news5:'',dy_n:10,dy_med:2.48,div12:1.34,pe_lo:22.2,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:16.2,pfcf_h:21.8,pe_h:25.5,fcur:'EUR',fcfh:'512|-281|102|365',nih:'444|417|389|312',revh:'2618|2342|2082|1853',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Milan',alarm:'',qwhy:'cash 45.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:12.3,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:12.4,cagr:12.2,nde:2.3,fcfc:45.0,roicx:15.9,chg:-0.09,mkt:'—',b52h:54.45,b52l:43.76,beta:0.5,pe:22.25,pb:5.09,ev_ebitda:12.59,ps:4.07,pfcf:0,ev_ebit:18.8,roe:24.9,roic:12.5,roa:9.8,debt:1.09,de:1.09,ic:6.9,cr:1.26,qr:0,yield:2.7,epsg:28.6,revg:8.3,margin:18.4,gm:71.5,om:0,fcf:4.6,capex:0,capr:3.3,capda:0.41,dcfb:40.62,dcfm:47.79,dcfu:57.35,pio:7,alt:3.71,rsi:55.8,mm50:52.61,mm200:49.81,el:33.45,eh:42.06,stop:29.44,o1:50.18,o2:57.35,cb:0,ch:0,cs:0,tp:60.1,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'AMP',x2:'',x2s:'',name:'Amplifon',sector:'Sante materiel medical (audition)',cap:'mid',srd:false,idx:'Europe (EUR)',price:12.65,chg5:4.7,news5:'',dy_n:9,dy_med:0.69,div12:0.29,pe_lo:33.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:13.6,pfcf_h:18.1,pe_h:36.4,fcur:'EUR',fcfh:'296|305|272|343',nih:'91|145|155|179',revh:'2396|2409|2260|2119',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:2,place:'Milan',alarm:'',qwhy:'ROIC 7.5, dette/EBITDA 2.98',qok:false,gsrc:'yahoo (4 ans publies)',gused:-7.9,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:-20.0,cagr:4.2,nde:2.98,fcfc:213.0,roicx:29.7,chg:-1.63,mkt:'—',b52h:15.84,b52l:7.84,beta:0.97,pe:40.81,pb:2.22,ev_ebitda:12.96,ps:1.4,pfcf:0,ev_ebit:23.4,roe:5.7,roic:7.5,roa:3.8,debt:1.18,de:1.18,ic:3.2,cr:0.73,qr:0,yield:2.3,epsg:5.5,revg:2.2,margin:3.0,gm:23.9,om:0,fcf:8.8,capex:0,capr:4.9,capda:0.38,dcfb:11.12,dcfm:13.08,dcfu:15.7,pio:5,alt:1.71,rsi:61.6,mm50:11.93,mm200:11.22,el:9.16,eh:11.51,stop:8.06,o1:13.73,o2:15.7,cb:0,ch:0,cs:0,tp:13.63,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'KNEBV',x2:'',x2s:'',name:'Kone',sector:'Industrie maintenance ascenseurs',cap:'large',srd:false,idx:'Europe (EUR)',price:53.48,chg5:5.5,news5:'',dy_n:10,dy_med:3.5,div12:1.8,pe_lo:25.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:17.3,pfcf_h:25.5,pe_h:29.0,fcur:'EUR',fcfh:'1162|1081|980|430',nih:'980|951|926|774',revh:'11245|11098|10952|10907',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Helsinki',alarm:'',qwhy:'croissance CA 1.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:4.6,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:8.2,cagr:1.0,nde:0.25,fcfc:101.0,roicx:62.2,chg:0.98,mkt:'—',b52h:64.42,b52l:46.22,beta:0.78,pe:29.38,pb:12.05,ev_ebitda:17.82,ps:2.44,pfcf:0,ev_ebit:20.0,roe:41.4,roic:31.7,roa:9.7,debt:0.29,de:0.29,ic:33.8,cr:0.99,qr:0,yield:3.4,epsg:-13.2,revg:3.1,margin:8.3,gm:57.1,om:0,fcf:4.2,capex:0,capr:1.4,capda:0.48,dcfb:24.73,dcfm:29.09,dcfu:34.91,pio:8,alt:4.46,rsi:63.9,mm50:51.22,mm200:53.92,el:24.14,eh:27.11,stop:21.24,o1:30.54,o2:34.91,cb:0,ch:0,cs:0,tp:59.7,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'KNEBV',x2:'',x2s:'',name:'Kone',sector:'Industrie maintenance ascenseurs',cap:'large',srd:false,idx:'Europe (EUR)',price:53.48,chg5:nan,news5:'',dy_n:10,dy_med:3.5,div12:1.8,pe_lo:25.3,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:17.3,pfcf_h:25.5,pe_h:29.0,fcur:'EUR',fcfh:'1162|1081|980|430',nih:'980|951|926|774',revh:'11245|11098|10952|10907',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:3,place:'Helsinki',alarm:'',qwhy:'croissance CA 1.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:4.6,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:8.2,cagr:1.0,nde:0.25,fcfc:101.0,roicx:62.2,chg:0.98,mkt:'—',b52h:64.42,b52l:46.22,beta:0.78,pe:29.38,pb:12.05,ev_ebitda:17.82,ps:2.44,pfcf:0,ev_ebit:20.0,roe:41.4,roic:31.7,roa:9.7,debt:0.29,de:0.29,ic:33.8,cr:0.99,qr:0,yield:3.4,epsg:-13.2,revg:3.1,margin:8.3,gm:57.1,om:0,fcf:4.2,capex:0,capr:1.4,capda:0.48,dcfb:24.73,dcfm:29.09,dcfu:34.91,pio:8,alt:4.46,rsi:61.3,mm50:51.15,mm200:53.94,el:24.14,eh:27.11,stop:21.24,o1:30.54,o2:34.91,cb:0,ch:0,cs:0,tp:59.7,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'UMG',x2:'',x2s:'',name:'Universal Music Group',sector:'Media musique',cap:'large',srd:false,idx:'Europe (EUR)',price:14.91,chg5:5.3,news5:'',dy_n:5,dy_med:2.06,div12:0.52,pe_lo:21.0,gmod:8.7,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:15.0,irrn:9.2,irr:9.7,dq:'benefice 12 mois anormal (PER 82.8 contre 13.7 attendu)',vmult:21.1,hn:4,eveb_h:19.3,pfcf_h:32.7,pe_h:31.8,fcur:'EUR',fcfh:'1199|1306|1586|1280',nih:'1533|2086|1259|782',revh:'12507|11834|11108|10340',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:20.68,vpess:12.38,nregu:2,regn:3,regu:3,place:'Amsterdam',mthreat:'musique generee par IA, pouvoir des plateformes',mtype:'1er catalogue musical mondial, oligopole de 3 majors',mscore:4,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:8.7,near:false,gimp:4.2,knife:true,neglect:false,vmeth:'qarp',nig:25.2,cagr:6.5,nde:1.26,fcfc:95.0,roicx:33.1,chg:0.07,mkt:'—',b52h:23.98,b52l:13.92,beta:0.78,pe:82.83,pb:7.46,ev_ebitda:14.52,ps:2.09,pfcf:0,ev_ebit:14.4,roe:7.7,roic:23.7,roa:7.0,debt:1.52,de:1.52,ic:16.2,cr:0.61,qr:0,yield:3.5,epsg:-84.4,revg:5.3,margin:2.5,gm:41.7,om:0,fcf:4.5,capex:0,capr:4.3,capda:1.21,dcfb:15.43,dcfm:18.15,dcfu:21.78,pio:6,alt:-0.11,rsi:61.0,mm50:14.43,mm200:17.6,el:13.61,eh:15.43,stop:11.14,o1:20.68,o2:22.75,cb:0,ch:0,cs:0,tp:21.59,score:'D',rec:'watch',zone:true,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'BESI',x2:'',x2s:'',name:'BE Semiconductor',sector:'Semi-conducteurs equipements',cap:'mid',srd:false,idx:'Europe (EUR)',price:175.6,chg5:-13.5,news5:'IA et PEA : les meilleures actions et ETF éligibles pour investir en 2026|https://news.google.com/rss/articles/CBMiX0FVX3lxTE9laWtjRDZCYlFGOUtiS2JhNmJIUEkyQlZudDBub000U1lwbS1fM0hoUXdkaThCRmFfZ003Z1JEN0tTYWZsWkNPYTQxMWVfcFZWV0dMeHlBSDNPbzMyYWdF?oc=5|Cryptoast ;; BE Semiconductor Industries N.V. : Deutsche Bank Research réitère son opinion positive sur le titre|https://news.google.com/rss/articles/CBMi7AFBVV95cUxNbk5Xc3E5YzgtejFlTXRBd0pSdGNWUXhKUHZVUUxNRFQ5aEhMWDJ4bkplekFuQTdkNW16Q1QtSjdJUFM5M3NGcGYxLVM3cmFXSDYyYzZDTEpWQkg3Q3V6cEdKMFFreDNXd0JzMFdtN1hnYUdKREE4amVmcmpIRktWNkVsR0pQcW1SemtqcUlOakZ4S0RtTHU0cTFLZ1ZsNlA0Q213djFxRG5GeWVLdklqVmRKaEVDX0NIemt6cUxxU2ZFSzgwU2pZYXlOTnlleWM1aF9OcDJNc3Q2eVpVT0lnSi1fWDNVU00wZVNidg?oc=5|Zonebourse Suisse ;; Pourquoi l’action BE Semiconductor Industries chute-t-elle aujourd’hui ?|https://news.google.com/rss/articles/CBMixwFBVV95cUxNMjlCamhvcWhHaGktZHRRMjZ4TW1wSnZJQnBYdlVjc0FSQ3o3N0taNDNrdkJnTjduLXdnSmhrRVpwNjdxTDVEZFd6cFVxcENzWUY2SU1vTmRSdUlFamdqTEg1dFVEV3NUNmZZOVNJOF9YdDhkbGJ3XzAySWFQV241QldrT2pxbE52cGtfZmlXSVhtQmd5UjZXLTY3c1R0cGFfSjJROWJuU0FFY2txZW1OZEVmRnBHLXVoYmNWZ1lfS05Xcy11RUd3?oc=5|Investing.com France',dy_n:10,dy_med:3.13,div12:1.58,pe_lo:18.4,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:45.1,pfcf_h:60.8,pe_h:59.2,fcur:'EUR',fcfh:'136|170|181|243',nih:'132|182|177|241',revh:'591|607|579|723',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:1,regn:3,regu:1,place:'Amsterdam',alarm:'',qwhy:'croissance CA -6.5%',qok:false,gsrc:'yahoo (4 ans publies)',gused:-12.3,near:false,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-18.2,cagr:-6.5,nde:0.7,fcfc:100.0,roicx:33.5,chg:-2.15,mkt:'—',b52h:328.4,b52l:120.15,beta:1.3,pe:67.02,pb:24.76,ev_ebitda:50.39,ps:18.93,pfcf:0,ev_ebit:78.4,roe:44.9,roic:31.0,roa:14.7,debt:0.62,de:0.62,ic:7.1,cr:4.28,qr:0,yield:0.9,epsg:178.0,revg:68.7,margin:28.4,gm:64.1,om:0,fcf:1.0,capex:0,capr:7.1,capda:1.24,dcfb:119.07,dcfm:140.08,dcfu:168.1,pio:6,alt:13.92,rsi:38.9,mm50:198.9,mm200:214.05,el:100.86,eh:124.39,stop:88.76,o1:147.08,o2:168.1,cb:0,ch:0,cs:0,tp:270.57,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'ASM',x2:'',x2s:'',name:'ASM International',sector:'Semi-conducteurs equipements',cap:'large',srd:false,idx:'Europe (EUR)',price:876.4,chg5:-7.5,news5:'',dy_n:10,dy_med:1.12,div12:3.25,pe_lo:29.9,gmod:12.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:15.0,irrn:6.5,irr:6.6,dq:'',vmult:583.34,hn:4,eveb_h:21.8,pfcf_h:48.9,pe_h:34.1,fcur:'EUR',fcfh:'593|533|418|333',nih:'724|686|752|389',revh:'3173|2933|2634|2411',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:570.51,vpess:344.03,nregu:2,regn:3,regu:3,place:'Amsterdam',mthreat:'cycle semi-conducteurs, Chine',mtype:'leader du depot de couches atomiques (ALD)',mscore:4,alarm:'',qwhy:'cash 74.0%',qok:false,gsrc:'communique 2026-10-12',gused:12.0,near:true,gimp:22.3,knife:false,neglect:false,vmeth:'qarp',nig:23.0,cagr:9.6,nde:-0.86,fcfc:74.0,roicx:27.3,chg:-0.81,mkt:'—',b52h:1092.5,b52l:459.7,beta:1.49,pe:40.09,pb:9.65,ev_ebitda:36.52,ps:12.72,pfcf:0,ev_ebit:45.6,roe:26.8,roic:24.2,roa:11.5,debt:0.02,de:0.02,ic:1028.7,cr:2.17,qr:0,yield:0.4,epsg:41.5,revg:20.0,margin:31.9,gm:51.8,om:0,fcf:1.4,capex:0,capr:14.8,capda:1.87,dcfb:484.93,dcfm:570.51,dcfu:684.61,pio:8,alt:21.86,rsi:51.8,mm50:846.16,mm200:803.38,el:399.36,eh:456.41,stop:309.63,o1:570.51,o2:627.56,cb:0,ch:0,cs:0,tp:1148.4,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'MTX',x2:'',x2s:'',name:'MTU Aero Engines',sector:'Aeronautique moteurs',cap:'large',srd:false,idx:'Europe (EUR)',price:350.7,chg5:-5.3,news5:'',dy_n:10,dy_med:1.2,div12:3.6,pe_lo:19.7,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:3,eveb_h:11.9,pfcf_h:45.5,pe_h:27.0,fcur:'EUR',fcfh:'333|74|365|347',nih:'1016|633|-102|331',revh:'8763|7411|5363|5330',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Francfort',alarm:'',qwhy:'cash 60.0%, perte exploitation',qok:false,gsrc:'yahoo (4 ans publies)',gused:31.6,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:45.3,cagr:18.0,nde:0.39,fcfc:60.0,roicx:19.1,chg:0.52,mkt:'—',b52h:404.8,b52l:265.2,beta:0.88,pe:20.46,pb:4.16,ev_ebitda:13.41,ps:2.05,pfcf:0,ev_ebit:12.8,roe:22.6,roic:16.6,roa:5.7,debt:0.56,de:0.56,ic:13.1,cr:1.42,qr:0,yield:1.0,epsg:-15.4,revg:16.7,margin:10.2,gm:18.1,om:0,fcf:1.8,capex:0,capr:5.9,capda:1.24,dcfb:216.45,dcfm:254.65,dcfu:305.58,pio:7,alt:3.07,rsi:45.4,mm50:358.96,mm200:344.03,el:213.91,eh:238.35,stop:188.24,o1:267.38,o2:305.58,cb:0,ch:0,cs:0,tp:416.68,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'ASM',x2:'',x2s:'',name:'ASM International',sector:'Semi-conducteurs equipements',cap:'large',srd:false,idx:'Europe (EUR)',price:876.4,chg5:-7.5,news5:'',dy_n:10,dy_med:1.12,div12:3.25,pe_lo:29.9,gmod:12.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:15.0,irrn:6.5,irr:6.6,dq:'',vmult:583.34,hn:4,eveb_h:21.8,pfcf_h:48.9,pe_h:34.1,fcur:'EUR',fcfh:'593|533|418|333',nih:'724|686|752|389',revh:'3173|2933|2634|2411',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:570.51,vpess:344.03,nregu:2,regn:3,regu:3,place:'Amsterdam',mthreat:'cycle semi-conducteurs, Chine',mtype:'leader du depot de couches atomiques (ALD)',mscore:4,alarm:'',qwhy:'cash 74.0%',qok:false,gsrc:'communique 2026-10-12',gused:12.0,near:true,gimp:22.3,knife:false,neglect:false,vmeth:'qarp',nig:23.0,cagr:9.6,nde:-0.86,fcfc:74.0,roicx:27.3,chg:-0.81,mkt:'—',b52h:1092.5,b52l:459.7,beta:1.49,pe:40.09,pb:9.65,ev_ebitda:36.21,ps:12.72,pfcf:0,ev_ebit:45.2,roe:26.8,roic:24.2,roa:11.5,debt:0.02,de:0.02,ic:1028.7,cr:2.17,qr:0,yield:0.4,epsg:41.5,revg:20.0,margin:31.9,gm:51.8,om:0,fcf:1.4,capex:0,capr:14.8,capda:1.87,dcfb:484.93,dcfm:570.51,dcfu:684.61,pio:8,alt:21.86,rsi:51.8,mm50:846.16,mm200:803.38,el:399.36,eh:456.41,stop:309.63,o1:570.51,o2:627.56,cb:0,ch:0,cs:0,tp:1148.4,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'MTX',x2:'',x2s:'',name:'MTU Aero Engines',sector:'Aeronautique moteurs',cap:'large',srd:false,idx:'Europe (EUR)',price:350.7,chg5:-5.3,news5:'',dy_n:10,dy_med:1.2,div12:3.6,pe_lo:19.7,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:3,eveb_h:11.9,pfcf_h:45.5,pe_h:27.0,fcur:'EUR',fcfh:'333|74|365|347',nih:'1016|633|-102|331',revh:'8763|7411|5363|5330',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:3,regu:3,place:'Francfort',alarm:'',qwhy:'cash 60.0%, perte exploitation',qok:false,gsrc:'yahoo (4 ans publies)',gused:31.6,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:45.3,cagr:18.0,nde:0.39,fcfc:60.0,roicx:19.1,chg:0.52,mkt:'—',b52h:404.8,b52l:265.2,beta:0.88,pe:20.46,pb:4.16,ev_ebitda:13.41,ps:2.05,pfcf:0,ev_ebit:12.8,roe:22.6,roic:16.6,roa:5.7,debt:0.56,de:0.56,ic:13.1,cr:1.42,qr:0,yield:1.0,epsg:-15.4,revg:16.7,margin:10.2,gm:18.1,om:0,fcf:1.8,capex:0,capr:5.9,capda:1.24,dcfb:216.46,dcfm:254.66,dcfu:305.59,pio:7,alt:3.07,rsi:45.4,mm50:358.96,mm200:344.03,el:213.91,eh:238.36,stop:188.24,o1:267.39,o2:305.59,cb:0,ch:0,cs:0,tp:416.68,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ,{ticker:'RHM',x2:'',x2s:'',name:'Rheinmetall',sector:'Defense',cap:'large',srd:false,idx:'Europe (EUR)',price:962.2,chg5:-1.8,news5:'',dy_n:10,dy_med:1.71,div12:11.5,pe_lo:17.0,gmod:12.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:26.375,irrn:6.5,irr:6.8,dq:'',vmult:743.86,hn:4,eveb_h:13.8,pfcf_h:36.1,pe_h:30.3,fcur:'EUR',fcfh:'1415|988|345|-175',nih:'696|717|535|474',revh:'9935|7715|7176|6410',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:655.83,vpess:405.08,nregu:2,regn:3,regu:3,place:'Francfort',mthreat:'cycle budgetaire, paix, execution',mtype:'capacites munitions/blindes, contrats publics longs',mscore:3,alarm:'',qwhy:'',qok:true,gsrc:'communique 2026-10-05',gused:35.75,near:false,gimp:21.5,knife:true,neglect:false,vmeth:'qarp',nig:13.7,cagr:15.7,nde:-0.17,fcfc:106.0,roicx:22.9,chg:2.46,mkt:'—',b52h:1966.0,b52l:909.0,beta:0.48,pe:36.85,pb:9.03,ev_ebitda:20.96,ps:3.93,pfcf:0,ev_ebit:28.7,roe:25.7,roic:17.3,roa:6.8,debt:0.52,de:0.52,ic:14.6,cr:1.0,qr:0,yield:1.2,epsg:-5.7,revg:68.8,margin:6.3,gm:52.2,om:0,fcf:3.2,capex:0,capr:8.8,capda:1.74,dcfb:557.46,dcfm:655.83,dcfu:787.0,pio:5,alt:3.76,rsi:43.1,mm50:1063.69,mm200:1317.2,el:459.08,eh:524.66,stop:364.57,o1:655.83,o2:721.41,cb:0,ch:0,cs:0,tp:1584.35,score:'C',rec:'hold',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'COLO',x2:'',x2s:'',name:'Coloplast',sector:'Sante materiel medical',cap:'large',srd:false,idx:'Europe (DKK)',price:59.7,chg5:8.9,news5:'',dy_n:10,dy_med:2.54,div12:3.08,pe_lo:35.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:3,eveb_h:25.3,pfcf_h:56.3,pe_h:35.1,fcur:'DKK',fcfh:'1420|2985|3964',nih:'5052|4783|4706',revh:'27030|24500|22579',yrs:'2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:2,regu:2,place:'Copenhague',alarm:'',qwhy:'cash 58.0%, dette/EBITDA 2.58',qok:false,gsrc:'yahoo (4 ans publies)',gused:6.5,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:3.6,cagr:9.4,nde:2.58,fcfc:58.0,roicx:33.1,chg:2.39,mkt:'—',b52h:84.46,b52l:49.46,beta:0.56,pe:36.4,pb:7.52,ev_ebitda:14.32,ps:3.54,pfcf:0,ev_ebit:17.2,roe:18.5,roic:14.7,roa:10.1,debt:1.78,de:1.78,ic:9.0,cr:1.56,qr:0,yield:5.3,epsg:81.8,revg:5.7,margin:9.7,gm:67.2,om:0,fcf:1.4,capex:0,capr:5.0,capda:1.04,dcfb:45.39,dcfm:53.4,dcfu:64.08,pio:7,alt:3.35,rsi:64.6,mm50:58.09,mm200:59.18,el:37.38,eh:46.99,stop:32.9,o1:56.07,o2:64.08,cb:0,ch:0,cs:0,tp:61.91,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'DSV',x2:'',x2s:'',name:'DSV',sector:'Logistique transit international',cap:'large',srd:false,idx:'Europe (DKK)',price:154.64,chg5:-0.4,news5:'',dy_n:10,dy_med:0.46,div12:0.94,pe_lo:13.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:14.6,pfcf_h:18.8,pe_h:27.9,fcur:'DKK',fcfh:'18893|9222|14083|25052',nih:'8095|10109|12315|17568',revh:'247331|167106|150785|235665',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:2,place:'Copenhague',alarm:'',qwhy:'ROIC 11.5, dette/EBITDA 3.57, croissance CA 1.6%',qok:false,gsrc:'yahoo (4 ans publies)',gused:-10.6,near:false,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-22.8,cagr:1.6,nde:3.57,fcfc:140.0,roicx:38.9,chg:-0.9,mkt:'—',b52h:255.98,b52l:151.23,beta:0.99,pe:38.37,pb:2.2,ev_ebitda:14.22,ps:0.95,pfcf:0,ev_ebit:23.0,roe:6.3,roic:11.5,roa:4.6,debt:0.76,de:0.76,ic:4.3,cr:0.96,qr:0,yield:0.6,epsg:-4.0,revg:23.7,margin:2.4,gm:26.8,om:0,fcf:6.8,capex:0,capr:1.0,capda:null,dcfb:136.7,dcfm:160.83,dcfu:192.99,pio:7,alt:2.56,rsi:38.2,mm50:172.92,mm200:205.7,el:131.88,eh:149.25,stop:116.05,o1:168.87,o2:192.99,cb:0,ch:0,cs:0,tp:253.07,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'NSIS',x2:'',x2s:'',name:'Novonesis',sector:'Biotech enzymes',cap:'large',srd:false,idx:'Europe (DKK)',price:58.29,chg5:2.3,news5:'',dy_n:10,dy_med:1.43,div12:0.88,pe_lo:26.5,gmod:7.5,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:27.0,irrn:4.9,irr:5.3,dq:'',vmult:null,hn:4,eveb_h:18.8,pfcf_h:43.8,pe_h:38.2,fcur:'EUR',fcfh:'751|660|281|150',nih:'584|306|406|493',revh:'4158|3834|2402|2356',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:28.92,vpess:20.24,nregu:1,regn:3,regu:3,place:'Copenhague',mthreat:'integration Chr. Hansen, prix agricoles',mtype:'enzymes et micro-organismes : duopole mondial',mscore:4,alarm:'',qwhy:'ROIC 10.7',qok:false,gsrc:'communique 2026-10-12',gused:7.5,near:true,gimp:27.0,knife:false,neglect:false,vmeth:'qarp',nig:5.8,cagr:20.8,nde:-0.2,fcfc:103.0,roicx:15.8,chg:0.14,mkt:'—',b52h:62.2,b52l:45.06,beta:0.62,pe:42.88,pb:2.44,ev_ebitda:128.04,ps:47.29,pfcf:0,ev_ebit:253.9,roe:5.8,roic:10.7,roa:3.8,debt:0.28,de:0.28,ic:11.9,cr:1.74,qr:0,yield:1.5,epsg:26.7,revg:9.6,margin:14.7,gm:56.4,om:0,fcf:0.4,capex:0,capr:11.3,capda:0.82,dcfb:22.2,dcfm:26.12,dcfu:31.34,pio:7,alt:20.95,rsi:54.6,mm50:57.78,mm200:53.5,el:19.59,eh:22.2,stop:18.22,o1:28.92,o2:31.81,cb:0,ch:0,cs:0,tp:66.8,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'ATCO',x2:'',x2s:'',name:'Atlas Copco',sector:'Industrie compresseurs',cap:'large',srd:false,idx:'Europe (SEK)',price:18.97,chg5:1.8,news5:'',dy_n:10,dy_med:1.85,div12:0.36,pe_lo:25.5,gmod:2.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:4.8,irr:5.2,dq:'',vmult:9.1,hn:4,eveb_h:18.5,pfcf_h:33.8,pe_h:29.1,fcur:'SEK',fcfh:'26379|30863|22633|16346',nih:'26420|29782|28040|23477',revh:'168343|176771|172664|141325',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:9.85,vpess:7.84,nregu:2,regn:3,regu:2,place:'Stockholm',mthreat:'cycle industriel',mtype:'leader compresseurs/vide, apres-vente recurrent',mscore:4,alarm:'',qwhy:'croissance officielle 2.0%',qok:false,gsrc:'communique 2026-10-05',gused:2.0,near:true,gimp:23.0,knife:false,neglect:false,vmeth:'qarp',nig:4.0,cagr:6.0,nde:0.44,fcfc:89.0,roicx:39.3,chg:1.24,mkt:'—',b52h:19.11,b52l:13.34,beta:1.04,pe:38.92,pb:9.75,ev_ebitda:25.06,ps:6.1,pfcf:0,ev_ebit:30.6,roe:25.7,roic:23.1,roa:10.7,debt:0.34,de:0.34,ic:39.2,cr:1.27,qr:0,yield:1.4,epsg:8.0,revg:9.1,margin:15.7,gm:42.2,om:0,fcf:2.5,capex:0,capr:3.7,capda:0.65,dcfb:7.3,dcfm:8.59,dcfu:10.31,pio:6,alt:6.85,rsi:58.3,mm50:18.32,mm200:16.76,el:6.45,eh:7.3,stop:7.06,o1:9.85,o2:10.83,cb:0,ch:0,cs:0,tp:19.9,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'ASSA',x2:'',x2s:'',name:'Assa Abloy',sector:'Industrie serrures et acces',cap:'large',srd:false,idx:'Europe (SEK)',price:31.1,chg5:-1.1,news5:'',dy_n:10,dy_med:1.75,div12:0.55,pe_lo:18.7,gmod:3.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:6.2,irr:6.7,dq:'',vmult:22.83,hn:4,eveb_h:14.4,pfcf_h:19.7,pe_h:23.4,fcur:'SEK',fcfh:'18638|18829|18655|12363',nih:'14701|15639|13633|13291',revh:'152409|150162|140716|120793',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:23.68,vpess:19.51,nregu:2,regn:3,regu:3,place:'Stockholm',mthreat:'cycle construction',mtype:'leader mondial des serrures, base installee',mscore:4,alarm:'',qwhy:'ROIC 10.4',qok:false,gsrc:'communique 2026-10-12',gused:3.0,near:true,gimp:14.4,knife:false,neglect:false,vmeth:'qarp',nig:3.4,cagr:8.1,nde:2.19,fcfc:120.0,roicx:26.5,chg:-0.09,mkt:'—',b52h:35.43,b52l:28.05,beta:0.82,pe:23.64,pb:3.48,ev_ebitda:15.7,ps:2.56,pfcf:0,ev_ebit:19.7,roe:15.6,roic:10.4,roa:7.1,debt:0.64,de:0.64,ic:7.0,cr:1.01,qr:0,yield:1.8,epsg:15.9,revg:3.3,margin:10.8,gm:43.1,om:0,fcf:4.8,capex:0,capr:1.8,capda:0.46,dcfb:18.27,dcfm:21.49,dcfu:25.79,pio:8,alt:3.78,rsi:47.9,mm50:31.5,mm200:31.38,el:16.12,eh:18.27,stop:17.56,o1:23.68,o2:26.05,cb:0,ch:0,cs:0,tp:36.53,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'EPI',x2:'',x2s:'',name:'Epiroc',sector:'Industrie equipements miniers',cap:'large',srd:false,idx:'Europe (SEK)',price:24.06,chg5:1.3,news5:'',dy_n:7,dy_med:1.88,div12:0.34,pe_lo:25.9,gmod:4.2,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:5.2,irr:5.6,dq:'',vmult:13.39,hn:4,eveb_h:16.9,pfcf_h:37.0,pe_h:27.0,fcur:'SEK',fcfh:'8680|8604|5456|4544',nih:'8602|8731|9431|8397',revh:'61998|63604|60343|49694',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:13.5,vpess:10.25,nregu:1,regn:3,regu:2,place:'Stockholm',mthreat:'cycle minier',mtype:'equipements miniers en duopole avec Sandvik, apres-vente',mscore:4,alarm:'',qwhy:'cash 78.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:4.2,near:true,gimp:24.8,knife:false,neglect:false,vmeth:'qarp',nig:0.8,cagr:7.7,nde:0.7,fcfc:78.0,roicx:26.7,chg:1.58,mkt:'—',b52h:25.38,b52l:16.66,beta:1.21,pe:36.87,pb:7.31,ev_ebitda:23.0,ps:5.23,pfcf:0,ev_ebit:28.0,roe:21.2,roic:20.0,roa:9.6,debt:0.42,de:0.42,ic:14.8,cr:2.13,qr:0,yield:1.4,epsg:15.8,revg:10.4,margin:14.2,gm:35.7,om:0,fcf:2.7,capex:0,capr:3.2,capda:0.65,dcfb:10.41,dcfm:12.24,dcfu:14.69,pio:8,alt:5.91,rsi:57.3,mm50:23.11,mm200:22.5,el:8.57,eh:9.8,stop:9.23,o1:13.5,o2:14.85,cb:0,ch:0,cs:0,tp:25.35,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
-,{ticker:'KOG',x2:'',x2s:'',name:'Kongsberg Gruppen',sector:'Defense',cap:'large',srd:false,idx:'Europe (NOK)',price:28.08,chg5:-2.9,news5:'',dy_n:10,dy_med:2.71,div12:0.53,pe_lo:22.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:21.5,pfcf_h:23.8,pe_h:28.1,fcur:'NOK',fcfh:'9800|11498|3444|28',nih:'7953|5126|3712|2773',revh:'31562|24648|40617|31803',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:2,place:'Oslo',alarm:'',qwhy:'croissance CA -0.3%',qok:false,gsrc:'yahoo (4 ans publies)',gused:20.9,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:42.1,cagr:-0.3,nde:-1.9,fcfc:127.0,roicx:47.2,chg:1.56,mkt:'—',b52h:39.97,b52l:21.39,beta:0.22,pe:44.05,pb:21.39,ev_ebitda:38.56,ps:7.39,pfcf:0,ev_ebit:42.5,roe:32.6,roic:30.0,roa:5.4,debt:0.24,de:0.24,ic:8.1,cr:0.88,qr:0,yield:0.7,epsg:-1.6,revg:29.6,margin:20.5,gm:55.7,om:0,fcf:3.7,capex:0,capr:9.3,capda:1.7,dcfb:13.84,dcfm:16.29,dcfu:19.54,pio:8,alt:0,rsi:44.2,mm50:29.26,mm200:30.39,el:13.68,eh:15.24,stop:12.04,o1:17.1,o2:19.54,cb:0,ch:0,cs:0,tp:37.18,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'COLO',x2:'',x2s:'',name:'Coloplast',sector:'Sante materiel medical',cap:'large',srd:false,idx:'Europe (DKK)',price:59.71,chg5:8.9,news5:'',dy_n:10,dy_med:2.54,div12:3.08,pe_lo:35.0,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:3,eveb_h:25.3,pfcf_h:56.3,pe_h:35.1,fcur:'DKK',fcfh:'1420|2985|3964',nih:'5052|4783|4706',revh:'27030|24500|22579',yrs:'2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:2,regn:2,regu:2,place:'Copenhague',alarm:'',qwhy:'cash 58.0%, dette/EBITDA 2.58',qok:false,gsrc:'yahoo (4 ans publies)',gused:6.5,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:3.6,cagr:9.4,nde:2.58,fcfc:58.0,roicx:33.1,chg:2.39,mkt:'—',b52h:84.47,b52l:49.46,beta:0.56,pe:36.4,pb:7.52,ev_ebitda:14.32,ps:3.54,pfcf:0,ev_ebit:17.2,roe:18.5,roic:14.7,roa:10.1,debt:1.78,de:1.78,ic:9.0,cr:1.56,qr:0,yield:5.3,epsg:81.8,revg:5.7,margin:9.7,gm:67.2,om:0,fcf:1.4,capex:0,capr:5.0,capda:1.04,dcfb:45.4,dcfm:53.41,dcfu:64.09,pio:7,alt:3.35,rsi:64.6,mm50:58.09,mm200:59.19,el:37.39,eh:47.0,stop:32.9,o1:56.08,o2:64.09,cb:0,ch:0,cs:0,tp:61.92,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'DSV',x2:'',x2s:'',name:'DSV',sector:'Logistique transit international',cap:'large',srd:false,idx:'Europe (DKK)',price:154.66,chg5:-0.4,news5:'',dy_n:10,dy_med:0.46,div12:0.94,pe_lo:13.5,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:14.6,pfcf_h:18.8,pe_h:27.9,fcur:'DKK',fcfh:'18893|9222|14083|25052',nih:'8095|10109|12315|17568',revh:'247331|167106|150785|235665',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:0,regn:3,regu:2,place:'Copenhague',alarm:'',qwhy:'ROIC 11.5, dette/EBITDA 3.57, croissance CA 1.6%',qok:false,gsrc:'yahoo (4 ans publies)',gused:-10.6,near:false,gimp:null,knife:true,neglect:true,vmeth:'per',nig:-22.8,cagr:1.6,nde:3.57,fcfc:140.0,roicx:38.9,chg:-0.9,mkt:'—',b52h:256.0,b52l:151.25,beta:0.99,pe:38.37,pb:2.2,ev_ebitda:14.12,ps:0.95,pfcf:0,ev_ebit:22.8,roe:6.3,roic:11.5,roa:4.6,debt:0.76,de:0.76,ic:4.3,cr:0.96,qr:0,yield:0.6,epsg:-4.0,revg:23.7,margin:2.4,gm:26.8,om:0,fcf:6.8,capex:0,capr:1.0,capda:null,dcfb:136.72,dcfm:160.84,dcfu:193.01,pio:7,alt:2.56,rsi:38.2,mm50:172.94,mm200:205.72,el:131.89,eh:149.26,stop:116.06,o1:168.88,o2:193.01,cb:0,ch:0,cs:0,tp:253.09,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'NSIS',x2:'',x2s:'',name:'Novonesis',sector:'Biotech enzymes',cap:'large',srd:false,idx:'Europe (DKK)',price:58.29,chg5:2.3,news5:'',dy_n:10,dy_med:1.43,div12:0.88,pe_lo:26.5,gmod:7.5,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:27.0,irrn:4.9,irr:5.3,dq:'',vmult:null,hn:4,eveb_h:18.8,pfcf_h:43.8,pe_h:38.2,fcur:'EUR',fcfh:'751|660|281|150',nih:'584|306|406|493',revh:'4158|3834|2402|2356',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:28.92,vpess:20.24,nregu:1,regn:3,regu:3,place:'Copenhague',mthreat:'integration Chr. Hansen, prix agricoles',mtype:'enzymes et micro-organismes : duopole mondial',mscore:4,alarm:'',qwhy:'ROIC 10.7',qok:false,gsrc:'communique 2026-10-12',gused:7.5,near:true,gimp:27.0,knife:false,neglect:false,vmeth:'qarp',nig:5.8,cagr:20.8,nde:-0.2,fcfc:103.0,roicx:15.8,chg:0.14,mkt:'—',b52h:62.21,b52l:45.06,beta:0.62,pe:42.88,pb:2.44,ev_ebitda:128.04,ps:47.29,pfcf:0,ev_ebit:253.9,roe:5.8,roic:10.7,roa:3.8,debt:0.28,de:0.28,ic:11.9,cr:1.74,qr:0,yield:1.5,epsg:26.7,revg:9.6,margin:14.7,gm:56.4,om:0,fcf:0.4,capex:0,capr:11.3,capda:0.82,dcfb:22.2,dcfm:26.12,dcfu:31.34,pio:7,alt:20.95,rsi:54.6,mm50:57.78,mm200:53.5,el:19.59,eh:22.2,stop:18.22,o1:28.92,o2:31.81,cb:0,ch:0,cs:0,tp:66.8,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'ATCO',x2:'',x2s:'',name:'Atlas Copco',sector:'Industrie compresseurs',cap:'large',srd:false,idx:'Europe (SEK)',price:19.0,chg5:1.8,news5:'',dy_n:10,dy_med:1.85,div12:0.36,pe_lo:25.5,gmod:2.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:4.8,irr:5.2,dq:'',vmult:9.12,hn:4,eveb_h:18.5,pfcf_h:33.8,pe_h:29.1,fcur:'SEK',fcfh:'26379|30863|22633|16346',nih:'26420|29782|28040|23477',revh:'168343|176771|172664|141325',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:9.86,vpess:7.86,nregu:2,regn:3,regu:2,place:'Stockholm',mthreat:'cycle industriel',mtype:'leader compresseurs/vide, apres-vente recurrent',mscore:4,alarm:'',qwhy:'croissance officielle 2.0%',qok:false,gsrc:'communique 2026-10-05',gused:2.0,near:true,gimp:23.0,knife:false,neglect:false,vmeth:'qarp',nig:4.0,cagr:6.0,nde:0.44,fcfc:89.0,roicx:39.3,chg:1.24,mkt:'—',b52h:19.14,b52l:13.36,beta:1.04,pe:38.92,pb:9.75,ev_ebitda:25.06,ps:6.1,pfcf:0,ev_ebit:30.6,roe:25.7,roic:23.1,roa:10.7,debt:0.34,de:0.34,ic:39.2,cr:1.27,qr:0,yield:1.4,epsg:8.0,revg:9.1,margin:15.7,gm:42.2,om:0,fcf:2.5,capex:0,capr:3.7,capda:0.65,dcfb:7.32,dcfm:8.61,dcfu:10.33,pio:6,alt:6.85,rsi:58.3,mm50:18.35,mm200:16.78,el:6.46,eh:7.32,stop:7.07,o1:9.86,o2:10.85,cb:0,ch:0,cs:0,tp:19.93,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'ASSA',x2:'',x2s:'',name:'Assa Abloy',sector:'Industrie serrures et acces',cap:'large',srd:false,idx:'Europe (SEK)',price:31.15,chg5:-1.1,news5:'',dy_n:10,dy_med:1.75,div12:0.55,pe_lo:18.7,gmod:3.0,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:6.1,irr:6.6,dq:'',vmult:22.68,hn:4,eveb_h:14.4,pfcf_h:19.7,pe_h:23.4,fcur:'SEK',fcfh:'18638|18829|18655|12363',nih:'14701|15639|13633|13291',revh:'152409|150162|140716|120793',yrs:'2025|2024|2023|2022',unc:'moyenne',vopt:24.21,vpess:18.81,nregu:2,regn:3,regu:3,place:'Stockholm',mthreat:'cycle construction',mtype:'leader mondial des serrures, base installee',mscore:4,alarm:'',qwhy:'ROIC 10.4',qok:false,gsrc:'communique 2026-10-12',gused:3.0,near:true,gimp:12.1,knife:false,neglect:false,vmeth:'qarp',nig:3.4,cagr:8.1,nde:2.19,fcfc:120.0,roicx:26.5,chg:-0.09,mkt:'—',b52h:35.49,b52l:28.09,beta:0.82,pe:23.64,pb:3.48,ev_ebitda:15.7,ps:null,pfcf:0,ev_ebit:19.7,roe:15.6,roic:10.4,roa:7.1,debt:0.64,de:0.64,ic:7.0,cr:1.01,qr:0,yield:1.8,epsg:15.9,revg:3.3,margin:10.8,gm:43.1,om:0,fcf:null,capex:0,capr:1.8,capda:0.46,dcfb:18.14,dcfm:21.34,dcfu:25.61,pio:8,alt:1.71,rsi:47.9,mm50:31.55,mm200:31.42,el:16.01,eh:18.14,stop:16.93,o1:24.21,o2:26.63,cb:0,ch:0,cs:0,tp:36.59,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'EPI',x2:'',x2s:'',name:'Epiroc',sector:'Industrie equipements miniers',cap:'large',srd:false,idx:'Europe (SEK)',price:24.1,chg5:1.3,news5:'',dy_n:7,dy_med:1.88,div12:0.34,pe_lo:25.9,gmod:4.2,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:30.0,irrn:5.2,irr:5.6,dq:'',vmult:13.41,hn:4,eveb_h:16.9,pfcf_h:37.0,pe_h:27.0,fcur:'SEK',fcfh:'8680|8604|5456|4544',nih:'8602|8731|9431|8397',revh:'61998|63604|60343|49694',yrs:'2025|2024|2023|2022',unc:'elevee',vopt:13.52,vpess:10.27,nregu:1,regn:3,regu:2,place:'Stockholm',mthreat:'cycle minier',mtype:'equipements miniers en duopole avec Sandvik, apres-vente',mscore:4,alarm:'',qwhy:'cash 78.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:4.2,near:true,gimp:24.8,knife:false,neglect:false,vmeth:'qarp',nig:0.8,cagr:7.7,nde:0.7,fcfc:78.0,roicx:26.7,chg:1.58,mkt:'—',b52h:25.42,b52l:16.68,beta:1.21,pe:36.87,pb:7.31,ev_ebitda:23.0,ps:5.23,pfcf:0,ev_ebit:28.0,roe:21.2,roic:20.0,roa:9.6,debt:0.42,de:0.42,ic:14.8,cr:2.13,qr:0,yield:1.4,epsg:15.8,revg:10.4,margin:14.2,gm:35.7,om:0,fcf:2.7,capex:0,capr:3.2,capda:0.65,dcfb:10.42,dcfm:12.26,dcfu:14.72,pio:8,alt:5.91,rsi:57.3,mm50:23.14,mm200:22.53,el:8.58,eh:9.81,stop:9.24,o1:13.52,o2:14.87,cb:0,ch:0,cs:0,tp:25.38,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+,{ticker:'KOG',x2:'',x2s:'',name:'Kongsberg Gruppen',sector:'Defense',cap:'large',srd:false,idx:'Europe (NOK)',price:28.09,chg5:-2.9,news5:'',dy_n:10,dy_med:2.71,div12:0.53,pe_lo:22.1,gmod:null,icr:null,ltv:null,bvg:null,roemin:null,roem:null,grid:'',wht:null,irrn:null,irr:null,dq:'',vmult:null,hn:4,eveb_h:21.5,pfcf_h:23.8,pe_h:28.1,fcur:'NOK',fcfh:'9800|11498|3444|28',nih:'7953|5126|3712|2773',revh:'31562|24648|40617|31803',yrs:'2025|2024|2023|2022',unc:'',vopt:null,vpess:null,nregu:3,regn:3,regu:2,place:'Oslo',alarm:'',qwhy:'croissance CA -0.3%',qok:false,gsrc:'yahoo (4 ans publies)',gused:20.9,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:42.1,cagr:-0.3,nde:-1.9,fcfc:127.0,roicx:47.2,chg:1.56,mkt:'—',b52h:39.98,b52l:21.4,beta:0.22,pe:44.05,pb:21.39,ev_ebitda:39.16,ps:7.39,pfcf:0,ev_ebit:43.2,roe:32.6,roic:30.0,roa:5.4,debt:0.24,de:0.24,ic:8.1,cr:0.88,qr:0,yield:0.7,epsg:-1.6,revg:29.6,margin:20.5,gm:55.7,om:0,fcf:3.7,capex:0,capr:9.3,capda:1.7,dcfb:13.85,dcfm:16.29,dcfu:19.55,pio:8,alt:0,rsi:44.2,mm50:29.27,mm200:30.4,el:13.69,eh:15.25,stop:12.04,o1:17.11,o2:19.55,cb:0,ch:0,cs:0,tp:37.2,score:'D',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
 ];
 
 
