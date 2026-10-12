@@ -161,7 +161,22 @@ def main():
             txt_ += ' · ' + (f'<a href="{link}">{first[0]}</a>' if link else first[0])
         moves.append((s_, txt_))
 
-    watch_close = sorted([s for s in S if group(s) == 'watch' and (s.get('eh') or 0) > 0 and s['price'] > s['eh']],
+    # 12/10/2026 : alerte "a moins de 5 % du palier 1" -> preparer la these et
+    # poser l'ordre limite AVANT que le cours arrive (au palier, il y a
+    # toujours une mauvaise nouvelle, et c'est la qu'on renonce).
+    near5 = []
+    for s in sorted([s for s in S if (s.get('qok') or s.get('near')) and (s.get('eh') or 0) > 0
+                     and s['eh'] < s['price'] <= s['eh'] * 1.05], key=lambda s: s['price'] / s['eh']):
+        c = last_ce(D['CE'], s['ticker'])
+        age = (date.today() - date.fromisoformat(c['date'])).days if c else None
+        ce_txt = ('contre-expertise à faire cette semaine' if (c is None or age > 90)
+                  else f"contre-expertise du {c['date']} : {c.get('concl', '?')}")
+        near5.append((s, f"à {fr((s['price'] / s['eh'] - 1) * 100, 1)} % du palier 1 · "
+                         f"ordre limité à poser : {fr(s['eh'])} € · {ce_txt}"
+                         + ('' if s.get('qok') else ' · hors filtre de peu (à surveiller)')))
+    n5 = {s['ticker'] for s, _ in near5}
+    watch_close = sorted([s for s in S if group(s) == 'watch' and (s.get('eh') or 0) > 0 and s['price'] > s['eh']
+                          and s['ticker'] not in n5],
                          key=lambda s: s['price'] / s['eh'])[:5]
     nexts = [(by[t], FICHE_next) for t in held if t in by and (FICHE_next := (D['FICHE'].get(t) or {}).get('next'))]
 
@@ -192,9 +207,10 @@ def main():
 </div>
 <p style="font-size:14px;line-height:1.5">{head}</p>
 {sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend seulement si la perte de qualité est confirmée à la publication suivante, ou si une contre-expertise conclut « thèse cassée ». Jamais sur le prix seul.</p>')}
-{sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>.</p>'))}
+{sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>. L’ETF est ta poche d’attente : le jour où une action touche son palier, tu vends la part d’ETF correspondante dans le PEA (sans impôt) pour l’acheter.</p>'))}
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}
 {sec('Mouvements de plus de 10 % cette semaine', li(moves, '#24508a') + '<p style="font-size:12px;color:#5a6275">La thèse est-elle touchée, ou seulement le prix ? On ne décide jamais sur un mouvement de prix seul.</p>')}
+{sec('À moins de 5 % du palier 1 : prépare-toi', li(near5, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">La thèse se vérifie maintenant, à froid. L’ordre limité se pose à l’avance : la baisse peut ne durer que quelques heures.</p>')}
 {sec('Entrées en zone d’achat depuis le dernier mail', li([(by[t], 'nouvelle en zone · ' + ('achat possible' if group(by[t]) == 'buy' else 'à surveiller (chute, moat ou régularité)')) for t in new_zone], '#1d6b45'))}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
 {sec('Contre-expertises à faire (mes lignes)', li(ce_todo, '#6b7487'))}
@@ -203,7 +219,7 @@ def main():
 <p style="font-size:11px;color:#94a3b8;margin-top:18px">Calculé sans IA à partir du screener. Tes positions restent privées dans ton navigateur : les rubriques « mes lignes » sont dans l’onglet Alertes du screener. Pas un conseil en investissement : c’est toi qui décides, avec tes règles écrites.</p>
 </div></body></html>'''
 
-    subject = f"VAL.PEA · {'Routine de dimanche' if first_sunday else 'Point hebdo'} · {n_buy} achat possible · {len(new_zone)} nouvelle(s) en zone"
+    subject = f"VAL.PEA · {'Routine de dimanche' if first_sunday else 'Point hebdo'} · {n_buy} achat possible · {len(new_zone)} nouvelle(s) en zone · {len(near5)} à moins de 5 %"
     with open('routine_preview.html', 'w', encoding='utf-8') as f:
         f.write(html)
     json.dump({'in_zone': sorted(in_zone), 'date': today.isoformat()}, open(STATE, 'w', encoding='utf-8'))
