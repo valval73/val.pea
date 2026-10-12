@@ -205,6 +205,20 @@ def main():
                     " Premier verdict 12 mois après la première photo."))
     except Exception:
         suivi = 'Pas encore de photo des signaux.'
+    # 12/10/2026 : croissances officielles saisies a la main (official_growth.py)
+    # -> elles vieillissent sans prevenir. Plus de 6 mois = au moins une
+    # publication est passee depuis : la valeur de l'action est calculee sur
+    # un chiffre perime. On ne signale que les valeurs du filtre ou limites.
+    stale = []
+    try:
+        from official_growth import OFFICIAL_GROWTH
+        for t_, (g_, det_, d_) in sorted(OFFICIAL_GROWTH.items(), key=lambda kv: kv[1][2]):
+            age_ = (date.today() - date.fromisoformat(d_)).days
+            s_ = by.get(t_)
+            if age_ > 182 and s_ and (s_.get('qok') or s_.get('near')):
+                stale.append((s_, f"croissance retenue {fr(g_, 1)} %/an, saisie le {d_} ({age_} jours) : à mettre à jour avec les derniers résultats"))
+    except Exception as e_:
+        print('croissances officielles : controle impossible', e_)
     n_buy = len(buys)
     head = ('<b>Dimanche, c’est la routine du mois</b> (15 min, puis aucune décision le reste du mois).'
             if first_sunday else 'Point de la semaine : aucune décision obligatoire avant la routine du 1er dimanche.')
@@ -222,6 +236,7 @@ def main():
 {sec('À moins de 5 % du palier 1 : prépare-toi', li(near5, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">La thèse se vérifie maintenant, à froid. L’ordre limité se pose à l’avance : la baisse peut ne durer que quelques heures.</p>')}
 {sec('Entrées en zone d’achat depuis le dernier mail', li([(by[t], 'nouvelle en zone · ' + ('achat possible' if group(by[t]) == 'buy' else 'à surveiller (chute, moat ou régularité)')) for t in new_zone], '#1d6b45'))}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
+{sec('Croissances officielles périmées', li(stale, '#a8790f'))}
 {sec('Suivi en conditions réelles', '<p style="font-size:13px">' + suivi + '</p>')}
 {sec('Contre-expertises à faire (mes lignes)', li(ce_todo, '#6b7487'))}
 {sec('Prochains rendez-vous de mes lignes', li(nexts, '#6b7487'))}
