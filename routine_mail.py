@@ -196,6 +196,15 @@ def main():
     def sec(title, body):
         return f'<h2 style="font-family:Georgia,serif;font-size:18px;margin:22px 0 6px;color:#0e1c33">{title}</h2>{body}'
 
+    # 12/10/2026 : preuve de la methode sur de vraies donnees futures (track_signals.py)
+    try:
+        B = json.load(open('signals_history.json', encoding='utf-8')).get('bilan', {})
+        suivi = (f"{B.get('photos', 0)} photo(s) mensuelle(s) des signaux, {B.get('evaluees', 0)} évaluée(s) à 12 mois."
+                 + (f" Les achats en zone ont battu l'ETF Monde {B['achat_bat_etf']} fois sur {B['evaluees']} ;"
+                    f" le filtre qualité {B['filtre_bat_etf']} fois sur {B['evaluees']}." if B.get('evaluees') else
+                    " Premier verdict 12 mois après la première photo."))
+    except Exception:
+        suivi = 'Pas encore de photo des signaux.'
     n_buy = len(buys)
     head = ('<b>Dimanche, c’est la routine du mois</b> (15 min, puis aucune décision le reste du mois).'
             if first_sunday else 'Point de la semaine : aucune décision obligatoire avant la routine du 1er dimanche.')
@@ -213,6 +222,7 @@ def main():
 {sec('À moins de 5 % du palier 1 : prépare-toi', li(near5, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">La thèse se vérifie maintenant, à froid. L’ordre limité se pose à l’avance : la baisse peut ne durer que quelques heures.</p>')}
 {sec('Entrées en zone d’achat depuis le dernier mail', li([(by[t], 'nouvelle en zone · ' + ('achat possible' if group(by[t]) == 'buy' else 'à surveiller (chute, moat ou régularité)')) for t in new_zone], '#1d6b45'))}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
+{sec('Suivi en conditions réelles', '<p style="font-size:13px">' + suivi + '</p>')}
 {sec('Contre-expertises à faire (mes lignes)', li(ce_todo, '#6b7487'))}
 {sec('Prochains rendez-vous de mes lignes', li(nexts, '#6b7487'))}
 <p style="margin-top:22px"><a href="{SITE}" style="background:#0e1c33;color:#f0d080;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:bold">Ouvrir le screener</a></p>
