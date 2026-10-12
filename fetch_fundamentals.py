@@ -358,7 +358,11 @@ Q_ROIC_X, Q_ROIC, Q_FCF, Q_ND, Q_GROWTH = 15.0, 12.0, 80.0, 2.5, 3.0
 
 # Exceptions ECRITES, decidees par l'utilisatrice (pas de derogation au cas par cas) :
 # la valeur reste eligible a l'argent neuf meme si elle echoue au filtre.
-EXCEPTIONS = {'AI': 'pilier long terme (prime de fidelite)'}
+# 12/10/2026 : plus d'exception sans fin. Chaque exception porte une date
+# d'expiration ; passee cette date, la valeur suit les regles comme les autres
+# (decision de l'utilisatrice : "arreter de chercher des exceptions").
+# Air Liquide : ROIC total 9,4 % (< 12 %) ; expire apres les resultats annuels 2026.
+EXCEPTIONS = {'AI': ('pilier long terme, ROIC total sous 12 %', '2027-03-01')}
 
 def _row_series(df, *names):
     """Valeurs d'une ligne pour toutes les annees (plus recente d'abord),
@@ -1204,8 +1208,12 @@ def fetch_one(ticker, yf_sym, sector):
             return False
         result['near'] = (not result.get('qok') and len(_fails) == 1 and _close(_fails[0]))
         if ticker in EXCEPTIONS and not result.get('qok'):
-            result['qok'] = True
-            result['qwhy'] = 'EXCEPTION (' + EXCEPTIONS[ticker] + ') : ' + result.get('qwhy', '')
+            _why, _until = EXCEPTIONS[ticker]
+            if datetime.now().date().isoformat() <= _until:
+                result['qok'] = True
+                result['qwhy'] = 'EXCEPTION jusqu au ' + _until + ' (' + _why + ') : ' + result.get('qwhy', '')
+            else:
+                result['qwhy'] = 'exception expiree le ' + _until + ' : ' + result.get('qwhy', '')
         if pio is not None and pio <= 4:
             result['alarm'] = f'Piotroski {pio}/9'
         # Etape 2 : juste prix ajuste a la qualite pour les valeurs du filtre
