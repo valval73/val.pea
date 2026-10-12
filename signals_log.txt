@@ -1,2 +1,1 @@
-photo du mois enregistree : 8 en zone, 32 dans le filtre
 bilan : {'photos': 1, 'evaluees': 0, 'achat_bat_etf': 0, 'filtre_bat_etf': 0}
