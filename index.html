@@ -372,6 +372,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
     <div class="ntab" onclick="showPg('labo',this)" style="background:linear-gradient(135deg,#065f46,#059669);color:#fff;font-weight:700">🧠 Labo Psycho</div>
     <div class="ntab" onclick="showPg('acad',this)">🎓 Scores</div>
     <div class="ntab" onclick="showPg('guide',this)" style="background:linear-gradient(135deg,#b8860b,#f0d080);color:#0f2540;font-weight:700">📖 Mode d'emploi</div>
+    <div class="ntab" onclick="showPg('an',this)" style="background:linear-gradient(135deg,#0f2540,#1a3a5c);color:#f0d080;font-weight:700">🔍 Analyser une action</div>
 
 
     <div class="ntab" onclick="showPg('bt',this)" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-weight:700">📈 Mon PEA</div>
@@ -5218,6 +5219,135 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
+
+<div class="page" id="pg-an">
+<style>
+#pg-an .an-w{padding:20px 24px;max-width:900px;margin:0 auto;color:var(--tx);font-size:13px;line-height:1.55}
+#pg-an h3{font-family:Georgia,serif;font-size:17px;margin:22px 0 8px;color:var(--tx)}
+#pg-an .an-card{background:var(--wh);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;margin:10px 0}
+#pg-an table{width:100%;border-collapse:collapse;font-size:12px}
+#pg-an td,#pg-an th{border-bottom:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}
+#pg-an th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mu)}
+#pg-an .ok{color:var(--gn);font-weight:700}#pg-an .ko{color:var(--rd);font-weight:700}
+#pg-an .an-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+#pg-an label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mu);margin-bottom:3px}
+#pg-an input,#pg-an select{width:100%;box-sizing:border-box;padding:7px 8px;border:1px solid var(--bd2);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--sf);color:var(--tx)}
+#pg-an .an-res{font-family:'IBM Plex Mono',monospace}
+#pg-an .an-big{font-size:20px;font-weight:700}
+#pg-an .an-note{font-size:11px;color:var(--mu)}
+</style>
+<div class="an-w">
+  <div style="background:linear-gradient(135deg,#0f2540,#1a3a5c);border-radius:8px;padding:22px 26px">
+    <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:3px">🔍 Dernier garde-fou avant achat</div>
+    <div style="font-size:22px;font-weight:700;color:#f0d080;font-family:Georgia,serif;margin-top:4px">Analyser une action à la main</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:6px">Refaire le calcul soi-même, une fois par mois, pour apprendre à valoriser et vérifier le screener. Si les deux divergent de plus de 25 %, on n'achète pas avant d'avoir compris pourquoi.</div>
+  </div>
+
+  <h3>1. Les 8 critères de qualité (et ce qu'il faut en penser)</h3>
+  <div class="an-card"><table>
+    <tr><th>Critère</th><th>Seuil courant</th><th>Seuil du screener</th><th>Piège à éviter</th></tr>
+    <tr><td>Croissance du chiffre d'affaires</td><td>≥ 7 %/an</td><td>≥ 3 %/an, régulière</td><td>7 % exclut Air Liquide ou L'Oréal. La régularité compte plus que le niveau.</td></tr>
+    <tr><td>Marge nette</td><td>≥ 15 %, en hausse sur 5 ans</td><td>pas de seuil fixe</td><td>Dépend du secteur. Regarder plutôt la <b>marge brute stable ou en hausse</b> : preuve du pouvoir de fixer les prix.</td></tr>
+    <tr><td>Croissance du bénéfice</td><td>≥ 10 %/an</td><td>contrôle de cohérence</td><td>Une cyclique au sommet du cycle passe ce filtre, puis s'effondre.</td></tr>
+    <tr><td>Cash libre (FCF)</td><td>marge FCF ≥ 10 %</td><td>cash ≥ 80 % du bénéfice</td><td>Le cash ne ment pas : c'est le meilleur détecteur de maquillage comptable.</td></tr>
+    <tr><td>ROIC</td><td>≥ 15 %</td><td>≥ 15 % hors écarts d'acquisition, ≥ 12 % total</td><td>Un gros rachat fait chuter le ROIC (cas Schneider-PTC à surveiller).</td></tr>
+    <tr><td>ROIC − coût du capital</td><td>≥ 5 points</td><td>implicite (ROIC 15 % contre ~8,5 %)</td><td>Si le ROIC est sous le coût du capital, la croissance détruit de la valeur.</td></tr>
+    <tr><td>Rachats d'actions</td><td>souhaités</td><td>non exigés</td><td>Racheter des actions trop chères détruit de la valeur. Bon seulement sous la valeur.</td></tr>
+    <tr><td>Dette nette / EBITDA</td><td>≤ 2,5</td><td>≤ 2,5</td><td>Sans objet pour les banques et assurances (grilles dédiées).</td></tr>
+  </table></div>
+
+  <h3>2. Les 4 questions que les chiffres ne posent pas</h3>
+  <div class="an-card">
+    <b>Comprendre :</b> puis-je expliquer en une phrase comment l'entreprise gagne de l'argent ? ·
+    <b>Moat :</b> qu'est-ce qui empêche un concurrent de prendre ses marges (marque, brevets, coût de changement, réseau) ? ·
+    <b>Terrain :</b> son marché grandit-il encore dans 10 ans ? ·
+    <b>Prix :</b> est-ce que je paie moins que ce que ça vaut ? Les chiffres sont un rétroviseur : ces quatre questions regardent la route.
+  </div>
+
+  <h3>3. Les multiples : à croiser, jamais seuls</h3>
+  <div class="an-card"><table>
+    <tr><td><b>PER</b></td><td>Prix / bénéfice de l'an passé. À comparer à <b>l'historique de l'entreprise</b>, pas à une moyenne générale.</td></tr>
+    <tr><td><b>PER prévisionnel</b></td><td>Avec le bénéfice attendu. Les prévisions des analystes sont structurellement optimistes.</td></tr>
+    <tr><td><b>PEG</b></td><td>PER / croissance. Repère grossier : ignore la qualité et les taux d'intérêt.</td></tr>
+    <tr><td><b>Cours / valeur comptable</b></td><td>Utile pour les banques et l'industrie lourde, peu pour le logiciel ou le luxe.</td></tr>
+    <tr><td><b>Cours / cash libre</b></td><td>Le plus fiable : combien je paie pour chaque euro de cash réellement encaissé.</td></tr>
+  </table></div>
+
+  <h3>4. Calculer son prix d'achat maximum</h3>
+  <div class="an-card">
+    <p style="margin-top:0">Méthode : chiffre d'affaires projeté sur 5 ans × marge nette moyenne ÷ nombre d'actions futur = BPA dans 5 ans. × PER de sortie = prix dans 5 ans. <b>Puis l'étape que beaucoup oublient : actualiser ce prix à aujourd'hui</b> avec le rendement exigé. Sans elle, on surpaie d'environ un tiers.</p>
+    <div class="an-grid" style="margin-bottom:10px">
+      <div><label>Remplir depuis le screener</label><select id="an-tk" onchange="anFill()"><option value="">— choisir —</option></select></div>
+      <div><label>Cours actuel (€)</label><input id="an-px" type="number" step="any" oninput="anCalc()"></div>
+    </div>
+    <div class="an-grid">
+      <div><label>Chiffre d'affaires actuel (M€)</label><input id="an-ca" type="number" step="any" value="2000" oninput="anCalc()"></div>
+      <div><label>Croissance du CA (%/an, prudente)</label><input id="an-g" type="number" step="any" value="7" oninput="anCalc()"></div>
+      <div><label>Marge nette moyenne 5 ans (%)</label><input id="an-m" type="number" step="any" value="30" oninput="anCalc()"></div>
+      <div><label>Nombre d'actions (millions)</label><input id="an-n" type="number" step="any" value="260" oninput="anCalc()"></div>
+      <div><label>Rachats d'actions (%/an)</label><input id="an-b" type="number" step="any" value="0.5" oninput="anCalc()"></div>
+      <div><label>PER de sortie (plafond 20, 25 si moat 5)</label><input id="an-pe" type="number" step="any" value="20" oninput="anCalc()"></div>
+      <div><label>Rendement exigé (%/an)</label><input id="an-r" type="number" step="any" value="8.5" oninput="anCalc()"></div>
+      <div><label>Marge de sécurité (%)</label><input id="an-s" type="number" step="any" value="20" oninput="anCalc()"></div>
+    </div>
+    <div id="an-out" class="an-res" style="margin-top:14px"></div>
+    <p class="an-note">Exemple par défaut : 2 Md€ de CA, +7 %/an, 30 % de marge, 260 M d'actions, 0,5 % de rachats. Le PER de sortie est volontairement plafonné : un PER historique de 40 rémunérait souvent une croissance qui n'existe plus. Ceci est un outil d'apprentissage, pas un conseil en investissement.</p>
+  </div>
+
+  <h3>5. Feu vert seulement si…</h3>
+  <div class="an-card">
+    ☐ Les 8 critères tiennent, ou l'écart est expliqué par écrit · ☐ Les 4 questions ont une réponse en une phrase · ☐ Le cours est sous le prix d'achat maximum ET dans la zone du screener · ☐ Les deux calculs (le mien et le screener) concordent à 25 % près · ☐ J'ai écrit ce qui me ferait dire que j'avais tort.
+  </div>
+</div>
+<script>
+(function(){
+  function nums(s){return String(s||'').split('|').map(Number).filter(function(x){return isFinite(x)&&x!==0;});}
+  window.anFill=function(){
+    var t=document.getElementById('an-tk').value; if(!t||typeof S==='undefined')return;
+    var s=S.find(function(x){return x&&x.ticker===t;}); if(!s)return;
+    var rv=nums(s.revh), ni=nums(s.nih), set=function(id,v){if(v!=null&&isFinite(v))document.getElementById(id).value=Math.round(v*100)/100;};
+    set('an-px',s.price);
+    if(s.fcur&&s.fcur!=='EUR'){document.getElementById('an-out').innerHTML='<span class="ko">Comptes publiés en '+s.fcur+' : remplis le chiffre d\'affaires et le nombre d\'actions à la main.</span>';return;}
+    if(rv.length)set('an-ca',rv[0]);
+    if(rv.length&&ni.length){var k=Math.min(rv.length,ni.length),m=0;for(var i=0;i<k;i++)m+=ni[i]/rv[i];set('an-m',m/k*100);}
+    if(s.gmod!=null)set('an-g',Math.max(0,s.gmod));
+    set('an-b',0); // rachats inconnus : 0 par prudence
+    if(ni.length&&s.pe>0&&s.price>0)set('an-n',ni[0]/(s.price/s.pe));
+    var cap=(s.mscore===5)?25:20; set('an-pe',s.pe_h?Math.min(s.pe_h,cap):cap);
+    anCalc();
+  };
+  window.anCalc=function(){
+    var v=function(id){return parseFloat(document.getElementById(id).value);};
+    var ca=v('an-ca'),g=v('an-g')/100,m=v('an-m')/100,n=v('an-n'),b=v('an-b')/100,pe=v('an-pe'),r=v('an-r')/100,sf=v('an-s')/100,px=v('an-px');
+    var o=document.getElementById('an-out');
+    if(![ca,g,m,n,b,pe,r,sf].every(isFinite)||n<=0){o.innerHTML='Remplis tous les champs.';return;}
+    var ca5=ca*Math.pow(1+g,5),ni5=ca5*m,n5=n*Math.pow(1-b,5),eps5=ni5/n5,p5=eps5*pe,p0=p5/Math.pow(1+r,5),buy=p0*(1-sf);
+    var f=function(x,d){return x.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});};
+    var h='<div class="an-grid">'+
+      '<div>CA dans 5 ans<br><b>'+f(ca5,0)+' M€</b></div>'+
+      '<div>Bénéfice dans 5 ans<br><b>'+f(ni5,0)+' M€</b></div>'+
+      '<div>BPA dans 5 ans<br><b>'+f(eps5,2)+' €</b></div>'+
+      '<div>Prix dans 5 ans<br><b>'+f(p5,2)+' €</b></div></div>'+
+      '<div style="margin-top:12px">Valeur aujourd\'hui (actualisée à '+f(r*100,1)+' %) : <span class="an-big">'+f(p0,2)+' €</span></div>'+
+      '<div>Prix d\'achat maximum (marge de sécurité '+f(sf*100,0)+' %) : <span class="an-big ok">'+f(buy,2)+' €</span></div>';
+    if(isFinite(px)&&px>0){
+      var irr=Math.pow(p5/px,1/5)-1;
+      h+='<div style="margin-top:8px">Au cours de '+f(px,2)+' € : rendement annuel attendu ≈ <b class="'+(irr>=r?'ok':'ko')+'">'+f(irr*100,1)+' %</b> · '+
+        (px<=buy?'<b class="ok">sous le prix d\'achat maximum</b>':'<b class="ko">au-dessus : il faudrait '+f((1-buy/px)*100,0)+' % de baisse</b>')+'</div>'+
+        '<div class="an-note">Hors dividendes. Le rendement attendu suppose que la croissance et la marge se réalisent.</div>';
+    }
+    o.innerHTML=h;
+  };
+  function init(){
+    var sel=document.getElementById('an-tk'); if(!sel||typeof S==='undefined')return;
+    S.filter(function(x){return x&&x.ticker&&(x.qok||x.near);}).sort(function(a,b){return (a.name||'').localeCompare(b.name||'');})
+     .forEach(function(x){var op=document.createElement('option');op.value=x.ticker;op.textContent=(x.name||x.ticker)+' ('+x.ticker+')';sel.appendChild(op);});
+    anCalc();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+</div>
 
 <div class="page" id="pg-guide">
 <div style="padding:20px 24px;max-width:900px;margin:0 auto">
