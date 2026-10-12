@@ -1,7 +1,23 @@
+ERREUR NODE : ss:null,nregu:3,regn:3,regu:3,place:'Helsinki',alarm:'',qwhy:'croissance CA 1.0%',qok:false,gsrc:'yahoo (4 ans publies)',gused:4.6,near:false,gimp:null,knife:false,neglect:false,vmeth:'per',nig:8.2,cagr:1.0,nde:0.25,fcfc:101.0,roicx:62.2,chg:0.98,mkt:'—',b52h:64.42,b52l:46.22,beta:0.78,pe:29.38,pb:12.05,ev_ebitda:17.82,ps:2.44,pfcf:0,ev_ebit:20.0,roe:41.4,roic:31.7,roa:9.7,debt:0.29,de:0.29,ic:33.8,cr:0.99,qr:0,yield:3.4,epsg:-13.2,revg:3.1,margin:8.3,gm:57.1,om:0,fcf:4.2,capex:0,capr:1.4,capda:0.48,dcfb:24.73,dcfm:29.09,dcfu:34.91,pio:8,alt:4.46,rsi:61.3,mm50:51.15,mm200:53.94,el:24.14,eh:27.11,stop:21.24,o1:30.54,o2:34.91,cb:0,ch:0,cs:0,tp:59.7,score:'C',rec:'avoid',zone:false,moat:[],cats:[],ins:[],peers:[],risks:{},track:[],thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.'}
+                                                                                                                                              ^
+
+ReferenceError: nan is not defined
+    at eval (eval at <anonymous> ([eval]:15:9), <anonymous>:2760:143)
+    at [eval]:15:9
+    at runScriptInThisContext (node:internal/vm:209:10)
+    at node:internal/process/execution:446:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:444:60)
+    at evalFunction (node:internal/process/execution:279:30)
+    at evalTypeScript (node:internal/process/execution:291:3)
+    at node:internal/main/eval_string:74:3
+
+Node.js v22.23.3
+
 Traceback (most recent call last):
-  File "/home/runner/work/val.pea/val.pea/track_signals.py", line 73, in <module>
+  File "/home/runner/work/val.pea/val.pea/track_signals.py", line 78, in <module>
     main()
-  File "/home/runner/work/val.pea/val.pea/track_signals.py", line 44, in main
+  File "/home/runner/work/val.pea/val.pea/track_signals.py", line 46, in main
     D = load()
         ^^^^^^
   File "/home/runner/work/val.pea/val.pea/routine_mail.py", line 52, in load
