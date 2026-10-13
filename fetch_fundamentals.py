@@ -1070,9 +1070,23 @@ def epv_value(t, info, r=None):
         tax = _row_series(fin, 'Tax Provision')
         rates = [min(max(tx / pt, 0.0), 0.40) for tx, pt in zip(tax[:4], pretax[:4]) if pt and pt > 0 and tx is not None]
         rate = sorted(rates)[len(rates) // 2] if rates else 0.25
-        cash = (_row_series(bs, 'Cash And Cash Equivalents', 'Cash Cash Equivalents And Short Term Investments') or [0])[0] or 0
+        # 13/10/2026, contre-expertise de la methode :
+        # 1) tresorerie AVEC placements a court terme (sinon oubliee) ;
+        # 2) seule la tresorerie EXCEDENTAIRE compte : on garde 5 % du CA pour
+        #    l'exploitation, et on retire les avances des clients (ingenierie :
+        #    Technip Energies encaisse avant de construire, cet argent est du) ;
+        # 3) part des minoritaires retiree (Neurones : ~16 % du resultat).
+        cash = (_row_series(bs, 'Cash Cash Equivalents And Short Term Investments', 'Cash And Cash Equivalents') or [0])[0] or 0
         debt = (_row_series(bs, 'Total Debt') or [0])[0] or 0
-        v = (sum(ebit) / len(ebit) * (1 - rate) / R + cash - debt) / sh
+        rev = (_row_series(fin, 'Total Revenue', 'Operating Revenue') or [0])[0] or 0
+        adv = (_row_series(bs, 'Current Deferred Revenue', 'Current Deferred Liabilities') or [0])[0] or 0
+        excess = max(0.0, cash - 0.05 * rev - max(adv, 0))
+        ni_c = _row_series(fin, 'Net Income Common Stockholders', 'Net Income')
+        ni_t = _row_series(fin, 'Net Income Including Noncontrolling Interests')
+        share = 1.0
+        if ni_c and ni_t and ni_t[0] and ni_t[0] > 0 and ni_c[0] and 0 < ni_c[0] <= ni_t[0]:
+            share = ni_c[0] / ni_t[0]
+        v = (sum(ebit) / len(ebit) * (1 - rate) / R * share + excess - debt) / sh
         return v if v > 0 else None
     except Exception as e:
         print(f"  EPV SKIP: {e}")
