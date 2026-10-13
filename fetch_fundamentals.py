@@ -1050,6 +1050,34 @@ def div_history(t, price):
         print(f"  DIV SKIP: {e}")
     return out
 
+# ═══ 13/10/2026 : 3e methode, INDEPENDANTE de la croissance ═══
+# Les methodes 1 (actualisation) et 2 (PER de sortie) partagent la meme
+# croissance et le meme BPA : leur accord n'est pas une vraie confirmation.
+# Valeur de rendement (Greenwald, "earnings power value") : ce que vaut
+# l'entreprise si elle ne grandit plus jamais = resultat d'exploitation moyen
+# (4 ans, lisse les cycles) apres impot, divise par le taux exige (8,5 %),
+# + tresorerie - dette. Le cours au-dessus = ce qu'on paie pour la croissance.
+# Compte la tresorerie, que les methodes par le BPA oublient (cas Neurones).
+def epv_value(t, info, r=None):
+    R = QV_R if r is None else r
+    try:
+        fin, bs = t.financials, t.balance_sheet
+        ebit = [x for x in _row_series(fin, 'EBIT', 'Operating Income')[:4] if x is not None]
+        sh = info.get('sharesOutstanding')
+        if len(ebit) < 3 or not sh:
+            return None
+        pretax = _row_series(fin, 'Pretax Income')
+        tax = _row_series(fin, 'Tax Provision')
+        rates = [min(max(tx / pt, 0.0), 0.40) for tx, pt in zip(tax[:4], pretax[:4]) if pt and pt > 0 and tx is not None]
+        rate = sorted(rates)[len(rates) // 2] if rates else 0.25
+        cash = (_row_series(bs, 'Cash And Cash Equivalents', 'Cash Cash Equivalents And Short Term Investments') or [0])[0] or 0
+        debt = (_row_series(bs, 'Total Debt') or [0])[0] or 0
+        v = (sum(ebit) / len(ebit) * (1 - rate) / R + cash - debt) / sh
+        return v if v > 0 else None
+    except Exception as e:
+        print(f"  EPV SKIP: {e}")
+        return None
+
 def mult_value(eps_fwd, eps_ttm, g_pct, pe_exit, payout, years=5, r=QV_R, gmax=None, pe_cap=20.0):
     """Methode 2 (multiples) : benefice qui croit de g pendant 5 ans,
     dividendes encaisses, puis revente au PER habituel de l'entreprise
@@ -1267,6 +1295,10 @@ def fetch_one(ticker, yf_sym, sector):
                 same_cur = not (info.get('financialCurrency') and info.get('currency')
                                 and info.get('financialCurrency') != info.get('currency'))
                 result['vmult'] = clamp(vm) if (vm and same_cur) else None
+                ve = epv_value(t, info) if same_cur else None
+                result['vepv'] = clamp(ve) if ve else None
+                vals = sorted(x for x in (result.get('dcfm'), result.get('vmult'), result.get('vepv')) if x)
+                result['vmed'] = round(vals[len(vals) // 2], 2) if len(vals) == 3 else None
                 result['irr'] = expected_return(info.get('forwardEps'), eps_ttm, g_c, roic_v, p_)
                 # 08/10/2026 : en PEA, la retenue a la source etrangere sur les
                 # dividendes est perdue -> rendement net pour l'investisseur PEA
@@ -1312,7 +1344,7 @@ def fetch_one(ticker, yf_sym, sector):
         fx = NON_EUR.get(yf_sym)
         if fx:
             for k in ('price','b52h','b52l','dcfb','dcfm','dcfu','el','eh','stop',
-                      'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult','div12'):
+                      'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult','vepv','vmed','div12'):
                 if result.get(k): result[k] = round(result[k] / fx, 2)
         # Objectif de cours = consensus analystes (si >= 3 analystes),
         # au lieu d'un 'tp' saisi a la main a la creation et jamais mis a jour.
@@ -1497,7 +1529,7 @@ def set_quality_fields(block, data):
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
     block = _set_field(block, 'news5', txt(data.get('news5')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'vepv', 'vmed', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
