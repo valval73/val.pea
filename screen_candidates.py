@@ -7,7 +7,7 @@ Lancement manuel (GitHub Actions > Candidats > Run workflow).
 """
 import json, time
 import yfinance as yf
-from fetch_fundamentals import compute_quality
+from fetch_fundamentals import compute_quality, qarp_value, expected_return, implied_growth, QV_GMAX
 
 # code de marche (MIC) -> suffixe Yahoo
 SUFFIX = {'XPAR': '.PA', 'XETR': '.DE', 'XFRA': '.F', 'XMIL': '.MI', 'XMAD': '.MC',
@@ -48,6 +48,24 @@ def main():
                              'qok': bool(q.get('qok')), 'echec': q.get('qwhy', ''),
                              'roic': q.get('roic'), 'roicx': q.get('roicx'), 'cash': q.get('fcfc'),
                              'dette_ebitda': q.get('nde'), 'croissance': q.get('cagr')})
+                # 13/10/2026 : meme valorisation que le screener, pour les seules valeurs qui passent
+                r_ = rows[-1]
+                px = info.get('currentPrice') or info.get('regularMarketPrice')
+                same = not (info.get('financialCurrency') and info.get('currency')
+                            and info.get('financialCurrency') != info.get('currency'))
+                roic_v = q.get('roicx') or q.get('roic')
+                if r_['qok'] and px and same and roic_v:
+                    gs = [x for x in (q.get('cagr'), q.get('nig')) if x is not None]
+                    g = max(0.0, min(sum(gs) / len(gs), QV_GMAX * 100)) if gs else 0.0
+                    roic_c = min(roic_v, 60.0)
+                    v = qarp_value(info.get('forwardEps'), info.get('trailingEps'), None, None, roic_c, g1_override=g / 100)
+                    r_.update({'cours': px, 'valeur': round(v, 2) if v else None,
+                               'ecart_pct': round((px / v - 1) * 100, 0) if v else None,
+                               'rendement_attendu': expected_return(info.get('forwardEps'), info.get('trailingEps'), g, roic_c, px),
+                               'croissance_supposee': implied_growth(info.get('forwardEps'), info.get('trailingEps'), roic_c, px),
+                               'croissance_retenue': round(g, 1)})
+                elif r_['qok'] and not same:
+                    r_['note'] = 'comptes dans une autre devise que le cours : valorisation non calculee'
             except Exception as e:
                 rows.append({'code': code, 'yahoo': sym, 'err': str(e)[:120]})
             time.sleep(0.4)
