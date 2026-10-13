@@ -395,6 +395,36 @@ function checklist(s){
     '<p class="v2-small" style="margin-top:8px"><b>'+(st.ok?'Contrôle complet : l’achat peut être validé.':'Achat bloqué tant qu’une case manque.')+'</b> Méthode détaillée : onglet « Analyser une action ».</p></section>';
 }
 
+// ---- 13/10/2026 : seuil de sortie (decide avec l'utilisatrice) ----
+// Conversion annuelle du benefice en cash : >= 80 % garder ; 60-80 % garder
+// sans renforcer (these fragilisee, contre-expertise) ; < 60 % deux annees de
+// suite = vendre. Sous le seuil de revue (prix) : contre-expertise obligatoire.
+// Pas pour banques, assurances, foncieres (le cash libre s'y lit autrement).
+function cashConv(s){
+  var f=String(s.fcfh||'').split('|').map(Number), n=String(s.nih||'').split('|').map(Number), y=String(s.yrs||'').split('|');
+  var out=[]; for(var i=0;i<Math.min(f.length,n.length);i++){ if(n[i]>0 && isFinite(f[i])) out.push({y:y[i]||'', c:Math.round(f[i]/n[i]*100)}); }
+  return out; // plus recente en premier
+}
+function exitState(s){
+  if(isFin(s)||isRealEstate(s)||s.grid==='fonciere'||s.grid==='banque'||/centres commerciaux|entrep[oô]ts logistiques/i.test(s.sector||'')) return null;
+  var L=cashConv(s); if(!L.length) return null;
+  var a=L[0].c, b=L[1]?L[1].c:null;
+  if(a<60 && b!==null && b<60) return {k:'vendre', t:'VENDRE', c:C.rd, x:'Conversion en cash sous 60 % deux années de suite ('+L[0].y+' : '+a+' %, '+L[1].y+' : '+b+' %).'};
+  if(a<60) return {k:'alerte', t:'ALERTE', c:C.rd, x:'Conversion en cash sous 60 % en '+L[0].y+' ('+a+' %). Contre-expertise : si l’année suivante reste sous 60 %, on vend.'};
+  if(a<80) return {k:'garder', t:'GARDER SANS RENFORCER', c:C.or, x:'Conversion en cash entre 60 et 80 % en '+L[0].y+' ('+a+' %) : thèse fragilisée, contre-expertise pour comprendre la cause.'};
+  return {k:'ok', t:'GARDER', c:C.gn, x:'Conversion en cash de '+a+' % en '+L[0].y+' (seuil 80 %).'};
+}
+function exitBlock(s){
+  var e=exitState(s), L=cashConv(s);
+  var rev=(s.stop>0)?'<p class="v2-small"><b>Prix :</b> sous <b>'+fr(s.stop)+' €</b> (seuil de revue), contre-expertise obligatoire dans la semaine. Une baisse est un signal à vérifier, pas une preuve : elle peut venir du marché ou d’un cycle.</p>':'';
+  if(!e) return rev?'<section class="v2-card"><h2>Seuil de sortie</h2>'+rev+'</section>':'';
+  var hist=L.slice(0,4).map(function(r){ return '<td class="v2-mono" style="color:'+(r.c>=80?C.gn:r.c>=60?C.or:C.rd)+'">'+r.c+' %</td>'; }).join('');
+  var hy=L.slice(0,4).map(function(r){ return '<th>'+esc(r.y)+'</th>'; }).join('');
+  return '<section class="v2-card" style="border-left:4px solid '+e.c+'"><div class="v2-head"><h2>Seuil de sortie : '+e.t+'</h2><span class="v2-small">règle : ≥ 80 % garder · 60-80 % sans renfort · < 60 % deux ans = vendre</span></div>'+
+    '<p>'+e.x+'</p><div class="v2-scroll"><table class="v2-tab"><thead><tr><th>Cash libre / bénéfice</th>'+hy+'</tr></thead><tbody><tr><td></td>'+hist+'</tr></tbody></table></div>'+rev+
+    '<p class="v2-small">On ne vend ni parce qu’on a gagné, ni pour éviter de perdre : le prix d’achat n’entre jamais dans la décision.</p></section>';
+}
+
 function decision(s){
   var g = (s.qok && s.rec==='buy') ? 'buy' : 'no';
   var L = ceList(s.ticker), last = L[0];
@@ -411,6 +441,8 @@ function decision(s){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais '+(last?'la dernière contre-expertise date de '+age+' jours':'il n’y a pas encore de contre-expertise')+'. Règle : pas d’achat sans contre-expertise de moins de 3 mois.'};
   } else if(last.concl==='cassee'){
     r = {t:'ACHAT : NON', c:C.rd, x:'La contre-expertise du '+last.date+' conclut que la thèse est cassée.'};
+  } else if(exitState(s) && exitState(s).k!=='ok'){
+    r = {t:'ACHAT : NON', c:exitState(s).c, x:'Seuil de sortie : '+exitState(s).x+' On ne renforce pas.'};
   } else if(!chkState(s).ok){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le contrôle avant achat est incomplet ('+chkState(s).done+' / '+chkState(s).total+' cases). Coche-les après ton analyse, juste au-dessus.'};
   } else {
@@ -463,7 +495,7 @@ function renderV2(s){
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
     buyPlan(s)+priceBlock(s)+ratios(s)+
     '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
-    thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+checklist(s)+decision(s)+sources(s)+
+    thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+exitBlock(s)+checklist(s)+decision(s)+sources(s)+
   '</div>';
 }
 

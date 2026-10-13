@@ -73,6 +73,34 @@ def last_ce(ce, t):
     return L[0] if L else None
 
 
+def exit_state(s):
+    """Meme regle que la fiche : >= 80 % garder ; 60-80 % sans renfort ;
+    < 60 % deux ans de suite = vendre. Pas pour banques, assurances, foncieres."""
+    if s.get('grid') in ('banque', 'fonciere'):
+        return None
+    if re.search(r'banque|assur|bancaire|financ|fonci|immobil|reit|centres commerciaux|entrep[oô]ts logistiques', s.get('sector') or '', re.I):
+        return None
+    f = str(s.get('fcfh') or '').split('|'); n = str(s.get('nih') or '').split('|'); y = str(s.get('yrs') or '').split('|')
+    L = []
+    for i in range(min(len(f), len(n))):
+        try:
+            fi, ni = float(f[i]), float(n[i])
+        except ValueError:
+            continue
+        if ni > 0:
+            L.append((y[i] if i < len(y) else '', round(fi / ni * 100)))
+    if not L:
+        return None
+    a = L[0][1]; b = L[1][1] if len(L) > 1 else None
+    if a < 60 and b is not None and b < 60:
+        return ('vendre', f"cash sous 60 % deux ans ({L[0][0]} : {a} %, {L[1][0]} : {b} %) -> VENDRE")
+    if a < 60:
+        return ('alerte', f"cash {a} % en {L[0][0]} (< 60 %) -> contre-expertise ; vente si l'annee suivante reste sous 60 %")
+    if a < 80:
+        return ('garder', f"cash {a} % en {L[0][0]} (60-80 %) -> garder sans renforcer, contre-expertise")
+    return ('ok', '')
+
+
 def main():
     D = load()
     S = [s for s in D['S'] if s and s.get('ticker') and (s.get('price') or 0) > 0]
@@ -118,6 +146,12 @@ def main():
         w = s['price'] * p['qty'] / tot * 100 if tot else 0
         if not s.get('qok') and not s.get('near'):
             sell.append((s, 'hors qualité : ' + (s.get('qwhy') or '')))
+        # 13/10/2026 : seuil de sortie sur la conversion du benefice en cash
+        st_ = exit_state(s)
+        if st_ and st_[0] == 'vendre':
+            sell.append((s, 'seuil de sortie : ' + st_[1]))
+        elif st_ and st_[0] in ('alerte', 'garder'):
+            review.append((s, 'seuil de sortie : ' + st_[1]))
         if (s.get('stop') or 0) > 0 and s['price'] < s['stop'] and (s.get('qok') or s.get('near')):
             review.append((s, f"sous le seuil de revue ({fr(s['stop'])} €) → contre-expertise obligatoire"))
         if w > 10:
