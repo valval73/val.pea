@@ -5243,6 +5243,16 @@ document.addEventListener('DOMContentLoaded',function(){
     <div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:6px">Refaire le calcul soi-même, une fois par mois, pour apprendre à valoriser et vérifier le screener. Si les deux divergent de plus de 25 %, on n'achète pas avant d'avoir compris pourquoi.</div>
   </div>
 
+  <h3>Mes analyses</h3>
+  <div class="an-card" id="an-list"><span class="an-note">Chargement…</span></div>
+  <script>(function(){function f(x,d){return Number(x).toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function go(){var el=document.getElementById('an-list');if(!el)return;if(typeof ANALYSES==='undefined'||!ANALYSES.length){el.innerHTML='<span class="an-note">Aucune analyse pour l’instant.</span>';return;}
+  var h='<table><tr><th>Action</th><th>Date</th><th>Verdict</th><th>Cours</th><th>Palier 1</th><th>Palier 2</th><th></th></tr>';
+  ANALYSES.forEach(function(a){var s=(typeof S!=='undefined')?S.find(function(x){return x&&x.ticker===a.t;}):null;var px=s&&s.price?s.price:a.cours;
+  h+='<tr><td><b>'+a.nom+'</b> <span class="an-note">'+a.compte+'</span></td><td>'+a.date+'</td><td>'+a.verdict+'</td><td>'+f(px,2)+' '+a.dev+(s?'':' <span class="an-note">(le '+a.date+')</span>')+'</td><td class="'+(px<=a.p1?'ok':'')+'">'+f(a.p1,2)+' '+a.dev+'</td><td class="'+(px<=a.p2?'ok':'')+'">'+f(a.p2,2)+' '+a.dev+'</td><td><a href="'+a.lien+'" target="_blank" rel="noopener">Lire</a>'+(s?' · <a href="#" onclick="var tb=[].slice.call(document.querySelectorAll(\'.ntab\')).find(function(x){return /\'sc\'/.test(x.getAttribute(\'onclick\')||\'\');});showPg(\'sc\',tb);if(window.v2open){v2open(\''+a.t+'\');}return false;">Fiche</a>':'')+'</td></tr>';});
+  el.innerHTML=h+'</table><p class="an-note">Les liens « Lire » ouvrent le document d’analyse, privé. Un palier en vert = atteint par le cours du jour.</p>';}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();})();</script>
+
   <h3>1. Les 8 critères de qualité (et ce qu'il faut en penser)</h3>
   <div class="an-card"><table>
     <tr><th>Critère</th><th>Seuil courant</th><th>Seuil du screener</th><th>Piège à éviter</th></tr>
@@ -5479,7 +5489,8 @@ document.addEventListener('DOMContentLoaded',function(){
 <script src="live_patch.js?v=20261006d"></script>
 <!-- 05/10/2026 : fiche v2 + liste de decision -->
 <script src="fiches.js?v=20261006h"></script>
-<script src="contre_expertises.js?v=20261006h"></script>
-<script src="fiche_v2.js?v=20261013a"></script>
+<script src="contre_expertises.js?v=20261013a"></script>
+<script src="analyses.js?v=20261013a"></script>
+<script src="fiche_v2.js?v=20261013b"></script>
 </body>
 </html>

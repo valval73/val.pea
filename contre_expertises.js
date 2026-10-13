@@ -4,6 +4,14 @@
 // celles du bouton « Contre-expertise IA » sont gardées dans le navigateur.
 // concl : 'intacte' | 'fragilisee' | 'cassee'
 const CE = {
+NRO:[{date:'2026-10-13', concl:'intacte', point:'IA / jours facturés',
+  resume:"Analyse complète en 6 étapes. S1 2026 : CA 454,8 M€, +6,9 % organique (T2 +8 %), marge opérationnelle 8,7 % (7,8 % un an plus tôt). Objectif 2026 relevé : plus de 900 M€ de CA, marge vers 9 %. Résultat net 2025 plat (52,1 M€). Trésorerie nette d'environ 300 M€, près de 13 € par action, sans dette.",
+  kpi:[["Croissance organique","+6,9 % (S1 2026), +8 % au T2","OK"],["Marge opérationnelle","8,7 % (S1 2026), objectif ~9 %","OK"],["Résultat net 2025","52,1 M€ contre 52,6 M€ (plat)","ALERTE"],["Trésorerie nette","~300 M€, ~35 % de la capitalisation","OK"]],
+  contre:"Métier payé au temps passé, moat faible (2/5) : l'IA peut réduire les jours facturés (cas Wavestone). Le cours suppose 3 %/an de croissance. Dépendance aux budgets informatiques des grandes entreprises françaises.",
+  decision:"ATTENDRE. Valeur à la main ~35 € (30 / 35 / 41 € selon le PER de sortie, dividendes inclus), screener 39,68 €. Palier 1 : 33,70 € (demi-position). Palier 2 : 29,80 €. Thèse cassée si 2 de ces 3 points : croissance organique < 3 %, marge opérationnelle < 8 %, effectifs et CA en baisse ensemble.",
+  lien:'https://claude.ai/code/artifact/e070bf0c-ca97-4cfa-8956-db23e556c24b',
+  sources:[["Bourse Direct – prévision relevée (05/08/2026)","https://www.boursedirect.fr/fr/actualites/categorie/chiffre-d-affaires/neurones-releve-sa-prevision-de-chiffre-d-affaires-boursier-03adfcb5291d627fa2ef87982e943640c3b7962c"],["Option Finance – résultats 2025 (11/03/2026)","https://www.optionfinance.fr/info-financiere-en-continu/d/2026-03-11-neurones-limite-le-recul-de-ses-marges-en-2025.html"],["ABC Bourse – chiffres clés","https://www.abcbourse.com/analyses/chiffres/NROp"]],
+  by:'Claude (conversation)'}],
 WKL:[{date:'2026-10-11', concl:'intacte', point:'IA générative (prix aux renouvellements)',
   resume:"S1 2026 : croissance organique +5 % (+6 % hors livres papier, −19 %), revenus récurrents 85 % du CA et +7 %, marge opérationnelle ajustée 29,4 % (+1 pt), BPA ajusté +14 % et cash libre +14 % à changes constants, dette 2,0x EBITDA. Objectif 2026 maintenu (marge ~28 %, cash libre 1,30-1,35 Md€, rachat jusqu'à 500 M€). La chute du cours (−55 % depuis le sommet, PER 35 → 13) vient de la peur de l'IA, pas des chiffres.",
   kpi:[["Croissance organique","+5 % (S1 2026)","OK"],["Revenus récurrents","85 % du CA, +7 %","OK"],["Marge opérationnelle ajustée","29,4 % (+1 pt)","OK"],["Cash libre 2026","1,30-1,35 Md€ contre 1,35 Md€ en 2025 (stable)","ALERTE"]],

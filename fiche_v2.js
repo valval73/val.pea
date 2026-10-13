@@ -344,6 +344,7 @@ function ceBlock(s){
       (c.analystes?'<p class="v2-small"><b>Analystes :</b> '+esc(c.analystes)+'</p>':'')+
       (c.contre?'<p class="v2-small"><b style="color:'+C.rd+'">Meilleur argument contre :</b> '+esc(c.contre)+'</p>':'')+
       (c.decision?'<p class="v2-small"><b>Décision proposée alors :</b> '+esc(c.decision)+'</p>':'')+
+      (c.lien?'<p><a href="'+esc(c.lien)+'" target="_blank" rel="noopener" style="font-weight:600">Lire l’analyse complète (6 étapes)</a> <span class="v2-small">document privé, visible seulement par toi</span></p>':'')+
       (src?'<p class="v2-small">Sources : '+src+'</p>':'');
     return '<details class="v2-ce"'+(i===0?' open':'')+'><summary><span class="v2-pill" style="background:'+k[2]+';color:'+k[1]+'">'+k[0]+(c.point?' · '+esc(c.point):'')+'</span> <span class="v2-small">'+esc(c.date)+' · '+esc(c.by||'')+'</span></summary>'+body+'</details>';
   }).join('');
