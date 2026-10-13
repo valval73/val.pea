@@ -1,5 +1,5 @@
 {
- "genere": "2026-10-13 05:13",
+ "genere": "2026-10-13 05:19",
  "listes": {
   "pea_petites_capis_200_1000M": {
    "total": 100,
@@ -79,7 +79,13 @@
      "roicx": 251.4,
      "cash": 105.0,
      "dette_ebitda": -2.61,
-     "croissance": 17.1
+     "croissance": 17.1,
+     "cours": 708.0,
+     "valeur": 2441.63,
+     "ecart_pct": -71.0,
+     "rendement_attendu": 20.8,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XBRU:VAN",
@@ -188,7 +194,13 @@
      "roicx": 56.1,
      "cash": 155.0,
      "dette_ebitda": -0.5,
-     "croissance": 8.2
+     "croissance": 8.2,
+     "cours": 277.0,
+     "valeur": 570.91,
+     "ecart_pct": -51.0,
+     "rendement_attendu": 14.1,
+     "croissance_supposee": -3.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XDUB:EG7",
@@ -233,7 +245,13 @@
      "roicx": 23.6,
      "cash": 104.0,
      "dette_ebitda": -0.77,
-     "croissance": 5.7
+     "croissance": 5.7,
+     "cours": 110.0,
+     "valeur": 153.06,
+     "ecart_pct": -28.0,
+     "rendement_attendu": 10.7,
+     "croissance_supposee": -3.1,
+     "croissance_retenue": 5.0
     },
     {
      "code": "XETR:DR0",
@@ -278,7 +296,13 @@
      "roicx": 29.6,
      "cash": 80.0,
      "dette_ebitda": -0.89,
-     "croissance": 12.0
+     "croissance": 12.0,
+     "cours": 12.34,
+     "valeur": 18.55,
+     "ecart_pct": -33.0,
+     "rendement_attendu": 11.1,
+     "croissance_supposee": -0.2,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XETR:GFT",
@@ -293,7 +317,13 @@
      "roicx": 44.4,
      "cash": 111.0,
      "dette_ebitda": 1.2,
-     "croissance": 6.8
+     "croissance": 6.8,
+     "cours": 27.0,
+     "valeur": 24.6,
+     "ecart_pct": 10.0,
+     "rendement_attendu": 8.0,
+     "croissance_supposee": 2.0,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XETR:IVU",
@@ -308,7 +338,13 @@
      "roicx": 21.6,
      "cash": 102.0,
      "dette_ebitda": -1.02,
-     "croissance": 10.0
+     "croissance": 10.0,
+     "cours": 26.5,
+     "valeur": 19.33,
+     "ecart_pct": 37.0,
+     "rendement_attendu": 7.0,
+     "croissance_supposee": 19.9,
+     "croissance_retenue": 9.8
     },
     {
      "code": "XETR:MUB",
@@ -353,7 +389,13 @@
      "roicx": 65.9,
      "cash": 99.0,
      "dette_ebitda": -2.58,
-     "croissance": 9.6
+     "croissance": 9.6,
+     "cours": 18.9,
+     "valeur": 13.1,
+     "ecart_pct": 44.0,
+     "rendement_attendu": 6.6,
+     "croissance_supposee": 7.7,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XETR:TGHN",
@@ -413,7 +455,13 @@
      "roicx": 60.2,
      "cash": 178.0,
      "dette_ebitda": -5.13,
-     "croissance": 5.4
+     "croissance": 5.4,
+     "cours": 9.15,
+     "valeur": 12.68,
+     "ecart_pct": -28.0,
+     "rendement_attendu": 10.6,
+     "croissance_supposee": 2.7,
+     "croissance_retenue": 9.6
     },
     {
      "code": "XFRA:MBH3",
@@ -443,7 +491,13 @@
      "roicx": 18.4,
      "cash": 196.0,
      "dette_ebitda": 1.96,
-     "croissance": 11.1
+     "croissance": 11.1,
+     "cours": 23.8,
+     "valeur": 34.14,
+     "ecart_pct": -30.0,
+     "rendement_attendu": 10.6,
+     "croissance_supposee": 1.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XHEL:GOFORE",
@@ -458,7 +512,13 @@
      "roicx": 69.9,
      "cash": 172.0,
      "dette_ebitda": 0.51,
-     "croissance": 8.5
+     "croissance": 8.5,
+     "cours": 11.06,
+     "valeur": 10.72,
+     "ecart_pct": 3.0,
+     "rendement_attendu": 8.3,
+     "croissance_supposee": 0.8,
+     "croissance_retenue": 0.2
     },
     {
      "code": "XHEL:GRK",
@@ -473,7 +533,13 @@
      "roicx": 46.8,
      "cash": 235.0,
      "dette_ebitda": -2.99,
-     "croissance": 24.6
+     "croissance": 24.6,
+     "cours": 26.35,
+     "valeur": 33.87,
+     "ecart_pct": -22.0,
+     "rendement_attendu": 10.0,
+     "croissance_supposee": 6.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XHEL:HARVIA",
@@ -488,7 +554,13 @@
      "roicx": 32.8,
      "cash": 101.0,
      "dette_ebitda": 1.32,
-     "croissance": 4.9
+     "croissance": 4.9,
+     "cours": 44.4,
+     "valeur": 26.34,
+     "ecart_pct": 69.0,
+     "rendement_attendu": 6.1,
+     "croissance_supposee": 14.0,
+     "croissance_retenue": 2.1
     },
     {
      "code": "XHEL:ICP1V",
@@ -518,7 +590,13 @@
      "roicx": 39.8,
      "cash": 110.0,
      "dette_ebitda": -0.17,
-     "croissance": 4.4
+     "croissance": 4.4,
+     "cours": 9.2,
+     "valeur": 11.28,
+     "ecart_pct": -18.0,
+     "rendement_attendu": 9.8,
+     "croissance_supposee": -1.1,
+     "croissance_retenue": 3.4
     },
     {
      "code": "XHEL:OLVAS",
@@ -563,7 +641,13 @@
      "roicx": 52.7,
      "cash": 96.0,
      "dette_ebitda": -0.55,
-     "croissance": 4.2
+     "croissance": 4.2,
+     "cours": 11.2,
+     "valeur": 6.68,
+     "ecart_pct": 68.0,
+     "rendement_attendu": 6.0,
+     "croissance_supposee": 11.0,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XHEL:UNITED",
@@ -638,7 +722,13 @@
      "roicx": 59.1,
      "cash": 91.0,
      "dette_ebitda": -0.47,
-     "croissance": 23.5
+     "croissance": 23.5,
+     "cours": 5.9,
+     "valeur": 8.39,
+     "ecart_pct": -30.0,
+     "rendement_attendu": 10.8,
+     "croissance_supposee": 4.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XMAD:ATSI",
@@ -668,7 +758,13 @@
      "roicx": 26.2,
      "cash": 120.0,
      "dette_ebitda": -0.23,
-     "croissance": 7.3
+     "croissance": 7.3,
+     "cours": 10.4,
+     "valeur": 11.65,
+     "ecart_pct": -11.0,
+     "rendement_attendu": 9.2,
+     "croissance_supposee": 3.5,
+     "croissance_retenue": 6.2
     },
     {
      "code": "XMAD:CBAV",
@@ -683,7 +779,13 @@
      "roicx": 33.4,
      "cash": 106.0,
      "dette_ebitda": 0.75,
-     "croissance": 15.0
+     "croissance": 15.0,
+     "cours": 55.0,
+     "valeur": 38.61,
+     "ecart_pct": 42.0,
+     "rendement_attendu": 6.8,
+     "croissance_supposee": 22.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XMAD:CLR",
@@ -792,7 +894,13 @@
      "roicx": 257.9,
      "cash": 374.0,
      "dette_ebitda": -0.9,
-     "croissance": 3.8
+     "croissance": 3.8,
+     "cours": 8.05,
+     "valeur": 4.32,
+     "ecart_pct": 86.0,
+     "rendement_attendu": 5.7,
+     "croissance_supposee": 17.1,
+     "croissance_retenue": 3.8
     },
     {
      "code": "XMIL:FPE",
@@ -867,7 +975,13 @@
      "roicx": 114.5,
      "cash": 134.0,
      "dette_ebitda": -0.4,
-     "croissance": 8.2
+     "croissance": 8.2,
+     "cours": 47.35,
+     "valeur": 69.11,
+     "ecart_pct": -31.0,
+     "rendement_attendu": 11.1,
+     "croissance_supposee": -2.1,
+     "croissance_retenue": 6.2
     },
     {
      "code": "XOSL:MEDI",
@@ -882,7 +996,13 @@
      "roicx": 45.6,
      "cash": 94.0,
      "dette_ebitda": -0.66,
-     "croissance": 12.9
+     "croissance": 12.9,
+     "cours": 283.0,
+     "valeur": 238.06,
+     "ecart_pct": 19.0,
+     "rendement_attendu": 7.6,
+     "croissance_supposee": 16.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XOSL:MULTI",
@@ -897,7 +1017,13 @@
      "roicx": 42.6,
      "cash": 123.0,
      "dette_ebitda": 2.19,
-     "croissance": 10.8
+     "croissance": 10.8,
+     "cours": 132.0,
+     "valeur": 183.31,
+     "ecart_pct": -28.0,
+     "rendement_attendu": 10.8,
+     "croissance_supposee": -4.6,
+     "croissance_retenue": 2.5
     },
     {
      "code": "XOSL:RANA",
@@ -957,7 +1083,13 @@
      "roicx": 42.4,
      "cash": 115.0,
      "dette_ebitda": -0.29,
-     "croissance": 5.4
+     "croissance": 5.4,
+     "cours": 50.3,
+     "valeur": 60.94,
+     "ecart_pct": -17.0,
+     "rendement_attendu": 9.7,
+     "croissance_supposee": -0.3,
+     "croissance_retenue": 3.9
     },
     {
      "code": "XPAR:EQS",
@@ -972,7 +1104,13 @@
      "roicx": 27.6,
      "cash": 103.0,
      "dette_ebitda": 0.38,
-     "croissance": 5.1
+     "croissance": 5.1,
+     "cours": 28.95,
+     "valeur": 40.79,
+     "ecart_pct": -29.0,
+     "rendement_attendu": 11.1,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XPAR:INF",
@@ -1002,7 +1140,13 @@
      "roicx": 148.5,
      "cash": 117.0,
      "dette_ebitda": -2.86,
-     "croissance": 8.8
+     "croissance": 8.8,
+     "cours": 36.65,
+     "valeur": 43.05,
+     "ecart_pct": -15.0,
+     "rendement_attendu": 9.5,
+     "croissance_supposee": 3.0,
+     "croissance_retenue": 7.2
     },
     {
      "code": "XPAR:PERR",
@@ -1032,7 +1176,13 @@
      "roicx": 27.7,
      "cash": 131.0,
      "dette_ebitda": -2.4,
-     "croissance": 3.6
+     "croissance": 3.6,
+     "cours": 25.4,
+     "valeur": 35.45,
+     "ecart_pct": -28.0,
+     "rendement_attendu": 11.0,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XPAR:SWP",
@@ -1077,7 +1227,13 @@
      "roicx": 93.3,
      "cash": 125.0,
      "dette_ebitda": -0.75,
-     "croissance": 21.5
+     "croissance": 21.5,
+     "cours": 30.0,
+     "valeur": 93.76,
+     "ecart_pct": -68.0,
+     "rendement_attendu": 19.3,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XSTO:BAHN-B",
@@ -1092,7 +1248,13 @@
      "roicx": 342.5,
      "cash": 128.0,
      "dette_ebitda": -1.25,
-     "croissance": 8.6
+     "croissance": 8.6,
+     "cours": 59.8,
+     "valeur": 31.9,
+     "ecart_pct": 87.0,
+     "rendement_attendu": 5.7,
+     "croissance_supposee": 18.1,
+     "croissance_retenue": 4.6
     },
     {
      "code": "XSTO:BTS-B",
@@ -1152,7 +1314,13 @@
      "roicx": 56.7,
      "cash": 111.0,
      "dette_ebitda": 0.67,
-     "croissance": 19.7
+     "croissance": 19.7,
+     "cours": 67.95,
+     "valeur": 121.3,
+     "ecart_pct": -44.0,
+     "rendement_attendu": 12.7,
+     "croissance_supposee": -0.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XSTO:LIME",
@@ -1167,7 +1335,13 @@
      "roicx": 62.3,
      "cash": 139.0,
      "dette_ebitda": 0.57,
-     "croissance": 14.7
+     "croissance": 14.7,
+     "cours": 253.0,
+     "valeur": 213.31,
+     "ecart_pct": 19.0,
+     "rendement_attendu": 7.6,
+     "croissance_supposee": 16.6,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XSTO:MMGR-B",
@@ -1182,7 +1356,13 @@
      "roicx": 32.4,
      "cash": 152.0,
      "dette_ebitda": 1.28,
-     "croissance": 21.2
+     "croissance": 21.2,
+     "cours": 126.6,
+     "valeur": 106.26,
+     "ecart_pct": 19.0,
+     "rendement_attendu": 7.6,
+     "croissance_supposee": 16.1,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XSTO:NOTE",
@@ -1227,7 +1407,13 @@
      "roicx": 77.8,
      "cash": 100.0,
      "dette_ebitda": -0.71,
-     "croissance": 9.0
+     "croissance": 9.0,
+     "cours": 52.05,
+     "valeur": 68.32,
+     "ecart_pct": -24.0,
+     "rendement_attendu": 10.2,
+     "croissance_supposee": 2.9,
+     "croissance_retenue": 10.1
     },
     {
      "code": "XSTO:TRUE-B",
@@ -1257,7 +1443,13 @@
      "roicx": 58.6,
      "cash": 148.0,
      "dette_ebitda": -1.57,
-     "croissance": 32.7
+     "croissance": 32.7,
+     "cours": 131.5,
+     "valeur": 138.97,
+     "ecart_pct": -5.0,
+     "rendement_attendu": 8.8,
+     "croissance_supposee": 10.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:ABS",
@@ -1272,7 +1464,13 @@
      "roicx": 80.9,
      "cash": 113.0,
      "dette_ebitda": -0.2,
-     "croissance": 12.1
+     "croissance": 12.1,
+     "cours": 88.8,
+     "valeur": 122.61,
+     "ecart_pct": -28.0,
+     "rendement_attendu": 10.6,
+     "croissance_supposee": 5.1,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:DCR",
@@ -1302,7 +1500,13 @@
      "roicx": 253.0,
      "cash": 136.0,
      "dette_ebitda": 0.1,
-     "croissance": 10.1
+     "croissance": 10.1,
+     "cours": 54.7,
+     "valeur": 89.39,
+     "ecart_pct": -39.0,
+     "rendement_attendu": 11.9,
+     "croissance_supposee": -1.5,
+     "croissance_retenue": 11.4
     },
     {
      "code": "XWAR:LBW",
@@ -1317,7 +1521,13 @@
      "roicx": 27.0,
      "cash": 121.0,
      "dette_ebitda": -0.87,
-     "croissance": 22.9
+     "croissance": 22.9,
+     "cours": 11.51,
+     "valeur": 17.52,
+     "ecart_pct": -34.0,
+     "rendement_attendu": 11.2,
+     "croissance_supposee": 2.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:MUR",
@@ -1362,7 +1572,13 @@
      "roicx": 45.7,
      "cash": 111.0,
      "dette_ebitda": -0.81,
-     "croissance": 5.0
+     "croissance": 5.0,
+     "cours": 252.5,
+     "valeur": 189.93,
+     "ecart_pct": 33.0,
+     "rendement_attendu": 7.0,
+     "croissance_supposee": 6.1,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XWAR:RBW",
@@ -1377,7 +1593,13 @@
      "roicx": 133.4,
      "cash": 116.0,
      "dette_ebitda": -0.74,
-     "croissance": 24.0
+     "croissance": 24.0,
+     "cours": 126.4,
+     "valeur": 419.01,
+     "ecart_pct": -70.0,
+     "rendement_attendu": 20.1,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:SGN",
@@ -1392,7 +1614,13 @@
      "roicx": 360.6,
      "cash": 140.0,
      "dette_ebitda": -1.68,
-     "croissance": 28.7
+     "croissance": 28.7,
+     "cours": 84.0,
+     "valeur": 49.23,
+     "ecart_pct": 71.0,
+     "rendement_attendu": 6.1,
+     "croissance_supposee": 26.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:SHO",
@@ -1407,7 +1635,13 @@
      "roicx": 105.4,
      "cash": 131.0,
      "dette_ebitda": -0.34,
-     "croissance": 20.9
+     "croissance": 20.9,
+     "cours": 42.1,
+     "valeur": 42.53,
+     "ecart_pct": -1.0,
+     "rendement_attendu": 8.6,
+     "croissance_supposee": 11.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWAR:SNT",
@@ -1467,7 +1701,13 @@
      "roicx": 181.6,
      "cash": 121.0,
      "dette_ebitda": -0.19,
-     "croissance": 21.9
+     "croissance": 21.9,
+     "cours": 126.2,
+     "valeur": 114.21,
+     "ecart_pct": 11.0,
+     "rendement_attendu": 8.0,
+     "croissance_supposee": 14.2,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XWBO:FQT",
@@ -1519,7 +1759,8 @@
      "roicx": 58.2,
      "cash": 134.0,
      "dette_ebitda": 1.33,
-     "croissance": 10.1
+     "croissance": 10.1,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XLON:FRES",
@@ -1579,7 +1820,8 @@
      "roicx": 27.6,
      "cash": 112.0,
      "dette_ebitda": 1.05,
-     "croissance": 11.1
+     "croissance": 11.1,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XLON:PCT",
@@ -1609,7 +1851,8 @@
      "roicx": 120.7,
      "cash": 113.0,
      "dette_ebitda": 1.94,
-     "croissance": 3.9
+     "croissance": 3.9,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XLON:RIO",
@@ -1639,7 +1882,8 @@
      "roicx": 177.2,
      "cash": 97.0,
      "dette_ebitda": -0.22,
-     "croissance": 16.2
+     "croissance": 16.2,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XLON:SDR",
@@ -1699,7 +1943,13 @@
      "roicx": 69.0,
      "cash": 139.0,
      "dette_ebitda": -1.77,
-     "croissance": 13.4
+     "croissance": 13.4,
+     "cours": 163.5,
+     "valeur": 124.74,
+     "ecart_pct": 31.0,
+     "rendement_attendu": 7.2,
+     "croissance_supposee": 17.5,
+     "croissance_retenue": 11.7
     },
     {
      "code": "XNGS:ADBE",
@@ -1714,7 +1964,13 @@
      "roicx": 569.0,
      "cash": 140.0,
      "dette_ebitda": 0.12,
-     "croissance": 10.5
+     "croissance": 10.5,
+     "cours": 238.14,
+     "valeur": 517.23,
+     "ecart_pct": -54.0,
+     "rendement_attendu": 14.6,
+     "croissance_supposee": -4.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:ADP",
@@ -1729,7 +1985,13 @@
      "roicx": 137.3,
      "cash": 105.0,
      "dette_ebitda": 0.15,
-     "croissance": 6.8
+     "croissance": 6.8,
+     "cours": 273.81,
+     "valeur": 260.89,
+     "ecart_pct": 5.0,
+     "rendement_attendu": 8.2,
+     "croissance_supposee": 8.9,
+     "croissance_retenue": 7.9
     },
     {
      "code": "XNGS:ADSK",
@@ -1774,7 +2036,13 @@
      "roicx": 53.9,
      "cash": 92.0,
      "dette_ebitda": -0.02,
-     "croissance": 3.2
+     "croissance": 3.2,
+     "cours": 497.53,
+     "valeur": 215.93,
+     "ecart_pct": 130.0,
+     "rendement_attendu": 5.1,
+     "croissance_supposee": 20.9,
+     "croissance_retenue": 2.8
     },
     {
      "code": "XNGS:APA",
@@ -1804,7 +2072,13 @@
      "roicx": 145.7,
      "cash": 147.0,
      "dette_ebitda": 1.41,
-     "croissance": 24.4
+     "croissance": 24.4,
+     "cours": 354.73,
+     "valeur": 226.13,
+     "ecart_pct": 57.0,
+     "rendement_attendu": 6.4,
+     "croissance_supposee": 21.9,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:CDNS",
@@ -1819,7 +2093,13 @@
      "roicx": 57.0,
      "cash": 125.0,
      "dette_ebitda": -0.21,
-     "croissance": 14.1
+     "croissance": 14.1,
+     "cours": 348.42,
+     "valeur": 142.66,
+     "ecart_pct": 144.0,
+     "rendement_attendu": 5.1,
+     "croissance_supposee": 30.0,
+     "croissance_retenue": 11.7
     },
     {
      "code": "XNGS:CHKP",
@@ -1834,7 +2114,13 @@
      "roicx": 99.0,
      "cash": 121.0,
      "dette_ebitda": 0.17,
-     "croissance": 5.4
+     "croissance": 5.4,
+     "cours": 134.32,
+     "valeur": 224.68,
+     "ecart_pct": -40.0,
+     "rendement_attendu": 12.3,
+     "croissance_supposee": -3.6,
+     "croissance_retenue": 7.7
     },
     {
      "code": "XNGS:COIN",
@@ -1894,7 +2180,13 @@
      "roicx": 33.0,
      "cash": 90.0,
      "dette_ebitda": -0.45,
-     "croissance": 6.6
+     "croissance": 6.6,
+     "cours": 959.44,
+     "valeur": 492.66,
+     "ecart_pct": 95.0,
+     "rendement_attendu": 5.7,
+     "croissance_supposee": 28.4,
+     "croissance_retenue": 9.1
     },
     {
      "code": "XNGS:CPRT",
@@ -1924,7 +2216,13 @@
      "roicx": 133.3,
      "cash": 119.0,
      "dette_ebitda": 1.11,
-     "croissance": 3.6
+     "croissance": 3.6,
+     "cours": 115.34,
+     "valeur": 61.91,
+     "ecart_pct": 86.0,
+     "rendement_attendu": 5.7,
+     "croissance_supposee": 15.9,
+     "croissance_retenue": 2.6
     },
     {
      "code": "XNGS:CTAS",
@@ -1939,7 +2237,13 @@
      "roicx": 49.8,
      "cash": 97.0,
      "dette_ebitda": 0.77,
-     "croissance": 8.5
+     "croissance": 8.5,
+     "cours": 205.23,
+     "valeur": 138.43,
+     "ecart_pct": 48.0,
+     "rendement_attendu": 6.7,
+     "croissance_supposee": 22.1,
+     "croissance_retenue": 11.3
     },
     {
      "code": "XNGS:CTSH",
@@ -1969,7 +2273,13 @@
      "roicx": 35.2,
      "cash": 130.0,
      "dette_ebitda": 1.79,
-     "croissance": 4.3
+     "croissance": 4.3,
+     "cours": 114.65,
+     "valeur": 92.1,
+     "ecart_pct": 24.0,
+     "rendement_attendu": 7.3,
+     "croissance_supposee": 9.2,
+     "croissance_retenue": 4.3
     },
     {
      "code": "XNGS:ERIE",
@@ -1999,7 +2309,13 @@
      "roicx": 16.0,
      "cash": 111.0,
      "dette_ebitda": -0.34,
-     "croissance": 12.9
+     "croissance": 12.9,
+     "cours": 59.82,
+     "valeur": 71.31,
+     "ecart_pct": -16.0,
+     "rendement_attendu": 9.4,
+     "croissance_supposee": 6.9,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:EXPE",
@@ -2029,7 +2345,13 @@
      "roicx": 30.4,
      "cash": 87.0,
      "dette_ebitda": 0.09,
-     "croissance": 5.5
+     "croissance": 5.5,
+     "cours": 51.49,
+     "valeur": 23.3,
+     "ecart_pct": 121.0,
+     "rendement_attendu": 5.3,
+     "croissance_supposee": 27.7,
+     "croissance_retenue": 5.2
     },
     {
      "code": "XNGS:FFIV",
@@ -2044,7 +2366,13 @@
      "roicx": 664.3,
      "cash": 135.0,
      "dette_ebitda": -1.22,
-     "croissance": 4.6
+     "croissance": 4.6,
+     "cours": 473.49,
+     "valeur": 362.44,
+     "ecart_pct": 31.0,
+     "rendement_attendu": 7.2,
+     "croissance_supposee": 17.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:FUTU",
@@ -2059,7 +2387,8 @@
      "roicx": 19.7,
      "cash": 286.0,
      "dette_ebitda": 0.49,
-     "croissance": 44.2
+     "croissance": 44.2,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XNGS:GOOGL",
@@ -2089,7 +2418,13 @@
      "roicx": 49.5,
      "cash": 86.0,
      "dette_ebitda": 0.53,
-     "croissance": 8.5
+     "croissance": 8.5,
+     "cours": 523.94,
+     "valeur": 385.65,
+     "ecart_pct": 36.0,
+     "rendement_attendu": 7.0,
+     "croissance_supposee": 20.4,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:IESC",
@@ -2104,7 +2439,13 @@
      "roicx": 38.0,
      "cash": 80.0,
      "dette_ebitda": -0.09,
-     "croissance": 15.9
+     "croissance": 15.9,
+     "cours": 287.79,
+     "valeur": 281.61,
+     "ecart_pct": 2.0,
+     "rendement_attendu": 8.4,
+     "croissance_supposee": 12.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:INCY",
@@ -2119,7 +2460,13 @@
      "roicx": 29.2,
      "cash": 129.0,
      "dette_ebitda": -1.74,
-     "croissance": 14.8
+     "croissance": 14.8,
+     "cours": 111.36,
+     "valeur": 187.37,
+     "ecart_pct": -41.0,
+     "rendement_attendu": 12.0,
+     "croissance_supposee": -2.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:ISRG",
@@ -2149,7 +2496,13 @@
      "roicx": 36.7,
      "cash": 84.0,
      "dette_ebitda": 0.03,
-     "croissance": 7.0
+     "croissance": 7.0,
+     "cours": 149.63,
+     "valeur": 158.49,
+     "ecart_pct": -6.0,
+     "rendement_attendu": 8.8,
+     "croissance_supposee": 7.4,
+     "croissance_retenue": 9.1
     },
     {
      "code": "XNGS:KLAC",
@@ -2164,7 +2517,13 @@
      "roicx": 59.3,
      "cash": 92.0,
      "dette_ebitda": 0.72,
-     "croissance": 9.0
+     "croissance": 9.0,
+     "cours": 190.12,
+     "valeur": 99.88,
+     "ecart_pct": 90.0,
+     "rendement_attendu": 5.8,
+     "croissance_supposee": 25.0,
+     "croissance_retenue": 10.8
     },
     {
      "code": "XNGS:KSPI",
@@ -2179,7 +2538,8 @@
      "roicx": 108.6,
      "cash": 85.0,
      "dette_ebitda": -0.33,
-     "croissance": 47.5
+     "croissance": 47.5,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XNGS:LECO",
@@ -2194,7 +2554,13 @@
      "roicx": 35.9,
      "cash": 95.0,
      "dette_ebitda": 1.19,
-     "croissance": 4.0
+     "croissance": 4.0,
+     "cours": 259.69,
+     "valeur": 188.86,
+     "ecart_pct": 38.0,
+     "rendement_attendu": 6.9,
+     "croissance_supposee": 10.8,
+     "croissance_retenue": 3.6
     },
     {
      "code": "XNGS:LRCX",
@@ -2209,7 +2575,13 @@
      "roicx": 72.2,
      "cash": 92.0,
      "dette_ebitda": -0.21,
-     "croissance": 10.1
+     "croissance": 10.1,
+     "cours": 309.56,
+     "valeur": 166.35,
+     "ecart_pct": 86.0,
+     "rendement_attendu": 5.8,
+     "croissance_supposee": 25.7,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:LSCC",
@@ -2254,7 +2626,13 @@
      "roicx": 1159.5,
      "cash": 145.0,
      "dette_ebitda": -0.94,
-     "croissance": 12.1
+     "croissance": 12.1,
+     "cours": 217.89,
+     "valeur": 100.5,
+     "ecart_pct": 117.0,
+     "rendement_attendu": 5.4,
+     "croissance_supposee": 29.2,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:MEDP",
@@ -2284,7 +2662,13 @@
      "roicx": 17.0,
      "cash": 464.0,
      "dette_ebitda": 2.02,
-     "croissance": 38.9
+     "croissance": 38.9,
+     "cours": 1892.44,
+     "valeur": 845.97,
+     "ecart_pct": 124.0,
+     "rendement_attendu": 5.5,
+     "croissance_supposee": 30.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:META",
@@ -2299,7 +2683,13 @@
      "roicx": 28.2,
      "cash": 88.0,
      "dette_ebitda": 0.45,
-     "croissance": 19.9
+     "croissance": 19.9,
+     "cours": 742.96,
+     "valeur": 696.98,
+     "ecart_pct": 7.0,
+     "rendement_attendu": 8.2,
+     "croissance_supposee": 13.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:MNST",
@@ -2314,7 +2704,13 @@
      "roicx": 36.3,
      "cash": 92.0,
      "dette_ebitda": -0.82,
-     "croissance": 9.5
+     "croissance": 9.5,
+     "cours": 43.76,
+     "valeur": 29.06,
+     "ecart_pct": 51.0,
+     "rendement_attendu": 6.6,
+     "croissance_supposee": 23.7,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:MPWR",
@@ -2374,7 +2770,13 @@
      "roicx": 13501.7,
      "cash": 84.0,
      "dette_ebitda": 0.18,
-     "croissance": 12.6
+     "croissance": 12.6,
+     "cours": 70.61,
+     "valeur": 89.16,
+     "ecart_pct": -21.0,
+     "rendement_attendu": 9.9,
+     "croissance_supposee": 6.4,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:NTNX",
@@ -2404,7 +2806,13 @@
      "roicx": 79.4,
      "cash": 83.0,
      "dette_ebitda": 0.0,
-     "croissance": 100.0
+     "croissance": 100.0,
+     "cours": 226.32,
+     "valeur": 228.44,
+     "ecart_pct": -1.0,
+     "rendement_attendu": 8.6,
+     "croissance_supposee": 11.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:ODFL",
@@ -2434,7 +2842,13 @@
      "roicx": 48.8,
      "cash": 87.0,
      "dette_ebitda": 2.08,
-     "croissance": 7.3
+     "croissance": 7.3,
+     "cours": 86.65,
+     "valeur": 68.15,
+     "ecart_pct": 27.0,
+     "rendement_attendu": 7.3,
+     "croissance_supposee": 12.8,
+     "croissance_retenue": 6.3
     },
     {
      "code": "XNGS:PAYX",
@@ -2449,7 +2863,13 @@
      "roicx": 96.9,
      "cash": 110.0,
      "dette_ebitda": 1.16,
-     "croissance": 9.2
+     "croissance": 9.2,
+     "cours": 104.64,
+     "valeur": 113.58,
+     "ecart_pct": -8.0,
+     "rendement_attendu": 9.0,
+     "croissance_supposee": 5.0,
+     "croissance_retenue": 6.7
     },
     {
      "code": "XNGS:PDD",
@@ -2464,7 +2884,8 @@
      "roicx": 37.0,
      "cash": 122.0,
      "dette_ebitda": -0.85,
-     "croissance": 49.0
+     "croissance": 49.0,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XNGS:PYPL",
@@ -2479,7 +2900,13 @@
      "roicx": 38.6,
      "cash": 135.0,
      "dette_ebitda": 0.25,
-     "croissance": 6.4
+     "croissance": 6.4,
+     "cours": 56.05,
+     "valeur": 129.33,
+     "ecart_pct": -57.0,
+     "rendement_attendu": 15.1,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:QCOM",
@@ -2509,7 +2936,13 @@
      "roicx": 15.9,
      "cash": 83.0,
      "dette_ebitda": -0.07,
-     "croissance": 5.6
+     "croissance": 5.6,
+     "cours": 762.81,
+     "valeur": 678.09,
+     "ecart_pct": 12.0,
+     "rendement_attendu": 7.8,
+     "croissance_supposee": 6.9,
+     "croissance_retenue": 3.4
     },
     {
      "code": "XNGS:ROST",
@@ -2524,7 +2957,13 @@
      "roicx": 32.5,
      "cash": 87.0,
      "dette_ebitda": 0.18,
-     "croissance": 6.8
+     "croissance": 6.8,
+     "cours": 225.84,
+     "valeur": 180.53,
+     "ecart_pct": 25.0,
+     "rendement_attendu": 7.4,
+     "croissance_supposee": 16.1,
+     "croissance_retenue": 9.6
     },
     {
      "code": "XNGS:SEIC",
@@ -2539,7 +2978,13 @@
      "roicx": 43.7,
      "cash": 90.0,
      "dette_ebitda": -0.37,
-     "croissance": 4.9
+     "croissance": 4.9,
+     "cours": 105.0,
+     "valeur": 143.48,
+     "ecart_pct": -27.0,
+     "rendement_attendu": 10.5,
+     "croissance_supposee": 2.9,
+     "croissance_retenue": 9.8
     },
     {
      "code": "XNGS:STLD",
@@ -2569,7 +3014,13 @@
      "roicx": 64.7,
      "cash": 170.0,
      "dette_ebitda": -0.08,
-     "croissance": 12.1
+     "croissance": 12.1,
+     "cours": 501.19,
+     "valeur": 400.85,
+     "ecart_pct": 25.0,
+     "rendement_attendu": 7.4,
+     "croissance_supposee": 16.9,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:TROW",
@@ -2629,7 +3080,13 @@
      "roicx": 19.6,
      "cash": 86.0,
      "dette_ebitda": 1.23,
-     "croissance": 13.5
+     "croissance": 13.5,
+     "cours": 158.81,
+     "valeur": 150.59,
+     "ecart_pct": 5.0,
+     "rendement_attendu": 8.2,
+     "croissance_supposee": 13.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:ULTA",
@@ -2644,7 +3101,13 @@
      "roicx": 35.0,
      "cash": 87.0,
      "dette_ebitda": 0.95,
-     "croissance": 6.7
+     "croissance": 6.7,
+     "cours": 567.47,
+     "valeur": 483.17,
+     "ecart_pct": 17.0,
+     "rendement_attendu": 7.6,
+     "croissance_supposee": 5.8,
+     "croissance_retenue": 2.2
     },
     {
      "code": "XNGS:UTHR",
@@ -2659,7 +3122,13 @@
      "roicx": 21.7,
      "cash": 83.0,
      "dette_ebitda": -0.86,
-     "croissance": 18.0
+     "croissance": 18.0,
+     "cours": 550.1,
+     "valeur": 679.71,
+     "ecart_pct": -19.0,
+     "rendement_attendu": 9.7,
+     "croissance_supposee": 6.2,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNGS:VRSK",
@@ -2674,7 +3143,13 @@
      "roicx": 71.3,
      "cash": 109.0,
      "dette_ebitda": 1.63,
-     "croissance": 7.2
+     "croissance": 7.2,
+     "cours": 177.49,
+     "valeur": 121.9,
+     "ecart_pct": 46.0,
+     "rendement_attendu": 6.6,
+     "croissance_supposee": 10.8,
+     "croissance_retenue": 2.8
     },
     {
      "code": "XNGS:VRTX",
@@ -2719,7 +3194,13 @@
      "roicx": 32.3,
      "cash": 103.0,
      "dette_ebitda": 0.22,
-     "croissance": 4.0
+     "croissance": 4.0,
+     "cours": 333.81,
+     "valeur": 217.62,
+     "ecart_pct": 53.0,
+     "rendement_attendu": 6.5,
+     "croissance_supposee": 16.2,
+     "croissance_retenue": 5.0
     },
     {
      "code": "XNYS:ANET",
@@ -2734,7 +3215,13 @@
      "roicx": 34.8,
      "cash": 106.0,
      "dette_ebitda": -0.5,
-     "croissance": 27.1
+     "croissance": 27.1,
+     "cours": 210.88,
+     "valeur": 86.22,
+     "ecart_pct": 145.0,
+     "rendement_attendu": 5.1,
+     "croissance_supposee": 30.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:APH",
@@ -2749,7 +3236,13 @@
      "roicx": 52.3,
      "cash": 100.0,
      "dette_ebitda": 0.63,
-     "croissance": 22.3
+     "croissance": 22.3,
+     "cours": 86.19,
+     "valeur": 57.08,
+     "ecart_pct": 51.0,
+     "rendement_attendu": 6.6,
+     "croissance_supposee": 21.1,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:BX",
@@ -2779,7 +3272,13 @@
      "roicx": 21.1,
      "cash": 85.0,
      "dette_ebitda": 2.33,
-     "croissance": 4.4
+     "croissance": 4.4,
+     "cours": 799.37,
+     "valeur": 472.11,
+     "ecart_pct": 69.0,
+     "rendement_attendu": 6.2,
+     "croissance_supposee": 20.4,
+     "croissance_retenue": 7.1
     },
     {
      "code": "XNYS:CF",
@@ -2809,7 +3308,13 @@
      "roicx": 54.4,
      "cash": 133.0,
      "dette_ebitda": 1.84,
-     "croissance": 4.3
+     "croissance": 4.3,
+     "cours": 89.98,
+     "valeur": 53.02,
+     "ecart_pct": 70.0,
+     "rendement_attendu": 6.1,
+     "croissance_supposee": 16.7,
+     "croissance_retenue": 5.2
     },
     {
      "code": "XNYS:CMG",
@@ -2824,7 +3329,13 @@
      "roicx": 19.7,
      "cash": 97.0,
      "dette_ebitda": 1.99,
-     "croissance": 11.4
+     "croissance": 11.4,
+     "cours": 30.4,
+     "valeur": 26.3,
+     "ecart_pct": 16.0,
+     "rendement_attendu": 7.8,
+     "croissance_supposee": 16.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:COR",
@@ -2869,7 +3380,13 @@
      "roicx": 28.1,
      "cash": 91.0,
      "dette_ebitda": 0.79,
-     "croissance": 3.7
+     "croissance": 3.7,
+     "cours": 86.47,
+     "valeur": 70.5,
+     "ecart_pct": 23.0,
+     "rendement_attendu": 7.4,
+     "croissance_supposee": 8.3,
+     "croissance_retenue": 3.5
     },
     {
      "code": "XNYS:DECK",
@@ -2884,7 +3401,13 @@
      "roicx": 98.2,
      "cash": 106.0,
      "dette_ebitda": -1.09,
-     "croissance": 14.7
+     "croissance": 14.7,
+     "cours": 84.27,
+     "valeur": 195.64,
+     "ecart_pct": -57.0,
+     "rendement_attendu": 15.4,
+     "croissance_supposee": -5.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:DELL",
@@ -2899,7 +3422,13 @@
      "roicx": 1764.4,
      "cash": 103.0,
      "dette_ebitda": 1.69,
-     "croissance": 3.5
+     "croissance": 3.5,
+     "cours": 576.76,
+     "valeur": 496.73,
+     "ecart_pct": 16.0,
+     "rendement_attendu": 7.7,
+     "croissance_supposee": 15.2,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:DHI",
@@ -2944,7 +3473,13 @@
      "roicx": 71.6,
      "cash": 114.0,
      "dette_ebitda": -0.34,
-     "croissance": 15.3
+     "croissance": 15.3,
+     "cours": 779.16,
+     "valeur": 861.44,
+     "ecart_pct": -10.0,
+     "rendement_attendu": 9.1,
+     "croissance_supposee": 9.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:EOG",
@@ -3004,7 +3539,13 @@
      "roicx": 27.2,
      "cash": 115.0,
      "dette_ebitda": 1.26,
-     "croissance": 8.0
+     "croissance": 8.0,
+     "cours": 288.67,
+     "valeur": 369.03,
+     "ecart_pct": -22.0,
+     "rendement_attendu": 10.0,
+     "croissance_supposee": 5.5,
+     "croissance_retenue": 11.3
     },
     {
      "code": "XNYS:FIX",
@@ -3019,7 +3560,13 @@
      "roicx": 69.7,
      "cash": 121.0,
      "dette_ebitda": -0.35,
-     "croissance": 30.0
+     "croissance": 30.0,
+     "cours": 1638.05,
+     "valeur": 1173.66,
+     "ecart_pct": 40.0,
+     "rendement_attendu": 6.9,
+     "croissance_supposee": 19.3,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:FN",
@@ -3079,7 +3626,13 @@
      "roicx": 23.8,
      "cash": 81.0,
      "dette_ebitda": -1.02,
-     "croissance": 14.2
+     "croissance": 14.2,
+     "cours": 266.76,
+     "valeur": 229.09,
+     "ecart_pct": 16.0,
+     "rendement_attendu": 7.7,
+     "croissance_supposee": 16.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:GWW",
@@ -3094,7 +3647,13 @@
      "roicx": 38.8,
      "cash": 80.0,
      "dette_ebitda": 0.82,
-     "croissance": 5.6
+     "croissance": 5.6,
+     "cours": 1306.73,
+     "valeur": 771.84,
+     "ecart_pct": 69.0,
+     "rendement_attendu": 6.1,
+     "croissance_supposee": 16.3,
+     "croissance_retenue": 4.4
     },
     {
      "code": "XNYS:HAL",
@@ -3109,7 +3668,13 @@
      "roicx": 18.6,
      "cash": 93.0,
      "dette_ebitda": 1.82,
-     "croissance": 3.0
+     "croissance": 3.0,
+     "cours": 32.6,
+     "valeur": 28.87,
+     "ecart_pct": 13.0,
+     "rendement_attendu": 7.8,
+     "croissance_supposee": 3.3,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XNYS:HSY",
@@ -3124,7 +3689,13 @@
      "roicx": 32.8,
      "cash": 106.0,
      "dette_ebitda": 2.48,
-     "croissance": 3.9
+     "croissance": 3.9,
+     "cours": 163.84,
+     "valeur": 116.63,
+     "ecart_pct": 40.0,
+     "rendement_attendu": 6.7,
+     "croissance_supposee": 7.7,
+     "croissance_retenue": 0.0
     },
     {
      "code": "XNYS:HUBB",
@@ -3139,7 +3710,13 @@
      "roicx": 35.5,
      "cash": 96.0,
      "dette_ebitda": 1.44,
-     "croissance": 5.7
+     "croissance": 5.7,
+     "cours": 474.05,
+     "valeur": 453.69,
+     "ecart_pct": 4.0,
+     "rendement_attendu": 8.3,
+     "croissance_supposee": 12.7,
+     "croissance_retenue": 11.7
     },
     {
      "code": "XNYS:IT",
@@ -3169,7 +3746,13 @@
      "roicx": 32.0,
      "cash": 89.0,
      "dette_ebitda": -1.04,
-     "croissance": 9.6
+     "croissance": 9.6,
+     "cours": 201.9,
+     "valeur": 124.75,
+     "ecart_pct": 62.0,
+     "rendement_attendu": 6.3,
+     "croissance_supposee": 21.0,
+     "croissance_retenue": 9.8
     },
     {
      "code": "XNYS:ITW",
@@ -3259,7 +3842,13 @@
      "roicx": 186.5,
      "cash": 104.0,
      "dette_ebitda": 0.41,
-     "croissance": 13.8
+     "croissance": 13.8,
+     "cours": 595.09,
+     "valeur": 525.03,
+     "ecart_pct": 13.0,
+     "rendement_attendu": 7.8,
+     "croissance_supposee": 14.7,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:MCK",
@@ -3289,7 +3878,13 @@
      "roicx": 75.3,
      "cash": 109.0,
      "dette_ebitda": 1.28,
-     "croissance": 12.2
+     "croissance": 12.2,
+     "cours": 470.5,
+     "valeur": 442.75,
+     "ecart_pct": 6.0,
+     "rendement_attendu": 8.2,
+     "croissance_supposee": 13.6,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:MLI",
@@ -3319,7 +3914,13 @@
      "roicx": 32.7,
      "cash": 108.0,
      "dette_ebitda": 1.23,
-     "croissance": 3.1
+     "croissance": 3.1,
+     "cours": 145.45,
+     "valeur": 25.57,
+     "ecart_pct": 469.0,
+     "rendement_attendu": 3.6,
+     "croissance_supposee": 30.0,
+     "croissance_retenue": 5.5
     },
     {
      "code": "XNYS:MTD",
@@ -3364,7 +3965,13 @@
      "roicx": 35.2,
      "cash": 80.0,
      "dette_ebitda": -0.35,
-     "croissance": 14.3
+     "croissance": 14.3,
+     "cours": 235.01,
+     "valeur": 257.45,
+     "ecart_pct": -9.0,
+     "rendement_attendu": 9.0,
+     "croissance_supposee": 9.9,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:PHM",
@@ -3424,7 +4031,13 @@
      "roicx": 27.2,
      "cash": 99.0,
      "dette_ebitda": 0.7,
-     "croissance": 8.0
+     "croissance": 8.0,
+     "cours": 373.24,
+     "valeur": 413.89,
+     "ecart_pct": -10.0,
+     "rendement_attendu": 9.1,
+     "croissance_supposee": 9.5,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:RMD",
@@ -3439,7 +4052,13 @@
      "roicx": 46.0,
      "cash": 106.0,
      "dette_ebitda": -0.3,
-     "croissance": 10.2
+     "croissance": 10.2,
+     "cours": 234.6,
+     "valeur": 293.84,
+     "ecart_pct": -20.0,
+     "rendement_attendu": 9.9,
+     "croissance_supposee": 7.1,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:ROK",
@@ -3469,7 +4088,13 @@
      "roicx": 56.2,
      "cash": 120.0,
      "dette_ebitda": 1.1,
-     "croissance": 11.7
+     "croissance": 11.7,
+     "cours": 32.07,
+     "valeur": 30.05,
+     "ecart_pct": 7.0,
+     "rendement_attendu": 8.1,
+     "croissance_supposee": 13.8,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:RS",
@@ -3499,7 +4124,13 @@
      "roicx": 24.9,
      "cash": 88.0,
      "dette_ebitda": 0.39,
-     "croissance": 10.1
+     "croissance": 10.1,
+     "cours": 208.69,
+     "valeur": 156.32,
+     "ecart_pct": 33.0,
+     "rendement_attendu": 7.1,
+     "croissance_supposee": 21.0,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:SCHW",
@@ -3574,7 +4205,13 @@
      "roicx": 31.6,
      "cash": 88.0,
      "dette_ebitda": 0.84,
-     "croissance": 6.5
+     "croissance": 6.5,
+     "cours": 141.92,
+     "valeur": 122.81,
+     "ecart_pct": 16.0,
+     "rendement_attendu": 7.8,
+     "croissance_supposee": 15.6,
+     "croissance_retenue": 11.3
     },
     {
      "code": "XNYS:TPL",
@@ -3604,7 +4241,13 @@
      "roicx": 23.9,
      "cash": 140.0,
      "dette_ebitda": 1.4,
-     "croissance": 6.3
+     "croissance": 6.3,
+     "cours": 117.22,
+     "valeur": 183.28,
+     "ecart_pct": -36.0,
+     "rendement_attendu": 11.3,
+     "croissance_supposee": 0.9,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XNYS:UI",
@@ -3634,7 +4277,13 @@
      "roicx": 41.0,
      "cash": 96.0,
      "dette_ebitda": 0.56,
-     "croissance": 6.6
+     "croissance": 6.6,
+     "cours": 71.18,
+     "valeur": 45.78,
+     "ecart_pct": 55.0,
+     "rendement_attendu": 6.4,
+     "croissance_supposee": 17.4,
+     "croissance_retenue": 5.0
     },
     {
      "code": "XNYS:UNP",
@@ -3664,7 +4313,13 @@
      "roicx": 70.3,
      "cash": 108.0,
      "dette_ebitda": 0.31,
-     "croissance": 10.9
+     "croissance": 10.9,
+     "cours": 389.27,
+     "valeur": 317.95,
+     "ecart_pct": 22.0,
+     "rendement_attendu": 7.5,
+     "croissance_supposee": 15.0,
+     "croissance_retenue": 10.6
     },
     {
      "code": "XNYS:VLO",
@@ -3694,7 +4349,13 @@
      "roicx": 93.5,
      "cash": 104.0,
      "dette_ebitda": 0.63,
-     "croissance": 4.2
+     "croissance": 4.2,
+     "cours": 98.2,
+     "valeur": 78.35,
+     "ecart_pct": 25.0,
+     "rendement_attendu": 7.3,
+     "croissance_supposee": 8.7,
+     "croissance_retenue": 3.9
     },
     {
      "code": "XNYS:WAT",
@@ -3754,7 +4415,13 @@
      "roicx": 37.0,
      "cash": 101.0,
      "dette_ebitda": -0.4,
-     "croissance": 7.2
+     "croissance": 7.2,
+     "cours": 351.65,
+     "valeur": 274.46,
+     "ecart_pct": 28.0,
+     "rendement_attendu": 7.3,
+     "croissance_supposee": 15.3,
+     "croissance_retenue": 8.9
     },
     {
      "code": "XNYS:ZTS",
@@ -3784,7 +4451,8 @@
      "roicx": 42.6,
      "cash": 83.0,
      "dette_ebitda": 0.63,
-     "croissance": 4.1
+     "croissance": 4.1,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XSWX:BEAN",
@@ -3829,7 +4497,13 @@
      "roicx": 29.9,
      "cash": 86.0,
      "dette_ebitda": 1.31,
-     "croissance": 10.7
+     "croissance": 10.7,
+     "cours": 597.6,
+     "valeur": 897.05,
+     "ecart_pct": -33.0,
+     "rendement_attendu": 11.2,
+     "croissance_supposee": -2.8,
+     "croissance_retenue": 9.3
     },
     {
      "code": "XSWX:SGSN",
@@ -3964,7 +4638,8 @@
      "roicx": 20.6,
      "cash": 336.0,
      "dette_ebitda": 1.05,
-     "croissance": 20.6
+     "croissance": 20.6,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XTSE:DOL",
@@ -3979,7 +4654,13 @@
      "roicx": 26.1,
      "cash": 113.0,
      "dette_ebitda": 2.09,
-     "croissance": 12.8
+     "croissance": 12.8,
+     "cours": 191.93,
+     "valeur": 122.89,
+     "ecart_pct": 56.0,
+     "rendement_attendu": 6.5,
+     "croissance_supposee": 25.4,
+     "croissance_retenue": 12.0
     },
     {
      "code": "XTSE:IGM",
@@ -4024,7 +4705,8 @@
      "roicx": 44.8,
      "cash": 175.0,
      "dette_ebitda": -0.5,
-     "croissance": 29.8
+     "croissance": 29.8,
+     "note": "comptes dans une autre devise que le cours : valorisation non calculee"
     },
     {
      "code": "XTSE:TIH",
