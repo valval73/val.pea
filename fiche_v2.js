@@ -360,6 +360,39 @@ function ptfTotal(){
   });
   return tot;
 }
+// ---- 13/10/2026 : controle avant achat (cases a cocher, pas de texte) ----
+// Les cases automatiques viennent du screener ; les autres sont cochees a la
+// main apres l'analyse. Gardees dans CE navigateur seulement (rien de public),
+// valables 90 jours. Tant qu'il manque une case, la decision reste "PAS ENCORE".
+var CHK = [
+  ['metier',  'J’explique le métier en une phrase'],
+  ['moat',    'J’ai nommé le moat et ce qui pourrait le casser'],
+  ['sources', 'Deux sources concordent sur les chiffres (screener + une autre)'],
+  ['contre',  'J’ai écrit la meilleure raison de ne PAS acheter'],
+  ['calcul',  'Mon calcul (onglet Analyser) et le screener concordent à 25 % près'],
+  ['tort',    'J’ai écrit les 3 chiffres qui me feraient dire que j’avais tort']
+];
+function chkGet(t){ try{ var o=JSON.parse(localStorage.getItem('v2_chk_'+t)||'{}'); if(o.date && (Date.now()-new Date(o.date).getTime())/864e5>90) return {}; return o; }catch(e){ return {}; } }
+function chkState(s){
+  var o=chkGet(s.ticker), auto=[['qualite','Les critères de qualité passent', !!s.qok],['zone','Le cours est dans la zone d’achat', palier(s)>0]];
+  var man=CHK.map(function(c){ return [c[0], c[1], !!o[c[0]]]; });
+  var all=auto.concat(man), done=all.filter(function(x){return x[2];}).length;
+  return {auto:auto, man:man, done:done, total:all.length, ok:done===all.length, date:o.date};
+}
+window.v2chk = function(t, k, on){
+  var o=chkGet(t); o[k]=on; o.date=new Date().toISOString().slice(0,10);
+  try{ localStorage.setItem('v2_chk_'+t, JSON.stringify(o)); }catch(e){}
+  var s=S.find(function(x){return x.ticker===t;}); if(s && typeof render==='function') render(s);
+};
+function checklist(s){
+  if(!(s.qok||s.near)) return '';
+  var st=chkState(s);
+  var line=function(x, auto){ return '<label style="display:flex;gap:10px;align-items:flex-start;padding:6px 0;min-height:32px;cursor:'+(auto?'default':'pointer')+'"><input type="checkbox" '+(x[2]?'checked ':'')+(auto?'disabled ':'onchange="v2chk(\''+s.ticker+'\',\''+x[0]+'\',this.checked)" ')+'style="width:20px;height:20px;flex:none;margin-top:1px"><span>'+x[1]+(auto?' <span class="v2-small">(automatique)</span>':'')+'</span></label>'; };
+  return '<section class="v2-card" style="border-left:4px solid '+(st.ok?C.gn:C.or)+'"><div class="v2-head"><h2>Contrôle avant achat : '+st.done+' / '+st.total+'</h2><span class="v2-small">'+(st.date?'coché le '+st.date+' · valable 90 jours':'gardé dans ce navigateur seulement')+'</span></div>'+
+    st.auto.map(function(x){return line(x,true);}).join('')+st.man.map(function(x){return line(x,false);}).join('')+
+    '<p class="v2-small" style="margin-top:8px"><b>'+(st.ok?'Contrôle complet : l’achat peut être validé.':'Achat bloqué tant qu’une case manque.')+'</b> Méthode détaillée : onglet « Analyser une action ».</p></section>';
+}
+
 function decision(s){
   var g = (s.qok && s.rec==='buy') ? 'buy' : 'no';
   var L = ceList(s.ticker), last = L[0];
@@ -376,6 +409,8 @@ function decision(s){
     r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le screener dit « achat possible », mais '+(last?'la dernière contre-expertise date de '+age+' jours':'il n’y a pas encore de contre-expertise')+'. Règle : pas d’achat sans contre-expertise de moins de 3 mois.'};
   } else if(last.concl==='cassee'){
     r = {t:'ACHAT : NON', c:C.rd, x:'La contre-expertise du '+last.date+' conclut que la thèse est cassée.'};
+  } else if(!chkState(s).ok){
+    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le contrôle avant achat est incomplet ('+chkState(s).done+' / '+chkState(s).total+' cases). Coche-les après ton analyse, juste au-dessus.'};
   } else {
     var P = palier(s), p2 = z2(s), frag = last.concl==='fragilisee';
     var lvl = frag ? P-1 : P;   // these fragilisee : on descend d'un palier
@@ -426,7 +461,7 @@ function renderV2(s){
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
     buyPlan(s)+priceBlock(s)+ratios(s)+
     '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
-    thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+decision(s)+sources(s)+
+    thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+checklist(s)+decision(s)+sources(s)+
   '</div>';
 }
 
