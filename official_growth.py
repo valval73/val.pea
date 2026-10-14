@@ -45,7 +45,7 @@ OFFICIAL_GROWTH = {
     'RAA':    (8.0,  "2025 +8 % hors effet change", '2026-10-05'),
     'NEM':    (14.5, "objectif 2026 +14 a +15 % a changes constants (2025 +22,6 % rachats inclus, non retenu)", '2026-10-05'),
     'MONC':   (3.0,  "2025 +3 % a changes constants (T4 +7 %)", '2026-10-05'),
-    'UMG':    (8.7,  "2025 +8,7 % a changes constants", '2026-10-05'),
+    'UMG':    (5.7,  "S1 2026 +10,8 % a changes constants mais +5,7 % hors Downtown (acquisition) -- contre-expertise du 14/10", '2026-10-14'),
     'RHM':    (35.75,"2025 +29 % ; objectif 2026 +40 a +45 % (plafonne a 12 % dans le calcul)", '2026-10-05'),
     'ATCO':   (2.0,  "approximatif : T4 2025 revenus organiques 0 %, commandes +4 % (bas de cycle) -- chiffre annuel a confirmer", '2026-10-05'),
     # --- 12/10/2026 : valeurs du filtre encore valorisees avec la croissance Yahoo ---
@@ -58,6 +58,12 @@ OFFICIAL_GROWTH = {
     'PLUXEE': (0.0,  "objectif exercice 2026 (clos fin aout) : CA stable (reglementation Bresil) ; pas de moyenne avec l'annee precedente -- a revoir aux resultats annuels fin octobre", '2026-10-12'),
     'RACE':   (6.6,  "CA 2025 7,15 Md EUR (~+7 %) ; objectif 2026 releve a ~7,60 Md EUR (+6,3 %)", '2026-10-12'),
     'RBT':    (5.8,  "organique 2025 +7,6 % ; objectif 2026 abaisse a +3 a +5 % (S1 2026 -0,5 % publie)", '2026-10-12'),
+    # --- 14/10/2026 : contre-expertises des valeurs en zone (croissance Yahoo gonflee) ---
+    'KRN':    (4.0,  "objectif 2026 +3 a +5 % a changes constants (S1 +1,8 %)", '2026-10-14'),
+    'HEIJM':  (9.0,  "S1 2026 +16 % dont ~89 M EUR d'acquisition (Hegeman) : ~+9 % hors acquisition (calcul)", '2026-10-14'),
+    'TGYM':   (9.0,  "S1 2026 +9 % a changes constants ; pas d'objectif chiffre (annee de transition)", '2026-10-14'),
+    'DLG':    (6.5,  "S1 2026 +8 % a changes constants ; objectif 2026 'moyen a un chiffre'", '2026-10-14'),
+    'RWAY':   (2.5,  "S1 2026 CA +2,5 %", '2026-10-14'),
     # Non renseignees faute d'objectif annuel officiel (restent sur Yahoo) :
     # EPI (Epiroc : organique 2025 +2 %, T2 2026 +11 %, cyclique, pas d'objectif)
     # TE  (Technip Energies : objectifs 2026 par segment abaisses le 30/04, pas de croissance globale publiee)
