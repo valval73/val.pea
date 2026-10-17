@@ -1267,7 +1267,11 @@ def fetch_one(ticker, yf_sym, sector):
         # critere en echec, mais capital ajoute rentable (ROIIC >= seuil ROIC)
         # et cash libre cumule positif -> "a surveiller", jamais "achat".
         _ri = result.get('roiic')
-        result['reinv'] = bool(not result.get('qok') and len(_fails) == 1
+        # Cycliques exclus (grille dediee a venir) : un ROIIC mesure entre un
+        # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
+        _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti",
+                         sector or '', re.I)
+        result['reinv'] = bool(not result.get('qok') and not _cyc and len(_fails) == 1
                                and _fails[0].startswith('cash')
                                and _ri is not None and _ri >= Q_ROIC_X
                                and (result.get('fcfs') or 0) > 0)
