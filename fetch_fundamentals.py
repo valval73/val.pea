@@ -537,6 +537,7 @@ def compute_quality(t, sector_cat):
         g = lambda lst, i: lst[i] if i < len(lst) else None
         n = min(len(ebit), len(eq)) if ebit and eq else 0
         roics, roicxs = [], []
+        nopats, ics = {}, {}
         for i in range(min(n, 4)):
             e, q = g(ebit, i), g(eq, i)
             if e is None or q is None: continue
@@ -551,11 +552,24 @@ def compute_quality(t, sector_cat):
                 ic = (g(debt, i) or 0) + q
             if ic > 0:
                 roics.append(nopat / ic * 100)
+                nopats[i], ics[i] = nopat, ic
             icx = ic - (g(gw, i) or 0)
             if icx > 0:
                 roicxs.append(nopat / icx * 100)
         res['roic'] = round(_median(roics), 1) if roics else None
         res['roicx'] = round(_median(roicxs), 1) if roicxs else None
+        # 17/10/2026 (lettre MasterBourse, cas Kri Kri) : rendement du capital
+        # AJOUTE (ROIIC) = hausse du NOPAT / hausse des capitaux investis entre
+        # l'exercice le plus ancien et le plus recent. Sert a ne pas punir une
+        # entreprise dont le cash part en investissements bien rentables.
+        res['roiic'] = None
+        if 0 in nopats and len(nopats) >= 3:
+            j = max(nopats)
+            d_ic, d_np = ics[0] - ics[j], nopats[0] - nopats[j]
+            if d_ic > 0.05 * ics[j] and d_np > 0:
+                res['roiic'] = round(d_np / d_ic * 100, 1)
+        _f4 = [x for x in fcf[:4] if x is not None]
+        res['fcfs'] = sum(_f4) if len(_f4) >= 3 else None
         # Conversion cash : cumul sur les annees communes (plus robuste
         # qu'une mediane de ratios annuels quand une annee est atypique)
         pairs = [(f, r) for f, r in zip(fcf[:4], ni[:4]) if f is not None and r is not None]
@@ -1249,6 +1263,18 @@ def fetch_one(ticker, yf_sym, sector):
             if f.startswith('dette'):        return v <= Q_ND + 0.5
             return False
         result['near'] = (not result.get('qok') and len(_fails) == 1 and _close(_fails[0]))
+        # 17/10/2026 : regle du reinvestissement. Cash < seuil comme SEUL
+        # critere en echec, mais capital ajoute rentable (ROIIC >= seuil ROIC)
+        # et cash libre cumule positif -> "a surveiller", jamais "achat".
+        _ri = result.get('roiic')
+        result['reinv'] = bool(not result.get('qok') and len(_fails) == 1
+                               and _fails[0].startswith('cash')
+                               and _ri is not None and _ri >= Q_ROIC_X
+                               and (result.get('fcfs') or 0) > 0)
+        if result['reinv']:
+            result['near'] = True
+            result['qwhy'] = _fails[0] + f' mais reinvesti a {_ri}% (regle reinvestissement)'
+        result.pop('fcfs', None)
         if ticker in EXCEPTIONS and not result.get('qok'):
             _why, _until = EXCEPTIONS[ticker]
             if datetime.now().date().isoformat() <= _until:
@@ -1532,6 +1558,8 @@ def set_quality_fields(block, data):
     block = _set_field(block, 'knife', 'true' if data.get('knife') else 'false')
     block = _set_field(block, 'gimp', num(data.get('gimp')))
     block = _set_field(block, 'near', 'true' if data.get('near') else 'false')
+    block = _set_field(block, 'roiic', num(data.get('roiic')))
+    block = _set_field(block, 'reinv', 'true' if data.get('reinv') else 'false')
     if data.get('mscore') is not None:
         block = _set_field(block, 'mscore', num(data.get('mscore')))
         block = _set_field(block, 'mtype', txt(data.get('mtype')))
