@@ -83,6 +83,27 @@ def main():
         out['listes'][liste] = {'total': len(rows), 'passent': len(ok),
                                 'sans_donnees': sum(1 for r in rows if r.get('err')), 'lignes': rows}
         print(liste, len(rows), 'candidats,', len(ok), 'passent le filtre')
+    # 18/10/2026 : entrees / sorties de la grille depuis le passage precedent.
+    # Une liste vue pour la premiere fois sert de point de depart (pas d'entrees).
+    try:
+        prev = json.load(open('candidats_resultats.json', encoding='utf-8')).get('listes', {})
+    except Exception:
+        prev = {}
+    entrees, sorties = [], []
+    for liste, bloc in out['listes'].items():
+        if liste not in prev:
+            continue
+        avant = {r['code'] for r in prev[liste].get('lignes', []) if r.get('qok')}
+        vus = {r['code'] for r in prev[liste].get('lignes', [])}
+        for r in bloc['lignes']:
+            cle = {k: r.get(k) for k in ('code', 'nom', 'roic', 'roicx', 'cash', 'croissance', 'ecart_pct', 'echec')}
+            cle['liste'] = liste
+            if r.get('qok') and r['code'] not in avant:
+                entrees.append(cle)
+            elif not r.get('qok') and r['code'] in avant and r['code'] in vus and not r.get('err'):
+                sorties.append(cle)
+    out['entrees'], out['sorties'] = entrees, sorties
+    print(len(entrees), 'entree(s),', len(sorties), 'sortie(s) depuis le passage precedent')
     json.dump(out, open('candidats_resultats.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 
