@@ -564,11 +564,18 @@ def compute_quality(t, sector_cat):
         # l'exercice le plus ancien et le plus recent. Sert a ne pas punir une
         # entreprise dont le cash part en investissements bien rentables.
         res['roiic'] = None
+        res['roiic_alert'] = False
         if 0 in nopats and len(nopats) >= 3:
             j = max(nopats)
             d_ic, d_np = ics[0] - ics[j], nopats[0] - nopats[j]
             if d_ic > 0.05 * ics[j] and d_np > 0:
                 res['roiic'] = round(d_np / d_ic * 100, 1)
+            # 18/10/2026 (signal "Atos" de la lettre MasterBourse) : l'entreprise a
+            # investi nettement (+15 % de capitaux) pour un benefice d'exploitation
+            # ajoute qui rapporte moins de 10 %, ou qui baisse. ALERTE, pas une vente :
+            # a verifier par contre-expertise.
+            if d_ic > 0.15 * ics[j] and (d_np <= 0 or d_np / d_ic < 0.10):
+                res['roiic_alert'] = True
         _f4 = [x for x in fcf[:4] if x is not None]
         res['fcfs'] = sum(_f4) if len(_f4) >= 3 else None
         # Conversion cash : cumul sur les annees communes (plus robuste
@@ -1567,6 +1574,7 @@ def set_quality_fields(block, data):
     block = _set_field(block, 'near', 'true' if data.get('near') else 'false')
     block = _set_field(block, 'roiic', num(data.get('roiic')))
     block = _set_field(block, 'reinv', 'true' if data.get('reinv') else 'false')
+    block = _set_field(block, 'roiica', 'true' if data.get('roiic_alert') else 'false')
     if data.get('mscore') is not None:
         block = _set_field(block, 'mscore', num(data.get('mscore')))
         block = _set_field(block, 'mtype', txt(data.get('mtype')))
