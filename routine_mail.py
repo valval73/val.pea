@@ -238,19 +238,24 @@ def main():
         for r in rows[:25]:
             pea = 'CTO (hors PEA)' if r.get('liste', '').startswith('cto') else 'PEA'
             det = (f"échoue : {r.get('echec')}" if sortie else
-                   f"ROIC {fr(r.get('roic'), 1)} % · cash {fr(r.get('cash'), 0)} % · croissance {fr(r.get('croissance'), 1)} %/an")
+                   f"ROIC {fr(r.get('roic'), 1)} % · cash {fr(r.get('cash'), 0)} % · croissance {fr(r.get('croissance'), 1)} %/an"
+                   + (f" · cours {fr(r.get('cours'))} · palier 1 {fr(r.get('palier1'))} · palier 2 {fr(r.get('palier2'))}" if r.get('palier1') else '')
+                   + (f"<br>Bourse Direct : {r.get('courtage')}" if r.get('courtage') else ''))
             out_ += (f'<div style="padding:8px 10px;margin:4px 0;background:#f5f3ee;border-left:3px solid {color};border-radius:4px;font-size:13px">'
                      f'<b>{r.get("nom") or r.get("code")}</b> <span style="color:#5a6275">({r.get("code")} · {pea})</span><br>'
                      f'<span style="color:#5a6275">{det}</span></div>')
         if len(rows) > 25:
             out_ += f'<p style="font-size:12px;color:#5a6275">… et {len(rows) - 25} autre(s) : voir candidats_resultats.json.</p>'
         return out_
-    try:
-        CR = json.load(open('candidats_resultats.json', encoding='utf-8'))
-        c_in, c_out = CR.get('entrees', []), CR.get('sorties', [])
-        c_date = CR.get('genere', '')
-    except Exception:
-        c_in, c_out, c_date = [], [], ''
+    c_in, c_out, c_zone, dates_ = [], [], [], []
+    for f_ in ('candidats_resultats.json', 'candidats_cto_resultats.json'):
+        try:
+            CR = json.load(open(f_, encoding='utf-8'))
+        except Exception:
+            continue
+        c_in += CR.get('entrees', []); c_out += CR.get('sorties', []); c_zone += CR.get('en_zone', [])
+        dates_.append(CR.get('genere', ''))
+    c_date = ' / '.join(d for d in dates_ if d)
 
     # 12/10/2026 : preuve de la methode sur de vraies donnees futures (track_signals.py)
     try:
@@ -294,6 +299,7 @@ def main():
 {sec('Alerte : le capital ajouté rapporte peu', li([(s, f"capitaux investis en hausse, rendement du capital ajouté {('négatif' if s.get('roiic') is None else fr(s.get('roiic'), 1) + ' %')} sur 4 ans · ROIC {fr(s.get('roic'), 1)} %") for s in S if s.get('roiica') and (s.get('qok') or s.get('near'))], '#a8322b') + '<p style="font-size:12px;color:#5a6275">Le signal de la lettre MasterBourse (cas Atos) : l’entreprise investit plus mais gagne peu sur ce qu’elle ajoute. Une alerte, pas une vente : contre-expertise, puis vente seulement si la thèse est cassée.</p>')}
 {sec('Univers élargi : nouvelles venues dans ta grille', cand_li(c_in, '#1d6b45') + f'<p style="font-size:12px;color:#5a6275">Valeurs hors screener qui passent maintenant tous tes critères (passage du {c_date}). Pas un achat : une fiche à ouvrir et une contre-expertise à faire.</p>')}
 {sec('Univers élargi : sorties de la grille', cand_li(c_out, '#a8322b', sortie=True))}
+{sec('Univers élargi : candidats sous leur palier 1', cand_li(c_zone, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">Mêmes paliers que le screener, avec la marge la plus prudente (moat non évalué). Avant tout achat : fiche dans le screener, moat, contre-expertise. Vérifie aussi les frais : sur 500 €, un minimum de 41,90 € coûte 8 %.</p>')}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
 {sec('Croissances officielles périmées', li(stale, '#a8790f'))}
 {sec('Suivi en conditions réelles', '<p style="font-size:13px">' + suivi + '</p>')}

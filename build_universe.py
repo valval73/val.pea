@@ -16,6 +16,7 @@ import json, time
 import yfinance as yf
 from yfinance import EquityQuery as Q
 from tickers import YF_MAP
+from screen_candidates import yahoo
 
 SEUIL_EUR = 3e8
 # region Yahoo -> (place principale, taux approximatif devise locale / EUR)
@@ -29,9 +30,15 @@ PLACES = {
 }
 
 
-def region_list(region, exch, fx):
-    q = Q('and', [Q('eq', ['region', region]), Q('eq', ['exchange', exch]),
-                  Q('gt', ['intradaymarketcap', SEUIL_EUR * fx])])
+# 18/10/2026 : univers compte-titres, places ouvertes chez Bourse Direct
+# (New York, Londres, Suisse). Seuils en devise locale.
+PLACES_CTO = {'us': (['NYQ', 'NMS', 'NGM', 'NCM'], 2e9), 'gb': (['LSE'], 1e9), 'ch': (['EBS'], 1e9)}
+
+
+def region_list(region, exch, fx, seuil=None):
+    ex = Q('is-in', ['exchange'] + exch) if isinstance(exch, list) else Q('eq', ['exchange', exch])
+    q = Q('and', [Q('eq', ['region', region]), ex,
+                  Q('gt', ['intradaymarketcap', seuil if seuil else SEUIL_EUR * fx])])
     out, offset = [], 0
     while True:
         r = yf.screen(q, offset=offset, size=250, sortField='intradaymarketcap', sortAsc=False)
@@ -46,15 +53,22 @@ def region_list(region, exch, fx):
 
 
 def main():
+    import sys
+    cto = len(sys.argv) > 1 and sys.argv[1] == 'cto'
+    cle = 'univers_cto' if cto else 'univers_pea_300M'
     C = json.load(open('candidats.json', encoding='utf-8'))
     deja = {s.upper() for s in YF_MAP.values()}
     for k, v in C.items():
-        if isinstance(v, list) and k != 'univers_pea_300M':
-            deja |= {c.split(':', 1)[1].upper() for c in v if c.startswith('YF:')}
+        if isinstance(v, list) and k != cle:
+            for c in v:
+                y_ = yahoo(c)  # codes MIC des autres listes -> symbole Yahoo (pas de doublon)
+                if y_:
+                    deja.add(y_.upper())
     syms, bilan = [], {}
-    for region, (exch, fx) in PLACES.items():
+    places = {r: (e, 1, sl) for r, (e, sl) in PLACES_CTO.items()} if cto else {r: (e, f, None) for r, (e, f) in PLACES.items()}
+    for region, (exch, fx, sl) in places.items():
         try:
-            lst = region_list(region, exch, fx)
+            lst = region_list(region, exch, fx, sl)
         except Exception as e:
             print('ECHEC', region, e)
             bilan[region] = 'echec'
@@ -63,7 +77,7 @@ def main():
         syms += [s for s in lst if s.upper() not in deja]
         time.sleep(1)
     syms = sorted(set(syms))
-    C['univers_pea_300M'] = ['YF:' + s for s in syms]
+    C[cle] = ['YF:' + s for s in syms]
     json.dump(C, open('candidats.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print('Univers :', bilan, '->', len(syms), 'nouvelles valeurs')
 

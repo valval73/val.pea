@@ -18,6 +18,28 @@ SUFFIX = {'XPAR': '.PA', 'XETR': '.DE', 'XFRA': '.F', 'XMIL': '.MI', 'XMAD': '.M
           'ASEX': '.AT', 'XSAT': '.ST', 'XDUS': '.DU', 'XPRA': '.PR'}
 
 
+# 18/10/2026 : frais Bourse Direct par place (grille publique boursedirect.fr,
+# consultee le 18/10/2026). 'autres' = 0,48 % min. 41,90 EUR, liste exacte des
+# places a confirmer aupres du courtier.
+COURTAGE = {'.PA': 'Euronext (0,99-3,80 EUR)', '.AS': 'Euronext (0,99-3,80 EUR)',
+            '.BR': 'Euronext (0,99-3,80 EUR)', '.LS': 'Lisbonne (0,20 % min. 18 EUR)',
+            '.DE': 'Xetra (0,15 % min. 15 EUR)', '.L': 'Londres (0,15 % min. 15 EUR)',
+            '.MC': 'Madrid (0,20 % min. 18 EUR)', '.SW': 'Suisse (0,20 % min. 18 EUR)'}
+
+
+def courtage(sym):
+    if '.' not in sym:
+        return 'New York (8,50 EUR jusqu a 10 000 EUR)'
+    return COURTAGE.get('.' + sym.rsplit('.', 1)[1],
+                        'autre place (0,48 % min. 41,90 EUR, acces a confirmer)')
+
+
+# Paliers : meme regle que le screener (palier 1 = demi-position, palier 2 =
+# position complete). Candidat sans evaluation du moat -> incertitude 'elevee'
+# (marges 20 % / 30 %), la plus prudente de la grille.
+MARGES_CANDIDAT = (0.30, 0.20)
+
+
 def yahoo(code):
     mic, tk = code.split(':', 1)
     if mic == 'YF':  # 18/10/2026 : univers elargi, symbole Yahoo direct
@@ -30,10 +52,16 @@ def yahoo(code):
 
 
 def main():
+    import sys
+    # 18/10/2026 : deux passages separes (PEA le vendredi, compte-titres le jeudi)
+    cto = len(sys.argv) > 1 and sys.argv[1] == 'cto'
+    sortie = 'candidats_cto_resultats.json' if cto else 'candidats_resultats.json'
     C = json.load(open('candidats.json', encoding='utf-8'))
     out = {'genere': time.strftime('%Y-%m-%d %H:%M'), 'listes': {}}
     for liste, codes in C.items():
         if not isinstance(codes, list):
+            continue
+        if liste.startswith(('cto', 'univers_cto')) != cto:
             continue
         rows = []
         for code in codes:
@@ -53,6 +81,7 @@ def main():
                     continue
                 q = compute_quality(t, 'default')
                 rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
+                             'courtage': courtage(sym),
                              'secteur': info.get('sector'), 'devise': info.get('currency'),
                              'cap_Md': round((info.get('marketCap') or 0) / 1e9, 2),
                              'qok': bool(q.get('qok')), 'echec': q.get('qwhy', ''),
@@ -69,6 +98,10 @@ def main():
                     g = max(0.0, min(sum(gs) / len(gs), QV_GMAX * 100)) if gs else 0.0
                     roic_c = min(roic_v, 60.0)
                     v = qarp_value(info.get('forwardEps'), info.get('trailingEps'), None, None, roic_c, g1_override=g / 100)
+                    if v:
+                        r_['palier1'] = round(v * (1 - MARGES_CANDIDAT[1]), 2)
+                        r_['palier2'] = round(v * (1 - MARGES_CANDIDAT[0]), 2)
+                        r_['en_zone'] = bool(px <= r_['palier1'])
                     r_.update({'cours': px, 'valeur': round(v, 2) if v else None,
                                'ecart_pct': round((px / v - 1) * 100, 0) if v else None,
                                'rendement_attendu': expected_return(info.get('forwardEps'), info.get('trailingEps'), g, roic_c, px),
@@ -86,7 +119,7 @@ def main():
     # 18/10/2026 : entrees / sorties de la grille depuis le passage precedent.
     # Une liste vue pour la premiere fois sert de point de depart (pas d'entrees).
     try:
-        prev = json.load(open('candidats_resultats.json', encoding='utf-8')).get('listes', {})
+        prev = json.load(open(sortie, encoding='utf-8')).get('listes', {})
     except Exception:
         prev = {}
     entrees, sorties = [], []
@@ -96,15 +129,19 @@ def main():
         avant = {r['code'] for r in prev[liste].get('lignes', []) if r.get('qok')}
         vus = {r['code'] for r in prev[liste].get('lignes', [])}
         for r in bloc['lignes']:
-            cle = {k: r.get(k) for k in ('code', 'nom', 'roic', 'roicx', 'cash', 'croissance', 'ecart_pct', 'echec')}
+            cle = {k: r.get(k) for k in ('code', 'nom', 'roic', 'roicx', 'cash', 'croissance', 'ecart_pct', 'echec',
+                                         'cours', 'palier1', 'palier2', 'en_zone', 'courtage')}
             cle['liste'] = liste
             if r.get('qok') and r['code'] not in avant:
                 entrees.append(cle)
             elif not r.get('qok') and r['code'] in avant and r['code'] in vus and not r.get('err'):
                 sorties.append(cle)
     out['entrees'], out['sorties'] = entrees, sorties
+    # candidats qui passent la grille ET sont sous leur palier 1 : a etudier en priorite
+    out['en_zone'] = [dict({k: r.get(k) for k in ('code', 'nom', 'cours', 'palier1', 'palier2', 'courtage', 'roic', 'cash')}, liste=l)
+                      for l, b in out['listes'].items() for r in b['lignes'] if r.get('qok') and r.get('en_zone')]
     print(len(entrees), 'entree(s),', len(sorties), 'sortie(s) depuis le passage precedent')
-    json.dump(out, open('candidats_resultats.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(out, open(sortie, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 
 if __name__ == '__main__':

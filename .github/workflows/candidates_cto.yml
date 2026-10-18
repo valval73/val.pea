@@ -1,0 +1,39 @@
+name: Candidats compte-titres (US, Londres, Suisse)
+
+on:
+  schedule:
+    - cron: '17 12 * * 4'   # jeudi 14h17 Paris (ete) : univers elargi + filtre
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-js-writer
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install yfinance requests pytz --quiet
+      - name: Univers compte-titres (NYSE/Nasdaq > 2 Md USD, Londres et Suisse > 1 Md)
+        run: python build_universe.py cto
+      - name: Filtre qualite sur les candidats
+        run: python screen_candidates.py cto
+      - name: Commit
+        run: |
+          git config --local user.email "valpea@users.noreply.github.com"
+          git config --local user.name "VAL.PEA"
+          git add candidats_cto_resultats.json candidats.json
+          if git diff --cached --quiet; then echo "Rien"; else
+            git commit -m "Candidats CTO : filtre qualite $(date '+%Y-%m-%d') [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi
