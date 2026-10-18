@@ -20,6 +20,8 @@ SUFFIX = {'XPAR': '.PA', 'XETR': '.DE', 'XFRA': '.F', 'XMIL': '.MI', 'XMAD': '.M
 
 def yahoo(code):
     mic, tk = code.split(':', 1)
+    if mic == 'YF':  # 18/10/2026 : univers elargi, symbole Yahoo direct
+        return tk
     if mic not in SUFFIX:
         return None
     if mic == 'XLON':
@@ -42,6 +44,13 @@ def main():
             try:
                 t = yf.Ticker(sym)
                 info = t.info or {}
+                # 18/10/2026 : banques, assurances, foncieres -> grille dediee a venir
+                # (la grille 'default' les jugerait mal : ROIC sans objet)
+                if (info.get('sector') or '') in ('Financial Services', 'Real Estate'):
+                    rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
+                                 'secteur': info.get('sector'), 'qok': False,
+                                 'echec': 'financiere/fonciere : grille dediee a venir'})
+                    continue
                 q = compute_quality(t, 'default')
                 rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
                              'secteur': info.get('sector'), 'devise': info.get('currency'),
