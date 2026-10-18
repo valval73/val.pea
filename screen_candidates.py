@@ -134,8 +134,9 @@ def main():
             if not sym:
                 rows.append({'code': code, 'err': 'marche non couvert par Yahoo'})
                 continue
-            if pea_liste and '.' in sym and sym.rsplit('.', 1)[1] in PLACES_SECONDAIRES \
-                    and sym.rsplit('.', 1)[0].upper() in BASES_SUIVIES:
+            base_ = sym.rsplit('.', 1)[0].upper()
+            if ((pea_liste and '.' in sym and sym.rsplit('.', 1)[1] in PLACES_SECONDAIRES) or
+                    (not pea_liste and liste.startswith('univers'))) and base_ in BASES_SUIVIES:
                 rows.append({'code': code, 'yahoo': sym, 'err': 'doublon (autre cotation, ou deja dans le screener)'})
                 continue
             if pea_liste and sym in EXCLUS:
@@ -145,6 +146,19 @@ def main():
               try:
                 t = yf.Ticker(sym)
                 info = t.info or {}
+                if not pea_liste and liste.startswith('univers'):
+                    # 18/10/2026 : Londres et Zurich cotent aussi Nvidia, ASML... :
+                    # on garde la cotation du pays du siege, une seule par societe
+                    pays = info.get('country')
+                    suf = sym.rsplit('.', 1)[1] if '.' in sym else 'US'
+                    attendu = {'L': ('United Kingdom', 'Ireland', 'Jersey', 'Guernsey', 'Isle of Man'),
+                               'SW': ('Switzerland',)}.get(suf)
+                    nom_ = (info.get('longName') or info.get('shortName') or '').upper().strip()
+                    cle_ = norm_nom(nom_)
+                    if (attendu and pays and pays not in attendu) or (cle_ and (cle_ in vus_noms or cle_.split()[0] in NOMS_UN_MOT)):
+                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': 'doublon (autre cotation, ou deja dans le screener)'})
+                        break
+                    vus_noms.add(cle_)
                 if pea_liste:
                     pays = info.get('country')
                     nom_ = (info.get('longName') or info.get('shortName') or '').upper().strip()

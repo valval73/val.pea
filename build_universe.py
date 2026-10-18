@@ -78,7 +78,8 @@ def main():
         bilan[region] = len(lst)
         syms += [s for s in lst if s.upper() not in deja]
         time.sleep(1)
-    syms = sorted(set(syms))
+    # cotation principale d'abord (US sans suffixe, puis le reste) : le premier vu est garde
+    syms = sorted(set(syms), key=lambda x: ('.' in x, x))
     # 18/10/2026 : fichier propre a chaque univers (les deux workflows ne se
     # disputent plus candidats.json au moment du commit)
     fic = 'univers_cto.json' if cto else 'univers_pea.json'
