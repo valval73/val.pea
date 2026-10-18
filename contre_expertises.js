@@ -4,6 +4,13 @@
 // celles du bouton « Contre-expertise IA » sont gardées dans le navigateur.
 // concl : 'intacte' | 'fragilisee' | 'cassee'
 const CE = {
+KBX:[{date:'2026-10-18', concl:'fragilisee', point:"activité qui s'améliore, mais ROIC du screener (46 %) très surévalué",
+  resume:"S1 2026 (29/07/2026) : CA 4 080 M€ (+3,1 %), marge d'EBIT opérationnelle 13,9 % (+130 pb), cash libre 294 M€ (+82,9 %), BPA 2,03 € (+19,4 %), commandes 4 431 M€ (−1,2 %). Objectifs 2026 relevés : CA 8,1-8,3 Md€, marge 14-14,5 %, cash libre 750-850 M€. Cession de Merak (climatisation ferroviaire) signée le 28/07/2026. Baggr (17/10/2026) : ROIC 24 % sur 10 ans, 15 % sur 5 ans, 14 % sur 1 an ; rendement du capital ajouté −6 % sur 10 ans ; marge nette 6,8 %.",
+  kpi:[["Marge d'EBIT opérationnelle", "13,9 % (+130 pb)", "OK"], ["Cash libre", "294 M€ au S1 (+83 %), objectif 750-850 M€", "OK"], ["ROIC réel", "14-15 % (Baggr) contre 46 % dans le screener", "ALERTE"], ["Commandes", "−1,2 % au S1", "OK"]],
+  analystes:"non vérifié",
+  contre:"1) Le ROIC de 46 % (104 % hors écarts d'acquisition) vient des données Yahoo et contredit Baggr (14-15 %) : la qualité affichée est surestimée. 2) Sur 10 ans, le capital ajouté n'a rien rapporté (restructurations, acquisitions) : le redressement actuel reste à confirmer sur plusieurs exercices. 3) Freinage ferroviaire et camions : cycle du transport de marchandises.",
+  decision:"PAS ENCORE : cours 99,50 € pour une valeur centrale de 68,82 € (palier 1 à 58,50 €), et une valeur elle-même calculée avec un ROIC surestimé. Fragilisée : rien au palier 1, demi-position seulement au palier 2.",
+  sources:[["Knorr-Bremse – résultats S1 2026 (29/07/2026)", "https://app.boersengefluester.de/en/newswire/DE000KBX1006/knorr-bremse-aktiengesellschaft/knorr-bremse-delivers-strong-second-quarter-results-and-launches-growth-beyond-strategy-2373774"],["Baggr – fiche Knorr-Bremse, onglet Quantitatif (18/10/2026)", "https://app.baggr.fr"]], by:'Claude (conversation)'}],
 KSB3:[{date:'2026-10-18', concl:'cassee', point:"ROIC Yahoo de 20 % faux : marge nette 4,6 %, cash libre négatif",
   resume:"S1 2026 (06/08/2026) : CA 1 471 M€ (+0,4 %, changes −37 M€), commandes 1 849 M€ (+8,9 %), EBIT 98,4 M€ (108,0 M€), marge d'EBIT T2 7,7 % (8,3 %). Prévision 2026 confirmée. Baggr (consulté le 17/10/2026) : marge nette 4,6 %, marge de cash libre 1,4 %, ROCE 8,9 % sur 10 ans, cash libre des 12 derniers mois −100 M€, rendement du capital ajouté ~1 %.",
   kpi:[["Rentabilité réelle", "marge nette 4,6 %, ROCE 10 ans 8,9 % (screener : ROIC 20,5 %)", "ALERTE"], ["Cash libre", "−100 M€ sur 12 mois (Baggr)", "ALERTE"], ["Croissance du CA", "+0,4 % au S1 2026", "ALERTE"], ["Commandes", "+8,9 % au S1 2026", "OK"]],
