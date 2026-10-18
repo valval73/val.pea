@@ -247,6 +247,9 @@ def main():
         if len(rows) > 25:
             out_ += f'<p style="font-size:12px;color:#5a6275">… et {len(rows) - 25} autre(s) : voir candidats_resultats.json.</p>'
         return out_
+    # 18/10/2026 : paliers des candidats pas encore fiables (BTP de haut de cycle,
+    # donnees Yahoo des petites valeurs) -> section masquee jusqu'a verification
+    AFFICHER_ZONE_CANDIDATS = False
     c_in, c_out, c_zone, dates_ = [], [], [], []
     for f_ in ('candidats_resultats.json', 'candidats_cto_resultats.json'):
         try:
@@ -299,7 +302,7 @@ def main():
 {sec('Alerte : le capital ajouté rapporte peu', li([(s, f"capitaux investis en hausse, rendement du capital ajouté {('négatif' if s.get('roiic') is None else fr(s.get('roiic'), 1) + ' %')} sur 4 ans · ROIC {fr(s.get('roic'), 1)} %") for s in S if s.get('roiica') and (s.get('qok') or s.get('near'))], '#a8322b') + '<p style="font-size:12px;color:#5a6275">Le signal de la lettre MasterBourse (cas Atos) : l’entreprise investit plus mais gagne peu sur ce qu’elle ajoute. Une alerte, pas une vente : contre-expertise, puis vente seulement si la thèse est cassée.</p>')}
 {sec('Univers élargi : nouvelles venues dans ta grille', cand_li(c_in, '#1d6b45') + f'<p style="font-size:12px;color:#5a6275">Valeurs hors screener qui passent maintenant tous tes critères (passage du {c_date}). Pas un achat : une fiche à ouvrir et une contre-expertise à faire.</p>')}
 {sec('Univers élargi : sorties de la grille', cand_li(c_out, '#a8322b', sortie=True))}
-{sec('Univers élargi : candidats sous leur palier 1', cand_li(c_zone, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">Mêmes paliers que le screener, avec la marge la plus prudente (moat non évalué). Avant tout achat : fiche dans le screener, moat, contre-expertise. Vérifie aussi les frais : sur 500 €, un minimum de 41,90 € coûte 8 %.</p>')}
+{'' if not AFFICHER_ZONE_CANDIDATS else sec('Univers élargi : candidats sous leur palier 1', cand_li(c_zone, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">Mêmes paliers que le screener, avec la marge la plus prudente (moat non évalué). Avant tout achat : fiche dans le screener, moat, contre-expertise. Vérifie aussi les frais : sur 500 €, un minimum de 41,90 € coûte 8 %.</p>')}
 {sec('Les plus proches de leur zone', li([(s, f"doit baisser de {fr((s['price'] / s['eh'] - 1) * 100, 0)} % (zone ≤ {fr(s['eh'])} €)") for s in watch_close], '#a8790f'))}
 {sec('Croissances officielles périmées', li(stale, '#a8790f'))}
 {sec('Suivi en conditions réelles', '<p style="font-size:13px">' + suivi + '</p>')}

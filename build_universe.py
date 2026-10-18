@@ -32,7 +32,8 @@ PLACES = {
 
 # 18/10/2026 : univers compte-titres, places ouvertes chez Bourse Direct
 # (New York, Londres, Suisse). Seuils en devise locale.
-PLACES_CTO = {'us': (['NYQ', 'NMS', 'NGM', 'NCM'], 2e9), 'gb': (['LSE'], 1e9), 'ch': (['EBS'], 1e9)}
+# US a 5 Md USD : passage tenable en 5 h malgre la limite de debit Yahoo
+PLACES_CTO = {'us': (['NYQ', 'NMS', 'NGM', 'NCM'], 5e9), 'gb': (['LSE'], 1e9), 'ch': (['EBS'], 1e9)}
 
 
 def region_list(region, exch, fx, seuil=None):

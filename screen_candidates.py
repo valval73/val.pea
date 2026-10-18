@@ -5,7 +5,7 @@ Sortie : candidats_resultats.json (qok, criteres en echec, chiffres cles).
 Les chiffres viennent de Yahoo ; rien n'est repris d'un autre screener.
 Lancement manuel (GitHub Actions > Candidats > Run workflow).
 """
-import json, time
+import json, time, re, unicodedata
 import yfinance as yf
 from fetch_fundamentals import compute_quality, qarp_value, expected_return, implied_growth, QV_GMAX
 
@@ -59,6 +59,30 @@ CYCLIQUES = ('Engineering & Construction', 'Residential Construction', 'Building
              'Paper', 'Lumber', 'Trucking', 'Farm & Heavy Construction Machinery')
 
 
+def norm_nom(n):
+    n = re.sub(r'[^A-Z0-9 ]', ' ', unicodedata.normalize('NFKD', n or '').encode('ascii', 'ignore').decode().upper())
+    mots = [m for m in n.split() if m not in ('SA', 'SE', 'NV', 'AG', 'SPA', 'S', 'P', 'A', 'AB', 'ASA', 'OYJ', 'PLC', 'KGAA',
+                                              'CO', 'GROUP', 'GROUPE', 'HOLDING', 'INC', 'CORP', 'CORPORATION', 'LTD', 'THE',
+                                              'SER', 'B', 'PUBL', 'NV', 'C', 'XWAR', 'PLN', 'INTERNATIONAL')]
+    return ' '.join(mots[:3])
+
+
+def _noms_screener():
+    try:
+        t = open('data.js', encoding='utf-8').read()
+        return {norm_nom(m) for m in re.findall(r"[,{]name:'([^']*)'", t)} - {''}
+    except Exception:
+        return set()
+
+
+NOMS_SCREENER = _noms_screener()
+NOMS_UN_MOT = {n for n in NOMS_SCREENER if ' ' not in n and len(n) >= 5}
+try:
+    EXCLUS = json.load(open('univers_exclus_pea.json', encoding='utf-8'))
+except Exception:
+    EXCLUS = {}
+
+
 def charger_listes():
     C = json.load(open('candidats.json', encoding='utf-8'))
     for f in ('univers_pea.json', 'univers_cto.json'):
@@ -93,33 +117,43 @@ def main():
         if liste.startswith(('cto', 'univers_cto')) != cto:
             continue
         rows = []
-        vus_noms = set()  # une seule cotation par societe
+        vus_noms = set(NOMS_SCREENER)  # une seule cotation par societe, hors screener
+        pea_liste = liste.startswith(('univers_pea', 'pea'))
         for code in codes:
             sym = yahoo(code)
             if not sym:
                 rows.append({'code': code, 'err': 'marche non couvert par Yahoo'})
                 continue
-            try:
+            if pea_liste and sym in EXCLUS:
+                rows.append({'code': code, 'yahoo': sym, 'err': EXCLUS[sym]})
+                continue
+            for essai in range(4):
+              try:
                 t = yf.Ticker(sym)
                 info = t.info or {}
-                if liste.startswith(('univers', 'pea')):
+                if pea_liste:
                     pays = info.get('country')
                     nom_ = (info.get('longName') or info.get('shortName') or '').upper().strip()
                     if pays and pays not in PAYS_PEA:
-                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': f'siege hors UE/EEE ({pays}) : non eligible PEA'})
-                        continue
-                    if nom_ and nom_ in vus_noms:
-                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': 'doublon (autre cotation deja vue)'})
-                        continue
-                    vus_noms.add(nom_)
+                        EXCLUS[sym] = f'siege hors UE/EEE ({pays}) : non eligible PEA'
+                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': EXCLUS[sym]})
+                        break
+                    cle_ = norm_nom(nom_)
+                    if cle_ and (cle_ in vus_noms or cle_.split()[0] in NOMS_UN_MOT):
+                        EXCLUS[sym] = 'doublon (autre cotation, ou deja dans le screener)'
+                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': EXCLUS[sym]})
+                        break
+                    vus_noms.add(cle_)
                 # 18/10/2026 : banques, assurances, foncieres -> grille dediee a venir
                 # (la grille 'default' les jugerait mal : ROIC sans objet)
                 if (info.get('sector') or '') in ('Financial Services', 'Real Estate'):
                     rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
                                  'secteur': info.get('sector'), 'qok': False,
                                  'echec': 'financiere/fonciere : grille dediee a venir'})
-                    continue
+                    break
                 q = compute_quality(t, 'default')
+                if 'Too Many Requests' in (q.get('qwhy') or ''):
+                    raise RuntimeError('Too Many Requests (bilans)')
                 rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
                              'courtage': courtage(sym),
                              'secteur': info.get('sector'), 'devise': info.get('currency'),
@@ -153,9 +187,14 @@ def main():
                                'croissance_retenue': round(g, 1)})
                 elif r_['qok'] and not same:
                     r_['note'] = 'comptes dans une autre devise que le cours : valorisation non calculee'
-            except Exception as e:
+                break
+              except Exception as e:
+                if 'Too Many Requests' in str(e) and essai < 3:
+                    time.sleep(60 * (essai + 1))  # 18/10/2026 : Yahoo limite le debit
+                    continue
                 rows.append({'code': code, 'yahoo': sym, 'err': str(e)[:120]})
-            time.sleep(0.4)
+                break
+            time.sleep(0.8)
         ok = [r for r in rows if r.get('qok')]
         out['listes'][liste] = {'total': len(rows), 'passent': len(ok),
                                 'sans_donnees': sum(1 for r in rows if r.get('err') and not r['err'].startswith(('siege', 'doublon'))),
@@ -188,6 +227,8 @@ def main():
                       for l, b in out['listes'].items() for r in b['lignes'] if r.get('qok') and r.get('en_zone')]
     print(len(entrees), 'entree(s),', len(sorties), 'sortie(s) depuis le passage precedent')
     json.dump(out, open(sortie, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    if not cto:
+        json.dump(EXCLUS, open('univers_exclus_pea.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 
 
 if __name__ == '__main__':

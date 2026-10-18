@@ -31,7 +31,7 @@ jobs:
         run: |
           git config --local user.email "valpea@users.noreply.github.com"
           git config --local user.name "VAL.PEA"
-          git add candidats_resultats.json univers_pea.json
+          git add candidats_resultats.json univers_pea.json univers_exclus_pea.json
           if git diff --cached --quiet; then echo "Rien"; else
             git commit -m "Candidats : filtre qualite $(date '+%Y-%m-%d') [skip ci]"
             git pull --rebase origin main
