@@ -14,7 +14,8 @@ SUFFIX = {'XPAR': '.PA', 'XETR': '.DE', 'XFRA': '.F', 'XMIL': '.MI', 'XMAD': '.M
           'XAMS': '.AS', 'XBRU': '.BR', 'XLIS': '.LS', 'XSTO': '.ST', 'XOSL': '.OL',
           'XHEL': '.HE', 'XCSE': '.CO', 'XWBO': '.VI', 'XWAR': '.WA', 'XBUD': '.BD',
           'XICE': '.IC', 'XDUB': '.IR', 'XBSE': '.RO', 'XNYS': '', 'XNGS': '',
-          'XLON': '.L', 'XSWX': '.SW', 'XTSE': '.TO'}
+          'XLON': '.L', 'XSWX': '.SW', 'XTSE': '.TO',
+          'ASEX': '.AT', 'XSAT': '.ST', 'XDUS': '.DU', 'XPRA': '.PR'}
 
 
 def yahoo(code):
