@@ -56,7 +56,8 @@ def main():
     import sys
     cto = len(sys.argv) > 1 and sys.argv[1] == 'cto'
     cle = 'univers_cto' if cto else 'univers_pea_300M'
-    C = json.load(open('candidats.json', encoding='utf-8'))
+    from screen_candidates import charger_listes
+    C = charger_listes()
     deja = {s.upper() for s in YF_MAP.values()}
     for k, v in C.items():
         if isinstance(v, list) and k != cle:
@@ -77,8 +78,10 @@ def main():
         syms += [s for s in lst if s.upper() not in deja]
         time.sleep(1)
     syms = sorted(set(syms))
-    C[cle] = ['YF:' + s for s in syms]
-    json.dump(C, open('candidats.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    # 18/10/2026 : fichier propre a chaque univers (les deux workflows ne se
+    # disputent plus candidats.json au moment du commit)
+    fic = 'univers_cto.json' if cto else 'univers_pea.json'
+    json.dump({cle: ['YF:' + s for s in syms]}, open(fic, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print('Univers :', bilan, '->', len(syms), 'nouvelles valeurs')
 
 

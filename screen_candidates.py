@@ -49,6 +49,26 @@ PAYS_PEA = {'France', 'Germany', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Po
             'Slovenia', 'Slovakia', 'Croatia', 'Bulgaria', 'Cyprus', 'Malta', 'Liechtenstein'}
 
 
+# Industries cycliques (classement Yahoo) : un benefice de haut de cycle,
+# prolonge 10 ans, gonfle la valeur. Pas de palier tant qu'il n'y a pas de
+# grille dediee (meme logique que la regle du reinvestissement).
+CYCLIQUES = ('Engineering & Construction', 'Residential Construction', 'Building Materials',
+             'Oil & Gas', 'Marine Shipping', 'Steel', 'Aluminum', 'Copper', 'Other Industrial Metals',
+             'Gold', 'Silver', 'Coal', 'Chemicals', 'Specialty Chemicals', 'Agricultural Inputs',
+             'Auto Manufacturers', 'Auto Parts', 'Airlines', 'Semiconductors', 'Semiconductor Equipment',
+             'Paper', 'Lumber', 'Trucking', 'Farm & Heavy Construction Machinery')
+
+
+def charger_listes():
+    C = json.load(open('candidats.json', encoding='utf-8'))
+    for f in ('univers_pea.json', 'univers_cto.json'):
+        try:
+            C.update(json.load(open(f, encoding='utf-8')))
+        except FileNotFoundError:
+            pass
+    return C
+
+
 def yahoo(code):
     mic, tk = code.split(':', 1)
     if mic == 'YF':  # 18/10/2026 : univers elargi, symbole Yahoo direct
@@ -65,7 +85,7 @@ def main():
     # 18/10/2026 : deux passages separes (PEA le vendredi, compte-titres le jeudi)
     cto = len(sys.argv) > 1 and sys.argv[1] == 'cto'
     sortie = 'candidats_cto_resultats.json' if cto else 'candidats_resultats.json'
-    C = json.load(open('candidats.json', encoding='utf-8'))
+    C = charger_listes()
     out = {'genere': time.strftime('%Y-%m-%d %H:%M'), 'listes': {}}
     for liste, codes in C.items():
         if not isinstance(codes, list):
@@ -118,6 +138,10 @@ def main():
                     g = max(0.0, min(sum(gs) / len(gs), QV_GMAX * 100)) if gs else 0.0
                     roic_c = min(roic_v, 60.0)
                     v = qarp_value(info.get('forwardEps'), info.get('trailingEps'), None, None, roic_c, g1_override=g / 100)
+                    ind = info.get('industry') or ''
+                    if any(ind.startswith(x) for x in CYCLIQUES):
+                        r_['note'] = f'cyclique ({ind}) : pas de palier, grille dediee a venir'
+                        v = None
                     if v:
                         r_['palier1'] = round(v * (1 - MARGES_CANDIDAT[1]), 2)
                         r_['palier2'] = round(v * (1 - MARGES_CANDIDAT[0]), 2)
