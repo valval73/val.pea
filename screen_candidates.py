@@ -40,6 +40,15 @@ def courtage(sym):
 MARGES_CANDIDAT = (0.30, 0.20)
 
 
+# 18/10/2026 : le PEA exige un siege dans l'UE/EEE. Les places de Vienne,
+# Francfort ou Varsovie cotent aussi des societes americaines ou asiatiques
+# (Nvidia, Meta...) : on les ecarte sur le pays du siege donne par Yahoo.
+PAYS_PEA = {'France', 'Germany', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Portugal', 'Austria',
+            'Finland', 'Ireland', 'Greece', 'Estonia', 'Lithuania', 'Latvia', 'Sweden', 'Denmark',
+            'Norway', 'Poland', 'Czech Republic', 'Czechia', 'Hungary', 'Romania', 'Iceland', 'Luxembourg',
+            'Slovenia', 'Slovakia', 'Croatia', 'Bulgaria', 'Cyprus', 'Malta', 'Liechtenstein'}
+
+
 def yahoo(code):
     mic, tk = code.split(':', 1)
     if mic == 'YF':  # 18/10/2026 : univers elargi, symbole Yahoo direct
@@ -64,6 +73,7 @@ def main():
         if liste.startswith(('cto', 'univers_cto')) != cto:
             continue
         rows = []
+        vus_noms = set()  # une seule cotation par societe
         for code in codes:
             sym = yahoo(code)
             if not sym:
@@ -72,6 +82,16 @@ def main():
             try:
                 t = yf.Ticker(sym)
                 info = t.info or {}
+                if liste.startswith(('univers', 'pea')):
+                    pays = info.get('country')
+                    nom_ = (info.get('longName') or info.get('shortName') or '').upper().strip()
+                    if pays and pays not in PAYS_PEA:
+                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': f'siege hors UE/EEE ({pays}) : non eligible PEA'})
+                        continue
+                    if nom_ and nom_ in vus_noms:
+                        rows.append({'code': code, 'yahoo': sym, 'nom': nom_, 'err': 'doublon (autre cotation deja vue)'})
+                        continue
+                    vus_noms.add(nom_)
                 # 18/10/2026 : banques, assurances, foncieres -> grille dediee a venir
                 # (la grille 'default' les jugerait mal : ROIC sans objet)
                 if (info.get('sector') or '') in ('Financial Services', 'Real Estate'):
@@ -114,7 +134,9 @@ def main():
             time.sleep(0.4)
         ok = [r for r in rows if r.get('qok')]
         out['listes'][liste] = {'total': len(rows), 'passent': len(ok),
-                                'sans_donnees': sum(1 for r in rows if r.get('err')), 'lignes': rows}
+                                'sans_donnees': sum(1 for r in rows if r.get('err') and not r['err'].startswith(('siege', 'doublon'))),
+                                'hors_pea_ou_doublon': sum(1 for r in rows if (r.get('err') or '').startswith(('siege', 'doublon'))),
+                                'lignes': rows}
         print(liste, len(rows), 'candidats,', len(ok), 'passent le filtre')
     # 18/10/2026 : entrees / sorties de la grille depuis le passage precedent.
     # Une liste vue pour la premiere fois sert de point de depart (pas d'entrees).
