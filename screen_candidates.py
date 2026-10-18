@@ -63,20 +63,30 @@ def norm_nom(n):
     n = re.sub(r'[^A-Z0-9 ]', ' ', unicodedata.normalize('NFKD', n or '').encode('ascii', 'ignore').decode().upper())
     mots = [m for m in n.split() if m not in ('SA', 'SE', 'NV', 'AG', 'SPA', 'S', 'P', 'A', 'AB', 'ASA', 'OYJ', 'PLC', 'KGAA',
                                               'CO', 'GROUP', 'GROUPE', 'HOLDING', 'INC', 'CORP', 'CORPORATION', 'LTD', 'THE',
-                                              'SER', 'B', 'PUBL', 'NV', 'C', 'XWAR', 'PLN', 'INTERNATIONAL')]
-    return ' '.join(mots[:3])
+                                              'SER', 'B', 'PUBL', 'NV', 'C', 'XWAR', 'PLN', 'INTERNATIONAL', 'N', 'V', 'E',
+                                              'INH', 'EO', 'XGLO', 'ADR', 'ORD', 'REG')]
+    return ' '.join(mots[:2])  # 2 premiers mots : 'SCHNEIDER ELECTRIC S E' = 'SCHNEIDER ELECTRIC'
 
 
 def _noms_screener():
     try:
         t = open('data.js', encoding='utf-8').read()
-        return {norm_nom(m) for m in re.findall(r"[,{]name:'([^']*)'", t)} - {''}
+        noms = re.findall(r"[,{]name:'([^']*)'", t) + re.findall(r'[,{]name:"([^"]*)"', t)
+        return {norm_nom(m) for m in noms} - {''}
     except Exception:
         return set()
 
 
 NOMS_SCREENER = _noms_screener()
 NOMS_UN_MOT = {n for n in NOMS_SCREENER if ' ' not in n and len(n) >= 5}
+# Cotations secondaires (Vienne, Francfort, Varsovie...) d'une valeur deja suivie :
+# meme code de base que le screener ou une autre liste (ITX.VI = ITX.MC).
+PLACES_SECONDAIRES = ('VI', 'DE', 'F', 'DU', 'MU', 'BE', 'SG', 'HM', 'WA')
+try:
+    from tickers import YF_MAP as _YF
+    BASES_SUIVIES = {v.rsplit('.', 1)[0].upper() for v in _YF.values()}
+except Exception:
+    BASES_SUIVIES = set()
 try:
     EXCLUS = json.load(open('univers_exclus_pea.json', encoding='utf-8'))
 except Exception:
@@ -123,6 +133,10 @@ def main():
             sym = yahoo(code)
             if not sym:
                 rows.append({'code': code, 'err': 'marche non couvert par Yahoo'})
+                continue
+            if pea_liste and '.' in sym and sym.rsplit('.', 1)[1] in PLACES_SECONDAIRES \
+                    and sym.rsplit('.', 1)[0].upper() in BASES_SUIVIES:
+                rows.append({'code': code, 'yahoo': sym, 'err': 'doublon (autre cotation, ou deja dans le screener)'})
                 continue
             if pea_liste and sym in EXCLUS:
                 rows.append({'code': code, 'yahoo': sym, 'err': EXCLUS[sym]})
