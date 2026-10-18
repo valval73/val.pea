@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: data-js-writer
+  group: candidats-writer   # 18/10/2026 : ne touche pas data.js, ne bloque plus les mises a jour
   cancel-in-progress: false
 
 jobs:
