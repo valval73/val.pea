@@ -361,8 +361,9 @@ Q_ROIC_X, Q_ROIC, Q_FCF, Q_ND, Q_GROWTH = 15.0, 12.0, 80.0, 2.5, 3.0
 # 12/10/2026 : plus d'exception sans fin. Chaque exception porte une date
 # d'expiration ; passee cette date, la valeur suit les regles comme les autres
 # (decision de l'utilisatrice : "arreter de chercher des exceptions").
-# Air Liquide : ROIC total 9,4 % (< 12 %) ; expire apres les resultats annuels 2026.
-EXCEPTIONS = {'AI': ('pilier long terme, ROIC total sous 12 %', '2027-03-01')}
+# 18/10/2026 : exception Air Liquide supprimee (decision : aucune exception).
+# Le mecanisme reste dans le code mais la liste doit rester vide.
+EXCEPTIONS = {}
 
 def _row_series(df, *names):
     """Valeurs d'une ligne pour toutes les annees (plus recente d'abord),
