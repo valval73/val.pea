@@ -1259,7 +1259,9 @@ def fetch_one(ticker, yf_sym, sector):
             if f.startswith('rentabilite fonds propres'): return v >= Q_ROE - 2.0
             if f.startswith('couverture des interets'):   return v >= Q_ICR - 0.5
             if f.startswith('ROIC hors EA'): return v >= Q_ROIC_X - 2.0
-            if f.startswith('ROIC'):         return v >= Q_ROIC - 2.0
+            # 18/10/2026 : pas de tolerance sur le ROIC total (prix des rachats
+            # inclus) : c'est un fait, pas une approximation (cas Novonesis).
+            if f.startswith('ROIC'):         return False
             if f.startswith('cash'):         return v >= Q_FCF - 10.0
             if f.startswith('dette'):        return v <= Q_ND + 0.5
             return False
