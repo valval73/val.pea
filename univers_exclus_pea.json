@@ -1588,5 +1588,22 @@
 "ZOTS.VI": "siege hors UE/EEE (United States) : non eligible PEA",
 "ZSCA.VI": "siege hors UE/EEE (United States) : non eligible PEA",
 "ZT1A.DE": "siege hors UE/EEE (United States) : non eligible PEA",
-"ZX6.DE": "siege hors UE/EEE (Switzerland) : non eligible PEA"
+"ZX6.DE": "siege hors UE/EEE (Switzerland) : non eligible PEA",
+"1BR1.DE": "doublon (autre cotation, ou deja dans le screener)",
+"ACALK.PA": "doublon (autre cotation, ou deja dans le screener)",
+"ACALM.PA": "doublon (autre cotation, ou deja dans le screener)",
+"ASME.DE": "doublon (autre cotation, ou deja dans le screener)",
+"BOCHGR.AT": "doublon (autre cotation, ou deja dans le screener)",
+"COMB.BR": "doublon (autre cotation, ou deja dans le screener)",
+"EBP.WA": "doublon (autre cotation, ou deja dans le screener)",
+"LOR.DE": "doublon (autre cotation, ou deja dans le screener)",
+"MING.OL": "doublon (autre cotation, ou deja dans le screener)",
+"NONG.OL": "doublon (autre cotation, ou deja dans le screener)",
+"ODET.PA": "doublon (autre cotation, ou deja dans le screener)",
+"RING.OL": "doublon (autre cotation, ou deja dans le screener)",
+"SB1NO.OL": "doublon (autre cotation, ou deja dans le screener)",
+"SND.DE": "doublon (autre cotation, ou deja dans le screener)",
+"SOAG.OL": "doublon (autre cotation, ou deja dans le screener)",
+"SPOL.OL": "doublon (autre cotation, ou deja dans le screener)",
+"TEEN.VI": "doublon (autre cotation, ou deja dans le screener)"
 }
