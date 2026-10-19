@@ -319,7 +319,8 @@ def main():
         if y and '.' not in y:   # valeur americaine : SEC
             o = sec_official(y)
             if not o:
-                res[tk] = {'status': 'SEC : societe introuvable'}
+                # 19/10/2026 : la SEC refuse les serveurs de GitHub (403) : on le dit
+                res[tk] = {'status': 'SEC inaccessible depuis GitHub' if not _SEC_CIK else 'SEC : societe introuvable'}
                 continue
             ent = {'lei': 'CIK' + o['cik'], 'name': o['entity']}
             time.sleep(0.2)
