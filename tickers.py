@@ -178,11 +178,16 @@ EU_LEADERS = [
     ('MYCR', 'MYCR.ST', 'Mycronic', 'Electronique equipements', 'mid', 'SEK'),
     ('PNDORA', 'PNDORA.CO', 'Pandora', 'Bijouterie', 'large', 'DKK'),
     ('NOD', 'NOD.OL', 'Nordic Semiconductor', 'Semi-conducteurs', 'mid', 'NOK'),
+    # 19/10/2026 : lignes du compte-titres (non eligibles PEA), suivies avec les memes regles
+    ('GOOGL', 'GOOGL', 'Alphabet', 'Internet & publicite (compte-titres)', 'large', 'USD'),
+    ('MA', 'MA', 'Mastercard', 'Paiements (compte-titres)', 'large', 'USD'),
+    ('AMZN', 'AMZN', 'Amazon', 'Commerce en ligne & cloud (compte-titres)', 'large', 'USD'),
+    ('KO', 'KO', 'Coca-Cola', 'Boissons (compte-titres)', 'large', 'USD'),
 ]
 # Devise par symbole hors euro (le taux est lu en direct dans fetch_fundamentals ;
 # NON_EUR ci-dessus sert de valeur de secours)
 CURRENCY = {'NOVO-B.CO': 'DKK'}
-_FX_FALLBACK = {'DKK': 7.46, 'SEK': 11.0, 'NOK': 11.6}
+_FX_FALLBACK = {'DKK': 7.46, 'SEK': 11.0, 'NOK': 11.6, 'USD': 1.16}
 for _t, _sym, _n, _sec, _cap, _cur in EU_LEADERS:
     YF_MAP.setdefault(_t, _sym)
     if _cur != 'EUR':
