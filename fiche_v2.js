@@ -537,7 +537,8 @@ function buildHome(){
   if(!box){ box=document.createElement('div'); box.id='v2-home'; pg.insertBefore(box, pg.firstChild); }
   var buy=[], watch=[], out=[];
   S.forEach(function(s){ if(!s||!s.ticker||!(s.price>0)) return; var g=group(s); (g==='buy'?buy:g==='watch'?watch:out).push(s); });
-  var byGap = function(a,b){ return (a.eh>0?a.price/a.eh:9)-(b.eh>0?b.price/b.eh:9); };
+  // 19/10/2026 : une donnee a verifier passe apres (sinon les valeurs aux chiffres faux arrivent en tete)
+  var byGap = function(a,b){ return ((dqAll(a)?10:0)+(a.eh>0?a.price/a.eh:9))-((dqAll(b)?10:0)+(b.eh>0?b.price/b.eh:9)); };
   buy.sort(byGap); watch.sort(byGap); out.sort(function(a,b){return (a.name||'').localeCompare(b.name||'');});
   box.innerHTML = '<div class="v2-home"><div class="v2-hgrp" style="border-top:4px solid '+C.gn+'"><h3>Achat possible <span>'+buy.length+'</span></h3><p class="v2-small">Qualité OK · cours en zone · moat ≥ 3 · croissance régulière · pas de chute</p>'+(buy.map(item).join('')||'<p class="v2-small">Aucune aujourd’hui → versement du mois sur l’ETF Monde.</p>')+'</div>'+
     '<div class="v2-hgrp" style="border-top:4px solid '+C.or+'"><h3>À surveiller <span>'+watch.length+'</span></h3><p class="v2-small">Qualité OK mais trop chère, en chute, ou limite · <b>les 20 plus proches de leur palier 1</b></p>'+watch.slice(0,20).map(item).join('')+

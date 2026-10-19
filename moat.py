@@ -73,6 +73,31 @@ MOAT = {
     'NSIS':  (4, "enzymes et micro-organismes : duopole mondial", "integration Chr. Hansen, prix agricoles"),
     'ASSA':  (4, "leader mondial des serrures, base installee", "cycle construction"),
     'EPI':   (4, "equipements miniers en duopole avec Sandvik, apres-vente", "cycle minier"),
+    # --- 19/10/2026 : fiches promues du radar (jugement de Claude, a valider ; a croiser avec Morningstar) ---
+    'MA':    (5, "duopole mondial Visa-Mastercard, effet de reseau commercants-porteurs",
+                 "reglementation des commissions, paiements instantanes (Wero, Pix, FedNow)"),
+    'GOOGL': (4, "recherche et publicite (Google, YouTube), donnees, cloud",
+                 "assistants d'IA qui contournent la recherche, proces antitrust"),
+    'META':  (4, "effet de reseau de 3 milliards d'utilisateurs, ciblage publicitaire",
+                 "depenses d'IA et de metavers colossales, reglementation"),
+    'ADBE':  (4, "standard des createurs (Photoshop, Acrobat), couts de changement",
+                 "IA generative qui banalise la creation (Canva, outils gratuits)"),
+    'ANET':  (4, "commutateurs reseau des centres de donnees geants, logiciel EOS",
+                 "dependance a quelques clients (Microsoft, Meta), Nvidia"),
+    'MNST':  (4, "marque leader des boissons energisantes, distribution Coca-Cola",
+                 "concurrence (Celsius, Red Bull), sante publique"),
+    'ACN':   (3, "taille, relations clients, conseil et integration",
+                 "metier au temps passe expose a l'IA"),
+    'ABNB':  (3, "effet de reseau hotes-voyageurs, marque",
+                 "reglementation des locations courtes, Booking"),
+    'DOCS':  (3, "reseau professionnel de la majorite des medecins americains",
+                 "OpenEvidence et assistants d'IA gratuits, dependance a la pub pharma"),
+    'HEMST': (4, "portail immobilier dominant en Suede, effet de reseau",
+                 "cycle immobilier, concurrents (Booli), reaction des agences aux hausses de prix"),
+    'EVOST': (3, "leader mondial du casino en direct pour les operateurs",
+                 "reglementation, marches gris, fraude"),
+    'DECK':  (3, "marques HOKA et UGG, pouvoir de prix",
+                 "mode, dependance a deux marques, droits de douane"),
 }
 MOAT_MIN_BUY = 3
 
@@ -94,6 +119,10 @@ UNCERTAINTY = {
     'GTT': 'elevee', 'PLNW': 'elevee', 'IPSEN': 'elevee', 'RHM': 'elevee',
     'EXENS': 'elevee', 'ATE': 'elevee', 'ASM': 'elevee', 'EPI': 'elevee',
     'WAVE': 'elevee',
+    # 19/10/2026 : fiches promues
+    'MA': 'faible', 'GOOGL': 'moyenne', 'META': 'moyenne', 'MNST': 'moyenne', 'ACN': 'moyenne',
+    'HEMST': 'moyenne', 'ADBE': 'elevee', 'ANET': 'elevee', 'ABNB': 'elevee', 'DOCS': 'elevee',
+    'EVOST': 'elevee', 'DECK': 'elevee',
 }
 # (bas de zone, haut de zone) = valeur x (1 - decote)
 MARGIN = {'faible': (0.20, 0.10), 'moyenne': (0.25, 0.15), 'elevee': (0.30, 0.20)}
