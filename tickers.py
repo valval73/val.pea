@@ -190,7 +190,17 @@ EU_LEADERS = [
 # Devise par symbole hors euro (le taux est lu en direct dans fetch_fundamentals ;
 # NON_EUR ci-dessus sert de valeur de secours)
 CURRENCY = {'NOVO-B.CO': 'DKK'}
-_FX_FALLBACK = {'DKK': 7.46, 'SEK': 11.0, 'NOK': 11.6, 'USD': 1.16}
+_FX_FALLBACK = {'DKK': 7.46, 'SEK': 11.0, 'NOK': 11.6, 'USD': 1.16, 'CHF': 0.94, 'PLN': 4.25}
+# 19/10/2026 : valeurs promues automatiquement depuis le radar elargi (promote.py)
+try:
+    import json as _json, os as _os
+    _pf = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'radar_promus.json')
+    if _os.path.exists(_pf):
+        for _r in _json.load(open(_pf, encoding='utf-8')):
+            if _r[0] not in YF_MAP and (_r[5] in _FX_FALLBACK or _r[5] == 'EUR'):
+                EU_LEADERS.append(tuple(_r[:6]))
+except Exception as _e:
+    print('radar_promus.json illisible :', _e)
 for _t, _sym, _n, _sec, _cap, _cur in EU_LEADERS:
     YF_MAP.setdefault(_t, _sym)
     if _cur != 'EUR':

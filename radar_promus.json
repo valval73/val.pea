@@ -1,0 +1,2504 @@
+[
+[
+"MOURBR",
+"MOUR.BR",
+"MOURY CONSTRUCT",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"MTHHCO",
+"MTHH.CO",
+"MT Højgaard Holding A/S",
+"Industrials",
+"mid",
+"DKK",
+"PEA"
+],
+[
+"CWCDE",
+"CWC.DE",
+"CEWE Stiftung & Co. KGaA",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"EUZDE",
+"EUZ.DE",
+"Eckert & Ziegler SE",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"GFTDE",
+"GFT.DE",
+"GFT Technologies SE",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"IVUDE",
+"IVU.DE",
+"IVU TRAFFIC TECHNOLOGIES",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CTNKF",
+"CTNK.F",
+"centrotherm international AG",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"GOFOREHE",
+"GOFORE.HE",
+"Gofore Plc",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"GRKHE",
+"GRK.HE",
+"GRK Infra Plc",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"HARVIAHE",
+"HARVIA.HE",
+"Harvia Plc",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"MEKKOHE",
+"MEKKO.HE",
+"Marimekko Corporation",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"REG1VHE",
+"REG1V.HE",
+"Revenio Group Corporation",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"ALCMC",
+"ALC.MC",
+"ALTIA CONSULTORES, S.A.",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"AZKMC",
+"AZK.MC",
+"AZKOYEN, S.A.",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CBAVMC",
+"CBAV.MC",
+"CLINICA BAVIERA S.A.",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"EVISOMI",
+"EVISO.MI",
+"EVISO",
+"Utilities",
+"small",
+"EUR",
+"PEA"
+],
+[
+"BOUVOL",
+"BOUV.OL",
+"BOUVET",
+"Technology",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"MEDIOL",
+"MEDI.OL",
+"MEDISTIM",
+"Healthcare",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"MULTIOL",
+"MULTI.OL",
+"MULTICONSULT",
+"Industrials",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"AUBPA",
+"AUB.PA",
+"AUBAY",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"EQSPA",
+"EQS.PA",
+"EQUASENS",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"SDGPA",
+"SDG.PA",
+"SYNERGIE",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"BAHNBST",
+"BAHN-B.ST",
+"Bahnhof AB ser. B",
+"Communication Services",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"HEMST",
+"HEM.ST",
+"Hemnet Group AB",
+"Communication Services",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"LIMEST",
+"LIME.ST",
+"Lime Technologies AB",
+"Technology",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"MMGRBST",
+"MMGR-B.ST",
+"Momentum Group AB ser. B",
+"Industrials",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"RVRCST",
+"RVRC.ST",
+"RVRC Holding AB",
+"Consumer Cyclical",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"ZZBST",
+"ZZ-B.ST",
+"Zinzino AB Ser. B",
+"Consumer Defensive",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"ABSWA",
+"ABS.WA",
+"ABS C.XWAR PLN",
+"Technology",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"GPPWA",
+"GPP.WA",
+"GPP C.XWAR PLN",
+"Industrials",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"LBWWA",
+"LBW.WA",
+"LBW C.XWAR PLN",
+"Industrials",
+"small",
+"PLN",
+"PEA"
+],
+[
+"PLWWA",
+"PLW.WA",
+"PLW C.XWAR PLN",
+"Communication Services",
+"small",
+"PLN",
+"PEA"
+],
+[
+"RBWWA",
+"RBW.WA",
+"RBW C.XWAR PLN",
+"Consumer Cyclical",
+"small",
+"PLN",
+"PEA"
+],
+[
+"SGNWA",
+"SGN.WA",
+"SGN C.XWAR PLN",
+"Technology",
+"small",
+"PLN",
+"PEA"
+],
+[
+"SHOWA",
+"SHO.WA",
+"SHOPER",
+"Technology",
+"small",
+"PLN",
+"PEA"
+],
+[
+"VRCWA",
+"VRC.WA",
+"VRC C.XWAR PLN",
+"Technology",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"NWGWA",
+"NWG.WA",
+"NWG C.XWAR PLN",
+"Industrials",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"BIOGBST",
+"BIOG-B.ST",
+"BioGaia AB ser. B",
+"Healthcare",
+"large",
+"SEK",
+"PEA"
+],
+[
+"EVOST",
+"EVO.ST",
+"Evolution AB",
+"Consumer Cyclical",
+"large",
+"SEK",
+"PEA"
+],
+[
+"NORBTOL",
+"NORBT.OL",
+"NORBIT",
+"Technology",
+"large",
+"NOK",
+"PEA"
+],
+[
+"HMSST",
+"HMS.ST",
+"HMS Networks AB",
+"Technology",
+"large",
+"SEK",
+"PEA"
+],
+[
+"BETSBST",
+"BETS-B.ST",
+"Betsson AB ser. B",
+"Consumer Cyclical",
+"large",
+"SEK",
+"PEA"
+],
+[
+"KAREAT",
+"KARE.AT",
+"KARELIA TOBACCO S.A.",
+"Consumer Defensive",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CAMXST",
+"CAMX.ST",
+"Camurus AB",
+"Healthcare",
+"large",
+"SEK",
+"PEA"
+],
+[
+"PUUILOHE",
+"PUUILO.HE",
+"Puuilo Plc",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"NORCOOL",
+"NORCO.OL",
+"NORCONSULT ASA",
+"Industrials",
+"large",
+"NOK",
+"PEA"
+],
+[
+"DOCVI",
+"DOC.VI",
+"DO & CO AG",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"MAIREMI",
+"MAIRE.MI",
+"MAIRE",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"CLASBST",
+"CLAS-B.ST",
+"Clas Ohlson AB ser. B",
+"Consumer Cyclical",
+"large",
+"SEK",
+"PEA"
+],
+[
+"OEMBST",
+"OEM-B.ST",
+"OEM International AB ser. B",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"SPABR",
+"SPA.BR",
+"SPADEL",
+"Consumer Defensive",
+"small",
+"EUR",
+"PEA"
+],
+[
+"HOTDE",
+"HOT.DE",
+"HOCHTIEF AG",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"STRVI",
+"STR.VI",
+"STRABAG SE",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"BONHROL",
+"BONHR.OL",
+"BONHEUR",
+"Industrials",
+"large",
+"NOK",
+"PEA"
+],
+[
+"PDXST",
+"PDX.ST",
+"Paradox Interactive AB",
+"Communication Services",
+"large",
+"SEK",
+"PEA"
+],
+[
+"RYAIR",
+"RYA.IR",
+"RYANAIR HOLDINGS PLC",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"TREMC",
+"TRE.MC",
+"TECNICAS REUNIDAS S.A.",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"1INNDE",
+"1INN.DE",
+"innoscripta SE",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"ACSMC",
+"ACS.MC",
+"ACS,ACTIVIDADES DE CONSTRUCCION",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"AEGNAT",
+"AEGN.AT",
+"AEGEAN AIRLINES S.A.",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"ALVDMPA",
+"ALVDM.PA",
+"VOYAGEURS DU MONDE",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"AQST",
+"AQ.ST",
+"AQ Group AB",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"ARCADAS",
+"ARCAD.AS",
+"ARCADIS",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"ARTMC",
+"ART.MC",
+"ARTECHE LANTEGI",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"ASEWA",
+"ASE.WA",
+"ASE C.XWAR PLN",
+"Technology",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"ATEAOL",
+"ATEA.OL",
+"ATEA",
+"Technology",
+"large",
+"NOK",
+"PEA"
+],
+[
+"AXFOST",
+"AXFO.ST",
+"Axfood AB",
+"Consumer Defensive",
+"large",
+"SEK",
+"PEA"
+],
+[
+"BDXWA",
+"BDX.WA",
+"BDX C.XWAR PLN",
+"Industrials",
+"large",
+"PLN",
+"PEA"
+],
+[
+"BFTWA",
+"BFT.WA",
+"BFT C.XWAR PLN",
+"Consumer Cyclical",
+"large",
+"PLN",
+"PEA"
+],
+[
+"BOHUSOL",
+"BOHUS.OL",
+"BOHUS ASA",
+"Consumer Cyclical",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"CALTMI",
+"CALT.MI",
+"CALTAGIRONE",
+"Basic Materials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CENPA",
+"CEN.PA",
+"GROUPE CRIT",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CTTLS",
+"CTT.LS",
+"CTT-CORREIOS DE PORTUGAL, SA",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CWCVI",
+"CWC.VI",
+"CEWE STIFTUNG+CO KGAA",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"DIAWA",
+"DIA.WA",
+"DIA C.XWAR PLN",
+"Healthcare",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"DIEBR",
+"DIE.BR",
+"D IETEREN GROUP",
+"Consumer Cyclical",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"EINDE",
+"EIN.DE",
+"Einhell Germany AG",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"EPROL",
+"EPR.OL",
+"EUROPRIS",
+"Consumer Defensive",
+"large",
+"NOK",
+"PEA"
+],
+[
+"EPROBST",
+"EPRO-B.ST",
+"Electrolux Professional AB ser.",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"EUZGVI",
+"EUZG.VI",
+"ECKERT & ZIEGLER SE",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"FAGRBR",
+"FAGR.BR",
+"FAGRON",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"FDJVI",
+"FDJ.VI",
+"LA FRANCAISE DES JEUX SA",
+"Consumer Cyclical",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"FRAMERYHE",
+"FRAMERY.HE",
+"Framery Group Oyj",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"GBFDE",
+"GBF.DE",
+"Bilfinger SE",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"GFTVI",
+"GFT.VI",
+"GFT TECHNOLOGIES SE",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"HACKST",
+"HACK.ST",
+"Hacksaw AB",
+"Communication Services",
+"large",
+"SEK",
+"PEA"
+],
+[
+"HAGDE",
+"HAG.DE",
+"HENSOLDT AG",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"HOTVI",
+"HOT.VI",
+"HOCHTIEF AG",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"IEGMI",
+"IEG.MI",
+"ITALIAN EXHIBITION GROUP",
+"Communication Services",
+"small",
+"EUR",
+"PEA"
+],
+[
+"INDTST",
+"INDT.ST",
+"Indutrade AB",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"IR5BIR",
+"IR5B.IR",
+"IRISH CONTINENTAL GROUP PLC",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"ISSCO",
+"ISS.CO",
+"ISS A/S",
+"Industrials",
+"large",
+"DKK",
+"PEA"
+],
+[
+"IVUVI",
+"IVU.VI",
+"IVU TRAFFIC TECHNOLOGIES AG",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"KCRHE",
+"KCR.HE",
+"Konecranes Plc",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"KITOL",
+"KIT.OL",
+"KITRON",
+"Technology",
+"large",
+"NOK",
+"PEA"
+],
+[
+"KRXIR",
+"KRX.IR",
+"KINGSPAN GROUP PLC",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"LIFCOBST",
+"LIFCO-B.ST",
+"Lifco AB ser.B",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"LPPWA",
+"LPP.WA",
+"LPP C.XWAR PLN",
+"Consumer Cyclical",
+"large",
+"PLN",
+"PEA"
+],
+[
+"M12DE",
+"M12.DE",
+"M1 Kliniken AG",
+"Healthcare",
+"small",
+"EUR",
+"PEA"
+],
+[
+"MBBDE",
+"MBB.DE",
+"MBB SE",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"MCAPST",
+"MCAP.ST",
+"MedCap AB",
+"Healthcare",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"NEUWA",
+"NEU.WA",
+"NEU C.XWAR PLN",
+"Healthcare",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"NRESTST",
+"NREST.ST",
+"Nordrest Holding AB",
+"Consumer Cyclical",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"NTGCO",
+"NTG.CO",
+"NTG Nordic Transport Group A/S",
+"Industrials",
+"mid",
+"DKK",
+"PEA"
+],
+[
+"OROXMI",
+"OROX.MI",
+"GENS AUREA",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"PENOL",
+"PEN.OL",
+"PANORO ENERGY",
+"Energy",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"PUIGMC",
+"PUIG.MC",
+"PUIG BRANDS, S.A. CLASE B",
+"Consumer Defensive",
+"large",
+"EUR",
+"PEA"
+],
+[
+"RAYBST",
+"RAY-B.ST",
+"RaySearch Laboratories AB ser.",
+"Healthcare",
+"mid",
+"SEK",
+"PEA"
+],
+[
+"RBREVI",
+"RBRE.VI",
+"ROYAL UNIBREW AS",
+"Consumer Defensive",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"RY4CDE",
+"RY4C.DE",
+"Ryanair Holdings PLC",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"SILEXST",
+"SILEX.ST",
+"Silex Microsystems AB",
+"Technology",
+"large",
+"SEK",
+"PEA"
+],
+[
+"SNTIAOL",
+"SNTIA.OL",
+"SENTIA ASA",
+"Industrials",
+"mid",
+"NOK",
+"PEA"
+],
+[
+"SOMAOL",
+"SOMA.OL",
+"SOLSTAD MARITIME ASA",
+"Industrials",
+"large",
+"NOK",
+"PEA"
+],
+[
+"SWECAST",
+"SWEC-A.ST",
+"SWECO AB ser. A",
+"Industrials",
+"large",
+"SEK",
+"PEA"
+],
+[
+"TEL1LVS",
+"TEL1L.VS",
+"Telia Lietuva",
+"Communication Services",
+"small",
+"EUR",
+"PEA"
+],
+[
+"TIMADE",
+"TIMA.DE",
+"Zeal Network SE",
+"Consumer Cyclical",
+"small",
+"EUR",
+"PEA"
+],
+[
+"TORWA",
+"TOR.WA",
+"TOR C.XWAR PLN",
+"Industrials",
+"small",
+"PLN",
+"PEA"
+],
+[
+"TUI1DE",
+"TUI1.DE",
+"TUI AG",
+"Consumer Cyclical",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"VOSDE",
+"VOS.DE",
+"VOSSLOH AG",
+"Industrials",
+"small",
+"EUR",
+"PEA"
+],
+[
+"VUPA",
+"VU.PA",
+"Vusion",
+"Technology",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"XD4DE",
+"XD4.DE",
+"Strabag SE",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"ZABWA",
+"ZAB.WA",
+"ZAB C.XWAR PLN",
+"Consumer Defensive",
+"large",
+"PLN",
+"PEA"
+],
+[
+"ABNB",
+"ABNB",
+"Airbnb, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ADBE",
+"ADBE",
+"Adobe Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ADP2",
+"ADP",
+"Automatic Data Processing, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AMAT",
+"AMAT",
+"Applied Materials, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AVGO",
+"AVGO",
+"Broadcom Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CDNS",
+"CDNS",
+"Cadence Design Systems, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CHKP",
+"CHKP",
+"Check Point Software Technologi",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"COST",
+"COST",
+"Costco Wholesale Corporation",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CSCO",
+"CSCO",
+"Cisco Systems, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CTAS",
+"CTAS",
+"Cintas Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"EBAY",
+"EBAY",
+"eBay Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"EXEL",
+"EXEL",
+"Exelixis, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FAST",
+"FAST",
+"Fastenal Company",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FFIV",
+"FFIV",
+"F5, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"IDXX",
+"IDXX",
+"IDEXX Laboratories, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"IESC",
+"IESC",
+"IES Holdings, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"INCY",
+"INCY",
+"Incyte Corporation",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"JKHY",
+"JKHY",
+"Jack Henry & Associates, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"KLAC",
+"KLAC",
+"KLA Corporation",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"KSPI",
+"KSPI",
+"Joint Stock Company Kaspi.kz -",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"LECO",
+"LECO",
+"Lincoln Electric Holdings, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"LRCX",
+"LRCX",
+"Lam Research Corporation",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MANH",
+"MANH",
+"Manhattan Associates, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MELI",
+"MELI",
+"MercadoLibre, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"META",
+"META",
+"Meta Platforms, Inc.",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MNST",
+"MNST",
+"Monster Beverage Corporation",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NFLX",
+"NFLX",
+"Netflix, Inc.",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NVDA",
+"NVDA",
+"NVIDIA Corporation",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ORLY",
+"ORLY",
+"O Reilly Automotive, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"PAYX",
+"PAYX",
+"Paychex, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"PDD",
+"PDD",
+"PDD Holdings Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"REGN",
+"REGN",
+"Regeneron Pharmaceuticals, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ROST",
+"ROST",
+"Ross Stores, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"STRL",
+"STRL",
+"Sterling Infrastructure, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"TXRH",
+"TXRH",
+"Texas Roadhouse, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ULTA",
+"ULTA",
+"Ulta Beauty, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"UTHR",
+"UTHR",
+"United Therapeutics Corporation",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"VRSK",
+"VRSK",
+"Verisk Analytics, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AIT",
+"AIT",
+"Applied Industrial Technologies",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ANET",
+"ANET",
+"Arista Networks, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"APH",
+"APH",
+"Amphenol Corporation",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CAT",
+"CAT",
+"Caterpillar, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CL",
+"CL",
+"Colgate-Palmolive Company",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CMG",
+"CMG",
+"Chipotle Mexican Grill, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"DCI",
+"DCI",
+"Donaldson Company, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"DECK",
+"DECK",
+"Deckers Outdoor Corporation",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"DELL",
+"DELL",
+"Dell Technologies Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"EME",
+"EME",
+"EMCOR Group, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FIX",
+"FIX",
+"Comfort Systems USA, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GRMN",
+"GRMN",
+"Garmin Ltd.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GWW",
+"GWW",
+"W.W. Grainger, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HAL",
+"HAL",
+"Halliburton Company",
+"Energy (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HSY",
+"HSY",
+"The Hershey Company",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HUBB",
+"HUBB",
+"Hubbell Inc",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ITT",
+"ITT",
+"ITT Inc.",
+"Industrials (compte-titres)",
+"small",
+"USD",
+"CTO"
+],
+[
+"MRK",
+"MRK",
+"Merck & Company, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"PAYC",
+"PAYC",
+"Paycom Software, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"RL",
+"RL",
+"Ralph Lauren Corporation",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"RMD",
+"RMD",
+"ResMed Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ROL",
+"ROL",
+"Rollins, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"SCCO",
+"SCCO",
+"Southern Copper Corporation",
+"Basic Materials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"TJX",
+"TJX",
+"TJX Companies, Inc. (The)",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"TPR",
+"TPR",
+"Tapestry, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ULS",
+"ULS",
+"UL Solutions Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"VLTO",
+"VLTO",
+"Veralto Corp",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"WTS",
+"WTS",
+"Watts Water Technologies, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ABBNSW",
+"ABBN.SW",
+"ABB LTD N",
+"Industrials (compte-titres)",
+"large",
+"CHF",
+"CTO"
+],
+[
+"ABEV",
+"ABEV",
+"Ambev S.A.",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ACM",
+"ACM",
+"AECOM",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"ACN",
+"ACN",
+"Accenture plc",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ALLE",
+"ALLE",
+"Allegion plc",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AME",
+"AME",
+"AMETEK, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ANF",
+"ANF",
+"Abercrombie & Fitch Company",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"ARM",
+"ARM",
+"Arm Holdings plc",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AZN",
+"AZN",
+"AstraZeneca PLC",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"BHP",
+"BHP",
+"BHP Group Limited",
+"Basic Materials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"BKNG",
+"BKNG",
+"Booking Holdings Inc. Common St",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"BKR",
+"BKR",
+"Baker Hughes Company",
+"Energy (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"BOX",
+"BOX",
+"Box, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"BR",
+"BR",
+"Broadridge Financial Solutions,",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CHD",
+"CHD",
+"Church & Dwight Company, Inc.",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CHE",
+"CHE",
+"Chemed Corp",
+"Healthcare (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"CIG",
+"CIG",
+"Comp En De Mn Cemig",
+"Utilities (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"CNM",
+"CNM",
+"Core & Main, Inc.",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"CVLT",
+"CVLT",
+"Commvault Systems, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"CW",
+"CW",
+"Curtiss-Wright Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"DOCS",
+"DOCS",
+"Doximity, Inc.",
+"Healthcare (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"DSGX",
+"DSGX",
+"The Descartes Systems Group Inc",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"EAT",
+"EAT",
+"Brinker International, Inc.",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"EPAM",
+"EPAM",
+"EPAM Systems, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"ETN",
+"ETN",
+"Eaton Corporation, PLC",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"EXLS",
+"EXLS",
+"ExlService Holdings, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"FOX",
+"FOX",
+"Fox Corporation",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FSS",
+"FSS",
+"Federal Signal Corporation",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"FTI",
+"FTI",
+"TechnipFMC plc",
+"Energy (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FTNT",
+"FTNT",
+"Fortinet, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"G",
+"G",
+"Genpact Limited",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"GD",
+"GD",
+"General Dynamics Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GE",
+"GE",
+"GE Aerospace",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GEHC",
+"GEHC",
+"GE HealthCare Technologies Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GIB",
+"GIB",
+"CGI Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HAFN",
+"HAFN",
+"Hafnia Limited",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"HEI",
+"HEI",
+"Heico Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HONA",
+"HONA",
+"Honeywell Aerospace Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"HRB",
+"HRB",
+"H&R Block, Inc.",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"HWM",
+"HWM",
+"Howmet Aerospace Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"IDCC",
+"IDCC",
+"InterDigital, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"IHG",
+"IHG",
+"Intercontinental Hotels Group",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"INFY",
+"INFY",
+"Infosys Limited",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"INTU",
+"INTU",
+"Intuit Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"LAUR",
+"LAUR",
+"Laureate Education, Inc.",
+"Consumer Defensive (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"LDOS",
+"LDOS",
+"Leidos Holdings, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"LMT",
+"LMT",
+"Lockheed Martin Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"LNTH",
+"LNTH",
+"Lantheus Holdings, Inc.",
+"Healthcare (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"LYV",
+"LYV",
+"Live Nation Entertainment, Inc.",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MSA",
+"MSA",
+"MSA Safety Incorporated",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"MSI",
+"MSI",
+"Motorola Solutions, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NTES",
+"NTES",
+"NetEase, Inc.",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NVMI",
+"NVMI",
+"Nova Ltd.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NVS",
+"NVS",
+"Novartis AG",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NXT",
+"NXT",
+"Nextpower Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"NYT",
+"NYT",
+"New York Times Company (The)",
+"Communication Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"PANW",
+"PANW",
+"Palo Alto Networks, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"PCTY",
+"PCTY",
+"Paylocity Holding Corporation",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"PH",
+"PH",
+"Parker-Hannifin Corporation",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"POWL",
+"POWL",
+"Powell Industries, Inc.",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"QLYS",
+"QLYS",
+"Qualys, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"RELX",
+"RELX",
+"RELX PLC PLC",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"RMBS",
+"RMBS",
+"Rambus, Inc.",
+"Technology (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"RYAAY",
+"RYAAY",
+"Ryanair Holdings plc",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"SFM",
+"SFM",
+"Sprouts Farmers Market, Inc.",
+"Consumer Defensive (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"SGHC",
+"SGHC",
+"Super Group (SGHC) Limited",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"SLB",
+"SLB",
+"SLB Limited",
+"Energy (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"SSD",
+"SSD",
+"Simpson Manufacturing Company,",
+"Basic Materials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"STX",
+"STX",
+"Seagate Technology Holdings PLC",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"THC",
+"THC",
+"Tenet Healthcare Corporation",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"TT",
+"TT",
+"Trane Technologies plc",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"TTEK",
+"TTEK",
+"Tetra Tech, Inc.",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"UNH",
+"UNH",
+"UnitedHealth Group Incorporated",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"VRSN",
+"VRSN",
+"VeriSign, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"VRT",
+"VRT",
+"Vertiv Holdings, LLC",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"WFRD",
+"WFRD",
+"Weatherford International plc",
+"Energy (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"WMT",
+"WMT",
+"Walmart Inc.",
+"Consumer Defensive (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"WSE",
+"WSE",
+"Wise Group plc",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"WWD",
+"WWD",
+"Woodward, Inc.",
+"Industrials (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ABBNESW",
+"ABBNE.SW",
+"ABB LTD N 2. LINIE",
+"Industrials (compte-titres)",
+"large",
+"CHF",
+"CTO"
+],
+[
+"ACLNSW",
+"ACLN.SW",
+"ACCELLERON N",
+"Industrials (compte-titres)",
+"mid",
+"CHF",
+"CTO"
+],
+[
+"ALSNSW",
+"ALSN.SW",
+"ALSO N",
+"Technology (compte-titres)",
+"mid",
+"CHF",
+"CTO"
+],
+[
+"ARYNSW",
+"ARYN.SW",
+"ARYZTA N",
+"Consumer Defensive (compte-titres)",
+"small",
+"CHF",
+"CTO"
+],
+[
+"BCHNSW",
+"BCHN.SW",
+"BURCKHARDT N",
+"Industrials (compte-titres)",
+"small",
+"CHF",
+"CTO"
+],
+[
+"BRKNSW",
+"BRKN.SW",
+"BURKHALTER N",
+"Industrials (compte-titres)",
+"small",
+"CHF",
+"CTO"
+],
+[
+"CFRSW",
+"CFR.SW",
+"RICHEMONT N",
+"Consumer Cyclical (compte-titres)",
+"large",
+"CHF",
+"CTO"
+],
+[
+"EMMNSW",
+"EMMN.SW",
+"EMMI N",
+"Consumer Defensive (compte-titres)",
+"mid",
+"CHF",
+"CTO"
+],
+[
+"SCMNSW",
+"SCMN.SW",
+"SWISSCOM N",
+"Communication Services (compte-titres)",
+"large",
+"CHF",
+"CTO"
+],
+[
+"SUNSW",
+"SUN.SW",
+"SULZER N",
+"Industrials (compte-titres)",
+"mid",
+"CHF",
+"CTO"
+],
+[
+"TEMNSW",
+"TEMN.SW",
+"TEMENOS N",
+"Technology (compte-titres)",
+"mid",
+"CHF",
+"CTO"
+]
+]

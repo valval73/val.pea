@@ -1721,7 +1721,7 @@ def main():
             h = yf.Ticker(f'EUR{cur}=X').history(period='5d')
             if not h.empty:
                 r = float(h['Close'].iloc[-1])
-                if 1 < r < 50:
+                if 0.3 < r < 500:
                     rates[cur] = r
         for sym, cur in CURRENCY.items():
             if cur in rates:

@@ -131,7 +131,7 @@ def ensure_new_stocks(d):
             continue
         name = name.replace("'", " ")
         add.append(f"\n,{{ticker:'{tk}',name:'{name}',sector:'{sector}',cap:'{cap}',"
-                   f"srd:false,idx:'{'Etats-Unis' if cur == 'USD' else 'Europe'} ({cur})',{_NEW_FIELDS}}}")
+                   f"srd:false,idx:'{'Compte-titres' if '(compte-titres)' in sector else 'Europe'} ({cur})',{_NEW_FIELDS}}}")
     if not add:
         return d, 0
     return d[:end] + ''.join(add) + d[end:], len(add)
