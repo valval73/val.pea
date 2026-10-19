@@ -843,3 +843,67 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
     }).catch(function(){});
   }catch(e){}
 })();
+
+// ═══ 19/10/2026 : Radar élargi — l'univers complet passé chaque semaine à la grille ═══
+// PEA : actions UE/EEE > 300 M€ (+ listes repérées) ; CTO : US > 5 Md$, Londres et Suisse > 1 Md.
+// Les valeurs qui passent la grille apparaissent ici, même si elles n'ont pas (encore) de fiche.
+(function(){
+'use strict';
+var R=null, F={q:'',c:'tout',z:false,sort:'roic'};
+function n(x,d){ return (x==null||x==='')?'—':Number(x).toLocaleString('fr-FR',{maximumFractionDigits:d==null?1:d}); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function load(cb){
+  if(R) return cb();
+  var fs=[['PEA','candidats_resultats.json'],['CTO','candidats_cto_resultats.json']], out={rows:[],stats:[]}, k=0;
+  fs.forEach(function(f){
+    fetch(f[1]+'?v='+Date.now()).then(function(r){return r.json();}).then(function(o){
+      var seen={};
+      Object.keys(o.listes||{}).forEach(function(nm){ var L=o.listes[nm];
+        out.stats.push({c:f[0], nom:nm, total:(L.total||0)-(L.hors_pea_ou_doublon||0)-(L.sans_donnees||0), passent:L.passent, date:o.genere});
+        (L.lignes||[]).forEach(function(l){ if(!l.qok) return; var key=(l.yahoo||l.code); if(seen[key]) return; seen[key]=1; l.compte=f[0]; out.rows.push(l); });
+      });
+    }).catch(function(e){ console.error('radar', f[1], e); }).then(function(){ if(++k===fs.length){ R=out; cb(); } });
+  });
+}
+function render(){
+  var box=document.getElementById('pg-radar'); if(!box||!R) return;
+  var tot=R.stats.reduce(function(a,s){return a+(s.total||0);},0), pas=R.rows.length;
+  var rows=R.rows.filter(function(l){
+    if(F.c!=='tout'&&l.compte!==F.c) return false;
+    if(F.z&&!l.en_zone) return false;
+    if(F.q&&(l.nom+' '+l.code+' '+(l.secteur||'')).toLowerCase().indexOf(F.q.toLowerCase())<0) return false;
+    return true;
+  }).sort(function(a,b){ return F.sort==='nom'?String(a.nom).localeCompare(b.nom):((b[F.sort]||-1e9)-(a[F.sort]||-1e9)); });
+  var dates=R.stats.map(function(s){return s.c+' '+String(s.date||'').slice(0,10);}).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' · ');
+  var th=function(k,t){ return '<th style="cursor:pointer;text-align:left;padding:6px" onclick="v2radarSort(\''+k+'\')">'+t+(F.sort===k?' ▾':'')+'</th>'; };
+  box.innerHTML='<div class="v2" style="max-width:1100px;margin:0 auto">'+
+    '<header class="v2-top"><div><div class="v2-kick">Radar élargi · mis à jour chaque semaine ('+esc(dates)+')</div><h1>'+n(pas,0)+' valeurs passent la grille sur '+n(tot,0)+' analysées</h1></div></header>'+
+    '<section class="v2-card"><p class="v2-small">Mêmes critères que le screener (ROIC, cash, dette, croissance). PEA : actions de l’UE/EEE de plus de 300 M€ ; compte-titres : États-Unis plus de 5 Md$, Londres et Suisse plus de 1 Md. <b>Une valeur d’ici n’est pas encore vérifiée</b> : pas de contre-expertise, chiffres d’une seule source. Avant tout achat, demande sa fiche complète. Les cycliques n’ont pas de palier ; banques, assurances et foncières attendent leur grille.</p>'+
+    '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px">'+
+    '<input id="v2-rq" placeholder="Nom, code ou secteur…" value="'+esc(F.q)+'" oninput="v2radarQ(this.value)" style="min-height:40px;padding:6px 12px;border:1px solid #ddd8cb;border-radius:999px;flex:1;min-width:180px">'+
+    ['tout','PEA','CTO'].map(function(c){return '<button onclick="v2radarC(\''+c+'\')" style="min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid #0e1c33;background:'+(F.c===c?'#0e1c33;color:#fff':'#fff')+';cursor:pointer">'+(c==='tout'?'Tout':c)+'</button>';}).join('')+
+    '<label style="display:flex;gap:6px;align-items:center;min-height:40px"><input type="checkbox" '+(F.z?'checked ':'')+'onchange="v2radarZ(this.checked)" style="width:18px;height:18px"> sous le palier 1</label></div></section>'+
+    '<section class="v2-card" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px"><tr style="border-bottom:2px solid #0e1c33">'+
+    th('nom','Valeur')+th('roic','ROIC')+th('cash','Cash')+th('croissance','Croissance')+th('dette_ebitda','Dette/EBITDA')+th('cap_Md','Capi (Md)')+'<th style="text-align:left;padding:6px">Cours · palier 1 · palier 2</th><th style="text-align:left;padding:6px">Courtage</th></tr>'+
+    rows.map(function(l){
+      var pal=l.palier1?(n(l.cours,2)+' · <b style="color:'+(l.en_zone?'#1d6b45':'inherit')+'">'+n(l.palier1,2)+'</b> · '+n(l.palier2,2)+' '+esc(l.devise||'')):'<span class="v2-small">'+esc(l.note?String(l.note).split(':')[0]:'pas de palier')+'</span>';
+      return '<tr style="border-bottom:1px solid #eee"><td style="padding:6px"><b>'+esc(l.nom)+'</b> <span class="v2-small">'+esc(l.compte)+' · '+esc(l.code)+(l.secteur?' · '+esc(l.secteur):'')+'</span>'+(l.en_zone?' <span style="background:#1d6b45;color:#fff;border-radius:999px;padding:1px 8px;font-size:11px">sous le palier 1</span>':'')+'</td>'+
+        '<td style="padding:6px">'+n(l.roic)+' %</td><td style="padding:6px">'+n(l.cash,0)+' %</td><td style="padding:6px">'+n(l.croissance)+' %</td><td style="padding:6px">'+n(l.dette_ebitda)+'</td><td style="padding:6px">'+n(l.cap_Md)+'</td><td style="padding:6px">'+pal+'</td><td style="padding:6px" class="v2-small">'+esc(l.courtage||'')+'</td></tr>';
+    }).join('')+'</table>'+(rows.length?'':'<p class="v2-small">Aucune valeur pour ce filtre.</p>')+'</section></div>';
+  var q=document.getElementById('v2-rq'); if(q&&F.q){ q.focus(); q.setSelectionRange(F.q.length,F.q.length); }
+}
+window.v2radarQ=function(v){ F.q=v; render(); };
+window.v2radarC=function(c){ F.c=c; render(); };
+window.v2radarZ=function(z){ F.z=z; render(); };
+window.v2radarSort=function(k){ F.sort=k; render(); };
+window.v2radar=function(){ var b=document.getElementById('pg-radar'); if(b&&!R) b.innerHTML='<p style="padding:24px">Chargement du radar…</p>'; load(render); };
+function setup(){
+  var al=document.getElementById('pg-al'); if(!al||document.getElementById('pg-radar')) return;
+  var pg=document.createElement('div'); pg.className='page'; pg.id='pg-radar'; al.parentNode.insertBefore(pg, al.nextSibling);
+  var tab=[].slice.call(document.querySelectorAll('.ntab')).find(function(b){return /'al'/.test(b.getAttribute('onclick')||'');});
+  if(tab){ var t=document.createElement('div'); t.className='ntab'; t.setAttribute('onclick',"showPg('radar',this);v2radar()");
+    t.style.cssText='background:linear-gradient(135deg,#1d6b45,#2f9466);color:#fff;font-weight:700'; t.textContent='📡 Radar élargi';
+    tab.parentNode.insertBefore(t, tab.nextSibling); }
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+})();
