@@ -35,6 +35,14 @@ DEBT_TOT = ('ifrs-full:Borrowings',)
 DEBT_PARTS = ('ifrs-full:LongtermBorrowings', 'ifrs-full:ShorttermBorrowings',
               'ifrs-full:CurrentPortionOfLongtermBorrowings', 'ifrs-full:NoncurrentPortionOfNoncurrentBorrowings')
 CASH_C = ('ifrs-full:CashAndCashEquivalents',)
+# 19/10/2026 : cash libre APRES loyers (IFRS 16). Yahoo ne separe pas les loyers
+# des remboursements de dette : son cash libre surestime celui des commerces.
+CFO_C = ('ifrs-full:CashFlowsFromUsedInOperatingActivities',)
+CAPEX_C = ('ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities',
+           'ifrs-full:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities')
+LEASE_C = ('ifrs-full:PaymentsOfLeaseLiabilitiesClassifiedAsFinancingActivities',)
+LEASE_MIN = 0.10   # loyers > 10 % du flux d'exploitation : la correction compte
+CASH_SEUIL = 80
 ROIC_RATIO, ROIC_GAP = 1.5, 8.0   # alerte si Yahoo > 1,5 x l'officiel ET +8 points
 STOP = {'SA', 'SE', 'NV', 'AG', 'SPA', 'GROUP', 'GROUPE', 'THE', 'HOLDING', 'CIE', 'ET', 'DE', 'LA', 'LE', 'AB', 'ASA', 'OYJ', 'PLC'}
 
@@ -66,7 +74,8 @@ def load_stocks():
         rm = re.search(r'[,{]roic:([0-9.]+)', b)
         out[tk] = {'name': g('name'), 'yrs': g('yrs'), 'revh': g('revh'), 'nih': g('nih'), 'fcur': g('fcur'),
                    'roic': float(rm.group(1)) if rm else None,
-                   'qok': gb('qok'), 'near': gb('near')}
+                   'qok': gb('qok'), 'near': gb('near'),
+                   'fcfc': float(re.search(r'[,{]fcfc:([0-9.]+)', b).group(1)) if re.search(r'[,{]fcfc:([0-9.]+)', b) else None}
     return out
 
 
@@ -189,6 +198,20 @@ def official_roic(facts):
     return {'annee': yr, 'roic': round(eb[yr][0] * 0.75 / ic * 100, 1)}
 
 
+def official_cash(facts):
+    """Conversion du benefice en cash apres loyers, derniere annee publiee."""
+    cfo, ni, ls = year_values(facts, CFO_C), year_values(facts, NI), year_values(facts, LEASE_C)
+    yr = max(set(cfo) & set(ni) & set(ls), default=None)
+    if not yr or ni[yr][0] <= 0:
+        return None
+    capex = sum(abs(year_values(facts, (c,)).get(yr, (0, ''))[0]) for c in CAPEX_C)
+    lease = abs(ls[yr][0])
+    if cfo[yr][0] <= 0 or lease < LEASE_MIN * cfo[yr][0]:
+        return None
+    return {'annee': yr, 'cash': round((cfo[yr][0] - capex - lease) / ni[yr][0] * 100),
+            'loyers_pct_cfo': round(lease / cfo[yr][0] * 100)}
+
+
 def official(lei):
     fl = get(f'/api/entities/{lei}/filings?page[size]=50')
     items = [x.get('attributes', {}) for x in (fl or {}).get('data', [])]
@@ -200,7 +223,7 @@ def official(lei):
             continue
         facts = j.get('facts', {})
         o = {'period_end': a['period_end'], 'rev': year_values(facts, REV), 'ni': year_values(facts, NI),
-             'roic': official_roic(facts)}
+             'roic': official_roic(facts), 'cash': official_cash(facts)}
         if o['rev'] or o['ni']:
             return o
     return None
@@ -250,12 +273,17 @@ def main():
             checked.append(f"ROIC {ro['annee']}")
             if ry > ro['roic'] * ROIC_RATIO and ry - ro['roic'] > ROIC_GAP:
                 issues.append(f"ROIC officiel {ro['roic']} % ({ro['annee']}) contre {ry} % calcule avec Yahoo")
+        oc, yc = o.get('cash'), S[tk].get('fcfc')
+        if oc and yc is not None:
+            checked.append(f"cash apres loyers {oc['annee']}")
+            if yc >= CASH_SEUIL and oc['cash'] < CASH_SEUIL:
+                issues.append(f"cash apres loyers {oc['cash']} % ({oc['annee']}, loyers {oc['loyers_pct_cfo']} % du flux d'exploitation) contre {yc:.0f} % avec Yahoo")
         if checked:
             n_cmp += 1
             n_ok += not issues
         res[tk] = {'status': 'compare' if checked else 'annees non comparables', 'lei': ent['lei'], 'entity': ent['name'],
                    'period_end': o['period_end'], 'checked': checked, 'issues': issues,
-                   'roic_officiel': (o.get('roic') or {}).get('roic')}
+                   'roic_officiel': (o.get('roic') or {}).get('roic'), 'cash_apres_loyers': (o.get('cash') or {}).get('cash')}
         time.sleep(0.3)
       except Exception as ex:
         res[tk] = {'status': 'erreur ' + str(ex)[:80]}
