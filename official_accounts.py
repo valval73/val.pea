@@ -92,11 +92,19 @@ SEARCH_NAME = {'AMS': 'AMADEUS IT GROUP', 'ITX': 'INDUSTRIA DE DISENO TEXTIL', '
                'RACE': 'FERRARI', 'NSIS': 'NOVONESIS', 'RBT': 'ROBERTET'}
 
 
+# Novo Nordisk etait rattachee a la fondation (Novo Nordisk Fonden) : CA, resultat
+# et ROIC compares a ceux de la fondation -> faux ecarts, achat bloque a tort.
+LEI_FIXE = {'NOVO': ('549300DAQ1CVT6CXN342', 'NOVO NORDISK A/S')}
+
+
 def resolve(tk, name, country, cache):
     """Retrouve l'identifiant LEI. Tous les mots du nom doivent figurer dans le
     nom officiel (evite Brunel International pour ASM International, ou
     Dassault Systemes pour Dassault Aviation). Pas de filtre pays : Airbus ou
     Ferrari deposent aux Pays-Bas tout en etant cotees a Paris ou Milan."""
+    if tk in LEI_FIXE:   # 19/10/2026 : correspondance verifiee a la main
+        cache[tk] = {'lei': LEI_FIXE[tk][0], 'name': LEI_FIXE[tk][1]}
+        return cache[tk]
     if tk in cache and cache[tk]:
         return cache[tk]
     words = norm(SEARCH_NAME.get(tk) or name)
