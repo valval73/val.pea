@@ -1432,7 +1432,12 @@ def fetch_one(ticker, yf_sym, sector):
         # Cotations hors euro (ex. Novo Nordisk en DKK) : tout ce qui est un
         # prix est converti en EUR -- avant, Novo s'affichait en couronnes.
         fx = NON_EUR.get(yf_sym)
+        # 19/10/2026 : devise de cotation et taux, pour afficher les paliers dans la
+        # devise que voit le courtier (un ordre sur une action US se passe en dollars)
         if fx:
+            from tickers import CURRENCY
+            result['fxr'] = round(fx, 4)
+            result['qcur'] = CURRENCY.get(yf_sym, '')
             for k in ('price','b52h','b52l','dcfb','dcfm','dcfu','el','eh','stop',
                       'o1','o2','mm50','mm200','target_price','vpess','vopt','vmult','vepv','vmed','div12'):
                 if result.get(k): result[k] = round(result[k] / fx, 2)
@@ -1629,6 +1634,9 @@ def set_quality_fields(block, data):
         if data.get(k):
             block = _set_field(block, k, txt(data.get(k)))
     block = _set_field(block, 'gsrc', txt(data.get('gsrc')))
+    if data.get('fxr'):
+        block = _set_field(block, 'fxr', num(data.get('fxr')))
+        block = _set_field(block, 'qcur', txt(data.get('qcur')))
     for k in ('ps', 'roa', 'de', 'cr', 'ic', 'fcf', 'capr', 'capda', 'ev_ebit'):
         if k in data:
             block = _set_field(block, k, num(data.get(k)))
