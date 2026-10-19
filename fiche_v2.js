@@ -681,6 +681,34 @@ window.v2profName=function(){ return NAMES[window._ptfProfile||'val']; };
 function fr(n,d){ if(n==null||isNaN(n)) return '—'; return Number(n).toLocaleString('fr-FR',{maximumFractionDigits:d==null?2:d}); }
 function esc(t){ return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function mineList(){ return (typeof PTF!=='undefined')?PTF:[]; }
+// 19/10/2026 : vue d'ensemble de TOUS les portefeuilles du navigateur (PEA + compte-titres)
+function overview(){ try{ return overview_(); }catch(e){ console.error('vue d ensemble', e); return ''; } }
+function overview_(){
+  var C={gn:'#1d6b45', rd:'#a8322b', ink:'#0e1c33'};
+  var names=(window.v2profNames?v2profNames():{val:'Moi',p2:'Portefeuille 2',p3:'Portefeuille 3'});
+  var lines=[], tot=0;
+  ['val','p2','p3'].forEach(function(pf){
+    var L=[]; try{ L=JSON.parse(localStorage.getItem('pea_ptf_'+pf)||'[]'); }catch(e){}
+    L.forEach(function(p){
+      var st=S.find(function(x){return x&&x.ticker===p.ticker;}), et=(typeof ETF!=='undefined')?ETF.find(function(x){return x&&x.ticker===p.ticker;}):null;
+      var px=st?st.price:(et&&et.price?et.price:p.pru), v=px*p.qty; if(!(v>0)) return;
+      lines.push({t:p.ticker, pf:names[pf]||pf, v:v, etf:!!et, cur:st?(st.qcur||'EUR'):(et?(/S&P|Etats-Unis/i.test(et.name+' '+(et.type||''))?'USD':'mixte'):'EUR'), sec:st?String(st.sector||'').replace(' (compte-titres)',''):(et?'ETF':'?')});
+      tot+=v;
+    });
+  });
+  if(!lines.length) return '';
+  var pc=function(x){return fr(x/tot*100,0)+' %';};
+  var etf=lines.filter(function(l){return l.etf;}).reduce(function(a,l){return a+l.v;},0), act=tot-etf;
+  var nAct=lines.filter(function(l){return !l.etf;}).length;
+  var by=function(k){ var m={}; lines.forEach(function(l){ if(l.etf) return; m[l[k]]=(m[l[k]]||0)+l.v; }); return Object.keys(m).sort(function(a,b){return m[b]-m[a];}).slice(0,4).map(function(x){return esc(x)+' '+pc(m[x]);}).join(' · '); };
+  var big=lines.filter(function(l){return !l.etf;}).sort(function(a,b){return b.v-a.v;})[0];
+  var ok=function(c){return '<b style="color:'+(c?C.gn:C.rd)+'">'+(c?'oui':'non')+'</b>';};
+  return '<section class="v2-card" style="border-left:4px solid '+C.ink+'"><div class="v2-head"><h2>Vue d’ensemble</h2><span class="v2-small">tous tes portefeuilles de ce navigateur · '+fr(tot,0)+' €</span></div>'+
+    '<p>ETF '+pc(etf)+' · actions en direct '+pc(act)+' — règle « 20 % maximum en direct » : '+ok(act/tot<=0.2)+'</p>'+
+    '<p>Lignes : '+lines.length+' (dont '+nAct+' actions) — règle « 13 à 15 lignes maximum » : '+ok(lines.length<=15)+'</p>'+
+    (big?'<p>Plus grosse action : <b>'+esc(big.t)+'</b>, '+pc(big.v)+' du total</p>':'')+
+    '<p class="v2-small">Actions par secteur : '+by('sec')+'<br>Actions par devise : '+by('cur')+'. Les ETF Monde sont eux-mêmes à environ 70 % en dollars : ton exposition réelle au dollar est plus forte que ce tableau.</p></section>';
+}
 function card(title, sub, rows, col){
   return '<section class="v2-card" style="border-left:4px solid '+col+'"><div class="v2-head"><h2>'+title+' <span class="v2-mono" style="font-size:14px;color:#5a6275">'+rows.length+'</span></h2><span class="v2-small">'+sub+'</span></div>'+
     (rows.length?rows.join(''):'<p class="v2-small">Rien à signaler.</p>')+'</section>';
@@ -718,6 +746,7 @@ function alerts(){
   var who=window.v2profName?v2profName():'Moi';
   box.innerHTML='<div class="v2" style="max-width:1100px;margin:0 auto">'+
     '<header class="v2-top"><div><div class="v2-kick">Alertes · règles de la méthode</div><h1>Ce qui demande ton attention</h1></div><div class="v2-small" style="color:#c7cede">Portefeuille : '+esc(who)+'</div></header>'+
+    overview()+
     card('Mouvements de plus de 10 % en 5 séances','mes lignes et les valeurs de qualité · ouvrir la fiche pour les actualités',moves,'#24508a')+
     card('Mes lignes hors qualité','vente si la prochaine publication confirme',out,'#a8322b')+
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
