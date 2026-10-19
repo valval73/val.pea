@@ -212,6 +212,78 @@ def official_cash(facts):
             'loyers_pct_cfo': round(lease / cfo[yr][0] * 100)}
 
 
+# ═══ 19/10/2026 : comptes officiels americains (SEC, data.sec.gov) pour le compte-titres ═══
+# Gratuit, officiel, 10 ans et plus. La SEC exige un User-Agent identifiant l'usage.
+SEC_UA = {'User-Agent': 'VAL.PEA screener personnel valpea@users.noreply.github.com'}
+SEC_REV = ('Revenues', 'RevenueFromContractWithCustomerExcludingAssessedTax', 'SalesRevenueNet')
+SEC_NI = ('NetIncomeLoss',)
+_SEC_CIK = None
+
+
+def sec_get(u):
+    for i in range(3):
+        try:
+            r = requests.get(u, headers=SEC_UA, timeout=40)
+            if r.status_code == 200:
+                return r.json()
+        except Exception:
+            pass
+        time.sleep(2 * (i + 1))
+    return None
+
+
+def sec_cik(sym):
+    global _SEC_CIK
+    if _SEC_CIK is None:
+        j = sec_get('https://www.sec.gov/files/company_tickers.json') or {}
+        _SEC_CIK = {v['ticker'].upper(): str(v['cik_str']).zfill(10) for v in j.values()}
+    return _SEC_CIK.get(sym.upper().replace('-', '.')) or _SEC_CIK.get(sym.upper())
+
+
+def sec_years(facts, concepts):
+    """{annee: (valeur, 'USD')} depuis les 10-K (exercices d'environ un an)."""
+    out = {}
+    for c in concepts:
+        for f in ((facts.get('us-gaap') or {}).get(c) or {}).get('units', {}).get('USD', []):
+            if f.get('form') != '10-K' or f.get('fp') != 'FY' or not f.get('start') or not f.get('end'):
+                continue
+            try:
+                days = (time.mktime(time.strptime(f['end'], '%Y-%m-%d')) - time.mktime(time.strptime(f['start'], '%Y-%m-%d'))) / 86400
+            except Exception:
+                continue
+            if 350 <= days <= 380:
+                b = f['end']
+                yr = str(int(b[:4]) - (1 if b[5:10] <= '01-15' else 0))
+                out.setdefault(yr, (float(f['val']), 'USD'))
+        if out:
+            return out
+    return out
+
+
+def sec_official(sym):
+    cik = sec_cik(sym)
+    if not cik:
+        return None
+    j = sec_get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json')
+    if not j:
+        return None
+    fx = j.get('facts') or {}
+    rev, ni = sec_years(fx, SEC_REV), sec_years(fx, SEC_NI)
+    if not rev and not ni:
+        return None
+    ys = sorted(rev)
+    h = {}
+    if len(ys) >= 6:
+        a, b = ys[max(0, len(ys) - 11)], ys[-1]
+        n = int(b) - int(a)
+        if n > 0 and rev[a][0] > 0 and rev[b][0] > 0:
+            h['ca_croissance_an'] = round(((rev[b][0] / rev[a][0]) ** (1 / n) - 1) * 100, 1)
+            h['annees'] = n + 1
+        h['annees_en_perte'] = sum(1 for y in sorted(ni)[-10:] if ni[y][0] < 0)
+    return {'period_end': (ys[-1] if ys else ''), 'rev': rev, 'ni': ni, 'roic': None, 'cash': None,
+            'cik': cik, 'entity': j.get('entityName', ''), 'histo': h}
+
+
 def official(lei):
     fl = get(f'/api/entities/{lei}/filings?page[size]=50')
     items = [x.get('attributes', {}) for x in (fl or {}).get('data', [])]
@@ -244,14 +316,22 @@ def main():
         if tk in SKIP:
             res[tk] = {'status': 'non controle : ' + SKIP[tk]}
             continue
-        ent = resolve(tk, S[tk]['name'], country, cache)
-        if not ent:
-            res[tk] = {'status': 'societe introuvable'}
-            continue
-        o = official(ent['lei'])
-        if not o:
-            res[tk] = {'status': 'aucun rapport lisible', 'lei': ent['lei']}
-            continue
+        if y and '.' not in y:   # valeur americaine : SEC
+            o = sec_official(y)
+            if not o:
+                res[tk] = {'status': 'SEC : societe introuvable'}
+                continue
+            ent = {'lei': 'CIK' + o['cik'], 'name': o['entity']}
+            time.sleep(0.2)
+        else:
+            ent = resolve(tk, S[tk]['name'], country, cache)
+            if not ent:
+                res[tk] = {'status': 'societe introuvable'}
+                continue
+            o = official(ent['lei'])
+            if not o:
+                res[tk] = {'status': 'aucun rapport lisible', 'lei': ent['lei']}
+                continue
         yrs = (S[tk]['yrs'] or '').split('|')
         issues, checked = [], []
         for lab, key, src in (('CA', 'revh', {} if tk in NO_REV else o['rev']), ('resultat net', 'nih', {} if tk in NO_NI else o['ni'])):
@@ -283,7 +363,8 @@ def main():
             n_ok += not issues
         res[tk] = {'status': 'compare' if checked else 'annees non comparables', 'lei': ent['lei'], 'entity': ent['name'],
                    'period_end': o['period_end'], 'checked': checked, 'issues': issues,
-                   'roic_officiel': (o.get('roic') or {}).get('roic'), 'cash_apres_loyers': (o.get('cash') or {}).get('cash')}
+                   'roic_officiel': (o.get('roic') or {}).get('roic'), 'cash_apres_loyers': (o.get('cash') or {}).get('cash'),
+                   'histo_10a': o.get('histo') or None}
         time.sleep(0.3)
       except Exception as ex:
         res[tk] = {'status': 'erreur ' + str(ex)[:80]}
