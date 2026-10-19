@@ -62,6 +62,14 @@ ETF_YF = {'EUNL': 'EUNL.DE', 'SXR8': 'SXR8.DE', 'XS6R': 'XS6R.DE'}
 # inventes, jamais mis a jour. purge_data_js() les supprime a chaque run
 # (idempotent) -- ne pas les recreer sans symbole Yahoo verifie.
 REMOVED = {
+    'CWCVI': 'doublon CWCDE (cotation Vienne) - 19/10/2026',
+    'EUZGVI': 'doublon EUZDE (cotation Vienne) - 19/10/2026',
+    'GFTVI': 'doublon GFTDE (cotation Vienne) - 19/10/2026',
+    'IVUVI': 'doublon IVUDE (cotation Vienne) - 19/10/2026',
+    'HOTVI': 'doublon HOTDE (cotation Vienne) - 19/10/2026',
+    'XD4DE': 'doublon STRVI (Strabag, cotation principale Vienne) - 19/10/2026',
+    'RY4CDE': 'doublon RYAIR (Ryanair, cotation Francfort) - 19/10/2026',
+    'RYAAY': 'doublon RYAIR (Ryanair, ADR New York) - 19/10/2026',
     'MERCIALYS': 'doublon MERY',
     'SFCA': 'doublon WLN (Worldline)',
     'PLASTIC': 'doublon OPM',

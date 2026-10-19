@@ -1414,6 +1414,11 @@ def fetch_one(ticker, yf_sym, sector):
         if not str(result.get('gsrc', '')).startswith('communique') and result.get('cagr') is not None \
                 and abs(result['cagr']) > 30:
             dq.append('croissance Yahoo %s %%/an : probablement faussee par une acquisition ou une cession' % result['cagr'])
+        # 19/10/2026 : valeur estimee au plafond (3 fois le cours) = chiffres d'entree
+        # presque toujours faux (benefice exceptionnel, croissance gonflee) : on bloque
+        _px, _vc = result.get('price') or 0, result.get('dcfm') or 0
+        if _px > 0 and _vc >= _px * 2.95:
+            dq.append('valeur estimee au plafond (3 fois le cours) : chiffres probablement faux, a verifier')
         # la divergence entre les 2 methodes est affichee dans la fiche, pas bloquante
         result['dq'] = ' · '.join(dq)
         # Couche moat (evaluation qualitative, moat.py)

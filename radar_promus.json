@@ -657,15 +657,6 @@
 "PEA"
 ],
 [
-"CWCVI",
-"CWC.VI",
-"CEWE STIFTUNG+CO KGAA",
-"Consumer Cyclical",
-"small",
-"EUR",
-"PEA"
-],
-[
 "DIAWA",
 "DIA.WA",
 "DIA C.XWAR PLN",
@@ -711,15 +702,6 @@
 "PEA"
 ],
 [
-"EUZGVI",
-"EUZG.VI",
-"ECKERT & ZIEGLER SE",
-"Healthcare",
-"small",
-"EUR",
-"PEA"
-],
-[
 "FAGRBR",
 "FAGR.BR",
 "FAGRON",
@@ -756,15 +738,6 @@
 "PEA"
 ],
 [
-"GFTVI",
-"GFT.VI",
-"GFT TECHNOLOGIES SE",
-"Technology",
-"small",
-"EUR",
-"PEA"
-],
-[
 "HACKST",
 "HACK.ST",
 "Hacksaw AB",
@@ -777,15 +750,6 @@
 "HAGDE",
 "HAG.DE",
 "HENSOLDT AG",
-"Industrials",
-"large",
-"EUR",
-"PEA"
-],
-[
-"HOTVI",
-"HOT.VI",
-"HOCHTIEF AG",
 "Industrials",
 "large",
 "EUR",
@@ -825,15 +789,6 @@
 "Industrials",
 "large",
 "DKK",
-"PEA"
-],
-[
-"IVUVI",
-"IVU.VI",
-"IVU TRAFFIC TECHNOLOGIES AG",
-"Technology",
-"small",
-"EUR",
 "PEA"
 ],
 [
@@ -981,15 +936,6 @@
 "PEA"
 ],
 [
-"RY4CDE",
-"RY4C.DE",
-"Ryanair Holdings PLC",
-"Industrials",
-"large",
-"EUR",
-"PEA"
-],
-[
 "SILEXST",
 "SILEX.ST",
 "Silex Microsystems AB",
@@ -1076,15 +1022,6 @@
 "Vusion",
 "Technology",
 "mid",
-"EUR",
-"PEA"
-],
-[
-"XD4DE",
-"XD4.DE",
-"Strabag SE",
-"Industrials",
-"large",
 "EUR",
 "PEA"
 ],
@@ -2255,15 +2192,6 @@
 "Rambus, Inc.",
 "Technology (compte-titres)",
 "mid",
-"USD",
-"CTO"
-],
-[
-"RYAAY",
-"RYAAY",
-"Ryanair Holdings plc",
-"Industrials (compte-titres)",
-"large",
 "USD",
 "CTO"
 ],
