@@ -182,7 +182,7 @@ EU_LEADERS = [
     ('PNDORA', 'PNDORA.CO', 'Pandora', 'Bijouterie', 'large', 'DKK'),
     ('NOD', 'NOD.OL', 'Nordic Semiconductor', 'Semi-conducteurs', 'mid', 'NOK'),
     # 19/10/2026 : lignes du compte-titres (non eligibles PEA), suivies avec les memes regles
-    ('GOOGL', 'GOOGL', 'Alphabet', 'Internet & publicite (compte-titres)', 'large', 'USD'),
+    ('GOOGL', 'GOOGL', 'Alphabet', 'Internet & publicité (compte-titres)', 'large', 'USD'),
     ('MA', 'MA', 'Mastercard', 'Paiements (compte-titres)', 'large', 'USD'),
     ('AMZN', 'AMZN', 'Amazon', 'Commerce en ligne & cloud (compte-titres)', 'large', 'USD'),
     ('KO', 'KO', 'Coca-Cola', 'Boissons (compte-titres)', 'large', 'USD'),
