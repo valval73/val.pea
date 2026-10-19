@@ -5298,7 +5298,8 @@ document.addEventListener('DOMContentLoaded',function(){
       <div><label>Rachats d'actions (%/an)</label><input id="an-b" type="number" step="any" value="0.5" oninput="anCalc()"></div>
       <div><label>PER de sortie (plafond 20, 25 si moat 5)</label><input id="an-pe" type="number" step="any" value="20" oninput="anCalc()"></div>
       <div><label>Rendement exigé (%/an)</label><input id="an-r" type="number" step="any" value="8.5" oninput="anCalc()"></div>
-      <div><label>Marge de sécurité (%)</label><input id="an-s" type="number" step="any" value="20" oninput="anCalc()"></div>
+      <div><label>Marge de sécurité (%) : 10 / 15 / 20 selon l'incertitude</label><input id="an-s" type="number" step="any" value="20" oninput="anCalc()"></div>
+      <div><label>Dividende par action (€/an)</label><input id="an-d" type="number" step="any" value="0" oninput="anCalc()"></div>
     </div>
     <div id="an-out" class="an-res" style="margin-top:14px"></div>
     <p class="an-note">Exemple par défaut : 2 Md€ de CA, +7 %/an, 30 % de marge, 260 M d'actions, 0,5 % de rachats. Le PER de sortie est volontairement plafonné : un PER historique de 40 rémunérait souvent une croissance qui n'existe plus. Ceci est un outil d'apprentissage, pas un conseil en investissement.</p>
@@ -5322,29 +5323,34 @@ document.addEventListener('DOMContentLoaded',function(){
     if(rv.length&&ni.length){var k=Math.min(rv.length,ni.length),m=0;for(var i=0;i<k;i++)m+=ni[i]/rv[i];set('an-m',m/k*100);}
     if(s.gmod!=null)set('an-g',Math.max(0,s.gmod));
     set('an-b',0); // rachats inconnus : 0 par prudence
+    // 19/10/2026 : dividendes et marge de securite alignes sur le screener
+    set('an-d', s.div12>0?s.div12:0);
+    set('an-s', ({faible:10,moyenne:15,elevee:20})[s.unc]||20);
     if(ni.length&&s.pe>0&&s.price>0)set('an-n',ni[0]/(s.price/s.pe));
     var cap=(s.mscore===5)?25:20; set('an-pe',s.pe_h?Math.min(s.pe_h,cap):cap);
     anCalc();
   };
   window.anCalc=function(){
     var v=function(id){return parseFloat(document.getElementById(id).value);};
-    var ca=v('an-ca'),g=v('an-g')/100,m=v('an-m')/100,n=v('an-n'),b=v('an-b')/100,pe=v('an-pe'),r=v('an-r')/100,sf=v('an-s')/100,px=v('an-px');
+    var ca=v('an-ca'),g=v('an-g')/100,m=v('an-m')/100,n=v('an-n'),b=v('an-b')/100,pe=v('an-pe'),r=v('an-r')/100,sf=v('an-s')/100,px=v('an-px'),dv=v('an-d')||0;
     var o=document.getElementById('an-out');
     if(![ca,g,m,n,b,pe,r,sf].every(isFinite)||n<=0){o.innerHTML='Remplis tous les champs.';return;}
-    var ca5=ca*Math.pow(1+g,5),ni5=ca5*m,n5=n*Math.pow(1-b,5),eps5=ni5/n5,p5=eps5*pe,p0=p5/Math.pow(1+r,5),buy=p0*(1-sf);
+    var ca5=ca*Math.pow(1+g,5),ni5=ca5*m,n5=n*Math.pow(1-b,5),eps5=ni5/n5,p5=eps5*pe,dsum=0;
+    for(var yy=1;yy<=5;yy++) dsum+=dv*Math.pow(1+g,yy)/Math.pow(1+r,yy);
+    var p0=p5/Math.pow(1+r,5)+dsum,buy=p0*(1-sf);
     var f=function(x,d){return x.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});};
     var h='<div class="an-grid">'+
       '<div>CA dans 5 ans<br><b>'+f(ca5,0)+' M€</b></div>'+
       '<div>Bénéfice dans 5 ans<br><b>'+f(ni5,0)+' M€</b></div>'+
       '<div>BPA dans 5 ans<br><b>'+f(eps5,2)+' €</b></div>'+
       '<div>Prix dans 5 ans<br><b>'+f(p5,2)+' €</b></div></div>'+
-      '<div style="margin-top:12px">Valeur aujourd\'hui (actualisée à '+f(r*100,1)+' %) : <span class="an-big">'+f(p0,2)+' €</span></div>'+
+      '<div style="margin-top:12px">Valeur aujourd\'hui (actualisée à '+f(r*100,1)+' %'+(dsum>0?', dont '+f(dsum,2)+' € de dividendes sur 5 ans':'')+') : <span class="an-big">'+f(p0,2)+' €</span></div>'+
       '<div>Prix d\'achat maximum (marge de sécurité '+f(sf*100,0)+' %) : <span class="an-big ok">'+f(buy,2)+' €</span></div>';
     if(isFinite(px)&&px>0){
       var irr=Math.pow(p5/px,1/5)-1;
       h+='<div style="margin-top:8px">Au cours de '+f(px,2)+' € : rendement annuel attendu ≈ <b class="'+(irr>=r?'ok':'ko')+'">'+f(irr*100,1)+' %</b> · '+
         (px<=buy?'<b class="ok">sous le prix d\'achat maximum</b>':'<b class="ko">au-dessus : il faudrait '+f((1-buy/px)*100,0)+' % de baisse</b>')+'</div>'+
-        '<div class="an-note">Hors dividendes. Le rendement attendu suppose que la croissance et la marge se réalisent.</div>';
+        '<div class="an-note">Le rendement attendu (hors dividendes) suppose que la croissance et la marge se réalisent.</div>';
     }
     o.innerHTML=h;
   };
