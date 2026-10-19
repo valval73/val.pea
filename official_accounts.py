@@ -26,6 +26,16 @@ COUNTRY = {'PA': 'FR', 'AS': 'NL', 'DE': 'DE', 'MI': 'IT', 'CO': 'DK', 'ST': 'SE
            'MC': 'ES', 'HE': 'FI', 'OL': 'NO', 'LS': 'PT', 'VI': 'AT', 'IR': 'IE'}
 REV = ('ifrs-full:Revenue', 'ifrs-full:RevenueFromContractsWithCustomers')
 NI = ('ifrs-full:ProfitLossAttributableToOwnersOfParent',)
+# 19/10/2026 : bilan, pour recalculer le ROIC (cas KSB, Knorr-Bremse : ROIC Yahoo
+# tres superieur a la realite). ROIC officiel = resultat operationnel x 0,75 /
+# (capitaux propres + dettes financieres - tresorerie), dernier exercice depose.
+EBIT_C = ('ifrs-full:ProfitLossFromOperatingActivities',)
+EQ_C = ('ifrs-full:EquityAttributableToOwnersOfParent',)
+DEBT_TOT = ('ifrs-full:Borrowings',)
+DEBT_PARTS = ('ifrs-full:LongtermBorrowings', 'ifrs-full:ShorttermBorrowings',
+              'ifrs-full:CurrentPortionOfLongtermBorrowings', 'ifrs-full:NoncurrentPortionOfNoncurrentBorrowings')
+CASH_C = ('ifrs-full:CashAndCashEquivalents',)
+ROIC_RATIO, ROIC_GAP = 1.5, 8.0   # alerte si Yahoo > 1,5 x l'officiel ET +8 points
 STOP = {'SA', 'SE', 'NV', 'AG', 'SPA', 'GROUP', 'GROUPE', 'THE', 'HOLDING', 'CIE', 'ET', 'DE', 'LA', 'LE', 'AB', 'ASA', 'OYJ', 'PLC'}
 
 
@@ -53,7 +63,9 @@ def load_stocks():
         tk = b.split("'")[0]
         g = lambda k: ((re.search(r'\b' + k + r":'((?:[^'\\]|\\.)*)'", b) or [None, None])[1] or '').replace("\\'", "'") or None
         gb = lambda k: (re.search(r'\b' + k + r":(true|false)", b) or [None, 'false'])[1] == 'true'
+        rm = re.search(r'[,{]roic:([0-9.]+)', b)
         out[tk] = {'name': g('name'), 'yrs': g('yrs'), 'revh': g('revh'), 'nih': g('nih'), 'fcur': g('fcur'),
+                   'roic': float(rm.group(1)) if rm else None,
                    'qok': gb('qok'), 'near': gb('near')}
     return out
 
@@ -127,6 +139,48 @@ def year_values(facts, concepts):
     return out
 
 
+def instant_values(facts, concepts):
+    """{annee: valeur} pour des soldes de bilan (date unique), sans axe."""
+    out = {}
+    for f in facts.values():
+        dm = f.get('dimensions', {})
+        if dm.get('concept') not in concepts or set(dm) != {'concept', 'entity', 'period', 'unit'}:
+            continue
+        p = dm.get('period', '')
+        if '/' in p:
+            continue
+        try:
+            v = float(f.get('value'))
+        except Exception:
+            continue
+        yr = str(int(p[:4]) - (1 if p[5:10] <= '01-15' else 0))
+        out[yr] = out.get(yr, 0.0) + v if len(concepts) > 1 else v
+    return out
+
+
+def official_roic(facts):
+    eb = year_values(facts, EBIT_C)
+    eq = instant_values(facts, EQ_C)
+    if not eb or not eq:
+        return None
+    yr = max(set(eb) & set(eq), default=None)
+    if not yr:
+        return None
+    debt = instant_values(facts, DEBT_TOT).get(yr)
+    if debt is None:
+        parts = {c: instant_values(facts, (c,)).get(yr) for c in DEBT_PARTS}
+        if all(v is None for v in parts.values()):
+            return None   # dette non lisible : on n'affirme rien
+        debt = sum(v for v in parts.values() if v)
+    cash = instant_values(facts, CASH_C).get(yr) or 0.0
+    ic = eq[yr] + debt - cash
+    if ic <= 0:
+        ic = eq[yr] + debt   # tresorerie > capitaux (meme regle que le screener)
+    if ic <= 0:
+        return None
+    return {'annee': yr, 'roic': round(eb[yr][0] * 0.75 / ic * 100, 1)}
+
+
 def official(lei):
     fl = get(f'/api/entities/{lei}/filings?page[size]=50')
     items = [x.get('attributes', {}) for x in (fl or {}).get('data', [])]
@@ -137,7 +191,8 @@ def official(lei):
         if not j:
             continue
         facts = j.get('facts', {})
-        o = {'period_end': a['period_end'], 'rev': year_values(facts, REV), 'ni': year_values(facts, NI)}
+        o = {'period_end': a['period_end'], 'rev': year_values(facts, REV), 'ni': year_values(facts, NI),
+             'roic': official_roic(facts)}
         if o['rev'] or o['ni']:
             return o
     return None
@@ -180,11 +235,19 @@ def main():
                 checked.append(f'{lab} {yr}')
                 if val and abs(yv / val - 1) > TOL and abs(yv - val) > MIN_ABS:
                     issues.append(f'{lab} {yr} officiel {val / 1e6:,.0f} M contre Yahoo {yv / 1e6:,.0f} M'.replace(',', ' '))
+        # 19/10/2026 : ROIC recalcule sur le bilan officiel ; seule une SURestimation
+        # par Yahoo bloque l'achat (c'est elle qui cree de faux signaux)
+        ro, ry = o.get('roic'), S[tk].get('roic')
+        if ro and ry is not None and tk not in NO_NI:
+            checked.append(f"ROIC {ro['annee']}")
+            if ry > ro['roic'] * ROIC_RATIO and ry - ro['roic'] > ROIC_GAP:
+                issues.append(f"ROIC officiel {ro['roic']} % ({ro['annee']}) contre {ry} % calcule avec Yahoo")
         if checked:
             n_cmp += 1
             n_ok += not issues
         res[tk] = {'status': 'compare' if checked else 'annees non comparables', 'lei': ent['lei'], 'entity': ent['name'],
-                   'period_end': o['period_end'], 'checked': checked, 'issues': issues}
+                   'period_end': o['period_end'], 'checked': checked, 'issues': issues,
+                   'roic_officiel': (o.get('roic') or {}).get('roic')}
         time.sleep(0.3)
       except Exception as ex:
         res[tk] = {'status': 'erreur ' + str(ex)[:80]}
