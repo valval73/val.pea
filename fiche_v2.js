@@ -50,7 +50,7 @@ function verdict(s){
   if(!s.qok && !s.near) return {t:'HORS QUALITÉ', c:'#6b7487', x:'Ne passe pas le filtre qualité ('+(s.qwhy||'critères')+'). La méthode n’achète pas cette action, quel que soit son prix.'};
   if(!s.qok && s.near) return {t:'LIMITE · À SURVEILLER', c:C.or, x:'Un seul critère manque de peu ('+(s.qwhy||'')+'). Pas d’achat tant qu’il n’est pas rempli.'};
   var base = s.gimp!=null && s.gused!=null ? ' Le cours suppose '+fr(s.gimp,1)+' %/an de croissance, contre '+fr(s.gused,1)+' % retenus.' : '';
-  if(s.rec==='buy') return palier(s)===2 ? {t:'ACHAT POSSIBLE · PALIER 2', c:C.gn, x:'Qualité OK, cours sous le palier 2 ('+fr(z2(s))+' €) : vraie occasion, position complète possible.'+base} : {t:'ACHAT POSSIBLE · PALIER 1', c:C.gn, x:'Qualité OK, cours dans la zone d’achat ('+fr(el)+' – '+fr(eh)+' €) : demi-position ; position complète sous '+fr(z2(s))+' € (palier 2).'+base};
+  if(s.rec==='buy') return palier(s)===2 ? {t:'ACHAT POSSIBLE · PALIER 2', c:C.gn, x:'Qualité OK, cours sous le palier 2 ('+fr(z2(s))+' €) : vraie occasion, position complète possible.'+base} : {t:'ACHAT POSSIBLE · PALIER 1', c:C.gn, x:'Qualité OK, cours sous le palier 1 ('+fr(eh)+' €) : demi-position ; position complète sous '+fr(z2(s))+' € (palier 2).'+base};
   if(eh>0 && p<=eh){
     var why = s.knife ? 'mais chute en cours (cours très sous son plus haut d’un an) : comprendre la cause avant d’acheter.'
       : (s.mscore==null||s.mscore<3) ? 'mais moat jugé insuffisant (< 3/5).'
@@ -59,7 +59,7 @@ function verdict(s){
     return {t:'EN ZONE · PRUDENCE', c:C.or, x:'Cours dans la zone d’achat '+why+base};
   }
   if(eh>0 && p<=eh*1.05) return {t:'PROCHE · ATTENDRE '+fr(eh,0)+' €', c:C.or, x:'Qualité OK, cours à '+fr(pct(p,eh),1)+' % au-dessus de la zone d’achat.'+base};
-  if(s.o1>0 && p>s.o1) return {t:'CHÈRE · NE PAS RENFORCER', c:C.rd, x:'Cours au-dessus du scénario optimiste ('+fr(s.o1)+' €) : on n’achète pas, on peut alléger.'+base};
+  if(s.o1>0 && p>s.o1) return {t:'CHÈRE · NE PAS RENFORCER', c:C.rd, x:'Cours au-dessus du scénario optimiste ('+fr(s.o1)+' €) : on n’achète pas ; si tu la détiens, tu vends la moitié de la ligne (une fois), jamais tout.'+base};
   return {t:'QUALITÉ · TROP CHÈRE POUR L’INSTANT', c:'#6b7487', x:'Qualité OK, mais le cours ('+fr(p)+' €) reste au-dessus de la zone d’achat ('+fr(el)+' – '+fr(eh)+' €).'+base};
 }
 
@@ -113,7 +113,7 @@ function buyPlan(s){
     '<div class="v2-grid3">'+
       row('PALIER 1 · DEMI-POSITION','2,5 % du PEA',p1,2.5,'Première moitié.')+
       (p2?row('PALIER 2 · POSITION COMPLÈTE','compléter jusqu’à 5 %',p2,5,'Seconde moitié.'):'')+
-      '<div class="v2-scen" style="background:#fbf4e6"><div class="v2-k" style="color:'+C.or+'">PAS UN PRIX D’ACHAT</div><div class="v2-big">'+(s.vopt>0?'&gt; '+fr(s.vopt,0)+' €':'—')+'</div><div class="v2-small">Au-dessus du scénario optimiste : <b>alléger</b> (vendre une partie, jamais tout). Le « central » ('+fr(s.dcfm,0)+' €) est une estimation de valeur, pas un prix d’achat.</div></div>'+
+      '<div class="v2-scen" style="background:#fbf4e6"><div class="v2-k" style="color:'+C.or+'">PAS UN PRIX D’ACHAT</div><div class="v2-big">'+(s.vopt>0?'&gt; '+fr(s.vopt,0)+' €':'—')+'</div><div class="v2-small">Au-dessus du scénario optimiste : <b>vendre la moitié</b> de la ligne, une seule fois, jamais tout. Le « central » ('+fr(s.dcfm,0)+' €) est une estimation de valeur, pas un prix d’achat.</div></div>'+
     '</div>'+
     '<p class="v2-small"><b>En deux fois</b> : demi-position au palier 1, le reste au palier 2. <b>En une fois</b> : si le cours tombe directement sous le palier 2, position complète d’un coup. Si le palier 2 n’arrive jamais, tu restes à demi-position : c’est voulu. '+
     '<b>Condition</b> : contre-expertise de moins de 3 mois « intacte » ; « fragilisée » → un palier plus bas ; « cassée » → rien. '+
@@ -126,15 +126,17 @@ function priceBar(s){
   var lo = Math.min.apply(null,pts)*0.95, hi = Math.max.apply(null,pts)*1.03, span = hi-lo;
   var pos = function(x){ return Math.max(0,Math.min(100,(x-lo)/span*100)); };
   var h = '<div class="v2-bar"><div class="v2-track"></div>';
-  if(s.el>0&&s.eh>0) h += '<div class="v2-zone" style="left:'+pos(s.el)+'%;width:'+(pos(s.eh)-pos(s.el))+'%"></div>'+
-    '<div class="v2-lbl" style="left:'+pos(s.el)+'%;top:62px;color:'+C.gn+'">Zone '+fr(s.el,0)+' – '+fr(s.eh,0)+' €</div>';
+  // 19/10/2026 : la zone va du palier 2 au palier 1 (l'ancienne borne 'el' embrouillait)
+  var zl=z2(s)>0?z2(s):s.el;
+  if(zl>0&&s.eh>0) h += '<div class="v2-zone" style="left:'+pos(zl)+'%;width:'+(pos(s.eh)-pos(zl))+'%"></div>'+
+    '<div class="v2-lbl" style="left:'+pos(zl)+'%;top:62px;color:'+C.gn+'">Achat '+fr(zl,0)+' – '+fr(s.eh,0)+' €</div>';
   var Z=z2(s), near_=(Z>0&&s.stop>0&&Math.abs(pos(Z)-pos(s.stop))<9);
   if(Z>0) h += '<div class="v2-tick" style="left:'+pos(Z)+'%;background:'+C.gn+';width:4px"></div>';
   if(s.stop>0) h += '<div class="v2-tick" style="left:'+pos(s.stop)+'%;background:'+C.rd+'"></div><div class="v2-lbl" style="left:'+pos(s.stop)+'%;top:80px;color:'+C.rd+'">'+(near_?'<span style="color:'+C.gn+'">palier 2 '+fr(Z,0)+'</span> · ':'')+'relire la thèse '+fr(s.stop,0)+'</div>';
   if(Z>0 && !near_) h += '<div class="v2-lbl" style="left:'+pos(Z)+'%;top:80px;color:'+C.gn+'">palier 2 '+fr(Z,0)+'</div>';
   if(s.tp>0) h += '<div class="v2-tick" style="left:'+pos(s.tp)+'%;background:#6b7487;width:2px"></div><div class="v2-lbl" style="left:'+pos(s.tp)+'%;top:80px;color:'+C.mu+'">analystes '+fr(s.tp,0)+'</div>';
   if(s.dcfm>0) h += '<div class="v2-tick" style="left:'+pos(s.dcfm)+'%;background:'+C.ink+';height:38px;top:26px"></div><div class="v2-lbl" style="left:'+pos(s.dcfm)+'%;top:62px;color:'+C.ink+'">central '+fr(s.dcfm,0)+'</div>';
-  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">alléger &gt; '+fr(s.vopt,0)+'</div>';
+  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">vendre ½ &gt; '+fr(s.vopt,0)+'</div>';
   h += '<div class="v2-price" style="left:'+pos(s.price)+'%"><span>cours '+fr(s.price)+'</span><i></i></div></div>';
   return h;
 }
@@ -475,7 +477,7 @@ window.v2jnl = function(t){
     var set=function(id,val){ var e=document.getElementById(id); if(e) e.value=val; };
     set('jnl-ticker', t); set('jnl-cours', s.price);
     set('jnl-type', (s.qok&&s.rec==='buy')?'ACHAT':'ATTENDRE');
-    set('jnl-why', 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · zone '+fr(s.el)+'–'+fr(s.eh)+' € · valeur centrale '+fr(s.dcfm)+' €'+
+    set('jnl-why', 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · palier 1 '+fr(s.eh)+' € · palier 2 '+fr(z2(s))+' € · valeur centrale '+fr(s.dcfm)+' €'+
       (last?' · contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0]:'?'):' · pas de contre-expertise')+
       (F?'\nThèse : '+F.why:'')+'\nMa raison à moi : ');
     set('jnl-exit', (F?F.wrong+'\n':'')+'Seuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
@@ -690,9 +692,12 @@ function alerts(){
     if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · '+(window.v2palier(s)===2?'<b>palier 2</b> (sous '+fr(window.v2z2(s))+' €)':'palier 1 · palier 2 sous '+fr(window.v2z2(s))+' €'), !seen[s.ticker])); }
     if(s.chg5!=null && Math.abs(s.chg5)>=10 && (held[s.ticker]||s.qok||s.near)) moves.push(row(s, (held[s.ticker]?'<b>ma ligne</b> · ':'')+(s.chg5>0?'+':'')+String(s.chg5).replace('.',',')+' % en 5 séances'+(s.news5?' · '+esc(String(s.news5).split(' ;; ')[0].split('|')[0]):'')));
     var p=held[s.ticker]; if(!p) return;
-    if(!s.qok && !s.near) out.push(row(s,'hors qualité : '+esc(s.qwhy||'')+(s.ticker==='TTE'?' → exception « poche cyclique » à écrire (stop proposé 68 €)':' → vendre si confirmé à la prochaine publication')));
+    if(!s.qok && !s.near) out.push(row(s,'hors qualité : '+esc(s.qwhy||'')+' → ne pas renforcer ; vente seulement si le seuil de sortie le dit (cash sous 60 % deux ans) ou si la thèse est cassée'));
     if(s.stop>0 && s.price<s.stop && (s.qok||s.near)) review.push(row(s,'sous le seuil de revue ('+fr(s.stop)+' €) → contre-expertise obligatoire'));
-    if(s.vopt>0 && s.price>s.vopt && !/EXCEPTION/.test(s.qwhy||'')) high.push(row(s,'au-dessus du scénario optimiste ('+fr(s.vopt)+' €) → alléger possible, jamais tout vendre'));
+    // 19/10/2026 : aussi pour les lignes hors qualite (pas de scenario optimiste) :
+    // valeur centrale + 30 %. Regle : vendre la moitie, une fois, jamais tout.
+    var hi_=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0);
+    if(hi_>0 && s.price>hi_) high.push(row(s,'au-dessus de '+fr(hi_)+' € ('+(s.vopt>0?'scénario optimiste':'valeur centrale + 30 %')+') → vendre la moitié de la ligne, une fois, jamais tout'));
     var w=tot>0?s.price*p.qty/tot*100:0; if(w>10) big.push(row(s,'pèse '+fr(w,1)+' % (plafond 10 %) → ne pas renforcer'));
     var L=window.v2ceList?v2ceList(s.ticker):[], age=L[0]?Math.round((Date.now()-new Date(L[0].date).getTime())/864e5):null;
     if(age==null||age>90) ce.push(row(s, age==null?'jamais de contre-expertise':'dernière contre-expertise il y a '+age+' jours'));
@@ -706,7 +711,7 @@ function alerts(){
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
     card('Valeurs de qualité en zone d’achat','« NOUVEAU » = entrée en zone depuis ta dernière visite',zone,'#1d6b45')+
     card('Mes lignes trop grosses','plafond 10 % par action',big,'#a8790f')+
-    card('Mes lignes au-dessus du scénario optimiste','alléger possible',high,'#a8790f')+
+    card('Mes lignes trop chères','vendre la moitié, une fois · le reste suit la thèse',high,'#a8790f')+
     card('Contre-expertises à faire','lignes détenues sans contre-expertise de moins de 3 mois',ce,'#6b7487')+
   '</div>';
 }
