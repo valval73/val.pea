@@ -1754,6 +1754,18 @@ def main():
             all_results[ticker] = fetch_one(ticker, sym, sectors.get(ticker, ''))
         time.sleep(2)
     updated = patch_data_js(all_results)
+    # 19/10/2026 : sante des donnees. Yahoo n'est pas une source officielle : un
+    # passage a moitie rate ne doit pas passer inapercu (site + mail du samedi).
+    try:
+        bad = sorted(t for t, d in all_results.items() if not d or 'error' in d or not d.get('price'))
+        tot = len(all_results)
+        json.dump({'date': datetime.now(PARIS).strftime('%Y-%m-%d %H:%M'), 'total': tot, 'ok': tot - len(bad),
+                   'echecs': bad[:40], 'n_echecs': len(bad),
+                   'statut': 'ok' if tot and len(bad) <= 0.05 * tot else 'degrade'},
+                  open('health.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+        print(f"Sante des donnees : {tot - len(bad)}/{tot} fiches a jour")
+    except Exception as e:
+        print(f"  WARN sante des donnees : {e}")
     try:
         n_etf = update_etf_prices()
         print(f"ETF : {n_etf} cours mis a jour")

@@ -284,6 +284,17 @@ def main():
     except Exception as e_:
         print('croissances officielles : controle impossible', e_)
     n_buy = len(buys)
+    # 19/10/2026 : alerte si la derniere mise a jour des donnees a echoue en partie ou date
+    health_html = ''
+    try:
+        h_ = json.load(open('health.json', encoding='utf-8'))
+        age_ = (today - datetime.strptime(h_['date'][:10], '%Y-%m-%d').date()).days
+        if h_.get('statut') != 'ok' or age_ > 3:
+            health_html = ('<div style="background:#fbecea;border-left:4px solid #a8322b;padding:10px 14px;margin:12px 0;font-size:14px">'
+                           f"<b>Données à ne pas croire cette semaine</b> : dernière mise à jour le {h_['date']}, "
+                           f"{h_['ok']} fiches sur {h_['total']} à jour. Aucune décision avant un passage complet.</div>")
+    except Exception as e_:
+        health_html = '<div style="background:#fbecea;padding:10px 14px;margin:12px 0;font-size:14px"><b>État des données inconnu</b> : aucune décision avant vérification.</div>'
     head = ('<b>Dimanche, c’est la routine du mois</b> (15 min, puis aucune décision le reste du mois).'
             if first_sunday else 'Point de la semaine : aucune décision obligatoire avant la routine du 1er dimanche.')
     html = f'''<!doctype html><html><body style="margin:0;background:#f4f2ec;font-family:Arial,Helvetica,sans-serif;color:#1a2233">
@@ -292,7 +303,7 @@ def main():
 <div style="font-size:11px;letter-spacing:2px;color:#c9a45c">VAL.PEA · ROUTINE · {today.strftime('%d/%m/%Y')}</div>
 <div style="font-family:Georgia,serif;font-size:22px;margin-top:4px">{n_buy} achat{"s" if n_buy != 1 else ""} possible{"s" if n_buy != 1 else ""} {(' · ' + str(len(sell)) + ' ligne(s) hors qualité') if ptf else ''}</div>
 </div>
-<p style="font-size:14px;line-height:1.5">{head}</p>
+{health_html}<p style="font-size:14px;line-height:1.5">{head}</p>
 {sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend seulement si la perte de qualité est confirmée à la publication suivante, ou si une contre-expertise conclut « thèse cassée ». Jamais sur le prix seul.</p>')}
 {sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>. L’ETF est ta poche d’attente : le jour où une action touche son palier, tu vends la part d’ETF correspondante dans le PEA (sans impôt) pour l’acheter.</p>'))}
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}

@@ -60,7 +60,7 @@ jobs:
           if ! node -e "new Function(require('fs').readFileSync('data.js','utf8'))"; then
             echo "data.js INVALIDE : on garde la version precedente"; git checkout -- data.js
           fi
-          git add fundamentals_log.json data.js index.html
+          git add fundamentals_log.json data.js index.html health.json
           [ -f signals_history.json ] && git add signals_history.json || echo 'pas de signals_history.json'
           git add -f signals_log.txt || true
           if git diff --cached --quiet; then echo "Nothing to commit"; else

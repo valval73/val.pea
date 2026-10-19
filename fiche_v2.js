@@ -917,3 +917,20 @@ function setup(){
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();
+
+// ═══ 19/10/2026 : santé des données (health.json, écrit à chaque mise à jour) ═══
+(function(){
+  function show(txt){
+    var d=document.createElement('div'); d.id='v2-health';
+    d.style.cssText='background:#a8322b;color:#fff;padding:10px 18px;font:14px/1.4 IBM Plex Sans,system-ui,sans-serif;text-align:center';
+    d.innerHTML=txt; document.body.insertBefore(d, document.body.firstChild);
+  }
+  try{
+    fetch('health.json?d='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(h){
+      if(!h){ return; }
+      var age=(Date.now()-new Date(String(h.date).replace(' ','T')+':00').getTime())/864e5;
+      if(h.statut!=='ok') show('<b>Données incomplètes</b> : dernière mise à jour ('+h.date+') : '+h.ok+' fiches sur '+h.total+' à jour. Aucune décision tant qu’un passage complet n’a pas eu lieu.');
+      else if(age>3) show('<b>Données anciennes</b> : dernière mise à jour le '+h.date+'. Aucune décision avant la prochaine mise à jour.');
+    }).catch(function(){});
+  }catch(e){}
+})();
