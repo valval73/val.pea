@@ -2,7 +2,7 @@
 "date": "2026-10-19",
 "scope": 75,
 "compared": 52,
-"ok": 51,
+"ok": 52,
 "res": {
 "ACA": {
 "status": "annees non comparables",
@@ -547,24 +547,15 @@
 },
 "NOVO": {
 "status": "compare",
-"lei": "529900UTAHSVRYZL0380",
-"entity": "Novo Nordisk Fonden",
+"lei": "549300DAQ1CVT6CXN342",
+"entity": "NOVO NORDISK A/S",
 "period_end": "2025-12-31",
 "checked": [
 "CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
+"CA 2024"
 ],
-"issues": [
-"CA 2025 officiel 384 724 M contre Yahoo 309 064 M",
-"CA 2024 officiel 342 798 M contre Yahoo 290 403 M",
-"resultat net 2025 officiel 27 977 M contre Yahoo 102 434 M",
-"resultat net 2024 officiel 52 053 M contre Yahoo 100 988 M",
-"ROIC officiel 24.8 % (2025) contre 51.1 % calcule avec Yahoo"
-],
-"roic_officiel": 24.8
+"issues": [],
+"roic_officiel": null
 },
 "NRO": {
 "status": "compare",
