@@ -17,7 +17,7 @@ import pytz
 
 PARIS = pytz.timezone('Europe/Paris')
 
-from tickers import YF_MAP, NON_EUR, check_coverage, purge_data_js
+from tickers import YF_MAP, NON_EUR, PROMUS, check_coverage, purge_data_js
 try:
     from official_growth import OFFICIAL_GROWTH
 except Exception:
@@ -1303,6 +1303,13 @@ def fetch_one(ticker, yf_sym, sector):
         # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
         _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti",
                          sector or '', re.I) and ticker not in NON_CYCLIQUES
+        # 19/10/2026 : fiches promues du radar (secteur Yahoo en anglais) : on lit
+        # l'industrie Yahoo, plus fine que le secteur.
+        if not _cyc and ticker in PROMUS:
+            _cyc = re.search(r"semiconductor|aerospace|auto|steel|alumin|copper|gold|silver|mining|metals|oil|gas|coal|"
+                             r"chemical|building materials|construction|airline|marine|shipping|lumber|paper|"
+                             r"farm & heavy|recreational vehicle|residential",
+                             info.get('industry') or '', re.I)
         result['reinv'] = bool(not result.get('qok') and not _cyc and len(_fails) == 1
                                and _fails[0].startswith('cash')
                                and _ri is not None and _ri >= Q_ROIC_X
