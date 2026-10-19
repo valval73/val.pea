@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PEA Screener Pro v4</title>
+<title>VAL.PEA</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -352,7 +352,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
 <body>
 <header>
   <div class="h-top">
-    <div><span class="logo-m">PEA SCREENER PRO</span><span class="logo-s">Cabinet Quantitatif · SBF 250 · Analyse Fondamentale</span></div>
+    <div><span class="logo-m">VAL.PEA</span><span class="logo-s">Qualité d’abord · deux paliers · règles écrites</span></div>
     <div class="hkpis">
       <div class="hk"><span class="hk-v" id="hkT">0</span><span class="hk-l">Valeurs</span></div>
       <div class="hk"><span class="hk-v" id="hkD">0</span><span class="hk-l">Analysées</span></div>
@@ -499,7 +499,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
 <!-- PAGE LEXIQUE -->
 <div class="page" id="pg-lx">
   <div style="margin-bottom:20px;">
-    <h2 style="font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--nv);margin-bottom:5px;">Lexique Financier — PEA Screener Pro</h2>
+    <h2 style="font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--nv);margin-bottom:5px;">Lexique</h2>
     <p style="color:var(--mu);font-size:11px;">Les termes du screener et de ta méthode, chacun avec un petit exemple. Cliquer sur un terme pour développer.</p>
   </div>
   <input class="lex-search" type="text" placeholder="🔍 Rechercher... (P/E, ROIC, Moat, Piotroski, CAPEX...)" oninput="filterLex(this.value)">
@@ -734,7 +734,7 @@ function pdfFiche(){
     <span style="flex:1">${t.p}</span>
     <b style="color:${(t.ok||'')==='ok'?'#1a6b3a':(t.ok||'')==='partial'?'#b8860b':'#c0392b'}">${(t.ok||'')  ==='ok'?'✓ Tenu':(t.ok||'')==='partial'?'~ Partiel':'✗ Raté'}</b>
   </div>`).join('')}
-  <div class=footer>⚠ Données éducatives — Pas de conseil en investissement · PEA Screener Pro · ${new Date().toLocaleDateString('fr-FR')} · ${s.ticker}</div>
+  <div class=footer>⚠ Données éducatives — Pas de conseil en investissement · VAL.PEA · ${new Date().toLocaleDateString('fr-FR')} · ${s.ticker}</div>
   <script>window.onload=function(){setTimeout(function(){window.print();},600);}<\/script>
   
 </body></html>`;
@@ -1178,24 +1178,17 @@ function ptfAnalyze(){
     var signalBg='#dbeafe';
 
     if(s){
-      if(isBpf){
-        // BPF — logique long terme : on ne vend JAMAIS sur une baisse
-        if(s.score==='D'){signal='⚠️ THÈSE BRISÉE — VENDRE';signalCol='#dc2626';signalBg='#fee2e2';ventes.push(pos.ticker);}
-        else if(pct<=-30&&s.score!=='A'){signal='⚠️ REVOIR THÈSE';signalCol='#d97706';signalBg='#fef3c7';}
-        else if(pct>50&&s.rsi>70){signal='✂️ ÉCRÊTER 1/3';signalCol='#d97706';signalBg='#fef3c7';}
-        else if(inZone||pct<0){signal='💎 RENFORCER — BPF';signalCol='#16a34a';signalBg='#dcfce7';renforts.push(pos.ticker);}
-        else{signal='🏛️ CONSERVER — BPF';signalCol='#0f2540';signalBg='#e8f4f8';}
-      } else {
-        // Trading — logique stop + objectif classique
-        if(s.score==='D'||(z&&cours<z.stop)){signal='⚠️ STOP LOSS';signalCol='#dc2626';signalBg='#fee2e2';ventes.push(pos.ticker);}
-        else if(pct>=25&&s.rsi>65){signal='🎯 PRENDRE GAINS';signalCol='#dc2626';signalBg='#fee2e2';ventes.push(pos.ticker);}
-        else if(pct>=20&&s.score==='C'){signal='📉 ALLÉGER';signalCol='#d97706';signalBg='#fef3c7';}
-        else if(z&&cours>=z.o1*0.97){signal='🎯 OBJECTIF ATTEINT';signalCol='#d97706';signalBg='#fef3c7';}
-        else if(inZone&&s.score==='A'){signal='💪 RENFORCER';signalCol='#16a34a';signalBg='#dcfce7';renforts.push(pos.ticker);}
-        else if(inZone&&(s.score==='A'||s.score==='B')){signal='✅ RENFORCER';signalCol='#16a34a';signalBg='#dcfce7';renforts.push(pos.ticker);}
-        else if(s.score==='A'&&pct<0){signal='💪 TENIR/RENFORCER';signalCol='#16a34a';signalBg='#dcfce7';}
-        else{ok.push(pos.ticker);}
-      }
+      // 19/10/2026 : memes regles que la methode (plus de stop-loss, de "prendre gains"
+      // sur RSI ni de "renforcer parce que le cours baisse")
+      var _f=String(s.fcfh||'').split('|').map(Number), _n=String(s.nih||'').split('|').map(Number);
+      var _c0=(_n[0]>0)?_f[0]/_n[0]*100:null, _c1=(_n[1]>0)?_f[1]/_n[1]*100:null;
+      var _hi=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0);
+      if(_c0!=null&&_c1!=null&&_c0<60&&_c1<60){signal='⚠️ VENDRE — cash < 60 % deux ans';signalCol='#dc2626';signalBg='#fee2e2';ventes.push(pos.ticker);}
+      else if(_hi>0&&cours>_hi){signal='✂️ VENDRE LA MOITIÉ — trop chère';signalCol='#d97706';signalBg='#fef3c7';}
+      else if(!s.qok&&!s.near){signal='⛔ HORS QUALITÉ — ne pas renforcer';signalCol='#d97706';signalBg='#fef3c7';}
+      else if(s.qok&&s.eh>0&&cours<=s.eh){signal='✅ RENFORCER POSSIBLE — palier atteint';signalCol='#16a34a';signalBg='#dcfce7';renforts.push(pos.ticker);}
+      else if(s.stop>0&&cours<s.stop){signal='🔎 CONTRE-EXPERTISE — sous le seuil de revue';signalCol='#d97706';signalBg='#fef3c7';}
+      else{signal='CONSERVER';ok.push(pos.ticker);}
     }
 
     positions.push({pos:pos,s:s,cours:cours,valeur:valeur,investi:investi,
@@ -1262,7 +1255,7 @@ function ptfAnalyze(){
     html+='<div style="font-size:11px;font-weight:700;color:#16a34a;margin-bottom:6px">💪 OPPORTUNITÉS DE RENFORCEMENT</div>';
     opps.forEach(function(p){
       html+='<div style="font-size:11px;color:#166534;padding:3px 0">• <b>'+p.pos.ticker+'</b> — '+p.signal;
-      if(p.z)html+=' · Zone DCF : '+p.z.el+'€–'+p.z.eh+'€';
+      if(p.s&&p.s.eh>0)html+=' · Palier 1 : '+p.s.eh+'€';
       html+='</div>';
     });
     html+='</div>';
@@ -1301,8 +1294,7 @@ function ptfAnalyze(){
 
     if(p.s){
       html+='<div style="margin-top:6px;font-size:10px;color:#555">';
-      if(p.z)html+='Zone DCF : <b>'+p.z.el+'€–'+p.z.eh+'€</b> · Stop : <b style="color:#dc2626">'+p.z.stop+'€</b> · Obj : <b style="color:#16a34a">'+p.z.o1+'€</b>';
-      if(p.s.rsi)html+=' · RSI : <b>'+p.s.rsi+'</b>';
+      if(p.s.eh>0)html+='Palier 1 : <b>'+p.s.eh+'€</b>'+(p.s.stop>0?' · Seuil de revue : <b style="color:#a8322b">'+p.s.stop+'€</b>':'')+((p.s.vopt||p.s.dcfm)?' · Trop chère au-dessus de <b style="color:#a8790f">'+Math.round(p.s.vopt>0?p.s.vopt:p.s.dcfm*1.3)+'€</b>':'');
       if(p.s.yield)html+=' · Div : <b>'+p.s.yield+'%</b>';
       html+='</div>';
     }
@@ -1766,7 +1758,7 @@ function checkBpfResultats(){
     var msgs = alertes.map(function(a){
       return '📅 '+a.ticker+' '+a.quarter+' dans J-'+a.diff;
     }).join(' · ');
-    banner.innerHTML = '🏛️ BPF — RÉSULTATS IMMINENTS · '+msgs+' · Clique pour voir le portefeuille';
+    banner.innerHTML = '📅 RÉSULTATS IMMINENTS · '+msgs+' · Clique pour voir le portefeuille';
   }
 }
 
@@ -4604,7 +4596,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <button onclick="jnlFilter('all',this)" id="jnl-f-all" style="padding:6px 12px;background:#4c1d95;color:#f0d080;border:none;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer">Toutes</button>
     <button onclick="jnlFilter('ACHAT',this)" style="padding:6px 12px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:4px;font-size:11px;cursor:pointer">📈 Achats</button>
     <button onclick="jnlFilter('VENTE',this)" style="padding:6px 12px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:4px;font-size:11px;cursor:pointer">📉 Ventes</button>
-    <button onclick="jnlFilter('CONSERVER',this)" style="padding:6px 12px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:4px;font-size:11px;cursor:pointer">🏛️ BPF</button>
+    <button onclick="jnlFilter('CONSERVER',this)" style="padding:6px 12px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:4px;font-size:11px;cursor:pointer">🏛️ Conserver</button>
     <button onclick="jnlLecon()" style="padding:6px 12px;background:linear-gradient(135deg,#b8860b,#f0d080);color:#0f2540;border:none;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer">💡 Mes leçons</button>
     <button onclick="debriefMensuel()" style="padding:6px 12px;background:linear-gradient(135deg,#0f2540,#1a3a5c);color:#f0d080;border:none;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;margin-left:auto">📅 Débrief du mois</button>
   </div>

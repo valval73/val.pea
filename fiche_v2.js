@@ -528,7 +528,7 @@ function item(s){
   var gap = s.eh>0 ? pct(s.price,s.eh) : null;
   return '<button class="v2-it" onclick="v2open(\''+s.ticker+'\')"><b>'+esc(s.ticker)+'</b> <span>'+esc(s.name)+'</span>'+
     '<span class="v2-mono">'+fr(s.price)+' €</span>'+
-    (gap!=null&&(s.qok||s.near)?'<span class="v2-small">'+(gap<=0?(s.rec==='buy'?(palier(s)===2?'palier 2':'palier 1'):'en zone, bloquée'):'doit baisser de '+fr(gap,0)+' %')+'</span>':'<span class="v2-small">'+esc((s.qwhy||'').split(',')[0])+'</span>')+
+    (gap!=null&&(s.qok||s.near)?'<span class="v2-small">'+(gap<=0?(s.rec==='buy'?(palier(s)===2?'palier 2':'palier 1'):'en zone, bloquée : '+(dqAll(s)?'donnée à vérifier':s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible ou non noté':!s.qok?'qualité limite':'croissance irrégulière')):'doit baisser de '+fr(gap,0)+' %')+'</span>':'<span class="v2-small">'+esc((s.qwhy||'').split(',')[0])+'</span>')+
     (s.mscore!=null?'<span class="v2-small">moat '+s.mscore+'/5</span>':'')+'</button>';
 }
 function buildHome(){
@@ -540,7 +540,8 @@ function buildHome(){
   var byGap = function(a,b){ return (a.eh>0?a.price/a.eh:9)-(b.eh>0?b.price/b.eh:9); };
   buy.sort(byGap); watch.sort(byGap); out.sort(function(a,b){return (a.name||'').localeCompare(b.name||'');});
   box.innerHTML = '<div class="v2-home"><div class="v2-hgrp" style="border-top:4px solid '+C.gn+'"><h3>Achat possible <span>'+buy.length+'</span></h3><p class="v2-small">Qualité OK · cours en zone · moat ≥ 3 · croissance régulière · pas de chute</p>'+(buy.map(item).join('')||'<p class="v2-small">Aucune aujourd’hui → versement du mois sur l’ETF Monde.</p>')+'</div>'+
-    '<div class="v2-hgrp" style="border-top:4px solid '+C.or+'"><h3>À surveiller <span>'+watch.length+'</span></h3><p class="v2-small">Qualité OK mais trop chère, en chute, ou limite (un critère manqué de peu) · les plus proches de leur zone en premier</p>'+watch.map(item).join('')+'</div>'+
+    '<div class="v2-hgrp" style="border-top:4px solid '+C.or+'"><h3>À surveiller <span>'+watch.length+'</span></h3><p class="v2-small">Qualité OK mais trop chère, en chute, ou limite · <b>les 20 plus proches de leur palier 1</b></p>'+watch.slice(0,20).map(item).join('')+
+      (watch.length>20?'<details><summary class="v2-small">Voir les '+(watch.length-20)+' autres (plus loin de leur palier)</summary>'+watch.slice(20).map(item).join('')+'</details>':'')+'</div>'+
     '<div class="v2-hgrp" style="border-top:4px solid #9aa1ae"><h3>Hors qualité <span>'+out.length+'</span></h3><details><summary class="v2-small">Afficher la liste</summary>'+out.map(item).join('')+'</details></div></div>';
 }
 window.v2buildHome = buildHome;
@@ -756,7 +757,7 @@ function guide(){
 function tabs(){
   document.querySelectorAll('.ntab').forEach(function(b){
     var o=b.getAttribute('onclick')||'';
-    if(/'acad'|'bt'/.test(o)) b.style.display='none';
+    if(/'acad'|'bt'|'labo'/.test(o)) b.style.display='none'; // 19/10/2026 : labo psycho remplace par le Journal et la routine du mois
   });
 }
 if(typeof showPg==='function'){
