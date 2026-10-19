@@ -740,7 +740,11 @@ def normalized_eps(t, info):
 # 10 ans, gonfle la valeur (cas BTP, ingenierie, aeronautique, semi-conducteurs).
 # On valorise sur le benefice MOYEN des exercices publies (au plus le benefice
 # actuel), avec une croissance plafonnee et la marge de securite la plus large.
-CYC_GMAX = 4.0
+CYC_GMAX = 4.0  # (19/10/2026 : plus utilise, la croissance suit la regle commune)
+# Secteurs dont le libelle contient un mot cyclique mais dont l'activite ne l'est
+# pas (verifie le 19/10/2026) : luxe automobile, equipement electrique, aromes,
+# concessions autoroutieres et aeroportuaires.
+NON_CYCLIQUES = {'RACE', 'SU', 'RBT', 'DG'}
 
 
 def cycle_eps(t, info):
@@ -1298,7 +1302,7 @@ def fetch_one(ticker, yf_sym, sector):
         # Cycliques exclus (grille dediee a venir) : un ROIIC mesure entre un
         # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
         _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti",
-                         sector or '', re.I)
+                         sector or '', re.I) and ticker not in NON_CYCLIQUES
         result['reinv'] = bool(not result.get('qok') and not _cyc and len(_fails) == 1
                                and _fails[0].startswith('cash')
                                and _ri is not None and _ri >= Q_ROIC_X
@@ -1339,7 +1343,6 @@ def fetch_one(ticker, yf_sym, sector):
                 if e_c and e_c > 0:
                     eps_ttm = min(eps_ttm, e_c) if eps_ttm else e_c
                     fwd_v = min(fwd_v, e_c) if fwd_v else e_c
-                g_c, g_cap = min(g_c, CYC_GMAX), min(g_cap, CYC_GMAX)
                 result['grid'] = result.get('grid') or 'cyclique'
             result['gmod'] = round(g_c, 1)
             v = qarp_value(fwd_v, eps_ttm, None, None, roic_v, g1_override=g_c / 100)
