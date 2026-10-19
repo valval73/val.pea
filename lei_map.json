@@ -3,6 +3,10 @@
 "lei": "969500TJ5KRTCJQWXH05",
 "name": "CREDIT AGRICOLE SA"
 },
+"ADDT": {
+"lei": "549300QZ5U2IDRHPWL60",
+"name": "Addtech AB"
+},
 "AI": {
 "lei": "969500MMPQVHK671GT54",
 "name": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE"
@@ -10,6 +14,10 @@
 "AIR": {
 "lei": "MINO79WLOO247M1IL051",
 "name": "AIRBUS SE"
+},
+"ALFA": {
+"lei": "549300UCKT2UK88AG251",
+"name": "Alfa Laval AB"
 },
 "ALV": {
 "lei": "529900K9B0N5BT694847",
@@ -19,6 +27,7 @@
 "lei": "9598004A3FTY3TEHHN09",
 "name": "AMADEUS IT GROUP SOCIEDAD ANONIMA"
 },
+"AOF": null,
 "ARGAN": {
 "lei": "529900FXM41XSCUSGH04",
 "name": "ARGAN"
@@ -51,9 +60,17 @@
 "lei": "R0MUWSFPU8MPRO8K5P83",
 "name": "BNP PARIBAS"
 },
+"BVI": {
+"lei": "969500TPU5T3HA5D1F11",
+"name": "BUREAU VERITAS"
+},
 "CDRCK": {
 "lei": "222100P6D3QKU33LZQ72",
 "name": "Carmila"
+},
+"CMB": {
+"lei": "8156008BFBC06F53DD56",
+"name": "CEMBRE S.P.A."
 },
 "COFA": {
 "lei": "96950025N07LTJYFSN57",
@@ -63,10 +80,18 @@
 "lei": "969500P8M3W2XX376054",
 "name": "COVIVIO"
 },
+"CRL": {
+"lei": "815600115DA6E507AE33",
+"name": "CAREL INDUSTRIES S.P.A."
+},
 "DASSAV": null,
 "DG": {
 "lei": "213800WFQ334R8UXUG83",
 "name": "VINCI"
+},
+"DLG": {
+"lei": "8156000E09A52C4F8A38",
+"name": "DE' LONGHI S.P.A."
 },
 "DSY": {
 "lei": "96950065LBWY0APQIM86",
@@ -84,10 +109,15 @@
 "lei": "5493004Q73OEYW1SPE91",
 "name": "Epiroc Aktiebolag"
 },
+"EVD": {
+"lei": "529900FDHSN08UBJII80",
+"name": "CTS Eventim AG & Co. KGaA"
+},
 "EXENS": {
 "lei": "969500R3AKTPEDO9EG76",
 "name": "EXOSENS"
 },
+"G1A": null,
 "GFC": {
 "lei": "9695003E4MMA10IBTR26",
 "name": "GECINA"
@@ -95,6 +125,10 @@
 "GTT": {
 "lei": "969500BVOHVZUUFWDT54",
 "name": "GAZTRANSPORT ET TECHNIGAZ"
+},
+"HEIJM": {
+"lei": "724500OUE3PCA809DZ79",
+"name": "Koninklijke Heijmans N.V."
 },
 "HO": {
 "lei": "529900FNDVTQJOVVPZ19",
@@ -112,9 +146,25 @@
 "lei": "549300TTCXZOGZM2EY83",
 "name": "INDUSTRIA DE DISEÑO TEXTIL, S.A."
 },
+"JMT": null,
+"KBX": null,
 "KLPI": {
 "lei": "969500PB4U31KEFHZ621",
 "name": "KLEPIERRE"
+},
+"KRI": null,
+"KRN": {
+"lei": "529900NY2GSZWWUBW049",
+"name": "KRONES Aktiengesellschaft"
+},
+"KSB3": null,
+"LAGR": {
+"lei": "5493002L6I4YHANEYR87",
+"name": "Lagercrantz Group Aktiebolag"
+},
+"LOTB": {
+"lei": "5493004C0K34IFI67I03",
+"name": "LOTUS BAKERIES"
 },
 "LR": {
 "lei": "969500XXRPGD7HCAFA90",
@@ -124,7 +174,19 @@
 "lei": "815600EBD7FB00525B20",
 "name": "MONCLER S.P.A."
 },
+"MYCR": {
+"lei": "549300S5CCFESE4C6Y07",
+"name": "Mycronic AB (publ)"
+},
+"NA9": {
+"lei": "9845008396BA67DA9B37",
+"name": "Nagarro SE"
+},
 "NEM": null,
+"NOVO": {
+"lei": "529900UTAHSVRYZL0380",
+"name": "Novo Nordisk Fonden"
+},
 "NRO": {
 "lei": "9695008Y07TSG8SZCG57",
 "name": "NEURONES"
@@ -134,6 +196,10 @@
 "lei": "529900JI1GG6F7RKVI53",
 "name": "L'OREAL"
 },
+"ORNBV": {
+"lei": "74370029VAHCXDR7B745",
+"name": "Orion Oyj"
+},
 "PLNW": {
 "lei": "969500356FAUM2X41Q59",
 "name": "PLANISWARE"
@@ -142,11 +208,23 @@
 "lei": "213800RQNIQT48SEEO85",
 "name": "PLUXEE N.V."
 },
+"PNDORA": {
+"lei": "5299007OWYZ6I1E46843",
+"name": "Pandora A/S"
+},
 "RAA": {
 "lei": "529900K139N6UFJ1A758",
 "name": "RATIONAL Aktiengesellschaft"
 },
 "RBT": null,
+"REC": {
+"lei": "815600FBF92FD3531704",
+"name": "RECORDATI INDUSTRIA CHIMICA E FARMACEUTICA S.P.A. IN BREVE RECORDATI S.P.A."
+},
+"REY": {
+"lei": "815600DAEFB0388F3521",
+"name": "REPLY S.P.A."
+},
 "RHM": {
 "lei": "5299001OU9CSE29O6S05",
 "name": "Rheinmetall Aktiengesellschaft"
@@ -155,11 +233,16 @@
 "lei": "969500Y4IJGHJE2MTJ13",
 "name": "HERMES INTERNATIONAL"
 },
+"RWAY": null,
 "SAF": {
 "lei": "969500UIC89GT3UL7L24",
 "name": "SAFRAN"
 },
 "SCBSM": null,
+"SECT": {
+"lei": "549300R9ZBT8YSFFK266",
+"name": "SECTRA Aktiebolag"
+},
 "SU": {
 "lei": "969500A1YF1XUYYXS284",
 "name": "SCHNEIDER ELECTRIC SE"
@@ -167,6 +250,10 @@
 "TE": {
 "lei": "724500FLODI49NSCIP70",
 "name": "Technip Energies N.V."
+},
+"TGYM": {
+"lei": "815600B9149F66E77F76",
+"name": "TECHNOGYM S.P.A."
 },
 "TTE": {
 "lei": "529900S21EQ1BO4ESM68",
@@ -183,5 +270,7 @@
 "WKL": {
 "lei": "724500TEM53I0U077B74",
 "name": "Wolters Kluwer N.V."
-}
+},
+"WRT1V": null,
+"YSN": null
 }

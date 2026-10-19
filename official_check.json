@@ -1,8 +1,8 @@
 {
-"date": "2026-10-12",
-"scope": 49,
-"compared": 38,
-"ok": 37,
+"date": "2026-10-19",
+"scope": 75,
+"compared": 52,
+"ok": 51,
 "res": {
 "ACA": {
 "status": "annees non comparables",
@@ -10,7 +10,23 @@
 "entity": "CREDIT AGRICOLE SA",
 "period_end": "2025-12-31",
 "checked": [],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"ADDT": {
+"status": "compare",
+"lei": "549300QZ5U2IDRHPWL60",
+"entity": "Addtech AB",
+"period_end": "2024-03-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023",
+"ROIC 2024"
+],
+"issues": [],
+"roic_officiel": 17.5
 },
 "AI": {
 "status": "compare",
@@ -21,9 +37,11 @@
 "CA 2024",
 "CA 2023",
 "resultat net 2024",
-"resultat net 2023"
+"resultat net 2023",
+"ROIC 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 11.1
 },
 "AIR": {
 "status": "compare",
@@ -36,7 +54,23 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"ALFA": {
+"status": "compare",
+"lei": "549300UCKT2UK88AG251",
+"entity": "Alfa Laval AB",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023",
+"ROIC 2024"
+],
+"issues": [],
+"roic_officiel": 17.9
 },
 "ALV": {
 "status": "aucun rapport lisible",
@@ -53,7 +87,11 @@
 "resultat net 2024",
 "resultat net 2023"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"AOF": {
+"status": "societe introuvable"
 },
 "ARGAN": {
 "status": "compare",
@@ -64,7 +102,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 6.2
 },
 "ASM": {
 "status": "compare",
@@ -77,7 +116,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "ASML": {
 "status": "compare",
@@ -88,20 +128,8 @@
 "CA 2025",
 "CA 2024"
 ],
-"issues": []
-},
-"ASSA": {
-"status": "compare",
-"lei": "549300YECS8HKCIMMB67",
-"entity": "ASSA ABLOY AB",
-"period_end": "2024-12-31",
-"checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
-],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "ATCO": {
 "status": "compare",
@@ -114,7 +142,8 @@
 "resultat net 2024",
 "resultat net 2023"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "AXA": {
 "status": "compare",
@@ -125,7 +154,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "BNP": {
 "status": "annees non comparables",
@@ -133,7 +163,23 @@
 "entity": "BNP PARIBAS",
 "period_end": "2025-12-31",
 "checked": [],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"BVI": {
+"status": "compare",
+"lei": "969500TPU5T3HA5D1F11",
+"entity": "BUREAU VERITAS",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 27.2
 },
 "CDRCK": {
 "status": "compare",
@@ -144,7 +190,20 @@
 "resultat net 2024",
 "resultat net 2023"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"CMB": {
+"status": "compare",
+"lei": "8156008BFBC06F53DD56",
+"entity": "CEMBRE S.P.A.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null
 },
 "COFA": {
 "status": "compare",
@@ -155,7 +214,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "COVIVIO": {
 "status": "compare",
@@ -166,7 +226,22 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 5.3
+},
+"CRL": {
+"status": "compare",
+"lei": "815600115DA6E507AE33",
+"entity": "CAREL INDUSTRIES S.P.A.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null
 },
 "DASSAV": {
 "status": "societe introuvable"
@@ -180,9 +255,26 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 34.7
+},
+"DLG": {
+"status": "compare",
+"lei": "8156000E09A52C4F8A38",
+"entity": "DE' LONGHI S.P.A.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 28.2
 },
 "DSY": {
 "status": "compare",
@@ -193,9 +285,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 17.5
 },
 "EL": {
 "status": "compare",
@@ -206,9 +300,11 @@
 "CA 2024",
 "CA 2023",
 "resultat net 2024",
-"resultat net 2023"
+"resultat net 2023",
+"ROIC 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 5.7
 },
 "ELIS": {
 "status": "compare",
@@ -219,9 +315,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 7.8
 },
 "EPI": {
 "status": "compare",
@@ -232,23 +330,18 @@
 "CA 2024",
 "CA 2023",
 "resultat net 2024",
-"resultat net 2023"
+"resultat net 2023",
+"ROIC 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 16.8
 },
-"EXENS": {
-"status": "compare",
-"lei": "969500R3AKTPEDO9EG76",
-"entity": "EXOSENS",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024"
-],
-"issues": [
-"CA 2025 officiel 468 M contre Yahoo 383 M",
-"CA 2024 officiel 383 M contre Yahoo 468 M"
-]
+"EVD": {
+"status": "aucun rapport lisible",
+"lei": "529900FDHSN08UBJII80"
+},
+"G1A": {
+"status": "societe introuvable"
 },
 "GFC": {
 "status": "compare",
@@ -259,7 +352,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 2.8
 },
 "GTT": {
 "status": "compare",
@@ -272,7 +366,20 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"HEIJM": {
+"status": "compare",
+"lei": "724500OUE3PCA809DZ79",
+"entity": "Koninklijke Heijmans N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null
 },
 "HO": {
 "status": "compare",
@@ -283,9 +390,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 16.0
 },
 "INTERPARFUMS": {
 "status": "compare",
@@ -296,9 +405,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 21.0
 },
 "IPSEN": {
 "status": "compare",
@@ -311,7 +422,8 @@
 "resultat net 2024",
 "resultat net 2023"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "ITX": {
 "status": "compare",
@@ -322,9 +434,17 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 42.6
+},
+"JMT": {
+"status": "societe introuvable"
+},
+"KBX": {
+"status": "societe introuvable"
 },
 "KLPI": {
 "status": "compare",
@@ -335,7 +455,45 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"KRI": {
+"status": "societe introuvable"
+},
+"KRN": {
+"status": "aucun rapport lisible",
+"lei": "529900NY2GSZWWUBW049"
+},
+"KSB3": {
+"status": "societe introuvable"
+},
+"LAGR": {
+"status": "compare",
+"lei": "5493002L6I4YHANEYR87",
+"entity": "Lagercrantz Group Aktiebolag",
+"period_end": "2024-03-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"ROIC 2024"
+],
+"issues": [],
+"roic_officiel": 17.4
+},
+"LOTB": {
+"status": "compare",
+"lei": "5493004C0K34IFI67I03",
+"entity": "LOTUS BAKERIES",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null
 },
 "LR": {
 "status": "compare",
@@ -346,9 +504,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 11.8
 },
 "MONC": {
 "status": "compare",
@@ -361,10 +521,50 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"MYCR": {
+"status": "compare",
+"lei": "549300S5CCFESE4C6Y07",
+"entity": "Mycronic AB (publ)",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": [],
+"roic_officiel": null
+},
+"NA9": {
+"status": "aucun rapport lisible",
+"lei": "9845008396BA67DA9B37"
 },
 "NEM": {
 "status": "societe introuvable"
+},
+"NOVO": {
+"status": "compare",
+"lei": "529900UTAHSVRYZL0380",
+"entity": "Novo Nordisk Fonden",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [
+"CA 2025 officiel 384 724 M contre Yahoo 309 064 M",
+"CA 2024 officiel 342 798 M contre Yahoo 290 403 M",
+"resultat net 2025 officiel 27 977 M contre Yahoo 102 434 M",
+"resultat net 2024 officiel 52 053 M contre Yahoo 100 988 M",
+"ROIC officiel 24.8 % (2025) contre 51.1 % calcule avec Yahoo"
+],
+"roic_officiel": 24.8
 },
 "NRO": {
 "status": "compare",
@@ -375,12 +575,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
-},
-"NSIS": {
-"status": "societe introuvable"
+"issues": [],
+"roic_officiel": 94.5
 },
 "OR": {
 "status": "compare",
@@ -391,9 +590,26 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 19.0
+},
+"ORNBV": {
+"status": "compare",
+"lei": "74370029VAHCXDR7B745",
+"entity": "Orion Oyj",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 33.1
 },
 "PLNW": {
 "status": "compare",
@@ -406,7 +622,19 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
+},
+"PNDORA": {
+"status": "compare",
+"lei": "5299007OWYZ6I1E46843",
+"entity": "Pandora A/S",
+"period_end": "2026-06-30",
+"checked": [
+"CA 2025"
+],
+"issues": [],
+"roic_officiel": null
 },
 "RAA": {
 "status": "aucun rapport lisible",
@@ -417,6 +645,22 @@
 },
 "RBT": {
 "status": "societe introuvable"
+},
+"REC": {
+"status": "aucun rapport lisible",
+"lei": "815600FBF92FD3531704"
+},
+"REY": {
+"status": "compare",
+"lei": "815600DAEFB0388F3521",
+"entity": "REPLY S.P.A.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null
 },
 "RHM": {
 "status": "aucun rapport lisible",
@@ -431,9 +675,14 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 74.3
+},
+"RWAY": {
+"status": "societe introuvable"
 },
 "SAF": {
 "status": "compare",
@@ -446,10 +695,25 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "SCBSM": {
 "status": "societe introuvable"
+},
+"SECT": {
+"status": "compare",
+"lei": "549300R9ZBT8YSFFK266",
+"entity": "SECTRA Aktiebolag",
+"period_end": "2024-04-30",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": [],
+"roic_officiel": null
 },
 "SU": {
 "status": "compare",
@@ -460,9 +724,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 14.5
 },
 "TE": {
 "status": "compare",
@@ -473,9 +739,25 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 10.0
+},
+"TGYM": {
+"status": "compare",
+"lei": "815600B9149F66E77F76",
+"entity": "TECHNOGYM S.P.A.",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023"
+],
+"issues": [],
+"roic_officiel": null
 },
 "TTE": {
 "status": "compare",
@@ -486,7 +768,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "UMG": {
 "status": "compare",
@@ -497,9 +780,11 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 23.5
 },
 "URW": {
 "status": "compare",
@@ -510,7 +795,8 @@
 "resultat net 2025",
 "resultat net 2024"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": null
 },
 "WKL": {
 "status": "compare",
@@ -521,9 +807,17 @@
 "CA 2025",
 "CA 2024",
 "resultat net 2025",
-"resultat net 2024"
+"resultat net 2024",
+"ROIC 2025"
 ],
-"issues": []
+"issues": [],
+"roic_officiel": 32.1
+},
+"WRT1V": {
+"status": "societe introuvable"
+},
+"YSN": {
+"status": "societe introuvable"
 }
 }
 }
