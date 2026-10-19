@@ -1,0 +1,72 @@
+{
+"ABNB": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"ACN": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"ADBE": {
+"date": "2026-10-20",
+"note": "",
+"verdict": "concordant"
+},
+"ANET": {
+"date": "2026-10-19",
+"note": "valeur du screener plus prudente (moat note depuis)",
+"verdict": "concordant"
+},
+"AXFOST": {
+"date": "2026-10-19",
+"note": "cash surestime par les loyers ; capital ajoute peu rentable",
+"verdict": "ecart"
+},
+"CAMXST": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"DECK": {
+"date": "2026-10-20",
+"note": "",
+"verdict": "concordant"
+},
+"DOCS": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"EVOST": {
+"date": "2026-10-20",
+"note": "chiffre d affaires en baisse sur un an malgre une bonne croissance sur 4 ans ; nombre d actions en hausse",
+"verdict": "ecart"
+},
+"GE": {
+"date": "2026-10-19",
+"note": "scission du conglomerat : historique 5 ans inexploitable des deux cotes",
+"verdict": "ecart"
+},
+"LPPWA": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"META": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"MNST": {
+"date": "2026-10-19",
+"note": "",
+"verdict": "concordant"
+},
+"VRT": {
+"date": "2026-10-19",
+"note": "valeur du screener nettement plus prudente",
+"verdict": "concordant"
+}
+}
