@@ -277,7 +277,7 @@ def main():
         if oc and yc is not None:
             checked.append(f"cash apres loyers {oc['annee']}")
             if yc >= CASH_SEUIL and oc['cash'] < CASH_SEUIL:
-                issues.append(f"cash apres loyers {oc['cash']} % ({oc['annee']}, loyers {oc['loyers_pct_cfo']} % du flux d'exploitation) contre {yc:.0f} % avec Yahoo")
+                issues.append(f"cash après loyers {oc['cash']} % ({oc['annee']}, loyers = {oc['loyers_pct_cfo']} % du flux d'exploitation) contre {yc:.0f} % selon Yahoo : sous le seuil de 80 %")
         if checked:
             n_cmp += 1
             n_ok += not issues
