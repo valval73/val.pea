@@ -736,6 +736,24 @@ def normalized_eps(t, info):
         print(f"  EPS normalise SKIP: {e}")
     return ttm
 
+# 19/10/2026 : grille des cycliques. Un benefice de haut de cycle, prolonge
+# 10 ans, gonfle la valeur (cas BTP, ingenierie, aeronautique, semi-conducteurs).
+# On valorise sur le benefice MOYEN des exercices publies (au plus le benefice
+# actuel), avec une croissance plafonnee et la marge de securite la plus large.
+CYC_GMAX = 4.0
+
+
+def cycle_eps(t, info):
+    try:
+        ni = [x for x in _row_series(t.financials, 'Net Income', 'Net Income Common Stockholders')[:4] if x is not None]
+        sh = info.get('sharesOutstanding')
+        if len(ni) >= 3 and sh:
+            return sum(ni) / len(ni) / sh
+    except Exception:
+        pass
+    return None
+
+
 def implied_growth(eps_fwd, eps_ttm, roic_pct, price):
     """Croissance de depart (%/an, ralentissant vers 2,5 % sur 10 ans) que
     le cours ACTUEL suppose, avec le meme modele et le meme taux de 8,5 %.
@@ -1315,19 +1333,27 @@ def fetch_one(ticker, yf_sym, sector):
                 gs_ = [x for x in (result.get('cagr'), result.get('nig')) if x is not None]
                 g_c = sum(gs_) / len(gs_) if gs_ else 0.0
             g_c, g_cap = effective_growth(max(0.0, g_c), roic_v, (MOAT.get(ticker) or (None,))[0], bool(off))
+            fwd_v = info.get('forwardEps')
+            if _cyc:
+                e_c = cycle_eps(t, info)
+                if e_c and e_c > 0:
+                    eps_ttm = min(eps_ttm, e_c) if eps_ttm else e_c
+                    fwd_v = min(fwd_v, e_c) if fwd_v else e_c
+                g_c, g_cap = min(g_c, CYC_GMAX), min(g_cap, CYC_GMAX)
+                result['grid'] = result.get('grid') or 'cyclique'
             result['gmod'] = round(g_c, 1)
-            v = qarp_value(info.get('forwardEps'), eps_ttm, None, None, roic_v, g1_override=g_c / 100)
-            result['gimp'] = implied_growth(info.get('forwardEps'), eps_ttm, roic_v, result['price'])
+            v = qarp_value(fwd_v, eps_ttm, None, None, roic_v, g1_override=g_c / 100)
+            result['gimp'] = implied_growth(fwd_v, eps_ttm, roic_v, result['price'])
             if v:
                 result.update(zones_from_value(v, result['price'], cat))
                 result['vmeth'] = 'qarp'
                 # 05/10/2026 : trois scenarios et zone selon l'incertitude
-                vp = qarp_value(info.get('forwardEps'), eps_ttm, 0.0, 0.0, roic_v)
-                vo = qarp_value(info.get('forwardEps'), eps_ttm, None, None, roic_v,
+                vp = qarp_value(fwd_v, eps_ttm, 0.0, 0.0, roic_v)
+                vo = qarp_value(fwd_v, eps_ttm, None, None, roic_v,
                                 g1_override=min(g_c + 3, g_cap) / 100)
                 p_ = result['price']
                 clamp = lambda x: round(max(min(x, p_ * 3.0), p_ * 0.3), 2)
-                unc = UNCERTAINTY.get(ticker)
+                unc = 'elevee' if _cyc else UNCERTAINTY.get(ticker)
                 lo_m, hi_m = MARGIN.get(unc or 'moyenne', (0.25, 0.15))
                 vc = result['dcfm']
                 result['unc'] = unc or 'non evaluee'
@@ -1343,7 +1369,7 @@ def fetch_one(ticker, yf_sym, sector):
                     result['o1'] = result['vopt']
                     result['o2'] = round(result['vopt'] * 1.10, 2)
                 # methode 2 : multiples historiques (controle croise)
-                vm = mult_value(info.get('forwardEps'), eps_ttm, g_c, result.get('pe_h'),
+                vm = mult_value(fwd_v, eps_ttm, g_c, result.get('pe_h'),
                                 info.get('payoutRatio'), gmax=g_cap,
                                 pe_cap=25.0 if (MOAT.get(ticker) or (0,))[0] == 5 else 20.0)
                 same_cur = not (info.get('financialCurrency') and info.get('currency')
@@ -1353,7 +1379,7 @@ def fetch_one(ticker, yf_sym, sector):
                 result['vepv'] = clamp(ve) if ve else None
                 vals = sorted(x for x in (result.get('dcfm'), result.get('vmult'), result.get('vepv')) if x)
                 result['vmed'] = round(vals[len(vals) // 2], 2) if len(vals) == 3 else None
-                result['irr'] = expected_return(info.get('forwardEps'), eps_ttm, g_c, roic_v, p_)
+                result['irr'] = expected_return(fwd_v, eps_ttm, g_c, roic_v, p_)
                 # 08/10/2026 : en PEA, la retenue a la source etrangere sur les
                 # dividendes est perdue -> rendement net pour l'investisseur PEA
                 wht = WHT.get(yf_sym.rsplit('.', 1)[-1] if '.' in yf_sym else '', 0.0)
