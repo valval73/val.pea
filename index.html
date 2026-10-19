@@ -435,7 +435,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
           <button class="eb" onclick="pdfFiche()"><span class="ei">📄</span><div><div>PDF Fiche courante</div><div class="ed">Imprimer / Enregistrer PDF</div></div></button>
           <button class="eb" onclick="window.print()"><span class="ei">📄</span><div><div>Imprimer / PDF</div><div class="ed">Fiche courante · Optimisé</div></div></button>
           <button class="eb" onclick="showPg('tb',document.querySelectorAll('.ntab')[1])"><span class="ei">📋</span><div><div>Tableau comparatif</div><div class="ed">Toutes valeurs · Tri multi-colonnes</div></div></button>
-          <button class="eb" onclick="showPg('lx',document.querySelectorAll('.ntab')[2])"><span class="ei">📖</span><div><div>Lexique</div><div class="ed">80+ termes expliqués</div></div></button>
+          <button class="eb" onclick="showPg('lx',document.querySelectorAll('.ntab')[2])"><span class="ei">📖</span><div><div>Lexique</div><div class="ed">termes expliqués avec exemple</div></div></button>
           <button class="eb" onclick="fetchLive()"><span class="ei">🔄</span><div><div>Recharger la page</div><div class="ed">Prix serveur, maj toutes les heures</div></div></button>
         </div>
       </div>
@@ -500,7 +500,7 @@ header{background:var(--nv2);color:#fff;position:sticky;top:0;z-index:300;box-sh
 <div class="page" id="pg-lx">
   <div style="margin-bottom:20px;">
     <h2 style="font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--nv);margin-bottom:5px;">Lexique Financier — PEA Screener Pro</h2>
-    <p style="color:var(--mu);font-size:11px;">80+ termes expliqués simplement avec formules, seuils d'interprétation et exemples. Cliquer sur un terme pour développer.</p>
+    <p style="color:var(--mu);font-size:11px;">Les termes du screener et de ta méthode, chacun avec un petit exemple. Cliquer sur un terme pour développer.</p>
   </div>
   <input class="lex-search" type="text" placeholder="🔍 Rechercher... (P/E, ROIC, Moat, Piotroski, CAPEX...)" oninput="filterLex(this.value)">
   <div class="lex-cats">
