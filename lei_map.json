@@ -1,12 +1,28 @@
 {
+"1INNDE": null,
+"ABBNESW": null,
+"ABBNSW": null,
+"ABEV": null,
+"ABNB": null,
+"ABSWA": null,
 "ACA": {
 "lei": "969500TJ5KRTCJQWXH05",
 "name": "CREDIT AGRICOLE SA"
 },
+"ACLNSW": null,
+"ACM": null,
+"ACN": null,
+"ACSMC": {
+"lei": "95980020140005558665",
+"name": "ACS ACTIVIDADES DE CONSTRUCCION Y SERVICIOS, S.A."
+},
+"ADBE": null,
 "ADDT": {
 "lei": "549300QZ5U2IDRHPWL60",
 "name": "Addtech AB"
 },
+"ADP2": null,
+"AEGNAT": null,
 "AI": {
 "lei": "969500MMPQVHK671GT54",
 "name": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE"
@@ -15,23 +31,45 @@
 "lei": "MINO79WLOO247M1IL051",
 "name": "AIRBUS SE"
 },
+"AIT": null,
+"ALCMC": null,
 "ALFA": {
 "lei": "549300UCKT2UK88AG251",
 "name": "Alfa Laval AB"
 },
+"ALLE": null,
+"ALSNSW": null,
 "ALV": {
 "lei": "529900K9B0N5BT694847",
 "name": "Allianz SE"
 },
+"ALVDMPA": null,
+"AMAT": null,
+"AME": null,
 "AMS": {
 "lei": "9598004A3FTY3TEHHN09",
 "name": "AMADEUS IT GROUP SOCIEDAD ANONIMA"
 },
+"ANET": null,
+"ANF": null,
 "AOF": null,
+"APH": null,
+"AQST": {
+"lei": "549300CN568MD1JD3E40",
+"name": "AQ Group AB"
+},
+"ARCADAS": {
+"lei": "7245000UZH70GO047N03",
+"name": "ARCADIS N.V."
+},
 "ARGAN": {
 "lei": "529900FXM41XSCUSGH04",
 "name": "ARGAN"
 },
+"ARM": null,
+"ARTMC": null,
+"ARYNSW": null,
+"ASEWA": null,
 "ASM": {
 "lei": "7245001I22ND6ZFHX623",
 "name": "ASM International N.V."
@@ -52,30 +90,97 @@
 "lei": "969500Y7G9TY7Y24GN07",
 "name": "ALTEN"
 },
+"ATEAOL": {
+"lei": "5967007LIEEXZXINVS13",
+"name": "ATEA ASA"
+},
+"AUBPA": {
+"lei": "969500KGFSDP6UUKIA67",
+"name": "AUBAY"
+},
+"AVGO": null,
 "AXA": {
 "lei": "F5WCUMTUM4RKZ1MAIE39",
 "name": "AXA"
 },
+"AXFOST": {
+"lei": "549300QIXCZWZLHE8L05",
+"name": "Axfood AB"
+},
+"AZKMC": null,
+"AZN": {
+"lei": "PY6ZZQWO2IZFZC3IOL08",
+"name": "ASTRAZENECA PLC"
+},
+"BAHNBST": null,
+"BCHNSW": null,
+"BDXWA": null,
+"BETSBST": null,
+"BFTWA": null,
+"BHP": {
+"lei": "WZE1WSENV6JSZFK0JC28",
+"name": "BHP GROUP LIMITED"
+},
+"BIOGBST": null,
+"BKNG": null,
+"BKR": null,
 "BNP": {
 "lei": "R0MUWSFPU8MPRO8K5P83",
 "name": "BNP PARIBAS"
 },
+"BOHUSOL": null,
+"BONHROL": {
+"lei": "213800HOQE1B34SUA323",
+"name": "Bonheur ASA"
+},
+"BOUVOL": {
+"lei": "5967007LIEEXZXFMBC26",
+"name": "BOUVET ASA"
+},
+"BOX": null,
+"BR": null,
+"BRKNSW": null,
 "BVI": {
 "lei": "969500TPU5T3HA5D1F11",
 "name": "BUREAU VERITAS"
 },
+"CALTMI": {
+"lei": "815600110244AC18B089",
+"name": "CALTAGIRONE SOCIETA' PER AZIONI"
+},
+"CAMXST": {
+"lei": "5493003S6Z6VI7WYFQ06",
+"name": "Camurus AB"
+},
+"CAT": null,
+"CBAVMC": null,
+"CDNS": null,
 "CDRCK": {
 "lei": "222100P6D3QKU33LZQ72",
 "name": "Carmila"
 },
+"CENPA": {
+"lei": "89450054R82I99Y73N93",
+"name": "CRIT AB"
+},
+"CFRSW": null,
+"CHD": null,
+"CHE": null,
+"CHKP": null,
+"CIG": null,
+"CL": null,
+"CLASBST": null,
 "CMB": {
 "lei": "8156008BFBC06F53DD56",
 "name": "CEMBRE S.P.A."
 },
+"CMG": null,
+"CNM": null,
 "COFA": {
 "lei": "96950025N07LTJYFSN57",
 "name": "COFACE SA"
 },
+"COST": null,
 "COVIVIO": {
 "lei": "969500P8M3W2XX376054",
 "name": "COVIVIO"
@@ -84,18 +189,52 @@
 "lei": "815600115DA6E507AE33",
 "name": "CAREL INDUSTRIES S.P.A."
 },
+"CSCO": null,
+"CTAS": null,
+"CTNKF": null,
+"CTTLS": {
+"lei": "529900G4A1IKOKC22K56",
+"name": "CTT - CORREIOS DE PORTUGAL S.A."
+},
+"CVLT": null,
+"CW": null,
+"CWCDE": {
+"lei": "529900IDFHN9MQ3WUD64",
+"name": "CEWE Stiftung & Co. KGaA"
+},
+"CWCVI": {
+"lei": "529900IDFHN9MQ3WUD64",
+"name": "CEWE Stiftung & Co. KGaA"
+},
 "DASSAV": null,
+"DCI": null,
+"DECK": null,
+"DELL": null,
 "DG": {
 "lei": "213800WFQ334R8UXUG83",
 "name": "VINCI"
+},
+"DIAWA": null,
+"DIEBR": {
+"lei": "549300DV5KJ23OKVTW34",
+"name": "D'IETEREN GROUP"
 },
 "DLG": {
 "lei": "8156000E09A52C4F8A38",
 "name": "DE' LONGHI S.P.A."
 },
+"DOCS": null,
+"DOCVI": null,
+"DSGX": null,
 "DSY": {
 "lei": "96950065LBWY0APQIM86",
 "name": "DASSAULT SYSTEMES"
+},
+"EAT": null,
+"EBAY": null,
+"EINDE": {
+"lei": "529900WKT7CENGR4UW29",
+"name": "Einhell Germany AG"
 },
 "EL": {
 "lei": "549300M3VH1A3ER1TB49",
@@ -105,74 +244,285 @@
 "lei": "969500UX71LCE8MAY492",
 "name": "ELIS"
 },
+"EME": null,
+"EMMNSW": null,
+"EPAM": null,
 "EPI": {
 "lei": "5493004Q73OEYW1SPE91",
 "name": "Epiroc Aktiebolag"
+},
+"EPROBST": null,
+"EPROL": {
+"lei": "5967007LIEEXZXGA8G28",
+"name": "EUROPRIS ASA"
+},
+"EQSPA": {
+"lei": "96950066I7XVFGZI8L92",
+"name": "EQUASENS"
+},
+"ETN": null,
+"EUZDE": {
+"lei": "391200EUDABLUKXCKG48",
+"name": "Eckert & Ziegler Strahlen- und Medizintechnik AG"
+},
+"EUZGVI": {
+"lei": "391200EUDABLUKXCKG48",
+"name": "Eckert & Ziegler Strahlen- und Medizintechnik AG"
 },
 "EVD": {
 "lei": "529900FDHSN08UBJII80",
 "name": "CTS Eventim AG & Co. KGaA"
 },
+"EVISOMI": null,
+"EVOST": {
+"lei": "549300SUH6ZR1RF6TA88",
+"name": "Evolution AB (publ)"
+},
+"EXEL": null,
 "EXENS": {
 "lei": "969500R3AKTPEDO9EG76",
 "name": "EXOSENS"
 },
+"EXLS": null,
+"FAGRBR": {
+"lei": "549300TRKRUFK2RRG779",
+"name": "Fagron"
+},
+"FAST": null,
+"FDJVI": {
+"lei": "969500R4CLSQFTYYI535",
+"name": "LA FRANCAISE DES JEUX"
+},
+"FFIV": null,
+"FIX": null,
+"FOX": null,
+"FRAMERYHE": null,
+"FSS": null,
+"FTI": null,
+"FTNT": null,
+"G": null,
 "G1A": null,
+"GBFDE": {
+"lei": "529900H0HULEN2BZ4604",
+"name": "Bilfinger SE"
+},
+"GD": null,
+"GE": null,
+"GEHC": null,
 "GFC": {
 "lei": "9695003E4MMA10IBTR26",
 "name": "GECINA"
 },
+"GFTDE": {
+"lei": "5299002FNBSGW23ULF72",
+"name": "GFT Technologies SE"
+},
+"GFTVI": {
+"lei": "5299002FNBSGW23ULF72",
+"name": "GFT Technologies SE"
+},
+"GIB": null,
+"GOFOREHE": {
+"lei": "743700JIW1LAUZDH9012",
+"name": "Gofore Oyj"
+},
+"GOOGL": null,
+"GPPWA": null,
+"GRKHE": {
+"lei": "743700Y8QWC1FT6R0F34",
+"name": "GRK Infra Oyj"
+},
+"GRMN": null,
 "GTT": {
 "lei": "969500BVOHVZUUFWDT54",
 "name": "GAZTRANSPORT ET TECHNIGAZ"
 },
+"GWW": null,
+"HACKST": null,
+"HAFN": null,
+"HAGDE": {
+"lei": "894500686FYLLZD3M624",
+"name": "HENSOLDT AG"
+},
+"HAL": null,
+"HARVIAHE": {
+"lei": "7437002ULTBOWQQOXL69",
+"name": "Harvia Oyj"
+},
+"HEI": null,
 "HEIJM": {
 "lei": "724500OUE3PCA809DZ79",
 "name": "Koninklijke Heijmans N.V."
+},
+"HEMST": {
+"lei": "5493008VIU67J3HUAR07",
+"name": "Hemnet Group AB (publ)"
+},
+"HMSST": {
+"lei": "549300MOY2FDUUDIQ179",
+"name": "HMS Networks AB"
 },
 "HO": {
 "lei": "529900FNDVTQJOVVPZ19",
 "name": "THALES"
 },
+"HONA": null,
+"HOTDE": {
+"lei": "529900Y25S8NZIYTT924",
+"name": "HOCHTIEF Aktiengesellschaft"
+},
+"HOTVI": {
+"lei": "529900Y25S8NZIYTT924",
+"name": "HOCHTIEF Aktiengesellschaft"
+},
+"HRB": null,
+"HSY": null,
+"HUBB": null,
+"HWM": null,
+"IDCC": null,
+"IDXX": null,
+"IEGMI": {
+"lei": "815600F4A5F5D3BCD688",
+"name": "ITALIAN EXHIBITION GROUP S.P.A."
+},
+"IESC": null,
+"IHG": {
+"lei": "2138007ZFQYRUSLU3J98",
+"name": "INTERCONTINENTAL HOTELS GROUP PLC"
+},
+"INCY": null,
+"INDTST": {
+"lei": "549300FISLQ6CEFP1867",
+"name": "Indutrade Aktiebolag"
+},
+"INFY": null,
 "INTERPARFUMS": {
 "lei": "969500SARWF33OPQED48",
 "name": "INTERPARFUMS"
 },
+"INTU": null,
 "IPSEN": {
 "lei": "549300M6SGDPB4Z94P11",
 "name": "IPSEN"
 },
+"IR5BIR": {
+"lei": "635400FQKB6QXERQOC74",
+"name": "Irish Continental Group plc"
+},
+"ISSCO": {
+"lei": "213800LEZA58SZNCBN19",
+"name": "ISS A/S"
+},
+"ITT": null,
 "ITX": {
 "lei": "549300TTCXZOGZM2EY83",
 "name": "INDUSTRIA DE DISEÑO TEXTIL, S.A."
 },
+"IVUDE": {
+"lei": "3912003JRJW9PA9BPQ22",
+"name": "IVU Traffic Technologies AG"
+},
+"IVUVI": {
+"lei": "3912003JRJW9PA9BPQ22",
+"name": "IVU Traffic Technologies AG"
+},
+"JKHY": null,
 "JMT": null,
+"KAREAT": null,
 "KBX": null,
+"KCRHE": {
+"lei": "549300EF0CDEQZBMA096",
+"name": "Konecranes Oyj"
+},
+"KITOL": {
+"lei": "5967007LIEEXZXIG6009",
+"name": "KITRON ASA"
+},
+"KLAC": null,
 "KLPI": {
 "lei": "969500PB4U31KEFHZ621",
 "name": "KLEPIERRE"
+},
+"KO": {
+"lei": "549300EFP3TNG7JGVE49",
+"name": "Coca-Cola HBC AG"
 },
 "KRI": null,
 "KRN": {
 "lei": "529900NY2GSZWWUBW049",
 "name": "KRONES Aktiengesellschaft"
 },
+"KRXIR": {
+"lei": "635400HM7V74SUB9OG75",
+"name": "Kingspan Group plc"
+},
 "KSB3": null,
+"KSPI": null,
 "LAGR": {
 "lei": "5493002L6I4YHANEYR87",
 "name": "Lagercrantz Group Aktiebolag"
 },
+"LAUR": null,
+"LBWWA": null,
+"LDOS": null,
+"LECO": null,
+"LIFCOBST": null,
+"LIMEST": {
+"lei": "5493008UUFYDF3ZTHC65",
+"name": "Lime Technologies AB (publ)"
+},
+"LMT": null,
+"LNTH": null,
 "LOTB": {
 "lei": "5493004C0K34IFI67I03",
 "name": "LOTUS BAKERIES"
 },
+"LPPWA": null,
 "LR": {
 "lei": "969500XXRPGD7HCAFA90",
 "name": "LEGRAND"
 },
+"LRCX": null,
+"LYV": null,
+"M12DE": null,
+"MA": null,
+"MAIREMI": {
+"lei": "815600D85A61200A1B83",
+"name": "MAIRE S.P.A."
+},
+"MANH": null,
+"MBBDE": {
+"lei": "967600M9R4EFYLPNWR50",
+"name": "MBB SE"
+},
+"MCAPST": {
+"lei": "549300NGO5XAJ6TL8719",
+"name": "MedCap AB (publ)"
+},
+"MEDIOL": {
+"lei": "5967007LIEEXZXJOX483",
+"name": "MEDISTIM ASA"
+},
+"MEKKOHE": null,
+"MELI": null,
+"META": null,
+"MMGRBST": null,
+"MNST": null,
 "MONC": {
 "lei": "815600EBD7FB00525B20",
 "name": "MONCLER S.P.A."
+},
+"MOURBR": {
+"lei": "549300FY5W1G7ZEF9D98",
+"name": "MOURY CONSTRUCT"
+},
+"MRK": null,
+"MSA": null,
+"MSI": null,
+"MTHHCO": null,
+"MULTIOL": {
+"lei": "5967007LIEEXZXG9GO07",
+"name": "Multiconsult ASA"
 },
 "MYCR": {
 "lei": "549300S5CCFESE4C6Y07",
@@ -183,23 +533,59 @@
 "name": "Nagarro SE"
 },
 "NEM": null,
+"NEUWA": null,
+"NFLX": null,
+"NORBTOL": {
+"lei": "254900C08RCMXVZYFY97",
+"name": "NORBIT ASA"
+},
+"NORCOOL": {
+"lei": "635400VFBLRSFRXLGQ03",
+"name": "Norconsult ASA"
+},
 "NOVO": {
 "lei": "549300DAQ1CVT6CXN342",
 "name": "NOVO NORDISK A/S"
 },
+"NRESTST": null,
 "NRO": {
 "lei": "9695008Y07TSG8SZCG57",
 "name": "NEURONES"
 },
 "NSIS": null,
+"NTES": null,
+"NTGCO": {
+"lei": "529900PZWXV8JX89K947",
+"name": "NTG Nordic Transport Group A/S"
+},
+"NVDA": null,
+"NVMI": null,
+"NVS": null,
+"NWGWA": null,
+"NXT": null,
+"NYT": null,
+"OEMBST": null,
 "OR": {
 "lei": "529900JI1GG6F7RKVI53",
 "name": "L'OREAL"
 },
+"ORLY": null,
 "ORNBV": {
 "lei": "74370029VAHCXDR7B745",
 "name": "Orion Oyj"
 },
+"OROXMI": null,
+"PANW": null,
+"PAYC": null,
+"PAYX": null,
+"PCTY": null,
+"PDD": null,
+"PDXST": null,
+"PENOL": {
+"lei": "5967007LIEEXZXGWM030",
+"name": "PANORO ENERGY ASA"
+},
+"PH": null,
 "PLNW": {
 "lei": "969500356FAUM2X41Q59",
 "name": "PLANISWARE"
@@ -208,18 +594,35 @@
 "lei": "213800RQNIQT48SEEO85",
 "name": "PLUXEE N.V."
 },
+"PLWWA": null,
 "PNDORA": {
 "lei": "5299007OWYZ6I1E46843",
 "name": "Pandora A/S"
 },
+"POWL": null,
+"PUIGMC": null,
+"PUUILOHE": {
+"lei": "743700UJUT6FWHBXPR69",
+"name": "Puuilo Oyj"
+},
+"QLYS": null,
 "RAA": {
 "lei": "529900K139N6UFJ1A758",
 "name": "RATIONAL Aktiengesellschaft"
 },
+"RAYBST": null,
+"RBREVI": null,
 "RBT": null,
+"RBWWA": null,
 "REC": {
 "lei": "815600FBF92FD3531704",
 "name": "RECORDATI INDUSTRIA CHIMICA E FARMACEUTICA S.P.A. IN BREVE RECORDATI S.P.A."
+},
+"REG1VHE": null,
+"REGN": null,
+"RELX": {
+"lei": "549300WSX3VBUFFJOO66",
+"name": "RELX PLC"
 },
 "REY": {
 "lei": "815600DAEFB0388F3521",
@@ -229,48 +632,130 @@
 "lei": "5299001OU9CSE29O6S05",
 "name": "Rheinmetall Aktiengesellschaft"
 },
+"RL": null,
+"RMBS": null,
+"RMD": null,
 "RMS": {
 "lei": "969500Y4IJGHJE2MTJ13",
 "name": "HERMES INTERNATIONAL"
 },
+"ROL": null,
+"ROST": null,
+"RVRCST": {
+"lei": "549300YU7003VHQV3J57",
+"name": "RVRC Holding AB"
+},
 "RWAY": null,
+"RY4CDE": null,
+"RYAAY": null,
+"RYAIR": null,
 "SAF": {
 "lei": "969500UIC89GT3UL7L24",
 "name": "SAFRAN"
 },
 "SCBSM": null,
+"SCCO": null,
+"SCMNSW": null,
+"SDGPA": null,
 "SECT": {
 "lei": "549300R9ZBT8YSFFK266",
 "name": "SECTRA Aktiebolag"
 },
+"SFM": null,
+"SGHC": null,
+"SGNWA": null,
+"SHOWA": {
+"lei": "259400HA8L5O5KQEIV88",
+"name": "SHOPER SPÓŁKA AKCYJNA"
+},
+"SILEXST": null,
+"SLB": null,
+"SNTIAOL": null,
+"SOMAOL": null,
+"SPABR": null,
+"SSD": null,
+"STRL": null,
+"STRVI": {
+"lei": "529900TYYSRJH2VJSP60",
+"name": "STRABAG SE"
+},
+"STX": null,
 "SU": {
 "lei": "969500A1YF1XUYYXS284",
 "name": "SCHNEIDER ELECTRIC SE"
 },
+"SUNSW": null,
+"SWECAST": null,
 "TE": {
 "lei": "724500FLODI49NSCIP70",
 "name": "Technip Energies N.V."
 },
+"TEL1LVS": null,
+"TEMNSW": null,
 "TGYM": {
 "lei": "815600B9149F66E77F76",
 "name": "TECHNOGYM S.P.A."
 },
+"THC": null,
+"TIMADE": {
+"lei": "391200EIRBXU4TUMMQ46",
+"name": "ZEAL Network SE"
+},
+"TJX": null,
+"TORWA": null,
+"TPR": null,
+"TREMC": null,
+"TT": null,
 "TTE": {
 "lei": "529900S21EQ1BO4ESM68",
 "name": "TotalEnergies SE"
 },
+"TTEK": null,
+"TUI1DE": {
+"lei": "529900SL2WSPV293B552",
+"name": "TUI AG"
+},
+"TXRH": null,
+"ULS": null,
+"ULTA": null,
 "UMG": {
 "lei": "724500GJBUL3D9TW9Y18",
 "name": "Universal Music Group N.V."
 },
+"UNH": null,
 "URW": {
 "lei": "969500SHQITWXSIS7N89",
 "name": "UNIBAIL-RODAMCO-WESTFIELD SE"
 },
+"UTHR": null,
+"VLTO": null,
+"VOSDE": {
+"lei": "5299003HAEOUVX3HWX43",
+"name": "Vossloh Aktiengesellschaft"
+},
+"VRCWA": null,
+"VRSK": null,
+"VRSN": null,
+"VRT": null,
+"VUPA": null,
+"WFRD": null,
 "WKL": {
 "lei": "724500TEM53I0U077B74",
 "name": "Wolters Kluwer N.V."
 },
+"WMT": null,
 "WRT1V": null,
-"YSN": null
+"WSE": {
+"lei": "213800LD9XCHIC1C4V71",
+"name": "WISE PLC"
+},
+"WTS": null,
+"WWD": null,
+"XD4DE": {
+"lei": "529900TYYSRJH2VJSP60",
+"name": "STRABAG SE"
+},
+"YSN": null,
+"ZABWA": null,
+"ZZBST": null
 }
