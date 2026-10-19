@@ -3844,4 +3844,13 @@ const ETF=[
 {ticker:'DCAM',price:6.34,thesis:'Fiche incomplete : these d investissement a rediger avant tout achat.',contra:'Risques non documentes.',track:[],name:'Amundi PEA Monde (MSCI World)',emetteur:'Amundi',type:'Actions Monde',isin:'FR001400U5Q4',frais:0.20,perf1y:null,perf5y:null,encours:'1.25Md€',note:'A',
  desc:'MSCI World (~1 300 grandes entreprises des pays developpes, ~70 % Etats-Unis) via swap, eligible PEA. Socle du portefeuille (cible 80 % de la poche ETF).',
  avantages:['Frais 0,20 % (parmi les plus bas)','Eligible PEA','Diversification mondiale'],
- risques:['~25 % sur 10 geants de la tech US','Replication synthetique (swap)']}];;
+ risques:['~25 % sur 10 geants de la tech US','Replication synthetique (swap)']},
+{ticker:'EUNL',price:0,thesis:'',contra:'',track:[],name:'iShares Core MSCI World (compte-titres)',emetteur:'iShares',type:'Actions Monde',isin:'IE00B4L5Y983',frais:0.20,perf1y:null,perf5y:null,encours:'—',note:'CTO',
+ desc:'Meme indice que l ETF Monde du PEA, detenu sur le compte-titres (non eligible PEA).',
+ avantages:['Frais 0,20 %','Replication physique'],risques:['Doublon de l ETF Monde du PEA','Plus-values taxees (compte-titres)']},
+{ticker:'SXR8',price:0,thesis:'',contra:'',track:[],name:'iShares Core S&P 500 (compte-titres)',emetteur:'iShares',type:'Actions Etats-Unis',isin:'IE00B5BMR087',frais:0.07,perf1y:null,perf5y:null,encours:'—',note:'CTO',
+ desc:'500 grandes entreprises americaines, detenu sur le compte-titres.',
+ avantages:['Frais 0,07 %','Replication physique'],risques:['Recoupe ~70 % de l ETF Monde','Concentration tech US']},
+{ticker:'XS6R',price:0,thesis:'',contra:'',track:[],name:'Xtrackers MSCI Europe Utilities Screened (compte-titres)',emetteur:'Xtrackers',type:'Actions Europe services aux collectivites',isin:'LU0292104899',frais:0.17,perf1y:null,perf5y:null,encours:'87M€',note:'CTO',
+ desc:'Electricite, gaz, eau en Europe : secteur defensif, peu correle a la tech.',
+ avantages:['Frais 0,17 %','Diversification hors tech'],risques:['Sensible aux taux d interet','Petit encours (87 M€)']}];;

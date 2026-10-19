@@ -51,7 +51,10 @@ YF_MAP = {
 # (approximatif, a revoir si l'ecart de change devient significatif)
 NON_EUR = {'NOVO-B.CO': 7.46}
 
-ETF_TICKERS = {'CW8','PAEEM','PANX','PCEU','GOLDN','ESE','LYPS','RS2K','PINR','PTPXE','DCAM'}
+ETF_TICKERS = {'CW8','PAEEM','PANX','PCEU','GOLDN','ESE','LYPS','RS2K','PINR','PTPXE','DCAM',
+               'EUNL','SXR8','XS6R'}
+# 19/10/2026 : ETF du compte-titres, cotes a Xetra (les autres : Paris, .PA)
+ETF_YF = {'EUNL': 'EUNL.DE', 'SXR8': 'SXR8.DE', 'XS6R': 'XS6R.DE'}
 
 
 # Fiches retirees de data.js le 04/10/2026 (doublons, societes retirees de

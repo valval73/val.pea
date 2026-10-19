@@ -1806,7 +1806,7 @@ def update_etf_prices(path='data.js'):
     """05/10/2026 : les ETF n'avaient aucun cours -> le portefeuille comptait
     tes ETF a leur prix d'achat (gain/perte toujours 0) et sous-estimait leur
     poids. On ecrit price:X dans chaque fiche ETF (cotation Paris, .PA)."""
-    from tickers import ETF_TICKERS
+    from tickers import ETF_TICKERS, ETF_YF
     with open(path, encoding='utf-8') as f:
         content = f.read()
     start = content.find('const ETF=[')
@@ -1815,7 +1815,7 @@ def update_etf_prices(path='data.js'):
     n = 0
     for tk in sorted(ETF_TICKERS):
         try:
-            h = yf.Ticker(f'{tk}.PA').history(period='5d')
+            h = yf.Ticker(ETF_YF.get(tk, f'{tk}.PA')).history(period='5d')
             if h.empty:
                 continue
             px = round(float(h['Close'].iloc[-1]), 3)
