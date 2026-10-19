@@ -1,8 +1,8 @@
 {
 "date": "2026-10-19",
 "scope": 356,
-"compared": 103,
-"ok": 95,
+"compared": 98,
+"ok": 90,
 "res": {
 "1INNDE": {
 "status": "societe introuvable"
@@ -14,10 +14,10 @@
 "status": "societe introuvable"
 },
 "ABEV": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ABNB": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ABSWA": {
 "status": "societe introuvable"
@@ -30,16 +30,17 @@
 "checked": [],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ACLNSW": {
 "status": "societe introuvable"
 },
 "ACM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ACN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ACSMC": {
 "status": "compare",
@@ -55,10 +56,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 301
+"cash_apres_loyers": 301,
+"histo_10a": null
 },
 "ADBE": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ADDT": {
 "status": "compare",
@@ -75,10 +77,11 @@
 ],
 "issues": [],
 "roic_officiel": 17.5,
-"cash_apres_loyers": 130
+"cash_apres_loyers": 130,
+"histo_10a": null
 },
 "ADP2": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AEGNAT": {
 "status": "societe introuvable"
@@ -97,7 +100,8 @@
 ],
 "issues": [],
 "roic_officiel": 11.1,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "AIR": {
 "status": "compare",
@@ -112,10 +116,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "AIT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ALCMC": {
 "status": "societe introuvable"
@@ -134,10 +139,11 @@
 ],
 "issues": [],
 "roic_officiel": 17.9,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ALLE": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ALSNSW": {
 "status": "societe introuvable"
@@ -150,10 +156,10 @@
 "status": "societe introuvable"
 },
 "AMAT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AME": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AMS": {
 "status": "compare",
@@ -168,19 +174,20 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ANET": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ANF": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AOF": {
 "status": "societe introuvable"
 },
 "APH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AQST": {
 "status": "compare",
@@ -195,7 +202,8 @@
 ],
 "issues": [],
 "roic_officiel": 15.8,
-"cash_apres_loyers": 132
+"cash_apres_loyers": 132,
+"histo_10a": null
 },
 "ARCADAS": {
 "status": "compare",
@@ -212,7 +220,8 @@
 ],
 "issues": [],
 "roic_officiel": 18.0,
-"cash_apres_loyers": 150
+"cash_apres_loyers": 150,
+"histo_10a": null
 },
 "ARGAN": {
 "status": "compare",
@@ -225,10 +234,11 @@
 ],
 "issues": [],
 "roic_officiel": 6.2,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ARM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ARTMC": {
 "status": "societe introuvable"
@@ -252,7 +262,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ASML": {
 "status": "compare",
@@ -265,7 +276,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ATCO": {
 "status": "compare",
@@ -280,7 +292,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ATEAOL": {
 "status": "compare",
@@ -296,7 +309,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 210
+"cash_apres_loyers": 210,
+"histo_10a": null
 },
 "AUBPA": {
 "status": "compare",
@@ -313,10 +327,11 @@
 ],
 "issues": [],
 "roic_officiel": 16.3,
-"cash_apres_loyers": 102
+"cash_apres_loyers": 102,
+"histo_10a": null
 },
 "AVGO": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "AXA": {
 "status": "compare",
@@ -329,7 +344,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "AXFOST": {
 "status": "compare",
@@ -343,29 +359,17 @@
 "cash apres loyers 2024"
 ],
 "issues": [
-"cash apres loyers 74 % (2024, loyers 42 % du flux d'exploitation) contre 174 % avec Yahoo"
+"cash après loyers 74 % (2024, loyers = 42 % du flux d'exploitation) contre 174 % selon Yahoo : sous le seuil de 80 %"
 ],
 "roic_officiel": 39.0,
-"cash_apres_loyers": 74
+"cash_apres_loyers": 74,
+"histo_10a": null
 },
 "AZKMC": {
 "status": "societe introuvable"
 },
 "AZN": {
-"status": "compare",
-"lei": "PY6ZZQWO2IZFZC3IOL08",
-"entity": "ASTRAZENECA PLC",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 15.2,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "BAHNBST": {
 "status": "societe introuvable"
@@ -383,29 +387,16 @@
 "status": "societe introuvable"
 },
 "BHP": {
-"status": "compare",
-"lei": "WZE1WSENV6JSZFK0JC28",
-"entity": "BHP GROUP LIMITED",
-"period_end": "2026-06-30",
-"checked": [
-"CA 2026",
-"CA 2025",
-"resultat net 2026",
-"resultat net 2025",
-"ROIC 2026"
-],
-"issues": [],
-"roic_officiel": 31.5,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "BIOGBST": {
 "status": "societe introuvable"
 },
 "BKNG": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "BKR": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "BNP": {
 "status": "annees non comparables",
@@ -415,7 +406,8 @@
 "checked": [],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "BOHUSOL": {
 "status": "societe introuvable"
@@ -434,7 +426,8 @@
 ],
 "issues": [],
 "roic_officiel": 51.2,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "BOUVOL": {
 "status": "compare",
@@ -449,13 +442,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "BOX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "BR": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "BRKNSW": {
 "status": "societe introuvable"
@@ -474,7 +468,8 @@
 ],
 "issues": [],
 "roic_officiel": 27.2,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CALTMI": {
 "status": "compare",
@@ -489,7 +484,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CAMXST": {
 "status": "compare",
@@ -502,16 +498,17 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CAT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CBAVMC": {
 "status": "societe introuvable"
 },
 "CDNS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CDRCK": {
 "status": "compare",
@@ -524,7 +521,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CENPA": {
 "status": "compare",
@@ -536,25 +534,26 @@
 ],
 "issues": [],
 "roic_officiel": 14.7,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CFRSW": {
 "status": "societe introuvable"
 },
 "CHD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CHE": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CHKP": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CIG": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CLASBST": {
 "status": "societe introuvable"
@@ -570,13 +569,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CMG": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CNM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "COFA": {
 "status": "compare",
@@ -589,10 +589,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "COST": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "COVIVIO": {
 "status": "compare",
@@ -605,7 +606,8 @@
 ],
 "issues": [],
 "roic_officiel": 5.3,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CRL": {
 "status": "compare",
@@ -620,13 +622,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "CSCO": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CTAS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CTNKF": {
 "status": "societe introuvable"
@@ -646,13 +649,14 @@
 "CA 2022 officiel 789 M contre Yahoo 863 M"
 ],
 "roic_officiel": 11.7,
-"cash_apres_loyers": 254
+"cash_apres_loyers": 254,
+"histo_10a": null
 },
 "CVLT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CW": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "CWCDE": {
 "status": "aucun rapport lisible",
@@ -666,13 +670,13 @@
 "status": "societe introuvable"
 },
 "DCI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "DECK": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "DELL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "DG": {
 "status": "compare",
@@ -688,7 +692,8 @@
 ],
 "issues": [],
 "roic_officiel": 34.7,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "DIAWA": {
 "status": "societe introuvable"
@@ -710,7 +715,8 @@
 "ROIC officiel 12.3 % (2025) contre 20.4 % calcule avec Yahoo"
 ],
 "roic_officiel": 12.3,
-"cash_apres_loyers": 103
+"cash_apres_loyers": 103,
+"histo_10a": null
 },
 "DLG": {
 "status": "compare",
@@ -726,16 +732,17 @@
 ],
 "issues": [],
 "roic_officiel": 28.2,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "DOCS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "DOCVI": {
 "status": "societe introuvable"
 },
 "DSGX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "DSY": {
 "status": "compare",
@@ -751,13 +758,14 @@
 ],
 "issues": [],
 "roic_officiel": 17.5,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EAT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EBAY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EINDE": {
 "status": "aucun rapport lisible",
@@ -778,7 +786,8 @@
 ],
 "issues": [],
 "roic_officiel": 5.7,
-"cash_apres_loyers": 167
+"cash_apres_loyers": 167,
+"histo_10a": null
 },
 "ELIS": {
 "status": "compare",
@@ -794,16 +803,17 @@
 ],
 "issues": [],
 "roic_officiel": 7.8,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EME": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EMMNSW": {
 "status": "societe introuvable"
 },
 "EPAM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EPI": {
 "status": "compare",
@@ -819,7 +829,8 @@
 ],
 "issues": [],
 "roic_officiel": 16.8,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EPROBST": {
 "status": "societe introuvable"
@@ -838,10 +849,11 @@
 "cash apres loyers 2024"
 ],
 "issues": [
-"cash apres loyers 71 % (2024, loyers 51 % du flux d'exploitation) contre 152 % avec Yahoo"
+"cash après loyers 71 % (2024, loyers = 51 % du flux d'exploitation) contre 152 % selon Yahoo : sous le seuil de 80 %"
 ],
 "roic_officiel": 19.4,
-"cash_apres_loyers": 71
+"cash_apres_loyers": 71,
+"histo_10a": null
 },
 "EQSPA": {
 "status": "compare",
@@ -854,10 +866,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ETN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EUZDE": {
 "status": "aucun rapport lisible",
@@ -885,13 +898,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EXEL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "EXLS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FAGRBR": {
 "status": "compare",
@@ -907,13 +921,14 @@
 "cash apres loyers 2024"
 ],
 "issues": [
-"cash apres loyers 71 % (2024, loyers 11 % du flux d'exploitation) contre 119 % avec Yahoo"
+"cash après loyers 71 % (2024, loyers = 11 % du flux d'exploitation) contre 119 % selon Yahoo : sous le seuil de 80 %"
 ],
 "roic_officiel": 13.5,
-"cash_apres_loyers": 71
+"cash_apres_loyers": 71,
+"histo_10a": null
 },
 "FAST": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FDJVI": {
 "status": "compare",
@@ -928,31 +943,32 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "FFIV": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FIX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FOX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FRAMERYHE": {
 "status": "societe introuvable"
 },
 "FSS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FTI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "FTNT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "G": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "G1A": {
 "status": "societe introuvable"
@@ -962,13 +978,13 @@
 "lei": "529900H0HULEN2BZ4604"
 },
 "GD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GE": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GEHC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GFC": {
 "status": "compare",
@@ -981,7 +997,8 @@
 ],
 "issues": [],
 "roic_officiel": 2.8,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "GFTDE": {
 "status": "aucun rapport lisible",
@@ -992,7 +1009,7 @@
 "lei": "5299002FNBSGW23ULF72"
 },
 "GIB": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GOFOREHE": {
 "status": "compare",
@@ -1006,10 +1023,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 199
+"cash_apres_loyers": 199,
+"histo_10a": null
 },
 "GOOGL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GPPWA": {
 "status": "societe introuvable"
@@ -1030,10 +1048,11 @@
 "ROIC officiel 19.5 % (2025) contre 46.7 % calcule avec Yahoo"
 ],
 "roic_officiel": 19.5,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "GRMN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "GTT": {
 "status": "compare",
@@ -1048,23 +1067,24 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "GWW": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HACKST": {
 "status": "societe introuvable"
 },
 "HAFN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HAGDE": {
 "status": "aucun rapport lisible",
 "lei": "894500686FYLLZD3M624"
 },
 "HAL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HARVIAHE": {
 "status": "compare",
@@ -1080,10 +1100,11 @@
 ],
 "issues": [],
 "roic_officiel": 16.0,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HEI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HEIJM": {
 "status": "compare",
@@ -1096,7 +1117,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HEMST": {
 "status": "compare",
@@ -1109,7 +1131,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HMSST": {
 "status": "compare",
@@ -1124,7 +1147,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HO": {
 "status": "compare",
@@ -1140,10 +1164,11 @@
 ],
 "issues": [],
 "roic_officiel": 16.0,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HONA": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HOTDE": {
 "status": "aucun rapport lisible",
@@ -1154,22 +1179,22 @@
 "lei": "529900Y25S8NZIYTT924"
 },
 "HRB": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HSY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HUBB": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "HWM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "IDCC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "IDXX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "IEGMI": {
 "status": "compare",
@@ -1189,29 +1214,17 @@
 "resultat net 2024 officiel 0 M contre Yahoo 32 M"
 ],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "IESC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "IHG": {
-"status": "compare",
-"lei": "2138007ZFQYRUSLU3J98",
-"entity": "INTERCONTINENTAL HOTELS GROUP PLC",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 271.5,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "INCY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "INDTST": {
 "status": "compare",
@@ -1227,10 +1240,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 112
+"cash_apres_loyers": 112,
+"histo_10a": null
 },
 "INFY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "INTERPARFUMS": {
 "status": "compare",
@@ -1246,10 +1260,11 @@
 ],
 "issues": [],
 "roic_officiel": 21.0,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "INTU": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "IPSEN": {
 "status": "compare",
@@ -1264,7 +1279,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "IR5BIR": {
 "status": "compare",
@@ -1278,7 +1294,8 @@
 ],
 "issues": [],
 "roic_officiel": 25.3,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ISSCO": {
 "status": "compare",
@@ -1295,10 +1312,11 @@
 ],
 "issues": [],
 "roic_officiel": 12.8,
-"cash_apres_loyers": 119
+"cash_apres_loyers": 119,
+"histo_10a": null
 },
 "ITT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ITX": {
 "status": "compare",
@@ -1314,7 +1332,8 @@
 ],
 "issues": [],
 "roic_officiel": 42.6,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "IVUDE": {
 "status": "aucun rapport lisible",
@@ -1325,7 +1344,7 @@
 "lei": "3912003JRJW9PA9BPQ22"
 },
 "JKHY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "JMT": {
 "status": "societe introuvable"
@@ -1350,7 +1369,8 @@
 ],
 "issues": [],
 "roic_officiel": 21.1,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "KITOL": {
 "status": "compare",
@@ -1365,13 +1385,14 @@
 "cash apres loyers 2024"
 ],
 "issues": [
-"cash apres loyers 76 % (2024, loyers 30 % du flux d'exploitation) contre 110 % avec Yahoo"
+"cash après loyers 76 % (2024, loyers = 30 % du flux d'exploitation) contre 110 % selon Yahoo : sous le seuil de 80 %"
 ],
 "roic_officiel": null,
-"cash_apres_loyers": 76
+"cash_apres_loyers": 76,
+"histo_10a": null
 },
 "KLAC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "KLPI": {
 "status": "compare",
@@ -1384,19 +1405,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "KO": {
-"status": "compare",
-"lei": "549300EFP3TNG7JGVE49",
-"entity": "Coca-Cola HBC AG",
-"period_end": "2025-12-31",
-"checked": [
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 22.2,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "KRI": {
 "status": "societe introuvable"
@@ -1417,13 +1430,14 @@
 ],
 "issues": [],
 "roic_officiel": 12.3,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "KSB3": {
 "status": "societe introuvable"
 },
 "KSPI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LAGR": {
 "status": "compare",
@@ -1437,19 +1451,20 @@
 ],
 "issues": [],
 "roic_officiel": 17.4,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "LAUR": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LBWWA": {
 "status": "societe introuvable"
 },
 "LDOS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LECO": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LIFCOBST": {
 "status": "societe introuvable"
@@ -1469,13 +1484,14 @@
 ],
 "issues": [],
 "roic_officiel": 28.9,
-"cash_apres_loyers": 114
+"cash_apres_loyers": 114,
+"histo_10a": null
 },
 "LMT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LNTH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LOTB": {
 "status": "compare",
@@ -1490,7 +1506,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "LPPWA": {
 "status": "societe introuvable"
@@ -1509,19 +1526,20 @@
 ],
 "issues": [],
 "roic_officiel": 11.8,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "LRCX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "LYV": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "M12DE": {
 "status": "societe introuvable"
 },
 "MA": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MAIREMI": {
 "status": "compare",
@@ -1536,10 +1554,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "MANH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MBBDE": {
 "status": "aucun rapport lisible",
@@ -1558,7 +1577,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "MEDIOL": {
 "status": "compare",
@@ -1571,22 +1591,23 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "MEKKOHE": {
 "status": "societe introuvable"
 },
 "MELI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "META": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MMGRBST": {
 "status": "societe introuvable"
 },
 "MNST": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MONC": {
 "status": "compare",
@@ -1602,7 +1623,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 80
+"cash_apres_loyers": 80,
+"histo_10a": null
 },
 "MOURBR": {
 "status": "compare",
@@ -1616,16 +1638,17 @@
 ],
 "issues": [],
 "roic_officiel": 79.9,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "MRK": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MSA": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MSI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "MTHHCO": {
 "status": "societe introuvable"
@@ -1645,7 +1668,8 @@
 ],
 "issues": [],
 "roic_officiel": 28.5,
-"cash_apres_loyers": 119
+"cash_apres_loyers": 119,
+"histo_10a": null
 },
 "MYCR": {
 "status": "compare",
@@ -1660,7 +1684,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "NA9": {
 "status": "aucun rapport lisible",
@@ -1673,7 +1698,7 @@
 "status": "societe introuvable"
 },
 "NFLX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NORBTOL": {
 "status": "compare",
@@ -1689,7 +1714,8 @@
 ],
 "issues": [],
 "roic_officiel": 18.2,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "NORCOOL": {
 "status": "compare",
@@ -1705,7 +1731,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 200
+"cash_apres_loyers": 200,
+"histo_10a": null
 },
 "NOVO": {
 "status": "compare",
@@ -1718,7 +1745,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "NRESTST": {
 "status": "societe introuvable"
@@ -1738,10 +1766,11 @@
 ],
 "issues": [],
 "roic_officiel": 94.5,
-"cash_apres_loyers": 121
+"cash_apres_loyers": 121,
+"histo_10a": null
 },
 "NTES": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NTGCO": {
 "status": "compare",
@@ -1757,25 +1786,26 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 103
+"cash_apres_loyers": 103,
+"histo_10a": null
 },
 "NVDA": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NVMI": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NVS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NWGWA": {
 "status": "societe introuvable"
 },
 "NXT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "NYT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "OEMBST": {
 "status": "societe introuvable"
@@ -1794,10 +1824,11 @@
 ],
 "issues": [],
 "roic_officiel": 19.0,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ORLY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ORNBV": {
 "status": "compare",
@@ -1813,25 +1844,26 @@
 ],
 "issues": [],
 "roic_officiel": 33.1,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "OROXMI": {
 "status": "societe introuvable"
 },
 "PANW": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PAYC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PAYX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PCTY": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PDD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PDXST": {
 "status": "societe introuvable"
@@ -1849,10 +1881,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "PH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PLNW": {
 "status": "compare",
@@ -1867,7 +1900,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "PLWWA": {
 "status": "societe introuvable"
@@ -1882,10 +1916,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "POWL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "PUIGMC": {
 "status": "societe introuvable"
@@ -1905,10 +1940,11 @@
 ],
 "issues": [],
 "roic_officiel": 41.5,
-"cash_apres_loyers": 96
+"cash_apres_loyers": 96,
+"histo_10a": null
 },
 "QLYS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RAA": {
 "status": "aucun rapport lisible",
@@ -1937,22 +1973,10 @@
 "status": "societe introuvable"
 },
 "REGN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RELX": {
-"status": "compare",
-"lei": "549300WSX3VBUFFJOO66",
-"entity": "RELX PLC",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "REY": {
 "status": "compare",
@@ -1965,20 +1989,21 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "RHM": {
 "status": "aucun rapport lisible",
 "lei": "5299001OU9CSE29O6S05"
 },
 "RL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RMBS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RMD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RMS": {
 "status": "compare",
@@ -1994,13 +2019,14 @@
 ],
 "issues": [],
 "roic_officiel": 74.3,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ROL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ROST": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "RVRCST": {
 "status": "compare",
@@ -2013,7 +2039,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "RWAY": {
 "status": "societe introuvable"
@@ -2040,13 +2067,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SCBSM": {
 "status": "societe introuvable"
 },
 "SCCO": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "SCMNSW": {
 "status": "societe introuvable"
@@ -2067,13 +2095,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SFM": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "SGHC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "SGNWA": {
 "status": "societe introuvable"
@@ -2091,13 +2120,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SILEXST": {
 "status": "societe introuvable"
 },
 "SLB": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "SNTIAOL": {
 "status": "societe introuvable"
@@ -2109,10 +2139,10 @@
 "status": "societe introuvable"
 },
 "SSD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "STRL": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "STRVI": {
 "status": "compare",
@@ -2127,10 +2157,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "STX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "SU": {
 "status": "compare",
@@ -2146,7 +2177,8 @@
 ],
 "issues": [],
 "roic_officiel": 14.5,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SUNSW": {
 "status": "societe introuvable"
@@ -2169,7 +2201,8 @@
 ],
 "issues": [],
 "roic_officiel": 10.0,
-"cash_apres_loyers": 160
+"cash_apres_loyers": 160,
+"histo_10a": null
 },
 "TEL1LVS": {
 "status": "societe introuvable"
@@ -2190,29 +2223,30 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "THC": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "TIMADE": {
 "status": "aucun rapport lisible",
 "lei": "391200EIRBXU4TUMMQ46"
 },
 "TJX": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "TORWA": {
 "status": "societe introuvable"
 },
 "TPR": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "TREMC": {
 "status": "societe introuvable"
 },
 "TT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "TTE": {
 "status": "compare",
@@ -2225,10 +2259,11 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "TTEK": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "TUI1DE": {
 "status": "compare",
@@ -2243,16 +2278,17 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "TXRH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ULS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "ULTA": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "UMG": {
 "status": "compare",
@@ -2268,10 +2304,11 @@
 ],
 "issues": [],
 "roic_officiel": 23.5,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "UNH": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "URW": {
 "status": "compare",
@@ -2284,13 +2321,14 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "UTHR": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "VLTO": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "VOSDE": {
 "status": "aucun rapport lisible",
@@ -2300,19 +2338,19 @@
 "status": "societe introuvable"
 },
 "VRSK": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "VRSN": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "VRT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "VUPA": {
 "status": "societe introuvable"
 },
 "WFRD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "WKL": {
 "status": "compare",
@@ -2328,29 +2366,23 @@
 ],
 "issues": [],
 "roic_officiel": 32.1,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "WMT": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "WRT1V": {
 "status": "societe introuvable"
 },
 "WSE": {
-"status": "annees non comparables",
-"lei": "213800LD9XCHIC1C4V71",
-"entity": "WISE PLC",
-"period_end": "2025-03-31",
-"checked": [],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null
+"status": "SEC : societe introuvable"
 },
 "WTS": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "WWD": {
-"status": "societe introuvable"
+"status": "SEC : societe introuvable"
 },
 "XD4DE": {
 "status": "compare",
@@ -2365,7 +2397,8 @@
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": null
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "YSN": {
 "status": "societe introuvable"
