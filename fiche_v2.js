@@ -484,8 +484,8 @@ window.v2jnl = function(t){
     set('jnl-type', (s.qok&&s.rec==='buy')?'ACHAT':'ATTENDRE');
     set('jnl-why', 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · palier 1 '+fr(s.eh)+' € · palier 2 '+fr(z2(s))+' € · valeur centrale '+fr(s.dcfm)+' €'+
       (last?' · contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0]:'?'):' · pas de contre-expertise')+
-      '\nPourquoi j’achète (mes mots, sans relire la fiche) : \nMeilleure raison de ne PAS acheter (mes mots) : ');
-    set('jnl-exit', 'Mes 3 chiffres qui diraient que j’avais tort (mes mots) : \n1. \n2. \n3. \nSeuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
+      '\n\n1. Le métier en une phrase (mes mots, sans relire la fiche) : \n2. Le moat, et ce qui pourrait le casser : \n3. Chiffres vérifiés dans une deuxième source (laquelle ?) : \n4. Pourquoi elle peut perdre 30 % (au moins 3 familles) : \n- \n- \n- \n5. Pourquoi j’achète maintenant (le prix) : ');
+    set('jnl-exit', '6. Mes 3 chiffres qui diraient que j’avais tort (chiffre · aujourd’hui · alerte si · pourquoi) : \n- Moteur : \n- Moat : \n- Cash ou bilan : \nSeuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
     var w=document.getElementById('jnl-why'); if(w){ w.focus(); w.setSelectionRange(w.value.length,w.value.length); }
   }, 400);
 };
