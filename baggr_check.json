@@ -14,9 +14,24 @@
 "note": "",
 "verdict": "concordant"
 },
+"AI": {
+"date": "2026-10-20",
+"note": "hors qualite confirme : ROIC sous 12 % des deux cotes",
+"verdict": "concordant"
+},
+"AMZN": {
+"date": "2026-10-20",
+"note": "cash converti effondre confirme (environ 10 %)",
+"verdict": "concordant"
+},
 "ANET": {
 "date": "2026-10-19",
 "note": "valeur du screener plus prudente (moat note depuis)",
+"verdict": "concordant"
+},
+"ASML": {
+"date": "2026-10-20",
+"note": "valeur du screener divisee par deux par la grille cyclique",
 "verdict": "concordant"
 },
 "AXFOST": {
@@ -39,6 +54,16 @@
 "note": "",
 "verdict": "concordant"
 },
+"EL": {
+"date": "2026-10-20",
+"note": "hors qualite confirme : ecarts d acquisition, ROIC sous 5 %",
+"verdict": "concordant"
+},
+"ELIS": {
+"date": "2026-10-20",
+"note": "hors qualite confirme : ROIC sous 5 %",
+"verdict": "concordant"
+},
 "EVOST": {
 "date": "2026-10-20",
 "note": "chiffre d affaires en baisse sur un an malgre une bonne croissance sur 4 ans ; nombre d actions en hausse",
@@ -49,9 +74,44 @@
 "note": "scission du conglomerat : historique 5 ans inexploitable des deux cotes",
 "verdict": "ecart"
 },
+"GOOGL": {
+"date": "2026-10-20",
+"note": "cash converti sous 60 % confirme (investissements IA)",
+"verdict": "concordant"
+},
+"GTT": {
+"date": "2026-10-20",
+"note": "croissance du screener plus forte (4 ans depuis un point bas)",
+"verdict": "concordant"
+},
+"HO": {
+"date": "2026-10-20",
+"note": "",
+"verdict": "concordant"
+},
+"INTERPARFUMS": {
+"date": "2026-10-20",
+"note": "cash recent bon (12 mois > 100 %) ; la moyenne du screener est plombee par 2022-2023 (stocks)",
+"verdict": "ecart"
+},
+"KO": {
+"date": "2026-10-20",
+"note": "cash converti a 40 % confirme ; cher des deux cotes",
+"verdict": "concordant"
+},
 "LPPWA": {
 "date": "2026-10-19",
 "note": "",
+"verdict": "concordant"
+},
+"LR": {
+"date": "2026-10-20",
+"note": "ROIC a la limite de 12 %",
+"verdict": "concordant"
+},
+"MA": {
+"date": "2026-10-20",
+"note": "au-dessus de la valeur juste chez Baggr aussi",
 "verdict": "concordant"
 },
 "META": {
@@ -62,6 +122,21 @@
 "MNST": {
 "date": "2026-10-19",
 "note": "",
+"verdict": "concordant"
+},
+"RMS": {
+"date": "2026-10-20",
+"note": "valeur du screener nettement plus prudente",
+"verdict": "concordant"
+},
+"SU": {
+"date": "2026-10-20",
+"note": "ROIC a la limite : sous 12 % sur 5 ans chez Baggr",
+"verdict": "ecart"
+},
+"TTE": {
+"date": "2026-10-20",
+"note": "hors qualite confirme, chiffre d affaires en baisse",
 "verdict": "concordant"
 },
 "VRT": {
