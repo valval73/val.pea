@@ -484,8 +484,8 @@ window.v2jnl = function(t){
     set('jnl-type', (s.qok&&s.rec==='buy')?'ACHAT':'ATTENDRE');
     set('jnl-why', 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · palier 1 '+fr(s.eh)+' € · palier 2 '+fr(z2(s))+' € · valeur centrale '+fr(s.dcfm)+' €'+
       (last?' · contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0]:'?'):' · pas de contre-expertise')+
-      (F?'\nThèse : '+F.why:'')+'\nMa raison à moi : ');
-    set('jnl-exit', (F?F.wrong+'\n':'')+'Seuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
+      '\nPourquoi j’achète (mes mots, sans relire la fiche) : \nMeilleure raison de ne PAS acheter (mes mots) : ');
+    set('jnl-exit', 'Mes 3 chiffres qui diraient que j’avais tort (mes mots) : \n1. \n2. \n3. \nSeuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
     var w=document.getElementById('jnl-why'); if(w){ w.focus(); w.setSelectionRange(w.value.length,w.value.length); }
   }, 400);
 };
