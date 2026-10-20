@@ -3,7 +3,7 @@
 // d'analyse (prive : visible seulement par sa proprietaire). Les valeurs du
 // screener ont aussi leur contre-expertise dans leur fiche.
 const ANALYSES = [
-  {t:'WKL', nom:'Wolters Kluwer (exemple type : fiche à suivre)', date:'2026-10-19', compte:'PEA', verdict:'ACHAT 1/2', cours:84.26, p1:94.86, p2:78.12, dev:'€',
+  {t:'WKL', nom:'Wolters Kluwer', date:'2026-10-19', compte:'PEA', verdict:'ACHAT 1/2', cours:84.26, p1:94.86, p2:78.12, dev:'€',
    lien:'https://claude.ai/code/artifact/da5454bd-23c3-4dc4-97f1-e552904dd142'},
   {t:'NRO', nom:'Neurones', date:'2026-10-13', compte:'PEA', verdict:'ATTENDRE', cours:36.65, p1:33.70, p2:29.80, dev:'€',
    lien:'https://claude.ai/code/artifact/e070bf0c-ca97-4cfa-8956-db23e556c24b'},

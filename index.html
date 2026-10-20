@@ -5242,12 +5242,42 @@ document.addEventListener('DOMContentLoaded',function(){
 
   <h3>Mes analyses</h3>
   <div class="an-card" id="an-list"><span class="an-note">Chargement…</span></div>
-  <script>(function(){function f(x,d){return Number(x).toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function go(){var el=document.getElementById('an-list');if(!el)return;if(typeof ANALYSES==='undefined'||!ANALYSES.length){el.innerHTML='<span class="an-note">Aucune analyse pour l’instant.</span>';return;}
-  var h='<table><tr><th>Action</th><th>Date</th><th>Verdict</th><th>Cours</th><th>Palier 1</th><th>Palier 2</th><th></th></tr>';
-  ANALYSES.forEach(function(a){var s=(typeof S!=='undefined')?S.find(function(x){return x&&x.ticker===a.t;}):null;var px=s&&s.price?s.price:a.cours;
-  h+='<tr><td><b>'+a.nom+'</b> <span class="an-note">'+a.compte+'</span></td><td>'+a.date+'</td><td>'+a.verdict+'</td><td>'+f(px,2)+' '+a.dev+(s?'':' <span class="an-note">(le '+a.date+')</span>')+'</td><td class="'+(px<=a.p1?'ok':'')+'">'+f(a.p1,2)+' '+a.dev+'</td><td class="'+(px<=a.p2?'ok':'')+'">'+f(a.p2,2)+' '+a.dev+'</td><td><a href="'+a.lien+'" target="_blank" rel="noopener">Lire</a>'+(s?' · <a href="#" onclick="var tb=[].slice.call(document.querySelectorAll(\'.ntab\')).find(function(x){return /\'sc\'/.test(x.getAttribute(\'onclick\')||\'\');});showPg(\'sc\',tb);if(window.v2open){v2open(\''+a.t+'\');}return false;">Fiche</a>':'')+'</td></tr>';});
-  el.innerHTML=h+'</table><p class="an-note">Les liens « Lire » ouvrent le document d’analyse, privé. Un palier en vert = atteint par le cours du jour.</p>';}
+  <script>(function(){
+  // 20/10/2026 : toutes les analyses faites (registre ANALYSES + toute valeur ayant une contre-expertise),
+  // chacune avec son resume en 6 etapes et le lien vers sa fiche du screener.
+  function f(x,d){return (x==null||!isFinite(x))?'—':Number(x).toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function e(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var Z={faible:.2,moyenne:.3,elevee:.4}, LAB={intacte:'THÈSE INTACTE',fragilisee:'THÈSE FRAGILISÉE',cassee:'THÈSE CASSÉE'}, COL={intacte:'#1d6b45',fragilisee:'#a8790f',cassee:'#a8322b'};
+  function stock(t){return (typeof S!=='undefined')?S.find(function(x){return x&&x.ticker===t;}):null;}
+  function steps(t,s,c){
+    var F=(typeof FICHE!=='undefined')?FICHE[t]:null, r=c&&c.resume||'';
+    var met=/^Métier en une phrase/.test(r)?r.split(/\.\s/)[0].replace(/^Métier en une phrase\s*:\s*/,'')+'.':(F&&F.why?F.why:'à rédiger');
+    var mo=s&&s.mtype?(s.mscore!=null?s.mscore+'/5 · ':'')+s.mtype+(s.mthreat?' · ce qui peut le casser : '+s.mthreat:''):'à rédiger';
+    var q=s?('ROIC hors écarts d’acquisition '+(s.roicx>100?'>100':f(s.roicx,1))+' % · ROIC '+f(s.roic,1)+' % · cash '+f(s.fcfc,0)+' % · dette/EBITDA '+f(s.nde,2)+' · croissance retenue '+f(s.gused,1)+' %/an'+(s.bg?' · contrôle Baggr du '+s.bg.date+' : '+(s.bg.verdict==='ecart'?'écart':'concordant'):'')):'hors screener';
+    var kp=(c&&c.kpi||[]).map(function(k){return '<tr><td>'+e(k[0])+'</td><td>'+e(k[1])+'</td><td style="color:'+(/ALERTE/.test(k[2])?'#a8322b':/OK/.test(k[2])?'#1d6b45':'#5a6275')+'">'+e(k[2])+'</td></tr>';}).join('');
+    var li=function(n,t_,x){return '<p style="margin:6px 0"><b>'+n+'. '+t_+'</b><br>'+x+'</p>';};
+    return li(1,'Le métier',e(met))+li(2,'Le moat',e(mo))+li(3,'Les chiffres',e(q))+
+      li(4,'La contre-thèse : pourquoi elle peut perdre 30 %',e(c&&c.contre||'à rédiger'))+
+      li(5,'Le prix',s?('cours '+f(s.price,2)+' € · palier 1 '+f(s.eh,2)+' € · palier 2 '+f(s.dcfm*(1-(Z[s.unc]||.3)),2)+' €'+(s.tp>0?' · valeur du screener = '+f(s.dcfm/s.tp,2)+' × l’objectif des analystes':'')):'voir le document')+
+      '<p style="margin:6px 0"><b>6. Les chiffres d’erreur</b></p>'+(kp?'<table><tr><th>Chiffre</th><th>Dernière valeur</th><th>État / alerte si</th></tr>'+kp+'</table>':'<p class="an-note">à rédiger</p>')+
+      (c&&c.decision?'<p style="margin:6px 0"><b>Décision proposée</b><br>'+e(c.decision)+'</p>':'');
+  }
+  function go(){var el=document.getElementById('an-list');if(!el)return;
+    var rows={}, A=(typeof ANALYSES!=='undefined')?ANALYSES:[];
+    A.forEach(function(a){rows[a.t]={t:a.t,nom:a.nom,date:a.date,lien:a.lien,compte:a.compte,verdict:a.verdict,cours:a.cours,p1:a.p1,p2:a.p2,dev:a.dev};});
+    if(typeof CE!=='undefined') Object.keys(CE).forEach(function(t){var L=CE[t]||[]; if(!L.length) return; var c=L.slice().sort(function(x,y){return x.date<y.date?1:-1;})[0], s=stock(t);
+      var r=rows[t]||{t:t,nom:s?s.name:t,compte:s&&/compte-titres/.test(s.sector||'')?'CTO':'PEA'}; if(!r.date||c.date>r.date) r.date=c.date; r.ce=c; rows[t]=r;});
+    var list=Object.keys(rows).map(function(k){return rows[k];}).sort(function(a,b){return a.date<b.date?1:-1;});
+    if(!list.length){el.innerHTML='<span class="an-note">Aucune analyse pour l’instant.</span>';return;}
+    var h='<p class="an-note">'+list.length+' analyses, la plus récente en premier. Clique sur une action pour voir son analyse en 6 étapes.</p>';
+    list.forEach(function(r){var s=stock(r.t), c=r.ce, z=s?s.dcfm*(1-(Z[s.unc]||.3)):r.p2, px=s?s.price:r.cours, p1=s?s.eh:r.p1;
+      var tag=c?'<span style="color:'+COL[c.concl]+';font-weight:700">'+(LAB[c.concl]||'')+'</span>':'<span>'+e(r.verdict||'')+'</span>';
+      var zone=(px&&p1&&px<=z)?'palier 2':(px&&p1&&px<=p1)?'palier 1':'au-dessus du palier 1';
+      var fiche=s?'<a href="#" onclick="var tb=[].slice.call(document.querySelectorAll(\'.ntab\')).find(function(x){return /\'sc\'/.test(x.getAttribute(\'onclick\')||\'\');});showPg(\'sc\',tb);if(window.v2open){v2open(\''+r.t+'\');}return false;">Ouvrir la fiche</a>':'<span class="an-note">pas de fiche (hors screener)</span>';
+      h+='<details style="border-top:1px solid var(--bd);padding:8px 0"><summary style="cursor:pointer"><b>'+e(r.nom)+'</b> <span class="an-note">'+e(r.compte||'')+' · '+e(r.date)+'</span> · '+tag+' · <span class="an-note">'+(s?f(px,2)+' € · '+zone:'')+'</span></summary>'+
+        '<div style="padding:6px 0 0 12px;font-size:12px;line-height:1.55">'+fiche+(r.lien?' · <a href="'+r.lien+'" target="_blank" rel="noopener">Lire le document d’analyse</a>':'')+
+        steps(r.t,s,c)+'</div></details>';});
+    el.innerHTML=h;}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();})();</script>
 
   <h3>1. Les 8 critères de qualité (et ce qu'il faut en penser)</h3>
