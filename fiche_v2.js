@@ -789,7 +789,7 @@ function alerts(){
   var now={}, held={}, tot=0;
   mineList().forEach(function(p){ var s=S.find(function(x){return x.ticker===p.ticker;}); held[p.ticker]=p; if(s) tot+=s.price*p.qty;
     else { var e=(typeof ETF!=='undefined')?ETF.find(function(x){return x&&x.ticker===p.ticker;}):null; tot+=(e&&e.price?e.price:p.pru)*p.qty; } });
-  var zone=[], out=[], review=[], high=[], big=[], ce=[], moves=[];
+  var zone=[], out=[], review=[], high=[], big=[], ce=[], moves=[], thes=[];
   S.forEach(function(s){
     if(!s||!s.ticker||!(s.price>0)) return;
     if(s.qok && s.eh>0 && s.price<=s.eh){ now[s.ticker]=1; zone.push(row(s, (s.rec==='buy'?'achat possible':'en zone mais '+(s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible':'croissance irrégulière'))+' · '+(window.v2palier(s)===2?'<b>palier 2</b> (sous '+fr(window.v2z2(s))+' €)':'palier 1 · palier 2 sous '+fr(window.v2z2(s))+' €'), !seen[s.ticker])); }
@@ -804,6 +804,13 @@ function alerts(){
     var w=tot>0?s.price*p.qty/tot*100:0; if(w>10) big.push(row(s,'pèse '+fr(w,1)+' % (plafond 10 %) → ne pas renforcer'));
     var L=window.v2ceList?v2ceList(s.ticker):[], age=L[0]?Math.round((Date.now()-new Date(L[0].date).getTime())/864e5):null;
     if(age==null||age>90) ce.push(row(s, age==null?'jamais de contre-expertise':'dernière contre-expertise il y a '+age+' jours'));
+    // 20/10/2026 : these et chiffres d'erreur (tableau de bord de la derniere contre-expertise)
+    if(L[0]){ var na=(L[0].kpi||[]).filter(function(k){return /ALERTE/.test(k[2]||'');}).length;
+      if(L[0].concl==='cassee') thes.push(row(s,'thèse cassée ('+esc(L[0].date)+') : '+esc(L[0].point||'')+' → vendre'));
+      else if(na>=2) thes.push(row(s,na+' chiffres d’erreur en alerte : la règle dit thèse cassée → contre-expertise et vente'));
+      else if(L[0].concl==='fragilisee') thes.push(row(s,'thèse fragilisée ('+esc(L[0].date)+') : '+esc(L[0].point||'')+' → ne pas renforcer'+(na?' · '+na+' chiffre en alerte':'')));
+      else if(na===1) thes.push(row(s,'1 chiffre d’erreur en alerte : à surveiller, pas encore cassée'));
+    }
   });
   try{ localStorage.setItem('v2_al_seen', JSON.stringify(now)); }catch(e){}
   var who=window.v2profName?v2profName():'Moi';
@@ -811,6 +818,7 @@ function alerts(){
     '<header class="v2-top"><div><div class="v2-kick">Alertes · règles de la méthode</div><h1>Ce qui demande ton attention</h1></div><div class="v2-small" style="color:#c7cede">Portefeuille : '+esc(who)+'</div></header>'+
     overview()+
     card('Mouvements de plus de 10 % en 5 séances','mes lignes et les valeurs de qualité · ouvrir la fiche pour les actualités',moves,'#24508a')+
+    card('Mes lignes : thèse et chiffres d’erreur','mis à jour à chaque contre-expertise · 2 chiffres en alerte = thèse cassée',thes,'#a8322b')+
     card('Mes lignes hors qualité','vente si la prochaine publication confirme',out,'#a8322b')+
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
     card('Valeurs de qualité en zone d’achat','« NOUVEAU » = entrée en zone depuis ta dernière visite',zone,'#1d6b45')+
