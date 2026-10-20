@@ -1,232 +1,382 @@
 {
-"ABNB": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"ACN": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"ADBE": {
-"date": "2026-10-20",
-"note": "",
-"verdict": "concordant"
-},
-"AI": {
-"date": "2026-10-20",
-"note": "hors qualite confirme : ROIC sous 12 % des deux cotes",
-"verdict": "concordant"
-},
-"AMZN": {
-"date": "2026-10-20",
-"note": "cash converti effondre confirme (environ 10 %)",
-"verdict": "concordant"
-},
-"ANET": {
-"date": "2026-10-19",
-"note": "valeur du screener plus prudente (moat note depuis)",
-"verdict": "concordant"
-},
-"ANF": {
-"date": "2026-10-20",
-"note": "valeur du screener 1,9 fois celle de Baggr (mode, cyclique)",
-"verdict": "ecart"
-},
-"ARYNSW": {
-"date": "2026-10-20",
-"note": "ROIC sur 5 ans 7 % chez Baggr (sous 12 %) ; valeur du screener bien plus haute",
-"verdict": "ecart"
-},
-"ASML": {
-"date": "2026-10-20",
-"note": "valeur du screener divisee par deux par la grille cyclique",
-"verdict": "concordant"
-},
-"AXFOST": {
-"date": "2026-10-19",
-"note": "cash surestime par les loyers ; capital ajoute peu rentable",
-"verdict": "ecart"
-},
-"BONHROL": {
-"date": "2026-10-20",
-"note": "cash libre quasi nul sur 12 mois et chiffre d affaires en baisse : holding cyclique",
-"verdict": "ecart"
-},
-"CAMXST": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"CENPA": {
-"date": "2026-10-20",
-"note": "marge nette sous 1 % sur 12 mois : benefice effondre",
-"verdict": "ecart"
-},
-"DECK": {
-"date": "2026-10-20",
-"note": "",
-"verdict": "concordant"
-},
-"DOCS": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"EINDE": {
-"date": "2026-10-20",
-"note": "cash converti sous 60 % sur 12 mois ; valeur du screener 2 fois celle de Baggr",
-"verdict": "ecart"
-},
-"EL": {
-"date": "2026-10-20",
-"note": "hors qualite confirme : ecarts d acquisition, ROIC sous 5 %",
-"verdict": "concordant"
-},
-"ELIS": {
-"date": "2026-10-20",
-"note": "hors qualite confirme : ROIC sous 5 %",
-"verdict": "concordant"
-},
-"EVOST": {
-"date": "2026-10-20",
-"note": "chiffre d affaires en baisse sur un an malgre une bonne croissance sur 4 ans ; nombre d actions en hausse",
-"verdict": "ecart"
-},
-"G": {
-"date": "2026-10-20",
-"note": "grosse decote des deux cotes (crainte de l IA)",
-"verdict": "concordant"
-},
-"GE": {
-"date": "2026-10-19",
-"note": "scission du conglomerat : historique 5 ans inexploitable des deux cotes",
-"verdict": "ecart"
-},
-"GOOGL": {
-"date": "2026-10-20",
-"note": "cash converti sous 60 % confirme (investissements IA)",
-"verdict": "concordant"
-},
-"GPPWA": {
-"date": "2026-10-20",
-"note": "valeur du screener plus haute",
-"verdict": "concordant"
-},
-"GTT": {
-"date": "2026-10-20",
-"note": "croissance du screener plus forte (4 ans depuis un point bas)",
-"verdict": "concordant"
-},
-"HEMST": {
-"date": "2026-10-20",
-"note": "valeurs quasi identiques",
-"verdict": "concordant"
-},
-"HO": {
-"date": "2026-10-20",
-"note": "",
-"verdict": "concordant"
-},
-"HRB": {
-"date": "2026-10-20",
-"note": "chiffre d affaires en baisse sur 5 ans ; valeur du screener 1,8 fois celle de Baggr",
-"verdict": "ecart"
-},
-"INTERPARFUMS": {
-"date": "2026-10-20",
-"note": "cash recent bon (12 mois > 100 %) ; la moyenne du screener est plombee par 2022-2023 (stocks)",
-"verdict": "ecart"
-},
-"KAREAT": {
-"date": "2026-10-20",
-"note": "valeur du screener plus haute",
-"verdict": "concordant"
-},
-"KO": {
-"date": "2026-10-20",
-"note": "cash converti a 40 % confirme ; cher des deux cotes",
-"verdict": "concordant"
-},
-"LDOS": {
-"date": "2026-10-20",
-"note": "ROIC a la limite : 11 % sur 5 ans chez Baggr",
-"verdict": "ecart"
-},
-"LPPWA": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"LR": {
-"date": "2026-10-20",
-"note": "ROIC a la limite de 12 %",
-"verdict": "concordant"
-},
-"MA": {
-"date": "2026-10-20",
-"note": "au-dessus de la valeur juste chez Baggr aussi",
-"verdict": "concordant"
-},
-"META": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"MNST": {
-"date": "2026-10-19",
-"note": "",
-"verdict": "concordant"
-},
-"MOURBR": {
-"date": "2026-10-20",
-"note": "qualite confirmee ; valeur du screener 1,7 fois celle de Baggr (construction, cyclique)",
-"verdict": "concordant"
-},
-"NOVO": {
-"date": "2026-10-20",
-"note": "cash converti faible confirme (investissements de capacite)",
-"verdict": "concordant"
-},
-"RMS": {
-"date": "2026-10-20",
-"note": "valeur du screener nettement plus prudente",
-"verdict": "concordant"
-},
-"SFM": {
-"date": "2026-10-20",
-"note": "",
-"verdict": "concordant"
-},
-"SGHC": {
-"date": "2026-10-20",
-"note": "jeux en ligne : risque reglementaire",
-"verdict": "concordant"
-},
-"SU": {
-"date": "2026-10-20",
-"note": "ROIC a la limite : sous 12 % sur 5 ans chez Baggr",
-"verdict": "ecart"
-},
-"THC": {
-"date": "2026-10-20",
-"note": "dette a la limite (2,5) ; valeur du screener 2,5 fois celle de Baggr",
-"verdict": "ecart"
-},
-"TTE": {
-"date": "2026-10-20",
-"note": "hors qualite confirme, chiffre d affaires en baisse",
-"verdict": "concordant"
-},
-"VRT": {
-"date": "2026-10-19",
-"note": "valeur du screener nettement plus prudente",
-"verdict": "concordant"
-},
-"WKL": {
-"date": "2026-10-20",
-"note": "valeur juste Baggr proche du cours : la decote est moins grande que le screener ne le dit",
-"verdict": "concordant"
-}
+ "ABNB": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "ACN": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "ADBE": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "AEGNAT": {
+  "date": "2026-10-20",
+  "note": "valeur centrale tres au-dessus de Baggr (rapport 4,7) : compagnie aerienne, cash libre faible apres avions ; la grille cyclique sur benefices ne suffit pas",
+  "verdict": "ecart"
+ },
+ "AI": {
+  "date": "2026-10-20",
+  "note": "hors qualite confirme : ROIC sous 12 % des deux cotes",
+  "verdict": "concordant"
+ },
+ "ALCMC": {
+  "date": "2026-10-20",
+  "note": "valeur centrale sous la valeur juste Baggr (rapport 0,6)",
+  "verdict": "concordant"
+ },
+ "AMZN": {
+  "date": "2026-10-20",
+  "note": "cash converti effondre confirme (environ 10 %)",
+  "verdict": "concordant"
+ },
+ "ANET": {
+  "date": "2026-10-19",
+  "note": "valeur du screener plus prudente (moat note depuis)",
+  "verdict": "concordant"
+ },
+ "ANF": {
+  "date": "2026-10-20",
+  "note": "valeur du screener 1,9 fois celle de Baggr (mode, cyclique)",
+  "verdict": "ecart"
+ },
+ "ARYNSW": {
+  "date": "2026-10-20",
+  "note": "ROIC sur 5 ans 7 % chez Baggr (sous 12 %) ; valeur du screener bien plus haute",
+  "verdict": "ecart"
+ },
+ "ASML": {
+  "date": "2026-10-20",
+  "note": "valeur du screener divisee par deux par la grille cyclique",
+  "verdict": "concordant"
+ },
+ "AXFOST": {
+  "date": "2026-10-19",
+  "note": "cash surestime par les loyers ; capital ajoute peu rentable",
+  "verdict": "ecart"
+ },
+ "BCHNSW": {
+  "date": "2026-10-20",
+  "note": "valeur centrale bien sous la valeur juste Baggr (rapport 0,5) : screener prudent",
+  "verdict": "concordant"
+ },
+ "BKNG": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "BONHROL": {
+  "date": "2026-10-20",
+  "note": "cash libre quasi nul sur 12 mois et chiffre d affaires en baisse : holding cyclique",
+  "verdict": "ecart"
+ },
+ "BOUVOL": {
+  "date": "2026-10-20",
+  "note": "chiffre d affaires stable sur un an",
+  "verdict": "concordant"
+ },
+ "BR": {
+  "date": "2026-10-20",
+  "note": "valeur centrale un peu au-dessus de Baggr (rapport 1,25)",
+  "verdict": "concordant"
+ },
+ "CALTMI": {
+  "date": "2026-10-20",
+  "note": "absente ou sans donnees chez Baggr",
+  "verdict": "non verifiable"
+ },
+ "CAMXST": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "CENPA": {
+  "date": "2026-10-20",
+  "note": "marge nette sous 1 % sur 12 mois : benefice effondre",
+  "verdict": "ecart"
+ },
+ "CHKP": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,5) : marge de securite plus faible qu affichee",
+  "verdict": "ecart"
+ },
+ "CTTLS": {
+  "date": "2026-10-20",
+  "note": "absente ou sans donnees chez Baggr",
+  "verdict": "non verifiable"
+ },
+ "CWCDE": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "DECK": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "DOCS": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "EINDE": {
+  "date": "2026-10-20",
+  "note": "cash converti sous 60 % sur 12 mois ; valeur du screener 2 fois celle de Baggr",
+  "verdict": "ecart"
+ },
+ "EL": {
+  "date": "2026-10-20",
+  "note": "hors qualite confirme : ecarts d acquisition, ROIC sous 5 %",
+  "verdict": "concordant"
+ },
+ "ELIS": {
+  "date": "2026-10-20",
+  "note": "hors qualite confirme : ROIC sous 5 %",
+  "verdict": "concordant"
+ },
+ "EQSPA": {
+  "date": "2026-10-20",
+  "note": "rendement des nouveaux investissements faible chez Baggr : croissance future a surveiller",
+  "verdict": "concordant"
+ },
+ "EUZDE": {
+  "date": "2026-10-20",
+  "note": "valeur centrale un peu au-dessus de Baggr (rapport 1,3)",
+  "verdict": "concordant"
+ },
+ "EVOST": {
+  "date": "2026-10-20",
+  "note": "chiffre d affaires en baisse sur un an malgre une bonne croissance sur 4 ans ; nombre d actions en hausse",
+  "verdict": "ecart"
+ },
+ "G": {
+  "date": "2026-10-20",
+  "note": "grosse decote des deux cotes (crainte de l IA)",
+  "verdict": "concordant"
+ },
+ "GBFDE": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,8) : marge de securite plus faible qu affichee ; croissance retenue par le screener trop elevee",
+  "verdict": "ecart"
+ },
+ "GE": {
+  "date": "2026-10-19",
+  "note": "scission du conglomerat : historique 5 ans inexploitable des deux cotes",
+  "verdict": "ecart"
+ },
+ "GIB": {
+  "date": "2026-10-20",
+  "note": "valeur centrale sous la valeur juste Baggr (rapport 0,7) : screener prudent",
+  "verdict": "concordant"
+ },
+ "GOOGL": {
+  "date": "2026-10-20",
+  "note": "cash converti sous 60 % confirme (investissements IA)",
+  "verdict": "concordant"
+ },
+ "GPPWA": {
+  "date": "2026-10-20",
+  "note": "valeur du screener plus haute",
+  "verdict": "concordant"
+ },
+ "GTT": {
+  "date": "2026-10-20",
+  "note": "croissance du screener plus forte (4 ans depuis un point bas)",
+  "verdict": "concordant"
+ },
+ "HEIJM": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "HEMST": {
+  "date": "2026-10-20",
+  "note": "valeurs quasi identiques",
+  "verdict": "concordant"
+ },
+ "HO": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "HRB": {
+  "date": "2026-10-20",
+  "note": "chiffre d affaires en baisse sur 5 ans ; valeur du screener 1,8 fois celle de Baggr",
+  "verdict": "ecart"
+ },
+ "IEGMI": {
+  "date": "2026-10-20",
+  "note": "absente ou sans donnees chez Baggr",
+  "verdict": "non verifiable"
+ },
+ "INCY": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,4) : marge de securite plus faible qu affichee",
+  "verdict": "ecart"
+ },
+ "INTERPARFUMS": {
+  "date": "2026-10-20",
+  "note": "cash recent bon (12 mois > 100 %) ; la moyenne du screener est plombee par 2022-2023 (stocks)",
+  "verdict": "ecart"
+ },
+ "INTU": {
+  "date": "2026-10-20",
+  "note": "valeur centrale sous la valeur juste Baggr (rapport 0,6) : screener prudent",
+  "verdict": "concordant"
+ },
+ "KAREAT": {
+  "date": "2026-10-20",
+  "note": "valeur du screener plus haute",
+  "verdict": "concordant"
+ },
+ "KO": {
+  "date": "2026-10-20",
+  "note": "cash converti a 40 % confirme ; cher des deux cotes",
+  "verdict": "concordant"
+ },
+ "KRN": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,5) : marge de securite plus faible qu affichee",
+  "verdict": "ecart"
+ },
+ "LBWWA": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "LDOS": {
+  "date": "2026-10-20",
+  "note": "ROIC a la limite : 11 % sur 5 ans chez Baggr",
+  "verdict": "ecart"
+ },
+ "LPPWA": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "LR": {
+  "date": "2026-10-20",
+  "note": "ROIC a la limite de 12 %",
+  "verdict": "concordant"
+ },
+ "MA": {
+  "date": "2026-10-20",
+  "note": "au-dessus de la valeur juste chez Baggr aussi",
+  "verdict": "concordant"
+ },
+ "META": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "MNST": {
+  "date": "2026-10-19",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "MOURBR": {
+  "date": "2026-10-20",
+  "note": "qualite confirmee ; valeur du screener 1,7 fois celle de Baggr (construction, cyclique)",
+  "verdict": "concordant"
+ },
+ "MTHHCO": {
+  "date": "2026-10-20",
+  "note": "valeur centrale tres au-dessus de Baggr (rapport 2,5) : cash libre quasi nul chez Baggr, chiffre d affaires en baisse sur un an",
+  "verdict": "ecart"
+ },
+ "NOVO": {
+  "date": "2026-10-20",
+  "note": "cash converti faible confirme (investissements de capacite)",
+  "verdict": "concordant"
+ },
+ "NTES": {
+  "date": "2026-10-20",
+  "note": "valeur centrale au-dessus de Baggr (rapport 1,4, cotation Hong Kong convertie)",
+  "verdict": "concordant"
+ },
+ "NXT": {
+  "date": "2026-10-20",
+  "note": "rentabilite du capital sur 5 ans tres basse chez Baggr (societe recente, historique court) ; valeur centrale rapport 1,3",
+  "verdict": "ecart"
+ },
+ "PUIGMC": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,9) : marge de securite plus faible qu affichee ; rendement des nouveaux investissements negatif chez Baggr",
+  "verdict": "ecart"
+ },
+ "RMS": {
+  "date": "2026-10-20",
+  "note": "valeur du screener nettement plus prudente",
+  "verdict": "concordant"
+ },
+ "RYAIR": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "SDGPA": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,7) : marge de securite plus faible qu affichee",
+  "verdict": "ecart"
+ },
+ "SFM": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "SGHC": {
+  "date": "2026-10-20",
+  "note": "jeux en ligne : risque reglementaire",
+  "verdict": "concordant"
+ },
+ "SU": {
+  "date": "2026-10-20",
+  "note": "ROIC a la limite : sous 12 % sur 5 ans chez Baggr",
+  "verdict": "ecart"
+ },
+ "TEL1LVS": {
+  "date": "2026-10-20",
+  "note": "absente ou sans donnees chez Baggr",
+  "verdict": "non verifiable"
+ },
+ "THC": {
+  "date": "2026-10-20",
+  "note": "dette a la limite (2,5) ; valeur du screener 2,5 fois celle de Baggr",
+  "verdict": "ecart"
+ },
+ "TIMADE": {
+  "date": "2026-10-20",
+  "note": "",
+  "verdict": "concordant"
+ },
+ "TPR": {
+  "date": "2026-10-20",
+  "note": "valeur centrale nettement au-dessus de la valeur juste Baggr (rapport 1,8) : marge de securite plus faible qu affichee",
+  "verdict": "ecart"
+ },
+ "TTE": {
+  "date": "2026-10-20",
+  "note": "hors qualite confirme, chiffre d affaires en baisse",
+  "verdict": "concordant"
+ },
+ "VOSDE": {
+  "date": "2026-10-20",
+  "note": "qualite non confirmee : rentabilite du capital nettement plus basse et dette plus haute chez Baggr (au-dela du seuil 2,5)",
+  "verdict": "ecart"
+ },
+ "VRT": {
+  "date": "2026-10-19",
+  "note": "valeur du screener nettement plus prudente",
+  "verdict": "concordant"
+ },
+ "WKL": {
+  "date": "2026-10-20",
+  "note": "valeur juste Baggr proche du cours : la decote est moins grande que le screener ne le dit",
+  "verdict": "concordant"
+ }
 }

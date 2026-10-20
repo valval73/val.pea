@@ -325,7 +325,7 @@ function sources(s){
   var q = encodeURIComponent(s.name||s.ticker);
   return '<section class="v2-card v2-small"><p>Sources : cours et ratios Yahoo Finance (mise à jour automatique) · croissance : '+esc(s.gsrc||'Yahoo')+' · '+
     (s.x2s?'contrôle par les '+esc(s.x2s)+' (filings.xbrl.org)'+(s.x2?' : <b>écart</b>':' : concordant')+' · ':'')+
-    (s.bg?'contrôle Baggr du '+esc(s.bg.date)+' : '+(s.bg.verdict==='ecart'?'<b style="color:#a8322b">écart</b>'+(s.bg.note?' ('+esc(s.bg.note)+')':''):'concordant'+(s.bg.note?' ('+esc(s.bg.note)+')':''))+' · ':'')+
+    (s.bg?'contrôle Baggr du '+esc(s.bg.date)+' : '+(s.bg.verdict==='ecart'?'<b style="color:#a8322b">écart</b>'+(s.bg.note?' ('+esc(s.bg.note)+')':''):s.bg.verdict==='non verifiable'?'non vérifiable'+(s.bg.note?' ('+esc(s.bg.note)+')':''):'concordant'+(s.bg.note?' ('+esc(s.bg.note)+')':''))+' · ':'')+
     '<a href="https://www.zonebourse.com/recherche/?q='+q+'" target="_blank" rel="noopener">Zonebourse</a> · '+
     '<a href="https://www.boursorama.com/recherche/'+q+'/" target="_blank" rel="noopener">Boursorama</a></p></section>';
 }
