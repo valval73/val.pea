@@ -174,7 +174,13 @@ def main():
                     vus_noms.add(cle_)
                 # 18/10/2026 : banques, assurances, foncieres -> grille dediee a venir
                 # (la grille 'default' les jugerait mal : ROIC sans objet)
-                if (info.get('sector') or '') in ('Financial Services', 'Real Estate'):
+                # 20/10/2026 : donnees financieres, bourses, cartes de paiement, courtiers
+                # d'assurance, services immobiliers = metiers de services a faible capital
+                # (FactSet, MSCI, Visa, Marsh) : grille standard (ROIC), pas la grille banque
+                SERVICES_FIN = ('Financial Data & Stock Exchanges', 'Credit Services',
+                                'Insurance Brokers', 'Real Estate Services')
+                if (info.get('sector') or '') in ('Financial Services', 'Real Estate') \
+                        and (info.get('industry') or '') not in SERVICES_FIN:
                     rows.append({'code': code, 'yahoo': sym, 'nom': info.get('shortName') or info.get('longName'),
                                  'secteur': info.get('sector'), 'qok': False,
                                  'echec': 'financiere/fonciere : grille dediee a venir'})
