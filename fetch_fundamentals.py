@@ -747,8 +747,8 @@ CYC_GMAX = 4.0  # (19/10/2026 : plus utilise, la croissance suit la regle commun
 import os, re as _re_ce
 from datetime import date as _date_ce
 _CE_CACHE = None
-def ce_intacte_recente(ticker, jours=90):
-    """Date de la derniere contre-expertise si elle est 'intacte' et recente, sinon None."""
+def ce_recente_non_cassee(ticker, jours=90):
+    """Date de la derniere contre-expertise si elle est recente et non 'cassee' (la fiche applique intacte/fragilisee), sinon None."""
     global _CE_CACHE
     if _CE_CACHE is None:
         _CE_CACHE = {}
@@ -759,7 +759,7 @@ def ce_intacte_recente(ticker, jours=90):
         except Exception:
             pass
     d = _CE_CACHE.get(ticker)
-    if not d or d[1] != 'intacte':
+    if not d or d[1] not in ('intacte', 'fragilisee'):
         return None
     try:
         if (_date_ce.today() - _date_ce.fromisoformat(d[0])).days > jours:
@@ -1463,10 +1463,11 @@ def fetch_one(ticker, yf_sym, sector):
             dq.append('valeur estimee au plafond (3 fois le cours) : chiffres probablement faux, a verifier')
         # 20/10/2026 : valeur centrale > 1,5 x objectif moyen des analystes (>= 3 analystes)
         # = desaccord fort avec le marche -> donnee a verifier. Levee par une
-        # contre-expertise 'intacte' de moins de 90 jours (contre_expertises.js).
+        # contre-expertise intacte ou fragilisee de moins de 90 jours (contre_expertises.js) :
+        # la fiche applique alors sa decision (fragilisee = un palier de moins).
         _tp = result.get('target_price') or 0
         if _tp > 0 and result.get('nb_analysts', 0) >= 3 and _vc > 1.5 * _tp:
-            _ce = ce_intacte_recente(ticker)
+            _ce = ce_recente_non_cassee(ticker)
             if _ce:
                 result['tpok'] = _ce
             else:
