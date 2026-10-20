@@ -2428,5 +2428,95 @@
 "mid",
 "CHF",
 "CTO"
+],
+[
+"RY4CDE",
+"RY4C.DE",
+"Ryanair Holdings PLC",
+"Industrials",
+"large",
+"EUR",
+"PEA"
+],
+[
+"ADSK",
+"ADSK",
+"Autodesk, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"EXPE",
+"EXPE",
+"Expedia Group, Inc.",
+"Consumer Cyclical (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MEDP",
+"MEDP",
+"Medpace Holdings, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"COR",
+"COR",
+"Cencora, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"GDDY",
+"GDDY",
+"GoDaddy Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"IT",
+"IT",
+"Gartner, Inc.",
+"Technology (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MCK",
+"MCK",
+"McKesson Corporation",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"CAH",
+"CAH",
+"Cardinal Health, Inc.",
+"Healthcare (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FTDR",
+"FTDR",
+"frontdoor, inc.",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
 ]
 ]
