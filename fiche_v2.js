@@ -451,7 +451,7 @@ function decision(s){
   } else if(exitState(s) && exitState(s).k!=='ok'){
     r = {t:'ACHAT : NON', c:exitState(s).c, x:'Seuil de sortie : '+exitState(s).x+' On ne renforce pas.'};
   } else if(!chkState(s).ok){
-    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le contrôle avant achat est incomplet ('+chkState(s).done+' / '+chkState(s).total+' cases). Coche-les après ton analyse, juste au-dessus.'};
+    r = {t:'ACHAT : PAS ENCORE', c:C.or, x:'Le parcours est incomplet ('+chkState(s).done+' / '+chkState(s).total+' cases). Coche-les dans « Mon parcours en 6 étapes », en haut de la fiche.'};
   } else {
     var P = palier(s), p2 = z2(s), frag = last.concl==='fragilisee';
     var lvl = frag ? P-1 : P;   // these fragilisee : on descend d'un palier
@@ -500,9 +500,14 @@ function renderV2(s){
     moveBanner(s)+
     (dqAll(s)?'<section class="v2-card" style="background:#fbf4e6;border-left:4px solid #a8790f"><b>Donnée à vérifier avant toute décision :</b> '+esc(dqAll(s))+'. <span class="v2-small">Contrôle automatique : la source (Yahoo) peut se tromper ; vérifie sur Zonebourse ou le rapport annuel.</span></section>':'')+
     '<section class="v2-card v2-verdict"><div class="v2-badge" style="background:'+v.c+'">'+v.t+'</div><p>'+v.x+'</p>'+position(s)+'</section>'+
-    buyPlan(s)+priceBlock(s)+ratios(s)+
-    '<div class="v2-two">'+quality(s)+moat(s,F)+'</div>'+
-    thesis(s,F)+figures(s)+technical(s)+ceBlock(s)+exitBlock(s)+checklist(s)+decision(s)+sources(s)+
+    parcours(s,F)+
+    step(1,'Le métier',thesis(s,F))+
+    step(2,'Le moat',moat(s,F))+
+    step(3,'Les chiffres',quality(s)+figures(s))+
+    step(4,'La contre-thèse : pourquoi elle peut perdre 30 %',ceBlock(s))+
+    step(5,'Le prix',buyPlan(s)+priceBlock(s)+ratios(s))+
+    step(6,'Mes chiffres d’erreur et la sortie',exitBlock(s))+
+    decision(s)+technical(s)+sources(s)+
   '</div>';
 }
 
@@ -518,6 +523,43 @@ if(typeof render==='function'){
   };
 }
 
+
+// ---- 20/10/2026 : meme ordre pour toutes les fiches = les 6 etapes de la methode ----
+function step(n, t, html){
+  if(!html) return '';
+  return '<div id="v2st'+n+'"><div style="margin:18px 0 6px;font:700 12px/1.2 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:'+C.mu+'">Étape '+n+' · '+t+'</div>'+html+'</div>';
+}
+window.v2go = function(n){ var e=document.getElementById('v2st'+n); if(e) e.scrollIntoView({behavior:'smooth',block:'start'}); };
+// Parcours (resume + cases) seulement pour les achats possibles
+function parcoursOn(s){ return !!(s.qok && s.eh>0 && s.rec==='buy'); }
+function parcours(s, F){
+  if(!parcoursOn(s)) return '';
+  var L=ceList(s.ticker), last=L[0], st=chkState(s), o=chkGet(s.ticker);
+  var met = F&&F.why ? F.why : (last&&last.resume&&/^Métier en une phrase/.test(last.resume) ? last.resume.split(/\.\s/)[0].replace(/^Métier en une phrase\s*:\s*/,'')+'.' : '');
+  var mo = s.mtype ? 'Avantage : '+s.mtype+(s.mthreat?' · ce qui peut le casser : '+s.mthreat:'') : '';
+  var ch = (s.qok?'Qualité 5/5':'Qualité limite')+(s.bg?' · contrôle Baggr du '+s.bg.date+' : '+(s.bg.verdict==='ecart'?'écart':s.bg.verdict==='non verifiable'?'non vérifiable':'concordant'):' · pas encore de deuxième source');
+  var ct = last ? 'Contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0].toLowerCase():'?')+(last.point?' ('+last.point+')':'') : '';
+  var P=palier(s), r=(s.tp>0&&s.dcfm>0)?s.dcfm/s.tp:null;
+  var px = (P===2?'Sous le palier 2':P===1?'Sous le palier 1':'Pas encore dans la zone (palier 1 : '+M(s,s.eh)+')')+(r?' · valeur du screener = '+fr(r,2)+' × l’objectif des analystes'+(r>1.5?(/analystes/.test(dqAll(s))?' : blocage, contre-expertise requise':' : au-dessus de 1,5, blocage levé par la contre-expertise'):''):'');
+  var kp = last&&last.kpi ? last.kpi.filter(function(k){return /ALERTE/.test(k[2]);}).length : null;
+  var er = last&&last.kpi ? last.kpi.length+' chiffres suivis dans la contre-expertise, '+kp+' en alerte (2 en alerte = thèse cassée)' : '';
+  var rows=[[1,'Le métier en une phrase','metier',met,'J’explique le métier en une phrase, avec mes mots'],
+    [2,'Le moat','moat',mo,'J’ai nommé le moat et ce qui pourrait le casser'],
+    [3,'Les chiffres','sources',ch,'Deux sources concordent sur les chiffres'],
+    [4,'La contre-thèse','contre',ct,'J’ai écrit au moins 3 raisons pour lesquelles elle peut perdre 30 %'],
+    [5,'Le prix','calcul',px,'Mon calcul (onglet Analyser) et le screener concordent à 25 % près'],
+    [6,'Mes 3 chiffres d’erreur','tort',er,'J’ai écrit mes 3 chiffres d’erreur avec leur seuil']];
+  var auto = st.auto.every(function(x){return x[2];});
+  return '<section class="v2-card" style="border-left:4px solid '+(st.ok?C.gn:C.or)+'"><div class="v2-head"><h2>Mon parcours en 6 étapes : '+st.done+' / '+st.total+'</h2><span class="v2-small">'+(st.date?'coché le '+st.date+' · valable 90 jours':'cases gardées dans ce navigateur seulement')+'</span></div>'+
+    '<p class="v2-small" style="margin:0 0 6px">'+(auto?'Contrôles automatiques OK (qualité et zone d’achat).':'Contrôles automatiques : '+st.auto.map(function(x){return (x[2]?'OK ':'NON ')+x[1].toLowerCase();}).join(' · '))+' Clique sur une étape pour voir le détail.</p>'+
+    rows.map(function(x){ var done=!!o[x[2]];
+      return '<div style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid '+C.line+'">'+
+        '<input type="checkbox" '+(done?'checked ':'')+'onchange="v2chk(\''+s.ticker+'\',\''+x[2]+'\',this.checked)" title="'+x[4]+'" style="width:20px;height:20px;flex:none;margin-top:2px">'+
+        '<div style="flex:1"><div><b style="cursor:pointer;text-decoration:underline" onclick="v2go('+x[0]+')">'+x[0]+'. '+x[1]+'</b> <span class="v2-small">· '+x[4]+'</span></div>'+
+        '<div class="v2-small" style="margin-top:2px;color:'+(x[3]?C.ink:C.or)+'">'+(x[3]?esc(x[3]):'à rédiger')+'</div></div></div>';
+    }).join('')+
+    '<p class="v2-small" style="margin-top:8px"><b>'+(st.ok?'Parcours complet : l’achat peut être validé.':'Achat bloqué tant qu’une case manque.')+'</b> Méthode détaillée : PDF « Ma méthode d’achat ».</p></section>';
+}
 // ---- page d'accueil : liste de décision ----
 function openTicker(t){
   var i = fil.findIndex(function(x){return x.ticker===t;});
