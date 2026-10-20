@@ -209,6 +209,25 @@ MOAT = {
                  'concurrence, consommation'),
     'DIAWA': (3, 'leader des analyses medicales en Pologne, reseau de laboratoires',
                  'prix publics, concurrence'),
+    # --- 20/10/2026 : entrees apres correction du ROIC hors EA (capital tangible negatif) ---
+    'ADSK': (4, 'logiciels de conception (AutoCAD, Revit) standards des architectes et ingenieurs, couts de changement',
+                 "IA de conception, passage au paiement a l'usage"),
+    'MEDP': (3, "sous-traitant d'essais cliniques specialise biotechs, execution reconnue",
+                 "financement des biotechs, annulations d'essais"),
+    'IT': (3, 'Gartner : recherche et conseil aux directions informatiques, abonnements',
+                 'IA generative qui remplace la recherche payante'),
+    'MCK': (3, 'oligopole de la distribution de medicaments aux Etats-Unis (3 acteurs), echelle',
+                 'prix des medicaments, litiges opioides, marges tres faibles'),
+    'COR': (3, 'oligopole de la distribution de medicaments aux Etats-Unis, echelle',
+                 'marges tres faibles, dependance a quelques clients'),
+    'CAH': (3, 'oligopole de la distribution de medicaments aux Etats-Unis, echelle',
+                 'marges tres faibles, litiges'),
+    'EXPE': (3, 'effet de reseau (Expedia, Hotels.com, Vrbo)',
+                 "Google et l'IA, concurrence de Booking"),
+    'GDDY': (3, 'premier registraire de noms de domaine, base de petits clients fidelises',
+                 'concurrence par les prix, IA de creation de sites'),
+    'FTDR': (2, 'contrats de garantie pour maisons aux Etats-Unis',
+                 'concurrence, couts des reparations'),
 }
 MOAT_MIN_BUY = 3
 
