@@ -744,6 +744,30 @@ CYC_GMAX = 4.0  # (19/10/2026 : plus utilise, la croissance suit la regle commun
 # Secteurs dont le libelle contient un mot cyclique mais dont l'activite ne l'est
 # pas (verifie le 19/10/2026) : luxe automobile, equipement electrique, aromes,
 # concessions autoroutieres et aeroportuaires.
+import os, re as _re_ce
+from datetime import date as _date_ce
+_CE_CACHE = None
+def ce_intacte_recente(ticker, jours=90):
+    """Date de la derniere contre-expertise si elle est 'intacte' et recente, sinon None."""
+    global _CE_CACHE
+    if _CE_CACHE is None:
+        _CE_CACHE = {}
+        try:
+            txt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'contre_expertises.js'), encoding='utf-8').read()
+            for m in _re_ce.finditer(r"""^\s*,?\s*['"]?([A-Z0-9.]+)['"]?\s*:\s*\[\s*\{\s*['"]?date['"]?\s*:\s*['"](\d{4}-\d{2}-\d{2})['"]\s*,\s*['"]?concl['"]?\s*:\s*['"](\w+)['"]""", txt, _re_ce.M):
+                _CE_CACHE[m.group(1)] = (m.group(2), m.group(3))
+        except Exception:
+            pass
+    d = _CE_CACHE.get(ticker)
+    if not d or d[1] != 'intacte':
+        return None
+    try:
+        if (_date_ce.today() - _date_ce.fromisoformat(d[0])).days > jours:
+            return None
+    except ValueError:
+        return None
+    return d[0]
+
 NON_CYCLIQUES = {'RACE', 'SU', 'RBT', 'DG'}
 
 
@@ -1437,6 +1461,17 @@ def fetch_one(ticker, yf_sym, sector):
         _px, _vc = result.get('price') or 0, result.get('dcfm') or 0
         if _px > 0 and _vc >= _px * 2.95:
             dq.append('valeur estimee au plafond (3 fois le cours) : chiffres probablement faux, a verifier')
+        # 20/10/2026 : valeur centrale > 1,5 x objectif moyen des analystes (>= 3 analystes)
+        # = desaccord fort avec le marche -> donnee a verifier. Levee par une
+        # contre-expertise 'intacte' de moins de 90 jours (contre_expertises.js).
+        _tp = result.get('target_price') or 0
+        if _tp > 0 and result.get('nb_analysts', 0) >= 3 and _vc > 1.5 * _tp:
+            _ce = ce_intacte_recente(ticker)
+            if _ce:
+                result['tpok'] = _ce
+            else:
+                dq.append('valeur centrale %s fois l objectif moyen des analystes : contre-expertise requise avant achat'
+                          % str(round(_vc / _tp, 1)).replace('.', ','))
         # la divergence entre les 2 methodes est affichee dans la fiche, pas bloquante
         result['dq'] = ' · '.join(dq)
         # Couche moat (evaluation qualitative, moat.py)
