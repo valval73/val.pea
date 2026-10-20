@@ -592,14 +592,18 @@ function item(s){
   return '<button class="v2-it" onclick="v2open(\''+s.ticker+'\')"><b>'+esc(s.ticker)+'</b> <span>'+esc(s.name)+'</span>'+
     '<span class="v2-mono">'+fr(s.price)+' €</span>'+
     (gap!=null&&(s.qok||s.near)?'<span class="v2-small">'+(gap<=0?(s.rec==='buy'?(palier(s)===2?'palier 2':'palier 1'):'en zone, bloquée : '+(dqAll(s)?'donnée à vérifier':s.knife?'chute en cours':(s.mscore==null||s.mscore<3)?'moat faible ou non noté':!s.qok?'qualité limite':'croissance irrégulière')):'doit baisser de '+fr(gap,0)+' %')+'</span>':'<span class="v2-small">'+esc((s.qwhy||'').split(',')[0])+'</span>')+
-    (s.mscore!=null?'<span class="v2-small">moat '+s.mscore+'/5</span>':'')+'</button>';
+    (s.mscore!=null?'<span class="v2-small">moat '+s.mscore+'/5</span>':'')+(window.v2held&&window.v2held[s.ticker]?'<span class="v2-small" style="color:#24508a">· en portefeuille'+(palier(s)===2?' : complément possible':' : complément sous '+fr(z2(s))+' €')+'</span>':'')+'</button>';
 }
 function buildHome(){
   var pg = document.getElementById('pg-sc'); if(!pg) return;
   var box = document.getElementById('v2-home');
   if(!box){ box=document.createElement('div'); box.id='v2-home'; pg.insertBefore(box, pg.firstChild); }
   var buy=[], watch=[], out=[];
-  S.forEach(function(s){ if(!s||!s.ticker||!(s.price>0)) return; var g=group(s); (g==='buy'?buy:g==='watch'?watch:out).push(s); });
+  // 20/10/2026 : une ligne deja detenue n'est plus un « achat possible », sauf complement sous le palier 2
+  var held={}; ['pea_ptf_val','pea_ptf_p2'].forEach(function(k){ try{ JSON.parse(localStorage.getItem(k)||'[]').forEach(function(p){ if(p&&p.ticker&&p.qty>0) held[p.ticker]=1; }); }catch(e){} });
+  try{ if(typeof PTF!=='undefined') PTF.forEach(function(p){ if(p&&p.ticker&&p.qty>0) held[p.ticker]=1; }); }catch(e){}
+  window.v2held = held;
+  S.forEach(function(s){ if(!s||!s.ticker||!(s.price>0)) return; var g=group(s); if(g==='buy' && held[s.ticker] && palier(s)<2) g='watch'; (g==='buy'?buy:g==='watch'?watch:out).push(s); });
   // 19/10/2026 : une donnee a verifier passe apres (sinon les valeurs aux chiffres faux arrivent en tete)
   var byGap = function(a,b){ return ((dqAll(a)?10:0)+(a.eh>0?a.price/a.eh:9))-((dqAll(b)?10:0)+(b.eh>0?b.price/b.eh:9)); };
   buy.sort(byGap); watch.sort(byGap); out.sort(function(a,b){return (a.name||'').localeCompare(b.name||'');});
@@ -632,7 +636,7 @@ window.renderV2 = renderV2;
 // ═══ 06/10/2026 : barre de filtres, compteurs et file alignés sur la méthode ═══
 (function(){
 'use strict';
-function grp(s){ if(s.qok && s.rec==='buy') return 'buy'; if(s.qok||s.near) return 'watch'; return 'out'; }
+function grp(s){ if(s.qok && s.rec==='buy' && !(window.v2held&&window.v2held[s.ticker]&&window.v2palier&&window.v2palier(s)<2)) return 'buy'; if(s.qok||s.near) return 'watch'; return 'out'; }
 function mine(){
   var list=(typeof PTF!=='undefined'&&(PTF.length||(window._ptfProfile&&window._ptfProfile!=='val')))?PTF:null;
   if(!list){ try{ list=JSON.parse(localStorage.getItem('pea_ptf_val')||'[]'); }catch(e){ list=[]; } }
