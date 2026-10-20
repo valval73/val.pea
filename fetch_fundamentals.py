@@ -557,6 +557,11 @@ def compute_quality(t, sector_cat):
             icx = ic - (g(gw, i) or 0)
             if icx > 0:
                 roicxs.append(nopat / icx * 100)
+            elif ic > 0 and nopat > 0:
+                # 20/10/2026 : ecarts d'acquisition > capitaux investis = capital
+                # tangible nul ou negatif (Autodesk, Medpace, Gartner) : le ROIC hors
+                # EA est infini, pas absent. On le compte 100 % au lieu de l'exclure.
+                roicxs.append(100.0)
         res['roic'] = round(_median(roics), 1) if roics else None
         res['roicx'] = round(_median(roicxs), 1) if roicxs else None
         # 17/10/2026 (lettre MasterBourse, cas Kri Kri) : rendement du capital
