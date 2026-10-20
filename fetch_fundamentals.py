@@ -1943,6 +1943,13 @@ def bump_index_html_version():
             f'data.js?v={int(datetime.now(PARIS).timestamp())}',
             content, count=1
         )
+        # 20/10/2026 : les autres scripts du site aussi (sinon le navigateur garde
+        # une ancienne fiche_v2.js ou contre_expertises.js pendant des jours)
+        new_content = re.sub(
+            r'((?:live_patch|fiches|contre_expertises|analyses|fiche_v2)\.js)\?v=[0-9a-z]+',
+            lambda m: f"{m.group(1)}?v={int(datetime.now(PARIS).timestamp())}",
+            new_content
+        )
         if new_content != content:
             with open('index.html', 'w', encoding='utf-8') as f:
                 f.write(new_content)
