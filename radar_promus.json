@@ -2518,5 +2518,86 @@
 "mid",
 "USD",
 "CTO"
+],
+[
+"PYPL",
+"PYPL",
+"PayPal Holdings, Inc.",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"FDS",
+"FDS",
+"FactSet Research Systems Inc.",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"MCO",
+"MCO",
+"Moody s Corporation",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"V",
+"V",
+"Visa Inc.",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"AON",
+"AON",
+"Aon plc",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"ASR",
+"ASR",
+"Grupo Aeroportuario del Sureste",
+"Industrials (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"CME",
+"CME",
+"CME Group Inc.",
+"Financial Services (compte-titres)",
+"large",
+"USD",
+"CTO"
+],
+[
+"IBP",
+"IBP",
+"Installed Building Products, In",
+"Consumer Cyclical (compte-titres)",
+"mid",
+"USD",
+"CTO"
+],
+[
+"MORN",
+"MORN",
+"Morningstar, Inc.",
+"Financial Services (compte-titres)",
+"mid",
+"USD",
+"CTO"
 ]
 ]
