@@ -505,7 +505,7 @@ function renderV2(s){
     step(2,'Le moat',moat(s,F))+
     step(3,'Les chiffres',quality(s)+figures(s))+
     step(4,'La contre-thèse : pourquoi elle peut perdre 30 %',ceBlock(s))+
-    step(5,'Le prix',buyPlan(s)+priceBlock(s)+ratios(s))+
+    step(5,'Le prix',feeLine(s)+buyPlan(s)+priceBlock(s)+ratios(s))+
     step(6,'Mes chiffres d’erreur et la sortie',exitBlock(s))+
     decision(s)+technical(s)+sources(s)+
   '</div>';
@@ -524,6 +524,25 @@ if(typeof render==='function'){
 }
 
 
+
+// ---- 20/10/2026 : frais d'achat (grille Bourse Direct du 18/10/2026 ; compte-titres = Trade Republic 1 EUR) ----
+// Regle : frais <= 1 % de l'ordre.
+function feeInfo(s){
+  var pl=s.place||'', cto=/compte-titres/.test(s.sector||'');
+  var f=function(m){ return 0; }, nom='', acces='';
+  if(cto){ nom='Trade Republic (compte-titres)'; f=function(m){return 1;}; }
+  else if(/^(Paris|Amsterdam|Bruxelles)$/.test(pl)){ nom='Euronext'; f=function(m){return m<=500?0.99:m<=1000?1.90:m<=2000?2.90:m<=4400?3.80:m*0.0009;}; }
+  else if(/^(Francfort|F)$/.test(pl)){ nom='Xetra'; f=function(m){return Math.max(15,m*0.0015);}; }
+  else if(/^(Madrid|Lisbonne|SW)$/.test(pl)){ nom=pl==='SW'?'Suisse':pl; f=function(m){return Math.max(18,m*0.002);}; }
+  else { nom=({WA:'Varsovie',VI:'Vienne',AT:'Vienne',IR:'Dublin',VS:'Vilnius'})[pl]||pl; acces=' · accès chez Bourse Direct à confirmer'; f=function(m){return Math.max(41.90,m*0.0048);}; }
+  var mn=500; while(mn<20000 && f(mn)/mn>0.01) mn+=100;
+  return {nom:nom, f500:f(500), p500:f(500)/5, min:mn, acces:acces, ok:f(500)/500<=0.01};
+}
+function feeLine(s){
+  var x=feeInfo(s);
+  return '<p class="v2-small" style="margin:0 0 8px;padding:8px 10px;border-radius:8px;background:'+(x.ok?'#eef6f1':'#fbf4e6')+'"><b>Frais d’achat ('+x.nom+')</b> : '+fr(x.f500)+' € pour un ordre de 500 € ('+fr(x.p500,1)+' %)'+
+    (x.ok?' : sous la règle de 1 %.':' : au-dessus de la règle de 1 %. Ordre minimum pour respecter la règle : <b>'+fr(x.min,0)+' €</b> (regrouper plusieurs mois).')+x.acces+'</p>';
+}
 // ---- 20/10/2026 : meme ordre pour toutes les fiches = les 6 etapes de la methode ----
 function step(n, t, html){
   if(!html) return '';
@@ -540,7 +559,8 @@ function parcours(s, F){
   var ch = (s.qok?'Qualité 5/5':'Qualité limite')+(s.bg?' · contrôle Baggr du '+s.bg.date+' : '+(s.bg.verdict==='ecart'?'écart':s.bg.verdict==='non verifiable'?'non vérifiable':'concordant'):' · pas encore de deuxième source');
   var ct = last ? 'Contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0].toLowerCase():'?')+(last.point?' ('+last.point+')':'') : '';
   var P=palier(s), r=(s.tp>0&&s.dcfm>0)?s.dcfm/s.tp:null;
-  var px = (P===2?'Sous le palier 2':P===1?'Sous le palier 1':'Pas encore dans la zone (palier 1 : '+M(s,s.eh)+')')+(r?' · valeur du screener = '+fr(r,2)+' × l’objectif des analystes'+(r>1.5?(/analystes/.test(dqAll(s))?' : blocage, contre-expertise requise':' : au-dessus de 1,5, blocage levé par la contre-expertise'):''):'');
+  var fi=feeInfo(s);
+  var px = (P===2?'Sous le palier 2':P===1?'Sous le palier 1':'Pas encore dans la zone (palier 1 : '+M(s,s.eh)+')')+' · frais '+fr(fi.p500,1)+' % sur 500 €'+(fi.ok?'':' (ordre minimum '+fr(fi.min,0)+' €)')+(r?' · valeur du screener = '+fr(r,2)+' × l’objectif des analystes'+(r>1.5?(/analystes/.test(dqAll(s))?' : blocage, contre-expertise requise':' : au-dessus de 1,5, blocage levé par la contre-expertise'):''):'');
   var kp = last&&last.kpi ? last.kpi.filter(function(k){return /ALERTE/.test(k[2]);}).length : null;
   var er = last&&last.kpi ? last.kpi.length+' chiffres suivis dans la contre-expertise, '+kp+' en alerte (2 en alerte = thèse cassée)' : '';
   var rows=[[1,'Le métier en une phrase','metier',met,'J’explique le métier en une phrase, avec mes mots'],
