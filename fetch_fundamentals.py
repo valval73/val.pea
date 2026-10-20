@@ -1389,6 +1389,24 @@ def fetch_one(ticker, yf_sym, sector):
                 result['vepv'] = clamp(ve) if ve else None
                 vals = sorted(x for x in (result.get('dcfm'), result.get('vmult'), result.get('vepv')) if x)
                 result['vmed'] = round(vals[len(vals) // 2], 2) if len(vals) == 3 else None
+                # 20/10/2026 : controle Baggr sur 33 valeurs : quand la valeur centrale
+                # depasse de plus de 30 % la mediane des 3 methodes, elle est presque
+                # toujours trop optimiste (H&R Block, Tenet, Abercrombie : 1,8 a 2,5 fois
+                # la valeur juste de Baggr). Les paliers partent alors de la mediane.
+                _vm, _vc = result.get('vmed'), result.get('dcfm')
+                if _vm and _vc and _vc > 1.3 * _vm:
+                    _f = _vm / _vc
+                    for _k in ('dcfm', 'dcfb', 'dcfu', 'vpess', 'vopt'):
+                        if result.get(_k):
+                            result[_k] = round(result[_k] * _f, 2)
+                    result['el'] = round(_vm * (1 - lo_m), 2)
+                    result['eh'] = round(_vm * (1 - hi_m), 2)
+                    if result.get('vpess'):
+                        result['stop'] = round(result['vpess'] * 0.90, 2)
+                    if result.get('vopt'):
+                        result['o1'] = result['vopt']
+                        result['o2'] = round(result['vopt'] * 1.10, 2)
+                    result['vref'] = 'mediane'
                 result['irr'] = expected_return(fwd_v, eps_ttm, g_c, roic_v, p_)
                 # 08/10/2026 : en PEA, la retenue a la source etrangere sur les
                 # dividendes est perdue -> rendement net pour l'investisseur PEA
@@ -1639,6 +1657,7 @@ def set_quality_fields(block, data):
         if data.get(k):
             block = _set_field(block, k, txt(data.get(k)))
     block = _set_field(block, 'gsrc', txt(data.get('gsrc')))
+    block = _set_field(block, 'vref', txt(data.get('vref')))
     if data.get('fxr'):
         block = _set_field(block, 'fxr', num(data.get('fxr')))
         block = _set_field(block, 'qcur', txt(data.get('qcur')))
