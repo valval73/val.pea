@@ -760,11 +760,14 @@ def ce_recente_non_cassee(ticker, jours=90):
         try:
             txt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'contre_expertises.js'), encoding='utf-8').read()
             for m in _re_ce.finditer(r"""^\s*,?\s*['"]?([A-Z0-9.]+)['"]?\s*:\s*\[\s*\{\s*['"]?date['"]?\s*:\s*['"](\d{4}-\d{2}-\d{2})['"]\s*,\s*['"]?concl['"]?\s*:\s*['"](\w+)['"]""", txt, _re_ce.M):
-                _CE_CACHE[m.group(1)] = (m.group(2), m.group(3))
+                # 20/10/2026 : une contre-expertise peut confirmer que la donnee est fausse
+                # ("garde_alerte": true) : elle ne leve alors pas l'alerte analystes
+                _bloc = txt[m.end():m.end() + 6000].split('date', 1)[0]
+                _CE_CACHE[m.group(1)] = (m.group(2), m.group(3), 'garde_alerte' in _bloc)
         except Exception:
             pass
     d = _CE_CACHE.get(ticker)
-    if not d or d[1] not in ('intacte', 'fragilisee'):
+    if not d or d[1] not in ('intacte', 'fragilisee') or (len(d) > 2 and d[2]):
         return None
     try:
         if (_date_ce.today() - _date_ce.fromisoformat(d[0])).days > jours:
