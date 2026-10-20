@@ -318,7 +318,12 @@ function priceBlock(s){
 
 function technical(s){
   var tr = (s.price>s.mm200) ? 'au-dessus de la moyenne 200 jours : tendance de fond haussière' : 'sous la moyenne 200 jours : tendance de fond baissière';
-  return '<details class="v2-card v2-det"><summary>Détails techniques</summary><div class="v2-tiles"><div>Moyenne 50 j<br><b>'+fr(s.mm50)+' €</b></div><div>Moyenne 200 j<br><b>'+fr(s.mm200)+' €</b></div><div>RSI 14 j<br><b>'+fr(s.rsi,1)+'</b></div><div>Plus bas / haut 1 an<br><b>'+fr(s.b52l)+' – '+fr(s.b52h)+'</b></div></div><p class="v2-small">Cours '+tr+'.'+(s.knife?' <b style="color:'+C.rd+'">Chute en cours.</b>':'')+'</p></details>';
+  return '<details class="v2-card v2-det"><summary>Détails techniques</summary><div class="v2-tiles"><div>Moyenne 50 j<br><b>'+fr(s.mm50)+' €</b></div><div>Moyenne 200 j<br><b>'+fr(s.mm200)+' €</b></div><div>RSI 14 j<br><b>'+fr(s.rsi,1)+'</b></div><div>Plus bas / haut 1 an<br><b>'+fr(s.b52l)+' – '+fr(s.b52h)+'</b></div></div><p class="v2-small">Cours '+tr+'.'+(s.knife?' <b style="color:'+C.rd+'">Chute en cours.</b>':'')+'</p>'+
+    '<div class="v2-k" style="margin-top:8px">Rentabilité et bilan (pour comprendre, ne décident rien)</div><div class="v2-tiles">'+
+    [['VE / EBIT',s.ev_ebit,'x'],['Rentabilité des fonds propres (ROE)',s.roe,' %'],['Rentabilité des actifs (ROA)',s.roa,' %'],['Marge brute',s.gm,' %'],['Marge nette',s.margin,' %'],
+     ['Investissements / ventes',s.capr,' %'],['Dette / fonds propres',s.de,'x'],['Couverture des intérêts',s.icr,'x'],['Liquidité courante',s.cr,'x']]
+      .filter(function(x){return x[1]!=null && x[1]!==0;}).map(function(x){return '<div>'+x[0]+'<br><b>'+fr(x[1],1)+x[2]+'</b></div>';}).join('')+'</div>'+
+    '<p class="v2-small">Un ROE très élevé avec peu de fonds propres (rachats d’actions) n’est pas un signe de qualité en soi : c’est le ROIC qui compte.</p></details>';
 }
 
 function sources(s){
@@ -519,7 +524,8 @@ if(typeof render==='function'){
     var fe = document.getElementById('fiche');
     if(!fe) return;
     var old = fe.innerHTML;
-    fe.innerHTML = renderV2(s) + '<details class="v2-old"><summary>Ancienne analyse (non mise à jour, peut contredire la fiche ci-dessus)</summary>'+old+'</details>';
+    // 20/10/2026 : ancienne analyse retiree (positions 5-8 %, stop loss, RSI : contredisait la methode)
+    fe.innerHTML = renderV2(s);
   };
 }
 
