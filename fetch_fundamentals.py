@@ -640,6 +640,19 @@ def compute_quality(t, sector_cat):
 # se realisent.
 QV_R, QV_G2, QV_YEARS, QV_GMAX, QV_ROIC_CAP = 0.085, 0.025, 10, 0.12, 60.0
 
+
+def growth_yahoo(cagr, nig):
+    """21/10/2026 : croissance retenue sans communique officiel. Avant : moyenne
+    (CA, benefice net) -- un benefice qui repart d'un point bas (Sulzer, MT Hojgaard,
+    GoDaddy) gonflait la croissance projetee sur 10 ans. Desormais la moyenne ne
+    peut jamais depasser la croissance du chiffre d'affaires : un benefice ne
+    croit pas durablement plus vite que les ventes."""
+    gs = [x for x in (cagr, nig) if x is not None]
+    if not gs:
+        return None
+    m = sum(gs) / len(gs)
+    return min(m, cagr) if cagr is not None else m
+
 def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
     R = QV_R if r is None else r
     if roic_pct is None:
@@ -647,10 +660,10 @@ def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
     if g1_override is not None:
         g1 = g1_override
     else:
-        gs = [x for x in (cagr, nig) if x is not None]
-        if not gs:
+        g_ = growth_yahoo(cagr, nig)
+        if g_ is None:
             return None
-        g1 = max(0.0, min(sum(gs) / len(gs) / 100, QV_GMAX))
+        g1 = max(0.0, min(g_ / 100, QV_GMAX))
     # Benefice de depart : le BPA prevu par les analystes, plafonne a +10 %
     # au-dessus de ce que donne le BPA publie x (1+g1). Teste le 04/10 : le
     # BPA prevu brut de Yahoo gonflait certaines valeurs de 50 a 100 %
@@ -1301,8 +1314,8 @@ def fetch_one(ticker, yf_sym, sector):
             result['qok'] = not parts
             result['qwhy'] = ', '.join(parts)
         else:
-            gs = [x for x in (result.get('cagr'), result.get('nig')) if x is not None]
-            result['gused'] = round(sum(gs) / len(gs), 1) if gs else None
+            _g = growth_yahoo(result.get('cagr'), result.get('nig'))
+            result['gused'] = round(_g, 1) if _g is not None else None
             result['gsrc'] = 'yahoo (4 ans publies)'
         # Valeur "limite" (05/10/2026, cas Vinci : croissance 2,6 % pour une
         # barre a 3 %) : un SEUL critere en echec -> reste hors filtre, mais
@@ -1373,8 +1386,7 @@ def fetch_one(ticker, yf_sym, sector):
             # 09/10/2026 : croissance utilisee dans le calcul (voir effective_growth)
             g_c = g_in if off else None
             if g_c is None:
-                gs_ = [x for x in (result.get('cagr'), result.get('nig')) if x is not None]
-                g_c = sum(gs_) / len(gs_) if gs_ else 0.0
+                g_c = growth_yahoo(result.get('cagr'), result.get('nig')) or 0.0
             g_c, g_cap = effective_growth(max(0.0, g_c), roic_v, (MOAT.get(ticker) or (None,))[0], bool(off))
             fwd_v = info.get('forwardEps')
             if _cyc:

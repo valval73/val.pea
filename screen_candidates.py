@@ -7,7 +7,7 @@ Lancement manuel (GitHub Actions > Candidats > Run workflow).
 """
 import json, time, re, unicodedata
 import yfinance as yf
-from fetch_fundamentals import compute_quality, qarp_value, expected_return, implied_growth, QV_GMAX
+from fetch_fundamentals import compute_quality, qarp_value, expected_return, implied_growth, QV_GMAX, growth_yahoo
 
 # code de marche (MIC) -> suffixe Yahoo
 SUFFIX = {'XPAR': '.PA', 'XETR': '.DE', 'XFRA': '.F', 'XMIL': '.MI', 'XMAD': '.MC',
@@ -202,8 +202,8 @@ def main():
                             and info.get('financialCurrency') != info.get('currency'))
                 roic_v = q.get('roicx') or q.get('roic')
                 if r_['qok'] and px and same and roic_v:
-                    gs = [x for x in (q.get('cagr'), q.get('nig')) if x is not None]
-                    g = max(0.0, min(sum(gs) / len(gs), QV_GMAX * 100)) if gs else 0.0
+                    g_ = growth_yahoo(q.get('cagr'), q.get('nig'))
+                    g = max(0.0, min(g_, QV_GMAX * 100)) if g_ is not None else 0.0
                     roic_c = min(roic_v, 60.0)
                     v = qarp_value(info.get('forwardEps'), info.get('trailingEps'), None, None, roic_c, g1_override=g / 100)
                     ind = info.get('industry') or ''
