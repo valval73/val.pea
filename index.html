@@ -1182,9 +1182,9 @@ function ptfAnalyze(){
       // sur RSI ni de "renforcer parce que le cours baisse")
       var _f=String(s.fcfh||'').split('|').map(Number), _n=String(s.nih||'').split('|').map(Number);
       var _c0=(_n[0]>0)?_f[0]/_n[0]*100:null, _c1=(_n[1]>0)?_f[1]/_n[1]*100:null;
-      var _hi=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0);
+      var _hv=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0), _hi=Math.max(_hv, s.tp>0?s.tp:0); // 21/10/2026 : deux cles (optimiste ET analystes)
       if(_c0!=null&&_c1!=null&&_c0<60&&_c1<60){signal='⚠️ VENDRE — cash < 60 % deux ans';signalCol='#dc2626';signalBg='#fee2e2';ventes.push(pos.ticker);}
-      else if(_hi>0&&cours>_hi){signal='✂️ VENDRE LA MOITIÉ — trop chère';signalCol='#d97706';signalBg='#fef3c7';}
+      else if(_hv>0&&cours>_hi){signal=(Math.floor((pos.qty||0)/2)>=1?'✂️ VENDRE LA MOITIÉ — au-dessus de l’optimiste et des analystes':'✂️ TROP CHÈRE — une seule action, on garde');signalCol='#d97706';signalBg='#fef3c7';}
       else if(!s.qok&&!s.near){signal='⛔ HORS QUALITÉ — ne pas renforcer';signalCol='#d97706';signalBg='#fef3c7';}
       else if(s.qok&&s.eh>0&&cours<=s.eh){signal='✅ RENFORCER POSSIBLE — palier atteint';signalCol='#16a34a';signalBg='#dcfce7';renforts.push(pos.ticker);}
       else if(s.stop>0&&cours<s.stop){signal='🔎 CONTRE-EXPERTISE — sous le seuil de revue';signalCol='#d97706';signalBg='#fef3c7';}
@@ -1294,7 +1294,7 @@ function ptfAnalyze(){
 
     if(p.s){
       html+='<div style="margin-top:6px;font-size:10px;color:#555">';
-      if(p.s.eh>0)html+='Palier 1 : <b>'+p.s.eh+'€</b>'+(p.s.stop>0?' · Seuil de revue : <b style="color:#a8322b">'+p.s.stop+'€</b>':'')+((p.s.vopt||p.s.dcfm)?' · Trop chère au-dessus de <b style="color:#a8790f">'+Math.round(p.s.vopt>0?p.s.vopt:p.s.dcfm*1.3)+'€</b>':'');
+      if(p.s.eh>0)html+='Palier 1 : <b>'+p.s.eh+'€</b>'+(p.s.stop>0?' · Seuil de revue : <b style="color:#a8322b">'+p.s.stop+'€</b>':'')+((p.s.vopt||p.s.dcfm)?' · Trop chère au-dessus de <b style="color:#a8790f">'+Math.round(Math.max(p.s.vopt>0?p.s.vopt:p.s.dcfm*1.3, p.s.tp>0?p.s.tp:0))+'€</b> (optimiste et analystes)':'');
       if(p.s.yield)html+=' · Div : <b>'+p.s.yield+'%</b>';
       html+='</div>';
     }

@@ -140,7 +140,7 @@ function priceBar(s){
   if(Z>0 && !near_) h += '<div class="v2-lbl" style="left:'+pos(Z)+'%;top:80px;color:'+C.gn+'">palier 2 '+fr(Z,0)+'</div>';
   if(s.tp>0) h += '<div class="v2-tick" style="left:'+pos(s.tp)+'%;background:#6b7487;width:2px"></div><div class="v2-lbl" style="left:'+pos(s.tp)+'%;top:80px;color:'+C.mu+'">analystes '+fr(s.tp,0)+'</div>';
   if(s.dcfm>0) h += '<div class="v2-tick" style="left:'+pos(s.dcfm)+'%;background:'+C.ink+';height:38px;top:26px"></div><div class="v2-lbl" style="left:'+pos(s.dcfm)+'%;top:62px;color:'+C.ink+'">central '+fr(s.dcfm,0)+'</div>';
-  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">vendre ½ &gt; '+fr(s.vopt,0)+'</div>';
+  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">vendre ½ &gt; '+fr(Math.max(s.vopt,s.tp>0?s.tp:0),0)+'</div>';
   h += '<div class="v2-price" style="left:'+pos(s.price)+'%"><span>cours '+fr(s.price)+'</span><i></i></div></div>';
   return h;
 }
@@ -809,8 +809,12 @@ function alerts(){
     if(s.stop>0 && s.price<s.stop && (s.qok||s.near)) review.push(row(s,'sous le seuil de revue ('+fr(s.stop)+' €) → contre-expertise obligatoire'));
     // 19/10/2026 : aussi pour les lignes hors qualite (pas de scenario optimiste) :
     // valeur centrale + 30 %. Regle : vendre la moitie, une fois, jamais tout.
-    var hi_=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0);
-    if(hi_>0 && s.price>hi_) high.push(row(s,'au-dessus de '+fr(hi_)+' € ('+(s.vopt>0?'scénario optimiste':'valeur centrale + 30 %')+') → vendre la moitié de la ligne, une fois, jamais tout'));
+    // 21/10/2026 : vente a DEUX cles = cours au-dessus de la valeur optimiste ET de
+    // l'objectif moyen des analystes (le modele plafonne la croissance et sous-evalue
+    // les entreprises exceptionnelles : ASML, Hermes). Une ligne d'une action ne se coupe pas.
+    var hv_=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0), hi_=Math.max(hv_, s.tp>0?s.tp:0);
+    if(hv_>0 && s.price>hi_){ var half_=Math.floor((p.qty||0)/2);
+      high.push(row(s,'au-dessus de '+fr(hv_)+' € (scénario optimiste)'+(s.tp>0?' et de '+fr(s.tp)+' € (objectif des analystes)':'')+(half_>=1?' → vendre la moitié ('+half_+' action'+(half_>1?'s':'')+'), une fois, jamais tout':' → ligne d’une seule action : pas de vente partielle possible, on garde'))); }
     var w=tot>0?s.price*p.qty/tot*100:0; if(w>10) big.push(row(s,'pèse '+fr(w,1)+' % (plafond 10 %) → ne pas renforcer'));
     var L=window.v2ceList?v2ceList(s.ticker):[], age=L[0]?Math.round((Date.now()-new Date(L[0].date).getTime())/864e5):null;
     if(age==null||age>90) ce.push(row(s, age==null?'jamais de contre-expertise':'dernière contre-expertise il y a '+age+' jours'));
@@ -833,7 +837,7 @@ function alerts(){
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
     card('Valeurs de qualité en zone d’achat','« NOUVEAU » = entrée en zone depuis ta dernière visite',zone,'#1d6b45')+
     card('Mes lignes trop grosses','plafond 10 % par action',big,'#a8790f')+
-    card('Mes lignes trop chères','vendre la moitié, une fois · le reste suit la thèse',high,'#a8790f')+
+    card('Mes lignes trop chères','au-dessus de l’optimiste ET des analystes · vendre la moitié, une fois · le reste suit la thèse',high,'#a8790f')+
     card('Contre-expertises à faire','lignes détenues sans contre-expertise de moins de 3 mois',ce,'#6b7487')+
   '</div>';
 }
@@ -848,7 +852,7 @@ function guide(){
   '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → palier 1 : demi-position (2,5 %), palier 2 : position complète (5 %) ; fragilisée → on descend d’un palier (rien au palier 1, demi-position au palier 2) ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
   '<section class="v2-card"><h2>5. La routine du mois (1er dimanche, 15 min)</h2><p>1. Versement. 2. Onglet portefeuille : une ligne « REVOIR » deux publications de suite → je vends. 3. Une action « achat possible » avec contre-expertise favorable et ligne &lt; 10 % → j’achète ; sinon le versement va sur l’ETF Monde. 4. Une ligne dans le journal. Le reste du mois : aucune décision.</p></section>'+
   '<section class="v2-card"><h2>6. Garde-fous</h2><p>Maximum 10 % par action · 13 à 15 lignes · seuil de revue = scénario pessimiste − 10 % (contre-expertise obligatoire, pas de vente automatique) · exceptions écrites seulement (Air Liquide ; poche cyclique avec vrai stop pour TotalEnergies).</p></section>'+
-  '<section class="v2-card"><h2>6 bis. Vendre : deux règles, et rien d’autre</h2><p><b>La qualité</b> : conversion du bénéfice en cash ≥ 80 % garder ; 60-80 % garder sans renforcer ; sous 60 % deux ans de suite → contre-expertise, et elle seule décide. Si la chute vient d’un paiement exceptionnel chiffré par l’entreprise elle-même, la contre-expertise l’écrit et on garde ; sinon on vend tout. <b>Le prix</b> : au-dessus du scénario optimiste, on vend la moitié, une seule fois, même si l’entreprise est excellente. Les deux questions sont indépendantes. <b>Cas d’école, octobre 2026 — Coca-Cola</b> : cash faussé par le paiement de fairlife (qualité intacte, on garde) mais cours au-dessus de l’optimiste (on vend la moitié). Le prix d’achat n’entre jamais dans la décision.</p></section>'+
+  '<section class="v2-card"><h2>6 bis. Vendre : deux règles, et rien d’autre</h2><p><b>La qualité</b> : conversion du bénéfice en cash ≥ 80 % garder ; 60-80 % garder sans renforcer ; sous 60 % deux ans de suite → contre-expertise, et elle seule décide. Si la chute vient d’un paiement exceptionnel chiffré par l’entreprise elle-même, la contre-expertise l’écrit et on garde ; sinon on vend tout. <b>Le prix</b> : quand le cours dépasse <b>à la fois</b> le scénario optimiste du screener <b>et</b> l’objectif moyen des analystes, on vend la moitié, une seule fois (depuis le 21/10/2026 : le screener plafonne la croissance et sous-évalue les entreprises exceptionnelles comme ASML ou Hermès ; la deuxième clé évite de les vendre trop tôt). Une ligne d’une seule action ne se coupe pas. Les deux questions sont indépendantes. <b>Cas d’école, octobre 2026 — Coca-Cola</b> : cash faussé par le paiement de fairlife (qualité intacte, on garde) mais cours au-dessus de l’optimiste (on vend la moitié). Le prix d’achat n’entre jamais dans la décision.</p></section>'+
   '<section class="v2-card"><h2>7. Banques, assurances, foncières</h2><p>Grilles dédiées. <b>Banque / assurance</b> : rentabilité des fonds propres ≥ 10 % (pire année ≥ 6 %), aucune perte sur 4 ans, actif net par action en hausse ≥ 2 %/an ; valeur = actif net × rentabilité, rendement exigé 10 %/an. <b>Foncière</b> : dette nette / actifs ≤ 45 %, intérêts couverts 2,5 fois, loyers stables ou en hausse ; valeur ≈ actif net comptable. La solvabilité (CET1, Solvabilité II) et l’actif net réévalué officiel se vérifient dans la contre-expertise.</p></section>'+
   '<section class="v2-card"><h2>8. Deux sources de chiffres</h2><p>Yahoo (mise à jour automatique) est recoupé chaque lundi avec les <b>comptes officiels</b> déposés au format européen (filings.xbrl.org). Écart de plus de 5 % sur le chiffre d’affaires ou le résultat net → « donnée à vérifier » : l’achat est bloqué tant que ce n’est pas éclairci.</p></section>'+
   '<section class="v2-card"><h2>9. Ce que dit le test sur le passé</h2><div id="v2-bt" class="v2-small">Chargement…</div></section>'+
