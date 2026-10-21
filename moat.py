@@ -228,6 +228,13 @@ MOAT = {
                  'concurrence par les prix, IA de creation de sites'),
     'FTDR': (2, 'contrats de garantie pour maisons aux Etats-Unis',
                  'concurrence, couts des reparations'),
+    # --- 21/10/2026 : services financiers a faible capital entres au radar ---
+    'FDS': (4, 'donnees et logiciels financiers integres aux postes des gerants et banquiers, couts de changement',
+                 'IA generative et concurrents (Bloomberg, LSEG, S&P) qui banalisent la donnee'),
+    'MCO': (5, 'duopole de la notation financiere avec S&P, exige par les regulateurs et les investisseurs',
+                 'regulation, cycle des emissions de dette'),
+    'V': (5, 'reseau de paiement mondial : effet de reseau entre banques, commercants et porteurs',
+                 'regulation des commissions, paiements instantanes publics, cryptomonnaies stables'),
 }
 MOAT_MIN_BUY = 3
 
