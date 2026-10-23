@@ -2599,5 +2599,68 @@
 "mid",
 "USD",
 "CTO"
+],
+[
+"TXTWA",
+"TXT.WA",
+"TXT C.XWAR PLN",
+"Technology",
+"small",
+"PLN",
+"PEA"
+],
+[
+"AIAAT",
+"AIA.AT",
+"ATHENS INTERNATIONAL AIRPORT",
+"Industrials",
+"mid",
+"EUR",
+"PEA"
+],
+[
+"SESMI",
+"SES.MI",
+"SESA",
+"Technology",
+"small",
+"EUR",
+"PEA"
+],
+[
+"CBFWA",
+"CBF.WA",
+"CBF C.XWAR PLN",
+"Technology",
+"mid",
+"PLN",
+"PEA"
+],
+[
+"DB1DE",
+"DB1.DE",
+"DEUTSCHE BOERSE AG",
+"Financial Services",
+"large",
+"EUR",
+"PEA"
+],
+[
+"EXAEAT",
+"EXAE.AT",
+"EURONEXT ATHENS",
+"Financial Services",
+"small",
+"EUR",
+"PEA"
+],
+[
+"OUTLTOL",
+"OUTLT.OL",
+"OUTLET GROUP HOLDING ASA",
+"Consumer Cyclical",
+"mid",
+"NOK",
+"PEA"
 ]
 ]
