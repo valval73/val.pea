@@ -255,7 +255,7 @@ UNCERTAINTY = {
     'ASSA': 'moyenne', 'NSIS': 'moyenne', 'RACE': 'moyenne', 'DASSAV': 'moyenne',
     'RBT': 'moyenne',
     # elevee : une seule activite, cycle marque, brevets, petite taille
-    'GTT': 'elevee', 'PLNW': 'elevee', 'IPSEN': 'elevee', 'RHM': 'elevee',
+    'GTT': 'elevee', 'INTERPARFUMS': 'elevee', 'PLNW': 'elevee', 'IPSEN': 'elevee', 'RHM': 'elevee',
     'EXENS': 'elevee', 'ATE': 'elevee', 'ASM': 'elevee', 'EPI': 'elevee',
     'WAVE': 'elevee',
     # 19/10/2026 : fiches promues
