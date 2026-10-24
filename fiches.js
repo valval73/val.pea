@@ -9,7 +9,7 @@
 //   next : prochain rendez-vous
 // Deux alertes du tableau de bord en même temps = thèse cassée = vente.
 const FICHE = {
-GTT:{why:"Péage technologique sur le transport mondial de GNL : très peu de capital, marge d'EBITDA de 67 %, 80 % du bénéfice reversé.",
+GTT:{why:"Conçoit la technologie des cuves des méthaniers (navires de gaz liquéfié) et la vend sous licence : les chantiers navals lui paient une redevance sur chaque navire construit avec ses cuves.",
  wrong:"Les commandes de méthaniers s'effondrent durablement, une technologie concurrente perce, ou la redevance baisse.",
  comp:[["KC-1 (Corée)","2 premiers navires défectueux, quasi jamais exploités"],["Cuves Moss","technologie ancienne, moins de volume utile"],["Chantiers chinois","développent leurs propres systèmes : la menace à suivre"]],
  kpi:[["Membrane concurrente (moat)","aucune commande en série de grand méthanier ; KC-2C installé sur un petit méthanier de 7 500 m³ (Samsung, oct. 2025)","≥ 5 grands méthaniers (> 100 000 m³) commandés avec une membrane coréenne ou chinoise"],["Marge d'EBITDA (prix)","68,1 % (S1 2026)","< 60 %"],["Chiffre d'affaires 2027 (moteur)","655 M€ déjà assurés (juin 2026)","< 600 M€ : annulations ou retards"]],
