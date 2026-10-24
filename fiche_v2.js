@@ -477,23 +477,55 @@ function decision(s){
 
 
 // ---- 06/10/2026 : journal pré-rempli depuis la fiche ----
-window.v2jnl = function(t){
-  var s=S.find(function(x){return x.ticker===t;}); if(!s) return;
+// 24/10/2026 : le pré-remplissage reprend le contenu de la fiche (métier, moat,
+// chiffres de la contre-expertise, contre-thèse, 3 chiffres d'erreur) et marche
+// aussi depuis « Nouvelle entrée » du journal dès qu'on choisit l'action.
+function jnlResolve(q){
+  if(!q||typeof S==='undefined') return null;
+  var n=function(x){ return String(x||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim(); };
+  var k=n(q), u=String(q).trim().toUpperCase();
+  return S.find(function(x){return x.ticker===u;}) || S.find(function(x){return n(x.name)===k;}) ||
+         (k.length>=3 ? S.find(function(x){return n(x.name).indexOf(k)===0;}) || S.find(function(x){return n(x.name).indexOf(k)>=0;}) : null) || null;
+}
+function jnlFill(t, keepType){
+  var s=S.find(function(x){return x.ticker===t;}); if(!s) return false;
   var F=(typeof FICHE!=='undefined')?FICHE[t]:null, L=ceList(t), last=L[0], v=verdict(s);
+  var set=function(id,val){ var e=document.getElementById(id); if(e) e.value=val; };
+  var line=function(a){ return a&&a.length ? a.join(' · ') : ''; };
+  set('jnl-ticker', t); set('jnl-cours', s.price);
+  if(!keepType) set('jnl-type', (s.qok&&s.rec==='buy')?'ACHAT':'ATTENDRE');
+  var moat = (s.mtype||'') + (s.mthreat?' · menace : '+s.mthreat:'') + ((s.mscore||typeof s.moat==='number')?' · note '+(s.mscore||s.moat)+'/5':'');
+  var chif = last ? ('contre-expertise du '+last.date+(last.resume?' : '+last.resume:'')+(last.kpi&&last.kpi.length?'\n'+last.kpi.map(function(k){return '- '+line(k);}).join('\n'):'')) : '';
+  var contre = (last&&last.contre) ? last.contre : (F&&F.wrong ? F.wrong : '');
+  var why = 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · cours '+fr(s.price)+' · palier 1 '+fr(s.eh)+' · palier 2 '+fr(z2(s))+' · valeur centrale '+fr(s.dcfm)+
+      (last?' · '+(CEL[last.concl]?CEL[last.concl][0].toLowerCase():'?')+' ('+last.date+')':' · pas de contre-expertise')+
+      '\n\n1. Le métier en une phrase : '+(F&&F.why?F.why:'')+
+      '\n2. Le moat, et ce qui pourrait le casser : '+moat+
+      '\n3. Chiffres vérifiés : '+(chif||'à vérifier dans une deuxième source')+
+      '\n4. Pourquoi elle peut perdre 30 % : '+(contre||'au moins 3 familles de risques')+
+      '\n5. Pourquoi maintenant (le prix) : ';
+  var kp = (F&&F.kpi&&F.kpi.length) ? F.kpi.map(function(k){ return '- '+k[0]+' · aujourd’hui '+(k[1]||'—')+' · alerte si '+(k[2]||'—'); }).join('\n') : '- Moteur : \n- Moat : \n- Cash ou bilan : ';
+  set('jnl-why', why);
+  set('jnl-exit', '6. Mes 3 chiffres qui diraient que j’avais tort :\n'+kp+'\nVente de moitié si le cours dépasse '+fr(Math.max(s.vopt||0, s.tp||0))+' (max valeur optimiste / objectif analystes).');
+  var w=document.getElementById('jnl-why'); if(w){ w.dataset.auto=w.value; w.focus(); w.setSelectionRange(w.value.length,w.value.length); }
+  return true;
+}
+window.v2jnlFill = jnlFill;
+window.v2jnl = function(t){
   var tab=[].slice.call(document.querySelectorAll('.ntab')).find(function(b){return /jnl/.test(b.getAttribute('onclick')||'');});
   showPg('jnl', tab);
   setTimeout(function(){
     var f=document.getElementById('jnl-form'); if(f && f.style.display!=='block') jnlNew();
-    var set=function(id,val){ var e=document.getElementById(id); if(e) e.value=val; };
-    set('jnl-ticker', t); set('jnl-cours', s.price);
-    set('jnl-type', (s.qok&&s.rec==='buy')?'ACHAT':'ATTENDRE');
-    set('jnl-why', 'Screener ('+new Date().toLocaleDateString('fr-FR')+') : '+v.t+' · palier 1 '+fr(s.eh)+' € · palier 2 '+fr(z2(s))+' € · valeur centrale '+fr(s.dcfm)+' €'+
-      (last?' · contre-expertise du '+last.date+' : '+(CEL[last.concl]?CEL[last.concl][0]:'?'):' · pas de contre-expertise')+
-      '\n\n1. Le métier en une phrase (mes mots, sans relire la fiche) : \n2. Le moat, et ce qui pourrait le casser : \n3. Chiffres vérifiés dans une deuxième source (laquelle ?) : \n4. Pourquoi elle peut perdre 30 % (au moins 3 familles) : \n- \n- \n- \n5. Pourquoi j’achète maintenant (le prix) : ');
-    set('jnl-exit', '6. Mes 3 chiffres qui diraient que j’avais tort (chiffre · aujourd’hui · alerte si · pourquoi) : \n- Moteur : \n- Moat : \n- Cash ou bilan : \nSeuil de revue : '+fr(s.stop)+' € → contre-expertise obligatoire.');
-    var w=document.getElementById('jnl-why'); if(w){ w.focus(); w.setSelectionRange(w.value.length,w.value.length); }
+    jnlFill(t, false);
   }, 400);
 };
+document.addEventListener('change', function(e){
+  if(!e.target || e.target.id!=='jnl-ticker') return;
+  var s=jnlResolve(e.target.value); if(!s) return;
+  var w=document.getElementById('jnl-why');
+  if(w && w.value.trim() && w.value!==w.dataset.auto){ e.target.value=s.ticker; return; } // ne jamais écraser ce que tu as écrit
+  jnlFill(s.ticker, true);
+});
 
 function renderV2(s){
   var F = (typeof FICHE!=='undefined') ? FICHE[s.ticker] : null;

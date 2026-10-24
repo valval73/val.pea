@@ -3549,8 +3549,10 @@ function jnlNewFromTicker(ticker){
 
 function jnlNew(){
   var f=document.getElementById('jnl-form');
-  f.style.display = f.style.display==='none'?'block':'none';
-  if(f.style.display==='block'){
+  f.style.display = 'block'; // 24/10/2026 : toujours ouvrir (avant : un 2e clic refermait le formulaire)
+  try{ f.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){}
+  if(true){
+    document.getElementById('jnl-why').dataset.auto='';
     document.getElementById('jnl-ticker').value='';
     document.getElementById('jnl-why').value='';
     document.getElementById('jnl-exit').value='';
@@ -4575,7 +4577,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <div id="jnl-form" style="display:none;background:var(--sf);border:2px solid #7c3aed;border-radius:8px;padding:20px;margin-bottom:20px">
     <div style="font-size:12px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">Nouvelle décision</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
-      <div><div style="font-size:10px;color:var(--mu);margin-bottom:4px">Ticker *</div><input id="jnl-ticker" type="text" list="jnl-tk-list" autocomplete="off" onfocus="jnlTkList()" placeholder="tape le nom ou le ticker" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx);font-size:13px;box-sizing:border-box"></div>
+      <div><div style="font-size:10px;color:var(--mu);margin-bottom:4px">Ticker *</div><input id="jnl-ticker" type="text" list="jnl-tk-list" autocomplete="off" onfocus="jnlTkList()" placeholder="tape le nom ou le ticker : la fiche se recopie" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx);font-size:13px;box-sizing:border-box"></div>
       <div><div style="font-size:10px;color:var(--mu);margin-bottom:4px">Décision *</div><select id="jnl-type" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx);font-size:13px;box-sizing:border-box"><option value="ACHAT">📈 Achat</option><option value="RENFORT">💪 Renforcement</option><option value="VENTE">📉 Vente partielle</option><option value="VENTE_TOT">🚫 Vente totale</option><option value="CONSERVER">🏛️ Conserver</option><option value="ATTENDRE">⏳ Attendre</option></select></div>
       <div><div style="font-size:10px;color:var(--mu);margin-bottom:4px">Cours</div><input id="jnl-cours" type="number" placeholder="ex: 1640.5" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx);font-size:13px;box-sizing:border-box"></div>
     </div>
@@ -5542,9 +5544,9 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <script src="live_patch.js?v=1792789096"></script>
 <!-- 05/10/2026 : fiche v2 + liste de decision -->
-<script src="fiches.js?v=1792789096"></script>
-<script src="contre_expertises.js?v=1792789096"></script>
+<script src="fiches.js?v=1792819439"></script>
+<script src="contre_expertises.js?v=1792819439"></script>
 <script src="analyses.js?v=1792789096"></script>
-<script src="fiche_v2.js?v=1792789096"></script>
+<script src="fiche_v2.js?v=1792819439"></script>
 </body>
 </html>
