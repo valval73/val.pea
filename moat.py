@@ -28,6 +28,8 @@ MOAT = {
                  "erosion de la rarete (sacs 'hors quotas', UBS oct. 2026), Chine"),
     'AI':    (4, "club ferme de 3-4 acteurs mondiaux ; usine chez le client, gaz qui voyage mal, take-or-pay",
                  "fermetures definitives d'usines clientes en Europe, guerre des prix entre les geants"),
+    'TTE':   (2, "couts de production bas, portefeuille de GNL sous contrats longs",
+                 "aucun client captif ni pouvoir sur les prix : les benefices suivent le baril"),
     'INTERPARFUMS': (2, "savoir-faire de createur et distributeur de parfums sous licence",
                  "les marques ne lui appartiennent pas : un concurrent au meme savoir-faire peut reprendre une licence (Burberry 2012)"),
     'GTT':   (4, "brevets des membranes de cuves GNL, standard de l'immense majorite des methaniers",
@@ -255,7 +257,7 @@ UNCERTAINTY = {
     'ASSA': 'moyenne', 'NSIS': 'moyenne', 'RACE': 'moyenne', 'DASSAV': 'moyenne',
     'RBT': 'moyenne',
     # elevee : une seule activite, cycle marque, brevets, petite taille
-    'GTT': 'elevee', 'INTERPARFUMS': 'elevee', 'PLNW': 'elevee', 'IPSEN': 'elevee', 'RHM': 'elevee',
+    'GTT': 'elevee', 'INTERPARFUMS': 'elevee', 'TTE': 'elevee', 'PLNW': 'elevee', 'IPSEN': 'elevee', 'RHM': 'elevee',
     'EXENS': 'elevee', 'ATE': 'elevee', 'ASM': 'elevee', 'EPI': 'elevee',
     'WAVE': 'elevee',
     # 19/10/2026 : fiches promues
