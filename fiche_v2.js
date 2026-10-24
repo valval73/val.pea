@@ -509,7 +509,7 @@ function renderV2(s){
     step(1,'Le métier',thesis(s,F))+
     step(2,'Le moat',moat(s,F))+
     step(3,'Les chiffres',quality(s)+figures(s))+
-    step(4,'La contre-thèse : pourquoi elle peut perdre 30 %',ceBlock(s))+
+    step(4,'La contre-thèse : pourquoi elle peut perdre 30 %',docLink(s)+ceBlock(s))+
     step(5,'Le prix',feeLine(s)+buyPlan(s)+priceBlock(s)+ratios(s))+
     step(6,'Mes chiffres d’erreur et la sortie',exitBlock(s))+
     decision(s)+technical(s)+sources(s)+
@@ -548,6 +548,13 @@ function feeLine(s){
   var x=feeInfo(s);
   return '<p class="v2-small" style="margin:0 0 8px;padding:8px 10px;border-radius:8px;background:'+(x.ok?'#eef6f1':'#fbf4e6')+'"><b>Frais d’achat ('+x.nom+')</b> : '+fr(x.f500)+' € pour un ordre de 500 € ('+fr(x.p500,1)+' %)'+
     (x.ok?' : sous la règle de 1 %.':' : au-dessus de la règle de 1 %. Ordre minimum pour respecter la règle : <b>'+fr(x.min,0)+' €</b> (regrouper plusieurs mois).')+x.acces+'</p>';
+}
+
+// 24/10/2026 : lien vers l'analyse complete (document) quand elle existe
+function docLink(s){
+  var a=(typeof ANALYSES!=='undefined')?ANALYSES.find(function(x){return x.t===s.ticker;}):null;
+  if(!a||!a.lien) return '';
+  return '<section class="v2-card" style="border-left:4px solid #24508a"><b>Analyse complète du '+esc(a.date)+'</b> (verdict alors : '+esc(a.verdict||'')+') · <a href="'+a.lien+'" target="_blank" rel="noopener">Lire le document d’analyse</a></section>';
 }
 // ---- 20/10/2026 : meme ordre pour toutes les fiches = les 6 etapes de la methode ----
 function step(n, t, html){

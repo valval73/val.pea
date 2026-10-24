@@ -5269,15 +5269,36 @@ document.addEventListener('DOMContentLoaded',function(){
       var r=rows[t]||{t:t,nom:s?s.name:t,compte:s&&/compte-titres/.test(s.sector||'')?'CTO':'PEA'}; if(!r.date||c.date>r.date) r.date=c.date; r.ce=c; rows[t]=r;});
     var list=Object.keys(rows).map(function(k){return rows[k];}).sort(function(a,b){return a.date<b.date?1:-1;});
     if(!list.length){el.innerHTML='<span class="an-note">Aucune analyse pour l’instant.</span>';return;}
-    var h='<p class="an-note">'+list.length+' analyses, la plus récente en premier. Clique sur une action pour voir son analyse en 6 étapes.</p>';
-    list.forEach(function(r){var s=stock(r.t), c=r.ce, z=s?s.dcfm*(1-(Z[s.unc]||.3)):r.p2, px=s?s.price:r.cours, p1=s?s.eh:r.p1;
+    // 24/10/2026 : rangement par conclusion (mes lignes d'abord), filtre et recherche
+    var held={}; ['pea_ptf_val','pea_ptf_p2'].forEach(function(k){ try{ JSON.parse(localStorage.getItem(k)||'[]').forEach(function(p){ if(p&&p.ticker&&p.qty>0) held[p.ticker]=1; }); }catch(e){} });
+    var grpOf=function(r){ return r.ce?r.ce.concl:'autre'; };
+    var GR=[['mine','Mes lignes','#24508a'],['intacte','Thèse intacte','#1d6b45'],['fragilisee','Thèse fragilisée','#a8790f'],['cassee','Thèse cassée','#a8322b'],['autre','Sans contre-expertise','#5a6275']];
+    var F=window._anF||'all', Q=(window._anQ||'').toLowerCase();
+    var cnt={}; list.forEach(function(r){ var g=grpOf(r); cnt[g]=(cnt[g]||0)+1; if(held[r.t]) cnt.mine=(cnt.mine||0)+1; });
+    var h='<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px">'+
+      [['all','Toutes ('+list.length+')']].concat(GR.map(function(g){return [g[0],g[1]+' ('+(cnt[g[0]]||0)+')'];})).map(function(b){
+        return '<button onclick="window._anF=\''+b[0]+'\';window.anGo()" style="min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid #0e1c33;cursor:pointer;background:'+(F===b[0]?'#0e1c33;color:#fff':'#fff;color:#0e1c33')+'">'+b[1]+'</button>';}).join('')+
+      '<input placeholder="Chercher une action" value="'+e(window._anQ||'')+'" oninput="window._anQ=this.value;clearTimeout(window._anT);window._anT=setTimeout(window.anGo,250)" style="min-height:36px;padding:4px 10px;border:1px solid var(--bd);border-radius:999px;flex:1;min-width:160px"></div>'+
+      '<p class="an-note">Mes lignes d’abord, puis par conclusion de la dernière contre-expertise ; dans chaque groupe, la plus récente en premier. Clique sur une action pour voir son analyse en 6 étapes.</p>';
+    var shown=list.filter(function(r){ return !Q || (r.nom+' '+r.t).toLowerCase().indexOf(Q)>=0; });
+    GR.forEach(function(g){
+      if(F!=='all' && F!==g[0]) return;
+      var part=shown.filter(function(r){ return g[0]==='mine' ? !!held[r.t] : (!held[r.t] || F===g[0]) && grpOf(r)===g[0]; });
+      if(g[0]!=='mine' && F==='all') part=part.filter(function(r){return !held[r.t];});
+      if(!part.length) return;
+      h+='<h4 style="margin:14px 0 4px;color:'+g[2]+';border-bottom:2px solid '+g[2]+';padding-bottom:2px">'+g[1]+' <span class="an-note">('+part.length+')</span></h4>';
+      part.forEach(function(r){ h+=rowHtml(r); });
+    });
+    el.innerHTML=h;}
+  function rowHtml(r){var h='';var s=stock(r.t), c=r.ce, z=s?s.dcfm*(1-(Z[s.unc]||.3)):r.p2, px=s?s.price:r.cours, p1=s?s.eh:r.p1;
       var tag=c?'<span style="color:'+COL[c.concl]+';font-weight:700">'+(LAB[c.concl]||'')+'</span>':'<span>'+e(r.verdict||'')+'</span>';
       var zone=(px&&p1&&px<=z)?'palier 2':(px&&p1&&px<=p1)?'palier 1':'au-dessus du palier 1';
       var fiche=s?'<a href="#" onclick="var tb=[].slice.call(document.querySelectorAll(\'.ntab\')).find(function(x){return /\'sc\'/.test(x.getAttribute(\'onclick\')||\'\');});showPg(\'sc\',tb);if(window.v2open){v2open(\''+r.t+'\');}return false;">Ouvrir la fiche</a>':'<span class="an-note">pas de fiche (hors screener)</span>';
       h+='<details style="border-top:1px solid var(--bd);padding:8px 0"><summary style="cursor:pointer"><b>'+e(r.nom)+'</b> <span class="an-note">'+e(r.compte||'')+' · '+e(r.date)+'</span> · '+tag+' · <span class="an-note">'+(s?f(px,2)+' € · '+zone:'')+'</span></summary>'+
         '<div style="padding:6px 0 0 12px;font-size:12px;line-height:1.55">'+fiche+(r.lien?' · <a href="'+r.lien+'" target="_blank" rel="noopener">Lire le document d’analyse</a>':'')+
-        steps(r.t,s,c)+'</div></details>';});
-    el.innerHTML=h;}
+        steps(r.t,s,c)+'</div></details>';
+    return h;}
+  window.anGo=go;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();})();</script>
 
   <h3>1. Les 8 critères de qualité (et ce qu'il faut en penser)</h3>
