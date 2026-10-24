@@ -253,14 +253,16 @@ function moat(s, F){
     (s.mtype?'<p><b>D’où vient l’avantage :</b> '+esc(s.mtype)+'.</p>':'')+
     '<div><b>Pourquoi pas un concurrent ?</b></div>'+comp+
     (s.mthreat?'<div style="color:'+C.rd+'"><b>Menace :</b> '+esc(s.mthreat)+'.</div>':'')+
-    '<div class="v2-small">Note de moat et niveau d’incertitude : jugement de Claude, à valider par toi.</div></section>';
+    '<div class="v2-small">'+((typeof FICHE!=='undefined'&&FICHE[s.ticker]&&FICHE[s.ticker].val)?'Note de moat validée par toi le '+esc(FICHE[s.ticker].val.split('-').reverse().join('/'))+'.':'Note de moat et niveau d’incertitude : jugement de Claude, à valider par toi.')+'</div></section>';
 }
 
 // ---- thèse + tableau de bord ----
+// 24/10/2026 : profil de Peter Lynch (étiquette, pas une règle) et fiche validée par Val
+var PROF = {lente:['Lente','le dividende et sa solidité'], solide:['Solide','le prix payé : croissance régulière, mais souvent chère'], rapide:['Rapide','la durée de la croissance ; si elle s’arrête, le multiple baisse'], cyclique:['Cyclique','où on en est dans le cycle ; un PER bas au sommet est un piège'], retournement:['Retournement','les preuves du redressement'], actifs:['Valeur d’actifs','ce que valent réellement les actifs']};
 function thesis(s, F){
   if(!F) return '<section class="v2-card"><h2>Ma thèse d’investissement</h2><p class="v2-small">Pas encore rédigée pour cette valeur (rédigée en priorité pour tes lignes et les valeurs de qualité).</p></section>';
   var rows = (F.kpi||[]).map(function(k){ return '<tr><td>'+esc(k[0])+'</td><td class="v2-mono">'+esc(k[1])+'</td><td>'+esc(k[2])+'</td></tr>'; }).join('');
-  return '<section class="v2-card"><div class="v2-head"><h2>Ma thèse d’investissement</h2><span class="v2-pill" style="background:#fbf4e6;color:#8a6420">BROUILLON — À VALIDER</span></div>'+
+  return '<section class="v2-card"><div class="v2-head"><h2>Ma thèse d’investissement</h2>'+(F.prof&&PROF[F.prof]?'<span class="v2-pill" style="background:#eef1f6;color:#0e1c33">'+PROF[F.prof][0].toUpperCase()+'</span> ':'')+(F.val?'<span class="v2-pill" style="background:#eef6f1;color:'+C.gn+'">VALIDÉE LE '+esc(F.val.split('-').reverse().join('/'))+'</span>':'<span class="v2-pill" style="background:#fbf4e6;color:#8a6420">BROUILLON — À VALIDER</span>')+'</div>'+(F.prof&&PROF[F.prof]?'<p class="v2-small"><b>Profil '+PROF[F.prof][0].toLowerCase()+' :</b> à regarder en priorité, '+PROF[F.prof][1]+'.</p>':'')+
     '<div class="v2-grid3"><div><div class="v2-k" style="color:'+C.gn+'">Pourquoi la posséder</div>'+esc(F.why)+'</div>'+
     '<div><div class="v2-k">Pourquoi maintenant</div>'+(s.gimp!=null&&s.gused!=null?'Le cours suppose '+fr(s.gimp,1)+' %/an ; on retient '+fr(s.gused,1)+' %. '+(s.gimp<s.gused?'Le marché est plus pessimiste que l’entreprise.':'Le marché est déjà plus optimiste que l’entreprise.'):'Voir la zone d’achat.')+'</div>'+
     '<div><div class="v2-k" style="color:'+C.rd+'">Ce qui prouverait que j’ai tort</div>'+esc(F.wrong)+'</div></div>'+
