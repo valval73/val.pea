@@ -84,7 +84,9 @@ MOAT = {
     # --- 19/10/2026 : fiches promues du radar (jugement de Claude, a valider ; a croiser avec Morningstar) ---
     'MA':    (4, "duopole mondial Visa-Mastercard, effet de reseau commercants-porteurs (note 4 validee le 25/10/2026 : les Etats, pas Visa, empechent le 5)",
                  "reglementation des commissions, paiements instantanes (Wero, Pix, FedNow)"),
-    'GOOGL': (4, "recherche et publicite (Google, YouTube), donnees, cloud",
+    'KO':    (3, "marques mondiales, concentre vendu aux embouteilleurs, peu d'usines (note 3 validee le 25/10/2026)",
+                 "chasse au sucre et a ses substituts (aspartame), medicaments contre l'obesite, Pepsi"),
+    'GOOGL': (4, "recherche et publicite (Google, YouTube), donnees, cloud (note 4 validee le 25/10/2026)",
                  "assistants d'IA qui contournent la recherche, proces antitrust"),
     'META':  (4, "effet de reseau de 3 milliards d'utilisateurs, ciblage publicitaire",
                  "depenses d'IA et de metavers colossales, reglementation"),
@@ -265,7 +267,7 @@ UNCERTAINTY = {
     'EXENS': 'elevee', 'ATE': 'elevee', 'ASM': 'elevee', 'EPI': 'elevee',
     'WAVE': 'elevee',
     # 19/10/2026 : fiches promues
-    'MA': 'faible', 'GOOGL': 'moyenne', 'META': 'moyenne', 'MNST': 'moyenne', 'ACN': 'moyenne',
+    'MA': 'faible', 'KO': 'faible', 'GOOGL': 'moyenne', 'META': 'moyenne', 'MNST': 'moyenne', 'ACN': 'moyenne',
     'HEMST': 'moyenne', 'ADBE': 'elevee', 'ANET': 'elevee', 'ABNB': 'elevee', 'DOCS': 'elevee',
     'EVOST': 'elevee', 'DECK': 'elevee',
     # 20/10/2026 : moats notes ce jour (score >= 3)
