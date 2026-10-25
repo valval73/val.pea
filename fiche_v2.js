@@ -424,7 +424,7 @@ function exitState(s){
   var L=cashConv(s); if(!L.length) return null;
   var a=L[0].c, b=L[1]?L[1].c:null;
   if(a<60 && b!==null && b<60) return {k:'vendre', t:'VENDRE', c:C.rd, x:'Conversion en cash sous 60 % deux années de suite ('+L[0].y+' : '+a+' %, '+L[1].y+' : '+b+' %).'};
-  if(a<60) return {k:'alerte', t:'ALERTE', c:C.rd, x:'Conversion en cash sous 60 % en '+L[0].y+' ('+a+' %). Contre-expertise : si l’année suivante reste sous 60 %, on vend.'};
+  if(a<60) return {k:'alerte', t:'ALERTE', c:C.rd, x:'Conversion en cash sous 60 % en '+L[0].y+' ('+a+' %). Contre-expertise : si l’année suivante reste sous 60 %, on vend. On ne retire, du cash comme du bénéfice, qu’un montant publié par la société qui ne vient pas de l’activité (plus-value sur participation, rachat d’entreprise, litige) ; sans chiffre publié, rien ; jamais les investissements de l’activité.'};
   if(a<80) return {k:'garder', t:'GARDER SANS RENFORCER', c:C.or, x:'Conversion en cash entre 60 et 80 % en '+L[0].y+' ('+a+' %) : thèse fragilisée, contre-expertise pour comprendre la cause.'};
   return {k:'ok', t:'GARDER', c:C.gn, x:'Conversion en cash de '+a+' % en '+L[0].y+' (seuil 80 %).'};
 }
