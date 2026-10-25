@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-25T16:48:08.339573+01:00",
-  "updated_count": 71,
+  "generated": "2026-10-25T17:19:35.459980+01:00",
+  "updated_count": 34,
   "score_computation": {
     "ok": true,
     "error": null,
@@ -16,7 +16,7 @@
       "watch": 99,
       "buy": 27
     },
-    "count": 1,
+    "count": 0,
     "total_computed": 534
   },
   "calendar_computation": {
@@ -27,7 +27,7 @@
   "data": {
     "MC": {
       "ticker": "MC",
-      "updated": "2026-10-25T16:33:03.593127+01:00",
+      "updated": "2026-10-25T17:00:14.200032+01:00",
       "place": "Paris",
       "price": 383.0,
       "chg": -1.24,
@@ -110,7 +110,7 @@
     },
     "AI": {
       "ticker": "AI",
-      "updated": "2026-10-25T16:33:05.073323+01:00",
+      "updated": "2026-10-25T17:00:16.228746+01:00",
       "place": "Paris",
       "price": 174.68,
       "chg": 0.63,
@@ -196,7 +196,7 @@
     },
     "OR": {
       "ticker": "OR",
-      "updated": "2026-10-25T16:33:06.416442+01:00",
+      "updated": "2026-10-25T17:00:17.971082+01:00",
       "place": "Paris",
       "price": 436.3,
       "chg": 5.64,
@@ -293,7 +293,7 @@
     },
     "RMS": {
       "ticker": "RMS",
-      "updated": "2026-10-25T16:33:07.834654+01:00",
+      "updated": "2026-10-25T17:00:19.713186+01:00",
       "place": "Paris",
       "price": 1238.5,
       "chg": -3.96,
@@ -390,7 +390,7 @@
     },
     "SAN": {
       "ticker": "SAN",
-      "updated": "2026-10-25T16:33:09.139803+01:00",
+      "updated": "2026-10-25T17:00:21.405103+01:00",
       "place": "Paris",
       "price": 74.12,
       "chg": -1.11,
@@ -473,7 +473,7 @@
     },
     "TTE": {
       "ticker": "TTE",
-      "updated": "2026-10-25T16:33:12.345659+01:00",
+      "updated": "2026-10-25T17:00:25.262514+01:00",
       "place": "Paris",
       "price": 83.45,
       "chg": 4.34,
@@ -559,7 +559,7 @@
     },
     "SAF": {
       "ticker": "SAF",
-      "updated": "2026-10-25T16:33:13.676012+01:00",
+      "updated": "2026-10-25T17:00:27.157030+01:00",
       "place": "Paris",
       "price": 271.8,
       "chg": -10.0,
@@ -658,7 +658,7 @@
     },
     "SU": {
       "ticker": "SU",
-      "updated": "2026-10-25T16:33:15.461645+01:00",
+      "updated": "2026-10-25T17:00:29.600132+01:00",
       "place": "Paris",
       "price": 231.4,
       "chg": -1.85,
@@ -755,7 +755,7 @@
     },
     "AXA": {
       "ticker": "AXA",
-      "updated": "2026-10-25T16:33:16.639890+01:00",
+      "updated": "2026-10-25T17:00:31.424889+01:00",
       "place": "Paris",
       "price": 41.71,
       "chg": -0.74,
@@ -844,7 +844,7 @@
     },
     "BNP": {
       "ticker": "BNP",
-      "updated": "2026-10-25T16:33:18.045467+01:00",
+      "updated": "2026-10-25T17:00:33.328836+01:00",
       "place": "Paris",
       "price": 83.52,
       "chg": 1.15,
@@ -933,7 +933,7 @@
     },
     "ACA": {
       "ticker": "ACA",
-      "updated": "2026-10-25T16:33:21.415376+01:00",
+      "updated": "2026-10-25T17:00:37.120176+01:00",
       "place": "Paris",
       "price": 14.92,
       "chg": 0.44,
@@ -1022,7 +1022,7 @@
     },
     "GLE": {
       "ticker": "GLE",
-      "updated": "2026-10-25T16:33:22.704612+01:00",
+      "updated": "2026-10-25T17:00:38.942838+01:00",
       "place": "Paris",
       "price": 59.66,
       "chg": -0.1,
@@ -1105,7 +1105,7 @@
     },
     "AIR": {
       "ticker": "AIR",
-      "updated": "2026-10-25T16:33:24.085893+01:00",
+      "updated": "2026-10-25T17:00:40.687770+01:00",
       "place": "Paris",
       "price": 192.46,
       "chg": -1.19,
@@ -1203,7 +1203,7 @@
     },
     "KER": {
       "ticker": "KER",
-      "updated": "2026-10-25T16:33:25.298124+01:00",
+      "updated": "2026-10-25T17:00:42.493787+01:00",
       "place": "Paris",
       "price": 178.12,
       "chg": -16.57,
@@ -1287,7 +1287,7 @@
     },
     "PUB": {
       "ticker": "PUB",
-      "updated": "2026-10-25T16:33:27.027872+01:00",
+      "updated": "2026-10-25T17:00:44.806635+01:00",
       "place": "Paris",
       "price": 100.85,
       "chg": -0.64,
@@ -1381,7 +1381,7 @@
     },
     "ORA": {
       "ticker": "ORA",
-      "updated": "2026-10-25T16:33:30.300822+01:00",
+      "updated": "2026-10-25T17:00:48.556061+01:00",
       "place": "Paris",
       "price": 14.21,
       "chg": -1.11,
@@ -1464,7 +1464,7 @@
     },
     "VIE": {
       "ticker": "VIE",
-      "updated": "2026-10-25T16:33:31.861379+01:00",
+      "updated": "2026-10-25T17:00:50.455660+01:00",
       "place": "Paris",
       "price": 32.09,
       "chg": 0.85,
@@ -1547,7 +1547,7 @@
     },
     "RNO": {
       "ticker": "RNO",
-      "updated": "2026-10-25T16:33:33.254591+01:00",
+      "updated": "2026-10-25T17:00:52.171581+01:00",
       "place": "Paris",
       "price": 25.92,
       "chg": -2.81,
@@ -1630,7 +1630,7 @@
     },
     "SGO": {
       "ticker": "SGO",
-      "updated": "2026-10-25T16:33:34.641815+01:00",
+      "updated": "2026-10-25T17:00:53.948957+01:00",
       "place": "Paris",
       "price": 66.92,
       "chg": 0.78,
@@ -1713,7 +1713,7 @@
     },
     "CAP": {
       "ticker": "CAP",
-      "updated": "2026-10-25T16:33:35.918192+01:00",
+      "updated": "2026-10-25T17:00:55.654524+01:00",
       "place": "Paris",
       "price": 123.95,
       "chg": -2.25,
@@ -1796,7 +1796,7 @@
     },
     "DG": {
       "ticker": "DG",
-      "updated": "2026-10-25T16:33:39.209558+01:00",
+      "updated": "2026-10-25T17:00:59.664440+01:00",
       "place": "Paris",
       "price": 106.45,
       "chg": 0.47,
@@ -1893,7 +1893,7 @@
     },
     "VIV": {
       "ticker": "VIV",
-      "updated": "2026-10-25T16:33:40.551845+01:00",
+      "updated": "2026-10-25T17:01:01.588096+01:00",
       "place": "Paris",
       "price": 1.55,
       "chg": -2.39,
@@ -1976,7 +1976,7 @@
     },
     "RI": {
       "ticker": "RI",
-      "updated": "2026-10-25T16:33:41.976034+01:00",
+      "updated": "2026-10-25T17:01:03.437325+01:00",
       "place": "Paris",
       "price": 67.64,
       "chg": 0.06,
@@ -2059,7 +2059,7 @@
     },
     "LR": {
       "ticker": "LR",
-      "updated": "2026-10-25T16:33:43.175863+01:00",
+      "updated": "2026-10-25T17:01:05.067525+01:00",
       "place": "Paris",
       "price": 124.1,
       "chg": 0.36,
@@ -2156,7 +2156,7 @@
     },
     "WLN": {
       "ticker": "WLN",
-      "updated": "2026-10-25T16:33:44.388816+01:00",
+      "updated": "2026-10-25T17:01:06.737274+01:00",
       "place": "Paris",
       "price": 10.25,
       "chg": -10.96,
@@ -2231,7 +2231,7 @@
     },
     "DSY": {
       "ticker": "DSY",
-      "updated": "2026-10-25T16:33:48.114965+01:00",
+      "updated": "2026-10-25T17:01:10.908073+01:00",
       "place": "Paris",
       "price": 24.44,
       "chg": 1.58,
@@ -2328,7 +2328,7 @@
     },
     "STM": {
       "ticker": "STM",
-      "updated": "2026-10-25T16:33:49.579257+01:00",
+      "updated": "2026-10-25T17:01:12.793386+01:00",
       "place": "Paris",
       "price": 39.47,
       "chg": -1.24,
@@ -2411,7 +2411,7 @@
     },
     "EL": {
       "ticker": "EL",
-      "updated": "2026-10-25T16:33:51.253193+01:00",
+      "updated": "2026-10-25T17:01:14.747806+01:00",
       "place": "Paris",
       "price": 181.2,
       "chg": 2.29,
@@ -2499,7 +2499,7 @@
     },
     "ML": {
       "ticker": "ML",
-      "updated": "2026-10-25T16:33:53.084931+01:00",
+      "updated": "2026-10-25T17:01:17.282154+01:00",
       "place": "Paris",
       "price": 31.27,
       "chg": -0.57,
@@ -2582,7 +2582,7 @@
     },
     "ENGI": {
       "ticker": "ENGI",
-      "updated": "2026-10-25T16:33:54.460702+01:00",
+      "updated": "2026-10-25T17:01:19.183100+01:00",
       "place": "Paris",
       "price": 22.81,
       "chg": -1.3,
@@ -2666,7 +2666,7 @@
     },
     "MT": {
       "ticker": "MT",
-      "updated": "2026-10-25T16:33:57.983879+01:00",
+      "updated": "2026-10-25T17:01:23.014214+01:00",
       "place": "Amsterdam",
       "price": 53.3,
       "chg": -1.15,
@@ -2749,7 +2749,7 @@
     },
     "URW": {
       "ticker": "URW",
-      "updated": "2026-10-25T16:33:59.628106+01:00",
+      "updated": "2026-10-25T17:01:25.054670+01:00",
       "place": "Paris",
       "price": 90.1,
       "chg": -0.02,
@@ -2836,7 +2836,7 @@
     },
     "SW": {
       "ticker": "SW",
-      "updated": "2026-10-25T16:34:00.930235+01:00",
+      "updated": "2026-10-25T17:01:26.598731+01:00",
       "place": "Paris",
       "price": 59.95,
       "chg": 6.29,
@@ -2917,7 +2917,7 @@
     },
     "TEP": {
       "ticker": "TEP",
-      "updated": "2026-10-25T16:34:02.224544+01:00",
+      "updated": "2026-10-25T17:01:28.551115+01:00",
       "place": "Paris",
       "price": 80.58,
       "chg": 1.74,
@@ -3000,7 +3000,7 @@
     },
     "EN": {
       "ticker": "EN",
-      "updated": "2026-10-25T16:34:03.534170+01:00",
+      "updated": "2026-10-25T17:01:30.411161+01:00",
       "place": "Paris",
       "price": 40.3,
       "chg": 0.4,
@@ -3083,7 +3083,7 @@
     },
     "GTT": {
       "ticker": "GTT",
-      "updated": "2026-10-25T16:34:06.946746+01:00",
+      "updated": "2026-10-25T17:01:34.293887+01:00",
       "place": "Paris",
       "price": 205.0,
       "chg": 3.27,
@@ -3180,7 +3180,7 @@
     },
     "COFA": {
       "ticker": "COFA",
-      "updated": "2026-10-25T16:34:08.154746+01:00",
+      "updated": "2026-10-25T17:01:36.071436+01:00",
       "place": "Paris",
       "price": 15.41,
       "chg": -0.32,
@@ -3269,7 +3269,7 @@
     },
     "MERY": {
       "ticker": "MERY",
-      "updated": "2026-10-25T16:34:09.421572+01:00",
+      "updated": "2026-10-25T17:01:37.704509+01:00",
       "place": "Paris",
       "price": 9.4,
       "chg": -1.26,
@@ -3352,7 +3352,7 @@
     },
     "JXS": {
       "ticker": "JXS",
-      "updated": "2026-10-25T16:34:10.764797+01:00",
+      "updated": "2026-10-25T17:01:39.363417+01:00",
       "place": "Paris",
       "price": 19.92,
       "chg": 0.71,
@@ -3434,7 +3434,7 @@
     },
     "SPIE": {
       "ticker": "SPIE",
-      "updated": "2026-10-25T16:34:12.035067+01:00",
+      "updated": "2026-10-25T17:01:41.319625+01:00",
       "place": "Paris",
       "price": 40.76,
       "chg": 0.49,
@@ -3517,7 +3517,7 @@
     },
     "NEXANS": {
       "ticker": "NEXANS",
-      "updated": "2026-10-25T16:34:15.161158+01:00",
+      "updated": "2026-10-25T17:01:45.106309+01:00",
       "place": "Paris",
       "price": 113.6,
       "chg": -1.13,
@@ -3553,7 +3553,7 @@
       "mm50": 134.41,
       "mm200": 135.65,
       "chg5": -10.3,
-      "news5": "Les 15 principales entreprises du marché mondial des fils et câbles en cuivre|https://news.google.com/rss/articles/CBMi2gFBVV95cUxNQ0MzQk5mT0lCLUZZUFg4bDc0cXltSTJwVW9nWnhwNWc1a2dnR3JnamhDQllsd1pFYnBpQVZzS29pYUdUS2dVdzR2am1MU2t0SkE2U1VkSGtTNGRsRjlxbkNBbmZZRm9ZT1VLX2kwa0M4UC1LSmdMZ3hXZTJkZndlNGlaaFpxMkpDbk1uelNkTnVaSDBMcWFCQU8yZUJsQnNPU2JOUVFDRWl1dkprcmxYMlBkeElIN21ieWhNb1dVUnJvc3lhV1JnamZrdFVjSG80NjE1T1BCendzdw?oc=5|Spherical Insights ;; Key facts: Nexans SA Q3 Revenue +21.4% to €1.7B; Capacity Tightens|https://news.google.com/rss/articles/CBMivwFBVV95cUxOTzZFenFYZGdyOGRJbnFkVVBzSXRkZHhraFFUeDB4MFJhUG5MbS1kNVlNLUJEWm9ObE0wSS1WMU91X3NFS3JESmdGUnhUMVBsSGNNOXc3MTZCc1V0anZyRzVwdTMxeEZxMFYtRFY1bi1IWkM2dVdkTzJ6V044WFZIWmlfek9tNVgtRW1fRi1nUktJZ0NtLUZ1RXpEdm9jQmV6aTJZT2RnZllUUFJnSUhxNHF1SVpKdHFyUUNhSWhrTQ?oc=5|TradingView ;; Nexans publie un chiffre d’affaires de 4,95 milliards d’euros sur neuf mois 2026|https://news.google.com/rss/articles/CBMi0AFBVV95cUxPWHZhQnp5bGhuZlZuSjhtdWJsNHljSk9OUV81ek1lTUJQYjJTWEw5WXJKcHRkcHBDckRuc2cwaTZVdGozTVNLZHZURVdzRnBjWUxpQjBDb3pmVkU2aFIza2hTZlFwa1NUQ3lqa0RjNWZhalpleFlBcFpFTFNWeTlLbUY2azByRURPN0RNQWNWRHpvUTRrTl9hVGVIWXE4QkloMTN6b0JOQjNlczhtb3M2Y2E3clVtczZNSHM3bkk0VWQxRFVFdXpQRmhqb3FJU3ZY?oc=5|Investing.com France",
+      "news5": "Key facts: Nexans SA Q3 Revenue +21.4% to €1.7B; Capacity Tightens|https://news.google.com/rss/articles/CBMivwFBVV95cUxOTzZFenFYZGdyOGRJbnFkVVBzSXRkZHhraFFUeDB4MFJhUG5MbS1kNVlNLUJEWm9ObE0wSS1WMU91X3NFS3JESmdGUnhUMVBsSGNNOXc3MTZCc1V0anZyRzVwdTMxeEZxMFYtRFY1bi1IWkM2dVdkTzJ6V044WFZIWmlfek9tNVgtRW1fRi1nUktJZ0NtLUZ1RXpEdm9jQmV6aTJZT2RnZllUUFJnSUhxNHF1SVpKdHFyUUNhSWhrTQ?oc=5|TradingView ;; Nexans publie un chiffre d’affaires de 4,95 milliards d’euros sur neuf mois 2026|https://news.google.com/rss/articles/CBMi0AFBVV95cUxPWHZhQnp5bGhuZlZuSjhtdWJsNHljSk9OUV81ek1lTUJQYjJTWEw5WXJKcHRkcHBDckRuc2cwaTZVdGozTVNLZHZURVdzRnBjWUxpQjBDb3pmVkU2aFIza2hTZlFwa1NUQ3lqa0RjNWZhalpleFlBcFpFTFNWeTlLbUY2azByRURPN0RNQWNWRHpvUTRrTl9hVGVIWXE4QkloMTN6b0JOQjNlczhtb3M2Y2E3clVtczZNSHM3bkk0VWQxRFVFdXpQRmhqb3FJU3ZY?oc=5|Investing.com France ;; Nexans dépasse les attentes au T3 grâce à la croissance du segment Réseaux|https://news.google.com/rss/articles/CBMi0AFBVV95cUxNdURreENnSFpaNm92NEJuVGdNeXl5VmR2bFpFTmNkRkc3ODltcGk0TnlCZGZPdENyRXRPTWU4RUpyZEx2MXNpY2Q4TVlkd0VHYnBOUTVfZUd0R3NyM2taMlV3R2ZycTMyS3FEYWFRUUhGU09sQm0xYmdwaFpUYTROc2RMaUFYX291WlNNeFlTU0V6VGpRRzY2SlU3Z2F4M05iOElBaDRoQkVPNXotdEFYYkZTZjE3S2tNQ0toY2NJbDJ6TVJIUU5BUlprZy1jX3Mx?oc=5|Investing.com France",
       "pio": 8,
       "alt": 1.85,
       "roic": 12.9,
@@ -3601,7 +3601,7 @@
     },
     "DASSAV": {
       "ticker": "DASSAV",
-      "updated": "2026-10-25T16:34:16.802410+01:00",
+      "updated": "2026-10-25T17:01:47.645972+01:00",
       "place": "Paris",
       "price": 299.6,
       "chg": -0.33,
@@ -3698,7 +3698,7 @@
     },
     "ALO": {
       "ticker": "ALO",
-      "updated": "2026-10-25T16:34:18.014539+01:00",
+      "updated": "2026-10-25T17:01:49.511147+01:00",
       "place": "Paris",
       "price": 16.09,
       "chg": 1.13,
@@ -3781,7 +3781,7 @@
     },
     "ELIS": {
       "ticker": "ELIS",
-      "updated": "2026-10-25T16:34:19.371357+01:00",
+      "updated": "2026-10-25T17:01:51.374772+01:00",
       "place": "Paris",
       "price": 22.22,
       "chg": 1.83,
@@ -3867,7 +3867,7 @@
     },
     "SEB": {
       "ticker": "SEB",
-      "updated": "2026-10-25T16:34:20.656871+01:00",
+      "updated": "2026-10-25T17:01:53.131430+01:00",
       "place": "Paris",
       "price": 53.8,
       "chg": -3.84,
@@ -3950,7 +3950,7 @@
     },
     "ERF": {
       "ticker": "ERF",
-      "updated": "2026-10-25T16:34:24.068660+01:00",
+      "updated": "2026-10-25T17:01:56.876777+01:00",
       "place": "Paris",
       "price": 84.7,
       "chg": 1.73,
@@ -4033,7 +4033,7 @@
     },
     "IPSOS": {
       "ticker": "IPSOS",
-      "updated": "2026-10-25T16:34:25.503689+01:00",
+      "updated": "2026-10-25T17:01:58.590800+01:00",
       "place": "Paris",
       "price": 35.3,
       "chg": -5.56,
@@ -4117,7 +4117,7 @@
     },
     "ABCA": {
       "ticker": "ABCA",
-      "updated": "2026-10-25T16:34:26.895422+01:00",
+      "updated": "2026-10-25T17:02:00.324773+01:00",
       "place": "Paris",
       "price": 5.83,
       "chg": 1.39,
@@ -4190,7 +4190,7 @@
     },
     "VK": {
       "ticker": "VK",
-      "updated": "2026-10-25T16:34:28.111370+01:00",
+      "updated": "2026-10-25T17:02:01.926631+01:00",
       "place": "Paris",
       "price": 18.11,
       "chg": 2.17,
@@ -4273,7 +4273,7 @@
     },
     "FNAC": {
       "ticker": "FNAC",
-      "updated": "2026-10-25T16:34:29.307415+01:00",
+      "updated": "2026-10-25T17:02:03.986640+01:00",
       "place": "Paris",
       "price": 34.85,
       "chg": 0.0,
@@ -4356,7 +4356,7 @@
     },
     "LNA": {
       "ticker": "LNA",
-      "updated": "2026-10-25T16:34:32.369190+01:00",
+      "updated": "2026-10-25T17:02:07.661579+01:00",
       "place": "Paris",
       "price": 23.5,
       "chg": 2.17,
@@ -4439,7 +4439,7 @@
     },
     "SOP": {
       "ticker": "SOP",
-      "updated": "2026-10-25T16:34:33.729401+01:00",
+      "updated": "2026-10-25T17:02:09.384188+01:00",
       "place": "Paris",
       "price": 185.0,
       "chg": 1.54,
@@ -4522,7 +4522,7 @@
     },
     "AC": {
       "ticker": "AC",
-      "updated": "2026-10-25T16:34:35.212955+01:00",
+      "updated": "2026-10-25T17:02:11.157731+01:00",
       "place": "Paris",
       "price": 44.53,
       "chg": -3.28,
@@ -4605,7 +4605,7 @@
     },
     "AF": {
       "ticker": "AF",
-      "updated": "2026-10-25T16:34:36.829667+01:00",
+      "updated": "2026-10-25T17:02:13.031932+01:00",
       "place": "Paris",
       "price": 9.95,
       "chg": -3.14,
@@ -4688,7 +4688,7 @@
     },
     "BN": {
       "ticker": "BN",
-      "updated": "2026-10-25T16:34:38.098248+01:00",
+      "updated": "2026-10-25T17:02:14.992557+01:00",
       "place": "Paris",
       "price": 62.24,
       "chg": -0.22,
@@ -4771,7 +4771,7 @@
     },
     "CA": {
       "ticker": "CA",
-      "updated": "2026-10-25T16:34:41.407740+01:00",
+      "updated": "2026-10-25T17:02:18.784147+01:00",
       "place": "Paris",
       "price": 13.84,
       "chg": 1.1,
@@ -4855,7 +4855,7 @@
     },
     "HO": {
       "ticker": "HO",
-      "updated": "2026-10-25T16:34:43.223733+01:00",
+      "updated": "2026-10-25T17:02:21.361267+01:00",
       "place": "Paris",
       "price": 228.0,
       "chg": 0.57,
@@ -4952,7 +4952,7 @@
     },
     "ATO": {
       "ticker": "ATO",
-      "updated": "2026-10-25T16:34:44.553138+01:00",
+      "updated": "2026-10-25T17:02:23.203098+01:00",
       "place": "Paris",
       "price": 23.28,
       "chg": -2.43,
@@ -5036,7 +5036,7 @@
     },
     "DBG": {
       "ticker": "DBG",
-      "updated": "2026-10-25T16:34:45.795675+01:00",
+      "updated": "2026-10-25T17:02:24.981891+01:00",
       "place": "Paris",
       "price": 7.55,
       "chg": -0.85,
@@ -5119,7 +5119,7 @@
     },
     "LPE": {
       "ticker": "LPE",
-      "updated": "2026-10-25T16:34:47.042054+01:00",
+      "updated": "2026-10-25T17:02:26.933947+01:00",
       "place": "Paris",
       "price": 76.6,
       "chg": -2.05,
@@ -5201,7 +5201,7 @@
     },
     "ASML": {
       "ticker": "ASML",
-      "updated": "2026-10-25T16:34:50.338110+01:00",
+      "updated": "2026-10-25T17:02:30.947503+01:00",
       "place": "Amsterdam",
       "price": 1407.2,
       "chg": -0.87,
@@ -5299,7 +5299,7 @@
     },
     "PRX": {
       "ticker": "PRX",
-      "updated": "2026-10-25T16:34:51.735247+01:00",
+      "updated": "2026-10-25T17:02:32.888624+01:00",
       "place": "Amsterdam",
       "price": 34.17,
       "chg": 0.71,
@@ -5382,7 +5382,7 @@
     },
     "ADYEN": {
       "ticker": "ADYEN",
-      "updated": "2026-10-25T16:34:53.197075+01:00",
+      "updated": "2026-10-25T17:02:34.829896+01:00",
       "place": "Amsterdam",
       "price": 945.4,
       "chg": -0.94,
@@ -5465,7 +5465,7 @@
     },
     "HEIA": {
       "ticker": "HEIA",
-      "updated": "2026-10-25T16:34:54.234643+01:00",
+      "updated": "2026-10-25T17:02:36.255856+01:00",
       "place": "Amsterdam",
       "price": 77.52,
       "chg": -0.49,
@@ -5548,7 +5548,7 @@
     },
     "NOVO": {
       "ticker": "NOVO",
-      "updated": "2026-10-25T16:34:55.678663+01:00",
+      "updated": "2026-10-25T17:02:38.073736+01:00",
       "place": "Copenhague",
       "price": 34.81,
       "chg": -1.74,
@@ -5644,7 +5644,7 @@
     },
     "RACE": {
       "ticker": "RACE",
-      "updated": "2026-10-25T16:34:58.905362+01:00",
+      "updated": "2026-10-25T17:02:41.910171+01:00",
       "place": "Milan",
       "price": 349.5,
       "chg": -1.29,
@@ -5741,7 +5741,7 @@
     },
     "SAP": {
       "ticker": "SAP",
-      "updated": "2026-10-25T16:35:00.187122+01:00",
+      "updated": "2026-10-25T17:02:43.675066+01:00",
       "place": "Francfort",
       "price": 214.4,
       "chg": -0.44,
@@ -5824,7 +5824,7 @@
     },
     "SIEMENS": {
       "ticker": "SIEMENS",
-      "updated": "2026-10-25T16:35:01.556026+01:00",
+      "updated": "2026-10-25T17:02:45.545120+01:00",
       "place": "Francfort",
       "price": 256.8,
       "chg": 0.43,
@@ -5907,7 +5907,7 @@
     },
     "ALV": {
       "ticker": "ALV",
-      "updated": "2026-10-25T16:35:03.127576+01:00",
+      "updated": "2026-10-25T17:02:47.236818+01:00",
       "place": "Francfort",
       "price": 427.9,
       "chg": -1.09,
@@ -5996,7 +5996,7 @@
     },
     "BIOM": {
       "ticker": "BIOM",
-      "updated": "2026-10-25T16:35:04.501980+01:00",
+      "updated": "2026-10-25T17:02:49.046278+01:00",
       "place": "Paris",
       "price": 89.2,
       "chg": 1.08,
@@ -6079,7 +6079,7 @@
     },
     "KLPI": {
       "ticker": "KLPI",
-      "updated": "2026-10-25T16:35:07.861489+01:00",
+      "updated": "2026-10-25T17:02:52.775446+01:00",
       "place": "Paris",
       "price": 34.84,
       "chg": -1.14,
@@ -6166,7 +6166,7 @@
     },
     "RCO": {
       "ticker": "RCO",
-      "updated": "2026-10-25T16:35:09.390353+01:00",
+      "updated": "2026-10-25T17:02:54.602669+01:00",
       "place": "Paris",
       "price": 52.15,
       "chg": 0.38,
@@ -6249,7 +6249,7 @@
     },
     "EIFFAGE": {
       "ticker": "EIFFAGE",
-      "updated": "2026-10-25T16:35:10.636080+01:00",
+      "updated": "2026-10-25T17:02:56.396075+01:00",
       "place": "Paris",
       "price": 97.42,
       "chg": -0.29,
@@ -6332,7 +6332,7 @@
     },
     "ALTAREA": {
       "ticker": "ALTAREA",
-      "updated": "2026-10-25T16:35:12.013225+01:00",
+      "updated": "2026-10-25T17:02:58.074382+01:00",
       "place": "Paris",
       "price": 72.6,
       "chg": -0.95,
@@ -6412,7 +6412,7 @@
     },
     "COVIVIO": {
       "ticker": "COVIVIO",
-      "updated": "2026-10-25T16:35:13.404009+01:00",
+      "updated": "2026-10-25T17:02:59.899306+01:00",
       "place": "Paris",
       "price": 43.82,
       "chg": -0.32,
@@ -6502,7 +6502,7 @@
     },
     "FREY": {
       "ticker": "FREY",
-      "updated": "2026-10-25T16:35:16.652871+01:00",
+      "updated": "2026-10-25T17:03:03.728311+01:00",
       "place": "Paris",
       "price": 34.4,
       "chg": 0.0,
@@ -6582,7 +6582,7 @@
     },
     "CHSR": {
       "ticker": "CHSR",
-      "updated": "2026-10-25T16:35:17.880718+01:00",
+      "updated": "2026-10-25T17:03:05.288090+01:00",
       "place": "Paris",
       "price": 7.19,
       "chg": 0.0,
@@ -6665,7 +6665,7 @@
     },
     "VALO": {
       "ticker": "VALO",
-      "updated": "2026-10-25T16:35:19.224028+01:00",
+      "updated": "2026-10-25T17:03:07.183405+01:00",
       "place": "Paris",
       "price": 11.38,
       "chg": -11.54,
@@ -6749,7 +6749,7 @@
     },
     "FORVIA": {
       "ticker": "FORVIA",
-      "updated": "2026-10-25T16:35:20.957722+01:00",
+      "updated": "2026-10-25T17:03:09.688864+01:00",
       "place": "Paris",
       "price": 8.04,
       "chg": -4.1,
@@ -6833,7 +6833,7 @@
     },
     "PLUXEE": {
       "ticker": "PLUXEE",
-      "updated": "2026-10-25T16:35:22.737696+01:00",
+      "updated": "2026-10-25T17:03:11.970894+01:00",
       "place": "Paris",
       "price": 14.92,
       "chg": -0.47,
@@ -6916,7 +6916,7 @@
     },
     "EDENRED": {
       "ticker": "EDENRED",
-      "updated": "2026-10-25T16:35:25.726948+01:00",
+      "updated": "2026-10-25T17:03:15.369987+01:00",
       "place": "Paris",
       "price": 25.91,
       "chg": -2.48,
@@ -7011,7 +7011,7 @@
     },
     "OPM": {
       "ticker": "OPM",
-      "updated": "2026-10-25T16:35:27.506907+01:00",
+      "updated": "2026-10-25T17:03:17.685966+01:00",
       "place": "Paris",
       "price": 9.02,
       "chg": -2.54,
@@ -7094,7 +7094,7 @@
     },
     "IMERYS": {
       "ticker": "IMERYS",
-      "updated": "2026-10-25T16:35:28.777601+01:00",
+      "updated": "2026-10-25T17:03:19.423482+01:00",
       "place": "Paris",
       "price": 21.4,
       "chg": -0.47,
@@ -7177,7 +7177,7 @@
     },
     "THERMADOR": {
       "ticker": "THERMADOR",
-      "updated": "2026-10-25T16:35:30.185936+01:00",
+      "updated": "2026-10-25T17:03:21.210467+01:00",
       "place": "Paris",
       "price": 60.6,
       "chg": -0.66,
@@ -7260,7 +7260,7 @@
     },
     "STEF": {
       "ticker": "STEF",
-      "updated": "2026-10-25T16:35:31.482067+01:00",
+      "updated": "2026-10-25T17:03:23.014230+01:00",
       "place": "Paris",
       "price": 118.8,
       "chg": 0.51,
@@ -7343,7 +7343,7 @@
     },
     "TRIGANO": {
       "ticker": "TRIGANO",
-      "updated": "2026-10-25T16:35:34.725647+01:00",
+      "updated": "2026-10-25T17:03:26.781648+01:00",
       "place": "Paris",
       "price": 125.0,
       "chg": -0.87,
@@ -7427,7 +7427,7 @@
     },
     "VIRBAC": {
       "ticker": "VIRBAC",
-      "updated": "2026-10-25T16:35:36.204059+01:00",
+      "updated": "2026-10-25T17:03:28.618447+01:00",
       "place": "Paris",
       "price": 349.0,
       "chg": -0.29,
@@ -7510,7 +7510,7 @@
     },
     "INTERPARFUMS": {
       "ticker": "INTERPARFUMS",
-      "updated": "2026-10-25T16:35:37.605810+01:00",
+      "updated": "2026-10-25T17:03:30.483127+01:00",
       "place": "Paris",
       "price": 34.36,
       "chg": -0.41,
@@ -7607,7 +7607,7 @@
     },
     "ARGAN": {
       "ticker": "ARGAN",
-      "updated": "2026-10-25T16:35:38.866584+01:00",
+      "updated": "2026-10-25T17:03:32.293172+01:00",
       "place": "Paris",
       "price": 67.4,
       "chg": -0.15,
@@ -7697,7 +7697,7 @@
     },
     "BOIRON": {
       "ticker": "BOIRON",
-      "updated": "2026-10-25T16:35:40.182396+01:00",
+      "updated": "2026-10-25T17:03:34.137829+01:00",
       "place": "Paris",
       "price": 17.9,
       "chg": -0.56,
@@ -7779,7 +7779,7 @@
     },
     "LECTRA": {
       "ticker": "LECTRA",
-      "updated": "2026-10-25T16:35:43.521577+01:00",
+      "updated": "2026-10-25T17:03:37.854979+01:00",
       "place": "Paris",
       "price": 22.55,
       "chg": 1.81,
@@ -7862,7 +7862,7 @@
     },
     "LACROIX": {
       "ticker": "LACROIX",
-      "updated": "2026-10-25T16:35:44.858522+01:00",
+      "updated": "2026-10-25T17:03:39.607225+01:00",
       "place": "Paris",
       "price": 15.9,
       "chg": -3.34,
@@ -7944,7 +7944,7 @@
     },
     "IDLG": {
       "ticker": "IDLG",
-      "updated": "2026-10-25T16:35:46.177717+01:00",
+      "updated": "2026-10-25T17:03:41.175551+01:00",
       "place": "Paris",
       "price": 363.0,
       "chg": -1.36,
@@ -8027,7 +8027,7 @@
     },
     "ELIOR": {
       "ticker": "ELIOR",
-      "updated": "2026-10-25T16:35:47.124359+01:00",
+      "updated": "2026-10-25T17:03:42.612639+01:00",
       "place": "Paris",
       "price": 1.79,
       "chg": 0.11,
@@ -8110,7 +8110,7 @@
     },
     "WAGA": {
       "ticker": "WAGA",
-      "updated": "2026-10-25T16:35:48.325675+01:00",
+      "updated": "2026-10-25T17:03:44.283449+01:00",
       "place": "Paris",
       "price": 22.5,
       "chg": 0.0,
@@ -8185,7 +8185,7 @@
     },
     "LDLC": {
       "ticker": "LDLC",
-      "updated": "2026-10-25T16:35:51.797647+01:00",
+      "updated": "2026-10-25T17:03:47.679577+01:00",
       "place": "Paris",
       "price": 8.23,
       "chg": -4.08,
@@ -8267,7 +8267,7 @@
     },
     "DBV": {
       "ticker": "DBV",
-      "updated": "2026-10-25T16:35:52.942576+01:00",
+      "updated": "2026-10-25T17:03:49.400222+01:00",
       "place": "Paris",
       "price": 1.72,
       "chg": -2.33,
@@ -8343,7 +8343,7 @@
     },
     "HIPAY": {
       "ticker": "HIPAY",
-      "updated": "2026-10-25T16:35:53.925720+01:00",
+      "updated": "2026-10-25T17:03:50.914396+01:00",
       "place": "Paris",
       "price": 4.3,
       "chg": 3.61,
@@ -8426,7 +8426,7 @@
     },
     "LISI": {
       "ticker": "LISI",
-      "updated": "2026-10-25T16:35:54.875928+01:00",
+      "updated": "2026-10-25T17:03:52.274139+01:00",
       "place": "Paris",
       "price": 61.0,
       "chg": 2.52,
@@ -8509,7 +8509,7 @@
     },
     "SYENSQO": {
       "ticker": "SYENSQO",
-      "updated": "2026-10-25T16:35:56.134723+01:00",
+      "updated": "2026-10-25T17:03:54.272927+01:00",
       "place": "Bruxelles",
       "price": 77.35,
       "chg": 0.26,
@@ -8593,7 +8593,7 @@
     },
     "IPSEN": {
       "ticker": "IPSEN",
-      "updated": "2026-10-25T16:35:59.296912+01:00",
+      "updated": "2026-10-25T17:03:58.097855+01:00",
       "place": "Paris",
       "price": 151.2,
       "chg": -0.66,
@@ -8690,7 +8690,7 @@
     },
     "REXEL": {
       "ticker": "REXEL",
-      "updated": "2026-10-25T16:36:00.414863+01:00",
+      "updated": "2026-10-25T17:03:59.788544+01:00",
       "place": "Paris",
       "price": 32.63,
       "chg": 2.64,
@@ -8773,7 +8773,7 @@
     },
     "FIGEAC": {
       "ticker": "FIGEAC",
-      "updated": "2026-10-25T16:36:01.717214+01:00",
+      "updated": "2026-10-25T17:04:01.343845+01:00",
       "place": "Paris",
       "price": 9.37,
       "chg": -4.0,
@@ -8856,7 +8856,7 @@
     },
     "DIOR": {
       "ticker": "DIOR",
-      "updated": "2026-10-25T16:36:03.053358+01:00",
+      "updated": "2026-10-25T17:04:03.234267+01:00",
       "place": "Paris",
       "price": 417.8,
       "chg": -1.65,
@@ -8938,7 +8938,7 @@
     },
     "ABIVAX": {
       "ticker": "ABIVAX",
-      "updated": "2026-10-25T16:36:04.614908+01:00",
+      "updated": "2026-10-25T17:04:05.272539+01:00",
       "place": "Paris",
       "price": 78.7,
       "chg": -3.67,
@@ -9014,7 +9014,7 @@
     },
     "NANOBT": {
       "ticker": "NANOBT",
-      "updated": "2026-10-25T16:36:09.959195+01:00",
+      "updated": "2026-10-25T17:04:08.843758+01:00",
       "place": "Paris",
       "price": 25.78,
       "chg": -0.54,
@@ -9091,7 +9091,7 @@
     },
     "ICAD": {
       "ticker": "ICAD",
-      "updated": "2026-10-25T16:36:11.708018+01:00",
+      "updated": "2026-10-25T17:04:10.844520+01:00",
       "place": "Paris",
       "price": 14.58,
       "chg": 0.21,
@@ -9172,7 +9172,7 @@
     },
     "GLEVT": {
       "ticker": "GLEVT",
-      "updated": "2026-10-25T16:36:13.210519+01:00",
+      "updated": "2026-10-25T17:04:12.469130+01:00",
       "place": "Paris",
       "price": 31.7,
       "chg": -1.86,
@@ -9255,7 +9255,7 @@
     },
     "VRMTX": {
       "ticker": "VRMTX",
-      "updated": "2026-10-25T16:36:14.613781+01:00",
+      "updated": "2026-10-25T17:04:14.247382+01:00",
       "place": "Paris",
       "price": 0.24,
       "chg": -7.89,
@@ -9331,7 +9331,7 @@
     },
     "SAMSE": {
       "ticker": "SAMSE",
-      "updated": "2026-10-25T16:36:16.254810+01:00",
+      "updated": "2026-10-25T17:04:16.340819+01:00",
       "place": "Paris",
       "price": 108.5,
       "chg": -0.46,
@@ -9413,7 +9413,7 @@
     },
     "MANITOU": {
       "ticker": "MANITOU",
-      "updated": "2026-10-25T16:36:19.544431+01:00",
+      "updated": "2026-10-25T17:04:20.107378+01:00",
       "place": "Paris",
       "price": 19.54,
       "chg": 0.1,
@@ -9496,7 +9496,7 @@
     },
     "NEXTY": {
       "ticker": "NEXTY",
-      "updated": "2026-10-25T16:36:20.927749+01:00",
+      "updated": "2026-10-25T17:04:22.033652+01:00",
       "place": "Paris",
       "price": 4.35,
       "chg": -5.19,
@@ -9579,7 +9579,7 @@
     },
     "SCBSM": {
       "ticker": "SCBSM",
-      "updated": "2026-10-25T16:36:22.263542+01:00",
+      "updated": "2026-10-25T17:04:23.702099+01:00",
       "place": "Paris",
       "price": 9.25,
       "chg": 3.93,
@@ -9665,7 +9665,7 @@
     },
     "EMEIS": {
       "ticker": "EMEIS",
-      "updated": "2026-10-25T16:36:23.586827+01:00",
+      "updated": "2026-10-25T17:04:25.433609+01:00",
       "place": "Paris",
       "price": 9.75,
       "chg": -0.26,
@@ -9748,7 +9748,7 @@
     },
     "ALFPC": {
       "ticker": "ALFPC",
-      "updated": "2026-10-25T16:36:24.827200+01:00",
+      "updated": "2026-10-25T17:04:27.079178+01:00",
       "place": "Paris",
       "price": 78.0,
       "chg": 0.0,
@@ -9830,7 +9830,7 @@
     },
     "SELENV": {
       "ticker": "SELENV",
-      "updated": "2026-10-25T16:36:28.031299+01:00",
+      "updated": "2026-10-25T17:04:31.003299+01:00",
       "place": "Paris",
       "price": 73.4,
       "chg": -0.54,
@@ -9913,7 +9913,7 @@
     },
     "LNSBN": {
       "ticker": "LNSBN",
-      "updated": "2026-10-25T16:36:29.437332+01:00",
+      "updated": "2026-10-25T17:04:32.758854+01:00",
       "place": "Paris",
       "price": 25.7,
       "chg": 0.0,
@@ -9995,7 +9995,7 @@
     },
     "ALTGX": {
       "ticker": "ALTGX",
-      "updated": "2026-10-25T16:36:30.822382+01:00",
+      "updated": "2026-10-25T17:04:34.516395+01:00",
       "place": "Paris",
       "price": 3.01,
       "chg": -0.33,
@@ -10077,7 +10077,7 @@
     },
     "SOLVB": {
       "ticker": "SOLVB",
-      "updated": "2026-10-25T16:36:32.096950+01:00",
+      "updated": "2026-10-25T17:04:36.491621+01:00",
       "place": "Bruxelles",
       "price": 23.24,
       "chg": -0.85,
@@ -10160,7 +10160,7 @@
     },
     "BNENF": {
       "ticker": "BNENF",
-      "updated": "2026-10-25T16:36:33.610962+01:00",
+      "updated": "2026-10-25T17:04:38.411086+01:00",
       "place": "Paris",
       "price": 4.7,
       "chg": -1.36,
@@ -10244,7 +10244,7 @@
     },
     "IDSF": {
       "ticker": "IDSF",
-      "updated": "2026-10-25T16:36:36.879946+01:00",
+      "updated": "2026-10-25T17:04:42.188378+01:00",
       "place": "Paris",
       "price": 39.65,
       "chg": -0.38,
@@ -10327,7 +10327,7 @@
     },
     "GENIE": {
       "ticker": "GENIE",
-      "updated": "2026-10-25T16:36:38.176547+01:00",
+      "updated": "2026-10-25T17:04:43.983379+01:00",
       "place": "Paris",
       "price": 8.67,
       "chg": -2.47,
@@ -10411,7 +10411,7 @@
     },
     "CDRCK": {
       "ticker": "CDRCK",
-      "updated": "2026-10-25T16:36:39.424566+01:00",
+      "updated": "2026-10-25T17:04:45.428924+01:00",
       "place": "Paris",
       "price": 14.44,
       "chg": 0.0,
@@ -10501,7 +10501,7 @@
     },
     "ADP": {
       "ticker": "ADP",
-      "updated": "2026-10-25T16:36:40.620043+01:00",
+      "updated": "2026-10-25T17:04:47.098633+01:00",
       "place": "Paris",
       "price": 107.9,
       "chg": 0.94,
@@ -10584,7 +10584,7 @@
     },
     "AKE": {
       "ticker": "AKE",
-      "updated": "2026-10-25T16:36:41.914521+01:00",
+      "updated": "2026-10-25T17:04:48.802771+01:00",
       "place": "Paris",
       "price": 54.45,
       "chg": -0.73,
@@ -10667,7 +10667,7 @@
     },
     "LTA": {
       "ticker": "LTA",
-      "updated": "2026-10-25T16:36:45.170207+01:00",
+      "updated": "2026-10-25T17:04:52.620545+01:00",
       "place": "Paris",
       "price": 22.3,
       "chg": 0.0,
@@ -10733,7 +10733,7 @@
     },
     "BB": {
       "ticker": "BB",
-      "updated": "2026-10-25T16:36:46.404180+01:00",
+      "updated": "2026-10-25T17:04:54.179541+01:00",
       "place": "Paris",
       "price": 65.9,
       "chg": -0.45,
@@ -10816,7 +10816,7 @@
     },
     "ATE": {
       "ticker": "ATE",
-      "updated": "2026-10-25T16:36:47.674239+01:00",
+      "updated": "2026-10-25T17:04:56.045655+01:00",
       "place": "Paris",
       "price": 87.65,
       "chg": 0.06,
@@ -10902,7 +10902,7 @@
     },
     "ANTIN": {
       "ticker": "ANTIN",
-      "updated": "2026-10-25T16:36:48.986989+01:00",
+      "updated": "2026-10-25T17:04:57.722215+01:00",
       "place": "Paris",
       "price": 7.19,
       "chg": 0.7,
@@ -10976,7 +10976,7 @@
     },
     "ELEC": {
       "ticker": "ELEC",
-      "updated": "2026-10-25T16:36:50.245251+01:00",
+      "updated": "2026-10-25T17:04:59.206023+01:00",
       "place": "Paris",
       "price": 154.4,
       "chg": -0.64,
@@ -11058,7 +11058,7 @@
     },
     "ERA": {
       "ticker": "ERA",
-      "updated": "2026-10-25T16:36:53.528870+01:00",
+      "updated": "2026-10-25T17:05:03.188897+01:00",
       "place": "Paris",
       "price": 33.74,
       "chg": -0.41,
@@ -11142,7 +11142,7 @@
     },
     "RF": {
       "ticker": "RF",
-      "updated": "2026-10-25T16:36:54.821266+01:00",
+      "updated": "2026-10-25T17:05:05.035267+01:00",
       "place": "Paris",
       "price": 46.8,
       "chg": 0.0,
@@ -11216,7 +11216,7 @@
     },
     "ETL": {
       "ticker": "ETL",
-      "updated": "2026-10-25T16:36:56.026293+01:00",
+      "updated": "2026-10-25T17:05:06.872460+01:00",
       "place": "Paris",
       "price": 1.77,
       "chg": -1.78,
@@ -11291,7 +11291,7 @@
     },
     "EXA": {
       "ticker": "EXA",
-      "updated": "2026-10-25T16:36:57.156750+01:00",
+      "updated": "2026-10-25T17:05:08.456800+01:00",
       "place": "Paris",
       "price": 125.3,
       "chg": 0.08,
@@ -11374,7 +11374,7 @@
     },
     "EXENS": {
       "ticker": "EXENS",
-      "updated": "2026-10-25T16:36:58.340460+01:00",
+      "updated": "2026-10-25T17:05:10.022755+01:00",
       "place": "Paris",
       "price": 57.35,
       "chg": 0.44,
@@ -11461,7 +11461,7 @@
     },
     "FDJU": {
       "ticker": "FDJU",
-      "updated": "2026-10-25T16:37:01.349879+01:00",
+      "updated": "2026-10-25T17:05:13.490065+01:00",
       "place": "Paris",
       "price": 20.61,
       "chg": 0.19,
@@ -11544,7 +11544,7 @@
     },
     "GFC": {
       "ticker": "GFC",
-      "updated": "2026-10-25T16:37:02.606864+01:00",
+      "updated": "2026-10-25T17:05:15.034619+01:00",
       "place": "Paris",
       "price": 63.9,
       "chg": 0.08,
@@ -11632,7 +11632,7 @@
     },
     "GET": {
       "ticker": "GET",
-      "updated": "2026-10-25T16:37:04.111751+01:00",
+      "updated": "2026-10-25T17:05:16.737132+01:00",
       "place": "Paris",
       "price": 19.43,
       "chg": -0.56,
@@ -11715,7 +11715,7 @@
     },
     "DEC": {
       "ticker": "DEC",
-      "updated": "2026-10-25T16:37:05.477896+01:00",
+      "updated": "2026-10-25T17:05:18.397085+01:00",
       "place": "Paris",
       "price": 24.9,
       "chg": -0.56,
@@ -11798,7 +11798,7 @@
     },
     "MMB": {
       "ticker": "MMB",
-      "updated": "2026-10-25T16:37:06.689504+01:00",
+      "updated": "2026-10-25T17:05:20.426817+01:00",
       "place": "Paris",
       "price": 18.02,
       "chg": -1.31,
@@ -11881,7 +11881,7 @@
     },
     "LOUP": {
       "ticker": "LOUP",
-      "updated": "2026-10-25T16:37:09.959816+01:00",
+      "updated": "2026-10-25T17:05:24.391484+01:00",
       "place": "Paris",
       "price": 104.2,
       "chg": -0.38,
@@ -11964,7 +11964,7 @@
     },
     "MMT": {
       "ticker": "MMT",
-      "updated": "2026-10-25T16:37:11.401938+01:00",
+      "updated": "2026-10-25T17:05:26.409702+01:00",
       "place": "Paris",
       "price": 10.26,
       "chg": 0.2,
@@ -12047,7 +12047,7 @@
     },
     "NRO": {
       "ticker": "NRO",
-      "updated": "2026-10-25T16:37:12.779500+01:00",
+      "updated": "2026-10-25T17:05:28.281241+01:00",
       "place": "Paris",
       "price": 36.5,
       "chg": 1.67,
@@ -12143,7 +12143,7 @@
     },
     "OVH": {
       "ticker": "OVH",
-      "updated": "2026-10-25T16:37:13.944941+01:00",
+      "updated": "2026-10-25T17:05:30.147667+01:00",
       "place": "Paris",
       "price": 12.39,
       "chg": -21.08,
@@ -12225,7 +12225,7 @@
     },
     "PLNW": {
       "ticker": "PLNW",
-      "updated": "2026-10-25T16:37:15.407617+01:00",
+      "updated": "2026-10-25T17:05:32.324830+01:00",
       "place": "Paris",
       "price": 27.15,
       "chg": -2.86,
@@ -12322,7 +12322,7 @@
     },
     "GDS": {
       "ticker": "GDS",
-      "updated": "2026-10-25T16:37:18.620165+01:00",
+      "updated": "2026-10-25T17:05:35.975718+01:00",
       "place": "Paris",
       "price": 8.98,
       "chg": -4.47,
@@ -12396,7 +12396,7 @@
     },
     "RBT": {
       "ticker": "RBT",
-      "updated": "2026-10-25T16:37:19.635230+01:00",
+      "updated": "2026-10-25T17:05:37.581596+01:00",
       "place": "Paris",
       "price": 780.0,
       "chg": 0.52,
@@ -12493,7 +12493,7 @@
     },
     "RUI": {
       "ticker": "RUI",
-      "updated": "2026-10-25T16:37:20.912953+01:00",
+      "updated": "2026-10-25T17:05:39.511186+01:00",
       "place": "Paris",
       "price": 35.96,
       "chg": 2.74,
@@ -12576,7 +12576,7 @@
     },
     "DIM": {
       "ticker": "DIM",
-      "updated": "2026-10-25T16:37:22.176519+01:00",
+      "updated": "2026-10-25T17:05:41.308688+01:00",
       "place": "Paris",
       "price": 210.6,
       "chg": 0.67,
@@ -12659,7 +12659,7 @@
     },
     "SCR": {
       "ticker": "SCR",
-      "updated": "2026-10-25T16:37:23.471794+01:00",
+      "updated": "2026-10-25T17:05:43.137602+01:00",
       "place": "Paris",
       "price": 33.16,
       "chg": -1.01,
@@ -12742,7 +12742,7 @@
     },
     "SESG": {
       "ticker": "SESG",
-      "updated": "2026-10-25T16:37:26.946971+01:00",
+      "updated": "2026-10-25T17:05:46.947907+01:00",
       "place": "Paris",
       "price": 3.96,
       "chg": -4.26,
@@ -12826,7 +12826,7 @@
     },
     "TE": {
       "ticker": "TE",
-      "updated": "2026-10-25T16:37:28.282810+01:00",
+      "updated": "2026-10-25T17:05:48.660253+01:00",
       "place": "Paris",
       "price": 30.8,
       "chg": 2.8,
@@ -12921,7 +12921,7 @@
     },
     "TFI": {
       "ticker": "TFI",
-      "updated": "2026-10-25T16:37:29.405992+01:00",
+      "updated": "2026-10-25T17:05:50.187095+01:00",
       "place": "Paris",
       "price": 5.96,
       "chg": 0.68,
@@ -13004,7 +13004,7 @@
     },
     "TKO": {
       "ticker": "TKO",
-      "updated": "2026-10-25T16:37:30.798473+01:00",
+      "updated": "2026-10-25T17:05:52.214526+01:00",
       "place": "Paris",
       "price": 15.92,
       "chg": -3.75,
@@ -13079,7 +13079,7 @@
     },
     "VCT": {
       "ticker": "VCT",
-      "updated": "2026-10-25T16:37:31.916862+01:00",
+      "updated": "2026-10-25T17:05:53.924241+01:00",
       "place": "Paris",
       "price": 58.5,
       "chg": 0.52,
@@ -13162,7 +13162,7 @@
     },
     "VIL": {
       "ticker": "VIL",
-      "updated": "2026-10-25T16:37:35.185378+01:00",
+      "updated": "2026-10-25T17:05:57.550345+01:00",
       "place": "Paris",
       "price": 16.84,
       "chg": -0.59,
@@ -13235,7 +13235,7 @@
     },
     "WAVE": {
       "ticker": "WAVE",
-      "updated": "2026-10-25T16:37:36.515649+01:00",
+      "updated": "2026-10-25T17:05:59.374132+01:00",
       "place": "Paris",
       "price": 31.75,
       "chg": 0.47,
@@ -13318,7 +13318,7 @@
     },
     "WKL": {
       "ticker": "WKL",
-      "updated": "2026-10-25T16:37:37.705246+01:00",
+      "updated": "2026-10-25T17:06:02.453762+01:00",
       "place": "Amsterdam",
       "price": 88.18,
       "chg": 1.59,
@@ -13415,7 +13415,7 @@
     },
     "ITX": {
       "ticker": "ITX",
-      "updated": "2026-10-25T16:37:38.900797+01:00",
+      "updated": "2026-10-25T17:06:04.152110+01:00",
       "place": "Madrid",
       "price": 56.74,
       "chg": 0.89,
@@ -13512,7 +13512,7 @@
     },
     "AMS": {
       "ticker": "AMS",
-      "updated": "2026-10-25T16:37:40.147885+01:00",
+      "updated": "2026-10-25T17:06:05.837507+01:00",
       "place": "Madrid",
       "price": 56.6,
       "chg": -0.56,
@@ -13609,7 +13609,7 @@
     },
     "RAA": {
       "ticker": "RAA",
-      "updated": "2026-10-25T16:37:43.348652+01:00",
+      "updated": "2026-10-25T17:06:09.807996+01:00",
       "place": "Francfort",
       "price": 618.0,
       "chg": -0.88,
@@ -13706,7 +13706,7 @@
     },
     "NEM": {
       "ticker": "NEM",
-      "updated": "2026-10-25T16:37:44.583376+01:00",
+      "updated": "2026-10-25T17:06:11.401329+01:00",
       "place": "Francfort",
       "price": 75.7,
       "chg": 0.8,
@@ -13803,7 +13803,7 @@
     },
     "BEI": {
       "ticker": "BEI",
-      "updated": "2026-10-25T16:37:45.928677+01:00",
+      "updated": "2026-10-25T17:06:13.107047+01:00",
       "place": "Francfort",
       "price": 84.12,
       "chg": 2.41,
@@ -13886,7 +13886,7 @@
     },
     "SY1": {
       "ticker": "SY1",
-      "updated": "2026-10-25T16:37:47.198909+01:00",
+      "updated": "2026-10-25T17:06:15.021084+01:00",
       "place": "Francfort",
       "price": 102.0,
       "chg": -0.29,
@@ -13969,7 +13969,7 @@
     },
     "MONC": {
       "ticker": "MONC",
-      "updated": "2026-10-25T16:37:48.497880+01:00",
+      "updated": "2026-10-25T17:06:16.588412+01:00",
       "place": "Milan",
       "price": 42.66,
       "chg": -3.18,
@@ -14066,7 +14066,7 @@
     },
     "BC": {
       "ticker": "BC",
-      "updated": "2026-10-25T16:37:51.663090+01:00",
+      "updated": "2026-10-25T17:06:20.590222+01:00",
       "place": "Milan",
       "price": 84.7,
       "chg": -2.01,
@@ -14149,7 +14149,7 @@
     },
     "REC": {
       "ticker": "REC",
-      "updated": "2026-10-25T16:37:52.869801+01:00",
+      "updated": "2026-10-25T17:06:25.691931+01:00",
       "place": "Milan",
       "price": 53.8,
       "chg": 1.61,
@@ -14243,7 +14243,7 @@
     },
     "AMP": {
       "ticker": "AMP",
-      "updated": "2026-10-25T16:37:54.175155+01:00",
+      "updated": "2026-10-25T17:06:28.596713+01:00",
       "place": "Milan",
       "price": 12.7,
       "chg": -1.51,
@@ -14326,7 +14326,7 @@
     },
     "KNEBV": {
       "ticker": "KNEBV",
-      "updated": "2026-10-25T16:37:55.680610+01:00",
+      "updated": "2026-10-25T17:06:30.377650+01:00",
       "place": "Helsinki",
       "price": 56.32,
       "chg": 0.5,
@@ -14409,7 +14409,7 @@
     },
     "UMG": {
       "ticker": "UMG",
-      "updated": "2026-10-25T16:37:57.050639+01:00",
+      "updated": "2026-10-25T17:06:32.233802+01:00",
       "place": "Amsterdam",
       "price": 16.0,
       "chg": -0.31,
@@ -14506,7 +14506,7 @@
     },
     "BESI": {
       "ticker": "BESI",
-      "updated": "2026-10-25T16:38:00.248371+01:00",
+      "updated": "2026-10-25T17:06:35.770818+01:00",
       "place": "Amsterdam",
       "price": 145.1,
       "chg": -7.73,
@@ -14589,7 +14589,7 @@
     },
     "ASM": {
       "ticker": "ASM",
-      "updated": "2026-10-25T16:38:01.555784+01:00",
+      "updated": "2026-10-25T17:06:37.517191+01:00",
       "place": "Amsterdam",
       "price": 699.8,
       "chg": -1.33,
@@ -14687,7 +14687,7 @@
     },
     "MTX": {
       "ticker": "MTX",
-      "updated": "2026-10-25T16:38:02.812010+01:00",
+      "updated": "2026-10-25T17:06:39.209812+01:00",
       "place": "Francfort",
       "price": 316.7,
       "chg": -4.84,
@@ -14771,7 +14771,7 @@
     },
     "RHM": {
       "ticker": "RHM",
-      "updated": "2026-10-25T16:38:04.606821+01:00",
+      "updated": "2026-10-25T17:06:41.358310+01:00",
       "place": "Francfort",
       "price": 1019.0,
       "chg": 0.39,
@@ -14868,7 +14868,7 @@
     },
     "COLO": {
       "ticker": "COLO",
-      "updated": "2026-10-25T16:38:05.881019+01:00",
+      "updated": "2026-10-25T17:06:43.021885+01:00",
       "place": "Copenhague",
       "price": 64.85,
       "chg": 1.17,
@@ -14953,7 +14953,7 @@
     },
     "DSV": {
       "ticker": "DSV",
-      "updated": "2026-10-25T16:38:09.189386+01:00",
+      "updated": "2026-10-25T17:06:46.936029+01:00",
       "place": "Copenhague",
       "price": 183.64,
       "chg": -0.8,
@@ -15039,7 +15039,7 @@
     },
     "NSIS": {
       "ticker": "NSIS",
-      "updated": "2026-10-25T16:38:11.037880+01:00",
+      "updated": "2026-10-25T17:06:49.223031+01:00",
       "place": "Copenhague",
       "price": 64.43,
       "chg": 0.52,
@@ -15127,7 +15127,7 @@
     },
     "ATCO": {
       "ticker": "ATCO",
-      "updated": "2026-10-25T16:38:12.474942+01:00",
+      "updated": "2026-10-25T17:06:51.219860+01:00",
       "place": "Stockholm",
       "price": 15.85,
       "chg": -0.96,
@@ -15163,7 +15163,7 @@
       "mm50": 18.09,
       "mm200": 16.86,
       "chg5": -12.2,
-      "news5": "Atlas Copco AB (publ) publie ses résultats pour le troisième trimestre et les neuf mois clos le 30 septembre 2026|https://news.google.com/rss/articles/CBMi7wFBVV95cUxQeldpdHlqT3plVXBzSUd4eExfS3RBeE5GaWVjSXNUZGdfY3FQT0JOVHZjQ2Z5b1BmSTFfREJ4WFZpMWtKSHNQRG9CUWtBV0pNSGM3b2Rta0o3MVRINkVFbTlsR2hSYl9HeElnOHRVN2xDWmdOWTZjU2QwR3RUM0pNRlNNS2tYdGszX1hMdnYwTWlDNGRkd0c4ZnhoRE5LMTU2R3o4UWhOMFFweld3STgxRTVUQXVnZ1M5UlhVeFBRN3EwZ08xbmt6R09HVnhUZW5nT0YxQkpJT3FkLUZWZVhQenRkZTBBNFRZYWZKVGNqWQ?oc=5|Zonebourse Suisse ;; Le résultat d’exploitation d’Atlas Copco inférieur aux attentes du marché au T3|https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSXF3TnhmTHZGWllLNDdwWFFDR242SXd1XzFOWVYzeHpEV0ZvNDhrRmVaZ2dLVFBQZWZ4b3piMzVDcFJXUWVHY0VlNldlZXcwVnoxX0tsdmt0QnhLYWJNZk8yUkZCTU5EaXVyUHNKeTRGckZ1akdQMV9GOGt0TkdDYjk0N1ppLWxUaEZSeVVzOFRsRmJ1NFBJQWl4MXlWbGJyQVFEdmpGS3RpTThocG1uempXUEk3ajBrZWdxQjJYSnZ1cy0ta2MyQzhvQXBCYTdCemtvSmowcUV0Zw?oc=5|Zonebourse ;; Atlas Copco prévoit que l’activité des clients restera à son niveau actuel|https://news.google.com/rss/articles/CBMi0gFBVV95cUxQR1lOalRpa1B3a2dwaUhsekhaeml4X2xRYWxiYThsSHkwVmV6SllNcnRZM3hDd3F2WkExQ2hvdUdFQlR2am4wWXZkNl9WSURFRVBTejJpSnlwajJiamNiZ0VlYUJWcEVxNXBaYWE5cnY1Q3FmaE1sTWVjbWs2Wk00SW8zQ19rSzZKVVFfaHpyM0ZVa0ZZQmowQTdTLTlEanRWQzFqWkJRNVd6eUdaQm9xRjdRdl9PaE00MmpaUHZ2VnNqMTRaT2lrLWtZOWZBaGRGUXc?oc=5|Zonebourse",
+      "news5": "Atlas Copco AB (publ) publie ses résultats pour le troisième trimestre et les neuf mois clos le 30 septembre 2026|https://news.google.com/rss/articles/CBMi7wFBVV95cUxQeldpdHlqT3plVXBzSUd4eExfS3RBeE5GaWVjSXNUZGdfY3FQT0JOVHZjQ2Z5b1BmSTFfREJ4WFZpMWtKSHNQRG9CUWtBV0pNSGM3b2Rta0o3MVRINkVFbTlsR2hSYl9HeElnOHRVN2xDWmdOWTZjU2QwR3RUM0pNRlNNS2tYdGszX1hMdnYwTWlDNGRkd0c4ZnhoRE5LMTU2R3o4UWhOMFFweld3STgxRTVUQXVnZ1M5UlhVeFBRN3EwZ08xbmt6R09HVnhUZW5nT0YxQkpJT3FkLUZWZVhQenRkZTBBNFRZYWZKVGNqWQ?oc=5|Zonebourse Suisse ;; Le résultat d’exploitation d’Atlas Copco inférieur aux attentes du marché au T3|https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSXF3TnhmTHZGWllLNDdwWFFDR242SXd1XzFOWVYzeHpEV0ZvNDhrRmVaZ2dLVFBQZWZ4b3piMzVDcFJXUWVHY0VlNldlZXcwVnoxX0tsdmt0QnhLYWJNZk8yUkZCTU5EaXVyUHNKeTRGckZ1akdQMV9GOGt0TkdDYjk0N1ppLWxUaEZSeVVzOFRsRmJ1NFBJQWl4MXlWbGJyQVFEdmpGS3RpTThocG1uempXUEk3ajBrZWdxQjJYSnZ1cy0ta2MyQzhvQXBCYTdCemtvSmowcUV0Zw?oc=5|Zonebourse",
       "pio": 6,
       "alt": 6.07,
       "roic": 23.1,
@@ -15227,7 +15227,7 @@
     },
     "ASSA": {
       "ticker": "ASSA",
-      "updated": "2026-10-25T16:38:14.038974+01:00",
+      "updated": "2026-10-25T17:06:53.454916+01:00",
       "place": "Stockholm",
       "price": 33.22,
       "chg": 1.18,
@@ -15315,7 +15315,7 @@
     },
     "EPI": {
       "ticker": "EPI",
-      "updated": "2026-10-25T16:38:15.557786+01:00",
+      "updated": "2026-10-25T17:06:55.351688+01:00",
       "place": "Stockholm",
       "price": 22.54,
       "chg": 1.13,
@@ -15415,7 +15415,7 @@
     },
     "KOG": {
       "ticker": "KOG",
-      "updated": "2026-10-25T16:38:18.574187+01:00",
+      "updated": "2026-10-25T17:06:59.128131+01:00",
       "place": "Oslo",
       "price": 28.83,
       "chg": -0.17,
@@ -15499,7 +15499,7 @@
     },
     "BVI": {
       "ticker": "BVI",
-      "updated": "2026-10-25T16:38:19.759439+01:00",
+      "updated": "2026-10-25T17:07:00.844869+01:00",
       "place": "Paris",
       "price": 29.21,
       "chg": -0.48,
@@ -15593,7 +15593,7 @@
     },
     "KRI": {
       "ticker": "KRI",
-      "updated": "2026-10-25T16:38:20.980063+01:00",
+      "updated": "2026-10-25T17:07:02.437911+01:00",
       "place": "AT",
       "price": 34.4,
       "chg": -0.86,
@@ -15687,7 +15687,7 @@
     },
     "KBX": {
       "ticker": "KBX",
-      "updated": "2026-10-25T16:38:22.262966+01:00",
+      "updated": "2026-10-25T17:07:04.135041+01:00",
       "place": "Francfort",
       "price": 95.8,
       "chg": -0.47,
@@ -15781,7 +15781,7 @@
     },
     "G1A": {
       "ticker": "G1A",
-      "updated": "2026-10-25T16:38:23.276555+01:00",
+      "updated": "2026-10-25T17:07:05.664494+01:00",
       "place": "Francfort",
       "price": 68.55,
       "chg": 0.51,
@@ -15875,7 +15875,7 @@
     },
     "EVD": {
       "ticker": "EVD",
-      "updated": "2026-10-25T16:38:26.477718+01:00",
+      "updated": "2026-10-25T17:07:09.523881+01:00",
       "place": "Francfort",
       "price": 63.0,
       "chg": -1.25,
@@ -15972,7 +15972,7 @@
     },
     "FPE3": {
       "ticker": "FPE3",
-      "updated": "2026-10-25T16:38:27.839489+01:00",
+      "updated": "2026-10-25T17:07:11.386580+01:00",
       "place": "Francfort",
       "price": 45.16,
       "chg": 0.13,
@@ -16055,7 +16055,7 @@
     },
     "KRN": {
       "ticker": "KRN",
-      "updated": "2026-10-25T16:38:29.214485+01:00",
+      "updated": "2026-10-25T17:07:13.075054+01:00",
       "place": "Francfort",
       "price": 110.2,
       "chg": -1.25,
@@ -16152,7 +16152,7 @@
     },
     "AIXA": {
       "ticker": "AIXA",
-      "updated": "2026-10-25T16:38:30.574421+01:00",
+      "updated": "2026-10-25T17:07:14.819200+01:00",
       "place": "Francfort",
       "price": 28.45,
       "chg": -1.66,
@@ -16236,7 +16236,7 @@
     },
     "IOS": {
       "ticker": "IOS",
-      "updated": "2026-10-25T16:38:32.310434+01:00",
+      "updated": "2026-10-25T17:07:17.564626+01:00",
       "place": "Francfort",
       "price": 35.7,
       "chg": -1.11,
@@ -16319,7 +16319,7 @@
     },
     "AOF": {
       "ticker": "AOF",
-      "updated": "2026-10-25T16:38:35.258079+01:00",
+      "updated": "2026-10-25T17:07:20.835179+01:00",
       "place": "Francfort",
       "price": 87.3,
       "chg": -8.97,
@@ -16413,7 +16413,7 @@
     },
     "NA9": {
       "ticker": "NA9",
-      "updated": "2026-10-25T16:38:36.643532+01:00",
+      "updated": "2026-10-25T17:07:22.576432+01:00",
       "place": "Francfort",
       "price": 79.35,
       "chg": 0.19,
@@ -16507,7 +16507,7 @@
     },
     "YSN": {
       "ticker": "YSN",
-      "updated": "2026-10-25T16:38:37.860686+01:00",
+      "updated": "2026-10-25T17:07:24.262693+01:00",
       "place": "Francfort",
       "price": 237.5,
       "chg": 0.85,
@@ -16601,7 +16601,7 @@
     },
     "KSB3": {
       "ticker": "KSB3",
-      "updated": "2026-10-25T16:38:39.272497+01:00",
+      "updated": "2026-10-25T17:07:26.112249+01:00",
       "place": "Francfort",
       "price": 789.0,
       "chg": 0.77,
@@ -16695,7 +16695,7 @@
     },
     "BFSA": {
       "ticker": "BFSA",
-      "updated": "2026-10-25T16:38:40.360541+01:00",
+      "updated": "2026-10-25T17:07:27.889270+01:00",
       "place": "Francfort",
       "price": 31.65,
       "chg": -0.78,
@@ -16778,7 +16778,7 @@
     },
     "ELG": {
       "ticker": "ELG",
-      "updated": "2026-10-25T16:38:43.424248+01:00",
+      "updated": "2026-10-25T17:07:31.412036+01:00",
       "place": "Francfort",
       "price": 121.0,
       "chg": -1.31,
@@ -16861,7 +16861,7 @@
     },
     "REY": {
       "ticker": "REY",
-      "updated": "2026-10-25T16:38:44.564601+01:00",
+      "updated": "2026-10-25T17:07:33.114984+01:00",
       "place": "Milan",
       "price": 130.9,
       "chg": 0.85,
@@ -16955,7 +16955,7 @@
     },
     "DLG": {
       "ticker": "DLG",
-      "updated": "2026-10-25T16:38:45.870847+01:00",
+      "updated": "2026-10-25T17:07:34.673773+01:00",
       "place": "Milan",
       "price": 40.8,
       "chg": -4.98,
@@ -17049,7 +17049,7 @@
     },
     "TPRO": {
       "ticker": "TPRO",
-      "updated": "2026-10-25T16:38:46.978773+01:00",
+      "updated": "2026-10-25T17:07:36.528307+01:00",
       "place": "Milan",
       "price": 23.68,
       "chg": -4.13,
@@ -17133,7 +17133,7 @@
     },
     "CRL": {
       "ticker": "CRL",
-      "updated": "2026-10-25T16:38:48.374408+01:00",
+      "updated": "2026-10-25T17:07:38.525083+01:00",
       "place": "Milan",
       "price": 25.55,
       "chg": 0.39,
@@ -17227,7 +17227,7 @@
     },
     "TGYM": {
       "ticker": "TGYM",
-      "updated": "2026-10-25T16:38:51.465089+01:00",
+      "updated": "2026-10-25T17:07:42.056987+01:00",
       "place": "Milan",
       "price": 12.23,
       "chg": -1.21,
@@ -17321,7 +17321,7 @@
     },
     "ELN": {
       "ticker": "ELN",
-      "updated": "2026-10-25T16:38:52.776081+01:00",
+      "updated": "2026-10-25T17:07:43.766250+01:00",
       "place": "Milan",
       "price": 15.19,
       "chg": -1.62,
@@ -17404,7 +17404,7 @@
     },
     "SL": {
       "ticker": "SL",
-      "updated": "2026-10-25T16:38:54.251518+01:00",
+      "updated": "2026-10-25T17:07:45.774466+01:00",
       "place": "Milan",
       "price": 34.3,
       "chg": 0.12,
@@ -17487,7 +17487,7 @@
     },
     "CEM": {
       "ticker": "CEM",
-      "updated": "2026-10-25T16:38:55.569114+01:00",
+      "updated": "2026-10-25T17:07:47.453495+01:00",
       "place": "Milan",
       "price": 12.7,
       "chg": 0.55,
@@ -17570,7 +17570,7 @@
     },
     "RWAY": {
       "ticker": "RWAY",
-      "updated": "2026-10-25T16:38:57.009641+01:00",
+      "updated": "2026-10-25T17:07:49.249527+01:00",
       "place": "Milan",
       "price": 4.26,
       "chg": -0.58,
@@ -17664,7 +17664,7 @@
     },
     "CMB": {
       "ticker": "CMB",
-      "updated": "2026-10-25T16:39:00.129470+01:00",
+      "updated": "2026-10-25T17:07:52.739247+01:00",
       "place": "Milan",
       "price": 77.3,
       "chg": 1.31,
@@ -17758,7 +17758,7 @@
     },
     "LOG": {
       "ticker": "LOG",
-      "updated": "2026-10-25T16:39:01.563803+01:00",
+      "updated": "2026-10-25T17:07:54.457447+01:00",
       "place": "Madrid",
       "price": 37.02,
       "chg": -0.64,
@@ -17851,7 +17851,7 @@
     },
     "ROVI": {
       "ticker": "ROVI",
-      "updated": "2026-10-25T16:39:02.728866+01:00",
+      "updated": "2026-10-25T17:07:56.298291+01:00",
       "place": "Madrid",
       "price": 60.15,
       "chg": 1.18,
@@ -17934,7 +17934,7 @@
     },
     "HEIJM": {
       "ticker": "HEIJM",
-      "updated": "2026-10-25T16:39:04.027510+01:00",
+      "updated": "2026-10-25T17:07:57.922734+01:00",
       "place": "Amsterdam",
       "price": 79.5,
       "chg": 0.76,
@@ -18028,7 +18028,7 @@
     },
     "THEON": {
       "ticker": "THEON",
-      "updated": "2026-10-25T16:39:05.453435+01:00",
+      "updated": "2026-10-25T17:07:59.923460+01:00",
       "place": "Amsterdam",
       "price": 28.82,
       "chg": 3.22,
@@ -18109,7 +18109,7 @@
     },
     "LOTB": {
       "ticker": "LOTB",
-      "updated": "2026-10-25T16:39:08.665043+01:00",
+      "updated": "2026-10-25T17:08:03.761551+01:00",
       "place": "Bruxelles",
       "price": 13240.0,
       "chg": -0.45,
@@ -18203,7 +18203,7 @@
     },
     "JMT": {
       "ticker": "JMT",
-      "updated": "2026-10-25T16:39:09.896207+01:00",
+      "updated": "2026-10-25T17:08:05.784222+01:00",
       "place": "Lisbonne",
       "price": 18.38,
       "chg": -0.22,
@@ -18297,7 +18297,7 @@
     },
     "ANDR": {
       "ticker": "ANDR",
-      "updated": "2026-10-25T16:39:11.214786+01:00",
+      "updated": "2026-10-25T17:08:07.859731+01:00",
       "place": "VI",
       "price": 77.4,
       "chg": 1.04,
@@ -18380,7 +18380,7 @@
     },
     "WRT1V": {
       "ticker": "WRT1V",
-      "updated": "2026-10-25T16:39:12.437766+01:00",
+      "updated": "2026-10-25T17:08:09.639478+01:00",
       "place": "Helsinki",
       "price": 27.23,
       "chg": -0.11,
@@ -18475,7 +18475,7 @@
     },
     "ORNBV": {
       "ticker": "ORNBV",
-      "updated": "2026-10-25T16:39:13.804596+01:00",
+      "updated": "2026-10-25T17:08:11.585973+01:00",
       "place": "Helsinki",
       "price": 92.3,
       "chg": 0.33,
@@ -18569,7 +18569,7 @@
     },
     "ALFA": {
       "ticker": "ALFA",
-      "updated": "2026-10-25T16:39:17.159117+01:00",
+      "updated": "2026-10-25T17:08:15.331631+01:00",
       "place": "Stockholm",
       "price": 48.53,
       "chg": -0.22,
@@ -18665,7 +18665,7 @@
     },
     "ADDT": {
       "ticker": "ADDT",
-      "updated": "2026-10-25T16:39:18.471176+01:00",
+      "updated": "2026-10-25T17:08:17.065413+01:00",
       "place": "Stockholm",
       "price": 26.99,
       "chg": -2.66,
@@ -18762,7 +18762,7 @@
     },
     "LAGR": {
       "ticker": "LAGR",
-      "updated": "2026-10-25T16:39:19.830792+01:00",
+      "updated": "2026-10-25T17:08:18.795741+01:00",
       "place": "Stockholm",
       "price": 19.73,
       "chg": -2.4,
@@ -18858,7 +18858,7 @@
     },
     "SECT": {
       "ticker": "SECT",
-      "updated": "2026-10-25T16:39:21.191226+01:00",
+      "updated": "2026-10-25T17:08:20.636318+01:00",
       "place": "Stockholm",
       "price": 30.23,
       "chg": 0.42,
@@ -18954,7 +18954,7 @@
     },
     "MYCR": {
       "ticker": "MYCR",
-      "updated": "2026-10-25T16:39:22.484359+01:00",
+      "updated": "2026-10-25T17:08:22.430259+01:00",
       "place": "Stockholm",
       "price": 26.63,
       "chg": -1.66,
@@ -19050,7 +19050,7 @@
     },
     "PNDORA": {
       "ticker": "PNDORA",
-      "updated": "2026-10-25T16:39:25.762347+01:00",
+      "updated": "2026-10-25T17:08:26.260556+01:00",
       "place": "Copenhague",
       "price": 109.99,
       "chg": 0.07,
@@ -19146,7 +19146,7 @@
     },
     "NOD": {
       "ticker": "NOD",
-      "updated": "2026-10-25T16:39:26.972801+01:00",
+      "updated": "2026-10-25T17:08:27.782777+01:00",
       "place": "Oslo",
       "price": 15.99,
       "chg": -0.89,
@@ -19231,7 +19231,7 @@
     },
     "GOOGL": {
       "ticker": "GOOGL",
-      "updated": "2026-10-25T16:39:28.362803+01:00",
+      "updated": "2026-10-25T17:08:29.584161+01:00",
       "place": "?",
       "price": 285.79,
       "chg": -1.24,
@@ -19312,7 +19312,7 @@
       "neglect": false,
       "dq": "",
       "mscore": 4,
-      "mtype": "recherche et publicite (Google, YouTube), donnees, cloud",
+      "mtype": "recherche et publicite (Google, YouTube), donnees, cloud (note 4 validee le 25/10/2026)",
       "mthreat": "assistants d'IA qui contournent la recherche, proces antitrust",
       "knife": false,
       "roa": 13.0,
@@ -19329,7 +19329,7 @@
     },
     "MA": {
       "ticker": "MA",
-      "updated": "2026-10-25T16:39:29.628166+01:00",
+      "updated": "2026-10-25T17:08:31.270262+01:00",
       "place": "?",
       "price": 556.56,
       "chg": -1.52,
@@ -19428,7 +19428,7 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "updated": "2026-10-25T16:39:30.797337+01:00",
+      "updated": "2026-10-25T17:08:33.056300+01:00",
       "place": "?",
       "price": 221.34,
       "chg": -0.95,
@@ -19513,7 +19513,7 @@
     },
     "KO": {
       "ticker": "KO",
-      "updated": "2026-10-25T16:39:33.876753+01:00",
+      "updated": "2026-10-25T17:08:36.580433+01:00",
       "place": "?",
       "price": 82.74,
       "chg": -2.76,
@@ -19540,8 +19540,8 @@
       "dcfb": 43.53,
       "dcfm": 51.21,
       "dcfu": 61.46,
-      "el": 38.41,
-      "eh": 43.53,
+      "el": 40.97,
+      "eh": 46.09,
       "stop": 40.73,
       "o1": 56.62,
       "o2": 62.28,
@@ -19583,7 +19583,7 @@
       "gmod": 3.7,
       "gimp": 18.0,
       "vmeth": "qarp",
-      "unc": "non evaluee",
+      "unc": "faible",
       "vpess": 45.26,
       "vopt": 56.62,
       "vmult": 56.66,
@@ -19594,6 +19594,9 @@
       "irrn": 6.2,
       "neglect": false,
       "dq": "",
+      "mscore": 3,
+      "mtype": "marques mondiales, concentre vendu aux embouteilleurs, peu d'usines (note 3 validee le 25/10/2026)",
+      "mthreat": "chasse au sucre et a ses substituts (aspartame), medicaments contre l'obesite, Pepsi",
       "knife": false,
       "roa": 9.4,
       "de": 1.16,
@@ -19609,7 +19612,7 @@
     },
     "MOURBR": {
       "ticker": "MOURBR",
-      "updated": "2026-10-25T16:39:35.409520+01:00",
+      "updated": "2026-10-25T17:08:38.699087+01:00",
       "place": "Bruxelles",
       "price": 682.0,
       "chg": 1.79,
@@ -19707,7 +19710,7 @@
     },
     "MTHHCO": {
       "ticker": "MTHHCO",
-      "updated": "2026-10-25T16:39:36.736055+01:00",
+      "updated": "2026-10-25T17:08:40.770701+01:00",
       "place": "Copenhague",
       "price": 35.59,
       "chg": -1.48,
@@ -19803,7 +19806,7 @@
     },
     "CWCDE": {
       "ticker": "CWCDE",
-      "updated": "2026-10-25T16:39:38.064957+01:00",
+      "updated": "2026-10-25T17:08:42.612685+01:00",
       "place": "Francfort",
       "price": 114.6,
       "chg": 0.88,
@@ -19898,7 +19901,7 @@
     },
     "EUZDE": {
       "ticker": "EUZDE",
-      "updated": "2026-10-25T16:39:39.323361+01:00",
+      "updated": "2026-10-25T17:08:44.486976+01:00",
       "place": "Francfort",
       "price": 13.07,
       "chg": -1.73,
@@ -19995,7 +19998,7 @@
     },
     "GFTDE": {
       "ticker": "GFTDE",
-      "updated": "2026-10-25T16:39:42.461730+01:00",
+      "updated": "2026-10-25T17:08:48.171603+01:00",
       "place": "Francfort",
       "price": 28.15,
       "chg": -0.53,
@@ -20089,7 +20092,7 @@
     },
     "IVUDE": {
       "ticker": "IVUDE",
-      "updated": "2026-10-25T16:39:43.639874+01:00",
+      "updated": "2026-10-25T17:08:50.072807+01:00",
       "place": "Francfort",
       "price": 26.5,
       "chg": -1.85,
@@ -20182,7 +20185,7 @@
     },
     "CTNKF": {
       "ticker": "CTNKF",
-      "updated": "2026-10-25T16:39:44.791921+01:00",
+      "updated": "2026-10-25T17:08:51.765691+01:00",
       "place": "F",
       "price": 9.15,
       "chg": -1.08,
@@ -20276,7 +20279,7 @@
     },
     "GOFOREHE": {
       "ticker": "GOFOREHE",
-      "updated": "2026-10-25T16:39:45.850601+01:00",
+      "updated": "2026-10-25T17:08:53.481246+01:00",
       "place": "Helsinki",
       "price": 11.92,
       "chg": -1.81,
@@ -20373,7 +20376,7 @@
     },
     "GRKHE": {
       "ticker": "GRKHE",
-      "updated": "2026-10-25T16:39:47.073007+01:00",
+      "updated": "2026-10-25T17:08:55.057618+01:00",
       "place": "Helsinki",
       "price": 24.3,
       "chg": -3.57,
@@ -20469,7 +20472,7 @@
     },
     "HARVIAHE": {
       "ticker": "HARVIAHE",
-      "updated": "2026-10-25T16:39:50.175186+01:00",
+      "updated": "2026-10-25T17:08:58.551374+01:00",
       "place": "Helsinki",
       "price": 44.15,
       "chg": -1.45,
@@ -20563,7 +20566,7 @@
     },
     "MEKKOHE": {
       "ticker": "MEKKOHE",
-      "updated": "2026-10-25T16:39:51.347473+01:00",
+      "updated": "2026-10-25T17:09:00.294367+01:00",
       "place": "Helsinki",
       "price": 9.01,
       "chg": -0.55,
@@ -20657,7 +20660,7 @@
     },
     "REG1VHE": {
       "ticker": "REG1VHE",
-      "updated": "2026-10-25T16:39:52.518517+01:00",
+      "updated": "2026-10-25T17:09:02.092692+01:00",
       "place": "Helsinki",
       "price": 10.6,
       "chg": -2.93,
@@ -20751,7 +20754,7 @@
     },
     "ALCMC": {
       "ticker": "ALCMC",
-      "updated": "2026-10-25T16:39:53.811930+01:00",
+      "updated": "2026-10-25T17:09:03.882975+01:00",
       "place": "Madrid",
       "price": 5.8,
       "chg": 0.0,
@@ -20847,7 +20850,7 @@
     },
     "AZKMC": {
       "ticker": "AZKMC",
-      "updated": "2026-10-25T16:39:55.080770+01:00",
+      "updated": "2026-10-25T17:09:05.450284+01:00",
       "place": "Madrid",
       "price": 10.1,
       "chg": 0.0,
@@ -20941,7 +20944,7 @@
     },
     "CBAVMC": {
       "ticker": "CBAVMC",
-      "updated": "2026-10-25T16:39:58.456092+01:00",
+      "updated": "2026-10-25T17:09:09.142083+01:00",
       "place": "Madrid",
       "price": 53.8,
       "chg": -0.74,
@@ -21035,7 +21038,7 @@
     },
     "EVISOMI": {
       "ticker": "EVISOMI",
-      "updated": "2026-10-25T16:39:59.725028+01:00",
+      "updated": "2026-10-25T17:09:10.666713+01:00",
       "place": "Milan",
       "price": 7.67,
       "chg": -0.52,
@@ -21128,7 +21131,7 @@
     },
     "BOUVOL": {
       "ticker": "BOUVOL",
-      "updated": "2026-10-25T16:40:00.873738+01:00",
+      "updated": "2026-10-25T17:09:12.269381+01:00",
       "place": "Oslo",
       "price": 4.97,
       "chg": 7.23,
@@ -21227,7 +21230,7 @@
     },
     "MEDIOL": {
       "ticker": "MEDIOL",
-      "updated": "2026-10-25T16:40:02.158523+01:00",
+      "updated": "2026-10-25T17:09:13.925764+01:00",
       "place": "Oslo",
       "price": 28.73,
       "chg": 6.76,
@@ -21322,7 +21325,7 @@
     },
     "MULTIOL": {
       "ticker": "MULTIOL",
-      "updated": "2026-10-25T16:40:03.533136+01:00",
+      "updated": "2026-10-25T17:09:15.551286+01:00",
       "place": "Oslo",
       "price": 12.99,
       "chg": 0.3,
@@ -21419,7 +21422,7 @@
     },
     "AUBPA": {
       "ticker": "AUBPA",
-      "updated": "2026-10-25T16:40:06.736693+01:00",
+      "updated": "2026-10-25T17:09:19.209931+01:00",
       "place": "Paris",
       "price": 48.85,
       "chg": -1.41,
@@ -21516,7 +21519,7 @@
     },
     "EQSPA": {
       "ticker": "EQSPA",
-      "updated": "2026-10-25T16:40:08.179840+01:00",
+      "updated": "2026-10-25T17:09:20.776674+01:00",
       "place": "Paris",
       "price": 29.65,
       "chg": 1.89,
@@ -21609,7 +21612,7 @@
     },
     "SDGPA": {
       "ticker": "SDGPA",
-      "updated": "2026-10-25T16:40:09.565156+01:00",
+      "updated": "2026-10-25T17:09:22.600682+01:00",
       "place": "Paris",
       "price": 26.1,
       "chg": 0.77,
@@ -21705,7 +21708,7 @@
     },
     "BAHNBST": {
       "ticker": "BAHNBST",
-      "updated": "2026-10-25T16:40:10.829244+01:00",
+      "updated": "2026-10-25T17:09:24.454092+01:00",
       "place": "Stockholm",
       "price": 5.38,
       "chg": 0.0,
@@ -21800,7 +21803,7 @@
     },
     "HEMST": {
       "ticker": "HEMST",
-      "updated": "2026-10-25T16:40:11.987021+01:00",
+      "updated": "2026-10-25T17:09:26.245280+01:00",
       "place": "Stockholm",
       "price": 6.8,
       "chg": -6.95,
@@ -21899,7 +21902,7 @@
     },
     "LIMEST": {
       "ticker": "LIMEST",
-      "updated": "2026-10-25T16:40:15.232868+01:00",
+      "updated": "2026-10-25T17:09:29.801924+01:00",
       "place": "Stockholm",
       "price": 24.14,
       "chg": -0.92,
@@ -21995,7 +21998,7 @@
     },
     "MMGRBST": {
       "ticker": "MMGRBST",
-      "updated": "2026-10-25T16:40:16.428983+01:00",
+      "updated": "2026-10-25T17:09:31.658567+01:00",
       "place": "Stockholm",
       "price": 11.35,
       "chg": 0.96,
@@ -22091,7 +22094,7 @@
     },
     "RVRCST": {
       "ticker": "RVRCST",
-      "updated": "2026-10-25T16:40:17.561169+01:00",
+      "updated": "2026-10-25T17:09:33.137248+01:00",
       "place": "Stockholm",
       "price": 4.87,
       "chg": 0.0,
@@ -22190,7 +22193,7 @@
     },
     "ZZBST": {
       "ticker": "ZZBST",
-      "updated": "2026-10-25T16:40:18.642399+01:00",
+      "updated": "2026-10-25T17:09:34.673989+01:00",
       "place": "Stockholm",
       "price": 12.42,
       "chg": -1.5,
@@ -22285,7 +22288,7 @@
     },
     "ABSWA": {
       "ticker": "ABSWA",
-      "updated": "2026-10-25T16:40:19.784040+01:00",
+      "updated": "2026-10-25T17:09:36.413481+01:00",
       "place": "WA",
       "price": 20.07,
       "chg": 0.68,
@@ -22383,7 +22386,7 @@
     },
     "GPPWA": {
       "ticker": "GPPWA",
-      "updated": "2026-10-25T16:40:22.943590+01:00",
+      "updated": "2026-10-25T17:09:39.978280+01:00",
       "place": "WA",
       "price": 12.51,
       "chg": 0.36,
@@ -22482,7 +22485,7 @@
     },
     "LBWWA": {
       "ticker": "LBWWA",
-      "updated": "2026-10-25T16:40:24.015191+01:00",
+      "updated": "2026-10-25T17:09:41.642763+01:00",
       "place": "WA",
       "price": 2.42,
       "chg": 4.4,
@@ -22578,7 +22581,7 @@
     },
     "PLWWA": {
       "ticker": "PLWWA",
-      "updated": "2026-10-25T16:40:25.280791+01:00",
+      "updated": "2026-10-25T17:09:43.363861+01:00",
       "place": "WA",
       "price": 56.41,
       "chg": 1.84,
@@ -22673,7 +22676,7 @@
     },
     "RBWWA": {
       "ticker": "RBWWA",
-      "updated": "2026-10-25T16:40:26.601213+01:00",
+      "updated": "2026-10-25T17:09:44.995841+01:00",
       "place": "WA",
       "price": 27.78,
       "chg": 0.33,
@@ -22773,7 +22776,7 @@
     },
     "SGNWA": {
       "ticker": "SGNWA",
-      "updated": "2026-10-25T16:40:27.837841+01:00",
+      "updated": "2026-10-25T17:09:46.691173+01:00",
       "place": "WA",
       "price": 19.75,
       "chg": 2.96,
@@ -22868,7 +22871,7 @@
     },
     "SHOWA": {
       "ticker": "SHOWA",
-      "updated": "2026-10-25T16:40:31.022903+01:00",
+      "updated": "2026-10-25T17:09:50.522071+01:00",
       "place": "WA",
       "price": 9.56,
       "chg": 0.0,
@@ -22959,7 +22962,7 @@
     },
     "VRCWA": {
       "ticker": "VRCWA",
-      "updated": "2026-10-25T16:40:31.995872+01:00",
+      "updated": "2026-10-25T17:09:51.901670+01:00",
       "place": "WA",
       "price": 27.78,
       "chg": -1.13,
@@ -23055,7 +23058,7 @@
     },
     "NWGWA": {
       "ticker": "NWGWA",
-      "updated": "2026-10-25T16:40:33.061972+01:00",
+      "updated": "2026-10-25T17:09:53.458699+01:00",
       "place": "WA",
       "price": 22.36,
       "chg": 2.6,
@@ -23150,7 +23153,7 @@
     },
     "BIOGBST": {
       "ticker": "BIOGBST",
-      "updated": "2026-10-25T16:40:34.069004+01:00",
+      "updated": "2026-10-25T17:09:55.264051+01:00",
       "place": "Stockholm",
       "price": 11.45,
       "chg": -1.55,
@@ -23245,7 +23248,7 @@
     },
     "EVOST": {
       "ticker": "EVOST",
-      "updated": "2026-10-25T16:40:35.260593+01:00",
+      "updated": "2026-10-25T17:09:56.989058+01:00",
       "place": "Stockholm",
       "price": 75.65,
       "chg": 3.62,
@@ -23345,7 +23348,7 @@
     },
     "NORBTOL": {
       "ticker": "NORBTOL",
-      "updated": "2026-10-25T16:40:38.695813+01:00",
+      "updated": "2026-10-25T17:10:00.966231+01:00",
       "place": "Oslo",
       "price": 15.09,
       "chg": -0.19,
@@ -23441,7 +23444,7 @@
     },
     "HMSST": {
       "ticker": "HMSST",
-      "updated": "2026-10-25T16:40:39.941565+01:00",
+      "updated": "2026-10-25T17:10:02.603668+01:00",
       "place": "Stockholm",
       "price": 43.05,
       "chg": 0.59,
@@ -23538,7 +23541,7 @@
     },
     "BETSBST": {
       "ticker": "BETSBST",
-      "updated": "2026-10-25T16:40:41.762811+01:00",
+      "updated": "2026-10-25T17:10:04.906296+01:00",
       "place": "Stockholm",
       "price": 8.91,
       "chg": 4.87,
@@ -23634,7 +23637,7 @@
     },
     "KAREAT": {
       "ticker": "KAREAT",
-      "updated": "2026-10-25T16:40:43.069046+01:00",
+      "updated": "2026-10-25T17:10:06.660670+01:00",
       "place": "AT",
       "price": 418.0,
       "chg": 0.0,
@@ -23731,7 +23734,7 @@
     },
     "CAMXST": {
       "ticker": "CAMXST",
-      "updated": "2026-10-25T16:40:44.547075+01:00",
+      "updated": "2026-10-25T17:10:08.244972+01:00",
       "place": "Stockholm",
       "price": 59.88,
       "chg": -0.52,
@@ -23827,7 +23830,7 @@
     },
     "PUUILOHE": {
       "ticker": "PUUILOHE",
-      "updated": "2026-10-25T16:40:47.590269+01:00",
+      "updated": "2026-10-25T17:10:11.655738+01:00",
       "place": "Helsinki",
       "price": 18.62,
       "chg": -0.11,
@@ -23921,7 +23924,7 @@
     },
     "NORCOOL": {
       "ticker": "NORCOOL",
-      "updated": "2026-10-25T16:40:48.688180+01:00",
+      "updated": "2026-10-25T17:10:13.448007+01:00",
       "place": "Oslo",
       "price": 3.56,
       "chg": -1.06,
@@ -24019,7 +24022,7 @@
     },
     "DOCVI": {
       "ticker": "DOCVI",
-      "updated": "2026-10-25T16:40:49.787618+01:00",
+      "updated": "2026-10-25T17:10:15.150395+01:00",
       "place": "VI",
       "price": 196.0,
       "chg": -0.81,
@@ -24116,7 +24119,7 @@
     },
     "MAIREMI": {
       "ticker": "MAIREMI",
-      "updated": "2026-10-25T16:40:51.238651+01:00",
+      "updated": "2026-10-25T17:10:16.944022+01:00",
       "place": "Milan",
       "price": 11.89,
       "chg": 0.68,
@@ -24212,7 +24215,7 @@
     },
     "CLASBST": {
       "ticker": "CLASBST",
-      "updated": "2026-10-25T16:40:52.464412+01:00",
+      "updated": "2026-10-25T17:10:18.721023+01:00",
       "place": "Stockholm",
       "price": 43.12,
       "chg": 1.05,
@@ -24308,7 +24311,7 @@
     },
     "OEMBST": {
       "ticker": "OEMBST",
-      "updated": "2026-10-25T16:40:55.870639+01:00",
+      "updated": "2026-10-25T17:10:22.413194+01:00",
       "place": "Stockholm",
       "price": 15.18,
       "chg": 1.69,
@@ -24404,7 +24407,7 @@
     },
     "SPABR": {
       "ticker": "SPABR",
-      "updated": "2026-10-25T16:40:57.227418+01:00",
+      "updated": "2026-10-25T17:10:24.193848+01:00",
       "place": "Bruxelles",
       "price": 350.0,
       "chg": -1.13,
@@ -24497,7 +24500,7 @@
     },
     "HOTDE": {
       "ticker": "HOTDE",
-      "updated": "2026-10-25T16:40:58.672754+01:00",
+      "updated": "2026-10-25T17:10:26.316197+01:00",
       "place": "Francfort",
       "price": 357.0,
       "chg": 0.17,
@@ -24593,7 +24596,7 @@
     },
     "STRVI": {
       "ticker": "STRVI",
-      "updated": "2026-10-25T16:40:59.924199+01:00",
+      "updated": "2026-10-25T17:10:28.012630+01:00",
       "place": "VI",
       "price": 96.4,
       "chg": -2.33,
@@ -24688,7 +24691,7 @@
     },
     "BONHROL": {
       "ticker": "BONHROL",
-      "updated": "2026-10-25T16:41:01.143050+01:00",
+      "updated": "2026-10-25T17:10:29.634842+01:00",
       "place": "Oslo",
       "price": 23.37,
       "chg": -1.21,
@@ -24784,7 +24787,7 @@
     },
     "PDXST": {
       "ticker": "PDXST",
-      "updated": "2026-10-25T16:41:04.545257+01:00",
+      "updated": "2026-10-25T17:10:33.350240+01:00",
       "place": "Stockholm",
       "price": 12.26,
       "chg": -2.22,
@@ -24880,7 +24883,7 @@
     },
     "RYAIR": {
       "ticker": "RYAIR",
-      "updated": "2026-10-25T16:41:05.685164+01:00",
+      "updated": "2026-10-25T17:10:34.946865+01:00",
       "place": "IR",
       "price": 22.53,
       "chg": -1.87,
@@ -24976,7 +24979,7 @@
     },
     "TREMC": {
       "ticker": "TREMC",
-      "updated": "2026-10-25T16:41:07.053641+01:00",
+      "updated": "2026-10-25T17:10:36.721648+01:00",
       "place": "Madrid",
       "price": 26.04,
       "chg": -1.21,
@@ -25072,7 +25075,7 @@
     },
     "1INNDE": {
       "ticker": "1INNDE",
-      "updated": "2026-10-25T16:41:08.162447+01:00",
+      "updated": "2026-10-25T17:10:38.538146+01:00",
       "place": "Francfort",
       "price": 49.4,
       "chg": 2.38,
@@ -25166,7 +25169,7 @@
     },
     "ACSMC": {
       "ticker": "ACSMC",
-      "updated": "2026-10-25T16:41:09.698104+01:00",
+      "updated": "2026-10-25T17:10:40.615418+01:00",
       "place": "Madrid",
       "price": 87.55,
       "chg": 0.69,
@@ -25261,7 +25264,7 @@
     },
     "AEGNAT": {
       "ticker": "AEGNAT",
-      "updated": "2026-10-25T16:41:13.006291+01:00",
+      "updated": "2026-10-25T17:10:44.408836+01:00",
       "place": "AT",
       "price": 10.59,
       "chg": -2.67,
@@ -25359,7 +25362,7 @@
     },
     "ALVDMPA": {
       "ticker": "ALVDMPA",
-      "updated": "2026-10-25T16:41:14.432379+01:00",
+      "updated": "2026-10-25T17:10:46.326042+01:00",
       "place": "Paris",
       "price": 179.5,
       "chg": 0.0,
@@ -25453,7 +25456,7 @@
     },
     "AQST": {
       "ticker": "AQST",
-      "updated": "2026-10-25T16:41:15.734210+01:00",
+      "updated": "2026-10-25T17:10:48.134474+01:00",
       "place": "Stockholm",
       "price": 20.37,
       "chg": 0.18,
@@ -25549,7 +25552,7 @@
     },
     "ARCADAS": {
       "ticker": "ARCADAS",
-      "updated": "2026-10-25T16:41:17.207332+01:00",
+      "updated": "2026-10-25T17:10:49.765217+01:00",
       "place": "Amsterdam",
       "price": 42.62,
       "chg": 1.48,
@@ -25644,7 +25647,7 @@
     },
     "ARTMC": {
       "ticker": "ARTMC",
-      "updated": "2026-10-25T16:41:18.502470+01:00",
+      "updated": "2026-10-25T17:10:51.588967+01:00",
       "place": "Madrid",
       "price": 30.1,
       "chg": -0.99,
@@ -25737,7 +25740,7 @@
     },
     "ASEWA": {
       "ticker": "ASEWA",
-      "updated": "2026-10-25T16:41:21.828910+01:00",
+      "updated": "2026-10-25T17:10:55.234222+01:00",
       "place": "WA",
       "price": 18.34,
       "chg": 3.06,
@@ -25835,7 +25838,7 @@
     },
     "ATEAOL": {
       "ticker": "ATEAOL",
-      "updated": "2026-10-25T16:41:23.391948+01:00",
+      "updated": "2026-10-25T17:10:57.597803+01:00",
       "place": "Oslo",
       "price": 15.65,
       "chg": -0.97,
@@ -25934,7 +25937,7 @@
     },
     "AXFOST": {
       "ticker": "AXFOST",
-      "updated": "2026-10-25T16:41:24.743693+01:00",
+      "updated": "2026-10-25T17:10:59.540898+01:00",
       "place": "Stockholm",
       "price": 25.03,
       "chg": 1.72,
@@ -26030,7 +26033,7 @@
     },
     "BDXWA": {
       "ticker": "BDXWA",
-      "updated": "2026-10-25T16:41:26.155963+01:00",
+      "updated": "2026-10-25T17:11:01.503048+01:00",
       "place": "WA",
       "price": 161.48,
       "chg": 1.05,
@@ -26127,7 +26130,7 @@
     },
     "BFTWA": {
       "ticker": "BFTWA",
-      "updated": "2026-10-25T16:41:27.446493+01:00",
+      "updated": "2026-10-25T17:11:03.506688+01:00",
       "place": "WA",
       "price": 1356.26,
       "chg": 1.27,
@@ -26224,7 +26227,7 @@
     },
     "BOHUSOL": {
       "ticker": "BOHUSOL",
-      "updated": "2026-10-25T16:41:30.779291+01:00",
+      "updated": "2026-10-25T17:11:07.338828+01:00",
       "place": "Oslo",
       "price": 3.89,
       "chg": -0.85,
@@ -26318,7 +26321,7 @@
     },
     "CALTMI": {
       "ticker": "CALTMI",
-      "updated": "2026-10-25T16:41:31.662844+01:00",
+      "updated": "2026-10-25T17:11:08.743160+01:00",
       "place": "Milan",
       "price": 8.89,
       "chg": -0.78,
@@ -26415,7 +26418,7 @@
     },
     "CENPA": {
       "ticker": "CENPA",
-      "updated": "2026-10-25T16:41:33.029180+01:00",
+      "updated": "2026-10-25T17:11:10.632918+01:00",
       "place": "Paris",
       "price": 46.2,
       "chg": 1.76,
@@ -26512,7 +26515,7 @@
     },
     "CTTLS": {
       "ticker": "CTTLS",
-      "updated": "2026-10-25T16:41:34.362720+01:00",
+      "updated": "2026-10-25T17:11:12.405148+01:00",
       "place": "Lisbonne",
       "price": 5.41,
       "chg": -1.19,
@@ -26609,7 +26612,7 @@
     },
     "DIAWA": {
       "ticker": "DIAWA",
-      "updated": "2026-10-25T16:41:35.596522+01:00",
+      "updated": "2026-10-25T17:11:14.071995+01:00",
       "place": "WA",
       "price": 35.46,
       "chg": -0.95,
@@ -26708,7 +26711,7 @@
     },
     "DIEBR": {
       "ticker": "DIEBR",
-      "updated": "2026-10-25T16:41:38.595646+01:00",
+      "updated": "2026-10-25T17:11:17.667324+01:00",
       "place": "Bruxelles",
       "price": 173.8,
       "chg": -0.8,
@@ -26803,7 +26806,7 @@
     },
     "EINDE": {
       "ticker": "EINDE",
-      "updated": "2026-10-25T16:41:40.180311+01:00",
+      "updated": "2026-10-25T17:11:19.905256+01:00",
       "place": "Francfort",
       "price": 62.7,
       "chg": 0.64,
@@ -26899,7 +26902,7 @@
     },
     "EPROL": {
       "ticker": "EPROL",
-      "updated": "2026-10-25T16:41:41.360686+01:00",
+      "updated": "2026-10-25T17:11:21.801738+01:00",
       "place": "Oslo",
       "price": 7.93,
       "chg": -1.55,
@@ -26998,7 +27001,7 @@
     },
     "EPROBST": {
       "ticker": "EPROBST",
-      "updated": "2026-10-25T16:41:42.507999+01:00",
+      "updated": "2026-10-25T17:11:23.597871+01:00",
       "place": "Stockholm",
       "price": 4.41,
       "chg": 0.31,
@@ -27093,7 +27096,7 @@
     },
     "FAGRBR": {
       "ticker": "FAGRBR",
-      "updated": "2026-10-25T16:41:43.708446+01:00",
+      "updated": "2026-10-25T17:11:25.193015+01:00",
       "place": "Bruxelles",
       "price": 23.65,
       "chg": 1.07,
@@ -27190,7 +27193,7 @@
     },
     "FDJVI": {
       "ticker": "FDJVI",
-      "updated": "2026-10-25T16:41:47.123381+01:00",
+      "updated": "2026-10-25T17:11:29.123903+01:00",
       "place": "VI",
       "price": 20.4,
       "chg": 2.31,
@@ -27283,7 +27286,7 @@
     },
     "FRAMERYHE": {
       "ticker": "FRAMERYHE",
-      "updated": "2026-10-25T16:41:48.171516+01:00",
+      "updated": "2026-10-25T17:11:30.847463+01:00",
       "place": "Helsinki",
       "price": 6.26,
       "chg": -2.43,
@@ -27374,7 +27377,7 @@
     },
     "GBFDE": {
       "ticker": "GBFDE",
-      "updated": "2026-10-25T16:41:49.117701+01:00",
+      "updated": "2026-10-25T17:11:32.502568+01:00",
       "place": "Francfort",
       "price": 55.0,
       "chg": 0.46,
@@ -27469,7 +27472,7 @@
     },
     "HACKST": {
       "ticker": "HACKST",
-      "updated": "2026-10-25T16:41:50.399067+01:00",
+      "updated": "2026-10-25T17:11:34.474182+01:00",
       "place": "Stockholm",
       "price": 4.91,
       "chg": -0.73,
@@ -27565,7 +27568,7 @@
     },
     "HAGDE": {
       "ticker": "HAGDE",
-      "updated": "2026-10-25T16:41:51.345655+01:00",
+      "updated": "2026-10-25T17:11:36.322565+01:00",
       "place": "Francfort",
       "price": 84.02,
       "chg": 0.21,
@@ -27661,7 +27664,7 @@
     },
     "IEGMI": {
       "ticker": "IEGMI",
-      "updated": "2026-10-25T16:41:54.372483+01:00",
+      "updated": "2026-10-25T17:11:39.874926+01:00",
       "place": "Milan",
       "price": 14.0,
       "chg": 4.09,
@@ -27757,7 +27760,7 @@
     },
     "INDTST": {
       "ticker": "INDTST",
-      "updated": "2026-10-25T16:41:55.526299+01:00",
+      "updated": "2026-10-25T17:11:41.536252+01:00",
       "place": "Stockholm",
       "price": 22.26,
       "chg": -4.25,
@@ -27853,7 +27856,7 @@
     },
     "IR5BIR": {
       "ticker": "IR5BIR",
-      "updated": "2026-10-25T16:41:56.715654+01:00",
+      "updated": "2026-10-25T17:11:43.244110+01:00",
       "place": "IR",
       "price": 7.96,
       "chg": 0.0,
@@ -27948,7 +27951,7 @@
     },
     "ISSCO": {
       "ticker": "ISSCO",
-      "updated": "2026-10-25T16:41:58.052007+01:00",
+      "updated": "2026-10-25T17:11:45.024961+01:00",
       "place": "Copenhague",
       "price": 38.51,
       "chg": -1.57,
@@ -28045,7 +28048,7 @@
     },
     "KCRHE": {
       "ticker": "KCRHE",
-      "updated": "2026-10-25T16:41:59.334836+01:00",
+      "updated": "2026-10-25T17:11:46.797086+01:00",
       "place": "Helsinki",
       "price": 26.44,
       "chg": -7.75,
@@ -28141,7 +28144,7 @@
     },
     "KITOL": {
       "ticker": "KITOL",
-      "updated": "2026-10-25T16:42:03.164473+01:00",
+      "updated": "2026-10-25T17:11:51.085078+01:00",
       "place": "Oslo",
       "price": 7.97,
       "chg": -2.63,
@@ -28238,7 +28241,7 @@
     },
     "KRXIR": {
       "ticker": "KRXIR",
-      "updated": "2026-10-25T16:42:08.186964+01:00",
+      "updated": "2026-10-25T17:11:53.660100+01:00",
       "place": "IR",
       "price": 89.35,
       "chg": -2.03,
@@ -28332,7 +28335,7 @@
     },
     "LIFCOBST": {
       "ticker": "LIFCOBST",
-      "updated": "2026-10-25T16:42:09.646042+01:00",
+      "updated": "2026-10-25T17:11:55.439870+01:00",
       "place": "Stockholm",
       "price": 25.21,
       "chg": -12.05,
@@ -28429,7 +28432,7 @@
     },
     "LPPWA": {
       "ticker": "LPPWA",
-      "updated": "2026-10-25T16:42:11.195167+01:00",
+      "updated": "2026-10-25T17:11:57.640833+01:00",
       "place": "WA",
       "price": 6128.7,
       "chg": -0.88,
@@ -28525,7 +28528,7 @@
     },
     "M12DE": {
       "ticker": "M12DE",
-      "updated": "2026-10-25T16:42:12.408936+01:00",
+      "updated": "2026-10-25T17:11:59.511743+01:00",
       "place": "Francfort",
       "price": 19.38,
       "chg": 0.0,
@@ -28621,7 +28624,7 @@
     },
     "MBBDE": {
       "ticker": "MBBDE",
-      "updated": "2026-10-25T16:42:15.746097+01:00",
+      "updated": "2026-10-25T17:12:03.181848+01:00",
       "place": "Francfort",
       "price": 205.0,
       "chg": 2.6,
@@ -28657,7 +28660,7 @@
       "mm50": 178.57,
       "mm200": 187.73,
       "chg5": 14.3,
-      "news5": "Friedrich Vorwerk bondit après un relèvement des prévisions – MBB suit le mouvement|https://news.google.com/rss/articles/CBMi3AFBVV95cUxPb0ItdktaVW5KY2R4eUZWNlRUeU5MOWFRVl9BbTlhTFNZazZtQzZEbDlVR2VXSXFrVzdnMUZ4TXhPci1XblY0X1FGX1pmczNnN0FmNEdmZ25RVUVtcmJQTldRZjlsb3NiMVFMeEtqOXdrSFItRnNEX3RQNm1xdXA1and4RUNVNUVUMmdUVDFFVDQydU01OFZQZldKUXVvcUFsMGs0T2t2UDk0Q3BEQjJGemtwYTNIekZORE9jcmNibEZhaWFBWXdtNDNlUmZGVFRKYlNtWDZQSWNCRUFk?oc=5|Zonebourse",
+      "news5": "MBB: Q3 adjusted EBITDA rose 25%; FY margin guidance lifted to 22–24%|https://news.google.com/rss/articles/CBMi4AFBVV95cUxPdXU0MnNoM2FzelVya0ZKbWJLTkk5Y2VpZHBVajJNMndHUnhvTEozRTh6c21RRVJ3TXZ3UEgwQk5uTzN1dWxoX2Qwb3RCckJudjczaEJwV2l1cXE0MUU3WF9IbGVKcnhJalVZYWVySFFMSy1sYjZrbEJVR2tiSkhTWUZNTDNleTFmd0x1M21yQnRvSmRSVXl4Z1F3QV9GLWJOLXhHeGZlY29ZcHc0RkZyWXloaTJhNGFwUTc0M2xGLXVYcXdRbmg5NndCcms1bmR2NklNMWNEaWhsVkVocVA5aw?oc=5|TradingView ;; Friedrich Vorwerk bondit après un relèvement des prévisions – MBB suit le mouvement|https://news.google.com/rss/articles/CBMi3AFBVV95cUxPb0ItdktaVW5KY2R4eUZWNlRUeU5MOWFRVl9BbTlhTFNZazZtQzZEbDlVR2VXSXFrVzdnMUZ4TXhPci1XblY0X1FGX1pmczNnN0FmNEdmZ25RVUVtcmJQTldRZjlsb3NiMVFMeEtqOXdrSFItRnNEX3RQNm1xdXA1and4RUNVNUVUMmdUVDFFVDQydU01OFZQZldKUXVvcUFsMGs0T2t2UDk0Q3BEQjJGemtwYTNIekZORE9jcmNibEZhaWFBWXdtNDNlUmZGVFRKYlNtWDZQSWNCRUFk?oc=5|Zonebourse",
       "pio": 8,
       "alt": 3.27,
       "roic": 20.5,
@@ -28719,7 +28722,7 @@
     },
     "MCAPST": {
       "ticker": "MCAPST",
-      "updated": "2026-10-25T16:42:17.437308+01:00",
+      "updated": "2026-10-25T17:12:05.553314+01:00",
       "place": "Stockholm",
       "price": 53.99,
       "chg": 9.98,
@@ -28815,7 +28818,7 @@
     },
     "NEUWA": {
       "ticker": "NEUWA",
-      "updated": "2026-10-25T16:42:18.895105+01:00",
+      "updated": "2026-10-25T17:12:07.665309+01:00",
       "place": "WA",
       "price": 160.71,
       "chg": 0.43,
@@ -28915,7 +28918,7 @@
     },
     "NRESTST": {
       "ticker": "NRESTST",
-      "updated": "2026-10-25T16:42:20.153851+01:00",
+      "updated": "2026-10-25T17:12:09.389875+01:00",
       "place": "Stockholm",
       "price": 22.79,
       "chg": -1.93,
@@ -29012,7 +29015,7 @@
     },
     "NTGCO": {
       "ticker": "NTGCO",
-      "updated": "2026-10-25T16:42:21.159743+01:00",
+      "updated": "2026-10-25T17:12:10.943297+01:00",
       "place": "Copenhague",
       "price": 41.81,
       "chg": -2.95,
@@ -29108,7 +29111,7 @@
     },
     "OROXMI": {
       "ticker": "OROXMI",
-      "updated": "2026-10-25T16:42:24.261958+01:00",
+      "updated": "2026-10-25T17:12:14.298797+01:00",
       "place": "Milan",
       "price": 11.28,
       "chg": -0.35,
@@ -29201,7 +29204,7 @@
     },
     "PENOL": {
       "ticker": "PENOL",
-      "updated": "2026-10-25T16:42:25.317515+01:00",
+      "updated": "2026-10-25T17:12:15.522006+01:00",
       "place": "Oslo",
       "price": 3.25,
       "chg": 2.88,
@@ -29299,7 +29302,7 @@
     },
     "PUIGMC": {
       "ticker": "PUIGMC",
-      "updated": "2026-10-25T16:42:26.644189+01:00",
+      "updated": "2026-10-25T17:12:17.108253+01:00",
       "place": "Madrid",
       "price": 19.14,
       "chg": -0.78,
@@ -29396,7 +29399,7 @@
     },
     "RAYBST": {
       "ticker": "RAYBST",
-      "updated": "2026-10-25T16:42:27.736984+01:00",
+      "updated": "2026-10-25T17:12:18.681388+01:00",
       "place": "Stockholm",
       "price": 17.25,
       "chg": -0.98,
@@ -29491,7 +29494,7 @@
     },
     "RBREVI": {
       "ticker": "RBREVI",
-      "updated": "2026-10-25T16:42:28.895349+01:00",
+      "updated": "2026-10-25T17:12:20.349578+01:00",
       "place": "VI",
       "price": 58.25,
       "chg": -1.35,
@@ -29586,7 +29589,7 @@
     },
     "SILEXST": {
       "ticker": "SILEXST",
-      "updated": "2026-10-25T16:42:31.844545+01:00",
+      "updated": "2026-10-25T17:12:23.740547+01:00",
       "place": "Stockholm",
       "price": 12.3,
       "chg": -4.94,
@@ -29683,7 +29686,7 @@
     },
     "SNTIAOL": {
       "ticker": "SNTIAOL",
-      "updated": "2026-10-25T16:42:33.269254+01:00",
+      "updated": "2026-10-25T17:12:25.673225+01:00",
       "place": "Oslo",
       "price": 7.66,
       "chg": -1.84,
@@ -29780,7 +29783,7 @@
     },
     "SOMAOL": {
       "ticker": "SOMAOL",
-      "updated": "2026-10-25T16:42:34.213010+01:00",
+      "updated": "2026-10-25T17:12:27.019061+01:00",
       "place": "Oslo",
       "price": 2.71,
       "chg": -1.05,
@@ -29877,7 +29880,7 @@
     },
     "SWECAST": {
       "ticker": "SWECAST",
-      "updated": "2026-10-25T16:42:35.313944+01:00",
+      "updated": "2026-10-25T17:12:28.667293+01:00",
       "place": "Stockholm",
       "price": 12.45,
       "chg": 2.21,
@@ -29973,7 +29976,7 @@
     },
     "TEL1LVS": {
       "ticker": "TEL1LVS",
-      "updated": "2026-10-25T16:42:36.581911+01:00",
+      "updated": "2026-10-25T17:12:30.495748+01:00",
       "place": "VS",
       "price": 2.23,
       "chg": -0.89,
@@ -30069,7 +30072,7 @@
     },
     "TIMADE": {
       "ticker": "TIMADE",
-      "updated": "2026-10-25T16:42:39.799617+01:00",
+      "updated": "2026-10-25T17:12:34.234009+01:00",
       "place": "Francfort",
       "price": 39.6,
       "chg": -0.5,
@@ -30166,7 +30169,7 @@
     },
     "TORWA": {
       "ticker": "TORWA",
-      "updated": "2026-10-25T16:42:40.975339+01:00",
+      "updated": "2026-10-25T17:12:36.124074+01:00",
       "place": "WA",
       "price": 14.89,
       "chg": -1.8,
@@ -30262,7 +30265,7 @@
     },
     "TUI1DE": {
       "ticker": "TUI1DE",
-      "updated": "2026-10-25T16:42:42.331751+01:00",
+      "updated": "2026-10-25T17:12:37.731853+01:00",
       "place": "Francfort",
       "price": 6.58,
       "chg": -2.95,
@@ -30360,7 +30363,7 @@
     },
     "VOSDE": {
       "ticker": "VOSDE",
-      "updated": "2026-10-25T16:42:43.540463+01:00",
+      "updated": "2026-10-25T17:12:39.552743+01:00",
       "place": "Francfort",
       "price": 48.58,
       "chg": -6.49,
@@ -30455,7 +30458,7 @@
     },
     "VUPA": {
       "ticker": "VUPA",
-      "updated": "2026-10-25T16:42:44.998922+01:00",
+      "updated": "2026-10-25T17:12:41.370935+01:00",
       "place": "Paris",
       "price": 124.5,
       "chg": -0.08,
@@ -30549,7 +30552,7 @@
     },
     "ZABWA": {
       "ticker": "ZABWA",
-      "updated": "2026-10-25T16:42:48.236375+01:00",
+      "updated": "2026-10-25T17:12:45.166853+01:00",
       "place": "WA",
       "price": 7.2,
       "chg": -0.09,
@@ -30645,7 +30648,7 @@
     },
     "ABNB": {
       "ticker": "ABNB",
-      "updated": "2026-10-25T16:42:49.345822+01:00",
+      "updated": "2026-10-25T17:12:46.746383+01:00",
       "place": "?",
       "price": 153.52,
       "chg": -2.13,
@@ -30744,7 +30747,7 @@
     },
     "ADBE": {
       "ticker": "ADBE",
-      "updated": "2026-10-25T16:42:50.455772+01:00",
+      "updated": "2026-10-25T17:12:48.253129+01:00",
       "place": "?",
       "price": 235.46,
       "chg": -2.49,
@@ -30844,7 +30847,7 @@
     },
     "ADP2": {
       "ticker": "ADP2",
-      "updated": "2026-10-25T16:42:51.674777+01:00",
+      "updated": "2026-10-25T17:12:49.928590+01:00",
       "place": "?",
       "price": 271.46,
       "chg": -1.23,
@@ -30940,7 +30943,7 @@
     },
     "AMAT": {
       "ticker": "AMAT",
-      "updated": "2026-10-25T16:42:53.007670+01:00",
+      "updated": "2026-10-25T17:12:51.719319+01:00",
       "place": "?",
       "price": 336.69,
       "chg": 0.44,
@@ -31037,7 +31040,7 @@
     },
     "AVGO": {
       "ticker": "AVGO",
-      "updated": "2026-10-25T16:42:56.433436+01:00",
+      "updated": "2026-10-25T17:12:55.607564+01:00",
       "place": "?",
       "price": 287.1,
       "chg": -0.48,
@@ -31134,7 +31137,7 @@
     },
     "CDNS": {
       "ticker": "CDNS",
-      "updated": "2026-10-25T16:42:57.763451+01:00",
+      "updated": "2026-10-25T17:12:57.263564+01:00",
       "place": "?",
       "price": 282.47,
       "chg": 2.21,
@@ -31230,7 +31233,7 @@
     },
     "CHKP": {
       "ticker": "CHKP",
-      "updated": "2026-10-25T16:42:58.977068+01:00",
+      "updated": "2026-10-25T17:12:58.800544+01:00",
       "place": "?",
       "price": 141.93,
       "chg": 4.64,
@@ -31327,7 +31330,7 @@
     },
     "COST": {
       "ticker": "COST",
-      "updated": "2026-10-25T16:43:00.684881+01:00",
+      "updated": "2026-10-25T17:13:00.863488+01:00",
       "place": "?",
       "price": 895.46,
       "chg": -1.46,
@@ -31423,7 +31426,7 @@
     },
     "CSCO": {
       "ticker": "CSCO",
-      "updated": "2026-10-25T16:43:01.957261+01:00",
+      "updated": "2026-10-25T17:13:02.617828+01:00",
       "place": "?",
       "price": 95.05,
       "chg": 1.53,
@@ -31519,7 +31522,7 @@
     },
     "CTAS": {
       "ticker": "CTAS",
-      "updated": "2026-10-25T16:43:05.354150+01:00",
+      "updated": "2026-10-25T17:13:06.449576+01:00",
       "place": "?",
       "price": 200.01,
       "chg": 0.03,
@@ -31615,7 +31618,7 @@
     },
     "EBAY": {
       "ticker": "EBAY",
-      "updated": "2026-10-25T16:43:06.834211+01:00",
+      "updated": "2026-10-25T17:13:08.328074+01:00",
       "place": "?",
       "price": 108.36,
       "chg": -0.52,
@@ -31712,7 +31715,7 @@
     },
     "EXEL": {
       "ticker": "EXEL",
-      "updated": "2026-10-25T16:43:08.126843+01:00",
+      "updated": "2026-10-25T17:13:10.147256+01:00",
       "place": "?",
       "price": 57.59,
       "chg": -1.19,
@@ -31808,7 +31811,7 @@
     },
     "FAST": {
       "ticker": "FAST",
-      "updated": "2026-10-25T16:43:09.133317+01:00",
+      "updated": "2026-10-25T17:13:11.466891+01:00",
       "place": "?",
       "price": 46.33,
       "chg": -1.56,
@@ -31904,7 +31907,7 @@
     },
     "FFIV": {
       "ticker": "FFIV",
-      "updated": "2026-10-25T16:43:10.449022+01:00",
+      "updated": "2026-10-25T17:13:13.297578+01:00",
       "place": "?",
       "price": 406.46,
       "chg": 1.19,
@@ -32000,7 +32003,7 @@
     },
     "IDXX": {
       "ticker": "IDXX",
-      "updated": "2026-10-25T16:43:13.392071+01:00",
+      "updated": "2026-10-25T17:13:16.696017+01:00",
       "place": "?",
       "price": 500.14,
       "chg": -1.13,
@@ -32096,7 +32099,7 @@
     },
     "IESC": {
       "ticker": "IESC",
-      "updated": "2026-10-25T16:43:14.757867+01:00",
+      "updated": "2026-10-25T17:13:18.100589+01:00",
       "place": "?",
       "price": 190.58,
       "chg": -3.27,
@@ -32193,7 +32196,7 @@
     },
     "INCY": {
       "ticker": "INCY",
-      "updated": "2026-10-25T16:43:16.378305+01:00",
+      "updated": "2026-10-25T17:13:20.167560+01:00",
       "place": "?",
       "price": 103.27,
       "chg": -1.04,
@@ -32292,7 +32295,7 @@
     },
     "JKHY": {
       "ticker": "JKHY",
-      "updated": "2026-10-25T16:43:17.417053+01:00",
+      "updated": "2026-10-25T17:13:21.567572+01:00",
       "place": "?",
       "price": 145.08,
       "chg": 0.46,
@@ -32388,7 +32391,7 @@
     },
     "KLAC": {
       "ticker": "KLAC",
-      "updated": "2026-10-25T16:43:18.722849+01:00",
+      "updated": "2026-10-25T17:13:23.528487+01:00",
       "place": "?",
       "price": 129.96,
       "chg": -1.5,
@@ -32486,7 +32489,7 @@
     },
     "KSPI": {
       "ticker": "KSPI",
-      "updated": "2026-10-25T16:43:22.730462+01:00",
+      "updated": "2026-10-25T17:13:27.960908+01:00",
       "place": "?",
       "price": 81.88,
       "chg": 1.34,
@@ -32582,7 +32585,7 @@
     },
     "LECO": {
       "ticker": "LECO",
-      "updated": "2026-10-25T16:43:24.092789+01:00",
+      "updated": "2026-10-25T17:13:29.933485+01:00",
       "place": "?",
       "price": 228.44,
       "chg": -0.4,
@@ -32678,7 +32681,7 @@
     },
     "LRCX": {
       "ticker": "LRCX",
-      "updated": "2026-10-25T16:43:25.452156+01:00",
+      "updated": "2026-10-25T17:13:31.810233+01:00",
       "place": "?",
       "price": 205.36,
       "chg": -0.02,
@@ -32776,7 +32779,7 @@
     },
     "MANH": {
       "ticker": "MANH",
-      "updated": "2026-10-25T16:43:27.458512+01:00",
+      "updated": "2026-10-25T17:13:34.227441+01:00",
       "place": "?",
       "price": 212.58,
       "chg": -1.64,
@@ -32872,7 +32875,7 @@
     },
     "MELI": {
       "ticker": "MELI",
-      "updated": "2026-10-25T16:43:28.748346+01:00",
+      "updated": "2026-10-25T17:13:35.870587+01:00",
       "place": "?",
       "price": 1615.56,
       "chg": -0.81,
@@ -32969,7 +32972,7 @@
     },
     "META": {
       "ticker": "META",
-      "updated": "2026-10-25T16:43:31.805804+01:00",
+      "updated": "2026-10-25T17:13:39.770081+01:00",
       "place": "?",
       "price": 573.54,
       "chg": -0.96,
@@ -33068,7 +33071,7 @@
     },
     "MNST": {
       "ticker": "MNST",
-      "updated": "2026-10-25T16:43:33.069356+01:00",
+      "updated": "2026-10-25T17:13:41.469560+01:00",
       "place": "?",
       "price": 41.22,
       "chg": -2.35,
@@ -33167,7 +33170,7 @@
     },
     "NFLX": {
       "ticker": "NFLX",
-      "updated": "2026-10-25T16:43:34.249367+01:00",
+      "updated": "2026-10-25T17:13:43.077626+01:00",
       "place": "?",
       "price": 58.77,
       "chg": -1.79,
@@ -33263,7 +33266,7 @@
     },
     "NVDA": {
       "ticker": "NVDA",
-      "updated": "2026-10-25T16:43:35.203447+01:00",
+      "updated": "2026-10-25T17:13:44.551248+01:00",
       "place": "?",
       "price": 188.28,
       "chg": -0.59,
@@ -33360,7 +33363,7 @@
     },
     "ORLY": {
       "ticker": "ORLY",
-      "updated": "2026-10-25T16:43:36.644934+01:00",
+      "updated": "2026-10-25T17:13:46.481132+01:00",
       "place": "?",
       "price": 80.25,
       "chg": -2.26,
@@ -33457,7 +33460,7 @@
     },
     "PAYX": {
       "ticker": "PAYX",
-      "updated": "2026-10-25T16:43:39.871582+01:00",
+      "updated": "2026-10-25T17:13:50.127088+01:00",
       "place": "?",
       "price": 105.35,
       "chg": -0.65,
@@ -33553,7 +33556,7 @@
     },
     "PDD": {
       "ticker": "PDD",
-      "updated": "2026-10-25T16:43:41.244397+01:00",
+      "updated": "2026-10-25T17:13:51.899983+01:00",
       "place": "?",
       "price": 70.54,
       "chg": -0.16,
@@ -33575,7 +33578,7 @@
       "b52l": 64.21,
       "fcur": "CNY",
       "nb_analysts": 33,
-      "target_price": 102.64,
+      "target_price": 102.77,
       "recommendation": "buy",
       "dcfb": 179.88,
       "dcfm": 211.63,
@@ -33645,11 +33648,11 @@
       "ic": null,
       "fxr": 1.1204,
       "qcur": "USD",
-      "tp": 102.64
+      "tp": 102.77
     },
     "REGN": {
       "ticker": "REGN",
-      "updated": "2026-10-25T16:43:42.462600+01:00",
+      "updated": "2026-10-25T17:13:53.583854+01:00",
       "place": "?",
       "price": 718.48,
       "chg": -1.72,
@@ -33746,7 +33749,7 @@
     },
     "ROST": {
       "ticker": "ROST",
-      "updated": "2026-10-25T16:43:43.622931+01:00",
+      "updated": "2026-10-25T17:13:55.341589+01:00",
       "place": "?",
       "price": 204.65,
       "chg": -3.11,
@@ -33842,7 +33845,7 @@
     },
     "STRL": {
       "ticker": "STRL",
-      "updated": "2026-10-25T16:43:44.863685+01:00",
+      "updated": "2026-10-25T17:13:57.048752+01:00",
       "place": "?",
       "price": 317.11,
       "chg": -4.7,
@@ -33940,7 +33943,7 @@
     },
     "TXRH": {
       "ticker": "TXRH",
-      "updated": "2026-10-25T16:43:48.636818+01:00",
+      "updated": "2026-10-25T17:14:01.188291+01:00",
       "place": "?",
       "price": 147.85,
       "chg": -4.12,
@@ -34037,7 +34040,7 @@
     },
     "ULTA": {
       "ticker": "ULTA",
-      "updated": "2026-10-25T16:43:49.760867+01:00",
+      "updated": "2026-10-25T17:14:02.872948+01:00",
       "place": "?",
       "price": 557.33,
       "chg": -1.66,
@@ -34134,7 +34137,7 @@
     },
     "UTHR": {
       "ticker": "UTHR",
-      "updated": "2026-10-25T16:43:50.899055+01:00",
+      "updated": "2026-10-25T17:14:04.373677+01:00",
       "place": "?",
       "price": 524.34,
       "chg": 0.46,
@@ -34234,7 +34237,7 @@
     },
     "VRSK": {
       "ticker": "VRSK",
-      "updated": "2026-10-25T16:43:52.403000+01:00",
+      "updated": "2026-10-25T17:14:06.591658+01:00",
       "place": "?",
       "price": 174.82,
       "chg": -3.66,
@@ -34330,7 +34333,7 @@
     },
     "AIT": {
       "ticker": "AIT",
-      "updated": "2026-10-25T16:43:53.549646+01:00",
+      "updated": "2026-10-25T17:14:08.265781+01:00",
       "place": "?",
       "price": 282.92,
       "chg": -0.75,
@@ -34426,7 +34429,7 @@
     },
     "ANET": {
       "ticker": "ANET",
-      "updated": "2026-10-25T16:43:56.791403+01:00",
+      "updated": "2026-10-25T17:14:12.059708+01:00",
       "place": "?",
       "price": 153.84,
       "chg": 0.76,
@@ -34526,7 +34529,7 @@
     },
     "APH": {
       "ticker": "APH",
-      "updated": "2026-10-25T16:43:57.726070+01:00",
+      "updated": "2026-10-25T17:14:13.555556+01:00",
       "place": "?",
       "price": 66.13,
       "chg": 1.4,
@@ -34622,7 +34625,7 @@
     },
     "CAT": {
       "ticker": "CAT",
-      "updated": "2026-10-25T16:43:58.976783+01:00",
+      "updated": "2026-10-25T17:14:15.295453+01:00",
       "place": "?",
       "price": 613.15,
       "chg": -2.42,
@@ -34719,7 +34722,7 @@
     },
     "CL": {
       "ticker": "CL",
-      "updated": "2026-10-25T16:44:00.529493+01:00",
+      "updated": "2026-10-25T17:14:17.442152+01:00",
       "place": "?",
       "price": 83.93,
       "chg": -3.44,
@@ -34815,7 +34818,7 @@
     },
     "CMG": {
       "ticker": "CMG",
-      "updated": "2026-10-25T16:44:02.002657+01:00",
+      "updated": "2026-10-25T17:14:19.288267+01:00",
       "place": "?",
       "price": 24.56,
       "chg": -2.2,
@@ -34911,7 +34914,7 @@
     },
     "DCI": {
       "ticker": "DCI",
-      "updated": "2026-10-25T16:44:05.065973+01:00",
+      "updated": "2026-10-25T17:14:22.725647+01:00",
       "place": "?",
       "price": 75.68,
       "chg": -1.54,
@@ -35007,7 +35010,7 @@
     },
     "DECK": {
       "ticker": "DECK",
-      "updated": "2026-10-25T16:44:06.501399+01:00",
+      "updated": "2026-10-25T17:14:24.797837+01:00",
       "place": "?",
       "price": 72.37,
       "chg": -4.91,
@@ -35107,7 +35110,7 @@
     },
     "DELL": {
       "ticker": "DELL",
-      "updated": "2026-10-25T16:44:07.541505+01:00",
+      "updated": "2026-10-25T17:14:26.289283+01:00",
       "place": "?",
       "price": 407.37,
       "chg": 0.77,
@@ -35204,7 +35207,7 @@
     },
     "EME": {
       "ticker": "EME",
-      "updated": "2026-10-25T16:44:08.675790+01:00",
+      "updated": "2026-10-25T17:14:28.165802+01:00",
       "place": "?",
       "price": 578.04,
       "chg": -1.93,
@@ -35302,7 +35305,7 @@
     },
     "FIX": {
       "ticker": "FIX",
-      "updated": "2026-10-25T16:44:10.584187+01:00",
+      "updated": "2026-10-25T17:14:30.509458+01:00",
       "place": "?",
       "price": 1036.07,
       "chg": -9.26,
@@ -35400,7 +35403,7 @@
     },
     "GRMN": {
       "ticker": "GRMN",
-      "updated": "2026-10-25T16:44:14.348661+01:00",
+      "updated": "2026-10-25T17:14:34.745801+01:00",
       "place": "?",
       "price": 262.16,
       "chg": -0.56,
@@ -35496,7 +35499,7 @@
     },
     "GWW": {
       "ticker": "GWW",
-      "updated": "2026-10-25T16:44:15.586557+01:00",
+      "updated": "2026-10-25T17:14:36.652690+01:00",
       "place": "?",
       "price": 1204.79,
       "chg": -0.75,
@@ -35592,7 +35595,7 @@
     },
     "HAL": {
       "ticker": "HAL",
-      "updated": "2026-10-25T16:44:16.979610+01:00",
+      "updated": "2026-10-25T17:14:38.643548+01:00",
       "place": "?",
       "price": 31.17,
       "chg": 5.21,
@@ -35689,7 +35692,7 @@
     },
     "HSY": {
       "ticker": "HSY",
-      "updated": "2026-10-25T16:44:18.450015+01:00",
+      "updated": "2026-10-25T17:14:40.465987+01:00",
       "place": "?",
       "price": 151.4,
       "chg": -3.42,
@@ -35785,7 +35788,7 @@
     },
     "HUBB": {
       "ticker": "HUBB",
-      "updated": "2026-10-25T16:44:19.913523+01:00",
+      "updated": "2026-10-25T17:14:42.369935+01:00",
       "place": "?",
       "price": 399.93,
       "chg": 0.52,
@@ -35881,7 +35884,7 @@
     },
     "ITT": {
       "ticker": "ITT",
-      "updated": "2026-10-25T16:44:23.275108+01:00",
+      "updated": "2026-10-25T17:14:46.204697+01:00",
       "place": "?",
       "price": 169.66,
       "chg": 0.98,
@@ -35977,7 +35980,7 @@
     },
     "MRK": {
       "ticker": "MRK",
-      "updated": "2026-10-25T16:44:24.722381+01:00",
+      "updated": "2026-10-25T17:14:47.847577+01:00",
       "place": "?",
       "price": 129.65,
       "chg": -1.34,
@@ -36074,7 +36077,7 @@
     },
     "PAYC": {
       "ticker": "PAYC",
-      "updated": "2026-10-25T16:44:26.510982+01:00",
+      "updated": "2026-10-25T17:14:49.919365+01:00",
       "place": "?",
       "price": 245.07,
       "chg": 0.73,
@@ -36170,7 +36173,7 @@
     },
     "RL": {
       "ticker": "RL",
-      "updated": "2026-10-25T16:44:27.639267+01:00",
+      "updated": "2026-10-25T17:14:51.635830+01:00",
       "place": "?",
       "price": 336.83,
       "chg": -1.19,
@@ -36266,7 +36269,7 @@
     },
     "RMD": {
       "ticker": "RMD",
-      "updated": "2026-10-25T16:44:28.922964+01:00",
+      "updated": "2026-10-25T17:14:53.365766+01:00",
       "place": "?",
       "price": 225.68,
       "chg": -0.08,
@@ -36365,7 +36368,7 @@
     },
     "ROL": {
       "ticker": "ROL",
-      "updated": "2026-10-25T16:44:32.138544+01:00",
+      "updated": "2026-10-25T17:14:57.225073+01:00",
       "place": "?",
       "price": 31.08,
       "chg": -1.39,
@@ -36461,7 +36464,7 @@
     },
     "SCCO": {
       "ticker": "SCCO",
-      "updated": "2026-10-25T16:44:33.545661+01:00",
+      "updated": "2026-10-25T17:14:59.041772+01:00",
       "place": "?",
       "price": 165.12,
       "chg": 0.77,
@@ -36558,7 +36561,7 @@
     },
     "TJX": {
       "ticker": "TJX",
-      "updated": "2026-10-25T16:44:35.014462+01:00",
+      "updated": "2026-10-25T17:15:01.121554+01:00",
       "place": "?",
       "price": 129.47,
       "chg": -1.57,
@@ -36654,7 +36657,7 @@
     },
     "TPR": {
       "ticker": "TPR",
-      "updated": "2026-10-25T16:44:36.456741+01:00",
+      "updated": "2026-10-25T17:15:03.325823+01:00",
       "place": "?",
       "price": 98.51,
       "chg": -3.12,
@@ -36753,7 +36756,7 @@
     },
     "ULS": {
       "ticker": "ULS",
-      "updated": "2026-10-25T16:44:37.820047+01:00",
+      "updated": "2026-10-25T17:15:05.225874+01:00",
       "place": "?",
       "price": 65.55,
       "chg": -0.26,
@@ -36849,7 +36852,7 @@
     },
     "VLTO": {
       "ticker": "VLTO",
-      "updated": "2026-10-25T16:44:41.020301+01:00",
+      "updated": "2026-10-25T17:15:08.794712+01:00",
       "place": "?",
       "price": 93.11,
       "chg": -0.54,
@@ -36945,7 +36948,7 @@
     },
     "WTS": {
       "ticker": "WTS",
-      "updated": "2026-10-25T16:44:42.128832+01:00",
+      "updated": "2026-10-25T17:15:10.328017+01:00",
       "place": "?",
       "price": 320.17,
       "chg": 0.5,
@@ -37041,7 +37044,7 @@
     },
     "ABBNSW": {
       "ticker": "ABBNSW",
-      "updated": "2026-10-25T16:44:43.328030+01:00",
+      "updated": "2026-10-25T17:15:12.186309+01:00",
       "place": "SW",
       "price": 73.38,
       "chg": -1.65,
@@ -37138,7 +37141,7 @@
     },
     "ABEV": {
       "ticker": "ABEV",
-      "updated": "2026-10-25T16:44:45.323124+01:00",
+      "updated": "2026-10-25T17:15:15.045817+01:00",
       "place": "?",
       "price": 2.95,
       "chg": -0.9,
@@ -37234,7 +37237,7 @@
     },
     "ACM": {
       "ticker": "ACM",
-      "updated": "2026-10-25T16:44:46.696702+01:00",
+      "updated": "2026-10-25T17:15:17.167491+01:00",
       "place": "?",
       "price": 53.99,
       "chg": -0.56,
@@ -37331,7 +37334,7 @@
     },
     "ACN": {
       "ticker": "ACN",
-      "updated": "2026-10-25T16:44:49.862704+01:00",
+      "updated": "2026-10-25T17:15:20.813378+01:00",
       "place": "?",
       "price": 222.56,
       "chg": -3.62,
@@ -37430,7 +37433,7 @@
     },
     "ALLE": {
       "ticker": "ALLE",
-      "updated": "2026-10-25T16:44:51.123894+01:00",
+      "updated": "2026-10-25T17:15:22.507135+01:00",
       "place": "?",
       "price": 159.74,
       "chg": 1.39,
@@ -37530,7 +37533,7 @@
     },
     "AME": {
       "ticker": "AME",
-      "updated": "2026-10-25T16:44:52.877032+01:00",
+      "updated": "2026-10-25T17:15:24.605143+01:00",
       "place": "?",
       "price": 214.23,
       "chg": 0.51,
@@ -37626,7 +37629,7 @@
     },
     "ANF": {
       "ticker": "ANF",
-      "updated": "2026-10-25T16:44:54.224856+01:00",
+      "updated": "2026-10-25T17:15:26.334589+01:00",
       "place": "?",
       "price": 139.07,
       "chg": -3.51,
@@ -37723,7 +37726,7 @@
     },
     "ARM": {
       "ticker": "ARM",
-      "updated": "2026-10-25T16:44:55.391546+01:00",
+      "updated": "2026-10-25T17:15:28.126151+01:00",
       "place": "?",
       "price": 187.72,
       "chg": 0.11,
@@ -37820,7 +37823,7 @@
     },
     "AZN": {
       "ticker": "AZN",
-      "updated": "2026-10-25T16:44:58.406395+01:00",
+      "updated": "2026-10-25T17:15:32.011233+01:00",
       "place": "?",
       "price": 153.05,
       "chg": -0.63,
@@ -37916,7 +37919,7 @@
     },
     "BHP": {
       "ticker": "BHP",
-      "updated": "2026-10-25T16:44:59.790294+01:00",
+      "updated": "2026-10-25T17:15:33.699900+01:00",
       "place": "?",
       "price": 69.48,
       "chg": 0.35,
@@ -38013,7 +38016,7 @@
     },
     "BKNG": {
       "ticker": "BKNG",
-      "updated": "2026-10-25T16:45:01.080651+01:00",
+      "updated": "2026-10-25T17:15:35.484443+01:00",
       "place": "?",
       "price": 139.08,
       "chg": -3.27,
@@ -38112,7 +38115,7 @@
     },
     "BKR": {
       "ticker": "BKR",
-      "updated": "2026-10-25T16:45:02.399635+01:00",
+      "updated": "2026-10-25T17:15:37.057795+01:00",
       "place": "?",
       "price": 49.86,
       "chg": 4.18,
@@ -38209,7 +38212,7 @@
     },
     "BOX": {
       "ticker": "BOX",
-      "updated": "2026-10-25T16:45:03.766642+01:00",
+      "updated": "2026-10-25T17:15:39.008682+01:00",
       "place": "?",
       "price": 38.54,
       "chg": 0.94,
@@ -38305,7 +38308,7 @@
     },
     "BR": {
       "ticker": "BR",
-      "updated": "2026-10-25T16:45:06.773184+01:00",
+      "updated": "2026-10-25T17:15:42.450650+01:00",
       "place": "?",
       "price": 163.58,
       "chg": -1.53,
@@ -38404,7 +38407,7 @@
     },
     "CHD": {
       "ticker": "CHD",
-      "updated": "2026-10-25T16:45:08.062571+01:00",
+      "updated": "2026-10-25T17:15:44.293753+01:00",
       "place": "?",
       "price": 93.88,
       "chg": -3.37,
@@ -38500,7 +38503,7 @@
     },
     "CHE": {
       "ticker": "CHE",
-      "updated": "2026-10-25T16:45:09.395745+01:00",
+      "updated": "2026-10-25T17:15:46.024065+01:00",
       "place": "?",
       "price": 457.83,
       "chg": -1.38,
@@ -38596,7 +38599,7 @@
     },
     "CIG": {
       "ticker": "CIG",
-      "updated": "2026-10-25T16:45:10.909498+01:00",
+      "updated": "2026-10-25T17:15:48.115057+01:00",
       "place": "?",
       "price": 2.05,
       "chg": 0.88,
@@ -38693,7 +38696,7 @@
     },
     "CNM": {
       "ticker": "CNM",
-      "updated": "2026-10-25T16:45:12.348165+01:00",
+      "updated": "2026-10-25T17:15:50.026296+01:00",
       "place": "?",
       "price": 37.46,
       "chg": -0.85,
@@ -38789,7 +38792,7 @@
     },
     "CVLT": {
       "ticker": "CVLT",
-      "updated": "2026-10-25T16:45:15.508057+01:00",
+      "updated": "2026-10-25T17:15:53.523680+01:00",
       "place": "?",
       "price": 151.16,
       "chg": 0.93,
@@ -38886,7 +38889,7 @@
     },
     "CW": {
       "ticker": "CW",
-      "updated": "2026-10-25T16:45:16.900075+01:00",
+      "updated": "2026-10-25T17:15:55.507381+01:00",
       "place": "?",
       "price": 414.96,
       "chg": -1.97,
@@ -38983,7 +38986,7 @@
     },
     "DOCS": {
       "ticker": "DOCS",
-      "updated": "2026-10-25T16:45:18.260826+01:00",
+      "updated": "2026-10-25T17:15:57.398450+01:00",
       "place": "?",
       "price": 29.8,
       "chg": -0.86,
@@ -39082,7 +39085,7 @@
     },
     "DSGX": {
       "ticker": "DSGX",
-      "updated": "2026-10-25T16:45:19.360121+01:00",
+      "updated": "2026-10-25T17:15:58.849299+01:00",
       "place": "?",
       "price": 83.86,
       "chg": -0.04,
@@ -39178,7 +39181,7 @@
     },
     "EAT": {
       "ticker": "EAT",
-      "updated": "2026-10-25T16:45:20.738112+01:00",
+      "updated": "2026-10-25T17:16:00.485371+01:00",
       "place": "?",
       "price": 163.06,
       "chg": -3.9,
@@ -39214,7 +39217,7 @@
       "mm50": 189.52,
       "mm200": 154.68,
       "chg5": -10.5,
-      "news5": "Les meilleures actions de restauration à surveiller selon Raymond James|https://news.google.com/rss/articles/CBMixgFBVV95cUxPWFhINzFQMzE3NkpoemlyQkZrS3lVTS1uTjdtWDZkX1B1d25qUzh4b2R0cGJkZE5SeWRDTE9lb1lpSXVQTHlaVmpwNjBfVXBNbU1NRE5rU2ZBZ0FGMEdIRVcyaDZmZXlZcThMQXFYQjExRnpGUVBxbUxfa0FMZlJuOFpVY0JWRmZQMGc1cHFJSFJJeFBLWVpfYjhCWnhpVHlfNm92ZVgwM296ZW01TTJMek95azBDX3JadVdhd1VDSTJuSEgtNFE?oc=5|Investing.com France ;; La plainte des salariés de Chili’s vise à faire annuler le salaire minimum inférieur applicable aux travailleurs rémunérés au pourboire dans l’État de New York|https://news.google.com/rss/articles/CBMi8wFBVV95cUxNbUZwMWpMX3FGWnFFZDU3VjctaklDUUF1VWJXWjkzSlo5V2hmUk8zMnpEWHFpamlzWE03SEtCaUpBUk9UZURVY2hKdndPMTdHOWhpZDF0WTlXMWNLNWZnbjc0Q0VfbUdxcXpjcmhXZHFpaG9zZ25nOFV4NXdELW0wTjhNcHdBYUE4RmJRVXFfZTFVY0I3Y2U3RFEzcExnamlSTFRZVWlRR0Q2V0pjeWxTZlFLRHJqSHVxcVlVRWRtMTFpUE9FTEt0UHBzOFg3TTNJTnhSS1JPRHRETkU3SzZlNVhBVDhBc0VLbFlyUzRCeVFtQk0?oc=5|Zonebourse ;; Cheesecake Factory to Post Q3 Earnings: What’s in the Cards?|https://news.google.com/rss/articles/CBMiswFBVV95cUxQODRMb2JSRXZ4Wmd4U0xkUzRRdTFwcHhlbVdRZnprTlROM0VFWGx2WGFBX21LeFBKcmJZbXNpeUJvRm9LRUtlOXlDZzROM0JiVXlyY3hYbnNOZWlydWxaOWl5ekgzNG1Hb09aUHlmUklidjlUNnVNQ3VPdUlkQk96MDFKWEYwU3VLdGlrbGZyT2FEUi11Um5vTDlFUjhiQWZjSlJrN2VidXk0bTA0b3BXTFVkTQ?oc=5|TradingView",
+      "news5": "Les meilleures actions de restauration à surveiller selon Raymond James|https://news.google.com/rss/articles/CBMixgFBVV95cUxPWFhINzFQMzE3NkpoemlyQkZrS3lVTS1uTjdtWDZkX1B1d25qUzh4b2R0cGJkZE5SeWRDTE9lb1lpSXVQTHlaVmpwNjBfVXBNbU1NRE5rU2ZBZ0FGMEdIRVcyaDZmZXlZcThMQXFYQjExRnpGUVBxbUxfa0FMZlJuOFpVY0JWRmZQMGc1cHFJSFJJeFBLWVpfYjhCWnhpVHlfNm92ZVgwM296ZW01TTJMek95azBDX3JadVdhd1VDSTJuSEgtNFE?oc=5|Investing.com France ;; La plainte des salariés de Chili’s vise à faire annuler le salaire minimum inférieur applicable aux travailleurs rémunérés au pourboire dans l’État de New York|https://news.google.com/rss/articles/CBMi8wFBVV95cUxNbUZwMWpMX3FGWnFFZDU3VjctaklDUUF1VWJXWjkzSlo5V2hmUk8zMnpEWHFpamlzWE03SEtCaUpBUk9UZURVY2hKdndPMTdHOWhpZDF0WTlXMWNLNWZnbjc0Q0VfbUdxcXpjcmhXZHFpaG9zZ25nOFV4NXdELW0wTjhNcHdBYUE4RmJRVXFfZTFVY0I3Y2U3RFEzcExnamlSTFRZVWlRR0Q2V0pjeWxTZlFLRHJqSHVxcVlVRWRtMTFpUE9FTEt0UHBzOFg3TTNJTnhSS1JPRHRETkU3SzZlNVhBVDhBc0VLbFlyUzRCeVFtQk0?oc=5|Zonebourse ;; Prédiction du prix de Brinker International, Inc. (Coinbase Tokenized Stock) (EATC) de 2026 à 2031|https://news.google.com/rss/articles/CBMinAFBVV95cUxOYVgtcDVDeFRJbGszTEVyYjBVbEFhRjM4cjFTcVpZSWVVWEJEb1A3UXRlOE1YM2NFcVlqNkdlbFVGVEZtNmpJWHRVbU5tUGctcFhOU0RkeVVScXJEb2huakpLMGZxd0g0a1VvLXgySEZLMnRfcXVwUVBSeUxPWHZVYzRnSXhDc01zWWdkRi0zWnFZSjB2Y2E1OFhLcHM?oc=5|Bybit",
       "pio": 8,
       "alt": 4.91,
       "roic": 15.9,
@@ -39278,7 +39281,7 @@
     },
     "EPAM": {
       "ticker": "EPAM",
-      "updated": "2026-10-25T16:45:24.598975+01:00",
+      "updated": "2026-10-25T17:16:04.924010+01:00",
       "place": "?",
       "price": 121.6,
       "chg": -1.75,
@@ -39375,7 +39378,7 @@
     },
     "ETN": {
       "ticker": "ETN",
-      "updated": "2026-10-25T16:45:26.181993+01:00",
+      "updated": "2026-10-25T17:16:07.124403+01:00",
       "place": "?",
       "price": 326.75,
       "chg": -0.78,
@@ -39471,7 +39474,7 @@
     },
     "EXLS": {
       "ticker": "EXLS",
-      "updated": "2026-10-25T16:45:27.606833+01:00",
+      "updated": "2026-10-25T17:16:09.141780+01:00",
       "place": "?",
       "price": 37.75,
       "chg": -1.42,
@@ -39567,7 +39570,7 @@
     },
     "FOX": {
       "ticker": "FOX",
-      "updated": "2026-10-25T16:45:28.821065+01:00",
+      "updated": "2026-10-25T17:16:10.578192+01:00",
       "place": "?",
       "price": 53.07,
       "chg": -2.24,
@@ -39665,7 +39668,7 @@
     },
     "FSS": {
       "ticker": "FSS",
-      "updated": "2026-10-25T16:45:29.949757+01:00",
+      "updated": "2026-10-25T17:16:12.191147+01:00",
       "place": "?",
       "price": 101.06,
       "chg": -2.0,
@@ -39762,7 +39765,7 @@
     },
     "FTI": {
       "ticker": "FTI",
-      "updated": "2026-10-25T16:45:33.388684+01:00",
+      "updated": "2026-10-25T17:16:16.003871+01:00",
       "place": "?",
       "price": 62.38,
       "chg": 4.59,
@@ -39859,7 +39862,7 @@
     },
     "FTNT": {
       "ticker": "FTNT",
-      "updated": "2026-10-25T16:45:34.647761+01:00",
+      "updated": "2026-10-25T17:16:17.992765+01:00",
       "place": "?",
       "price": 160.64,
       "chg": 4.05,
@@ -39955,7 +39958,7 @@
     },
     "G": {
       "ticker": "G",
-      "updated": "2026-10-25T16:45:35.789734+01:00",
+      "updated": "2026-10-25T17:16:19.532117+01:00",
       "place": "?",
       "price": 36.44,
       "chg": -2.27,
@@ -40055,7 +40058,7 @@
     },
     "GD": {
       "ticker": "GD",
-      "updated": "2026-10-25T16:45:36.918332+01:00",
+      "updated": "2026-10-25T17:16:21.192480+01:00",
       "place": "?",
       "price": 311.8,
       "chg": -0.41,
@@ -40152,7 +40155,7 @@
     },
     "GE": {
       "ticker": "GE",
-      "updated": "2026-10-25T16:45:38.428924+01:00",
+      "updated": "2026-10-25T17:16:23.310922+01:00",
       "place": "?",
       "price": 254.93,
       "chg": -2.69,
@@ -40249,7 +40252,7 @@
     },
     "GEHC": {
       "ticker": "GEHC",
-      "updated": "2026-10-25T16:45:42.094051+01:00",
+      "updated": "2026-10-25T17:16:27.488112+01:00",
       "place": "?",
       "price": 63.77,
       "chg": 0.1,
@@ -40349,7 +40352,7 @@
     },
     "GIB": {
       "ticker": "GIB",
-      "updated": "2026-10-25T16:45:43.301836+01:00",
+      "updated": "2026-10-25T17:16:28.944493+01:00",
       "place": "?",
       "price": 73.17,
       "chg": -0.21,
@@ -40450,7 +40453,7 @@
     },
     "HAFN": {
       "ticker": "HAFN",
-      "updated": "2026-10-25T16:45:44.655388+01:00",
+      "updated": "2026-10-25T17:16:30.776096+01:00",
       "place": "?",
       "price": 9.37,
       "chg": 1.65,
@@ -40546,7 +40549,7 @@
     },
     "HEI": {
       "ticker": "HEI",
-      "updated": "2026-10-25T16:45:45.724987+01:00",
+      "updated": "2026-10-25T17:16:32.317860+01:00",
       "place": "?",
       "price": 265.39,
       "chg": -0.89,
@@ -40643,7 +40646,7 @@
     },
     "HONA": {
       "ticker": "HONA",
-      "updated": "2026-10-25T16:45:47.129696+01:00",
+      "updated": "2026-10-25T17:16:34.244424+01:00",
       "place": "?",
       "price": 145.75,
       "chg": 0.18,
@@ -40739,7 +40742,7 @@
     },
     "HRB": {
       "ticker": "HRB",
-      "updated": "2026-10-25T16:45:50.094634+01:00",
+      "updated": "2026-10-25T17:16:37.869365+01:00",
       "place": "?",
       "price": 44.35,
       "chg": -0.78,
@@ -40839,7 +40842,7 @@
     },
     "HWM": {
       "ticker": "HWM",
-      "updated": "2026-10-25T16:45:51.337627+01:00",
+      "updated": "2026-10-25T17:16:39.685213+01:00",
       "place": "?",
       "price": 165.92,
       "chg": -3.82,
@@ -40937,7 +40940,7 @@
     },
     "IDCC": {
       "ticker": "IDCC",
-      "updated": "2026-10-25T16:45:53.058141+01:00",
+      "updated": "2026-10-25T17:16:42.019236+01:00",
       "place": "?",
       "price": 292.1,
       "chg": -1.44,
@@ -41034,7 +41037,7 @@
     },
     "IHG": {
       "ticker": "IHG",
-      "updated": "2026-10-25T16:45:54.341136+01:00",
+      "updated": "2026-10-25T17:16:43.663603+01:00",
       "place": "?",
       "price": 144.94,
       "chg": -3.21,
@@ -41130,7 +41133,7 @@
     },
     "INFY": {
       "ticker": "INFY",
-      "updated": "2026-10-25T16:45:55.605662+01:00",
+      "updated": "2026-10-25T17:16:45.457171+01:00",
       "place": "?",
       "price": 11.02,
       "chg": -6.58,
@@ -41226,7 +41229,7 @@
     },
     "INTU": {
       "ticker": "INTU",
-      "updated": "2026-10-25T16:45:58.988999+01:00",
+      "updated": "2026-10-25T17:16:49.173324+01:00",
       "place": "?",
       "price": 306.48,
       "chg": -3.24,
@@ -41322,7 +41325,7 @@
     },
     "LAUR": {
       "ticker": "LAUR",
-      "updated": "2026-10-25T16:46:00.346181+01:00",
+      "updated": "2026-10-25T17:16:50.997615+01:00",
       "place": "?",
       "price": 34.83,
       "chg": 0.62,
@@ -41421,7 +41424,7 @@
     },
     "LDOS": {
       "ticker": "LDOS",
-      "updated": "2026-10-25T16:46:01.476604+01:00",
+      "updated": "2026-10-25T17:16:52.792059+01:00",
       "place": "?",
       "price": 121.45,
       "chg": 1.0,
@@ -41517,7 +41520,7 @@
     },
     "LMT": {
       "ticker": "LMT",
-      "updated": "2026-10-25T16:46:02.705006+01:00",
+      "updated": "2026-10-25T17:16:54.580840+01:00",
       "place": "?",
       "price": 539.23,
       "chg": 2.42,
@@ -41614,7 +41617,7 @@
     },
     "LNTH": {
       "ticker": "LNTH",
-      "updated": "2026-10-25T16:46:04.247115+01:00",
+      "updated": "2026-10-25T17:16:56.563653+01:00",
       "place": "?",
       "price": 89.07,
       "chg": -0.3,
@@ -41711,7 +41714,7 @@
     },
     "LYV": {
       "ticker": "LYV",
-      "updated": "2026-10-25T16:46:07.248107+01:00",
+      "updated": "2026-10-25T17:17:00.050014+01:00",
       "place": "?",
       "price": 154.8,
       "chg": -0.61,
@@ -41807,7 +41810,7 @@
     },
     "MSA": {
       "ticker": "MSA",
-      "updated": "2026-10-25T16:46:08.288032+01:00",
+      "updated": "2026-10-25T17:17:01.640468+01:00",
       "place": "?",
       "price": 162.67,
       "chg": -1.18,
@@ -41903,7 +41906,7 @@
     },
     "MSI": {
       "ticker": "MSI",
-      "updated": "2026-10-25T16:46:09.890931+01:00",
+      "updated": "2026-10-25T17:17:03.598302+01:00",
       "place": "?",
       "price": 430.03,
       "chg": 0.84,
@@ -41999,7 +42002,7 @@
     },
     "NTES": {
       "ticker": "NTES",
-      "updated": "2026-10-25T16:46:11.488045+01:00",
+      "updated": "2026-10-25T17:17:05.777856+01:00",
       "place": "?",
       "price": 105.86,
       "chg": -0.05,
@@ -42021,7 +42024,7 @@
       "b52l": 94.66,
       "fcur": "CNY",
       "nb_analysts": 33,
-      "target_price": 145.56,
+      "target_price": 145.75,
       "recommendation": "strong_buy",
       "dcfb": 104.67,
       "dcfm": 123.15,
@@ -42094,11 +42097,11 @@
       "ic": null,
       "fxr": 1.1204,
       "qcur": "USD",
-      "tp": 145.56
+      "tp": 145.75
     },
     "NVMI": {
       "ticker": "NVMI",
-      "updated": "2026-10-25T16:46:12.808565+01:00",
+      "updated": "2026-10-25T17:17:07.610139+01:00",
       "place": "?",
       "price": 277.88,
       "chg": 0.39,
@@ -42196,7 +42199,7 @@
     },
     "NVS": {
       "ticker": "NVS",
-      "updated": "2026-10-25T16:46:15.927146+01:00",
+      "updated": "2026-10-25T17:17:11.217196+01:00",
       "place": "?",
       "price": 134.87,
       "chg": -3.3,
@@ -42295,7 +42298,7 @@
     },
     "NXT": {
       "ticker": "NXT",
-      "updated": "2026-10-25T16:46:17.178821+01:00",
+      "updated": "2026-10-25T17:17:12.943130+01:00",
       "place": "?",
       "price": 70.41,
       "chg": 1.62,
@@ -42392,7 +42395,7 @@
     },
     "NYT": {
       "ticker": "NYT",
-      "updated": "2026-10-25T16:46:18.253326+01:00",
+      "updated": "2026-10-25T17:17:14.418108+01:00",
       "place": "?",
       "price": 62.1,
       "chg": 0.23,
@@ -42488,7 +42491,7 @@
     },
     "PANW": {
       "ticker": "PANW",
-      "updated": "2026-10-25T16:46:19.812236+01:00",
+      "updated": "2026-10-25T17:17:16.270710+01:00",
       "place": "?",
       "price": 339.64,
       "chg": 7.22,
@@ -42586,7 +42589,7 @@
     },
     "PCTY": {
       "ticker": "PCTY",
-      "updated": "2026-10-25T16:46:21.556879+01:00",
+      "updated": "2026-10-25T17:17:18.393657+01:00",
       "place": "?",
       "price": 158.14,
       "chg": -0.27,
@@ -42682,7 +42685,7 @@
     },
     "PH": {
       "ticker": "PH",
-      "updated": "2026-10-25T16:46:24.517145+01:00",
+      "updated": "2026-10-25T17:17:21.885848+01:00",
       "place": "?",
       "price": 785.91,
       "chg": -1.42,
@@ -42778,7 +42781,7 @@
     },
     "POWL": {
       "ticker": "POWL",
-      "updated": "2026-10-25T16:46:25.867326+01:00",
+      "updated": "2026-10-25T17:17:23.661646+01:00",
       "place": "?",
       "price": 134.72,
       "chg": 0.16,
@@ -42874,7 +42877,7 @@
     },
     "QLYS": {
       "ticker": "QLYS",
-      "updated": "2026-10-25T16:46:27.179824+01:00",
+      "updated": "2026-10-25T17:17:25.479988+01:00",
       "place": "?",
       "price": 193.4,
       "chg": 4.08,
@@ -42971,7 +42974,7 @@
     },
     "RELX": {
       "ticker": "RELX",
-      "updated": "2026-10-25T16:46:28.638544+01:00",
+      "updated": "2026-10-25T17:17:27.502376+01:00",
       "place": "?",
       "price": 36.18,
       "chg": -0.2,
@@ -43066,7 +43069,7 @@
     },
     "RMBS": {
       "ticker": "RMBS",
-      "updated": "2026-10-25T16:46:30.240355+01:00",
+      "updated": "2026-10-25T17:17:29.486178+01:00",
       "place": "?",
       "price": 76.44,
       "chg": -0.09,
@@ -43163,7 +43166,7 @@
     },
     "SFM": {
       "ticker": "SFM",
-      "updated": "2026-10-25T16:46:33.375799+01:00",
+      "updated": "2026-10-25T17:17:33.068074+01:00",
       "place": "?",
       "price": 59.14,
       "chg": -3.78,
@@ -43259,7 +43262,7 @@
     },
     "SGHC": {
       "ticker": "SGHC",
-      "updated": "2026-10-25T16:46:34.454965+01:00",
+      "updated": "2026-10-25T17:17:34.754065+01:00",
       "place": "?",
       "price": 9.68,
       "chg": -4.41,
@@ -43358,7 +43361,7 @@
     },
     "SLB": {
       "ticker": "SLB",
-      "updated": "2026-10-25T16:46:35.718314+01:00",
+      "updated": "2026-10-25T17:17:36.466227+01:00",
       "place": "?",
       "price": 47.36,
       "chg": 7.08,
@@ -43456,7 +43459,7 @@
     },
     "SSD": {
       "ticker": "SSD",
-      "updated": "2026-10-25T16:46:37.247179+01:00",
+      "updated": "2026-10-25T17:17:38.473186+01:00",
       "place": "?",
       "price": 164.54,
       "chg": -1.37,
@@ -43553,7 +43556,7 @@
     },
     "STX": {
       "ticker": "STX",
-      "updated": "2026-10-25T16:46:38.469195+01:00",
+      "updated": "2026-10-25T17:17:40.080551+01:00",
       "place": "?",
       "price": 562.71,
       "chg": -1.81,
@@ -43649,7 +43652,7 @@
     },
     "THC": {
       "ticker": "THC",
-      "updated": "2026-10-25T16:46:41.791300+01:00",
+      "updated": "2026-10-25T17:17:43.822569+01:00",
       "place": "?",
       "price": 239.59,
       "chg": -0.81,
@@ -43746,7 +43749,7 @@
     },
     "TT": {
       "ticker": "TT",
-      "updated": "2026-10-25T16:46:43.081988+01:00",
+      "updated": "2026-10-25T17:17:45.513233+01:00",
       "place": "?",
       "price": 397.07,
       "chg": -0.87,
@@ -43842,7 +43845,7 @@
     },
     "TTEK": {
       "ticker": "TTEK",
-      "updated": "2026-10-25T16:46:44.567382+01:00",
+      "updated": "2026-10-25T17:17:47.505948+01:00",
       "place": "?",
       "price": 33.0,
       "chg": 0.46,
@@ -43939,7 +43942,7 @@
     },
     "UNH": {
       "ticker": "UNH",
-      "updated": "2026-10-25T16:46:45.973588+01:00",
+      "updated": "2026-10-25T17:17:49.406423+01:00",
       "place": "?",
       "price": 373.15,
       "chg": -1.62,
@@ -44035,7 +44038,7 @@
     },
     "VRSN": {
       "ticker": "VRSN",
-      "updated": "2026-10-25T16:46:47.208876+01:00",
+      "updated": "2026-10-25T17:17:51.506755+01:00",
       "place": "?",
       "price": 268.04,
       "chg": -1.4,
@@ -44131,7 +44134,7 @@
     },
     "VRT": {
       "ticker": "VRT",
-      "updated": "2026-10-25T16:46:50.461611+01:00",
+      "updated": "2026-10-25T17:17:55.078934+01:00",
       "place": "?",
       "price": 173.43,
       "chg": -0.65,
@@ -44227,7 +44230,7 @@
     },
     "WFRD": {
       "ticker": "WFRD",
-      "updated": "2026-10-25T16:46:51.720996+01:00",
+      "updated": "2026-10-25T17:17:56.805040+01:00",
       "place": "?",
       "price": 77.51,
       "chg": 6.98,
@@ -44328,7 +44331,7 @@
     },
     "WMT": {
       "ticker": "WMT",
-      "updated": "2026-10-25T16:46:53.387526+01:00",
+      "updated": "2026-10-25T17:17:59.296598+01:00",
       "place": "?",
       "price": 107.0,
       "chg": -1.02,
@@ -44424,7 +44427,7 @@
     },
     "WSE": {
       "ticker": "WSE",
-      "updated": "2026-10-25T16:46:54.935326+01:00",
+      "updated": "2026-10-25T17:18:01.404955+01:00",
       "place": "?",
       "price": 9.88,
       "chg": -0.09,
@@ -44520,7 +44523,7 @@
     },
     "WWD": {
       "ticker": "WWD",
-      "updated": "2026-10-25T16:46:55.881067+01:00",
+      "updated": "2026-10-25T17:18:02.826181+01:00",
       "place": "?",
       "price": 270.92,
       "chg": -0.43,
@@ -44617,7 +44620,7 @@
     },
     "ABBNESW": {
       "ticker": "ABBNESW",
-      "updated": "2026-10-25T16:46:59.203495+01:00",
+      "updated": "2026-10-25T17:18:06.822808+01:00",
       "place": "SW",
       "price": 73.4,
       "chg": -1.11,
@@ -44713,7 +44716,7 @@
     },
     "ACLNSW": {
       "ticker": "ACLNSW",
-      "updated": "2026-10-25T16:47:00.987671+01:00",
+      "updated": "2026-10-25T17:18:08.898952+01:00",
       "place": "SW",
       "price": 68.31,
       "chg": -2.32,
@@ -44809,7 +44812,7 @@
     },
     "ALSNSW": {
       "ticker": "ALSNSW",
-      "updated": "2026-10-25T16:47:02.215075+01:00",
+      "updated": "2026-10-25T17:18:10.529502+01:00",
       "place": "SW",
       "price": 226.26,
       "chg": 0.72,
@@ -44906,7 +44909,7 @@
     },
     "ARYNSW": {
       "ticker": "ARYNSW",
-      "updated": "2026-10-25T16:47:03.670667+01:00",
+      "updated": "2026-10-25T17:18:12.469098+01:00",
       "place": "SW",
       "price": 44.93,
       "chg": -0.6,
@@ -45002,7 +45005,7 @@
     },
     "BCHNSW": {
       "ticker": "BCHNSW",
-      "updated": "2026-10-25T16:47:05.097418+01:00",
+      "updated": "2026-10-25T17:18:14.093720+01:00",
       "place": "SW",
       "price": 515.85,
       "chg": 1.06,
@@ -45101,7 +45104,7 @@
     },
     "BRKNSW": {
       "ticker": "BRKNSW",
-      "updated": "2026-10-25T16:47:08.338052+01:00",
+      "updated": "2026-10-25T17:18:17.860434+01:00",
       "place": "SW",
       "price": 138.79,
       "chg": 1.42,
@@ -45198,7 +45201,7 @@
     },
     "CFRSW": {
       "ticker": "CFRSW",
-      "updated": "2026-10-25T16:47:09.620515+01:00",
+      "updated": "2026-10-25T17:18:19.716994+01:00",
       "place": "SW",
       "price": 174.78,
       "chg": -6.38,
@@ -45294,7 +45297,7 @@
     },
     "EMMNSW": {
       "ticker": "EMMNSW",
-      "updated": "2026-10-25T16:47:10.957315+01:00",
+      "updated": "2026-10-25T17:18:21.726541+01:00",
       "place": "SW",
       "price": 997.07,
       "chg": 0.11,
@@ -45390,7 +45393,7 @@
     },
     "SCMNSW": {
       "ticker": "SCMNSW",
-      "updated": "2026-10-25T16:47:12.232985+01:00",
+      "updated": "2026-10-25T17:18:23.458879+01:00",
       "place": "SW",
       "price": 741.03,
       "chg": 0.07,
@@ -45486,7 +45489,7 @@
     },
     "SUNSW": {
       "ticker": "SUNSW",
-      "updated": "2026-10-25T16:47:13.459658+01:00",
+      "updated": "2026-10-25T17:18:25.289417+01:00",
       "place": "SW",
       "price": 185.56,
       "chg": 1.0,
@@ -45585,7 +45588,7 @@
     },
     "TEMNSW": {
       "ticker": "TEMNSW",
-      "updated": "2026-10-25T16:47:17.043960+01:00",
+      "updated": "2026-10-25T17:18:29.120256+01:00",
       "place": "SW",
       "price": 80.92,
       "chg": 0.54,
@@ -45681,7 +45684,7 @@
     },
     "RY4CDE": {
       "ticker": "RY4CDE",
-      "updated": "2026-10-25T16:47:18.497747+01:00",
+      "updated": "2026-10-25T17:18:30.912627+01:00",
       "place": "Francfort",
       "price": 22.62,
       "chg": -1.74,
@@ -45776,7 +45779,7 @@
     },
     "ADSK": {
       "ticker": "ADSK",
-      "updated": "2026-10-25T16:47:19.916032+01:00",
+      "updated": "2026-10-25T17:18:32.653481+01:00",
       "place": "?",
       "price": 225.09,
       "chg": -1.08,
@@ -45875,7 +45878,7 @@
     },
     "EXPE": {
       "ticker": "EXPE",
-      "updated": "2026-10-25T16:47:21.197449+01:00",
+      "updated": "2026-10-25T17:18:34.610888+01:00",
       "place": "?",
       "price": 257.94,
       "chg": -3.18,
@@ -45974,7 +45977,7 @@
     },
     "MEDP": {
       "ticker": "MEDP",
-      "updated": "2026-10-25T16:47:22.592809+01:00",
+      "updated": "2026-10-25T17:18:36.546685+01:00",
       "place": "?",
       "price": 597.26,
       "chg": 2.33,
@@ -46073,7 +46076,7 @@
     },
     "COR": {
       "ticker": "COR",
-      "updated": "2026-10-25T16:47:25.762114+01:00",
+      "updated": "2026-10-25T17:18:40.114689+01:00",
       "place": "?",
       "price": 295.42,
       "chg": -2.21,
@@ -46172,7 +46175,7 @@
     },
     "GDDY": {
       "ticker": "GDDY",
-      "updated": "2026-10-25T16:47:26.909696+01:00",
+      "updated": "2026-10-25T17:18:41.942395+01:00",
       "place": "?",
       "price": 100.67,
       "chg": -1.69,
@@ -46271,7 +46274,7 @@
     },
     "IT": {
       "ticker": "IT",
-      "updated": "2026-10-25T16:47:28.062264+01:00",
+      "updated": "2026-10-25T17:18:43.312254+01:00",
       "place": "?",
       "price": 205.52,
       "chg": -1.77,
@@ -46371,7 +46374,7 @@
     },
     "MCK": {
       "ticker": "MCK",
-      "updated": "2026-10-25T16:47:29.583381+01:00",
+      "updated": "2026-10-25T17:18:45.532000+01:00",
       "place": "?",
       "price": 893.19,
       "chg": -1.14,
@@ -46470,7 +46473,7 @@
     },
     "CAH": {
       "ticker": "CAH",
-      "updated": "2026-10-25T16:47:30.988453+01:00",
+      "updated": "2026-10-25T17:18:47.411243+01:00",
       "place": "?",
       "price": 222.74,
       "chg": -2.37,
@@ -46569,7 +46572,7 @@
     },
     "FTDR": {
       "ticker": "FTDR",
-      "updated": "2026-10-25T16:47:34.576566+01:00",
+      "updated": "2026-10-25T17:18:52.093395+01:00",
       "place": "?",
       "price": 75.27,
       "chg": -1.96,
@@ -46669,7 +46672,7 @@
     },
     "PYPL": {
       "ticker": "PYPL",
-      "updated": "2026-10-25T16:47:35.590719+01:00",
+      "updated": "2026-10-25T17:18:53.489727+01:00",
       "place": "?",
       "price": 50.89,
       "chg": -0.9,
@@ -46765,7 +46768,7 @@
     },
     "FDS": {
       "ticker": "FDS",
-      "updated": "2026-10-25T16:47:36.681508+01:00",
+      "updated": "2026-10-25T17:18:55.161971+01:00",
       "place": "?",
       "price": 295.7,
       "chg": -1.23,
@@ -46852,7 +46855,7 @@
     },
     "MCO": {
       "ticker": "MCO",
-      "updated": "2026-10-25T16:47:37.843458+01:00",
+      "updated": "2026-10-25T17:18:57.058180+01:00",
       "place": "?",
       "price": 431.48,
       "chg": -1.55,
@@ -46951,7 +46954,7 @@
     },
     "V": {
       "ticker": "V",
-      "updated": "2026-10-25T16:47:39.287707+01:00",
+      "updated": "2026-10-25T17:18:58.734179+01:00",
       "place": "?",
       "price": 364.07,
       "chg": -1.55,
@@ -47050,7 +47053,7 @@
     },
     "AON": {
       "ticker": "AON",
-      "updated": "2026-10-25T16:47:42.602152+01:00",
+      "updated": "2026-10-25T17:19:02.416280+01:00",
       "place": "?",
       "price": 270.89,
       "chg": -1.07,
@@ -47146,7 +47149,7 @@
     },
     "ASR": {
       "ticker": "ASR",
-      "updated": "2026-10-25T16:47:44.009458+01:00",
+      "updated": "2026-10-25T17:19:04.458304+01:00",
       "place": "?",
       "price": 221.67,
       "chg": -1.05,
@@ -47243,7 +47246,7 @@
     },
     "CME": {
       "ticker": "CME",
-      "updated": "2026-10-25T16:47:45.350965+01:00",
+      "updated": "2026-10-25T17:19:06.327139+01:00",
       "place": "?",
       "price": 272.85,
       "chg": -0.09,
@@ -47339,7 +47342,7 @@
     },
     "IBP": {
       "ticker": "IBP",
-      "updated": "2026-10-25T16:47:46.586439+01:00",
+      "updated": "2026-10-25T17:19:08.098149+01:00",
       "place": "?",
       "price": 177.71,
       "chg": 0.5,
@@ -47436,7 +47439,7 @@
     },
     "MORN": {
       "ticker": "MORN",
-      "updated": "2026-10-25T16:47:47.778380+01:00",
+      "updated": "2026-10-25T17:19:09.875371+01:00",
       "place": "?",
       "price": 200.71,
       "chg": 0.7,
@@ -47532,7 +47535,7 @@
     },
     "TXTWA": {
       "ticker": "TXTWA",
-      "updated": "2026-10-25T16:47:51.081944+01:00",
+      "updated": "2026-10-25T17:19:13.879862+01:00",
       "place": "WA",
       "price": 8.65,
       "chg": -2.06,
@@ -47628,7 +47631,7 @@
     },
     "AIAAT": {
       "ticker": "AIAAT",
-      "updated": "2026-10-25T16:47:52.115938+01:00",
+      "updated": "2026-10-25T17:19:15.374640+01:00",
       "place": "AT",
       "price": 12.93,
       "chg": 0.78,
@@ -47722,7 +47725,7 @@
     },
     "SESMI": {
       "ticker": "SESMI",
-      "updated": "2026-10-25T16:47:53.148471+01:00",
+      "updated": "2026-10-25T17:19:16.886106+01:00",
       "place": "Milan",
       "price": 92.4,
       "chg": -0.22,
@@ -47816,7 +47819,7 @@
     },
     "CBFWA": {
       "ticker": "CBFWA",
-      "updated": "2026-10-25T16:47:54.362180+01:00",
+      "updated": "2026-10-25T17:19:18.583072+01:00",
       "place": "WA",
       "price": 43.58,
       "chg": -1.59,
@@ -47913,7 +47916,7 @@
     },
     "DB1DE": {
       "ticker": "DB1DE",
-      "updated": "2026-10-25T16:47:55.541773+01:00",
+      "updated": "2026-10-25T17:19:20.053414+01:00",
       "place": "Francfort",
       "price": 314.1,
       "chg": -0.98,
@@ -48007,7 +48010,7 @@
     },
     "EXAEAT": {
       "ticker": "EXAEAT",
-      "updated": "2026-10-25T16:47:58.756726+01:00",
+      "updated": "2026-10-25T17:19:23.790395+01:00",
       "place": "AT",
       "price": 11.12,
       "chg": 3.93,
@@ -48100,7 +48103,7 @@
     },
     "OUTLTOL": {
       "ticker": "OUTLTOL",
-      "updated": "2026-10-25T16:48:00.134552+01:00",
+      "updated": "2026-10-25T17:19:25.709117+01:00",
       "place": "Oslo",
       "price": 3.74,
       "chg": -0.84,
