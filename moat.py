@@ -82,7 +82,7 @@ MOAT = {
     'ASSA':  (4, "leader mondial des serrures, base installee", "cycle construction"),
     'EPI':   (4, "equipements miniers en duopole avec Sandvik, apres-vente", "cycle minier"),
     # --- 19/10/2026 : fiches promues du radar (jugement de Claude, a valider ; a croiser avec Morningstar) ---
-    'MA':    (5, "duopole mondial Visa-Mastercard, effet de reseau commercants-porteurs",
+    'MA':    (4, "duopole mondial Visa-Mastercard, effet de reseau commercants-porteurs (note 4 validee le 25/10/2026 : les Etats, pas Visa, empechent le 5)",
                  "reglementation des commissions, paiements instantanes (Wero, Pix, FedNow)"),
     'GOOGL': (4, "recherche et publicite (Google, YouTube), donnees, cloud",
                  "assistants d'IA qui contournent la recherche, proces antitrust"),
