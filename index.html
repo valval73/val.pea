@@ -4410,24 +4410,24 @@ function filtScoreMid(btn){
 // ===== MODAL VENTE =====
 var _sellId=null;
 function ptfSell(id){
+  // 25/10/2026 : vente partielle ou totale (l'ancienne fenetre de vente n'existait pas : le bouton ne faisait rien)
   var pos=PTF.find(function(p){return p.id===id;});if(!pos)return;
-  _sellId=id;var s=S.find(function(x){return x.ticker===pos.ticker;});var ca=s?s.price:pos.pru;
-  var ti=document.getElementById('sell-modal-title');
-  var inf=document.getElementById('sell-modal-info');
-  var inp=document.getElementById('sell-price-input');
-  if(ti) ti.textContent='Vendre '+pos.qty+' x '+pos.ticker;
-  if(inf) inf.innerHTML='PRU: <b>'+pos.pru.toFixed(2)+'\u20ac</b> · Cours: <b>'+ca.toFixed(2)+'\u20ac</b>';
-  if(inp) inp.value=ca.toFixed(2);
-  sellModalUpdate();
-  var m=document.getElementById('sell-modal');if(m)m.style.display='flex';
+  var s=S.find(function(x){return x.ticker===pos.ticker;});var ca=s?s.price:pos.pru;
+  var q=prompt(pos.ticker+' : '+pos.qty+' titres détenus (PRU '+pos.pru.toFixed(2)+' €).\nCombien en as-tu vendu ? (décimales acceptées, ex. 0,35)', pos.qty);
+  if(q===null)return; q=parseFloat(String(q).replace(',','.'));
+  if(!(q>0)||q>pos.qty+1e-9){alert('Quantité invalide (entre 0 et '+pos.qty+').');return;}
+  var px=prompt('Prix de vente réel par action (€) :', ca.toFixed(2)); if(px===null)return;
+  px=parseFloat(String(px).replace(',','.')); if(!(px>0)){alert('Prix invalide');return;}
+  var d=prompt('Date de la vente (jj/mm/aaaa) :', new Date().toLocaleDateString('fr-FR')); if(d===null)return;
+  var pnl=(px-pos.pru)*q, pct=pos.pru>0?((px-pos.pru)/pos.pru*100):0;
+  var pf=(pnl>=0?'+':'')+Math.round(pnl)+' € ('+(pct>=0?'+':'')+pct.toFixed(1)+' %)';
+  var rest=Math.round((pos.qty-q)*1e6)/1e6;
+  if(!confirm('Vente de '+q+' '+pos.ticker+' à '+px.toFixed(2)+' € le '+d+'\nPlus ou moins-value : '+pf+'\nIl restera '+rest+' titre(s), au même PRU.'))return;
+  PTF_HIST.push({id:Date.now().toString(),type:'vente',ticker:pos.ticker,qty:q,pru:pos.pru,prixVente:px,pnl:pnl,pct:pct,date:d,note:'Vente de '+q+' à '+px.toFixed(2)+' €'});
+  if(rest<=0){ PTF=PTF.filter(function(p){return p.id!==id;}); } else { pos.qty=rest; }
+  ptfSave(); ptfRender();
 }
-function sellModalUpdate(){
-  var pos=PTF.find(function(p){return p.id===_sellId;});if(!pos)return;
-  var px=parseFloat(document.getElementById('sell-price-input').value)||0;
-  var pnl=(px-pos.pru)*pos.qty,pct=pos.pru>0?((px-pos.pru)/pos.pru*100):0;
-  var res=document.getElementById('sell-modal-result');
-  if(res&&px>0)res.innerHTML='PV/MV: <b style="color:'+(pnl>=0?'var(--gn)':'var(--rd)')+'">('+(pnl>=0?'+':'')+Math.round(pnl)+'\u20ac / '+(pct>=0?'+':'')+pct.toFixed(1)+'%)</b>';
-}
+function sellModalUpdate(){}
 function closeSellModal(){var m=document.getElementById('sell-modal');if(m)m.style.display='none';_sellId=null;}
 function confirmSell(){
   var pos=PTF.find(function(p){return p.id===_sellId;});if(!pos)return;
@@ -4540,7 +4540,7 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
       <div class="ptf-field">
         <label>Nombre d'actions</label>
-        <input type="number" id="ptf-qty" placeholder="ex: 10" min="0.01" step="0.01">
+        <input type="number" id="ptf-qty" placeholder="ex: 10 ou 0,35" min="0" step="any">
       </div>
       <div class="ptf-field">
         <label>Prix d'achat (€)</label>
