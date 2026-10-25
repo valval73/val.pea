@@ -140,7 +140,7 @@ function priceBar(s){
   if(Z>0 && !near_) h += '<div class="v2-lbl" style="left:'+pos(Z)+'%;top:80px;color:'+C.gn+'">palier 2 '+fr(Z,0)+'</div>';
   if(s.tp>0) h += '<div class="v2-tick" style="left:'+pos(s.tp)+'%;background:#6b7487;width:2px"></div><div class="v2-lbl" style="left:'+pos(s.tp)+'%;top:80px;color:'+C.mu+'">analystes '+fr(s.tp,0)+'</div>';
   if(s.dcfm>0) h += '<div class="v2-tick" style="left:'+pos(s.dcfm)+'%;background:'+C.ink+';height:38px;top:26px"></div><div class="v2-lbl" style="left:'+pos(s.dcfm)+'%;top:62px;color:'+C.ink+'">central '+fr(s.dcfm,0)+'</div>';
-  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">vendre ½ &gt; '+fr(Math.max(s.vopt,s.tp>0?s.tp:0),0)+'</div>';
+  if(s.vopt>0) h += '<div class="v2-tick" style="left:'+pos(s.vopt)+'%;background:#b8862b"></div><div class="v2-lbl" style="left:'+pos(s.vopt)+'%;top:80px;color:#8a6420">vendre ½ &gt; '+fr(sellKey(s),0)+'</div>';
   h += '<div class="v2-price" style="left:'+pos(s.price)+'%"><span>cours '+fr(s.price)+'</span><i></i></div></div>';
   return h;
 }
@@ -508,7 +508,7 @@ function jnlFill(t, keepType){
       '\n5. Pourquoi maintenant (le prix) : ';
   var kp = (F&&F.kpi&&F.kpi.length) ? F.kpi.map(function(k){ return '- '+k[0]+' · aujourd’hui '+(k[1]||'—')+' · alerte si '+(k[2]||'—'); }).join('\n') : '- Moteur : \n- Moat : \n- Cash ou bilan : ';
   set('jnl-why', why);
-  set('jnl-exit', '6. Mes 3 chiffres qui diraient que j’avais tort :\n'+kp+'\nVente de moitié si le cours dépasse '+fr(Math.max(s.vopt||0, s.tp||0))+' (max valeur optimiste / objectif analystes).');
+  set('jnl-exit', '6. Mes 3 chiffres qui diraient que j’avais tort :\n'+kp+'\nVente de moitié si le cours dépasse '+fr(sellKey(s))+' (max valeur optimiste / objectif des analystes, plafonné à 1,5 fois la valeur optimiste).');
   var w=document.getElementById('jnl-why'); if(w){ w.dataset.auto=w.value; w.focus(); w.setSelectionRange(w.value.length,w.value.length); }
   return true;
 }
@@ -858,9 +858,9 @@ function alerts(){
     // 21/10/2026 : vente a DEUX cles = cours au-dessus de la valeur optimiste ET de
     // l'objectif moyen des analystes (le modele plafonne la croissance et sous-evalue
     // les entreprises exceptionnelles : ASML, Hermes). Une ligne d'une action ne se coupe pas.
-    var hv_=s.vopt>0?s.vopt:(s.dcfm>0?s.dcfm*1.3:0), hi_=Math.max(hv_, s.tp>0?s.tp:0);
-    if(hv_>0 && s.price>hi_){ var half_=Math.floor((p.qty||0)/2);
-      high.push(row(s,'au-dessus de '+fr(hv_)+' € (scénario optimiste)'+(s.tp>0?' et de '+fr(s.tp)+' € (objectif des analystes)':'')+(half_>=1?' → vendre la moitié ('+half_+' action'+(half_>1?'s':'')+'), une fois, jamais tout':' → ligne d’une seule action : pas de vente partielle possible, on garde'))); }
+    var hv_=s.vopt>0?s.vopt:0, hi_=sellKey(s);
+    if(hi_>0 && s.price>hi_){ var half_=Math.floor((p.qty||0)/2);
+      high.push(row(s,'au-dessus de '+fr(hi_)+' €'+(hv_>0?' (scénario optimiste '+fr(hv_)+' €'+(s.tp>0?', objectif des analystes '+fr(s.tp)+' € plafonné à 1,5 fois':'')+')':' (objectif des analystes)')+(half_>=1?' → vendre la moitié ('+half_+' action'+(half_>1?'s':'')+'), une fois, jamais tout':' → ligne d’une seule action : pas de vente partielle possible, on garde'))); }
     var w=tot>0?s.price*p.qty/tot*100:0; if(w>10) big.push(row(s,'pèse '+fr(w,1)+' % (plafond 10 %) → ne pas renforcer'));
     var L=window.v2ceList?v2ceList(s.ticker):[], age=L[0]?Math.round((Date.now()-new Date(L[0].date).getTime())/864e5):null;
     if(age==null||age>90) ce.push(row(s, age==null?'jamais de contre-expertise':'dernière contre-expertise il y a '+age+' jours'));
