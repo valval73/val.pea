@@ -115,8 +115,8 @@ function buyPlan(s){
   return '<section class="v2-card" style="border-left:4px solid '+C.gn+'"><div class="v2-head"><h2>Mes paliers d’achat</h2><span class="v2-small">'+(P.pos?'déjà '+fr(wNow,1)+' % '+ACC:'pas encore en portefeuille')+'</span></div>'+
     '<div class="v2-note" style="background:'+stc+'"><span>'+st+'</span></div>'+warn+
     '<div class="v2-grid3">'+
-      row('PALIER 1 · DEMI-POSITION','2,5 % '+ACC,p1,2.5,'Première moitié.')+
-      (p2?row('PALIER 2 · POSITION COMPLÈTE','compléter jusqu’à 5 %',p2,5,'Seconde moitié.'):'')+
+      row('PALIER 1 · DEMI-POSITION',fr(sizes(s).half,sizes(s).half===1.25?2:1)+' % '+ACC,p1,sizes(s).half,'Première moitié.'+(sizes(s).cyc?' Cyclique : tailles divisées par deux.':''))+
+      (p2?row('PALIER 2 · POSITION COMPLÈTE','compléter jusqu’à '+fr(sizes(s).full,1)+' %',p2,sizes(s).full,'Seconde moitié.'):'')+
       '<div class="v2-scen" style="background:#fbf4e6"><div class="v2-k" style="color:'+C.or+'">PAS UN PRIX D’ACHAT</div><div class="v2-big">'+(s.vopt>0?'&gt; '+M(s,s.vopt,0):'—')+'</div><div class="v2-small">Au-dessus du scénario optimiste : <b>vendre la moitié</b> de la ligne, une seule fois, jamais tout. Le « central » ('+M(s,s.dcfm,0)+') est une estimation de valeur, pas un prix d’achat.</div></div>'+
     '</div>'+
     '<p class="v2-small"><b>En deux fois</b> : demi-position au palier 1, le reste au palier 2. <b>En une fois</b> : si le cours tombe directement sous le palier 2, position complète d’un coup. Si le palier 2 n’arrive jamais, tu restes à demi-position : c’est voulu. '+
@@ -443,7 +443,7 @@ function decision(s){
   var g = (s.qok && s.rec==='buy') ? 'buy' : 'no';
   var L = ceList(s.ticker), last = L[0];
   var age = last ? Math.round((Date.now()-new Date(last.date).getTime())/864e5) : null;
-  var tot = ptfTotal(), full = tot*0.05, half = tot*0.025;
+  var SZ = sizes(s), tot = ptfTotal(), full = tot*SZ.full/100, half = tot*SZ.half/100;
   var lim = s.el>0 ? Math.min(s.el, s.price) : s.price;
   var r;
   if(g!=='buy'){
@@ -464,9 +464,9 @@ function decision(s){
     var lvl = frag ? P-1 : P;   // these fragilisee : on descend d'un palier
     var why = frag ? 'Thèse fragilisée ('+esc(last.point||'')+') : on descend d’un palier. ' : 'Thèse intacte (contre-expertise du '+last.date+'). ';
     if(lvl>=2){
-      r = {t:'ACHAT : OUI, POSITION COMPLÈTE', c:C.gn, x:why+'Cours sous le palier 2 ('+fr(p2)+' €) : vraie occasion. Position complète'+(tot>0?' : environ <b>'+fr(full,0)+' €</b> (5 % du portefeuille, plafond 10 %)':' (5 % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(p2,s.price))+' €</b> maximum. Si tu as déjà la demi-position, tu la complètes.'};
+      r = {t:'ACHAT : OUI, POSITION COMPLÈTE', c:C.gn, x:why+'Cours sous le palier 2 ('+fr(p2)+' €) : vraie occasion. Position complète'+(tot>0?' : environ <b>'+fr(full,0)+' €</b> ('+fr(SZ.full,1)+' % du portefeuille'+(SZ.cyc?', cyclique':'')+', plafond 10 %)':' ('+fr(SZ.full,1)+' % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(p2,s.price))+' €</b> maximum. Si tu as déjà la demi-position, tu la complètes.'};
     } else if(lvl===1){
-      r = {t:'ACHAT : OUI À 50 % (PALIER 1)', c:C.or, x:why+'Demi-position'+(tot>0?' : environ <b>'+fr(half,0)+' €</b> (2,5 % du portefeuille)':' (2,5 % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(s.eh,s.price))+' €</b> maximum. Le complément seulement sous <b>'+fr(p2)+' €</b> (palier 2)'+(frag?' et après une contre-expertise « intacte »':'')+'. Si tu as déjà la demi-position : rien à faire, on attend.'};
+      r = {t:'ACHAT : OUI À 50 % (PALIER 1)', c:C.or, x:why+'Demi-position'+(tot>0?' : environ <b>'+fr(half,0)+' €</b> ('+fr(SZ.half,SZ.half===1.25?2:1)+' % du portefeuille)':' ('+fr(SZ.half,SZ.half===1.25?2:1)+' % du portefeuille)')+', ordre à cours limité <b>'+fr(Math.min(s.eh,s.price))+' €</b> maximum. Le complément seulement sous <b>'+fr(p2)+' €</b> (palier 2)'+(frag?' et après une contre-expertise « intacte »':'')+'. Si tu as déjà la demi-position : rien à faire, on attend.'};
     } else {
       r = {t:'ACHAT : PAS ENCORE', c:C.or, x:why+'Au palier 1 avec une thèse fragilisée, on n’achète pas. On attend le palier 2 (<b>'+fr(p2)+' €</b>) ou une contre-expertise « intacte ».'};
     }
@@ -565,13 +565,17 @@ if(typeof render==='function'){
 
 
 
+// 25/10/2026 : taille des positions selon le profil (cyclique = moitié : 1,25 % puis 2,5 %)
+function sizes(s){ var F=(typeof FICHE!=='undefined')?FICHE[s.ticker]:null; var cyc=(F&&F.prof==='cyclique')||s.grid==='cyclique';
+  return cyc?{half:1.25, full:2.5, cyc:true}:{half:2.5, full:5, cyc:false}; }
 // ---- 20/10/2026 : frais d'achat (grille Bourse Direct du 18/10/2026 ; compte-titres = Trade Republic 1 EUR) ----
 // Regle : frais <= 1 % de l'ordre.
 function feeInfo(s){
   var pl=s.place||'', cto=/compte-titres/.test(s.sector||'');
   var f=function(m){ return 0; }, nom='', acces='';
   if(cto){ nom='Trade Republic (compte-titres)'; f=function(m){return 1;}; }
-  else if(/^(Paris|Amsterdam|Bruxelles)$/.test(pl)){ nom='Euronext'; f=function(m){return m<=500?0.99:m<=1000?1.90:m<=2000?2.90:m<=4400?3.80:m*0.0009;}; }
+  else if(/^(Paris|Amsterdam|Bruxelles)$/.test(pl)){ nom='Euronext'; var ttf=(pl==='Paris'&&/large|mid/.test(s.cap||''))?0.004:0;
+    f=function(m){return (m<=500?0.99:m<=1000?1.90:m<=2000?2.90:m<=4400?3.80:m*0.0009)+m*ttf;}; if(ttf) acces=' · taxe sur les transactions financières de 0,4 % incluse (sociétés françaises de plus de 1 Md€, liste officielle de 121 sociétés en 2026 ; achat seulement)'; }
   else if(/^(Francfort|F)$/.test(pl)){ nom='Xetra'; f=function(m){return Math.max(15,m*0.0015);}; }
   else if(/^(Madrid|Lisbonne|SW)$/.test(pl)){ nom=pl==='SW'?'Suisse':pl; f=function(m){return Math.max(18,m*0.002);}; }
   else { nom=({WA:'Varsovie',VI:'Vienne',AT:'Vienne',IR:'Dublin',VS:'Vilnius'})[pl]||pl; acces=' · accès chez Bourse Direct à confirmer'; f=function(m){return Math.max(41.90,m*0.0048);}; }
@@ -580,7 +584,8 @@ function feeInfo(s){
 }
 function feeLine(s){
   var x=feeInfo(s);
-  return '<p class="v2-small" style="margin:0 0 8px;padding:8px 10px;border-radius:8px;background:'+(x.ok?'#eef6f1':'#fbf4e6')+'"><b>Frais d’achat ('+x.nom+')</b> : '+fr(x.f500)+' € pour un ordre de 500 € ('+fr(x.p500,1)+' %)'+
+  var comp=(parcoursOn(s)?'<p class="v2-small" style="margin:0 0 8px;padding:8px 10px;border-radius:8px;background:#eef1f6"><b>Avant d’acheter</b> : un concurrent direct (voir la thèse) est-il meilleur et moins cher ? Compare son PER, sa marge et sa croissance ; s’il gagne sur les trois, c’est lui qu’il faut étudier.</p>':'');
+  return comp+'<p class="v2-small" style="margin:0 0 8px;padding:8px 10px;border-radius:8px;background:'+(x.ok?'#eef6f1':'#fbf4e6')+'"><b>Frais d’achat ('+x.nom+')</b> : '+fr(x.f500)+' € pour un ordre de 500 € ('+fr(x.p500,1)+' %)'+
     (x.ok?' : sous la règle de 1 %.':' : au-dessus de la règle de 1 %. Ordre minimum pour respecter la règle : <b>'+fr(x.min,0)+' €</b> (regrouper plusieurs mois).')+x.acces+'</p>';
 }
 
@@ -890,7 +895,7 @@ function guide(){
   '<section class="v2-card"><h2>1. La règle d’or</h2><p>J’achète des entreprises <b>excellentes</b>, seulement quand leur prix est <b>raisonnable</b>, et je les garde tant qu’elles restent excellentes. Je ne vends <b>jamais</b> sur le prix seul.</p></section>'+
   '<section class="v2-card"><h2>2. Le filtre qualité (médianes sur 4 ans)</h2><p>Rentabilité du capital hors écarts d’acquisition ≥ 15 % · rentabilité du capital total ≥ 12 % · bénéfice transformé en cash ≥ 80 % · dette nette ≤ 2,5 × EBITDA · croissance ≥ 3 %/an (chiffres officiels quand ils existent). Plus : moat ≥ 3/5 et chiffre d’affaires en hausse au moins 2 ans sur 3 pour pouvoir acheter. Banques, assurances et foncières : grilles dédiées (point 7).</p></section>'+
   '<section class="v2-card"><h2>3. Le prix</h2><p>Trois scénarios (pessimiste, central, optimiste). Deux paliers d’achat sous la valeur centrale, selon l’incertitude : <b>palier 1</b> (décote 10-20 % / 15-25 % / 20-30 %) → demi-position ; <b>palier 2</b> (décote 20 / 30 / 40 %, le niveau « 5 étoiles » de Morningstar) → position complète. On apprend à acheter en deux fois. « Ce que le cours suppose » compare la croissance que le marché paie à la croissance réelle. Croissance utilisée : celle annoncée par l’entreprise ; au-delà de 12 %/an, on n’en retient que la moitié (plafond 20 %), et seulement si la rentabilité du capital dépasse 20 % et le moat vaut au moins 4.</p></section>'+
-  '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → palier 1 : demi-position (2,5 %), palier 2 : position complète (5 %) ; fragilisée → on descend d’un palier (rien au palier 1, demi-position au palier 2) ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
+  '<section class="v2-card"><h2>4. Avant d’acheter</h2><p>Une <b>contre-expertise</b> de moins de 3 mois : thèse intacte → palier 1 : demi-position (2,5 %), palier 2 : position complète (5 %) ; pour une cyclique, tailles divisées par deux (1,25 % puis 2,5 %) ; fragilisée → on descend d’un palier (rien au palier 1, demi-position au palier 2) ; cassée → non. Puis je note la décision dans le <b>journal</b> (bouton en bas de chaque fiche).</p></section>'+
   '<section class="v2-card"><h2>5. La routine du mois (1er dimanche, 15 min)</h2><p>1. Versement. 2. Onglet portefeuille : une ligne « REVOIR » deux publications de suite → je vends. 3. Une action « achat possible » avec contre-expertise favorable et ligne &lt; 10 % → j’achète ; sinon le versement va sur l’ETF Monde. 4. Une ligne dans le journal. Le reste du mois : aucune décision.</p></section>'+
   '<section class="v2-card"><h2>6. Garde-fous</h2><p>Maximum 10 % par action · 13 à 15 lignes · seuil de revue = scénario pessimiste − 10 % (contre-expertise obligatoire, pas de vente automatique) · aucune exception, aucun stop : seules les règles de vente décident.</p></section>'+
   '<section class="v2-card"><h2>6 bis. Vendre : deux règles, et rien d’autre</h2><p><b>La qualité</b> : conversion du bénéfice en cash ≥ 80 % garder ; 60-80 % garder sans renforcer ; sous 60 % deux ans de suite → contre-expertise, et elle seule décide. Si la chute vient d’un paiement exceptionnel chiffré par l’entreprise elle-même, la contre-expertise l’écrit et on garde ; sinon on vend tout. <b>Le prix</b> : quand le cours dépasse <b>à la fois</b> le scénario optimiste du screener <b>et</b> l’objectif moyen des analystes, on vend la moitié, une seule fois (depuis le 21/10/2026 : le screener plafonne la croissance et sous-évalue les entreprises exceptionnelles comme ASML ou Hermès ; la deuxième clé évite de les vendre trop tôt). Une ligne d’une seule action ne se coupe pas. Les deux questions sont indépendantes. <b>Cas d’école, octobre 2026 — Coca-Cola</b> : cash faussé par le paiement de fairlife (qualité intacte, on garde) mais cours au-dessus de l’optimiste (on vend la moitié). Le prix d’achat n’entre jamais dans la décision.</p></section>'+
