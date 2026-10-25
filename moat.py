@@ -28,6 +28,8 @@ MOAT = {
                  "erosion de la rarete (sacs 'hors quotas', UBS oct. 2026), Chine"),
     'AI':    (4, "club ferme de 3-4 acteurs mondiaux ; usine chez le client, gaz qui voyage mal, take-or-pay",
                  "fermetures definitives d'usines clientes en Europe, guerre des prix entre les geants"),
+    'EL':    (3, "taille mondiale, marques possedees (Ray-Ban, Oakley), fabrication et distribution integrees",
+                 "licences de luxe reprenables, lunettes connectees disputees (Apple, Google, Samsung), gouvernance divisee"),
     'ELIS':  (3, "densite du reseau de blanchisseries et de tournees, contrats pluriannuels",
                  "marche fragmente, budgets hospitaliers, acquisitions risquees"),
     'TTE':   (2, "couts de production bas, portefeuille de GNL sous contrats longs",
@@ -252,7 +254,7 @@ UNCERTAINTY = {
     # faible : activite tres previsible, contrats longs, marques dominantes
     'AI': 'faible', 'OR': 'faible', 'RMS': 'faible', 'DG': 'faible',
     # moyenne
-    'SU': 'moyenne', 'LR': 'moyenne', 'DSY': 'moyenne', 'HO': 'moyenne', 'ELIS': 'moyenne',
+    'SU': 'moyenne', 'LR': 'moyenne', 'DSY': 'moyenne', 'HO': 'moyenne', 'ELIS': 'moyenne', 'EL': 'moyenne',
     'SAF': 'moyenne', 'AIR': 'moyenne', 'ASML': 'moyenne', 'NRO': 'moyenne',
     'WKL': 'moyenne', 'ITX': 'moyenne', 'AMS': 'moyenne', 'RAA': 'moyenne',
     'NEM': 'moyenne', 'MONC': 'moyenne', 'UMG': 'moyenne', 'ATCO': 'moyenne',
