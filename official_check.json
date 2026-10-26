@@ -1,8 +1,8 @@
 {
-"date": "2026-10-19",
-"scope": 356,
-"compared": 98,
-"ok": 90,
+"date": "2026-10-26",
+"scope": 376,
+"compared": 104,
+"ok": 94,
 "res": {
 "1INNDE": {
 "status": "societe introuvable"
@@ -14,10 +14,10 @@
 "status": "societe introuvable"
 },
 "ABEV": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ABNB": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ABSWA": {
 "status": "societe introuvable"
@@ -37,30 +37,30 @@
 "status": "societe introuvable"
 },
 "ACM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ACN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ACSMC": {
 "status": "compare",
 "lei": "95980020140005558665",
 "entity": "ACS ACTIVIDADES DE CONSTRUCCION Y SERVICIOS, S.A.",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"cash apres loyers 2024"
+"cash apres loyers 2025"
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 301,
+"cash_apres_loyers": 280,
 "histo_10a": null
 },
 "ADBE": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ADDT": {
 "status": "compare",
@@ -81,7 +81,10 @@
 "histo_10a": null
 },
 "ADP2": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"ADSK": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "AEGNAT": {
 "status": "societe introuvable"
@@ -103,6 +106,9 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"AIAAT": {
+"status": "societe introuvable"
+},
 "AIR": {
 "status": "compare",
 "lei": "MINO79WLOO247M1IL051",
@@ -120,7 +126,7 @@
 "histo_10a": null
 },
 "AIT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ALCMC": {
 "status": "societe introuvable"
@@ -143,7 +149,7 @@
 "histo_10a": null
 },
 "ALLE": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ALSNSW": {
 "status": "societe introuvable"
@@ -156,21 +162,21 @@
 "status": "societe introuvable"
 },
 "AMAT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "AME": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "AMS": {
 "status": "compare",
 "lei": "9598004A3FTY3TEHHN09",
 "entity": "AMADEUS IT GROUP SOCIEDAD ANONIMA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -178,16 +184,19 @@
 "histo_10a": null
 },
 "ANET": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ANF": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "AOF": {
 "status": "societe introuvable"
 },
+"AON": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "APH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "AQST": {
 "status": "compare",
@@ -238,10 +247,27 @@
 "histo_10a": null
 },
 "ARM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ARTMC": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "95980020140005848695",
+"entity": "ARTECHE LANTEGI ELKARTEA SA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025",
+"cash apres loyers 2025"
+],
+"issues": [
+"cash après loyers 29 % (2025, loyers = 19 % du flux d'exploitation) contre 83 % selon Yahoo : sous le seuil de 80 %"
+],
+"roic_officiel": 57.8,
+"cash_apres_loyers": 29,
+"histo_10a": null
 },
 "ARYNSW": {
 "status": "societe introuvable"
@@ -279,6 +305,9 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"ASR": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "ATCO": {
 "status": "compare",
 "lei": "213800T8PC8Q4FYJZR07",
@@ -299,17 +328,17 @@
 "status": "compare",
 "lei": "5967007LIEEXZXINVS13",
 "entity": "ATEA ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"cash apres loyers 2024"
+"cash apres loyers 2025"
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 210,
+"cash_apres_loyers": 89,
 "histo_10a": null
 },
 "AUBPA": {
@@ -331,7 +360,7 @@
 "histo_10a": null
 },
 "AVGO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "AXA": {
 "status": "compare",
@@ -369,7 +398,7 @@
 "status": "societe introuvable"
 },
 "AZN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BAHNBST": {
 "status": "societe introuvable"
@@ -387,16 +416,16 @@
 "status": "societe introuvable"
 },
 "BHP": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BIOGBST": {
 "status": "societe introuvable"
 },
 "BKNG": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BKR": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BNP": {
 "status": "annees non comparables",
@@ -416,16 +445,16 @@
 "status": "compare",
 "lei": "213800HOQE1B34SUA323",
 "entity": "Bonheur ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"ROIC 2024"
+"ROIC 2025"
 ],
 "issues": [],
-"roic_officiel": 51.2,
+"roic_officiel": 16.7,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -433,23 +462,26 @@
 "status": "compare",
 "lei": "5967007LIEEXZXFMBC26",
 "entity": "BOUVET ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023"
+"cash apres loyers 2025"
 ],
-"issues": [],
+"issues": [
+"cash après loyers 73 % (2025, loyers = 17 % du flux d'exploitation) contre 134 % selon Yahoo : sous le seuil de 80 %"
+],
 "roic_officiel": null,
-"cash_apres_loyers": null,
+"cash_apres_loyers": 73,
 "histo_10a": null
 },
 "BOX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BR": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "BRKNSW": {
 "status": "societe introuvable"
@@ -470,6 +502,9 @@
 "roic_officiel": 27.2,
 "cash_apres_loyers": null,
 "histo_10a": null
+},
+"CAH": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "CALTMI": {
 "status": "compare",
@@ -502,13 +537,16 @@
 "histo_10a": null
 },
 "CAT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CBAVMC": {
 "status": "societe introuvable"
 },
+"CBFWA": {
+"status": "societe introuvable"
+},
 "CDNS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CDRCK": {
 "status": "compare",
@@ -541,19 +579,19 @@
 "status": "societe introuvable"
 },
 "CHD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CHE": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CHKP": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CIG": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CLASBST": {
 "status": "societe introuvable"
@@ -572,11 +610,14 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"CME": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "CMG": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CNM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "COFA": {
 "status": "compare",
@@ -592,8 +633,11 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"COR": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "COST": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "COVIVIO": {
 "status": "compare",
@@ -626,10 +670,10 @@
 "histo_10a": null
 },
 "CSCO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CTAS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CTNKF": {
 "status": "societe introuvable"
@@ -638,45 +682,47 @@
 "status": "compare",
 "lei": "529900G4A1IKOKC22K56",
 "entity": "CTT - CORREIOS DE PORTUGAL S.A.",
-"period_end": "2022-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"CA 2022",
-"resultat net 2022",
-"ROIC 2022",
-"cash apres loyers 2022"
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025",
+"cash apres loyers 2025"
 ],
 "issues": [
-"CA 2022 officiel 789 M contre Yahoo 863 M"
+"CA 2025 officiel 1 129 M contre Yahoo 1 232 M",
+"CA 2024 officiel 966 M contre Yahoo 1 064 M"
 ],
-"roic_officiel": 11.7,
-"cash_apres_loyers": 254,
+"roic_officiel": 35.1,
+"cash_apres_loyers": 136,
 "histo_10a": null
 },
 "CVLT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CW": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "CWCDE": {
-"status": "aucun rapport lisible",
-"lei": "529900IDFHN9MQ3WUD64"
-},
-"CWCVI": {
 "status": "aucun rapport lisible",
 "lei": "529900IDFHN9MQ3WUD64"
 },
 "DASSAV": {
 "status": "societe introuvable"
 },
+"DB1DE": {
+"status": "societe introuvable"
+},
 "DCI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "DECK": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "DELL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "DG": {
 "status": "compare",
@@ -736,13 +782,13 @@
 "histo_10a": null
 },
 "DOCS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "DOCVI": {
 "status": "societe introuvable"
 },
 "DSGX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "DSY": {
 "status": "compare",
@@ -762,10 +808,24 @@
 "histo_10a": null
 },
 "EAT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "EBAY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"EDENRED": {
+"status": "compare",
+"lei": "9695006LOD5B2D7Y0N70",
+"entity": "EDENRED",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EINDE": {
 "status": "aucun rapport lisible",
@@ -807,13 +867,13 @@
 "histo_10a": null
 },
 "EME": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "EMMNSW": {
 "status": "societe introuvable"
 },
 "EPAM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "EPI": {
 "status": "compare",
@@ -839,20 +899,20 @@
 "status": "compare",
 "lei": "5967007LIEEXZXGA8G28",
 "entity": "EUROPRIS ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"ROIC 2024",
-"cash apres loyers 2024"
+"ROIC 2025",
+"cash apres loyers 2025"
 ],
 "issues": [
-"cash après loyers 71 % (2024, loyers = 51 % du flux d'exploitation) contre 152 % selon Yahoo : sous le seuil de 80 %"
+"cash après loyers 55 % (2025, loyers = 61 % du flux d'exploitation) contre 152 % selon Yahoo : sous le seuil de 80 %"
 ],
-"roic_officiel": 19.4,
-"cash_apres_loyers": 71,
+"roic_officiel": 19.1,
+"cash_apres_loyers": 55,
 "histo_10a": null
 },
 "EQSPA": {
@@ -870,13 +930,9 @@
 "histo_10a": null
 },
 "ETN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "EUZDE": {
-"status": "aucun rapport lisible",
-"lei": "391200EUDABLUKXCKG48"
-},
-"EUZGVI": {
 "status": "aucun rapport lisible",
 "lei": "391200EUDABLUKXCKG48"
 },
@@ -901,11 +957,28 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"EXAEAT": {
+"status": "compare",
+"lei": "549300GSRN07MNENPL97",
+"entity": "EURONEXT ATHENS HOLDING Α.Ε.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
+},
 "EXEL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "EXLS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"EXPE": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "FAGRBR": {
 "status": "compare",
@@ -928,7 +1001,7 @@
 "histo_10a": null
 },
 "FAST": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "FDJVI": {
 "status": "compare",
@@ -947,28 +1020,31 @@
 "histo_10a": null
 },
 "FFIV": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "FIX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "FOX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "FRAMERYHE": {
 "status": "societe introuvable"
 },
 "FSS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"FTDR": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "FTI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "FTNT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "G": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "G1A": {
 "status": "societe introuvable"
@@ -978,13 +1054,16 @@
 "lei": "529900H0HULEN2BZ4604"
 },
 "GD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"GDDY": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "GE": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "GEHC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "GFC": {
 "status": "compare",
@@ -1004,12 +1083,8 @@
 "status": "aucun rapport lisible",
 "lei": "5299002FNBSGW23ULF72"
 },
-"GFTVI": {
-"status": "aucun rapport lisible",
-"lei": "5299002FNBSGW23ULF72"
-},
 "GIB": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "GOFOREHE": {
 "status": "compare",
@@ -1027,7 +1102,7 @@
 "histo_10a": null
 },
 "GOOGL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "GPPWA": {
 "status": "societe introuvable"
@@ -1052,7 +1127,7 @@
 "histo_10a": null
 },
 "GRMN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "GTT": {
 "status": "compare",
@@ -1071,20 +1146,20 @@
 "histo_10a": null
 },
 "GWW": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HACKST": {
 "status": "societe introuvable"
 },
 "HAFN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HAGDE": {
 "status": "aucun rapport lisible",
 "lei": "894500686FYLLZD3M624"
 },
 "HAL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HARVIAHE": {
 "status": "compare",
@@ -1104,7 +1179,7 @@
 "histo_10a": null
 },
 "HEI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HEIJM": {
 "status": "compare",
@@ -1168,33 +1243,32 @@
 "histo_10a": null
 },
 "HONA": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HOTDE": {
 "status": "aucun rapport lisible",
 "lei": "529900Y25S8NZIYTT924"
 },
-"HOTVI": {
-"status": "aucun rapport lisible",
-"lei": "529900Y25S8NZIYTT924"
-},
 "HRB": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HSY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HUBB": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "HWM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"IBP": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "IDCC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "IDXX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "IEGMI": {
 "status": "compare",
@@ -1218,13 +1292,13 @@
 "histo_10a": null
 },
 "IESC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "IHG": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "INCY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "INDTST": {
 "status": "compare",
@@ -1244,7 +1318,7 @@
 "histo_10a": null
 },
 "INFY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "INTERPARFUMS": {
 "status": "compare",
@@ -1264,7 +1338,7 @@
 "histo_10a": null
 },
 "INTU": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "IPSEN": {
 "status": "compare",
@@ -1315,23 +1389,26 @@
 "cash_apres_loyers": 119,
 "histo_10a": null
 },
+"IT": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "ITT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ITX": {
 "status": "compare",
 "lei": "549300TTCXZOGZM2EY83",
 "entity": "INDUSTRIA DE DISEÑO TEXTIL, S.A.",
-"period_end": "2025-01-31",
+"period_end": "2026-01-31",
 "checked": [
+"CA 2026",
 "CA 2025",
-"CA 2024",
+"resultat net 2026",
 "resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
+"ROIC 2026"
 ],
 "issues": [],
-"roic_officiel": 42.6,
+"roic_officiel": 39.7,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -1339,12 +1416,8 @@
 "status": "aucun rapport lisible",
 "lei": "3912003JRJW9PA9BPQ22"
 },
-"IVUVI": {
-"status": "aucun rapport lisible",
-"lei": "3912003JRJW9PA9BPQ22"
-},
 "JKHY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "JMT": {
 "status": "societe introuvable"
@@ -1376,23 +1449,20 @@
 "status": "compare",
 "lei": "5967007LIEEXZXIG6009",
 "entity": "KITRON ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023",
-"cash apres loyers 2024"
+"resultat net 2025",
+"resultat net 2024"
 ],
-"issues": [
-"cash après loyers 76 % (2024, loyers = 30 % du flux d'exploitation) contre 110 % selon Yahoo : sous le seuil de 80 %"
-],
+"issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 76,
+"cash_apres_loyers": null,
 "histo_10a": null
 },
 "KLAC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "KLPI": {
 "status": "compare",
@@ -1409,7 +1479,7 @@
 "histo_10a": null
 },
 "KO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "KRI": {
 "status": "societe introuvable"
@@ -1437,7 +1507,7 @@
 "status": "societe introuvable"
 },
 "KSPI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LAGR": {
 "status": "compare",
@@ -1455,16 +1525,16 @@
 "histo_10a": null
 },
 "LAUR": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LBWWA": {
 "status": "societe introuvable"
 },
 "LDOS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LECO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LIFCOBST": {
 "status": "societe introuvable"
@@ -1488,10 +1558,25 @@
 "histo_10a": null
 },
 "LMT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LNTH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"LOG": {
+"status": "compare",
+"lei": "9598000ANNAL42UJ7X28",
+"entity": "LOGISTA INTEGRAL SA",
+"period_end": "2025-09-30",
+"checked": [
+"CA 2024",
+"resultat net 2024",
+"cash apres loyers 2025"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": 168,
+"histo_10a": null
 },
 "LOTB": {
 "status": "compare",
@@ -1530,16 +1615,16 @@
 "histo_10a": null
 },
 "LRCX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "LYV": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "M12DE": {
 "status": "societe introuvable"
 },
 "MA": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MAIREMI": {
 "status": "compare",
@@ -1558,7 +1643,7 @@
 "histo_10a": null
 },
 "MANH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MBBDE": {
 "status": "aucun rapport lisible",
@@ -1580,34 +1665,43 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"MCK": {
+"status": "SEC inaccessible depuis GitHub"
+},
+"MCO": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "MEDIOL": {
 "status": "compare",
 "lei": "5967007LIEEXZXJOX483",
 "entity": "MEDISTIM ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"CA 2024",
-"CA 2023"
+"CA 2025",
+"CA 2024"
 ],
 "issues": [],
 "roic_officiel": null,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"MEDP": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "MEKKOHE": {
 "status": "societe introuvable"
 },
 "MELI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "META": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MMGRBST": {
 "status": "societe introuvable"
 },
 "MNST": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MONC": {
 "status": "compare",
@@ -1626,6 +1720,9 @@
 "cash_apres_loyers": 80,
 "histo_10a": null
 },
+"MORN": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "MOURBR": {
 "status": "compare",
 "lei": "549300FY5W1G7ZEF9D98",
@@ -1642,13 +1739,13 @@
 "histo_10a": null
 },
 "MRK": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MSA": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MSI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "MTHHCO": {
 "status": "societe introuvable"
@@ -1657,18 +1754,20 @@
 "status": "compare",
 "lei": "5967007LIEEXZXG9GO07",
 "entity": "Multiconsult ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"ROIC 2024",
-"cash apres loyers 2024"
+"ROIC 2025",
+"cash apres loyers 2025"
 ],
-"issues": [],
-"roic_officiel": 28.5,
-"cash_apres_loyers": 119,
+"issues": [
+"cash après loyers 24 % (2025, loyers = 76 % du flux d'exploitation) contre 123 % selon Yahoo : sous le seuil de 80 %"
+],
+"roic_officiel": 14.5,
+"cash_apres_loyers": 24,
 "histo_10a": null
 },
 "MYCR": {
@@ -1698,22 +1797,19 @@
 "status": "societe introuvable"
 },
 "NFLX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NORBTOL": {
 "status": "compare",
 "lei": "254900C08RCMXVZYFY97",
 "entity": "NORBIT ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023",
-"ROIC 2024"
+"CA 2025",
+"CA 2024"
 ],
 "issues": [],
-"roic_officiel": 18.2,
+"roic_officiel": null,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -1721,17 +1817,18 @@
 "status": "compare",
 "lei": "635400VFBLRSFRXLGQ03",
 "entity": "Norconsult ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"cash apres loyers 2024"
+"ROIC 2025",
+"cash apres loyers 2025"
 ],
 "issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": 200,
+"roic_officiel": 30.1,
+"cash_apres_loyers": 90,
 "histo_10a": null
 },
 "NOVO": {
@@ -1770,7 +1867,7 @@
 "histo_10a": null
 },
 "NTES": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NTGCO": {
 "status": "compare",
@@ -1790,22 +1887,22 @@
 "histo_10a": null
 },
 "NVDA": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NVMI": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NVS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NWGWA": {
 "status": "societe introuvable"
 },
 "NXT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "NYT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "OEMBST": {
 "status": "societe introuvable"
@@ -1828,7 +1925,7 @@
 "histo_10a": null
 },
 "ORLY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ORNBV": {
 "status": "compare",
@@ -1850,20 +1947,23 @@
 "OROXMI": {
 "status": "societe introuvable"
 },
+"OUTLTOL": {
+"status": "societe introuvable"
+},
 "PANW": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PAYC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PAYX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PCTY": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PDD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PDXST": {
 "status": "societe introuvable"
@@ -1872,12 +1972,12 @@
 "status": "compare",
 "lei": "5967007LIEEXZXGWM030",
 "entity": "PANORO ENERGY ASA",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -1885,7 +1985,7 @@
 "histo_10a": null
 },
 "PH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "PLNW": {
 "status": "compare",
@@ -1920,7 +2020,24 @@
 "histo_10a": null
 },
 "POWL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"PUB": {
+"status": "compare",
+"lei": "2138004KW8BV57III342",
+"entity": "PUBLICIS GROUPE SA",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023",
+"cash apres loyers 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": 116,
+"histo_10a": null
 },
 "PUIGMC": {
 "status": "societe introuvable"
@@ -1943,8 +2060,11 @@
 "cash_apres_loyers": 96,
 "histo_10a": null
 },
+"PYPL": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "QLYS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RAA": {
 "status": "aucun rapport lisible",
@@ -1973,10 +2093,10 @@
 "status": "societe introuvable"
 },
 "REGN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RELX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "REY": {
 "status": "compare",
@@ -1997,13 +2117,13 @@
 "lei": "5299001OU9CSE29O6S05"
 },
 "RL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RMBS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RMD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RMS": {
 "status": "compare",
@@ -2023,10 +2143,10 @@
 "histo_10a": null
 },
 "ROL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ROST": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "RVRCST": {
 "status": "compare",
@@ -2046,9 +2166,6 @@
 "status": "societe introuvable"
 },
 "RY4CDE": {
-"status": "societe introuvable"
-},
-"RYAAY": {
 "status": "societe introuvable"
 },
 "RYAIR": {
@@ -2074,7 +2191,7 @@
 "status": "societe introuvable"
 },
 "SCCO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "SCMNSW": {
 "status": "societe introuvable"
@@ -2098,11 +2215,24 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"SESMI": {
+"status": "compare",
+"lei": "81560005C031D4E76707",
+"entity": "SESA S.P.A.",
+"period_end": "2022-04-30",
+"checked": [
+"ROIC 2022"
+],
+"issues": [],
+"roic_officiel": 117.7,
+"cash_apres_loyers": null,
+"histo_10a": null
+},
 "SFM": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "SGHC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "SGNWA": {
 "status": "societe introuvable"
@@ -2127,22 +2257,36 @@
 "status": "societe introuvable"
 },
 "SLB": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "SNTIAOL": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "636700TZLHWHJV5B7Z64",
+"entity": "SENTIA ASA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SOMAOL": {
-"status": "societe introuvable"
+"status": "aucun rapport lisible",
+"lei": "636700X6XN8UWIBHQ877"
 },
 "SPABR": {
 "status": "societe introuvable"
 },
 "SSD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "STRL": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "STRVI": {
 "status": "compare",
@@ -2161,7 +2305,7 @@
 "histo_10a": null
 },
 "STX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "SU": {
 "status": "compare",
@@ -2227,26 +2371,26 @@
 "histo_10a": null
 },
 "THC": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "TIMADE": {
 "status": "aucun rapport lisible",
 "lei": "391200EIRBXU4TUMMQ46"
 },
 "TJX": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "TORWA": {
 "status": "societe introuvable"
 },
 "TPR": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "TREMC": {
 "status": "societe introuvable"
 },
 "TT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "TTE": {
 "status": "compare",
@@ -2263,7 +2407,7 @@
 "histo_10a": null
 },
 "TTEK": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "TUI1DE": {
 "status": "compare",
@@ -2282,13 +2426,16 @@
 "histo_10a": null
 },
 "TXRH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"TXTWA": {
+"status": "societe introuvable"
 },
 "ULS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "ULTA": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "UMG": {
 "status": "compare",
@@ -2308,7 +2455,7 @@
 "histo_10a": null
 },
 "UNH": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "URW": {
 "status": "compare",
@@ -2325,10 +2472,13 @@
 "histo_10a": null
 },
 "UTHR": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
+},
+"V": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "VLTO": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "VOSDE": {
 "status": "aucun rapport lisible",
@@ -2338,19 +2488,19 @@
 "status": "societe introuvable"
 },
 "VRSK": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "VRSN": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "VRT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "VUPA": {
 "status": "societe introuvable"
 },
 "WFRD": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "WKL": {
 "status": "compare",
@@ -2370,35 +2520,19 @@
 "histo_10a": null
 },
 "WMT": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "WRT1V": {
 "status": "societe introuvable"
 },
 "WSE": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "WTS": {
-"status": "SEC : societe introuvable"
+"status": "SEC inaccessible depuis GitHub"
 },
 "WWD": {
-"status": "SEC : societe introuvable"
-},
-"XD4DE": {
-"status": "compare",
-"lei": "529900TYYSRJH2VJSP60",
-"entity": "STRABAG SE",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "SEC inaccessible depuis GitHub"
 },
 "YSN": {
 "status": "societe introuvable"

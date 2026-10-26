@@ -27,6 +27,7 @@
 "lei": "969500MMPQVHK671GT54",
 "name": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE"
 },
+"AIAAT": null,
 "AIR": {
 "lei": "MINO79WLOO247M1IL051",
 "name": "AIRBUS SE"
@@ -67,7 +68,10 @@
 "name": "ARGAN"
 },
 "ARM": null,
-"ARTMC": null,
+"ARTMC": {
+"lei": "95980020140005848695",
+"name": "ARTECHE LANTEGI ELKARTEA SA"
+},
 "ARYNSW": null,
 "ASEWA": null,
 "ASM": {
@@ -154,6 +158,7 @@
 },
 "CAT": null,
 "CBAVMC": null,
+"CBFWA": null,
 "CDNS": null,
 "CDRCK": {
 "lei": "222100P6D3QKU33LZQ72",
@@ -207,6 +212,7 @@
 "name": "CEWE Stiftung & Co. KGaA"
 },
 "DASSAV": null,
+"DB1DE": null,
 "DCI": null,
 "DECK": null,
 "DELL": null,
@@ -232,6 +238,10 @@
 },
 "EAT": null,
 "EBAY": null,
+"EDENRED": {
+"lei": "9695006LOD5B2D7Y0N70",
+"name": "EDENRED"
+},
 "EINDE": {
 "lei": "529900WKT7CENGR4UW29",
 "name": "Einhell Germany AG"
@@ -277,6 +287,10 @@
 "EVOST": {
 "lei": "549300SUH6ZR1RF6TA88",
 "name": "Evolution AB (publ)"
+},
+"EXAEAT": {
+"lei": "549300GSRN07MNENPL97",
+"name": "EURONEXT ATHENS HOLDING Α.Ε."
 },
 "EXEL": null,
 "EXENS": {
@@ -473,6 +487,10 @@
 },
 "LMT": null,
 "LNTH": null,
+"LOG": {
+"lei": "9598000ANNAL42UJ7X28",
+"name": "LOGISTA INTEGRAL SA"
+},
 "LOTB": {
 "lei": "5493004C0K34IFI67I03",
 "name": "LOTUS BAKERIES"
@@ -575,6 +593,7 @@
 "name": "Orion Oyj"
 },
 "OROXMI": null,
+"OUTLTOL": null,
 "PANW": null,
 "PAYC": null,
 "PAYX": null,
@@ -600,6 +619,10 @@
 "name": "Pandora A/S"
 },
 "POWL": null,
+"PUB": {
+"lei": "2138004KW8BV57III342",
+"name": "PUBLICIS GROUPE SA"
+},
 "PUIGMC": null,
 "PUUILOHE": {
 "lei": "743700UJUT6FWHBXPR69",
@@ -661,6 +684,10 @@
 "lei": "549300R9ZBT8YSFFK266",
 "name": "SECTRA Aktiebolag"
 },
+"SESMI": {
+"lei": "81560005C031D4E76707",
+"name": "SESA S.P.A."
+},
 "SFM": null,
 "SGHC": null,
 "SGNWA": null,
@@ -670,8 +697,14 @@
 },
 "SILEXST": null,
 "SLB": null,
-"SNTIAOL": null,
-"SOMAOL": null,
+"SNTIAOL": {
+"lei": "636700TZLHWHJV5B7Z64",
+"name": "SENTIA ASA"
+},
+"SOMAOL": {
+"lei": "636700X6XN8UWIBHQ877",
+"name": "SOLSTAD MARITIME ASA"
+},
 "SPABR": null,
 "SSD": null,
 "STRL": null,
@@ -716,6 +749,7 @@
 "name": "TUI AG"
 },
 "TXRH": null,
+"TXTWA": null,
 "ULS": null,
 "ULTA": null,
 "UMG": {
