@@ -1,0 +1,45 @@
+name: Cours du lundi a l'ouverture
+
+# Une seule mise a jour des cours le lundi matin, apres l'ouverture, pour
+# voir l'effet des nouvelles du vendredi soir et du week-end. Le reste de
+# la semaine, les cours se mettent a jour le soir seulement (fondamentaux).
+# GitHub ne connait que l'heure UTC : 7h35 et 8h35 UTC couvrent 9h35 a
+# Paris en heure d'hiver comme en heure d'ete (l'autre passage est soit
+# avant l'ouverture, sans changement, soit une heure apres, sans effet).
+
+on:
+  schedule:
+    - cron: '35 7,8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-js-writer
+  cancel-in-progress: false
+
+jobs:
+  refresh-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install yfinance pytz --quiet
+      - name: Rafraichir les prix
+        run: python refresh_intraday_prices.py
+      - name: Commit si changement
+        run: |
+          git config --local user.email "valpea-bot@github.com"
+          git config --local user.name "VAL.PEA Bot"
+          git diff --quiet data.js index.html 2>/dev/null || (
+            git add data.js index.html &&
+            git commit -m "Cours du lundi a l'ouverture $(TZ=Europe/Paris date '+%Y-%m-%d %H:%M') [skip ci]" &&
+            git fetch origin main --quiet &&
+            git pull --rebase --autostash origin main &&
+            git push
+          )
+          echo "Done"
