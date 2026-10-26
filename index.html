@@ -1004,6 +1004,11 @@ function ptfAdd(){
   if(ptfEditId){
     // MODE ÉDITION: remplacer la position existante
     var idx=PTF.findIndex(function(p){return p.id===ptfEditId;});
+    // 26/10/2026 : le crayon REMPLACE la position (quantite totale + PRU), il n'ajoute pas.
+    // Garde-fou : si la quantite change, on previent et on oriente vers "Ajouter" pour un achat.
+    if(idx>=0 && qty!==PTF[idx].qty){
+      if(!confirm('Attention : le crayon remplace la quantité TOTALE détenue.\n\n'+PTF[idx].ticker+' : '+PTF[idx].qty+' → '+qty+' titres, PRU '+PTF[idx].pru+' → '+pru+' €.\n\nPour enregistrer un ACHAT du jour, annule, puis utilise « + Ajouter une position » avec le même ticker : la quantité s\'ajoute et le PRU est recalculé.\n\nRemplacer quand même ?')) return;
+    }
     if(idx>=0){
       PTF[idx]=Object.assign({},PTF[idx],{ticker:ticker,qty:qty,pru:pru,date:date,note:note});
       PTF_HIST.push({id:Date.now().toString(),type:'modification',ticker:ticker,qty:qty,pru:pru,
@@ -1105,7 +1110,7 @@ function ptfEdit(id){
   document.getElementById('ptf-pru').value = pos.pru;
   document.getElementById('ptf-date').value = pos.date||'';
   document.getElementById('ptf-note').value = pos.note||'';
-  document.getElementById('ptf-form-title').textContent = '✏️ Modifier ' + pos.ticker;
+  document.getElementById('ptf-form-title').textContent = '✏️ Corriger ' + pos.ticker + ' : quantité TOTALE et PRU (pour un achat, utilise « + Ajouter »)';
   document.getElementById('ptf-submit-btn').textContent = '💾 Enregistrer modification';
   document.getElementById('ptf-edit-cancel').style.display = 'block';
   // Afficher les infos de l'action
