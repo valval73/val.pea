@@ -255,13 +255,15 @@ function peersBlock(s){
   var h='<table class="v2-tbl" style="width:100%;font-size:12px;margin-top:8px"><thead><tr><th></th>'+cols.map(function(c){return '<th>'+c[1]+'</th>';}).join('')+'</tr></thead><tbody>'+
     row(s.name||s.ticker,g.self||{},true)+g.peers.map(function(p){return row(p.n,p);}).join('')+
     '<tr style="border-top:2px solid #ddd;font-style:italic">'+'<td>Médiane concurrents</td>'+cols.map(function(c){return cell(m[c[0]]);}).join('')+'</tr></tbody></table>';
-  var notes=[], pe=(g.self||{}).pe;
-  if(m.pe>30) notes.push('<b>Secteur cher</b> : la médiane des concurrents dépasse 30 fois les bénéfices. Être « moins chère que les autres » ne veut pas dire être bon marché : effet de mode possible.');
+  // 29/10/2026 : alertes sur le PER PREVU (le PER des 12 derniers mois est fausse par les elements exceptionnels) ; a defaut, PER passe
+  var notes=[], sf=g.self||{}, fw=(sf.fpe>0&&m.fpe>0), pe=fw?sf.fpe:sf.pe, mp=fw?m.fpe:m.pe, lab=fw?'PER prévu':'PER';
+  if(mp>30) notes.push('<b>Secteur cher</b> : la médiane des concurrents dépasse 30 fois les bénéfices ('+lab+'). Être « moins chère que les autres » ne veut pas dire être bon marché : effet de mode possible.');
+  m={pe:mp};
   if(pe>0&&m.pe>0&&pe<0.7*m.pe) notes.push('<b>Nettement moins chère que ses concurrents</b> : chercher pourquoi (croissance plus faible, risque particulier) avant d’y voir une occasion.');
   if(pe>0&&m.pe>0&&pe>1.3*m.pe) notes.push('<b>Nettement plus chère que ses concurrents</b> : la prime doit se justifier par une meilleure rentabilité ou une croissance plus forte.');
   var d=(PEERS.date||'').split('-').reverse().join('/');
   return '<div style="margin-top:10px"><b>Face aux concurrents, en chiffres</b> <span class="v2-small">(Yahoo, au '+esc(d)+' ; pour comprendre, pas pour décider)</span></div><div style="overflow-x:auto">'+h+'</div>'+
-    (notes.length?'<div class="v2-small" style="margin-top:6px">'+notes.join('<br>')+'</div>':'');
+    (notes.length?'<div class="v2-small" style="margin-top:6px">'+notes.join('<br>')+' <i>(comparaison sur le '+lab+')</i>'+'</div>':'');
 }
 
 // ---- moat + concurrents ----

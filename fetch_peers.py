@@ -26,7 +26,7 @@ PEER_MAP = {
     'HO': [['BA.L', 'BAE Systems'], ['LDO.MI', 'Leonardo'], ['SAAB-B.ST', 'Saab']],
     'TTE': [['SHEL.L', 'Shell'], ['BP.L', 'BP'], ['ENI.MI', 'Eni']],
     'WKL': [['REL.L', 'RELX'], ['TRI', 'Thomson Reuters'], ['EXPN.L', 'Experian']],
-    'MA': [['V', 'Visa'], ['AXP', 'American Express'], ['PYPL', 'PayPal']],
+    'MA': [['V', 'Visa'], ['AXP', 'American Express'], ['ADYEN.AS', 'Adyen']],
     'KO': [['PEP', 'PepsiCo'], ['KDP', 'Keurig Dr Pepper'], ['MNST', 'Monster Beverage']],
     'ADBE': [['ADSK', 'Autodesk'], ['INTU', 'Intuit'], ['CRM', 'Salesforce']],
     'AMS': [['SABR', 'Sabre'], ['BKNG', 'Booking'], ['EXPE', 'Expedia']],
