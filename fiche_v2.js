@@ -244,6 +244,26 @@ function quality(s){
     (s.qwhy?'<div class="v2-small">'+esc(s.qwhy)+'</div>':'')+'</section>';
 }
 
+// 29/10/2026 : comparatif chiffre avec 3 concurrents cotes (peers.js, mis a jour
+// chaque dimanche). Sert a comprendre, jamais a decider.
+function peersBlock(s){
+  if(typeof PEERS==='undefined'||!PEERS.groups||!PEERS.groups[s.ticker]) return '';
+  var g=PEERS.groups[s.ticker], m=g.med||{};
+  var cols=[['pe','PER'],['fpe','PER prévu'],['eveb','VE/EBITDA'],['pfcf','Prix/cash libre'],['om','Marge opé. %'],['roe','ROE %'],['revg','Croiss. CA %']];
+  var cell=function(v){ return '<td>'+(v==null?'—':fr(v,1))+'</td>'; };
+  var row=function(n,r,b){ return '<tr'+(b?' style="font-weight:700"':'')+'><td>'+esc(n)+'</td>'+cols.map(function(c){return cell(r[c[0]]);}).join('')+'</tr>'; };
+  var h='<table class="v2-tbl" style="width:100%;font-size:12px;margin-top:8px"><thead><tr><th></th>'+cols.map(function(c){return '<th>'+c[1]+'</th>';}).join('')+'</tr></thead><tbody>'+
+    row(s.name||s.ticker,g.self||{},true)+g.peers.map(function(p){return row(p.n,p);}).join('')+
+    '<tr style="border-top:2px solid #ddd;font-style:italic">'+'<td>Médiane concurrents</td>'+cols.map(function(c){return cell(m[c[0]]);}).join('')+'</tr></tbody></table>';
+  var notes=[], pe=(g.self||{}).pe;
+  if(m.pe>30) notes.push('<b>Secteur cher</b> : la médiane des concurrents dépasse 30 fois les bénéfices. Être « moins chère que les autres » ne veut pas dire être bon marché : effet de mode possible.');
+  if(pe>0&&m.pe>0&&pe<0.7*m.pe) notes.push('<b>Nettement moins chère que ses concurrents</b> : chercher pourquoi (croissance plus faible, risque particulier) avant d’y voir une occasion.');
+  if(pe>0&&m.pe>0&&pe>1.3*m.pe) notes.push('<b>Nettement plus chère que ses concurrents</b> : la prime doit se justifier par une meilleure rentabilité ou une croissance plus forte.');
+  var d=(PEERS.date||'').split('-').reverse().join('/');
+  return '<div style="margin-top:10px"><b>Face aux concurrents, en chiffres</b> <span class="v2-small">(Yahoo, au '+esc(d)+' ; pour comprendre, pas pour décider)</span></div><div style="overflow-x:auto">'+h+'</div>'+
+    (notes.length?'<div class="v2-small" style="margin-top:6px">'+notes.join('<br>')+'</div>':'');
+}
+
 // ---- moat + concurrents ----
 function moat(s, F){
   var sc = s.mscore;
@@ -251,7 +271,7 @@ function moat(s, F){
   return '<section class="v2-card"><div class="v2-head"><h2>Moat : '+(sc!=null?sc+' / 5':'non évalué')+'</h2>'+
     (s.unc?'<span class="v2-pill" style="background:'+(s.unc==='elevee'?'#fbecea':s.unc==='faible'?'#eef6f1':'#fbf4e6')+';color:'+(s.unc==='elevee'?C.rd:s.unc==='faible'?C.gn:'#8a6420')+'">INCERTITUDE '+(UNC[s.unc]||'NON ÉVALUÉE').toUpperCase()+(UNCM[s.unc]?' → DÉCOTE '+UNCM[s.unc]:'')+'</span>':'')+'</div>'+
     (s.mtype?'<p><b>D’où vient l’avantage :</b> '+esc(s.mtype)+'.</p>':'')+
-    '<div><b>Pourquoi pas un concurrent ?</b></div>'+comp+
+    '<div><b>Pourquoi pas un concurrent ?</b></div>'+comp+peersBlock(s)+
     (s.mthreat?'<div style="color:'+C.rd+'"><b>Menace :</b> '+esc(s.mthreat)+'.</div>':'')+
     '<div class="v2-small">'+((typeof FICHE!=='undefined'&&FICHE[s.ticker]&&FICHE[s.ticker].val)?'Note de moat validée par toi le '+esc(FICHE[s.ticker].val.split('-').reverse().join('/'))+'.':'Note de moat et niveau d’incertitude : jugement de Claude, à valider par toi.')+'</div></section>';
 }
