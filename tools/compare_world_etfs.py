@@ -1,5 +1,8 @@
 """Compare les ETF MSCI World eligibles au PEA sur la meme periode (sonde ponctuelle).
-Affiche les resultats dans le journal de l'action ; n'ecrit aucun fichier."""
+Resultat ecrit dans probe_sources.json (sortie des sondes)."""
+import io, json, contextlib
+_buf = io.StringIO()
+_ctx = contextlib.redirect_stdout(_buf); _ctx.__enter__()
 import yfinance as yf
 import pandas as pd
 
@@ -26,3 +29,7 @@ gap = (base['DCAM.PA'] - base['CW8.PA'])
 print('ECART DCAM-CW8 (points de base 100): min', round(gap.min(), 2), 'max', round(gap.max(), 2), 'fin', round(gap.iloc[-1], 2))
 m = base.resample('ME').last()
 print('COURBES MENSUELLES (base 100)\n', m.round(2).to_string())
+
+_ctx.__exit__(None, None, None)
+print(_buf.getvalue())
+json.dump({'sonde': 'compare_world_etfs', 'texte': _buf.getvalue().splitlines()}, open('probe_sources.json', 'w'), ensure_ascii=False, indent=1)
