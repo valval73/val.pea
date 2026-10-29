@@ -1,26 +1,41 @@
 {
- "VAL.PEA screener per | //www.sec.gov/files/company_tickers.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
- ],
- "VAL.PEA screener per | api/xbrl/companyfacts/CIK0000320193.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
- ],
- "ValPea Research valp | //www.sec.gov/files/company_tickers.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
- ],
- "ValPea Research valp | api/xbrl/companyfacts/CIK0000320193.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
- ],
- "Mozilla/5.0 (compati | //www.sec.gov/files/company_tickers.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
- ],
- "Mozilla/5.0 (compati | api/xbrl/companyfacts/CIK0000320193.json": [
-  403,
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\""
+ "sonde": "compare_world_etfs",
+ "texte": [
+  "PERIODE COMMUNE 2025-03-04 -> 2026-10-29 419 jours",
+  "Amundi MSCI World (CW8)          cumul   28.22 %",
+  "Amundi PEA Monde (DCAM)          cumul   28.04 %",
+  "iShares MSCI World PEA (WPEA)    cumul   28.68 %",
+  "1 AN    {'CW8.PA': np.float64(17.69), 'DCAM.PA': np.float64(17.84), 'WPEA.PA': np.float64(17.95)}",
+  "DEPUIS 1/1 {'CW8.PA': np.float64(16.74), 'DCAM.PA': np.float64(16.93), 'WPEA.PA': np.float64(16.91)}",
+  "6 MOIS  {'CW8.PA': np.float64(13.31), 'DCAM.PA': np.float64(13.31), 'WPEA.PA': np.float64(13.29)}",
+  "CORRELATION JOURNALIERE",
+  "          CW8.PA  DCAM.PA  WPEA.PA",
+  "CW8.PA   1.0000   0.9821   0.9986",
+  "DCAM.PA  0.9821   1.0000   0.9819",
+  "WPEA.PA  0.9986   0.9819   1.0000",
+  "ECART DCAM-CW8 (points de base 100): min -1.31 max 0.64 fin -0.18",
+  "COURBES MENSUELLES (base 100)",
+  "             CW8.PA  DCAM.PA  WPEA.PA",
+  "Date                                ",
+  "2025-03-31   94.90    94.62    94.91",
+  "2025-04-30   91.21    90.80    91.22",
+  "2025-05-31   97.09    96.60    97.16",
+  "2025-06-30   97.75    97.40    97.90",
+  "2025-07-31  102.45   102.06   102.53",
+  "2025-08-31  102.07   101.82   102.17",
+  "2025-09-30  104.60   104.28   104.79",
+  "2025-10-31  108.95   108.74   109.18",
+  "2025-11-30  108.65   108.20   108.82",
+  "2025-12-31  108.70   108.40   108.90",
+  "2026-01-31  109.26   109.00   109.52",
+  "2026-02-28  110.57   110.28   110.85",
+  "2026-03-31  105.35   105.08   105.55",
+  "2026-04-30  113.92   113.68   114.27",
+  "2026-05-31  120.14   119.86   120.47",
+  "2026-06-30  121.79   121.54   122.13",
+  "2026-07-31  120.84   120.58   121.26",
+  "2026-08-31  123.28   123.04   123.68",
+  "2026-09-30  125.52   125.38   126.03",
+  "2026-10-31  128.22   128.04   128.68"
  ]
 }
