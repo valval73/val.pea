@@ -157,6 +157,15 @@ def main():
         if w > 10:
             big.append((s, f"pèse {fr(w, 1)} % (plafond 10 %)"))
         c = last_ce(D['CE'], t)
+        # 30/10/2026 : vente sans attendre les comptes annuels si la derniere
+        # contre-expertise conclut "cassee", ou si les deux dernieres concluent
+        # "fragilisee" (ex. apres deux trimestres de ventes en baisse a donnees
+        # comparables, qui imposent une contre-expertise).
+        L_ = sorted(D['CE'].get(t, []), key=lambda x: x.get('date', ''), reverse=True)
+        if L_ and L_[0].get('concl') == 'cassee':
+            sell.append((s, f"thèse cassée (contre-expertise du {L_[0]['date']})"))
+        elif len(L_) >= 2 and L_[0].get('concl') == L_[1].get('concl') == 'fragilisee':
+            sell.append((s, f"thèse fragilisée deux fois de suite ({L_[1]['date']} puis {L_[0]['date']})"))
         age = (date.today() - date.fromisoformat(c['date'])).days if c else None
         if age is None or age > 90:
             ce_todo.append((s, 'jamais de contre-expertise' if age is None else f'dernière il y a {age} jours'))
@@ -304,7 +313,7 @@ def main():
 <div style="font-family:Georgia,serif;font-size:22px;margin-top:4px">{n_buy} achat{"s" if n_buy != 1 else ""} possible{"s" if n_buy != 1 else ""} {(' · ' + str(len(sell)) + ' ligne(s) hors qualité') if ptf else ''}</div>
 </div>
 {health_html}<p style="font-size:14px;line-height:1.5">{head}</p>
-{sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend seulement si la perte de qualité est confirmée à la publication suivante, ou si une contre-expertise conclut « thèse cassée ». Jamais sur le prix seul.</p>')}
+{sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend si la perte de qualité est confirmée à la publication suivante, si une contre-expertise conclut « thèse cassée », ou si deux contre-expertises de suite concluent « fragilisée ». Deux trimestres de ventes en baisse à données comparables imposent une contre-expertise. Jamais sur le prix seul.</p>')}
 {sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>. L’ETF est ta poche d’attente : le jour où une action touche son palier, tu vends la part d’ETF correspondante dans le PEA (sans impôt) pour l’acheter.</p>'))}
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}
 {sec('Mouvements de plus de 10 % cette semaine', li(moves, '#24508a') + '<p style="font-size:12px;color:#5a6275">La thèse est-elle touchée, ou seulement le prix ? On ne décide jamais sur un mouvement de prix seul.</p>')}
