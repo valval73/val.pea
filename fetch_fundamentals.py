@@ -355,6 +355,7 @@ def compute_roic(t):
 # Alarme (revue de these, pas un filtre) : Piotroski <= 4.
 # Donnee manquante = filtre NON valide (jamais de qualite supposee).
 Q_ROIC_X, Q_ROIC, Q_FCF, Q_ND, Q_GROWTH = 15.0, 12.0, 80.0, 2.5, 3.0
+Q_ND_CYC = 2.0  # 30/10/2026 : dette nette / EBITDA moyen, cycliques
 
 # Exceptions ECRITES, decidees par l'utilisatrice (pas de derogation au cas par cas) :
 # la valeur reste eligible a l'argent neuf meme si elle echoue au filtre.
@@ -590,6 +591,9 @@ def compute_quality(t, sector_cat):
         if pairs and sni > 0:
             res['fcfc'] = round(sum(f for f, _ in pairs) / sni * 100, 0)
         e0 = g(ebitda, 0)
+        _eb = [x for x in ebitda[:4] if x is not None]
+        if _eb and sum(_eb) > 0:
+            res['nde_avg'] = round(((g(debt, 0) or 0) - (g(cash, 0) or 0)) / (sum(_eb) / len(_eb)), 2)
         if e0 and e0 > 0:
             res['nde'] = round(((g(debt, 0) or 0) - (g(cash, 0) or 0)) / e0, 2)
         revs = [x for x in rev[:4] if x is not None]
@@ -1320,6 +1324,33 @@ def fetch_one(ticker, yf_sym, sector):
         # Valeur "limite" (05/10/2026, cas Vinci : croissance 2,6 % pour une
         # barre a 3 %) : un SEUL critere en echec -> reste hors filtre, mais
         # signalee "a surveiller" au lieu d'etre ignoree.
+        # Cycliques exclus (grille dediee a venir) : un ROIIC mesure entre un
+        # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
+        _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti|\bLNG\b|GNL|m[ée]thanier",
+                         sector or '', re.I) and ticker not in NON_CYCLIQUES
+        # 19/10/2026 : fiches promues du radar (secteur Yahoo en anglais) : on lit
+        # l'industrie Yahoo, plus fine que le secteur.
+        if not _cyc and ticker in PROMUS:
+            _cyc = re.search(r"semiconductor|aerospace|auto|steel|alumin|copper|gold|silver|mining|metals|oil|gas|coal|"
+                             r"chemical|building materials|construction|airline|marine|shipping|lumber|paper|"
+                             r"farm & heavy|recreational vehicle|residential",
+                             info.get('industry') or '', re.I)
+        # 30/10/2026 : etiquette cyclique sur toutes les valeurs (avant : seulement
+        # celles valorisees, d'ou TotalEnergies affichee sans etiquette)
+        if _cyc and not result.get('grid'):
+            result['grid'] = 'cyclique'
+        # 30/10/2026 : grille des cycliques. La croissance du CA sur 4 exercices
+        # mesure le cycle, pas l'entreprise (cas TotalEnergies : -11,5 %/an depuis
+        # le pic de 2022, alors que le T3 2026 est record). Pour une cyclique, ce
+        # critere est remplace par la dette : dette nette <= 2 x EBITDA MOYEN des
+        # exercices publies (une cyclique meurt de sa dette au creux du cycle).
+        if _cyc and kind not in ('Banque', 'Fonciere'):
+            _p = [x for x in (result.get('qwhy') or '').split(', ') if x and not x.startswith('croissance')]
+            _na = result.get('nde_avg')
+            if _na is None or _na > Q_ND_CYC:
+                _p.append(f'dette/EBITDA moyen {_na}')
+            result['qok'] = not _p
+            result['qwhy'] = ', '.join(_p)
         _fails = [x for x in (result.get('qwhy') or '').split(', ') if x]
         # "Limite" = un seul critere manque ET de peu (sinon 34 valeurs
         # etaient signalees au premier essai, dont des reculs de -11 %).
@@ -1344,21 +1375,6 @@ def fetch_one(ticker, yf_sym, sector):
         # critere en echec, mais capital ajoute rentable (ROIIC >= seuil ROIC)
         # et cash libre cumule positif -> "a surveiller", jamais "achat".
         _ri = result.get('roiic')
-        # Cycliques exclus (grille dediee a venir) : un ROIIC mesure entre un
-        # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
-        _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti|\bLNG\b|GNL|m[ée]thanier",
-                         sector or '', re.I) and ticker not in NON_CYCLIQUES
-        # 19/10/2026 : fiches promues du radar (secteur Yahoo en anglais) : on lit
-        # l'industrie Yahoo, plus fine que le secteur.
-        if not _cyc and ticker in PROMUS:
-            _cyc = re.search(r"semiconductor|aerospace|auto|steel|alumin|copper|gold|silver|mining|metals|oil|gas|coal|"
-                             r"chemical|building materials|construction|airline|marine|shipping|lumber|paper|"
-                             r"farm & heavy|recreational vehicle|residential",
-                             info.get('industry') or '', re.I)
-        # 30/10/2026 : etiquette cyclique sur toutes les valeurs (avant : seulement
-        # celles valorisees, d'ou TotalEnergies affichee sans etiquette)
-        if _cyc and not result.get('grid'):
-            result['grid'] = 'cyclique'
         result['reinv'] = bool(not result.get('qok') and not _cyc and len(_fails) == 1
                                and _fails[0].startswith('cash')
                                and _ri is not None and _ri >= Q_ROIC_X
