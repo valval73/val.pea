@@ -1346,7 +1346,7 @@ def fetch_one(ticker, yf_sym, sector):
         _ri = result.get('roiic')
         # Cycliques exclus (grille dediee a venir) : un ROIIC mesure entre un
         # creux et un haut de cycle ne prouve rien (cas Air France, Elmos).
-        _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti",
+        _cyc = re.search(r"a[ée]rien|semi-conducteur|auto|pneumat|chimie|acier|m[ée]tau|minier|mines|[ée]nergie|p[ée]trol|mat[ée]riaux|ciment|construction &|yacht|catamaran|maritime|promotion immobili|a[ée]ronauti|\bLNG\b|GNL|m[ée]thanier",
                          sector or '', re.I) and ticker not in NON_CYCLIQUES
         # 19/10/2026 : fiches promues du radar (secteur Yahoo en anglais) : on lit
         # l'industrie Yahoo, plus fine que le secteur.
@@ -1355,6 +1355,10 @@ def fetch_one(ticker, yf_sym, sector):
                              r"chemical|building materials|construction|airline|marine|shipping|lumber|paper|"
                              r"farm & heavy|recreational vehicle|residential",
                              info.get('industry') or '', re.I)
+        # 30/10/2026 : etiquette cyclique sur toutes les valeurs (avant : seulement
+        # celles valorisees, d'ou TotalEnergies affichee sans etiquette)
+        if _cyc and not result.get('grid'):
+            result['grid'] = 'cyclique'
         result['reinv'] = bool(not result.get('qok') and not _cyc and len(_fails) == 1
                                and _fails[0].startswith('cash')
                                and _ri is not None and _ri >= Q_ROIC_X
