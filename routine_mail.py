@@ -165,7 +165,14 @@ def main():
         if L_ and L_[0].get('concl') == 'cassee':
             sell.append((s, f"thèse cassée (contre-expertise du {L_[0]['date']})"))
         elif len(L_) >= 2 and L_[0].get('concl') == L_[1].get('concl') == 'fragilisee':
-            sell.append((s, f"thèse fragilisée deux fois de suite ({L_[1]['date']} puis {L_[0]['date']})"))
+            # 31/10/2026 : ne comptent que deux contre-expertises faites apres deux
+            # publications de resultats differentes (champ pub, ex. 'T3 2026') ;
+            # sinon il suffirait de rediger deux fois la meme fiche pour forcer une vente.
+            p0, p1 = L_[0].get('pub'), L_[1].get('pub')
+            if p0 and p1 and p0 != p1:
+                sell.append((s, f"thèse fragilisée deux fois de suite, après deux publications ({p1} puis {p0})"))
+            else:
+                review.append((s, f"fragilisée deux fois ({L_[1]['date']} puis {L_[0]['date']}) sans nouvelle publication de résultats entre les deux : ne compte pas pour la vente, attendre la prochaine publication"))
         age = (date.today() - date.fromisoformat(c['date'])).days if c else None
         if age is None or age > 90:
             ce_todo.append((s, 'jamais de contre-expertise' if age is None else f'dernière il y a {age} jours'))
@@ -328,7 +335,7 @@ def main():
 <div style="font-family:Georgia,serif;font-size:22px;margin-top:4px">{n_buy} achat{"s" if n_buy != 1 else ""} possible{"s" if n_buy != 1 else ""} {(' · ' + str(len(sell)) + ' ligne(s) hors qualité') if ptf else ''}</div>
 </div>
 {health_html}<p style="font-size:14px;line-height:1.5">{head}</p>
-{sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend si la perte de qualité est confirmée à la publication suivante, si une contre-expertise conclut « thèse cassée », ou si deux contre-expertises de suite concluent « fragilisée ». Deux trimestres de ventes en baisse à données comparables imposent une contre-expertise. Jamais sur le prix seul.</p>')}
+{sec('1. Vendre ?', li(sell, '#a8322b') + li(review, '#a8322b') + '<p style="font-size:12px;color:#5a6275">Règle : on vend si la perte de qualité est confirmée à la publication suivante, si une contre-expertise conclut « thèse cassée », ou si deux contre-expertises de suite concluent « fragilisée », chacune faite après une nouvelle publication de résultats. Deux trimestres de ventes en baisse à données comparables imposent une contre-expertise. Jamais sur le prix seul.</p>')}
 {sec('2. Acheter ?', li(buys, '#1d6b45') + ('' if buys else '<p style="font-size:13px">Aucune action en zone : <b>le versement du mois va sur l’ETF Monde</b>. L’ETF est ta poche d’attente : le jour où une action touche son palier, tu vends la part d’ETF correspondante dans le PEA (sans impôt) pour l’acheter.</p>'))}
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}
 {sec('Mouvements de plus de 10 % cette semaine', li(moves, '#24508a') + '<p style="font-size:12px;color:#5a6275">La thèse est-elle touchée, ou seulement le prix ? On ne décide jamais sur un mouvement de prix seul.</p>')}
