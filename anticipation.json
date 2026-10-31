@@ -1,0 +1,3489 @@
+{
+ "date": "2026-10-31",
+ "alertes": [
+  {
+   "t": "MC",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.5 % en 90 jours (25.557 → 24.14)"
+  },
+  {
+   "t": "RMS",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.2 % en 90 jours (51.264 → 48.095)"
+  },
+  {
+   "t": "KER",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.8 % en 90 jours (9.969 → 9.094)"
+  },
+  {
+   "t": "RNO",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.8 % en 90 jours (6.851 → 6.314)"
+  },
+  {
+   "t": "VIV",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.7 % en 90 jours (0.116 → 0.103)"
+  },
+  {
+   "t": "ALO",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.1 % en 90 jours (2.049 → 1.821)"
+  },
+  {
+   "t": "SEB",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.0 % en 90 jours (7.984 → 7.584)"
+  },
+  {
+   "t": "VK",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.2 % en 90 jours (2.093 → 1.942)"
+  },
+  {
+   "t": "FNAC",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.5 % en 90 jours (3.239 → 3.028)"
+  },
+  {
+   "t": "AF",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.0 % en 90 jours (4.442 → 4.218)"
+  },
+  {
+   "t": "ATO",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -25.0 % en 90 jours (6.588 → 4.944)"
+  },
+  {
+   "t": "DBG",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -9.8 % en 90 jours (1.16 → 1.046)"
+  },
+  {
+   "t": "VALO",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.5 % en 90 jours (2.027 → 1.916)"
+  },
+  {
+   "t": "OPM",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -16.3 % en 90 jours (1.815 → 1.52)"
+  },
+  {
+   "t": "LDLC",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -39.1 % en 90 jours (2.101 → 1.28)"
+  },
+  {
+   "t": "HIPAY",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -34.7 % en 90 jours (0.49 → 0.32)"
+  },
+  {
+   "t": "GLEVT",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.9 % en 90 jours (3.602 → 3.388)"
+  },
+  {
+   "t": "MANITOU",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.9 % en 90 jours (2.91 → 2.68)"
+  },
+  {
+   "t": "NEXTY",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -38.8 % en 90 jours (0.22 → 0.135)"
+  },
+  {
+   "t": "SELENV",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -18.4 % en 90 jours (6.965 → 5.685)"
+  },
+  {
+   "t": "SOLVB",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.8 % en 90 jours (2.59 → 2.362)"
+  },
+  {
+   "t": "BNENF",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -39.8 % en 90 jours (0.551 → 0.332)"
+  },
+  {
+   "t": "ADP",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.0 % en 90 jours (7.263 → 6.826)"
+  },
+  {
+   "t": "AKE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.0 % en 90 jours (5.65 → 4.974)"
+  },
+  {
+   "t": "ANTIN",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.5 % en 90 jours (0.613 → 0.567)"
+  },
+  {
+   "t": "ERA",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -45.9 % en 90 jours (3.738 → 2.023)"
+  },
+  {
+   "t": "FDJU",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.8 % en 90 jours (2.689 → 2.507)"
+  },
+  {
+   "t": "OVH",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (0.507 → 0.479)"
+  },
+  {
+   "t": "TE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.1 % en 90 jours (3.185 → 2.927)"
+  },
+  {
+   "t": "TFI",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -10.2 % en 90 jours (0.521 → 0.468)"
+  },
+  {
+   "t": "TKO",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.4 % en 90 jours (1.712 → 1.586)"
+  },
+  {
+   "t": "NEM",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.3 % en 90 jours (3.099 → 2.84)"
+  },
+  {
+   "t": "BEI",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.6 % en 90 jours (4.507 → 3.984)"
+  },
+  {
+   "t": "DSV",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.2 % en 90 jours (84.868 → 78.748)"
+  },
+  {
+   "t": "KRN",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (11.233 → 10.623)"
+  },
+  {
+   "t": "NA9",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.9 % en 90 jours (5.83 → 5.485)"
+  },
+  {
+   "t": "KSB3",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (96.15 → 89.308)"
+  },
+  {
+   "t": "REG1VHE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -20.5 % en 90 jours (0.968 → 0.77)"
+  },
+  {
+   "t": "EVISOMI",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -13.0 % en 90 jours (0.489 → 0.426)"
+  },
+  {
+   "t": "SDGPA",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.6 % en 90 jours (3.045 → 2.875)"
+  },
+  {
+   "t": "HEMST",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -22.5 % en 90 jours (6.688 → 5.183)"
+  },
+  {
+   "t": "RYAIR",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -14.4 % en 90 jours (1.918 → 1.642)"
+  },
+  {
+   "t": "AEGNAT",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -39.5 % en 90 jours (1.684 → 1.018)"
+  },
+  {
+   "t": "CTTLS",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.6 % en 90 jours (0.583 → 0.533)"
+  },
+  {
+   "t": "DIAWA",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.4 % en 90 jours (10.42 → 9.748)"
+  },
+  {
+   "t": "GBFDE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -20.7 % en 90 jours (6.987 → 5.544)"
+  },
+  {
+   "t": "HACKST",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.9 % en 90 jours (0.866 → 0.806)"
+  },
+  {
+   "t": "MCAPST",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.3 % en 90 jours (24.17 → 22.64)"
+  },
+  {
+   "t": "PENOL",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.3 % en 90 jours (0.877 → 0.77)"
+  },
+  {
+   "t": "RAYBST",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.3 % en 90 jours (9.35 → 8.2)"
+  },
+  {
+   "t": "TUI1DE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.8 % en 90 jours (1.412 → 1.33)"
+  },
+  {
+   "t": "VOSDE",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -15.5 % en 90 jours (4.166 → 3.519)"
+  },
+  {
+   "t": "MRK",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.7 % en 90 jours (9.678 → 9.123)"
+  },
+  {
+   "t": "ROL",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.9 % en 90 jours (1.312 → 1.235)"
+  },
+  {
+   "t": "ACM",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (6.718 → 6.243)"
+  },
+  {
+   "t": "BKR",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.8 % en 90 jours (3.183 → 2.903)"
+  },
+  {
+   "t": "HONA",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.3 % en 90 jours (9.969 → 8.846)"
+  },
+  {
+   "t": "INTU",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.5 % en 90 jours (30.794 → 26.944)"
+  },
+  {
+   "t": "LYV",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.0 % en 90 jours (2.161 → 1.902)"
+  },
+  {
+   "t": "SFM",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -22.8 % en 90 jours (5.95 → 4.595)"
+  },
+  {
+   "t": "WFRD",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -9.8 % en 90 jours (7.261 → 6.549)"
+  },
+  {
+   "t": "ARYNSW",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.6 % en 90 jours (5.316 → 4.644)"
+  },
+  {
+   "t": "BCHNSW",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.2 % en 90 jours (29.845 → 28.297)"
+  },
+  {
+   "t": "AON",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (21.354 → 20.205)"
+  },
+  {
+   "t": "ASR",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.6 % en 90 jours (25.732 → 22.486)"
+  }
+ ],
+ "surveiller": [
+  {
+   "t": "GTT",
+   "type": "concurrents",
+   "txt": "croissance -0.4 % contre +6.9 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "INTERPARFUMS",
+   "type": "concurrents",
+   "txt": "croissance -7.3 % contre +2.1 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "AI",
+   "type": "concurrents",
+   "txt": "croissance +0.8 % contre +9.2 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "HO",
+   "type": "concurrents",
+   "txt": "croissance +6.7 % contre +16.7 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "WKL",
+   "type": "concurrents",
+   "txt": "croissance -0.6 % contre +9.5 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "KO",
+   "type": "concurrents",
+   "txt": "croissance +7.4 % contre +20.2 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "AMS",
+   "type": "concurrents",
+   "txt": "croissance +1.5 % contre +8.1 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "UMG",
+   "type": "concurrents",
+   "txt": "croissance +5.3 % contre +10.4 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "AIR",
+   "type": "concurrents",
+   "txt": "croissance -2.0 % contre +9.9 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "DSY",
+   "type": "concurrents",
+   "txt": "croissance +6.3 % contre +16.1 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  },
+  {
+   "t": "ATCO",
+   "type": "concurrents",
+   "txt": "croissance +15.1 % contre +29.1 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+  }
+ ],
+ "eps": {
+  "MC": {
+   "periode": "+1y",
+   "bpa": 24.14,
+   "bpa_90j": 25.557,
+   "var": -5.5
+  },
+  "AI": {
+   "periode": "+1y",
+   "bpa": 7.21,
+   "bpa_90j": 7.183,
+   "var": 0.4
+  },
+  "OR": {
+   "periode": "+1y",
+   "bpa": 15.219,
+   "bpa_90j": 14.921,
+   "var": 2.0
+  },
+  "RMS": {
+   "periode": "+1y",
+   "bpa": 48.095,
+   "bpa_90j": 51.264,
+   "var": -6.2
+  },
+  "SAN": {
+   "periode": "+1y",
+   "bpa": 9.054,
+   "bpa_90j": 9.072,
+   "var": -0.2
+  },
+  "TTE": {
+   "periode": "+1y",
+   "bpa": 11.332,
+   "bpa_90j": 9.595,
+   "var": 18.1
+  },
+  "SAF": {
+   "periode": "+1y",
+   "bpa": 12.69,
+   "bpa_90j": 12.729,
+   "var": -0.3
+  },
+  "SU": {
+   "periode": "+1y",
+   "bpa": 12.593,
+   "bpa_90j": 11.634,
+   "var": 8.2
+  },
+  "AXA": {
+   "periode": "+1y",
+   "bpa": 4.478,
+   "bpa_90j": 4.468,
+   "var": 0.2
+  },
+  "BNP": {
+   "periode": "+1y",
+   "bpa": 13.178,
+   "bpa_90j": 13.062,
+   "var": 0.9
+  },
+  "ACA": {
+   "periode": "+1y",
+   "bpa": 2.497,
+   "bpa_90j": 2.443,
+   "var": 2.2
+  },
+  "GLE": {
+   "periode": "+1y",
+   "bpa": 9.32,
+   "bpa_90j": 9.0,
+   "var": 3.6
+  },
+  "AIR": {
+   "periode": "+1y",
+   "bpa": 8.673,
+   "bpa_90j": 8.686,
+   "var": -0.1
+  },
+  "KER": {
+   "periode": "+1y",
+   "bpa": 9.094,
+   "bpa_90j": 9.969,
+   "var": -8.8
+  },
+  "PUB": {
+   "periode": "+1y",
+   "bpa": 8.606,
+   "bpa_90j": 8.59,
+   "var": 0.2
+  },
+  "ORA": {
+   "periode": "+1y",
+   "bpa": 1.134,
+   "bpa_90j": 1.145,
+   "var": -1.0
+  },
+  "VIE": {
+   "periode": "+1y",
+   "bpa": 2.636,
+   "bpa_90j": 2.628,
+   "var": 0.3
+  },
+  "RNO": {
+   "periode": "+1y",
+   "bpa": 6.314,
+   "bpa_90j": 6.851,
+   "var": -7.8
+  },
+  "SGO": {
+   "periode": "+1y",
+   "bpa": 6.689,
+   "bpa_90j": 6.841,
+   "var": -2.2
+  },
+  "CAP": {
+   "periode": "+1y",
+   "bpa": 13.736,
+   "bpa_90j": 13.701,
+   "var": 0.3
+  },
+  "DG": {
+   "periode": "+1y",
+   "bpa": 9.91,
+   "bpa_90j": 9.964,
+   "var": -0.5
+  },
+  "VIV": {
+   "periode": "+1y",
+   "bpa": 0.103,
+   "bpa_90j": 0.116,
+   "var": -11.7
+  },
+  "RI": {
+   "periode": "+1y",
+   "bpa": 5.926,
+   "bpa_90j": 6.161,
+   "var": -3.8
+  },
+  "LR": {
+   "periode": "+1y",
+   "bpa": 6.866,
+   "bpa_90j": 6.616,
+   "var": 3.8
+  },
+  "WLN": {
+   "periode": "+1y",
+   "bpa": 3.443,
+   "bpa_90j": 3.416,
+   "var": 0.8
+  },
+  "DSY": {
+   "periode": "+1y",
+   "bpa": 1.44,
+   "bpa_90j": 1.404,
+   "var": 2.5
+  },
+  "STM": {
+   "periode": "+1y",
+   "bpa": 2.599,
+   "bpa_90j": 2.54,
+   "var": 2.4
+  },
+  "EL": {
+   "periode": "+1y",
+   "bpa": 7.927,
+   "bpa_90j": 8.116,
+   "var": -2.3
+  },
+  "ML": {
+   "periode": "+1y",
+   "bpa": 3.195,
+   "bpa_90j": 3.228,
+   "var": -1.0
+  },
+  "ENGI": {
+   "periode": "+1y",
+   "bpa": 2.118,
+   "bpa_90j": 2.084,
+   "var": 1.6
+  },
+  "MT": {
+   "periode": "+1y",
+   "bpa": 7.454,
+   "bpa_90j": 7.321,
+   "var": 1.8
+  },
+  "URW": {
+   "periode": "+1y",
+   "bpa": 9.422,
+   "bpa_90j": 9.433,
+   "var": -0.1
+  },
+  "SW": {
+   "periode": "+1y",
+   "bpa": 4.06,
+   "bpa_90j": 4.057,
+   "var": 0.1
+  },
+  "TEP": {
+   "periode": "+1y",
+   "bpa": 14.279,
+   "bpa_90j": 13.884,
+   "var": 2.8
+  },
+  "EN": {
+   "periode": "+1y",
+   "bpa": 3.862,
+   "bpa_90j": 3.859,
+   "var": 0.1
+  },
+  "GTT": {
+   "periode": "+1y",
+   "bpa": 12.258,
+   "bpa_90j": 12.086,
+   "var": 1.4
+  },
+  "COFA": {
+   "periode": "+1y",
+   "bpa": 1.585,
+   "bpa_90j": 1.62,
+   "var": -2.2
+  },
+  "MERY": {
+   "periode": "+1y",
+   "bpa": 1.328,
+   "bpa_90j": 1.319,
+   "var": 0.7
+  },
+  "JXS": {
+   "periode": "+1y",
+   "bpa": 2.095,
+   "bpa_90j": 1.91,
+   "var": 9.7
+  },
+  "SPIE": {
+   "periode": "+1y",
+   "bpa": 3.446,
+   "bpa_90j": 3.454,
+   "var": -0.2
+  },
+  "NEXANS": {
+   "periode": "+1y",
+   "bpa": 9.366,
+   "bpa_90j": 9.194,
+   "var": 1.9
+  },
+  "DASSAV": {
+   "periode": "+1y",
+   "bpa": 18.827,
+   "bpa_90j": 18.794,
+   "var": 0.2
+  },
+  "ALO": {
+   "periode": "+1y",
+   "bpa": 1.821,
+   "bpa_90j": 2.049,
+   "var": -11.1
+  },
+  "ELIS": {
+   "periode": "+1y",
+   "bpa": 2.164,
+   "bpa_90j": 2.19,
+   "var": -1.2
+  },
+  "SEB": {
+   "periode": "+1y",
+   "bpa": 7.584,
+   "bpa_90j": 7.984,
+   "var": -5.0
+  },
+  "ERF": {
+   "periode": "+1y",
+   "bpa": 4.743,
+   "bpa_90j": 4.703,
+   "var": 0.8
+  },
+  "IPSOS": {
+   "periode": "+1y",
+   "bpa": 5.578,
+   "bpa_90j": 5.632,
+   "var": -1.0
+  },
+  "ABCA": {
+   "periode": "+1y",
+   "bpa": 0.619,
+   "bpa_90j": 0.547,
+   "var": 13.0
+  },
+  "VK": {
+   "periode": "+1y",
+   "bpa": 1.942,
+   "bpa_90j": 2.093,
+   "var": -7.2
+  },
+  "FNAC": {
+   "periode": "+1y",
+   "bpa": 3.028,
+   "bpa_90j": 3.239,
+   "var": -6.5
+  },
+  "LNA": {
+   "periode": "+1y",
+   "bpa": 3.412,
+   "bpa_90j": 3.294,
+   "var": 3.6
+  },
+  "SOP": {
+   "periode": "+1y",
+   "bpa": 19.963,
+   "bpa_90j": 19.625,
+   "var": 1.7
+  },
+  "AC": {
+   "periode": "+1y",
+   "bpa": 2.656,
+   "bpa_90j": 2.648,
+   "var": 0.3
+  },
+  "AF": {
+   "periode": "+1y",
+   "bpa": 4.218,
+   "bpa_90j": 4.442,
+   "var": -5.0
+  },
+  "BN": {
+   "periode": "+1y",
+   "bpa": 4.199,
+   "bpa_90j": 4.212,
+   "var": -0.3
+  },
+  "CA": {
+   "periode": "+1y",
+   "bpa": 1.805,
+   "bpa_90j": 1.863,
+   "var": -3.1
+  },
+  "HO": {
+   "periode": "+1y",
+   "bpa": 12.399,
+   "bpa_90j": 12.377,
+   "var": 0.2
+  },
+  "ATO": {
+   "periode": "+1y",
+   "bpa": 4.944,
+   "bpa_90j": 6.588,
+   "var": -25.0
+  },
+  "DBG": {
+   "periode": "+1y",
+   "bpa": 1.046,
+   "bpa_90j": 1.16,
+   "var": -9.8
+  },
+  "LPE": {
+   "periode": "+1y",
+   "bpa": 9.113,
+   "bpa_90j": 9.113,
+   "var": 0.0
+  },
+  "ASML": {
+   "periode": "+1y",
+   "bpa": 55.929,
+   "bpa_90j": 51.088,
+   "var": 9.5
+  },
+  "PRX": {
+   "periode": "+1y",
+   "bpa": 4.259,
+   "bpa_90j": 4.407,
+   "var": -3.4
+  },
+  "ADYEN": {
+   "periode": "+1y",
+   "bpa": 45.711,
+   "bpa_90j": 46.569,
+   "var": -1.8
+  },
+  "HEIA": {
+   "periode": "+1y",
+   "bpa": 5.711,
+   "bpa_90j": 5.676,
+   "var": 0.6
+  },
+  "NOVO": {
+   "periode": "+1y",
+   "bpa": 22.215,
+   "bpa_90j": 21.499,
+   "var": 3.3
+  },
+  "RACE": {
+   "periode": "+1y",
+   "bpa": 11.046,
+   "bpa_90j": 10.783,
+   "var": 2.4
+  },
+  "SAP": {
+   "periode": "+1y",
+   "bpa": 8.475,
+   "bpa_90j": 8.398,
+   "var": 0.9
+  },
+  "SIEMENS": {
+   "periode": "+1y",
+   "bpa": 13.006,
+   "bpa_90j": 12.847,
+   "var": 1.2
+  },
+  "ALV": {
+   "periode": "+1y",
+   "bpa": 32.861,
+   "bpa_90j": 32.735,
+   "var": 0.4
+  },
+  "BIOM": {
+   "periode": "+1y",
+   "bpa": 4.709,
+   "bpa_90j": 4.665,
+   "var": 0.9
+  },
+  "KLPI": {
+   "periode": "+1y",
+   "bpa": 2.912,
+   "bpa_90j": 2.86,
+   "var": 1.8
+  },
+  "RCO": {
+   "periode": "+1y",
+   "bpa": 2.008,
+   "bpa_90j": 1.911,
+   "var": 5.1
+  },
+  "EIFFAGE": {
+   "periode": "+1y",
+   "bpa": 12.351,
+   "bpa_90j": 12.67,
+   "var": -2.5
+  },
+  "ALTAREA": {
+   "periode": "+1y",
+   "bpa": 9.267,
+   "bpa_90j": 9.502,
+   "var": -2.5
+  },
+  "COVIVIO": {
+   "periode": "+1y",
+   "bpa": 5.046,
+   "bpa_90j": 5.047,
+   "var": -0.0
+  },
+  "FREY": {
+   "periode": "+1y",
+   "bpa": 0.989,
+   "bpa_90j": 0.989,
+   "var": 0.0
+  },
+  "CHSR": {
+   "periode": "+1y",
+   "bpa": 0.37,
+   "bpa_90j": 0.064,
+   "var": 478.3
+  },
+  "VALO": {
+   "periode": "+1y",
+   "bpa": 1.916,
+   "bpa_90j": 2.027,
+   "var": -5.5
+  },
+  "FORVIA": {
+   "periode": "+1y",
+   "bpa": 2.305,
+   "bpa_90j": 2.339,
+   "var": -1.5
+  },
+  "PLUXEE": {
+   "periode": "+1y",
+   "bpa": 1.599,
+   "bpa_90j": 1.654,
+   "var": -3.3
+  },
+  "EDENRED": {
+   "periode": "+1y",
+   "bpa": 2.407,
+   "bpa_90j": 2.459,
+   "var": -2.1
+  },
+  "OPM": {
+   "periode": "+1y",
+   "bpa": 1.52,
+   "bpa_90j": 1.815,
+   "var": -16.3
+  },
+  "IMERYS": {
+   "periode": "+1y",
+   "bpa": 1.928,
+   "bpa_90j": 1.883,
+   "var": 2.4
+  },
+  "THERMADOR": {
+   "periode": "+1y",
+   "bpa": 5.713,
+   "bpa_90j": 5.688,
+   "var": 0.5
+  },
+  "STEF": {
+   "periode": "+1y",
+   "bpa": 14.264,
+   "bpa_90j": 13.476,
+   "var": 5.8
+  },
+  "TRIGANO": {
+   "periode": "+1y",
+   "bpa": 15.967,
+   "bpa_90j": 15.995,
+   "var": -0.2
+  },
+  "VIRBAC": {
+   "periode": "+1y",
+   "bpa": 23.248,
+   "bpa_90j": 22.3,
+   "var": 4.3
+  },
+  "INTERPARFUMS": {
+   "periode": "+1y",
+   "bpa": 1.457,
+   "bpa_90j": 1.413,
+   "var": 3.1
+  },
+  "ARGAN": {
+   "periode": "+1y",
+   "bpa": 6.126,
+   "bpa_90j": 6.161,
+   "var": -0.6
+  },
+  "LECTRA": {
+   "periode": "+1y",
+   "bpa": 1.023,
+   "bpa_90j": 1.007,
+   "var": 1.5
+  },
+  "LACROIX": {
+   "periode": "+1y",
+   "bpa": 3.85,
+   "bpa_90j": 3.46,
+   "var": 11.3
+  },
+  "IDLG": {
+   "periode": "+1y",
+   "bpa": 14.413,
+   "bpa_90j": 14.169,
+   "var": 1.7
+  },
+  "ELIOR": {
+   "periode": "+1y",
+   "bpa": 0.307,
+   "bpa_90j": 0.317,
+   "var": -3.2
+  },
+  "LDLC": {
+   "periode": "+1y",
+   "bpa": 1.28,
+   "bpa_90j": 2.101,
+   "var": -39.1
+  },
+  "HIPAY": {
+   "periode": "+1y",
+   "bpa": 0.32,
+   "bpa_90j": 0.49,
+   "var": -34.7
+  },
+  "LISI": {
+   "periode": "+1y",
+   "bpa": 3.59,
+   "bpa_90j": 3.579,
+   "var": 0.3
+  },
+  "SYENSQO": {
+   "periode": "+1y",
+   "bpa": 4.362,
+   "bpa_90j": 4.224,
+   "var": 3.3
+  },
+  "IPSEN": {
+   "periode": "+1y",
+   "bpa": 14.381,
+   "bpa_90j": 13.771,
+   "var": 4.4
+  },
+  "REXEL": {
+   "periode": "+1y",
+   "bpa": 3.062,
+   "bpa_90j": 2.937,
+   "var": 4.3
+  },
+  "FIGEAC": {
+   "periode": "+1y",
+   "bpa": 0.757,
+   "bpa_90j": 0.757,
+   "var": 0.1
+  },
+  "ICAD": {
+   "periode": "+1y",
+   "bpa": 2.845,
+   "bpa_90j": 2.84,
+   "var": 0.2
+  },
+  "GLEVT": {
+   "periode": "+1y",
+   "bpa": 3.388,
+   "bpa_90j": 3.602,
+   "var": -5.9
+  },
+  "SAMSE": {
+   "periode": "+1y",
+   "bpa": 15.902,
+   "bpa_90j": 13.406,
+   "var": 18.6
+  },
+  "MANITOU": {
+   "periode": "+1y",
+   "bpa": 2.68,
+   "bpa_90j": 2.91,
+   "var": -7.9
+  },
+  "NEXTY": {
+   "periode": "+1y",
+   "bpa": 0.135,
+   "bpa_90j": 0.22,
+   "var": -38.8
+  },
+  "EMEIS": {
+   "periode": "+1y",
+   "bpa": 0.2,
+   "bpa_90j": 0.05,
+   "var": 302.1
+  },
+  "ALFPC": {
+   "periode": "+1y",
+   "bpa": 13.86,
+   "bpa_90j": 13.2,
+   "var": 5.0
+  },
+  "SELENV": {
+   "periode": "+1y",
+   "bpa": 5.685,
+   "bpa_90j": 6.965,
+   "var": -18.4
+  },
+  "LNSBN": {
+   "periode": "+1y",
+   "bpa": 3.043,
+   "bpa_90j": 3.043,
+   "var": 0.0
+  },
+  "SOLVB": {
+   "periode": "+1y",
+   "bpa": 2.362,
+   "bpa_90j": 2.59,
+   "var": -8.8
+  },
+  "BNENF": {
+   "periode": "+1y",
+   "bpa": 0.332,
+   "bpa_90j": 0.551,
+   "var": -39.8
+  },
+  "IDSF": {
+   "periode": "+1y",
+   "bpa": 3.453,
+   "bpa_90j": 3.443,
+   "var": 0.3
+  },
+  "GENIE": {
+   "periode": "+1y",
+   "bpa": 0.175,
+   "bpa_90j": 0.151,
+   "var": 16.4
+  },
+  "CDRCK": {
+   "periode": "+1y",
+   "bpa": 1.938,
+   "bpa_90j": 1.939,
+   "var": -0.0
+  },
+  "ADP": {
+   "periode": "+1y",
+   "bpa": 6.826,
+   "bpa_90j": 7.263,
+   "var": -6.0
+  },
+  "AKE": {
+   "periode": "+1y",
+   "bpa": 4.974,
+   "bpa_90j": 5.65,
+   "var": -12.0
+  },
+  "LTA": {
+   "periode": "0y",
+   "bpa": 0.16,
+   "bpa_90j": 0.16,
+   "var": 0.0
+  },
+  "BB": {
+   "periode": "+1y",
+   "bpa": 5.041,
+   "bpa_90j": 5.042,
+   "var": -0.0
+  },
+  "ATE": {
+   "periode": "+1y",
+   "bpa": 8.751,
+   "bpa_90j": 8.614,
+   "var": 1.6
+  },
+  "ANTIN": {
+   "periode": "+1y",
+   "bpa": 0.567,
+   "bpa_90j": 0.613,
+   "var": -7.5
+  },
+  "ERA": {
+   "periode": "+1y",
+   "bpa": 2.023,
+   "bpa_90j": 3.738,
+   "var": -45.9
+  },
+  "RF": {
+   "periode": "+1y",
+   "bpa": 8.623,
+   "bpa_90j": 7.494,
+   "var": 15.1
+  },
+  "EXA": {
+   "periode": "+1y",
+   "bpa": 3.933,
+   "bpa_90j": 3.751,
+   "var": 4.9
+  },
+  "EXENS": {
+   "periode": "+1y",
+   "bpa": 2.435,
+   "bpa_90j": 2.26,
+   "var": 7.7
+  },
+  "FDJU": {
+   "periode": "+1y",
+   "bpa": 2.507,
+   "bpa_90j": 2.689,
+   "var": -6.8
+  },
+  "GFC": {
+   "periode": "+1y",
+   "bpa": 6.667,
+   "bpa_90j": 6.693,
+   "var": -0.4
+  },
+  "GET": {
+   "periode": "+1y",
+   "bpa": 0.634,
+   "bpa_90j": 0.609,
+   "var": 4.2
+  },
+  "DEC": {
+   "periode": "+1y",
+   "bpa": 1.589,
+   "bpa_90j": 1.532,
+   "var": 3.8
+  },
+  "MMB": {
+   "periode": "+1y",
+   "bpa": 2.384,
+   "bpa_90j": 2.329,
+   "var": 2.3
+  },
+  "LOUP": {
+   "periode": "+1y",
+   "bpa": 10.735,
+   "bpa_90j": 10.397,
+   "var": 3.3
+  },
+  "MMT": {
+   "periode": "+1y",
+   "bpa": 1.202,
+   "bpa_90j": 1.246,
+   "var": -3.5
+  },
+  "NRO": {
+   "periode": "+1y",
+   "bpa": 2.598,
+   "bpa_90j": 2.576,
+   "var": 0.9
+  },
+  "OVH": {
+   "periode": "+1y",
+   "bpa": 0.479,
+   "bpa_90j": 0.507,
+   "var": -5.4
+  },
+  "PLNW": {
+   "periode": "+1y",
+   "bpa": 0.976,
+   "bpa_90j": 0.96,
+   "var": 1.7
+  },
+  "RBT": {
+   "periode": "+1y",
+   "bpa": 49.93,
+   "bpa_90j": 51.513,
+   "var": -3.1
+  },
+  "RUI": {
+   "periode": "+1y",
+   "bpa": 3.387,
+   "bpa_90j": 3.304,
+   "var": 2.5
+  },
+  "DIM": {
+   "periode": "+1y",
+   "bpa": 6.062,
+   "bpa_90j": 5.956,
+   "var": 1.8
+  },
+  "SCR": {
+   "periode": "+1y",
+   "bpa": 4.557,
+   "bpa_90j": 4.573,
+   "var": -0.3
+  },
+  "TE": {
+   "periode": "+1y",
+   "bpa": 2.927,
+   "bpa_90j": 3.185,
+   "var": -8.1
+  },
+  "TFI": {
+   "periode": "+1y",
+   "bpa": 0.468,
+   "bpa_90j": 0.521,
+   "var": -10.2
+  },
+  "TKO": {
+   "periode": "+1y",
+   "bpa": 1.586,
+   "bpa_90j": 1.712,
+   "var": -7.4
+  },
+  "VCT": {
+   "periode": "+1y",
+   "bpa": 7.187,
+   "bpa_90j": 7.126,
+   "var": 0.9
+  },
+  "WAVE": {
+   "periode": "+1y",
+   "bpa": 4.0,
+   "bpa_90j": 4.115,
+   "var": -2.8
+  },
+  "WKL": {
+   "periode": "+1y",
+   "bpa": 6.195,
+   "bpa_90j": 6.243,
+   "var": -0.8
+  },
+  "ITX": {
+   "periode": "+1y",
+   "bpa": 2.364,
+   "bpa_90j": 2.388,
+   "var": -1.0
+  },
+  "AMS": {
+   "periode": "+1y",
+   "bpa": 3.883,
+   "bpa_90j": 3.861,
+   "var": 0.6
+  },
+  "RAA": {
+   "periode": "+1y",
+   "bpa": 25.902,
+   "bpa_90j": 25.774,
+   "var": 0.5
+  },
+  "NEM": {
+   "periode": "+1y",
+   "bpa": 2.84,
+   "bpa_90j": 3.099,
+   "var": -8.3
+  },
+  "BEI": {
+   "periode": "+1y",
+   "bpa": 3.984,
+   "bpa_90j": 4.507,
+   "var": -11.6
+  },
+  "SY1": {
+   "periode": "+1y",
+   "bpa": 4.442,
+   "bpa_90j": 4.283,
+   "var": 3.7
+  },
+  "MONC": {
+   "periode": "+1y",
+   "bpa": 2.518,
+   "bpa_90j": 2.601,
+   "var": -3.2
+  },
+  "BC": {
+   "periode": "+1y",
+   "bpa": 2.637,
+   "bpa_90j": 2.576,
+   "var": 2.3
+  },
+  "REC": {
+   "periode": "+1y",
+   "bpa": 3.788,
+   "bpa_90j": 3.794,
+   "var": -0.2
+  },
+  "AMP": {
+   "periode": "+1y",
+   "bpa": 0.877,
+   "bpa_90j": 0.849,
+   "var": 3.3
+  },
+  "KNEBV": {
+   "periode": "+1y",
+   "bpa": 2.484,
+   "bpa_90j": 2.466,
+   "var": 0.8
+  },
+  "UMG": {
+   "periode": "+1y",
+   "bpa": 1.099,
+   "bpa_90j": 1.128,
+   "var": -2.6
+  },
+  "BESI": {
+   "periode": "+1y",
+   "bpa": 6.513,
+   "bpa_90j": 6.469,
+   "var": 0.7
+  },
+  "ASM": {
+   "periode": "+1y",
+   "bpa": 33.36,
+   "bpa_90j": 30.007,
+   "var": 11.2
+  },
+  "MTX": {
+   "periode": "+1y",
+   "bpa": 20.792,
+   "bpa_90j": 20.366,
+   "var": 2.1
+  },
+  "RHM": {
+   "periode": "+1y",
+   "bpa": 52.909,
+   "bpa_90j": 53.796,
+   "var": -1.6
+  },
+  "COLO": {
+   "periode": "+1y",
+   "bpa": 25.978,
+   "bpa_90j": 26.323,
+   "var": -1.3
+  },
+  "DSV": {
+   "periode": "+1y",
+   "bpa": 78.748,
+   "bpa_90j": 84.868,
+   "var": -7.2
+  },
+  "NSIS": {
+   "periode": "+1y",
+   "bpa": 17.991,
+   "bpa_90j": 17.663,
+   "var": 1.9
+  },
+  "ATCO": {
+   "periode": "+1y",
+   "bpa": 7.691,
+   "bpa_90j": 7.304,
+   "var": 5.3
+  },
+  "ASSA": {
+   "periode": "+1y",
+   "bpa": 18.675,
+   "bpa_90j": 18.145,
+   "var": 2.9
+  },
+  "EPI": {
+   "periode": "+1y",
+   "bpa": 10.094,
+   "bpa_90j": 9.987,
+   "var": 1.1
+  },
+  "KOG": {
+   "periode": "+1y",
+   "bpa": 11.425,
+   "bpa_90j": 11.278,
+   "var": 1.3
+  },
+  "BVI": {
+   "periode": "+1y",
+   "bpa": 1.635,
+   "bpa_90j": 1.647,
+   "var": -0.7
+  },
+  "KBX": {
+   "periode": "+1y",
+   "bpa": 5.367,
+   "bpa_90j": 5.394,
+   "var": -0.5
+  },
+  "G1A": {
+   "periode": "+1y",
+   "bpa": 3.746,
+   "bpa_90j": 3.636,
+   "var": 3.0
+  },
+  "EVD": {
+   "periode": "+1y",
+   "bpa": 3.681,
+   "bpa_90j": 3.637,
+   "var": 1.2
+  },
+  "FPE3": {
+   "periode": "+1y",
+   "bpa": 2.688,
+   "bpa_90j": 2.651,
+   "var": 1.4
+  },
+  "KRN": {
+   "periode": "+1y",
+   "bpa": 10.623,
+   "bpa_90j": 11.233,
+   "var": -5.4
+  },
+  "AIXA": {
+   "periode": "+1y",
+   "bpa": 1.509,
+   "bpa_90j": 1.366,
+   "var": 10.5
+  },
+  "IOS": {
+   "periode": "+1y",
+   "bpa": 2.261,
+   "bpa_90j": 2.316,
+   "var": -2.4
+  },
+  "AOF": {
+   "periode": "+1y",
+   "bpa": 3.824,
+   "bpa_90j": 3.783,
+   "var": 1.1
+  },
+  "NA9": {
+   "periode": "+1y",
+   "bpa": 5.485,
+   "bpa_90j": 5.83,
+   "var": -5.9
+  },
+  "YSN": {
+   "periode": "+1y",
+   "bpa": 8.137,
+   "bpa_90j": 7.39,
+   "var": 10.1
+  },
+  "KSB3": {
+   "periode": "+1y",
+   "bpa": 89.308,
+   "bpa_90j": 96.15,
+   "var": -7.1
+  },
+  "BFSA": {
+   "periode": "+1y",
+   "bpa": 2.937,
+   "bpa_90j": 2.766,
+   "var": 6.2
+  },
+  "ELG": {
+   "periode": "+1y",
+   "bpa": 8.353,
+   "bpa_90j": 8.393,
+   "var": -0.5
+  },
+  "REY": {
+   "periode": "+1y",
+   "bpa": 8.321,
+   "bpa_90j": 7.96,
+   "var": 4.5
+  },
+  "DLG": {
+   "periode": "+1y",
+   "bpa": 2.74,
+   "bpa_90j": 2.566,
+   "var": 6.8
+  },
+  "TPRO": {
+   "periode": "+1y",
+   "bpa": 0.827,
+   "bpa_90j": 0.694,
+   "var": 19.2
+  },
+  "CRL": {
+   "periode": "+1y",
+   "bpa": 0.892,
+   "bpa_90j": 0.804,
+   "var": 11.0
+  },
+  "TGYM": {
+   "periode": "+1y",
+   "bpa": 0.68,
+   "bpa_90j": 0.699,
+   "var": -2.7
+  },
+  "ELN": {
+   "periode": "+1y",
+   "bpa": 0.863,
+   "bpa_90j": 0.844,
+   "var": 2.2
+  },
+  "SL": {
+   "periode": "+1y",
+   "bpa": 3.174,
+   "bpa_90j": 3.138,
+   "var": 1.1
+  },
+  "CEM": {
+   "periode": "+1y",
+   "bpa": 1.326,
+   "bpa_90j": 1.343,
+   "var": -1.3
+  },
+  "RWAY": {
+   "periode": "+1y",
+   "bpa": 0.343,
+   "bpa_90j": 0.343,
+   "var": -0.0
+  },
+  "CMB": {
+   "periode": "+1y",
+   "bpa": 3.696,
+   "bpa_90j": 3.591,
+   "var": 2.9
+  },
+  "LOG": {
+   "periode": "+1y",
+   "bpa": 2.394,
+   "bpa_90j": 2.383,
+   "var": 0.5
+  },
+  "ROVI": {
+   "periode": "+1y",
+   "bpa": 3.284,
+   "bpa_90j": 3.377,
+   "var": -2.8
+  },
+  "HEIJM": {
+   "periode": "+1y",
+   "bpa": 7.85,
+   "bpa_90j": 6.93,
+   "var": 13.3
+  },
+  "THEON": {
+   "periode": "+1y",
+   "bpa": 1.748,
+   "bpa_90j": 1.709,
+   "var": 2.3
+  },
+  "LOTB": {
+   "periode": "+1y",
+   "bpa": 283.359,
+   "bpa_90j": 267.138,
+   "var": 6.1
+  },
+  "JMT": {
+   "periode": "+1y",
+   "bpa": 1.294,
+   "bpa_90j": 1.338,
+   "var": -3.3
+  },
+  "ANDR": {
+   "periode": "+1y",
+   "bpa": 5.916,
+   "bpa_90j": 6.035,
+   "var": -2.0
+  },
+  "WRT1V": {
+   "periode": "+1y",
+   "bpa": 1.308,
+   "bpa_90j": 1.296,
+   "var": 0.9
+  },
+  "ORNBV": {
+   "periode": "+1y",
+   "bpa": 5.05,
+   "bpa_90j": 4.677,
+   "var": 8.0
+  },
+  "ALFA": {
+   "periode": "+1y",
+   "bpa": 25.405,
+   "bpa_90j": 24.859,
+   "var": 2.2
+  },
+  "ADDT": {
+   "periode": "+1y",
+   "bpa": 11.795,
+   "bpa_90j": 11.606,
+   "var": 1.6
+  },
+  "LAGR": {
+   "periode": "+1y",
+   "bpa": 8.293,
+   "bpa_90j": 8.042,
+   "var": 3.1
+  },
+  "SECT": {
+   "periode": "+1y",
+   "bpa": 4.95,
+   "bpa_90j": 4.795,
+   "var": 3.2
+  },
+  "MYCR": {
+   "periode": "+1y",
+   "bpa": 11.494,
+   "bpa_90j": 11.009,
+   "var": 4.4
+  },
+  "PNDORA": {
+   "periode": "+1y",
+   "bpa": 48.314,
+   "bpa_90j": 41.773,
+   "var": 15.7
+  },
+  "NOD": {
+   "periode": "+1y",
+   "bpa": 4.694,
+   "bpa_90j": 4.624,
+   "var": 1.5
+  },
+  "GOOGL": {
+   "periode": "+1y",
+   "bpa": 14.84,
+   "bpa_90j": 14.77,
+   "var": 0.5
+  },
+  "MA": {
+   "periode": "+1y",
+   "bpa": 23.13,
+   "bpa_90j": 22.964,
+   "var": 0.7
+  },
+  "AMZN": {
+   "periode": "+1y",
+   "bpa": 10.619,
+   "bpa_90j": 10.408,
+   "var": 2.0
+  },
+  "KO": {
+   "periode": "+1y",
+   "bpa": 3.528,
+   "bpa_90j": 3.526,
+   "var": 0.0
+  },
+  "MTHHCO": {
+   "periode": "+1y",
+   "bpa": 41.1,
+   "bpa_90j": 42.9,
+   "var": -4.2
+  },
+  "CWCDE": {
+   "periode": "+1y",
+   "bpa": 9.808,
+   "bpa_90j": 9.407,
+   "var": 4.3
+  },
+  "EUZDE": {
+   "periode": "+1y",
+   "bpa": 0.862,
+   "bpa_90j": 0.899,
+   "var": -4.1
+  },
+  "GFTDE": {
+   "periode": "+1y",
+   "bpa": 2.041,
+   "bpa_90j": 2.005,
+   "var": 1.8
+  },
+  "IVUDE": {
+   "periode": "+1y",
+   "bpa": 1.03,
+   "bpa_90j": 1.0,
+   "var": 3.0
+  },
+  "GOFOREHE": {
+   "periode": "+1y",
+   "bpa": 0.995,
+   "bpa_90j": 1.005,
+   "var": -1.0
+  },
+  "GRKHE": {
+   "periode": "+1y",
+   "bpa": 1.817,
+   "bpa_90j": 1.737,
+   "var": 4.6
+  },
+  "HARVIAHE": {
+   "periode": "+1y",
+   "bpa": 2.058,
+   "bpa_90j": 2.13,
+   "var": -3.4
+  },
+  "MEKKOHE": {
+   "periode": "+1y",
+   "bpa": 0.712,
+   "bpa_90j": 0.73,
+   "var": -2.5
+  },
+  "REG1VHE": {
+   "periode": "+1y",
+   "bpa": 0.77,
+   "bpa_90j": 0.968,
+   "var": -20.5
+  },
+  "EVISOMI": {
+   "periode": "+1y",
+   "bpa": 0.426,
+   "bpa_90j": 0.489,
+   "var": -13.0
+  },
+  "BOUVOL": {
+   "periode": "+1y",
+   "bpa": 3.661,
+   "bpa_90j": 3.782,
+   "var": -3.2
+  },
+  "MEDIOL": {
+   "periode": "+1y",
+   "bpa": 11.75,
+   "bpa_90j": 9.795,
+   "var": 20.0
+  },
+  "MULTIOL": {
+   "periode": "+1y",
+   "bpa": 13.425,
+   "bpa_90j": 14.018,
+   "var": -4.2
+  },
+  "AUBPA": {
+   "periode": "+1y",
+   "bpa": 4.12,
+   "bpa_90j": 4.075,
+   "var": 1.1
+  },
+  "EQSPA": {
+   "periode": "+1y",
+   "bpa": 3.29,
+   "bpa_90j": 3.433,
+   "var": -4.2
+  },
+  "SDGPA": {
+   "periode": "+1y",
+   "bpa": 2.875,
+   "bpa_90j": 3.045,
+   "var": -5.6
+  },
+  "HEMST": {
+   "periode": "+1y",
+   "bpa": 5.183,
+   "bpa_90j": 6.688,
+   "var": -22.5
+  },
+  "LIMEST": {
+   "periode": "+1y",
+   "bpa": 11.599,
+   "bpa_90j": 11.535,
+   "var": 0.5
+  },
+  "MMGRBST": {
+   "periode": "+1y",
+   "bpa": 5.148,
+   "bpa_90j": 5.134,
+   "var": 0.3
+  },
+  "RVRCST": {
+   "periode": "+1y",
+   "bpa": 4.662,
+   "bpa_90j": 4.828,
+   "var": -3.4
+  },
+  "ZZBST": {
+   "periode": "+1y",
+   "bpa": 12.36,
+   "bpa_90j": 11.34,
+   "var": 9.0
+  },
+  "GPPWA": {
+   "periode": "+1y",
+   "bpa": 4.652,
+   "bpa_90j": 4.527,
+   "var": 2.7
+  },
+  "RBWWA": {
+   "periode": "+1y",
+   "bpa": 16.14,
+   "bpa_90j": 14.41,
+   "var": 12.0
+  },
+  "SHOWA": {
+   "periode": "+1y",
+   "bpa": 2.63,
+   "bpa_90j": 2.69,
+   "var": -2.2
+  },
+  "VRCWA": {
+   "periode": "+1y",
+   "bpa": 6.92,
+   "bpa_90j": 6.94,
+   "var": -0.3
+  },
+  "BIOGBST": {
+   "periode": "+1y",
+   "bpa": 4.86,
+   "bpa_90j": 4.69,
+   "var": 3.6
+  },
+  "EVOST": {
+   "periode": "+1y",
+   "bpa": 6.089,
+   "bpa_90j": 6.13,
+   "var": -0.7
+  },
+  "NORBTOL": {
+   "periode": "+1y",
+   "bpa": 9.638,
+   "bpa_90j": 9.678,
+   "var": -0.4
+  },
+  "HMSST": {
+   "periode": "+1y",
+   "bpa": 18.492,
+   "bpa_90j": 17.973,
+   "var": 2.9
+  },
+  "BETSBST": {
+   "periode": "+1y",
+   "bpa": 11.837,
+   "bpa_90j": 11.374,
+   "var": 4.1
+  },
+  "CAMXST": {
+   "periode": "+1y",
+   "bpa": 22.807,
+   "bpa_90j": 23.957,
+   "var": -4.8
+  },
+  "PUUILOHE": {
+   "periode": "+1y",
+   "bpa": 0.942,
+   "bpa_90j": 0.91,
+   "var": 3.5
+  },
+  "NORCOOL": {
+   "periode": "+1y",
+   "bpa": 2.881,
+   "bpa_90j": 2.928,
+   "var": -1.6
+  },
+  "DOCVI": {
+   "periode": "+1y",
+   "bpa": 12.952,
+   "bpa_90j": 12.937,
+   "var": 0.1
+  },
+  "MAIREMI": {
+   "periode": "+1y",
+   "bpa": 1.015,
+   "bpa_90j": 1.01,
+   "var": 0.5
+  },
+  "CLASBST": {
+   "periode": "+1y",
+   "bpa": 24.401,
+   "bpa_90j": 22.457,
+   "var": 8.7
+  },
+  "OEMBST": {
+   "periode": "+1y",
+   "bpa": 6.185,
+   "bpa_90j": 5.97,
+   "var": 3.6
+  },
+  "HOTDE": {
+   "periode": "+1y",
+   "bpa": 18.413,
+   "bpa_90j": 17.7,
+   "var": 4.0
+  },
+  "STRVI": {
+   "periode": "+1y",
+   "bpa": 8.044,
+   "bpa_90j": 7.38,
+   "var": 9.0
+  },
+  "BONHROL": {
+   "periode": "+1y",
+   "bpa": 29.743,
+   "bpa_90j": 27.957,
+   "var": 6.4
+  },
+  "PDXST": {
+   "periode": "+1y",
+   "bpa": 6.85,
+   "bpa_90j": 6.833,
+   "var": 0.2
+  },
+  "RYAIR": {
+   "periode": "+1y",
+   "bpa": 1.642,
+   "bpa_90j": 1.918,
+   "var": -14.4
+  },
+  "TREMC": {
+   "periode": "+1y",
+   "bpa": 3.262,
+   "bpa_90j": 3.14,
+   "var": 3.9
+  },
+  "1INNDE": {
+   "periode": "+1y",
+   "bpa": 30.813,
+   "bpa_90j": 31.768,
+   "var": -3.0
+  },
+  "ACSMC": {
+   "periode": "+1y",
+   "bpa": 4.991,
+   "bpa_90j": 4.883,
+   "var": 2.2
+  },
+  "AEGNAT": {
+   "periode": "+1y",
+   "bpa": 1.018,
+   "bpa_90j": 1.684,
+   "var": -39.5
+  },
+  "ALVDMPA": {
+   "periode": "+1y",
+   "bpa": 10.3,
+   "bpa_90j": 10.3,
+   "var": 0.0
+  },
+  "AQST": {
+   "periode": "+1y",
+   "bpa": 10.159,
+   "bpa_90j": 9.47,
+   "var": 7.3
+  },
+  "ARCADAS": {
+   "periode": "+1y",
+   "bpa": 3.637,
+   "bpa_90j": 3.629,
+   "var": 0.2
+  },
+  "ARTMC": {
+   "periode": "+1y",
+   "bpa": 1.435,
+   "bpa_90j": 1.19,
+   "var": 20.6
+  },
+  "ASEWA": {
+   "periode": "+1y",
+   "bpa": 4.94,
+   "bpa_90j": 4.84,
+   "var": 2.1
+  },
+  "ATEAOL": {
+   "periode": "+1y",
+   "bpa": 11.493,
+   "bpa_90j": 11.593,
+   "var": -0.9
+  },
+  "AXFOST": {
+   "periode": "+1y",
+   "bpa": 13.036,
+   "bpa_90j": 12.98,
+   "var": 0.4
+  },
+  "BDXWA": {
+   "periode": "+1y",
+   "bpa": 36.331,
+   "bpa_90j": 34.996,
+   "var": 3.8
+  },
+  "BFTWA": {
+   "periode": "+1y",
+   "bpa": 300.481,
+   "bpa_90j": 293.973,
+   "var": 2.2
+  },
+  "CENPA": {
+   "periode": "+1y",
+   "bpa": 6.24,
+   "bpa_90j": 6.24,
+   "var": 0.0
+  },
+  "CTTLS": {
+   "periode": "+1y",
+   "bpa": 0.533,
+   "bpa_90j": 0.583,
+   "var": -8.6
+  },
+  "DIAWA": {
+   "periode": "+1y",
+   "bpa": 9.748,
+   "bpa_90j": 10.42,
+   "var": -6.4
+  },
+  "DIEBR": {
+   "periode": "+1y",
+   "bpa": 15.274,
+   "bpa_90j": 15.484,
+   "var": -1.4
+  },
+  "EINDE": {
+   "periode": "+1y",
+   "bpa": 7.2,
+   "bpa_90j": 7.53,
+   "var": -4.4
+  },
+  "EPROL": {
+   "periode": "+1y",
+   "bpa": 6.706,
+   "bpa_90j": 6.91,
+   "var": -3.0
+  },
+  "EPROBST": {
+   "periode": "+1y",
+   "bpa": 4.015,
+   "bpa_90j": 4.049,
+   "var": -0.8
+  },
+  "FAGRBR": {
+   "periode": "+1y",
+   "bpa": 1.639,
+   "bpa_90j": 1.656,
+   "var": -1.0
+  },
+  "FRAMERYHE": {
+   "periode": "+1y",
+   "bpa": 0.533,
+   "bpa_90j": 0.537,
+   "var": -0.6
+  },
+  "GBFDE": {
+   "periode": "+1y",
+   "bpa": 5.544,
+   "bpa_90j": 6.987,
+   "var": -20.7
+  },
+  "HACKST": {
+   "periode": "+1y",
+   "bpa": 0.806,
+   "bpa_90j": 0.866,
+   "var": -6.9
+  },
+  "HAGDE": {
+   "periode": "+1y",
+   "bpa": 2.498,
+   "bpa_90j": 2.409,
+   "var": 3.7
+  },
+  "IEGMI": {
+   "periode": "+1y",
+   "bpa": 1.143,
+   "bpa_90j": 1.116,
+   "var": 2.4
+  },
+  "INDTST": {
+   "periode": "+1y",
+   "bpa": 11.94,
+   "bpa_90j": 11.328,
+   "var": 5.4
+  },
+  "IR5BIR": {
+   "periode": "+1y",
+   "bpa": 0.547,
+   "bpa_90j": 0.547,
+   "var": -0.0
+  },
+  "ISSCO": {
+   "periode": "+1y",
+   "bpa": 23.236,
+   "bpa_90j": 22.474,
+   "var": 3.4
+  },
+  "KCRHE": {
+   "periode": "+1y",
+   "bpa": 2.04,
+   "bpa_90j": 2.065,
+   "var": -1.2
+  },
+  "KITOL": {
+   "periode": "+1y",
+   "bpa": 0.467,
+   "bpa_90j": 0.458,
+   "var": 2.0
+  },
+  "KRXIR": {
+   "periode": "+1y",
+   "bpa": 5.518,
+   "bpa_90j": 4.765,
+   "var": 15.8
+  },
+  "LIFCOBST": {
+   "periode": "+1y",
+   "bpa": 10.633,
+   "bpa_90j": 10.883,
+   "var": -2.3
+  },
+  "LPPWA": {
+   "periode": "+1y",
+   "bpa": 1646.809,
+   "bpa_90j": 1574.08,
+   "var": 4.6
+  },
+  "MBBDE": {
+   "periode": "+1y",
+   "bpa": 10.84,
+   "bpa_90j": 10.61,
+   "var": 2.2
+  },
+  "MCAPST": {
+   "periode": "+1y",
+   "bpa": 22.64,
+   "bpa_90j": 24.17,
+   "var": -6.3
+  },
+  "NEUWA": {
+   "periode": "+1y",
+   "bpa": 53.033,
+   "bpa_90j": 47.3,
+   "var": 12.1
+  },
+  "NRESTST": {
+   "periode": "+1y",
+   "bpa": 21.801,
+   "bpa_90j": 19.42,
+   "var": 12.3
+  },
+  "NTGCO": {
+   "periode": "+1y",
+   "bpa": 20.279,
+   "bpa_90j": 19.462,
+   "var": 4.2
+  },
+  "PENOL": {
+   "periode": "+1y",
+   "bpa": 0.77,
+   "bpa_90j": 0.877,
+   "var": -12.3
+  },
+  "PUIGMC": {
+   "periode": "+1y",
+   "bpa": 1.199,
+   "bpa_90j": 1.182,
+   "var": 1.5
+  },
+  "RAYBST": {
+   "periode": "+1y",
+   "bpa": 8.2,
+   "bpa_90j": 9.35,
+   "var": -12.3
+  },
+  "SILEXST": {
+   "periode": "+1y",
+   "bpa": 4.293,
+   "bpa_90j": 4.417,
+   "var": -2.8
+  },
+  "SNTIAOL": {
+   "periode": "+1y",
+   "bpa": 6.131,
+   "bpa_90j": 5.996,
+   "var": 2.2
+  },
+  "SOMAOL": {
+   "periode": "+1y",
+   "bpa": 4.543,
+   "bpa_90j": 4.611,
+   "var": -1.5
+  },
+  "TIMADE": {
+   "periode": "+1y",
+   "bpa": 2.478,
+   "bpa_90j": 2.416,
+   "var": 2.6
+  },
+  "TUI1DE": {
+   "periode": "+1y",
+   "bpa": 1.33,
+   "bpa_90j": 1.412,
+   "var": -5.8
+  },
+  "VOSDE": {
+   "periode": "+1y",
+   "bpa": 3.519,
+   "bpa_90j": 4.166,
+   "var": -15.5
+  },
+  "VUPA": {
+   "periode": "+1y",
+   "bpa": 11.068,
+   "bpa_90j": 11.468,
+   "var": -3.5
+  },
+  "ZABWA": {
+   "periode": "+1y",
+   "bpa": 1.571,
+   "bpa_90j": 1.527,
+   "var": 2.8
+  },
+  "ABNB": {
+   "periode": "+1y",
+   "bpa": 6.268,
+   "bpa_90j": 6.041,
+   "var": 3.8
+  },
+  "ADBE": {
+   "periode": "+1y",
+   "bpa": 27.508,
+   "bpa_90j": 27.349,
+   "var": 0.6
+  },
+  "ADP2": {
+   "periode": "+1y",
+   "bpa": 13.525,
+   "bpa_90j": 13.391,
+   "var": 1.0
+  },
+  "AMAT": {
+   "periode": "+1y",
+   "bpa": 18.555,
+   "bpa_90j": 16.904,
+   "var": 9.8
+  },
+  "AVGO": {
+   "periode": "+1y",
+   "bpa": 19.465,
+   "bpa_90j": 19.582,
+   "var": -0.6
+  },
+  "CDNS": {
+   "periode": "+1y",
+   "bpa": 9.845,
+   "bpa_90j": 9.527,
+   "var": 3.3
+  },
+  "CHKP": {
+   "periode": "+1y",
+   "bpa": 11.278,
+   "bpa_90j": 11.402,
+   "var": -1.1
+  },
+  "COST": {
+   "periode": "+1y",
+   "bpa": 25.076,
+   "bpa_90j": 24.934,
+   "var": 0.6
+  },
+  "CSCO": {
+   "periode": "+1y",
+   "bpa": 5.622,
+   "bpa_90j": 5.278,
+   "var": 6.5
+  },
+  "CTAS": {
+   "periode": "+1y",
+   "bpa": 6.161,
+   "bpa_90j": 6.093,
+   "var": 1.1
+  },
+  "EBAY": {
+   "periode": "+1y",
+   "bpa": 6.882,
+   "bpa_90j": 6.72,
+   "var": 2.4
+  },
+  "EXEL": {
+   "periode": "+1y",
+   "bpa": 4.261,
+   "bpa_90j": 4.049,
+   "var": 5.2
+  },
+  "FAST": {
+   "periode": "+1y",
+   "bpa": 1.407,
+   "bpa_90j": 1.39,
+   "var": 1.2
+  },
+  "FFIV": {
+   "periode": "+1y",
+   "bpa": 19.977,
+   "bpa_90j": 20.391,
+   "var": -2.0
+  },
+  "IDXX": {
+   "periode": "+1y",
+   "bpa": 16.733,
+   "bpa_90j": 16.517,
+   "var": 1.3
+  },
+  "IESC": {
+   "periode": "+1y",
+   "bpa": 13.51,
+   "bpa_90j": 11.1,
+   "var": 21.7
+  },
+  "INCY": {
+   "periode": "+1y",
+   "bpa": 8.741,
+   "bpa_90j": 8.731,
+   "var": 0.1
+  },
+  "JKHY": {
+   "periode": "+1y",
+   "bpa": 7.919,
+   "bpa_90j": 7.684,
+   "var": 3.1
+  },
+  "KLAC": {
+   "periode": "+1y",
+   "bpa": 7.033,
+   "bpa_90j": 6.549,
+   "var": 7.4
+  },
+  "KSPI": {
+   "periode": "+1y",
+   "bpa": 6583.227,
+   "bpa_90j": 6685.35,
+   "var": -1.5
+  },
+  "LECO": {
+   "periode": "+1y",
+   "bpa": 12.828,
+   "bpa_90j": 12.051,
+   "var": 6.4
+  },
+  "LRCX": {
+   "periode": "+1y",
+   "bpa": 12.236,
+   "bpa_90j": 10.157,
+   "var": 20.5
+  },
+  "MANH": {
+   "periode": "+1y",
+   "bpa": 6.174,
+   "bpa_90j": 6.115,
+   "var": 1.0
+  },
+  "MELI": {
+   "periode": "+1y",
+   "bpa": 55.168,
+   "bpa_90j": 57.316,
+   "var": -3.7
+  },
+  "META": {
+   "periode": "+1y",
+   "bpa": 33.925,
+   "bpa_90j": 34.14,
+   "var": -0.6
+  },
+  "MNST": {
+   "periode": "+1y",
+   "bpa": 1.306,
+   "bpa_90j": 1.29,
+   "var": 1.2
+  },
+  "NFLX": {
+   "periode": "+1y",
+   "bpa": 3.767,
+   "bpa_90j": 3.813,
+   "var": -1.2
+  },
+  "NVDA": {
+   "periode": "+1y",
+   "bpa": 15.915,
+   "bpa_90j": 12.815,
+   "var": 24.2
+  },
+  "ORLY": {
+   "periode": "+1y",
+   "bpa": 3.659,
+   "bpa_90j": 3.649,
+   "var": 0.3
+  },
+  "PAYX": {
+   "periode": "+1y",
+   "bpa": 6.389,
+   "bpa_90j": 6.388,
+   "var": 0.0
+  },
+  "PDD": {
+   "periode": "+1y",
+   "bpa": 82.544,
+   "bpa_90j": 82.597,
+   "var": -0.1
+  },
+  "REGN": {
+   "periode": "+1y",
+   "bpa": 52.071,
+   "bpa_90j": 47.625,
+   "var": 9.3
+  },
+  "ROST": {
+   "periode": "+1y",
+   "bpa": 8.966,
+   "bpa_90j": 8.586,
+   "var": 4.4
+  },
+  "STRL": {
+   "periode": "+1y",
+   "bpa": 25.78,
+   "bpa_90j": 26.14,
+   "var": -1.4
+  },
+  "TXRH": {
+   "periode": "+1y",
+   "bpa": 7.671,
+   "bpa_90j": 7.638,
+   "var": 0.4
+  },
+  "ULTA": {
+   "periode": "+1y",
+   "bpa": 32.0,
+   "bpa_90j": 31.862,
+   "var": 0.4
+  },
+  "UTHR": {
+   "periode": "+1y",
+   "bpa": 31.142,
+   "bpa_90j": 31.512,
+   "var": -1.2
+  },
+  "VRSK": {
+   "periode": "+1y",
+   "bpa": 8.696,
+   "bpa_90j": 8.679,
+   "var": 0.2
+  },
+  "AIT": {
+   "periode": "+1y",
+   "bpa": 13.24,
+   "bpa_90j": 12.773,
+   "var": 3.7
+  },
+  "ANET": {
+   "periode": "+1y",
+   "bpa": 5.222,
+   "bpa_90j": 4.467,
+   "var": 16.9
+  },
+  "APH": {
+   "periode": "+1y",
+   "bpa": 3.535,
+   "bpa_90j": 3.224,
+   "var": 9.7
+  },
+  "CAT": {
+   "periode": "+1y",
+   "bpa": 32.263,
+   "bpa_90j": 30.451,
+   "var": 5.9
+  },
+  "CL": {
+   "periode": "+1y",
+   "bpa": 4.087,
+   "bpa_90j": 4.053,
+   "var": 0.8
+  },
+  "CMG": {
+   "periode": "+1y",
+   "bpa": 1.333,
+   "bpa_90j": 1.367,
+   "var": -2.5
+  },
+  "DCI": {
+   "periode": "+1y",
+   "bpa": 4.856,
+   "bpa_90j": 4.87,
+   "var": -0.3
+  },
+  "DECK": {
+   "periode": "+1y",
+   "bpa": 8.115,
+   "bpa_90j": 8.397,
+   "var": -3.4
+  },
+  "DELL": {
+   "periode": "+1y",
+   "bpa": 28.201,
+   "bpa_90j": 19.427,
+   "var": 45.2
+  },
+  "EME": {
+   "periode": "+1y",
+   "bpa": 39.104,
+   "bpa_90j": 35.54,
+   "var": 10.0
+  },
+  "FIX": {
+   "periode": "+1y",
+   "bpa": 67.056,
+   "bpa_90j": 60.043,
+   "var": 11.7
+  },
+  "GRMN": {
+   "periode": "+1y",
+   "bpa": 11.366,
+   "bpa_90j": 10.873,
+   "var": 4.5
+  },
+  "GWW": {
+   "periode": "+1y",
+   "bpa": 51.063,
+   "bpa_90j": 50.482,
+   "var": 1.2
+  },
+  "HAL": {
+   "periode": "+1y",
+   "bpa": 2.939,
+   "bpa_90j": 2.911,
+   "var": 1.0
+  },
+  "HSY": {
+   "periode": "+1y",
+   "bpa": 9.53,
+   "bpa_90j": 9.866,
+   "var": -3.4
+  },
+  "HUBB": {
+   "periode": "+1y",
+   "bpa": 23.053,
+   "bpa_90j": 22.871,
+   "var": 0.8
+  },
+  "ITT": {
+   "periode": "+1y",
+   "bpa": 9.609,
+   "bpa_90j": 9.232,
+   "var": 4.1
+  },
+  "MRK": {
+   "periode": "+1y",
+   "bpa": 9.123,
+   "bpa_90j": 9.678,
+   "var": -5.7
+  },
+  "PAYC": {
+   "periode": "+1y",
+   "bpa": 13.955,
+   "bpa_90j": 12.275,
+   "var": 13.7
+  },
+  "RL": {
+   "periode": "+1y",
+   "bpa": 20.875,
+   "bpa_90j": 20.458,
+   "var": 2.0
+  },
+  "RMD": {
+   "periode": "+1y",
+   "bpa": 13.256,
+   "bpa_90j": 13.028,
+   "var": 1.7
+  },
+  "ROL": {
+   "periode": "+1y",
+   "bpa": 1.235,
+   "bpa_90j": 1.312,
+   "var": -5.9
+  },
+  "SCCO": {
+   "periode": "+1y",
+   "bpa": 7.634,
+   "bpa_90j": 7.131,
+   "var": 7.1
+  },
+  "TJX": {
+   "periode": "+1y",
+   "bpa": 5.764,
+   "bpa_90j": 5.76,
+   "var": 0.1
+  },
+  "TPR": {
+   "periode": "+1y",
+   "bpa": 8.887,
+   "bpa_90j": 8.831,
+   "var": 0.6
+  },
+  "ULS": {
+   "periode": "+1y",
+   "bpa": 2.603,
+   "bpa_90j": 2.575,
+   "var": 1.1
+  },
+  "VLTO": {
+   "periode": "+1y",
+   "bpa": 4.788,
+   "bpa_90j": 4.76,
+   "var": 0.6
+  },
+  "WTS": {
+   "periode": "+1y",
+   "bpa": 14.026,
+   "bpa_90j": 13.195,
+   "var": 6.3
+  },
+  "ABBNSW": {
+   "periode": "+1y",
+   "bpa": 3.743,
+   "bpa_90j": 3.55,
+   "var": 5.4
+  },
+  "ABEV": {
+   "periode": "+1y",
+   "bpa": 0.21,
+   "bpa_90j": 0.215,
+   "var": -2.3
+  },
+  "ACM": {
+   "periode": "+1y",
+   "bpa": 6.243,
+   "bpa_90j": 6.718,
+   "var": -7.1
+  },
+  "ACN": {
+   "periode": "+1y",
+   "bpa": 15.888,
+   "bpa_90j": 15.792,
+   "var": 0.6
+  },
+  "ALLE": {
+   "periode": "+1y",
+   "bpa": 10.158,
+   "bpa_90j": 9.716,
+   "var": 4.5
+  },
+  "AME": {
+   "periode": "+1y",
+   "bpa": 9.523,
+   "bpa_90j": 8.808,
+   "var": 8.1
+  },
+  "ANF": {
+   "periode": "+1y",
+   "bpa": 13.372,
+   "bpa_90j": 11.872,
+   "var": 12.6
+  },
+  "ARM": {
+   "periode": "+1y",
+   "bpa": 3.067,
+   "bpa_90j": 3.069,
+   "var": -0.1
+  },
+  "AZN": {
+   "periode": "+1y",
+   "bpa": 11.343,
+   "bpa_90j": 11.58,
+   "var": -2.0
+  },
+  "BHP": {
+   "periode": "+1y",
+   "bpa": 4.783,
+   "bpa_90j": 4.66,
+   "var": 2.6
+  },
+  "BKNG": {
+   "periode": "+1y",
+   "bpa": 12.374,
+   "bpa_90j": 12.281,
+   "var": 0.8
+  },
+  "BKR": {
+   "periode": "+1y",
+   "bpa": 2.903,
+   "bpa_90j": 3.183,
+   "var": -8.8
+  },
+  "BOX": {
+   "periode": "+1y",
+   "bpa": 1.739,
+   "bpa_90j": 1.801,
+   "var": -3.5
+  },
+  "BR": {
+   "periode": "+1y",
+   "bpa": 11.575,
+   "bpa_90j": 11.451,
+   "var": 1.1
+  },
+  "CHD": {
+   "periode": "+1y",
+   "bpa": 4.033,
+   "bpa_90j": 4.046,
+   "var": -0.3
+  },
+  "CHE": {
+   "periode": "+1y",
+   "bpa": 27.85,
+   "bpa_90j": 27.405,
+   "var": 1.6
+  },
+  "CIG": {
+   "periode": "+1y",
+   "bpa": 0.178,
+   "bpa_90j": 0.164,
+   "var": 8.5
+  },
+  "CNM": {
+   "periode": "+1y",
+   "bpa": 3.502,
+   "bpa_90j": 3.345,
+   "var": 4.7
+  },
+  "CVLT": {
+   "periode": "+1y",
+   "bpa": 6.301,
+   "bpa_90j": 6.153,
+   "var": 2.4
+  },
+  "CW": {
+   "periode": "+1y",
+   "bpa": 17.236,
+   "bpa_90j": 17.108,
+   "var": 0.7
+  },
+  "DOCS": {
+   "periode": "+1y",
+   "bpa": 1.558,
+   "bpa_90j": 1.594,
+   "var": -2.2
+  },
+  "DSGX": {
+   "periode": "+1y",
+   "bpa": 3.4,
+   "bpa_90j": 3.252,
+   "var": 4.6
+  },
+  "EAT": {
+   "periode": "+1y",
+   "bpa": 14.821,
+   "bpa_90j": 13.601,
+   "var": 9.0
+  },
+  "EPAM": {
+   "periode": "+1y",
+   "bpa": 14.017,
+   "bpa_90j": 14.134,
+   "var": -0.8
+  },
+  "ETN": {
+   "periode": "+1y",
+   "bpa": 16.296,
+   "bpa_90j": 15.776,
+   "var": 3.3
+  },
+  "EXLS": {
+   "periode": "+1y",
+   "bpa": 2.66,
+   "bpa_90j": 2.597,
+   "var": 2.4
+  },
+  "FSS": {
+   "periode": "+1y",
+   "bpa": 5.81,
+   "bpa_90j": 5.696,
+   "var": 2.0
+  },
+  "FTI": {
+   "periode": "+1y",
+   "bpa": 3.678,
+   "bpa_90j": 3.582,
+   "var": 2.7
+  },
+  "FTNT": {
+   "periode": "+1y",
+   "bpa": 3.88,
+   "bpa_90j": 3.751,
+   "var": 3.4
+  },
+  "G": {
+   "periode": "+1y",
+   "bpa": 4.51,
+   "bpa_90j": 4.481,
+   "var": 0.6
+  },
+  "GD": {
+   "periode": "+1y",
+   "bpa": 18.636,
+   "bpa_90j": 18.265,
+   "var": 2.0
+  },
+  "GE": {
+   "periode": "+1y",
+   "bpa": 9.979,
+   "bpa_90j": 9.717,
+   "var": 2.7
+  },
+  "GEHC": {
+   "periode": "+1y",
+   "bpa": 5.482,
+   "bpa_90j": 5.404,
+   "var": 1.4
+  },
+  "GIB": {
+   "periode": "+1y",
+   "bpa": 9.77,
+   "bpa_90j": 9.676,
+   "var": 1.0
+  },
+  "HAFN": {
+   "periode": "+1y",
+   "bpa": 0.71,
+   "bpa_90j": 0.64,
+   "var": 10.9
+  },
+  "HEI": {
+   "periode": "+1y",
+   "bpa": 7.228,
+   "bpa_90j": 6.927,
+   "var": 4.3
+  },
+  "HONA": {
+   "periode": "+1y",
+   "bpa": 8.846,
+   "bpa_90j": 9.969,
+   "var": -11.3
+  },
+  "HRB": {
+   "periode": "+1y",
+   "bpa": 6.902,
+   "bpa_90j": 7.22,
+   "var": -4.4
+  },
+  "HWM": {
+   "periode": "+1y",
+   "bpa": 6.61,
+   "bpa_90j": 6.053,
+   "var": 9.2
+  },
+  "IDCC": {
+   "periode": "+1y",
+   "bpa": 11.268,
+   "bpa_90j": 11.242,
+   "var": 0.2
+  },
+  "IHG": {
+   "periode": "+1y",
+   "bpa": 6.686,
+   "bpa_90j": 6.782,
+   "var": -1.4
+  },
+  "INFY": {
+   "periode": "+1y",
+   "bpa": 0.842,
+   "bpa_90j": 0.849,
+   "var": -0.8
+  },
+  "INTU": {
+   "periode": "+1y",
+   "bpa": 26.944,
+   "bpa_90j": 30.794,
+   "var": -12.5
+  },
+  "LAUR": {
+   "periode": "+1y",
+   "bpa": 2.43,
+   "bpa_90j": 2.484,
+   "var": -2.1
+  },
+  "LDOS": {
+   "periode": "+1y",
+   "bpa": 12.542,
+   "bpa_90j": 13.104,
+   "var": -4.3
+  },
+  "LMT": {
+   "periode": "+1y",
+   "bpa": 33.337,
+   "bpa_90j": 32.646,
+   "var": 2.1
+  },
+  "LNTH": {
+   "periode": "+1y",
+   "bpa": 6.377,
+   "bpa_90j": 6.349,
+   "var": 0.5
+  },
+  "LYV": {
+   "periode": "+1y",
+   "bpa": 1.902,
+   "bpa_90j": 2.161,
+   "var": -12.0
+  },
+  "MSA": {
+   "periode": "+1y",
+   "bpa": 9.933,
+   "bpa_90j": 9.701,
+   "var": 2.4
+  },
+  "MSI": {
+   "periode": "+1y",
+   "bpa": 19.431,
+   "bpa_90j": 18.537,
+   "var": 4.8
+  },
+  "NTES": {
+   "periode": "+1y",
+   "bpa": 71.817,
+   "bpa_90j": 71.605,
+   "var": 0.3
+  },
+  "NVMI": {
+   "periode": "+1y",
+   "bpa": 13.66,
+   "bpa_90j": 12.965,
+   "var": 5.4
+  },
+  "NVS": {
+   "periode": "+1y",
+   "bpa": 9.939,
+   "bpa_90j": 9.873,
+   "var": 0.7
+  },
+  "NXT": {
+   "periode": "+1y",
+   "bpa": 5.825,
+   "bpa_90j": 5.796,
+   "var": 0.5
+  },
+  "NYT": {
+   "periode": "+1y",
+   "bpa": 3.125,
+   "bpa_90j": 3.217,
+   "var": -2.9
+  },
+  "PANW": {
+   "periode": "+1y",
+   "bpa": 2.211,
+   "bpa_90j": 2.286,
+   "var": -3.3
+  },
+  "PCTY": {
+   "periode": "+1y",
+   "bpa": 9.681,
+   "bpa_90j": 9.623,
+   "var": 0.6
+  },
+  "PH": {
+   "periode": "+1y",
+   "bpa": 39.747,
+   "bpa_90j": 37.508,
+   "var": 6.0
+  },
+  "POWL": {
+   "periode": "+1y",
+   "bpa": 6.817,
+   "bpa_90j": 6.656,
+   "var": 2.4
+  },
+  "QLYS": {
+   "periode": "+1y",
+   "bpa": 8.474,
+   "bpa_90j": 8.271,
+   "var": 2.4
+  },
+  "RELX": {
+   "periode": "+1y",
+   "bpa": 2.129,
+   "bpa_90j": 2.135,
+   "var": -0.3
+  },
+  "RMBS": {
+   "periode": "+1y",
+   "bpa": 3.885,
+   "bpa_90j": 3.697,
+   "var": 5.1
+  },
+  "SFM": {
+   "periode": "+1y",
+   "bpa": 4.595,
+   "bpa_90j": 5.95,
+   "var": -22.8
+  },
+  "SGHC": {
+   "periode": "+1y",
+   "bpa": 0.862,
+   "bpa_90j": 0.894,
+   "var": -3.6
+  },
+  "SLB": {
+   "periode": "+1y",
+   "bpa": 3.087,
+   "bpa_90j": 3.234,
+   "var": -4.5
+  },
+  "SSD": {
+   "periode": "+1y",
+   "bpa": 9.705,
+   "bpa_90j": 9.71,
+   "var": -0.1
+  },
+  "STX": {
+   "periode": "+1y",
+   "bpa": 65.665,
+   "bpa_90j": 54.712,
+   "var": 20.0
+  },
+  "THC": {
+   "periode": "+1y",
+   "bpa": 20.674,
+   "bpa_90j": 20.621,
+   "var": 0.3
+  },
+  "TT": {
+   "periode": "+1y",
+   "bpa": 17.681,
+   "bpa_90j": 17.403,
+   "var": 1.6
+  },
+  "TTEK": {
+   "periode": "+1y",
+   "bpa": 1.714,
+   "bpa_90j": 1.714,
+   "var": -0.0
+  },
+  "UNH": {
+   "periode": "+1y",
+   "bpa": 23.286,
+   "bpa_90j": 22.435,
+   "var": 3.8
+  },
+  "VRSN": {
+   "periode": "+1y",
+   "bpa": 10.892,
+   "bpa_90j": 10.757,
+   "var": 1.3
+  },
+  "VRT": {
+   "periode": "+1y",
+   "bpa": 9.742,
+   "bpa_90j": 9.064,
+   "var": 7.5
+  },
+  "WFRD": {
+   "periode": "+1y",
+   "bpa": 6.549,
+   "bpa_90j": 7.261,
+   "var": -9.8
+  },
+  "WMT": {
+   "periode": "+1y",
+   "bpa": 3.226,
+   "bpa_90j": 3.282,
+   "var": -1.7
+  },
+  "WSE": {
+   "periode": "+1y",
+   "bpa": 0.702,
+   "bpa_90j": 0.7,
+   "var": 0.3
+  },
+  "WWD": {
+   "periode": "+1y",
+   "bpa": 10.75,
+   "bpa_90j": 10.749,
+   "var": 0.0
+  },
+  "ACLNSW": {
+   "periode": "+1y",
+   "bpa": 3.463,
+   "bpa_90j": 3.309,
+   "var": 4.7
+  },
+  "ALSNSW": {
+   "periode": "+1y",
+   "bpa": 12.945,
+   "bpa_90j": 12.976,
+   "var": -0.2
+  },
+  "ARYNSW": {
+   "periode": "+1y",
+   "bpa": 4.644,
+   "bpa_90j": 5.316,
+   "var": -12.6
+  },
+  "BCHNSW": {
+   "periode": "+1y",
+   "bpa": 28.297,
+   "bpa_90j": 29.845,
+   "var": -5.2
+  },
+  "BRKNSW": {
+   "periode": "+1y",
+   "bpa": 6.61,
+   "bpa_90j": 6.714,
+   "var": -1.5
+  },
+  "CFRSW": {
+   "periode": "+1y",
+   "bpa": 8.57,
+   "bpa_90j": 8.456,
+   "var": 1.3
+  },
+  "EMMNSW": {
+   "periode": "+1y",
+   "bpa": 48.451,
+   "bpa_90j": 48.164,
+   "var": 0.6
+  },
+  "SCMNSW": {
+   "periode": "+1y",
+   "bpa": 30.67,
+   "bpa_90j": 30.354,
+   "var": 1.0
+  },
+  "SUNSW": {
+   "periode": "+1y",
+   "bpa": 10.788,
+   "bpa_90j": 10.828,
+   "var": -0.4
+  },
+  "TEMNSW": {
+   "periode": "+1y",
+   "bpa": 5.244,
+   "bpa_90j": 5.133,
+   "var": 2.2
+  },
+  "ADSK": {
+   "periode": "+1y",
+   "bpa": 14.199,
+   "bpa_90j": 14.258,
+   "var": -0.4
+  },
+  "EXPE": {
+   "periode": "+1y",
+   "bpa": 24.576,
+   "bpa_90j": 22.972,
+   "var": 7.0
+  },
+  "MEDP": {
+   "periode": "+1y",
+   "bpa": 19.855,
+   "bpa_90j": 19.31,
+   "var": 2.8
+  },
+  "COR": {
+   "periode": "+1y",
+   "bpa": 19.775,
+   "bpa_90j": 19.804,
+   "var": -0.1
+  },
+  "GDDY": {
+   "periode": "+1y",
+   "bpa": 9.208,
+   "bpa_90j": 9.245,
+   "var": -0.4
+  },
+  "IT": {
+   "periode": "+1y",
+   "bpa": 16.386,
+   "bpa_90j": 15.306,
+   "var": 7.1
+  },
+  "MCK": {
+   "periode": "+1y",
+   "bpa": 50.631,
+   "bpa_90j": 50.37,
+   "var": 0.5
+  },
+  "CAH": {
+   "periode": "+1y",
+   "bpa": 14.059,
+   "bpa_90j": 13.591,
+   "var": 3.4
+  },
+  "FTDR": {
+   "periode": "+1y",
+   "bpa": 5.126,
+   "bpa_90j": 5.05,
+   "var": 1.5
+  },
+  "PYPL": {
+   "periode": "+1y",
+   "bpa": 5.883,
+   "bpa_90j": 5.784,
+   "var": 1.7
+  },
+  "FDS": {
+   "periode": "+1y",
+   "bpa": 21.732,
+   "bpa_90j": 21.922,
+   "var": -0.9
+  },
+  "MCO": {
+   "periode": "+1y",
+   "bpa": 18.674,
+   "bpa_90j": 18.872,
+   "var": -1.1
+  },
+  "V": {
+   "periode": "+1y",
+   "bpa": 17.133,
+   "bpa_90j": 16.931,
+   "var": 1.2
+  },
+  "AON": {
+   "periode": "+1y",
+   "bpa": 20.205,
+   "bpa_90j": 21.354,
+   "var": -5.4
+  },
+  "ASR": {
+   "periode": "+1y",
+   "bpa": 22.486,
+   "bpa_90j": 25.732,
+   "var": -12.6
+  },
+  "CME": {
+   "periode": "+1y",
+   "bpa": 13.231,
+   "bpa_90j": 12.939,
+   "var": 2.3
+  },
+  "IBP": {
+   "periode": "+1y",
+   "bpa": 10.736,
+   "bpa_90j": 11.192,
+   "var": -4.1
+  },
+  "MORN": {
+   "periode": "+1y",
+   "bpa": 14.584,
+   "bpa_90j": 13.802,
+   "var": 5.7
+  },
+  "AIAAT": {
+   "periode": "+1y",
+   "bpa": 0.656,
+   "bpa_90j": 0.657,
+   "var": -0.1
+  },
+  "SESMI": {
+   "periode": "+1y",
+   "bpa": 8.532,
+   "bpa_90j": 8.427,
+   "var": 1.3
+  },
+  "DB1DE": {
+   "periode": "+1y",
+   "bpa": 13.707,
+   "bpa_90j": 13.39,
+   "var": 2.4
+  },
+  "AYI": {
+   "periode": "+1y",
+   "bpa": 23.34,
+   "bpa_90j": 23.841,
+   "var": -2.1
+  }
+ },
+ "ecart_hist": {
+  "ASML": [
+   [
+    "2026-10-31",
+    55.2,
+    28.9
+   ]
+  ],
+  "ELIS": [
+   [
+    "2026-10-31",
+    4.9,
+    6.7
+   ]
+  ],
+  "EL": [
+   [
+    "2026-10-31",
+    5.7,
+    0.6
+   ]
+  ],
+  "GTT": [
+   [
+    "2026-10-31",
+    -0.4,
+    6.9
+   ]
+  ],
+  "RMS": [
+   [
+    "2026-10-31",
+    1.6,
+    4.2
+   ]
+  ],
+  "INTERPARFUMS": [
+   [
+    "2026-10-31",
+    -7.3,
+    2.1
+   ]
+  ],
+  "AI": [
+   [
+    "2026-10-31",
+    0.8,
+    9.2
+   ]
+  ],
+  "LR": [
+   [
+    "2026-10-31",
+    14.7,
+    14.3
+   ]
+  ],
+  "SU": [
+   [
+    "2026-10-31",
+    9.8,
+    14.3
+   ]
+  ],
+  "HO": [
+   [
+    "2026-10-31",
+    6.7,
+    16.7
+   ]
+  ],
+  "TTE": [
+   [
+    "2026-10-31",
+    41.1,
+    36.2
+   ]
+  ],
+  "WKL": [
+   [
+    "2026-10-31",
+    -0.6,
+    9.5
+   ]
+  ],
+  "MA": [
+   [
+    "2026-10-31",
+    14.0,
+    13.2
+   ]
+  ],
+  "KO": [
+   [
+    "2026-10-31",
+    7.4,
+    20.2
+   ]
+  ],
+  "ADBE": [
+   [
+    "2026-10-31",
+    12.9,
+    13.7
+   ]
+  ],
+  "AMS": [
+   [
+    "2026-10-31",
+    1.5,
+    8.1
+   ]
+  ],
+  "UMG": [
+   [
+    "2026-10-31",
+    5.3,
+    10.4
+   ]
+  ],
+  "GOOGL": [
+   [
+    "2026-10-31",
+    24.7,
+    18.8
+   ]
+  ],
+  "OR": [
+   [
+    "2026-10-31",
+    5.8,
+    0.5
+   ]
+  ],
+  "SAF": [
+   [
+    "2026-10-31",
+    16.0,
+    16.7
+   ]
+  ],
+  "AIR": [
+   [
+    "2026-10-31",
+    -2.0,
+    9.9
+   ]
+  ],
+  "DSY": [
+   [
+    "2026-10-31",
+    6.3,
+    16.1
+   ]
+  ],
+  "IPSEN": [
+   [
+    "2026-10-31",
+    18.7,
+    8.3
+   ]
+  ],
+  "NRO": [
+   [
+    "2026-10-31",
+    7.2,
+    8.8
+   ]
+  ],
+  "PLNW": [
+   [
+    "2026-10-31",
+    10.8,
+    6.3
+   ]
+  ],
+  "ITX": [
+   [
+    "2026-10-31",
+    9.1,
+    9.6
+   ]
+  ],
+  "RAA": [
+   [
+    "2026-10-31",
+    4.2,
+    5.0
+   ]
+  ],
+  "NEM": [
+   [
+    "2026-10-31",
+    13.0,
+    12.8
+   ]
+  ],
+  "MONC": [
+   [
+    "2026-10-31",
+    5.2,
+    4.2
+   ]
+  ],
+  "RHM": [
+   [
+    "2026-10-31",
+    68.8,
+    16.7
+   ]
+  ],
+  "ATCO": [
+   [
+    "2026-10-31",
+    15.1,
+    29.1
+   ]
+  ],
+  "DG": [
+   [
+    "2026-10-31",
+    2.3,
+    1.1
+   ]
+  ]
+ }
+}
