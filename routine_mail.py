@@ -292,6 +292,21 @@ def main():
                 stale.append((s_, f"croissance retenue {fr(g_, 1)} %/an, saisie le {d_} ({age_} jours) : à mettre à jour avec les derniers résultats"))
     except Exception as e_:
         print('croissances officielles : controle impossible', e_)
+    # 31/10/2026 : alertes d'anticipation (anticipation.py) : ce que le marche
+    # voit avant les resultats. Une alerte = une contre-expertise, jamais une decision.
+    antic, antic_w, antic_date = [], [], ''
+    try:
+        A_ = json.load(open('anticipation.json', encoding='utf-8'))
+        antic_date = A_.get('date', '')
+        lib_ = {'revision': 'Analystes', 'concurrents': 'Concurrents'}
+        for key_, dest_ in (('alertes', antic), ('surveiller', antic_w)):
+            for a_ in A_.get(key_, []):
+                s_ = by.get(a_['t'])
+                if s_ and (s_.get('qok') or s_.get('near') or a_['t'] in held):
+                    dest_.append((s_, f"{lib_.get(a_['type'], a_['type'])} : {a_['txt']}"
+                                      + (' → contre-expertise à faire' if key_ == 'alertes' else '')))
+    except Exception as e_:
+        print('anticipation : fichier absent ou illisible', e_)
     n_buy = len(buys)
     # 19/10/2026 : alerte si la derniere mise a jour des donnees a echoue en partie ou date
     health_html = ''
@@ -318,6 +333,7 @@ def main():
 {sec('3. Ne pas renforcer', li(big, '#a8790f') if ptf else '<p style="font-size:13px;color:#5a6275">Tes positions ne sont pas connues du mail (confidentialité) : regarde l’onglet Alertes du screener pour tes lignes.</p>')}
 {sec('Mouvements de plus de 10 % cette semaine', li(moves, '#24508a') + '<p style="font-size:12px;color:#5a6275">La thèse est-elle touchée, ou seulement le prix ? On ne décide jamais sur un mouvement de prix seul.</p>')}
 {sec('À moins de 5 % du palier 1 : prépare-toi', li(near5, '#c9a45c') + '<p style="font-size:12px;color:#5a6275">La thèse se vérifie maintenant, à froid. L’ordre limité se pose à l’avance : la baisse peut ne durer que quelques heures.</p>')}
+{sec('Anticipation : le marché voit-il quelque chose ?', li(antic, '#a8322b') + (('<p style="font-size:13px;margin:8px 0 2px"><b>À surveiller</b></p>' + li(antic_w, '#a8790f')) if antic_w else '') + f'<p style="font-size:12px;color:#5a6275">Calcul du {antic_date or "—"}. Analystes : bénéfice attendu en baisse de plus de 5 % en 90 jours. Concurrents : croissance inférieure de plus de 5 points à la médiane des concurrents, deux publications de suite. Une alerte impose une contre-expertise, jamais une décision. Si le cours baisse sans aucune de ces alertes, c’est probablement du bruit de marché.</p>')}
 {sec('Entrées en zone d’achat depuis le dernier mail', li([(by[t], 'nouvelle en zone · ' + ('achat possible' if group(by[t]) == 'buy' else 'à surveiller (chute, moat ou régularité)')) for t in new_zone], '#1d6b45'))}
 {sec('Alerte : le capital ajouté rapporte peu', li([(s, f"capitaux investis en hausse, rendement du capital ajouté {('négatif' if s.get('roiic') is None else fr(s.get('roiic'), 1) + ' %')} sur 4 ans · ROIC {fr(s.get('roic'), 1)} %") for s in S if s.get('roiica') and (s.get('qok') or s.get('near'))], '#a8322b') + '<p style="font-size:12px;color:#5a6275">Le signal de la lettre MasterBourse (cas Atos) : l’entreprise investit plus mais gagne peu sur ce qu’elle ajoute. Une alerte, pas une vente : contre-expertise, puis vente seulement si la thèse est cassée.</p>')}
 {sec('Univers élargi : nouvelles venues dans ta grille', cand_li(c_in, '#1d6b45') + f'<p style="font-size:12px;color:#5a6275">Valeurs hors screener qui passent maintenant tous tes critères (passage du {c_date}). Pas un achat : une fiche à ouvrir et une contre-expertise à faire.</p>')}

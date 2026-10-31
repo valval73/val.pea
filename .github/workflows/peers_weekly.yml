@@ -16,7 +16,7 @@ concurrency:
 jobs:
   peers:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,6 +24,7 @@ jobs:
           python-version: '3.11'
       - run: pip install yfinance requests pytz --quiet
       - run: python fetch_peers.py
+      - run: python anticipation.py
       - name: Commit if changed
         run: |
           git config --local user.email "valpea@users.noreply.github.com"
@@ -31,9 +32,10 @@ jobs:
           if ! node -e "new Function(require('fs').readFileSync('peers.js','utf8'))"; then
             echo "peers.js INVALIDE : rien n'est publie"; exit 1
           fi
-          git add peers.js
+          python -c "import json; json.load(open('anticipation.json'))"
+          git add peers.js anticipation.json
           if git diff --cached --quiet; then echo "Nothing to commit"; else
-            git commit -m "Concurrents $(date '+%Y-%m-%d') [skip ci]"
+            git commit -m "Concurrents et anticipation $(date '+%Y-%m-%d') [skip ci]"
             git pull --rebase --autostash origin main
             git push
           fi
