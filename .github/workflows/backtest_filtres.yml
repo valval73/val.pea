@@ -1,4 +1,4 @@
-name: Test du filtre couteau (variantes)
+name: Tests de regles (variantes)
 on:
   workflow_dispatch:
 permissions:
@@ -16,8 +16,8 @@ jobs:
       - name: Variantes
         run: |
           mkdir -p backtests
-          for k in actuel aucun chute25 mm10 rebond; do
-            KNIFE=$k OUT=backtests/filtre_$k.json python backtest_paliers.py || echo "echec $k"
+          for r in 0 8 10 12; do
+            KNIFE=actuel IRRMIN=$r OUT=backtests/rendement_min_$r.json python backtest_paliers.py || echo "echec $r"
           done
       - run: |
           git config user.name "VAL.PEA"; git config user.email "valpea@users.noreply.github.com"

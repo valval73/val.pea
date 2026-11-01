@@ -29,7 +29,7 @@ from datetime import timedelta
 import pandas as pd
 import yfinance as yf
 from tickers import YF_MAP
-from fetch_fundamentals import qarp_value, QV_GMAX, effective_growth
+from fetch_fundamentals import qarp_value, QV_GMAX, effective_growth, expected_return
 from moat import UNCERTAINTY, MARGIN, MOAT, MOAT_MIN_BUY
 
 ETF = 'EUNL.DE'           # iShares Core MSCI World (EUR)
@@ -47,6 +47,8 @@ MONTHLY = 1000.0
 #   rebond  : on n'achete que si le cours est > 5 % au-dessus de son plus bas 3 mois
 KNIFE = os.environ.get('KNIFE', 'actuel')
 OUT = os.environ.get('OUT', 'backtest_paliers.json')
+# 01/11/2026 : rendement attendu minimum pour acheter (0 = pas de seuil)
+IRRMIN = float(os.environ.get('IRRMIN', '0'))
 
 
 def knife_rule(tk, d, p, hist12):
@@ -148,7 +150,7 @@ def valuations(tk, roic):
         ups = sum(1 for a_, b_ in zip(rs, rs[1:]) if b_ > a_)
         regular = ups >= len(rs) - 2 if len(rs) >= 3 else True
         if v:
-            pts.append((d1 + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1), regular))
+            pts.append((d1 + timedelta(days=LAG), v * (1 - hi), v * (1 - Z2M[unc]), v, round(g, 1), regular, e, roic))
     return pts, None
 
 
@@ -209,6 +211,11 @@ def main():
             hist12 = closes[tk][(closes[tk].index <= d) & (closes[tk].index > d - pd.Timedelta(days=366))]
             knife = bool(len(hist12)) and knife_rule(tk, d, p, hist12)
             weak = (MOAT.get(tk, (0,))[0] or 0) < MOAT_MIN_BUY
+            if IRRMIN:
+                er = expected_return(None, v[6], v[4], v[7], p)
+                if er is None or er < IRRMIN:
+                    blocked[tk] = blocked.get(tk, 0) + 1
+                    continue
             if knife or weak or not v[5]:
                 blocked[tk] = blocked.get(tk, 0) + 1
                 continue
@@ -269,6 +276,7 @@ def main():
                   'sans frais ni impôts'],
     }
     out['filtre_couteau'] = KNIFE
+    out['rendement_min'] = IRRMIN
     out['perf_moy_vs_etf'] = round(sum(e['perf_a_ce_jour'] - e['etf_meme_periode'] for e in events) / len(events), 1) if events else None
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
