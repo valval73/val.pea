@@ -24,7 +24,7 @@ BIAIS CONNUS (a lire avant de conclure) :
   - cours ajustes des dividendes (dividendes reinvestis), sans frais ni impots.
 Resultat ecrit dans backtest_paliers.json.
 """
-import json, math, sys
+import json, math, sys, os
 from datetime import timedelta
 import pandas as pd
 import yfinance as yf
@@ -37,6 +37,29 @@ EUR_IDX = 'EXSA.DE'       # iShares STOXX Europe 600 (historique long) : referen
 Z2M = {'faible': 0.20, 'moyenne': 0.30, 'elevee': 0.40}
 LAG = 75                  # jours entre cloture et publication
 MONTHLY = 1000.0
+
+
+# 01/11/2026 : variantes du filtre "couteau qui tombe" (variable KNIFE)
+#   actuel  : cours < 65 % du plus haut 12 mois (regle du screener)
+#   aucun   : pas de filtre
+#   chute25 : cours < 75 % du plus haut 12 mois
+#   mm10    : cours sous sa moyenne 10 mois (~200 seances) = tendance baissiere
+#   rebond  : on n'achete que si le cours est > 5 % au-dessus de son plus bas 3 mois
+KNIFE = os.environ.get('KNIFE', 'actuel')
+OUT = os.environ.get('OUT', 'backtest_paliers.json')
+
+
+def knife_rule(tk, d, p, hist12):
+    if KNIFE == 'aucun':
+        return False
+    if KNIFE == 'chute25':
+        return p < 0.75 * float(hist12.max())
+    if KNIFE == 'mm10':
+        return len(hist12) >= 10 and p < float(hist12.iloc[-10:].mean())
+    if KNIFE == 'rebond':
+        h3 = hist12[hist12.index > d - pd.Timedelta(days=92)]
+        return len(h3) > 0 and p < 1.05 * float(h3.min())
+    return p < 0.65 * float(hist12.max())
 
 
 def universe():
@@ -184,7 +207,7 @@ def main():
             # memes filtres que le screener : chute > 35 % sur 12 mois, croissance
             # irreguliere, moat < 3 (moat = note d'aujourd'hui)
             hist12 = closes[tk][(closes[tk].index <= d) & (closes[tk].index > d - pd.Timedelta(days=366))]
-            knife = len(hist12) and p < 0.65 * float(hist12.max())
+            knife = bool(len(hist12)) and knife_rule(tk, d, p, hist12)
             weak = (MOAT.get(tk, (0,))[0] or 0) < MOAT_MIN_BUY
             if knife or weak or not v[5]:
                 blocked[tk] = blocked.get(tk, 0) + 1
@@ -245,7 +268,9 @@ def main():
                   'comptes : Yahoo + rapports officiels européens (depuis 2020) ; pas de krach 2020 dans le test',
                   'sans frais ni impôts'],
     }
-    json.dump(out, open('backtest_paliers.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    out['filtre_couteau'] = KNIFE
+    out['perf_moy_vs_etf'] = round(sum(e['perf_a_ce_jour'] - e['etf_meme_periode'] for e in events) / len(events), 1) if events else None
+    json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
 
 
