@@ -1,4 +1,5 @@
 {
+"0A2LL": null,
 "1INNDE": null,
 "ABBNESW": null,
 "ABBNSW": null,
@@ -119,6 +120,10 @@
 "BAHNBST": null,
 "BCHNSW": null,
 "BDXWA": null,
+"BESI": {
+"lei": "7245007A1YFLI2GNYX06",
+"name": "BE Semiconductor Industries N.V."
+},
 "BETSBST": null,
 "BFTWA": null,
 "BHP": {
@@ -163,6 +168,10 @@
 "CDRCK": {
 "lei": "222100P6D3QKU33LZQ72",
 "name": "Carmila"
+},
+"CEM": {
+"lei": "8156008B101B97A43B02",
+"name": "Cementir Holding N.V."
 },
 "CENPA": {
 "lei": "89450054R82I99Y73N93",
@@ -310,6 +319,7 @@
 "FFIV": null,
 "FIX": null,
 "FOX": null,
+"FPE3": null,
 "FRAMERYHE": null,
 "FSS": null,
 "FTI": null,
@@ -352,7 +362,10 @@
 "name": "GAZTRANSPORT ET TECHNIGAZ"
 },
 "GWW": null,
-"HACKST": null,
+"HACKST": {
+"lei": "636700SMLZDCBPNPMJ36",
+"name": "Hacksaw AB"
+},
 "HAFN": null,
 "HAGDE": {
 "lei": "894500686FYLLZD3M624",
@@ -762,6 +775,7 @@
 "name": "UNIBAIL-RODAMCO-WESTFIELD SE"
 },
 "UTHR": null,
+"VK": null,
 "VLTO": null,
 "VOSDE": {
 "lei": "5299003HAEOUVX3HWX43",

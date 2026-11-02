@@ -1,9 +1,12 @@
 {
-"date": "2026-10-26",
-"scope": 376,
-"compared": 104,
-"ok": 94,
+"date": "2026-11-02",
+"scope": 382,
+"compared": 94,
+"ok": 86,
 "res": {
+"0A2LL": {
+"status": "societe introuvable"
+},
 "1INNDE": {
 "status": "societe introuvable"
 },
@@ -66,18 +69,18 @@
 "status": "compare",
 "lei": "549300QZ5U2IDRHPWL60",
 "entity": "Addtech AB",
-"period_end": "2024-03-31",
+"period_end": "2026-03-31",
 "checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023",
-"ROIC 2024",
-"cash apres loyers 2024"
+"CA 2026",
+"CA 2025",
+"resultat net 2026",
+"resultat net 2025",
+"ROIC 2026",
+"cash apres loyers 2026"
 ],
 "issues": [],
-"roic_officiel": 17.5,
-"cash_apres_loyers": 130,
+"roic_officiel": 17.2,
+"cash_apres_loyers": 116,
 "histo_10a": null
 },
 "ADP2": {
@@ -90,21 +93,8 @@
 "status": "societe introuvable"
 },
 "AI": {
-"status": "compare",
-"lei": "969500MMPQVHK671GT54",
-"entity": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE",
-"period_end": "2024-12-31",
-"checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023",
-"ROIC 2024"
-],
-"issues": [],
-"roic_officiel": 11.1,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "969500MMPQVHK671GT54"
 },
 "AIAAT": {
 "status": "societe introuvable"
@@ -135,16 +125,16 @@
 "status": "compare",
 "lei": "549300UCKT2UK88AG251",
 "entity": "Alfa Laval AB",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"ROIC 2024"
+"ROIC 2025"
 ],
 "issues": [],
-"roic_officiel": 17.9,
+"roic_officiel": 19.2,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -202,22 +192,6 @@
 "status": "compare",
 "lei": "549300CN568MD1JD3E40",
 "entity": "AQ Group AB",
-"period_end": "2024-12-31",
-"checked": [
-"resultat net 2024",
-"resultat net 2023",
-"ROIC 2024",
-"cash apres loyers 2024"
-],
-"issues": [],
-"roic_officiel": 15.8,
-"cash_apres_loyers": 132,
-"histo_10a": null
-},
-"ARCADAS": {
-"status": "compare",
-"lei": "7245000UZH70GO047N03",
-"entity": "ARCADIS N.V.",
 "period_end": "2025-12-31",
 "checked": [
 "CA 2025",
@@ -227,10 +201,16 @@
 "ROIC 2025",
 "cash apres loyers 2025"
 ],
-"issues": [],
-"roic_officiel": 18.0,
-"cash_apres_loyers": 150,
+"issues": [
+"cash après loyers 79 % (2025, loyers = 16 % du flux d'exploitation) contre 98 % selon Yahoo : sous le seuil de 80 %"
+],
+"roic_officiel": 17.1,
+"cash_apres_loyers": 79,
 "histo_10a": null
+},
+"ARCADAS": {
+"status": "aucun rapport lisible",
+"lei": "7245000UZH70GO047N03"
 },
 "ARGAN": {
 "status": "compare",
@@ -312,12 +292,12 @@
 "status": "compare",
 "lei": "213800T8PC8Q4FYJZR07",
 "entity": "ATLAS COPCO AKTIEBOLAG",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -377,22 +357,11 @@
 "histo_10a": null
 },
 "AXFOST": {
-"status": "compare",
-"lei": "549300QIXCZWZLHE8L05",
-"entity": "Axfood AB",
-"period_end": "2024-12-31",
-"checked": [
-"resultat net 2024",
-"resultat net 2023",
-"ROIC 2024",
-"cash apres loyers 2024"
-],
-"issues": [
-"cash après loyers 74 % (2024, loyers = 42 % du flux d'exploitation) contre 174 % selon Yahoo : sous le seuil de 80 %"
-],
-"roic_officiel": 39.0,
-"cash_apres_loyers": 74,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "549300QIXCZWZLHE8L05"
+},
+"AYI": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "AZKMC": {
 "status": "societe introuvable"
@@ -408,6 +377,21 @@
 },
 "BDXWA": {
 "status": "societe introuvable"
+},
+"BESI": {
+"status": "compare",
+"lei": "7245007A1YFLI2GNYX06",
+"entity": "BE Semiconductor Industries N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 23.6,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "BETSBST": {
 "status": "societe introuvable"
@@ -442,21 +426,8 @@
 "status": "societe introuvable"
 },
 "BONHROL": {
-"status": "compare",
-"lei": "213800HOQE1B34SUA323",
-"entity": "Bonheur ASA",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 16.7,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "213800HOQE1B34SUA323"
 },
 "BOUVOL": {
 "status": "compare",
@@ -526,10 +497,10 @@
 "status": "compare",
 "lei": "5493003S6Z6VI7WYFQ06",
 "entity": "Camurus AB",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"CA 2024",
-"CA 2023"
+"CA 2025",
+"CA 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -556,6 +527,22 @@
 "checked": [
 "resultat net 2024",
 "resultat net 2023"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
+},
+"CEM": {
+"status": "compare",
+"lei": "8156008B101B97A43B02",
+"entity": "Cementir Holding N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -597,18 +584,8 @@
 "status": "societe introuvable"
 },
 "CMB": {
-"status": "compare",
-"lei": "8156008BFBC06F53DD56",
-"entity": "CEMBRE S.P.A.",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "8156008BFBC06F53DD56"
 },
 "CME": {
 "status": "SEC inaccessible depuis GitHub"
@@ -745,24 +722,8 @@
 "status": "societe introuvable"
 },
 "DIEBR": {
-"status": "compare",
-"lei": "549300DV5KJ23OKVTW34",
-"entity": "D'IETEREN GROUP",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025",
-"cash apres loyers 2025"
-],
-"issues": [
-"ROIC officiel 12.3 % (2025) contre 20.4 % calcule avec Yahoo"
-],
-"roic_officiel": 12.3,
-"cash_apres_loyers": 103,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "549300DV5KJ23OKVTW34"
 },
 "DLG": {
 "status": "compare",
@@ -879,16 +840,16 @@
 "status": "compare",
 "lei": "5493004Q73OEYW1SPE91",
 "entity": "Epiroc Aktiebolag",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"ROIC 2024"
+"ROIC 2025"
 ],
 "issues": [],
-"roic_officiel": 16.8,
+"roic_officiel": 18.1,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -896,24 +857,8 @@
 "status": "societe introuvable"
 },
 "EPROL": {
-"status": "compare",
-"lei": "5967007LIEEXZXGA8G28",
-"entity": "EUROPRIS ASA",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025",
-"cash apres loyers 2025"
-],
-"issues": [
-"cash après loyers 55 % (2025, loyers = 61 % du flux d'exploitation) contre 152 % selon Yahoo : sous le seuil de 80 %"
-],
-"roic_officiel": 19.1,
-"cash_apres_loyers": 55,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "5967007LIEEXZXGA8G28"
 },
 "EQSPA": {
 "status": "compare",
@@ -947,10 +892,10 @@
 "status": "compare",
 "lei": "549300SUH6ZR1RF6TA88",
 "entity": "Evolution AB (publ)",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -1019,7 +964,7 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
-"FFIV": {
+"FDS": {
 "status": "SEC inaccessible depuis GitHub"
 },
 "FIX": {
@@ -1027,6 +972,9 @@
 },
 "FOX": {
 "status": "SEC inaccessible depuis GitHub"
+},
+"FPE3": {
+"status": "societe introuvable"
 },
 "FRAMERYHE": {
 "status": "societe introuvable"
@@ -1149,7 +1097,18 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "HACKST": {
-"status": "societe introuvable"
+"status": "compare",
+"lei": "636700SMLZDCBPNPMJ36",
+"entity": "Hacksaw AB",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HAFN": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1162,21 +1121,8 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "HARVIAHE": {
-"status": "compare",
-"lei": "7437002ULTBOWQQOXL69",
-"entity": "Harvia Oyj",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 16.0,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "7437002ULTBOWQQOXL69"
 },
 "HEI": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1304,17 +1250,17 @@
 "status": "compare",
 "lei": "549300FISLQ6CEFP1867",
 "entity": "Indutrade Aktiebolag",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
+"resultat net 2025",
 "resultat net 2024",
-"resultat net 2023",
-"cash apres loyers 2024"
+"cash apres loyers 2025"
 ],
 "issues": [],
 "roic_officiel": null,
-"cash_apres_loyers": 112,
+"cash_apres_loyers": 113,
 "histo_10a": null
 },
 "INFY": {
@@ -1372,22 +1318,8 @@
 "histo_10a": null
 },
 "ISSCO": {
-"status": "compare",
-"lei": "213800LEZA58SZNCBN19",
-"entity": "ISS A/S",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025",
-"cash apres loyers 2025"
-],
-"issues": [],
-"roic_officiel": 12.8,
-"cash_apres_loyers": 119,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "213800LEZA58SZNCBN19"
 },
 "IT": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1489,19 +1421,8 @@
 "lei": "529900NY2GSZWWUBW049"
 },
 "KRXIR": {
-"status": "compare",
-"lei": "635400HM7V74SUB9OG75",
-"entity": "Kingspan Group plc",
-"period_end": "2022-12-31",
-"checked": [
-"CA 2022",
-"resultat net 2022",
-"ROIC 2022"
-],
-"issues": [],
-"roic_officiel": 12.3,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "635400HM7V74SUB9OG75"
 },
 "KSB3": {
 "status": "societe introuvable"
@@ -1513,14 +1434,14 @@
 "status": "compare",
 "lei": "5493002L6I4YHANEYR87",
 "entity": "Lagercrantz Group Aktiebolag",
-"period_end": "2024-03-31",
+"period_end": "2026-03-31",
 "checked": [
-"CA 2024",
-"CA 2023",
-"ROIC 2024"
+"CA 2026",
+"CA 2025",
+"ROIC 2026"
 ],
 "issues": [],
-"roic_officiel": 17.4,
+"roic_officiel": 16.7,
 "cash_apres_loyers": null,
 "histo_10a": null
 },
@@ -1543,18 +1464,18 @@
 "status": "compare",
 "lei": "5493008UUFYDF3ZTHC65",
 "entity": "Lime Technologies AB (publ)",
-"period_end": "2023-12-31",
+"period_end": "2025-12-31",
 "checked": [
-"CA 2023",
-"CA 2022",
-"resultat net 2023",
-"resultat net 2022",
-"ROIC 2023",
-"cash apres loyers 2023"
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025",
+"cash apres loyers 2025"
 ],
 "issues": [],
-"roic_officiel": 28.9,
-"cash_apres_loyers": 114,
+"roic_officiel": 27.7,
+"cash_apres_loyers": 100,
 "histo_10a": null
 },
 "LMT": {
@@ -1627,20 +1548,8 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "MAIREMI": {
-"status": "compare",
-"lei": "815600D85A61200A1B83",
-"entity": "MAIRE S.P.A.",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "815600D85A61200A1B83"
 },
 "MANH": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1653,12 +1562,12 @@
 "status": "compare",
 "lei": "549300NGO5XAJ6TL8719",
 "entity": "MedCap AB (publ)",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -1774,12 +1683,12 @@
 "status": "compare",
 "lei": "549300S5CCFESE4C6Y07",
 "entity": "Mycronic AB (publ)",
-"period_end": "2024-12-31",
+"period_end": "2025-12-31",
 "checked": [
+"CA 2025",
 "CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2025",
+"resultat net 2024"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -1908,21 +1817,8 @@
 "status": "societe introuvable"
 },
 "OR": {
-"status": "compare",
-"lei": "529900JI1GG6F7RKVI53",
-"entity": "L'OREAL",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025"
-],
-"issues": [],
-"roic_officiel": 19.0,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "529900JI1GG6F7RKVI53"
 },
 "ORLY": {
 "status": "SEC inaccessible depuis GitHub"
@@ -2043,22 +1939,8 @@
 "status": "societe introuvable"
 },
 "PUUILOHE": {
-"status": "compare",
-"lei": "743700UJUT6FWHBXPR69",
-"entity": "Puuilo Oyj",
-"period_end": "2026-01-31",
-"checked": [
-"CA 2026",
-"CA 2025",
-"resultat net 2026",
-"resultat net 2025",
-"ROIC 2026",
-"cash apres loyers 2026"
-],
-"issues": [],
-"roic_officiel": 41.5,
-"cash_apres_loyers": 96,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "743700UJUT6FWHBXPR69"
 },
 "PYPL": {
 "status": "SEC inaccessible depuis GitHub"
@@ -2152,10 +2034,10 @@
 "status": "compare",
 "lei": "549300YU7003VHQV3J57",
 "entity": "RVRC Holding AB",
-"period_end": "2024-06-30",
+"period_end": "2026-06-30",
 "checked": [
-"resultat net 2024",
-"resultat net 2023"
+"resultat net 2026",
+"resultat net 2025"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -2203,12 +2085,12 @@
 "status": "compare",
 "lei": "549300R9ZBT8YSFFK266",
 "entity": "SECTRA Aktiebolag",
-"period_end": "2024-04-30",
+"period_end": "2026-04-30",
 "checked": [
-"CA 2024",
-"CA 2023",
-"resultat net 2024",
-"resultat net 2023"
+"CA 2026",
+"CA 2025",
+"resultat net 2026",
+"resultat net 2025"
 ],
 "issues": [],
 "roic_officiel": null,
@@ -2476,6 +2358,9 @@
 },
 "V": {
 "status": "SEC inaccessible depuis GitHub"
+},
+"VK": {
+"status": "societe introuvable"
 },
 "VLTO": {
 "status": "SEC inaccessible depuis GitHub"
