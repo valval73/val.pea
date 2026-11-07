@@ -26,6 +26,7 @@ try:
     from moat import MOAT, MOAT_MIN_BUY
 except Exception:
     MOAT, MOAT_MIN_BUY = {}, 3
+IRR_MIN_BUY = 12.0   # decision du 06/11/2026, testee et gardee
 try:
     from moat import UNCERTAINTY, MARGIN
 except Exception:
@@ -1615,7 +1616,8 @@ def compute_all_scores():
                         'stop': g('stop'), 'o1': g('o1'),
                         'qok': bool(re.search(r"(?<![A-Za-z0-9_])qok:true", block)),
                         'knife': bool(re.search(r"(?<![A-Za-z0-9_])knife:true", block)),
-                        'mscore': g('mscore', None), 'regu': g('regu', None), 'regn': g('regn', None)})
+                        'mscore': g('mscore', None), 'regu': g('regu', None), 'regn': g('regn', None),
+                        'irr': g('irrn', None) if g('irrn', None) is not None else g('irr', None)})
 
     by_cap = {}
     for e in entries:
@@ -1671,7 +1673,11 @@ def derive_signal(grade, e):
         # croissance reguliere exigee : CA en hausse au moins 2 ans sur 3
         irregular = (e.get('regu') is not None and e.get('regn') and e['regn'] >= 2
                      and e['regu'] < e['regn'] - 1)
-        return ('watch', True) if (e.get('knife') or weak_moat or irregular) else ('buy', True)
+        # 07/11/2026 : decision du 06/11 (backtest rendement_min_12, 2021-2026) :
+        # achat seulement si le rendement attendu au cours du jour atteint 12 %/an
+        # (net de retenue a la source). Meme resultat, un tiers d'achats en moins.
+        low_ret = e.get('irr') is None or e['irr'] < IRR_MIN_BUY
+        return ('watch', True) if (e.get('knife') or weak_moat or irregular or low_ret) else ('buy', True)
     if p <= dcfm:
         return ('watch', False)
     return ('hold', False)
