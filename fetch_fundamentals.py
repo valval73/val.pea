@@ -1472,6 +1472,15 @@ def fetch_one(ticker, yf_sym, sector):
                         result['o2'] = round(result['vopt'] * 1.10, 2)
                     result['vref'] = 'mediane'
                 result['irr'] = expected_return(fwd_v, eps_ttm, g_c, roic_v, p_)
+                # 07/11/2026 : rendement attendu SI on achete aux paliers. Rend
+                # verifiable l'exigence de 12 %/an : la valeur centrale est calculee
+                # a 8,5 %, ce sont les paliers (decote) qui doivent porter les 12 %.
+                _z2 = {'faible': 0.20, 'moyenne': 0.30, 'elevee': 0.40}.get(unc or 'moyenne', 0.30)
+                result['irr1'] = (expected_return(fwd_v, eps_ttm, g_c, roic_v, result['eh'])
+                                  if result.get('eh') else None)
+                result['irr2'] = (expected_return(fwd_v, eps_ttm, g_c, roic_v,
+                                                  round(result['dcfm'] * (1 - _z2), 2))
+                                  if result.get('dcfm') else None)
                 # 08/10/2026 : en PEA, la retenue a la source etrangere sur les
                 # dividendes est perdue -> rendement net pour l'investisseur PEA
                 wht = WHT.get(yf_sym.rsplit('.', 1)[-1] if '.' in yf_sym else '', 0.0)
@@ -1726,7 +1735,7 @@ def set_quality_fields(block, data):
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
     block = _set_field(block, 'news5', txt(data.get('news5')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'vepv', 'vmed', 'irr', 'irrn', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'vepv', 'vmed', 'irr', 'irrn', 'irr1', 'irr2', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):
