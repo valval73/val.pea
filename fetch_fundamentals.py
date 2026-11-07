@@ -610,6 +610,29 @@ def compute_quality(t, sector_cat):
             res['nregu'] = sum(1 for i in range(len(nis) - 1) if nis[i] > nis[i + 1])
         if len(revs) >= 2 and revs[-1] > 0 and revs[0] > 0:
             res['cagr'] = round(((revs[0] / revs[-1]) ** (1 / (len(revs) - 1)) - 1) * 100, 1)
+        # 07/11/2026 (grille Fournier) : ALLOCATION DU CAPITAL et tendance, en
+        # affichage seulement (pas de critere eliminatoire). 4 ans Yahoo.
+        try:
+            _sh = [x for x in _row_series(bs, 'Ordinary Shares Number', 'Share Issued')[:4] if x]
+            if len(_sh) >= 2 and _sh[-1] > 0:
+                res['shg'] = round(((_sh[0] / _sh[-1]) ** (1 / (len(_sh) - 1)) - 1) * 100, 1)
+            _ocf = _row_series(cf, 'Operating Cash Flow')[:4]
+            _cpx = _row_series(cf, 'Capital Expenditure')[:4]
+            _pr = [(abs(c), o) for c, o in zip(_cpx, _ocf) if c is not None and o]
+            if _pr and sum(o for _, o in _pr) > 0:
+                res['capocf'] = round(sum(c for c, _ in _pr) / sum(o for _, o in _pr) * 100, 0)
+            _nis4 = [x for x in ni[:4] if x is not None]
+            _div = [abs(x) for x in _row_series(cf, 'Cash Dividends Paid', 'Common Stock Dividend Paid')[:4] if x is not None]
+            _rb = [abs(x) for x in _row_series(cf, 'Repurchase Of Capital Stock', 'Common Stock Payments')[:4] if x is not None]
+            if _nis4 and sum(_nis4) > 0:
+                if _div: res['payo'] = round(sum(_div) / sum(_nis4) * 100, 0)
+                res['rbk'] = round(sum(_rb) / sum(_nis4) * 100, 0) if _rb else 0
+            _om = [(o / r * 100) if (o is not None and r) else None for o, r in zip(opinc[:4], rev[:4])]
+            _om = [x for x in _om if x is not None]
+            if len(_om) >= 2:
+                res['om0'], res['om3'] = round(_om[0], 1), round(_om[-1], 1)
+        except Exception:
+            pass
         ops = [x for x in opinc[:4] if x is not None]
         op_ok = bool(ops) and all(x > 0 for x in ops)
         why = []
@@ -1741,7 +1764,7 @@ def set_quality_fields(block, data):
     block = _set_field(block, 'unc', txt(data.get('unc')))
     block = _set_field(block, 'grid', txt(data.get('grid')))
     block = _set_field(block, 'news5', txt(data.get('news5')))
-    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'vepv', 'vmed', 'irr', 'irrn', 'irr1', 'irr2', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
+    for k in ('pe_h', 'pfcf_h', 'eveb_h', 'hn', 'vmult', 'vepv', 'vmed', 'irr', 'irrn', 'irr1', 'irr2', 'shg', 'capocf', 'payo', 'rbk', 'om0', 'om3', 'wht', 'roem', 'roemin', 'bvg', 'ltv', 'icr', 'gmod', 'pe_lo', 'div12', 'dy_med', 'dy_n', 'chg5'):
         block = _set_field(block, k, num(data.get(k)))
     block = _set_field(block, 'dq', txt(data.get('dq')))
     for k in ('yrs', 'revh', 'nih', 'fcfh', 'fcur'):

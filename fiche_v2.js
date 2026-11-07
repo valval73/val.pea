@@ -240,8 +240,23 @@ function quality(s){
   var roicTxt = (s.roicx!=null) ? '<span><b>Création de valeur :</b> rentabilité du capital '+(s.roicx>100?'>100':fr(s.roicx,1))+' % contre un coût du capital de ~'+COC+' %'+(s.roicx>COC*1.5?' → l’entreprise crée de la valeur.':s.roicx>COC?' → crée un peu de valeur.':' → <b style="color:'+C.rd+'">détruit de la valeur</b>.')+'</span>' : '';
   var pio = s.pio!=null ? '<span class="v2-small">Santé financière (Piotroski) '+s.pio+'/9'+(s.pio<=4?' · <b style="color:'+C.rd+'">alerte</b>':'')+'</span>' : '';
   return '<section class="v2-card"><h2>Qualité : '+n+' / 5 critères'+(s.regn?' + régularité':'')+'</h2>'+h+reg+
-    '<div class="v2-note">'+roicTxt+pio+'</div>'+
+    '<div class="v2-note">'+roicTxt+pio+'</div>'+allocBlock(s)+
     (s.qwhy?'<div class="v2-small">'+esc(s.qwhy)+'</div>':'')+'</section>';
+}
+
+// 07/11/2026 (grille Fournier) : allocation du capital et tendance sur 4 ans.
+// Affichage seulement, jamais eliminatoire. Sert a comprendre et a nourrir la contre-expertise.
+function allocBlock(s){
+  if(s.shg==null && s.capocf==null && s.payo==null && s.om0==null) return '';
+  var col=function(ok){ return ok==null?C.mu:(ok?C.gn:C.rd); };
+  var line=function(lbl,val,ok,help){ return '<div class="v2-crit"><span>'+lbl+(help?' <span class="v2-small">'+help+'</span>':'')+'</span><b class="v2-mono" style="color:'+col(ok)+'">'+val+'</b></div>'; };
+  var h='';
+  if(s.shg!=null) h+=line('Nombre d’actions', sgn(s.shg,1)+'/an', s.shg<=0?true:(s.shg>2?false:null), s.shg<=0?'(rachats : ta part grossit)':s.shg>2?'(dilution : ta part fond)':'(stable)');
+  if(s.capocf!=null) h+=line('Investissements / cash d’exploitation', fr(s.capocf,0)+' %', null, '(plus c’est bas, plus il reste de cash libre)');
+  if(s.payo!=null||s.rbk!=null) h+=line('Bénéfice rendu aux actionnaires', (s.payo!=null?fr(s.payo,0)+' % en dividendes':'—')+(s.rbk!=null?' · '+fr(s.rbk,0)+' % en rachats':''), (s.payo!=null&&s.payo>100)?false:null, (s.payo!=null&&s.payo>100)?'(distribue plus qu’il ne gagne)':'');
+  if(s.om0!=null&&s.om3!=null) h+=line('Marge d’exploitation : aujourd’hui / il y a 3 ans', fr(s.om0,1)+' % / '+fr(s.om3,1)+' %', s.om0>=s.om3-1?true:(s.om0<s.om3-3?false:null), s.om0<s.om3-3?'(se dégrade)':'');
+  return '<div style="margin-top:8px"><b>Allocation du capital et tendance (4 ans)</b> <span class="v2-small">affichage, pas un critère</span>'+h+
+    '<div class="v2-small">Rachats « intelligents » (faits quand l’action est bon marché) : non mesurable ici, à juger en contre-expertise.</div></div>';
 }
 
 // 29/10/2026 : comparatif chiffre avec 3 concurrents cotes (peers.js, mis a jour
