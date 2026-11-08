@@ -510,6 +510,7 @@ function moteur(s){
 }
 window.v2moteur=moteur;
 // poids de chaque moteur dans la poche ACTIONS detenue (ETF exclus)
+function mineList(){ return (typeof PTF!=='undefined')?PTF:[]; }
 function moteurPoids(){
   var w={}, tot=0;
   mineList().forEach(function(p){ var s=(typeof S!=='undefined')?S.find(function(x){return x.ticker===p.ticker;}):null; if(!s||!(s.price>0)) return;
