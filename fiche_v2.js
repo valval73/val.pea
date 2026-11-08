@@ -478,6 +478,52 @@ function exitBlock(s){
     '<p class="v2-small">On ne vend ni parce qu’on a gagné, ni pour éviter de perdre : le prix d’achat n’entre jamais dans la décision.</p></section>';
 }
 
+// 08/11/2026 : MOTEUR COMMUN. Des lignes differentes peuvent dependre du meme
+// moteur economique et baisser ensemble (semaine du 2 au 6/11 : ASML, Schneider,
+// Legrand). Plafond : 30 % de la poche actions par moteur. Calcul dans le navigateur
+// seulement (les positions ne quittent jamais le navigateur).
+var MOTEUR_MAX = 30;
+var MOTEUR_FIX = {ASML:'IA & data centers',SU:'IA & data centers',LR:'IA & data centers',NEX:'IA & data centers',STMPA:'IA & data centers',SOI:'IA & data centers',
+  NVDA:'IA & data centers',MSFT:'IA & data centers',GOOGL:'IA & data centers',GOOG:'IA & data centers',AMZN:'IA & data centers',META:'IA & data centers',TSM:'IA & data centers',AVGO:'IA & data centers',AMD:'IA & data centers',
+  RMS:'Luxe & Chine',MC:'Luxe & Chine',KER:'Luxe & Chine',EL:'Luxe & Chine',INTERPARFUMS:'Luxe & Chine',OR:'Luxe & Chine',RI:'Luxe & Chine',RCO:'Luxe & Chine',CDI:'Luxe & Chine',
+  TTE:'Pétrole & gaz',GTT:'Pétrole & gaz',
+  HO:'Défense',AM:'Défense',SAF:'Défense',
+  AI:'Défensif (besoins de base)',ELIS:'Défensif (besoins de base)',
+  WKL:'Logiciel & données'};
+function moteur(s){
+  if(!s) return 'Autre';
+  if(MOTEUR_FIX[s.ticker]) return MOTEUR_FIX[s.ticker];
+  var x=(s.sector||'').toLowerCase();
+  if(/semi|data center|cloud|cables|câbles|connecteur|electronique|électronique/.test(x)) return 'IA & data centers';
+  if(/luxe|parfum|cosm|spiritueux|champagne|bijou|optique/.test(x)) return 'Luxe & Chine';
+  if(/defen|défen|militaire|armement|drones/.test(x)) return 'Défense';
+  if(/energ|énerg|pétro|petro|lng|gaz naturel|biogaz/.test(x)) return 'Pétrole & gaz';
+  if(/banque|assur|financ|paiement|bourse|holding|arbitrage/.test(x)) return 'Finance';
+  if(/sant|pharma|biotech|medic|médic|health|diagnos|vétérin|veterin|ehpad|homéo/.test(x)) return 'Santé';
+  if(/immobil|fonci|centres commerciaux|entrepôts|retail park/.test(x)) return 'Immobilier';
+  if(/logiciel|software|saas|erp|technology|it\b|services it|esn|informatique|cyber|internet|communication|média|media|télécom|telecom|publicit/.test(x)) return 'Logiciel & données';
+  if(/defensive|alimentaire|agroalim|boisson|brasser|eau|déchets|dechets|utilit|services collectifs|gaz industriels|distribution alimentaire|restauration/.test(x)) return 'Défensif (besoins de base)';
+  if(/cyclical|auto|hôtel|hotel|aérien|distribution|habillement|camping|bateau|catamaran|loisir|fitness|électroménager|electromenager|billetterie|evenementiel/.test(x)) return 'Consommation cyclique';
+  if(/basic materials|acier|ciment|chimie|matériaux|materiaux|minér|miner|verre/.test(x)) return 'Matières & chimie';
+  if(/industr|aéro|aero|construct|ferrov|logist|manutention|machines|pompes|compresseur|équipement|equipement|services|certification|tests/.test(x)) return 'Industrie';
+  return 'Autre';
+}
+window.v2moteur=moteur;
+// poids de chaque moteur dans la poche ACTIONS detenue (ETF exclus)
+function moteurPoids(){
+  var w={}, tot=0;
+  mineList().forEach(function(p){ var s=(typeof S!=='undefined')?S.find(function(x){return x.ticker===p.ticker;}):null; if(!s||!(s.price>0)) return;
+    var v=s.price*(p.qty||0); tot+=v; var m=moteur(s); w[m]=(w[m]||0)+v; });
+  var out={}; Object.keys(w).forEach(function(k){ out[k]=tot>0?w[k]/tot*100:0; }); return out;
+}
+function moteurNote(s){
+  var m=moteur(s), W=moteurPoids(), pct=W[m]||0, held=mineList().some(function(p){return p.ticker===s.ticker;});
+  var over=pct>=MOTEUR_MAX;
+  return '<div class="v2-note" style="background:'+(over?'#fbecea':'#f5f3ee')+'"><span><b>Moteur : '+esc(m)+'</b> · '+(Object.keys(W).length?'pèse '+fr(pct,0)+' % de tes actions (plafond '+MOTEUR_MAX+' %)':'aucune ligne saisie dans le portefeuille')+
+    (over&&!held?' → <b style="color:'+C.rd+'">moteur déjà plein : une nouvelle ligne ajouterait au même risque</b>.':over?' → <b style="color:'+C.rd+'">au-dessus du plafond : ne pas renforcer</b>.':'.')+'</span></div>';
+}
+window.v2moteurNote=moteurNote;
+
 function decision(s){
   var g = (s.qok && s.rec==='buy') ? 'buy' : 'no';
   var L = ceList(s.ticker), last = L[0];
@@ -512,7 +558,7 @@ function decision(s){
   }
   var stop = (s.stop>0 && (s.qok||s.near)) ? '<p class="v2-small"><b>Stop :</b> pas d’ordre stop automatique sur une valeur de qualité (il vendrait au pire moment). Sous <b>'+fr(s.stop)+' €</b> (seuil de revue) : contre-expertise obligatoire ; si elle conclut « thèse cassée », on vend.</p>' : '';
   return '<section class="v2-card" style="border:2px solid '+r.c+'"><div class="v2-head"><h2>Décision</h2><span class="v2-small">'+esc(window.v2profName?('Portefeuille : '+window.v2profName()):'')+'</span></div>'+
-    '<div class="v2-verdict" style="padding:0"><div class="v2-badge" style="background:'+r.c+'">'+r.t+'</div><p>'+r.x+'</p></div>'+stop+
+    '<div class="v2-verdict" style="padding:0"><div class="v2-badge" style="background:'+r.c+'">'+r.t+'</div><p>'+r.x+'</p></div>'+moteurNote(s)+stop+
     '<div><button onclick="v2jnl(\''+s.ticker+'\')" style="min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid #0e1c33;background:#fff;cursor:pointer;font-weight:600">Noter ma décision dans le journal</button> <span class="v2-small">pré-rempli avec la fiche (verdict, thèse, contre-expertise, seuil de revue)</span></div></section>';
 }
 
@@ -911,6 +957,8 @@ function alerts(){
       else if(na===1) thes.push(row(s,'1 chiffre d’erreur en alerte : à surveiller, pas encore cassée'));
     }
   });
+  var mot=[]; try{ var W_=moteurPoids(); Object.keys(W_).sort(function(a,b){return W_[b]-W_[a];}).forEach(function(k){
+    mot.push('<div class="v2-crit"><span>'+esc(k)+'</span><b class="v2-mono" style="color:'+(W_[k]>=MOTEUR_MAX?C.rd:C.ink)+'">'+fr(W_[k],0)+' %'+(W_[k]>=MOTEUR_MAX?' · plafond dépassé : argent neuf ailleurs':'')+'</b></div>'); }); }catch(e){}
   try{ localStorage.setItem('v2_al_seen', JSON.stringify(now)); }catch(e){}
   var who=window.v2profName?v2profName():'Moi';
   box.innerHTML='<div class="v2" style="max-width:1100px;margin:0 auto">'+
@@ -922,6 +970,7 @@ function alerts(){
     card('Mes lignes sous le seuil de revue','contre-expertise obligatoire, pas de vente automatique',review,'#a8322b')+
     card('Valeurs de qualité en zone d’achat','« NOUVEAU » = entrée en zone depuis ta dernière visite',zone,'#1d6b45')+
     card('Mes lignes trop grosses','plafond 10 % par action',big,'#a8790f')+
+    card('Mes moteurs communs','poids dans tes actions (ETF exclus) · plafond '+MOTEUR_MAX+' % par moteur · se corrige par l’argent neuf, pas par la vente',mot,'#24508a')+
     card('Mes lignes trop chères','au-dessus de l’optimiste ET des analystes · vendre la moitié, une fois · le reste suit la thèse',high,'#a8790f')+
     card('Contre-expertises à faire','lignes détenues sans contre-expertise de moins de 3 mois',ce,'#6b7487')+
   '</div>';
