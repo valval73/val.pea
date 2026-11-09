@@ -194,6 +194,10 @@
 "lei": "96950025N07LTJYFSN57",
 "name": "COFACE SA"
 },
+"COLO": {
+"lei": "529900NN7SOJ5QG82X67",
+"name": "COLOPLAST A/S"
+},
 "COST": null,
 "COVIVIO": {
 "lei": "969500P8M3W2XX376054",
@@ -718,6 +722,10 @@
 "lei": "636700X6XN8UWIBHQ877",
 "name": "SOLSTAD MARITIME ASA"
 },
+"SOP": {
+"lei": "96950020QIOHAAK9V551",
+"name": "SOPRA STERIA GROUP"
+},
 "SPABR": null,
 "SSD": null,
 "STRL": null,
@@ -775,7 +783,10 @@
 "name": "UNIBAIL-RODAMCO-WESTFIELD SE"
 },
 "UTHR": null,
-"VK": null,
+"VK": {
+"lei": "969500P2Q1B47H4MCJ34",
+"name": "VALLOUREC"
+},
 "VLTO": null,
 "VOSDE": {
 "lei": "5299003HAEOUVX3HWX43",
