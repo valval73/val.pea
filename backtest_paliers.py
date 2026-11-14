@@ -189,7 +189,13 @@ def main():
     except Exception:
         eu = None
     start = min(p[0][0] for p in vals.values())
-    months = [d for d in etf.index if d >= start]
+    # 14/11/2026 : START / END (AAAA-MM) pour tester la robustesse d'un filtre
+    # sur des sous-periodes ; les comptes officiels ne remontent pas avant 2021,
+    # une periode plus longue n'est pas possible avec ces sources.
+    if os.environ.get('START'):
+        start = max(start, pd.Timestamp(os.environ['START'] + '-01'))
+    end = pd.Timestamp(os.environ['END'] + '-01') if os.environ.get('END') else etf.index[-1]
+    months = [d for d in etf.index if start <= d <= end]
     print('Periode :', months[0].date(), '->', months[-1].date(), len(months), 'mois')
 
     def px(tk, d):
@@ -281,10 +287,10 @@ def main():
                                'valeur': round(cur_val(tk, d)[3], 2), 'montant': round(amt)})
         C_etf += cash / pe
     dl = months[-1]
-    pe = float(etf.iloc[-1])
+    pe = float(etf[etf.index <= dl].iloc[-1])
     vA = A * pe
     # reference Europe seulement si son historique couvre toute la periode
-    vD = D_ * float(eu.iloc[-1]) if (eu is not None and D_ and eu.index[0] <= months[0]) else None
+    vD = D_ * float(eu[eu.index <= dl].iloc[-1]) if (eu is not None and D_ and eu.index[0] <= months[0]) else None
     vB = sum(q * px(tk, dl) for tk, q in B.items())
     vC = C_etf * pe + sum(q * px(tk, dl) for tk, q in C.items())
 
@@ -325,6 +331,7 @@ def main():
     out['filtre_couteau'] = KNIFE
     out['rendement_min'] = IRRMIN
     out['regle_vente'] = SELL
+    out['periode'] = {'debut': str(months[0].date()), 'fin': str(months[-1].date()), 'mois': len(months)}
     out['ventes'] = {'nombre': len(sales), 'detail': sales[-60:]}
     # ventes : combien ont evite une baisse (cours a ce jour < cours de vente) ?
     if sales:
