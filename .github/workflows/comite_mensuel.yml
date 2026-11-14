@@ -1,0 +1,27 @@
+name: Comite d'investissement mensuel
+on:
+  schedule:
+    - cron: '0 6 1-7 * *'   # chaque jour du 1 au 7 a 7h/8h Paris ; le script ne fait rien hors 1er dimanche
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  comite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install yfinance pandas numpy requests --quiet
+      - name: Rapport de comite
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          PTF_JSON: ${{ secrets.PTF_JSON }}
+          FORCE_COMITE: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+        run: python comite_mensuel.py
