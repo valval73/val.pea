@@ -19,10 +19,15 @@ jobs:
           for r in 0 8 10 12; do
             KNIFE=actuel IRRMIN=$r OUT=backtests/rendement_min_$r.json python backtest_paliers.py || echo "echec $r"
           done
+      - name: Regles de vente (14/11/2026)
+        run: |
+          for v in jamais prix prix_tout comptes stop30; do
+            KNIFE=actuel IRRMIN=12 SELL=$v OUT=backtests/vente_$v.json python backtest_paliers.py || echo "echec vente $v"
+          done
       - run: |
           git config user.name "VAL.PEA"; git config user.email "valpea@users.noreply.github.com"
           git add backtests/
           if git diff --cached --quiet; then echo "rien"; else
-            git commit -m "Test du filtre couteau $(date '+%Y-%m-%d') [skip ci]"
+            git commit -m "Tests de regles $(date '+%Y-%m-%d') [skip ci]"
             git pull --rebase --autostash origin main && git push
           fi

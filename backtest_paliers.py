@@ -49,6 +49,18 @@ KNIFE = os.environ.get('KNIFE', 'actuel')
 OUT = os.environ.get('OUT', 'backtest_paliers.json')
 # 01/11/2026 : rendement attendu minimum pour acheter (0 = pas de seuil)
 IRRMIN = float(os.environ.get('IRRMIN', '0'))
+# 14/11/2026 : regles de VENTE (variable SELL). Jusqu'ici le test ne vendait
+# jamais : les regles de vente du screener n'avaient aucune donnee derriere elles.
+#   jamais     : on garde tout (reference)
+#   prix       : cours > valeur optimiste (1,05 x centrale) -> vendre la moitie,
+#                une seule fois par position (regle actuelle du screener)
+#   prix_tout  : cours > 1,20 x centrale -> vendre toute la ligne
+#   comptes    : BPA publie en baisse deux exercices de suite -> vendre tout
+#                (approximation de "deux publications defavorables = these cassee")
+#   stop30     : cours < 70 % du prix de revient -> vendre tout (reference,
+#                regle refusee par le screener, testee pour comparaison)
+# L'argent d'une vente va sur l'ETF (regle du 25/10/2026), jamais sur une action.
+SELL = os.environ.get('SELL', 'jamais')
 
 
 def knife_rule(tk, d, p, hist12):
@@ -191,6 +203,24 @@ def main():
     # A : ETF seul ; B : actions chaque mois (parts egales) ; C : paliers + ETF
     A, B, C_etf, C, D_ = 0.0, {}, 0.0, {}, 0.0
     events, invested, blocked = [], 0.0, {}
+    cost, half_sold, sales = {}, set(), []   # prix de revient, demi-ventes faites, ventes
+
+    def sell_signal(tk, d, p):
+        if SELL == 'jamais' or tk not in C or C[tk] <= 0:
+            return None
+        v = cur_val(tk, d)
+        if SELL == 'prix' and v and p > v[3] * 1.05 and tk not in half_sold:
+            return 0.5, 'cours > valeur optimiste'
+        if SELL == 'prix_tout' and v and p > v[3] * 1.20:
+            return 1.0, 'cours > 1,2 x centrale'
+        if SELL == 'comptes':
+            L = [q[6] for q in vals[tk] if q[0] <= d]
+            if len(L) >= 3 and L[-1] < L[-2] < L[-3]:
+                return 1.0, 'BPA en baisse 2 exercices'
+        if SELL == 'stop30' and cost.get(tk) and p < 0.70 * cost[tk]:
+            return 1.0, 'cours < 70 % du prix de revient'
+        return None
+
     for d in months:
         pe = float(etf[etf.index <= d].iloc[-1])
         invested += MONTHLY
@@ -200,6 +230,21 @@ def main():
         live = [tk for tk in closes if px(tk, d) and cur_val(tk, d)]
         for tk in live:
             B[tk] = B.get(tk, 0.0) + MONTHLY / len(live) / px(tk, d)
+        # ventes (avant les achats du mois) ; le produit va sur l'ETF
+        for tk in list(C):
+            p = px(tk, d)
+            sig = p and sell_signal(tk, d, p)
+            if sig:
+                frac, why = sig
+                q = C[tk] * frac
+                C[tk] -= q
+                C_etf += q * p / pe
+                if frac < 1:
+                    half_sold.add(tk)
+                sales.append({'date': str(d.date()), 'ticker': tk, 'part': frac, 'cours': round(p, 2),
+                              'prix_revient': round(cost.get(tk, 0), 2), 'motif': why})
+                if C[tk] <= 1e-9:
+                    del C[tk]; cost.pop(tk, None); half_sold.discard(tk)
         # valeur du portefeuille C avant versement
         tot = C_etf * pe + sum(q * px(tk, d) for tk, q in C.items()) + MONTHLY
         cash = MONTHLY
@@ -228,7 +273,9 @@ def main():
             room = cap * tot - C.get(tk, 0.0) * p
             amt = min(cash, max(0.0, room))
             if amt > 1:
-                C[tk] = C.get(tk, 0.0) + amt / p
+                q0 = C.get(tk, 0.0)
+                cost[tk] = (cost.get(tk, 0.0) * q0 + amt) / (q0 + amt / p)
+                C[tk] = q0 + amt / p
                 cash -= amt
                 events.append({'date': str(d.date()), 'ticker': tk, 'palier': lvl, 'cours': round(p, 2),
                                'valeur': round(cur_val(tk, d)[3], 2), 'montant': round(amt)})
@@ -277,6 +324,12 @@ def main():
     }
     out['filtre_couteau'] = KNIFE
     out['rendement_min'] = IRRMIN
+    out['regle_vente'] = SELL
+    out['ventes'] = {'nombre': len(sales), 'detail': sales[-60:]}
+    # ventes : combien ont evite une baisse (cours a ce jour < cours de vente) ?
+    if sales:
+        ok = sum(1 for s_ in sales if px(s_['ticker'], dl) and px(s_['ticker'], dl) < s_['cours'])
+        out['ventes']['cours_plus_bas_aujourdhui'] = ok
     out['perf_moy_vs_etf'] = round(sum(e['perf_a_ce_jour'] - e['etf_meme_periode'] for e in events) / len(events), 1) if events else None
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
