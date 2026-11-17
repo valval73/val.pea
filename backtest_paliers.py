@@ -208,6 +208,12 @@ def main():
 
     # A : ETF seul ; B : actions chaque mois (parts egales) ; C : paliers + ETF
     A, B, C_etf, C, D_ = 0.0, {}, 0.0, {}, 0.0
+    # 17/11/2026 : E = DCA en zone d'achat. Chaque mois, le versement est reparti
+    # a parts egales entre les actions qui passent les memes filtres et dont le
+    # cours est en zone (E1 : sous le palier 1 ; E2 : sous la valeur centrale),
+    # plafond 5 % par ligne ; on arrete d'acheter des que l'action sort de la
+    # zone (on garde) ; le reste va sur l'ETF.
+    E = {'E1': [0.0, {}], 'E2': [0.0, {}]}
     events, invested, blocked = [], 0.0, {}
     cost, half_sold, sales = {}, set(), []   # prix de revient, demi-ventes faites, ventes
 
@@ -254,7 +260,7 @@ def main():
         # valeur du portefeuille C avant versement
         tot = C_etf * pe + sum(q * px(tk, d) for tk, q in C.items()) + MONTHLY
         cash = MONTHLY
-        cands = []
+        cands, okz = [], []
         for tk in live:
             p, v = px(tk, d), cur_val(tk, d)
             # memes filtres que le screener : chute > 35 % sur 12 mois, croissance
@@ -270,6 +276,7 @@ def main():
             if knife or weak or not v[5]:
                 blocked[tk] = blocked.get(tk, 0) + 1
                 continue
+            okz.append((tk, p, v))
             if p <= v[2]:
                 cands.append((0, p / v[3], tk, 0.05, 2))
             elif p <= v[1]:
@@ -286,6 +293,18 @@ def main():
                 events.append({'date': str(d.date()), 'ticker': tk, 'palier': lvl, 'cours': round(p, 2),
                                'valeur': round(cur_val(tk, d)[3], 2), 'montant': round(amt)})
         C_etf += cash / pe
+        for key, lim in (('E1', 1), ('E2', 3)):
+            e_etf, eh = E[key]
+            etot = e_etf * pe + sum(q * px(t_, d) for t_, q in eh.items()) + MONTHLY
+            zone = [(tk, p) for tk, p, v in okz if p <= v[lim]]
+            ecash = MONTHLY
+            for tk, p in zone:
+                room = 0.05 * etot - eh.get(tk, 0.0) * p
+                amt = min(MONTHLY / len(zone), max(0.0, room), ecash)
+                if amt > 1:
+                    eh[tk] = eh.get(tk, 0.0) + amt / p
+                    ecash -= amt
+            E[key][0] = e_etf + ecash / pe
     dl = months[-1]
     pe = float(etf[etf.index <= dl].iloc[-1])
     vA = A * pe
@@ -320,6 +339,8 @@ def main():
         'B_actions_chaque_mois': {'valeur': round(vB), 'rendement_annuel': irr(vB)},
         'C_paliers_plus_etf': {'valeur': round(vC), 'rendement_annuel': irr(vC),
                                'part_actions_finale_pct': round((vC - C_etf * pe) / vC * 100, 1)},
+        'E1_dca_sous_palier1': {'valeur': round(E['E1'][0] * pe + sum(q * px(t_, dl) for t_, q in E['E1'][1].items())), 'lignes': len(E['E1'][1])},
+        'E2_dca_sous_valeur_centrale': {'valeur': round(E['E2'][0] * pe + sum(q * px(t_, dl) for t_, q in E['E2'][1].items())), 'lignes': len(E['E2'][1])},
         'achats': {'palier1': n1, 'palier2': n2, 'battent_etf': beat, 'total': len(events)},
         'bloques_par_filtres': blocked,
         'evenements': events[-60:],
@@ -328,6 +349,8 @@ def main():
                   'comptes : Yahoo + rapports officiels européens (depuis 2020) ; pas de krach 2020 dans le test',
                   'sans frais ni impôts'],
     }
+    for k_ in ('E1_dca_sous_palier1', 'E2_dca_sous_valeur_centrale'):
+        out[k_]['rendement_annuel'] = irr(out[k_]['valeur'])
     out['filtre_couteau'] = KNIFE
     out['rendement_min'] = IRRMIN
     out['regle_vente'] = SELL
@@ -339,7 +362,7 @@ def main():
         out['ventes']['cours_plus_bas_aujourdhui'] = ok
     out['perf_moy_vs_etf'] = round(sum(e['perf_a_ce_jour'] - e['etf_meme_periode'] for e in events) / len(events), 1) if events else None
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'achats')}, indent=1))
+    print(json.dumps({k: out[k] for k in ('periode', 'A_etf_seul', 'D_europe_stoxx600', 'B_actions_chaque_mois', 'C_paliers_plus_etf', 'E1_dca_sous_palier1', 'E2_dca_sous_valeur_centrale', 'achats')}, indent=1))
 
 
 if __name__ == '__main__':
