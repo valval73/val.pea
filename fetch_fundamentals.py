@@ -1439,6 +1439,13 @@ def fetch_one(ticker, yf_sym, sector):
             if g_c is None:
                 g_c = growth_yahoo(result.get('cagr'), result.get('nig')) or 0.0
             g_c, g_cap = effective_growth(max(0.0, g_c), roic_v, (MOAT.get(ticker) or (None,))[0], bool(off))
+            # 22/11/2026 (decision de Val) : moat en erosion -> on ne prolonge pas
+            # la croissance passee : la valeur centrale retient la MOITIE de la
+            # croissance, l'optimiste ne depasse pas la croissance entiere.
+            _traj = (MOAT_TRAJ.get(ticker) or (None,))[0]
+            if _traj == 'erosion':
+                g_cap = min(g_cap, g_c)
+                g_c = round(g_c / 2, 2)
             fwd_v = info.get('forwardEps')
             if _cyc:
                 e_c = cycle_eps(t, info)
@@ -1457,7 +1464,6 @@ def fetch_one(ticker, yf_sym, sector):
                 # 22/11/2026 : moat en erosion (trajectoire a 10 ans, moat.py) ->
                 # le pessimiste n'est plus 'croissance nulle' mais la rupture :
                 # benefice en baisse de 5 %/an au depart, stabilise sans croissance.
-                _traj = (MOAT_TRAJ.get(ticker) or (None,))[0]
                 if _traj == 'erosion':
                     vp = qarp_value(fwd_v, eps_ttm, None, None, roic_v, g1_override=-0.05, g2=0.0)
                 vo = qarp_value(fwd_v, eps_ttm, None, None, roic_v,
