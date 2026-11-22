@@ -1,20 +1,20 @@
 {
- "date": "2026-11-15",
+ "date": "2026-11-22",
  "alertes": [
   {
    "t": "MC",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.2 % en 90 jours (25.487 → 23.905)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.0 % en 90 jours (25.432 → 23.905)"
   },
   {
    "t": "RMS",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.3 % en 90 jours (51.161 → 47.949)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.2 % en 90 jours (51.08 → 47.923)"
   },
   {
    "t": "KER",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -10.6 % en 90 jours (9.984 → 8.929)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -10.8 % en 90 jours (9.989 → 8.908)"
   },
   {
    "t": "RNO",
@@ -27,24 +27,14 @@
    "txt": "bénéfice attendu (exercice suivant) révisé de -11.2 % en 90 jours (0.116 → 0.103)"
   },
   {
-   "t": "MT",
-   "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (7.583 → 7.174)"
-  },
-  {
    "t": "ALO",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -32.4 % en 90 jours (2.049 → 1.384)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -28.1 % en 90 jours (1.938 → 1.394)"
   },
   {
    "t": "SEB",
    "type": "revision",
    "txt": "bénéfice attendu (exercice suivant) révisé de -8.0 % en 90 jours (7.988 → 7.349)"
-  },
-  {
-   "t": "VK",
-   "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.2 % en 90 jours (2.093 → 1.942)"
   },
   {
    "t": "FNAC",
@@ -54,7 +44,7 @@
   {
    "t": "ATO",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -25.0 % en 90 jours (6.588 → 4.944)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -22.2 % en 90 jours (6.588 → 5.125)"
   },
   {
    "t": "VALO",
@@ -64,7 +54,7 @@
   {
    "t": "PLUXEE",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -8.2 % en 90 jours (1.654 → 1.518)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.6 % en 90 jours (1.654 → 1.512)"
   },
   {
    "t": "OPM",
@@ -72,14 +62,14 @@
    "txt": "bénéfice attendu (exercice suivant) révisé de -16.3 % en 90 jours (1.815 → 1.52)"
   },
   {
+   "t": "ELIOR",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.6 % en 90 jours (0.386 → 0.357)"
+  },
+  {
    "t": "HIPAY",
    "type": "revision",
    "txt": "bénéfice attendu (exercice suivant) révisé de -51.0 % en 90 jours (0.49 → 0.24)"
-  },
-  {
-   "t": "SYENSQO",
-   "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (4.342 → 4.107)"
   },
   {
    "t": "MANITOU",
@@ -99,7 +89,7 @@
   {
    "t": "SOLVB",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -12.0 % en 90 jours (2.581 → 2.271)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -12.2 % en 90 jours (2.56 → 2.247)"
   },
   {
    "t": "BNENF",
@@ -109,12 +99,12 @@
   {
    "t": "ADP",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.0 % en 90 jours (7.263 → 6.826)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (7.207 → 6.698)"
   },
   {
    "t": "AKE",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -12.1 % en 90 jours (5.597 → 4.919)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -9.3 % en 90 jours (5.429 → 4.925)"
   },
   {
    "t": "ANTIN",
@@ -134,7 +124,7 @@
   {
    "t": "OVH",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -8.6 % en 90 jours (0.507 → 0.463)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -9.0 % en 90 jours (0.507 → 0.461)"
   },
   {
    "t": "TE",
@@ -159,12 +149,12 @@
   {
    "t": "RHM",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.2 % en 90 jours (53.499 → 49.646)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (53.509 → 49.704)"
   },
   {
    "t": "DSV",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (84.776 → 78.795)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.8 % en 90 jours (84.529 → 78.796)"
   },
   {
    "t": "KRN",
@@ -174,7 +164,7 @@
   {
    "t": "REG1VHE",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -35.2 % en 90 jours (0.968 → 0.627)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -35.1 % en 90 jours (0.968 → 0.629)"
   },
   {
    "t": "EVISOMI",
@@ -194,27 +184,27 @@
   {
    "t": "HEMST",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -24.7 % en 90 jours (6.688 → 5.038)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -24.4 % en 90 jours (6.648 → 5.025)"
   },
   {
    "t": "CAMXST",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (23.78 → 22.103)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (23.78 → 22.089)"
   },
   {
    "t": "NORCOOL",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.4 % en 90 jours (2.928 → 2.742)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.8 % en 90 jours (2.928 → 2.758)"
   },
   {
    "t": "RYAIR",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -21.4 % en 90 jours (1.918 → 1.507)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -23.0 % en 90 jours (1.918 → 1.477)"
   },
   {
    "t": "AEGNAT",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -39.5 % en 90 jours (1.684 → 1.018)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -37.3 % en 90 jours (1.678 → 1.052)"
   },
   {
    "t": "CTTLS",
@@ -242,9 +232,14 @@
    "txt": "bénéfice attendu (exercice suivant) révisé de -6.3 % en 90 jours (24.17 → 22.64)"
   },
   {
+   "t": "OROXMI",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -8.7 % en 90 jours (1.54 → 1.406)"
+  },
+  {
    "t": "PENOL",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -19.7 % en 90 jours (0.877 → 0.705)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -29.4 % en 90 jours (0.879 → 0.62)"
   },
   {
    "t": "RAYBST",
@@ -259,7 +254,7 @@
   {
    "t": "VOSDE",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -15.5 % en 90 jours (4.166 → 3.519)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -19.7 % en 90 jours (4.166 → 3.347)"
   },
   {
    "t": "KSPI",
@@ -269,12 +264,17 @@
   {
    "t": "MELI",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.0 % en 90 jours (55.987 → 52.619)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.3 % en 90 jours (55.987 → 51.894)"
+  },
+  {
+   "t": "TXRH",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.0 % en 90 jours (7.779 → 7.388)"
   },
   {
    "t": "MRK",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.1 % en 90 jours (9.56 → 8.981)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.0 % en 90 jours (9.54 → 8.963)"
   },
   {
    "t": "ROL",
@@ -287,14 +287,9 @@
    "txt": "bénéfice attendu (exercice suivant) révisé de -5.1 % en 90 jours (0.215 → 0.204)"
   },
   {
-   "t": "ACM",
-   "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.1 % en 90 jours (6.718 → 6.243)"
-  },
-  {
    "t": "BKR",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -10.8 % en 90 jours (3.164 → 2.823)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.3 % en 90 jours (3.161 → 2.804)"
   },
   {
    "t": "HONA",
@@ -309,27 +304,27 @@
   {
    "t": "INTU",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -12.5 % en 90 jours (30.752 → 26.908)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -13.6 % en 90 jours (30.799 → 26.608)"
   },
   {
    "t": "LDOS",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -8.4 % en 90 jours (12.881 → 11.802)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.5 % en 90 jours (12.783 → 11.82)"
   },
   {
    "t": "PANW",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -5.8 % en 90 jours (2.279 → 2.146)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -13.7 % en 90 jours (2.283 → 1.971)"
   },
   {
    "t": "SFM",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -27.4 % en 90 jours (5.95 → 4.319)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -29.9 % en 90 jours (5.951 → 4.17)"
   },
   {
    "t": "WFRD",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.9 % en 90 jours (7.27 → 6.696)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.1 % en 90 jours (7.059 → 6.696)"
   },
   {
    "t": "ARYNSW",
@@ -344,22 +339,22 @@
   {
    "t": "AON",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -5.3 % en 90 jours (21.344 → 20.217)"
-  },
-  {
-   "t": "ASR",
-   "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -12.6 % en 90 jours (25.732 → 22.486)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -5.4 % en 90 jours (21.37 → 20.213)"
   },
   {
    "t": "IBP",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -7.5 % en 90 jours (11.391 → 10.541)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -7.9 % en 90 jours (11.391 → 10.486)"
   },
   {
    "t": "QCOM",
    "type": "revision",
-   "txt": "bénéfice attendu (exercice suivant) révisé de -6.2 % en 90 jours (13.01 → 12.207)"
+   "txt": "bénéfice attendu (exercice suivant) révisé de -6.4 % en 90 jours (13.01 → 12.182)"
+  },
+  {
+   "t": "DLB",
+   "type": "revision",
+   "txt": "bénéfice attendu (exercice suivant) révisé de -11.0 % en 90 jours (5.1 → 4.537)"
   }
  ],
  "surveiller": [
@@ -386,7 +381,7 @@
   {
    "t": "WKL",
    "type": "concurrents",
-   "txt": "croissance -0.6 % contre +10.6 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+   "txt": "croissance -0.6 % contre +9.3 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
   },
   {
    "t": "KO",
@@ -396,7 +391,7 @@
   {
    "t": "UMG",
    "type": "concurrents",
-   "txt": "croissance +5.3 % contre +10.4 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
+   "txt": "croissance +5.3 % contre +10.3 % pour la médiane des concurrents — une seule publication (à confirmer ; chiffre Yahoo, devises et acquisitions comprises)"
   },
   {
    "t": "AIR",
@@ -418,44 +413,44 @@
   "MC": {
    "periode": "+1y",
    "bpa": 23.905,
-   "bpa_90j": 25.487,
-   "var": -6.2
+   "bpa_90j": 25.432,
+   "var": -6.0
   },
   "AI": {
    "periode": "+1y",
-   "bpa": 7.186,
-   "bpa_90j": 7.171,
-   "var": 0.2
+   "bpa": 7.192,
+   "bpa_90j": 7.17,
+   "var": 0.3
   },
   "OR": {
    "periode": "+1y",
-   "bpa": 15.255,
-   "bpa_90j": 14.924,
-   "var": 2.2
+   "bpa": 15.268,
+   "bpa_90j": 14.923,
+   "var": 2.3
   },
   "RMS": {
    "periode": "+1y",
-   "bpa": 47.949,
-   "bpa_90j": 51.161,
-   "var": -6.3
+   "bpa": 47.923,
+   "bpa_90j": 51.08,
+   "var": -6.2
   },
   "SAN": {
    "periode": "+1y",
-   "bpa": 9.46,
-   "bpa_90j": 9.068,
-   "var": 4.3
+   "bpa": 9.528,
+   "bpa_90j": 9.048,
+   "var": 5.3
   },
   "TTE": {
    "periode": "+1y",
-   "bpa": 11.594,
+   "bpa": 11.78,
    "bpa_90j": 9.771,
-   "var": 18.7
+   "var": 20.6
   },
   "SAF": {
    "periode": "+1y",
    "bpa": 12.506,
-   "bpa_90j": 12.922,
-   "var": -3.2
+   "bpa_90j": 13.067,
+   "var": -4.3
   },
   "SU": {
    "periode": "+1y",
@@ -465,25 +460,25 @@
   },
   "AXA": {
    "periode": "+1y",
-   "bpa": 4.484,
+   "bpa": 4.486,
    "bpa_90j": 4.475,
    "var": 0.2
   },
   "BNP": {
    "periode": "+1y",
-   "bpa": 12.999,
-   "bpa_90j": 13.131,
-   "var": -1.0
+   "bpa": 12.955,
+   "bpa_90j": 13.212,
+   "var": -1.9
   },
   "ACA": {
    "periode": "+1y",
-   "bpa": 2.465,
+   "bpa": 2.452,
    "bpa_90j": 2.483,
-   "var": -0.8
+   "var": -1.2
   },
   "GLE": {
    "periode": "+1y",
-   "bpa": 9.294,
+   "bpa": 9.3,
    "bpa_90j": 9.018,
    "var": 3.1
   },
@@ -495,27 +490,27 @@
   },
   "KER": {
    "periode": "+1y",
-   "bpa": 8.929,
-   "bpa_90j": 9.984,
-   "var": -10.6
+   "bpa": 8.908,
+   "bpa_90j": 9.989,
+   "var": -10.8
   },
   "PUB": {
    "periode": "+1y",
-   "bpa": 8.616,
+   "bpa": 8.629,
    "bpa_90j": 8.583,
-   "var": 0.4
+   "var": 0.5
   },
   "ORA": {
    "periode": "+1y",
-   "bpa": 1.108,
+   "bpa": 1.112,
    "bpa_90j": 1.136,
-   "var": -2.5
+   "var": -2.1
   },
   "VIE": {
    "periode": "+1y",
-   "bpa": 2.638,
-   "bpa_90j": 2.61,
-   "var": 1.1
+   "bpa": 2.639,
+   "bpa_90j": 2.612,
+   "var": 1.0
   },
   "RNO": {
    "periode": "+1y",
@@ -531,9 +526,9 @@
   },
   "CAP": {
    "periode": "+1y",
-   "bpa": 10.637,
+   "bpa": 10.696,
    "bpa_90j": 10.618,
-   "var": 0.2
+   "var": 0.7
   },
   "DG": {
    "periode": "+1y",
@@ -555,21 +550,21 @@
   },
   "LR": {
    "periode": "+1y",
-   "bpa": 7.079,
+   "bpa": 7.126,
    "bpa_90j": 6.692,
-   "var": 5.8
+   "var": 6.5
   },
   "WLN": {
    "periode": "+1y",
-   "bpa": 3.74,
-   "bpa_90j": 3.443,
-   "var": 8.6
+   "bpa": 3.775,
+   "bpa_90j": 3.288,
+   "var": 14.8
   },
   "DSY": {
    "periode": "+1y",
-   "bpa": 1.448,
+   "bpa": 1.449,
    "bpa_90j": 1.404,
-   "var": 3.1
+   "var": 3.2
   },
   "STM": {
    "periode": "+1y",
@@ -579,9 +574,9 @@
   },
   "EL": {
    "periode": "+1y",
-   "bpa": 7.927,
-   "bpa_90j": 8.116,
-   "var": -2.3
+   "bpa": 7.901,
+   "bpa_90j": 8.118,
+   "var": -2.7
   },
   "ML": {
    "periode": "+1y",
@@ -591,15 +586,15 @@
   },
   "ENGI": {
    "periode": "+1y",
-   "bpa": 2.147,
+   "bpa": 2.15,
    "bpa_90j": 2.103,
-   "var": 2.1
+   "var": 2.2
   },
   "MT": {
    "periode": "+1y",
-   "bpa": 7.174,
+   "bpa": 7.239,
    "bpa_90j": 7.583,
-   "var": -5.4
+   "var": -4.5
   },
   "URW": {
    "periode": "+1y",
@@ -609,9 +604,9 @@
   },
   "SW": {
    "periode": "+1y",
-   "bpa": 4.081,
+   "bpa": 4.091,
    "bpa_90j": 4.057,
-   "var": 0.6
+   "var": 0.8
   },
   "TEP": {
    "periode": "+1y",
@@ -621,9 +616,9 @@
   },
   "EN": {
    "periode": "+1y",
-   "bpa": 3.873,
+   "bpa": 3.879,
    "bpa_90j": 3.918,
-   "var": -1.2
+   "var": -1.0
   },
   "GTT": {
    "periode": "+1y",
@@ -633,9 +628,9 @@
   },
   "COFA": {
    "periode": "+1y",
-   "bpa": 1.652,
+   "bpa": 1.647,
    "bpa_90j": 1.6,
-   "var": 3.3
+   "var": 3.0
   },
   "MERY": {
    "periode": "+1y",
@@ -664,20 +659,20 @@
   "DASSAV": {
    "periode": "+1y",
    "bpa": 18.827,
-   "bpa_90j": 18.794,
-   "var": 0.2
+   "bpa_90j": 18.877,
+   "var": -0.3
   },
   "ALO": {
    "periode": "+1y",
-   "bpa": 1.384,
-   "bpa_90j": 2.049,
-   "var": -32.4
+   "bpa": 1.394,
+   "bpa_90j": 1.938,
+   "var": -28.1
   },
   "ELIS": {
    "periode": "+1y",
-   "bpa": 2.174,
-   "bpa_90j": 2.192,
-   "var": -0.8
+   "bpa": 2.163,
+   "bpa_90j": 2.191,
+   "var": -1.3
   },
   "SEB": {
    "periode": "+1y",
@@ -705,9 +700,9 @@
   },
   "VK": {
    "periode": "+1y",
-   "bpa": 1.942,
-   "bpa_90j": 2.093,
-   "var": -7.2
+   "bpa": 1.868,
+   "bpa_90j": 1.959,
+   "var": -4.6
   },
   "FNAC": {
    "periode": "+1y",
@@ -729,39 +724,39 @@
   },
   "AC": {
    "periode": "+1y",
-   "bpa": 2.656,
-   "bpa_90j": 2.643,
-   "var": 0.5
+   "bpa": 2.655,
+   "bpa_90j": 2.645,
+   "var": 0.4
   },
   "AF": {
    "periode": "+1y",
-   "bpa": 4.707,
+   "bpa": 4.684,
    "bpa_90j": 4.432,
-   "var": 6.2
+   "var": 5.7
   },
   "BN": {
    "periode": "+1y",
-   "bpa": 4.2,
-   "bpa_90j": 4.228,
+   "bpa": 4.201,
+   "bpa_90j": 4.226,
    "var": -0.6
   },
   "CA": {
    "periode": "+1y",
-   "bpa": 1.805,
-   "bpa_90j": 1.863,
-   "var": -3.1
+   "bpa": 1.804,
+   "bpa_90j": 1.871,
+   "var": -3.6
   },
   "HO": {
    "periode": "+1y",
    "bpa": 12.399,
-   "bpa_90j": 12.438,
-   "var": -0.3
+   "bpa_90j": 12.464,
+   "var": -0.5
   },
   "ATO": {
    "periode": "+1y",
-   "bpa": 4.944,
+   "bpa": 5.125,
    "bpa_90j": 6.588,
-   "var": -25.0
+   "var": -22.2
   },
   "DBG": {
    "periode": "+1y",
@@ -783,15 +778,15 @@
   },
   "PRX": {
    "periode": "+1y",
-   "bpa": 4.267,
-   "bpa_90j": 4.386,
-   "var": -2.7
+   "bpa": 4.187,
+   "bpa_90j": 4.346,
+   "var": -3.7
   },
   "ADYEN": {
    "periode": "+1y",
    "bpa": 44.96,
-   "bpa_90j": 46.556,
-   "var": -3.4
+   "bpa_90j": 46.652,
+   "var": -3.6
   },
   "HEIA": {
    "periode": "+1y",
@@ -801,15 +796,15 @@
   },
   "NOVO": {
    "periode": "+1y",
-   "bpa": 22.74,
-   "bpa_90j": 21.882,
-   "var": 3.9
+   "bpa": 22.594,
+   "bpa_90j": 21.913,
+   "var": 3.1
   },
   "RACE": {
    "periode": "+1y",
-   "bpa": 11.139,
-   "bpa_90j": 11.002,
-   "var": 1.2
+   "bpa": 11.118,
+   "bpa_90j": 11.004,
+   "var": 1.0
   },
   "SAP": {
    "periode": "+1y",
@@ -819,15 +814,15 @@
   },
   "SIEMENS": {
    "periode": "+1y",
-   "bpa": 14.939,
-   "bpa_90j": 14.914,
-   "var": 0.2
+   "bpa": 15.143,
+   "bpa_90j": 15.011,
+   "var": 0.9
   },
   "ALV": {
    "periode": "+1y",
-   "bpa": 33.895,
-   "bpa_90j": 33.584,
-   "var": 0.9
+   "bpa": 33.642,
+   "bpa_90j": 33.513,
+   "var": 0.4
   },
   "BIOM": {
    "periode": "+1y",
@@ -843,15 +838,15 @@
   },
   "RCO": {
    "periode": "+1y",
-   "bpa": 2.045,
-   "bpa_90j": 1.911,
+   "bpa": 2.051,
+   "bpa_90j": 1.916,
    "var": 7.0
   },
   "EIFFAGE": {
    "periode": "+1y",
-   "bpa": 12.256,
+   "bpa": 12.264,
    "bpa_90j": 12.67,
-   "var": -3.3
+   "var": -3.2
   },
   "ALTAREA": {
    "periode": "+1y",
@@ -861,9 +856,9 @@
   },
   "COVIVIO": {
    "periode": "+1y",
-   "bpa": 5.03,
+   "bpa": 5.024,
    "bpa_90j": 5.078,
-   "var": -0.9
+   "var": -1.1
   },
   "FREY": {
    "periode": "+1y",
@@ -891,9 +886,9 @@
   },
   "PLUXEE": {
    "periode": "+1y",
-   "bpa": 1.518,
+   "bpa": 1.512,
    "bpa_90j": 1.654,
-   "var": -8.2
+   "var": -8.6
   },
   "EDENRED": {
    "periode": "+1y",
@@ -939,9 +934,9 @@
   },
   "INTERPARFUMS": {
    "periode": "+1y",
-   "bpa": 1.452,
-   "bpa_90j": 1.413,
-   "var": 2.8
+   "bpa": 1.441,
+   "bpa_90j": 1.422,
+   "var": 1.4
   },
   "ARGAN": {
    "periode": "+1y",
@@ -969,9 +964,9 @@
   },
   "ELIOR": {
    "periode": "+1y",
-   "bpa": 0.307,
-   "bpa_90j": 0.317,
-   "var": -3.2
+   "bpa": 0.357,
+   "bpa_90j": 0.386,
+   "var": -7.6
   },
   "LDLC": {
    "periode": "+1y",
@@ -987,26 +982,26 @@
   },
   "LISI": {
    "periode": "+1y",
-   "bpa": 3.59,
+   "bpa": 3.612,
    "bpa_90j": 3.579,
-   "var": 0.3
+   "var": 0.9
   },
   "SYENSQO": {
    "periode": "+1y",
-   "bpa": 4.107,
-   "bpa_90j": 4.342,
-   "var": -5.4
+   "bpa": 4.227,
+   "bpa_90j": 4.367,
+   "var": -3.2
   },
   "IPSEN": {
    "periode": "+1y",
-   "bpa": 14.453,
+   "bpa": 14.459,
    "bpa_90j": 13.82,
    "var": 4.6
   },
   "REXEL": {
    "periode": "+1y",
-   "bpa": 3.062,
-   "bpa_90j": 2.937,
+   "bpa": 3.068,
+   "bpa_90j": 2.942,
    "var": 4.3
   },
   "FIGEAC": {
@@ -1071,9 +1066,9 @@
   },
   "SOLVB": {
    "periode": "+1y",
-   "bpa": 2.271,
-   "bpa_90j": 2.581,
-   "var": -12.0
+   "bpa": 2.247,
+   "bpa_90j": 2.56,
+   "var": -12.2
   },
   "BNENF": {
    "periode": "+1y",
@@ -1095,21 +1090,21 @@
   },
   "CDRCK": {
    "periode": "+1y",
-   "bpa": 1.94,
+   "bpa": 1.933,
    "bpa_90j": 1.936,
-   "var": 0.2
+   "var": -0.2
   },
   "ADP": {
    "periode": "+1y",
-   "bpa": 6.826,
-   "bpa_90j": 7.263,
-   "var": -6.0
+   "bpa": 6.698,
+   "bpa_90j": 7.207,
+   "var": -7.1
   },
   "AKE": {
    "periode": "+1y",
-   "bpa": 4.919,
-   "bpa_90j": 5.597,
-   "var": -12.1
+   "bpa": 4.925,
+   "bpa_90j": 5.429,
+   "var": -9.3
   },
   "LTA": {
    "periode": "0y",
@@ -1155,9 +1150,9 @@
   },
   "EXENS": {
    "periode": "+1y",
-   "bpa": 2.435,
-   "bpa_90j": 2.26,
-   "var": 7.7
+   "bpa": 2.44,
+   "bpa_90j": 2.281,
+   "var": 7.0
   },
   "FDJU": {
    "periode": "+1y",
@@ -1209,9 +1204,9 @@
   },
   "OVH": {
    "periode": "+1y",
-   "bpa": 0.463,
+   "bpa": 0.461,
    "bpa_90j": 0.507,
-   "var": -8.6
+   "var": -9.0
   },
   "PLNW": {
    "periode": "+1y",
@@ -1227,9 +1222,9 @@
   },
   "RUI": {
    "periode": "+1y",
-   "bpa": 3.397,
+   "bpa": 3.46,
    "bpa_90j": 3.314,
-   "var": 2.5
+   "var": 4.4
   },
   "DIM": {
    "periode": "+1y",
@@ -1281,15 +1276,15 @@
   },
   "ITX": {
    "periode": "+1y",
-   "bpa": 2.364,
+   "bpa": 2.367,
    "bpa_90j": 2.388,
-   "var": -1.0
+   "var": -0.9
   },
   "AMS": {
    "periode": "+1y",
-   "bpa": 3.888,
-   "bpa_90j": 3.879,
-   "var": 0.2
+   "bpa": 3.911,
+   "bpa_90j": 3.875,
+   "var": 0.9
   },
   "RAA": {
    "periode": "+1y",
@@ -1299,27 +1294,27 @@
   },
   "NEM": {
    "periode": "+1y",
-   "bpa": 2.775,
+   "bpa": 2.765,
    "bpa_90j": 2.883,
-   "var": -3.8
+   "var": -4.1
   },
   "BEI": {
    "periode": "+1y",
-   "bpa": 3.971,
-   "bpa_90j": 4.088,
-   "var": -2.9
+   "bpa": 3.989,
+   "bpa_90j": 4.069,
+   "var": -2.0
   },
   "SY1": {
    "periode": "+1y",
-   "bpa": 4.44,
-   "bpa_90j": 4.315,
-   "var": 2.9
+   "bpa": 4.45,
+   "bpa_90j": 4.319,
+   "var": 3.0
   },
   "MONC": {
    "periode": "+1y",
-   "bpa": 2.513,
-   "bpa_90j": 2.6,
-   "var": -3.4
+   "bpa": 2.505,
+   "bpa_90j": 2.599,
+   "var": -3.6
   },
   "BC": {
    "periode": "+1y",
@@ -1335,9 +1330,9 @@
   },
   "AMP": {
    "periode": "+1y",
-   "bpa": 0.894,
-   "bpa_90j": 0.874,
-   "var": 2.3
+   "bpa": 0.893,
+   "bpa_90j": 0.88,
+   "var": 1.5
   },
   "KNEBV": {
    "periode": "+1y",
@@ -1359,45 +1354,45 @@
   },
   "ASM": {
    "periode": "+1y",
-   "bpa": 34.512,
+   "bpa": 34.623,
    "bpa_90j": 30.085,
-   "var": 14.7
+   "var": 15.1
   },
   "MTX": {
    "periode": "+1y",
-   "bpa": 20.749,
-   "bpa_90j": 20.458,
-   "var": 1.4
+   "bpa": 20.75,
+   "bpa_90j": 20.687,
+   "var": 0.3
   },
   "RHM": {
    "periode": "+1y",
-   "bpa": 49.646,
-   "bpa_90j": 53.499,
-   "var": -7.2
+   "bpa": 49.704,
+   "bpa_90j": 53.509,
+   "var": -7.1
   },
   "COLO": {
    "periode": "+1y",
-   "bpa": 26.955,
-   "bpa_90j": 28.267,
-   "var": -4.6
+   "bpa": 26.884,
+   "bpa_90j": 28.16,
+   "var": -4.5
   },
   "DSV": {
    "periode": "+1y",
-   "bpa": 78.795,
-   "bpa_90j": 84.776,
-   "var": -7.1
+   "bpa": 78.796,
+   "bpa_90j": 84.529,
+   "var": -6.8
   },
   "NSIS": {
    "periode": "+1y",
-   "bpa": 17.384,
-   "bpa_90j": 17.663,
-   "var": -1.6
+   "bpa": 17.094,
+   "bpa_90j": 17.651,
+   "var": -3.2
   },
   "ATCO": {
    "periode": "+1y",
    "bpa": 7.687,
-   "bpa_90j": 7.338,
-   "var": 4.8
+   "bpa_90j": 7.384,
+   "var": 4.1
   },
   "ASSA": {
    "periode": "+1y",
@@ -1407,15 +1402,15 @@
   },
   "EPI": {
    "periode": "+1y",
-   "bpa": 10.108,
+   "bpa": 10.136,
    "bpa_90j": 9.987,
-   "var": 1.2
+   "var": 1.5
   },
   "KOG": {
    "periode": "+1y",
-   "bpa": 11.418,
-   "bpa_90j": 11.278,
-   "var": 1.2
+   "bpa": 11.422,
+   "bpa_90j": 11.234,
+   "var": 1.7
   },
   "BVI": {
    "periode": "+1y",
@@ -1431,21 +1426,21 @@
   },
   "G1A": {
    "periode": "+1y",
-   "bpa": 3.834,
+   "bpa": 3.821,
    "bpa_90j": 3.763,
-   "var": 1.9
+   "var": 1.6
   },
   "EVD": {
    "periode": "+1y",
-   "bpa": 3.66,
-   "bpa_90j": 3.637,
-   "var": 0.6
+   "bpa": 3.663,
+   "bpa_90j": 3.689,
+   "var": -0.7
   },
   "FPE3": {
    "periode": "+1y",
-   "bpa": 2.728,
+   "bpa": 2.75,
    "bpa_90j": 2.655,
-   "var": 2.8
+   "var": 3.6
   },
   "KRN": {
    "periode": "+1y",
@@ -1455,15 +1450,9 @@
   },
   "AIXA": {
    "periode": "+1y",
-   "bpa": 1.54,
-   "bpa_90j": 1.365,
-   "var": 12.8
-  },
-  "IOS": {
-   "periode": "+1y",
-   "bpa": 2.265,
-   "bpa_90j": 2.269,
-   "var": -0.2
+   "bpa": 1.548,
+   "bpa_90j": 1.356,
+   "var": 14.2
   },
   "AOF": {
    "periode": "+1y",
@@ -1479,9 +1468,9 @@
   },
   "YSN": {
    "periode": "+1y",
-   "bpa": 7.93,
-   "bpa_90j": 7.452,
-   "var": 6.4
+   "bpa": 7.712,
+   "bpa_90j": 7.523,
+   "var": 2.5
   },
   "KSB3": {
    "periode": "+1y",
@@ -1497,9 +1486,9 @@
   },
   "ELG": {
    "periode": "+1y",
-   "bpa": 8.481,
-   "bpa_90j": 8.415,
-   "var": 0.8
+   "bpa": 8.517,
+   "bpa_90j": 8.413,
+   "var": 1.2
   },
   "REY": {
    "periode": "+1y",
@@ -1509,33 +1498,33 @@
   },
   "DLG": {
    "periode": "+1y",
-   "bpa": 2.87,
+   "bpa": 2.877,
    "bpa_90j": 2.636,
-   "var": 8.9
+   "var": 9.1
   },
   "TPRO": {
    "periode": "+1y",
-   "bpa": 0.874,
+   "bpa": 0.891,
    "bpa_90j": 0.795,
-   "var": 10.0
+   "var": 12.2
   },
   "CRL": {
    "periode": "+1y",
-   "bpa": 0.975,
+   "bpa": 0.986,
    "bpa_90j": 0.865,
-   "var": 12.6
+   "var": 14.0
   },
   "TGYM": {
    "periode": "+1y",
-   "bpa": 0.683,
+   "bpa": 0.684,
    "bpa_90j": 0.694,
-   "var": -1.7
+   "var": -1.5
   },
   "ELN": {
    "periode": "+1y",
-   "bpa": 0.863,
+   "bpa": 0.882,
    "bpa_90j": 0.844,
-   "var": 2.2
+   "var": 4.5
   },
   "SL": {
    "periode": "+1y",
@@ -1551,27 +1540,27 @@
   },
   "RWAY": {
    "periode": "+1y",
-   "bpa": 0.342,
+   "bpa": 0.349,
    "bpa_90j": 0.343,
-   "var": -0.4
+   "var": 1.6
   },
   "CMB": {
    "periode": "+1y",
-   "bpa": 3.797,
+   "bpa": 3.827,
    "bpa_90j": 3.591,
-   "var": 5.7
+   "var": 6.6
   },
   "LOG": {
    "periode": "+1y",
-   "bpa": 2.507,
+   "bpa": 2.527,
    "bpa_90j": 2.482,
-   "var": 1.0
+   "var": 1.8
   },
   "ROVI": {
    "periode": "+1y",
-   "bpa": 3.294,
+   "bpa": 3.297,
    "bpa_90j": 3.377,
-   "var": -2.5
+   "var": -2.4
   },
   "HEIJM": {
    "periode": "+1y",
@@ -1581,9 +1570,9 @@
   },
   "THEON": {
    "periode": "+1y",
-   "bpa": 1.746,
+   "bpa": 1.719,
    "bpa_90j": 1.739,
-   "var": 0.4
+   "var": -1.2
   },
   "LOTB": {
    "periode": "+1y",
@@ -1594,20 +1583,20 @@
   "JMT": {
    "periode": "+1y",
    "bpa": 1.293,
-   "bpa_90j": 1.336,
-   "var": -3.2
+   "bpa_90j": 1.332,
+   "var": -2.9
   },
   "ANDR": {
    "periode": "+1y",
    "bpa": 5.948,
-   "bpa_90j": 6.035,
-   "var": -1.5
+   "bpa_90j": 6.071,
+   "var": -2.0
   },
   "WRT1V": {
    "periode": "+1y",
    "bpa": 1.305,
-   "bpa_90j": 1.291,
-   "var": 1.1
+   "bpa_90j": 1.302,
+   "var": 0.2
   },
   "ORNBV": {
    "periode": "+1y",
@@ -1617,9 +1606,9 @@
   },
   "ALFA": {
    "periode": "+1y",
-   "bpa": 25.405,
-   "bpa_90j": 24.859,
-   "var": 2.2
+   "bpa": 25.968,
+   "bpa_90j": 24.825,
+   "var": 4.6
   },
   "ADDT": {
    "periode": "+1y",
@@ -1635,15 +1624,15 @@
   },
   "SECT": {
    "periode": "+1y",
-   "bpa": 4.95,
+   "bpa": 5.083,
    "bpa_90j": 4.795,
-   "var": 3.2
+   "var": 6.0
   },
   "MYCR": {
    "periode": "+1y",
-   "bpa": 11.494,
-   "bpa_90j": 11.009,
-   "var": 4.4
+   "bpa": 11.639,
+   "bpa_90j": 11.012,
+   "var": 5.7
   },
   "PNDORA": {
    "periode": "+1y",
@@ -1659,27 +1648,27 @@
   },
   "GOOGL": {
    "periode": "+1y",
-   "bpa": 14.969,
-   "bpa_90j": 14.781,
-   "var": 1.3
+   "bpa": 14.891,
+   "bpa_90j": 14.837,
+   "var": 0.4
   },
   "MA": {
    "periode": "+1y",
-   "bpa": 23.165,
-   "bpa_90j": 23.01,
-   "var": 0.7
+   "bpa": 23.161,
+   "bpa_90j": 23.026,
+   "var": 0.6
   },
   "AMZN": {
    "periode": "+1y",
-   "bpa": 10.683,
-   "bpa_90j": 10.531,
+   "bpa": 10.658,
+   "bpa_90j": 10.508,
    "var": 1.4
   },
   "KO": {
    "periode": "+1y",
-   "bpa": 3.529,
+   "bpa": 3.534,
    "bpa_90j": 3.526,
-   "var": 0.1
+   "var": 0.2
   },
   "MTHHCO": {
    "periode": "+1y",
@@ -1689,9 +1678,9 @@
   },
   "CWCDE": {
    "periode": "+1y",
-   "bpa": 9.847,
+   "bpa": 9.689,
    "bpa_90j": 9.786,
-   "var": 0.6
+   "var": -1.0
   },
   "EUZDE": {
    "periode": "+1y",
@@ -1701,9 +1690,9 @@
   },
   "GFTDE": {
    "periode": "+1y",
-   "bpa": 2.124,
+   "bpa": 2.09,
    "bpa_90j": 2.001,
-   "var": 6.1
+   "var": 4.5
   },
   "IVUDE": {
    "periode": "+1y",
@@ -1731,15 +1720,15 @@
   },
   "MEKKOHE": {
    "periode": "+1y",
-   "bpa": 0.714,
+   "bpa": 0.712,
    "bpa_90j": 0.732,
-   "var": -2.5
+   "var": -2.7
   },
   "REG1VHE": {
    "periode": "+1y",
-   "bpa": 0.627,
+   "bpa": 0.629,
    "bpa_90j": 0.968,
-   "var": -35.2
+   "var": -35.1
   },
   "EVISOMI": {
    "periode": "+1y",
@@ -1785,9 +1774,9 @@
   },
   "HEMST": {
    "periode": "+1y",
-   "bpa": 5.038,
-   "bpa_90j": 6.688,
-   "var": -24.7
+   "bpa": 5.025,
+   "bpa_90j": 6.648,
+   "var": -24.4
   },
   "LIMEST": {
    "periode": "+1y",
@@ -1803,15 +1792,15 @@
   },
   "RVRCST": {
    "periode": "+1y",
-   "bpa": 4.692,
+   "bpa": 4.654,
    "bpa_90j": 4.664,
-   "var": 0.6
+   "var": -0.2
   },
   "ZZBST": {
    "periode": "+1y",
-   "bpa": 12.36,
+   "bpa": 12.96,
    "bpa_90j": 11.34,
-   "var": 9.0
+   "var": 14.3
   },
   "GPPWA": {
    "periode": "+1y",
@@ -1845,15 +1834,15 @@
   },
   "EVOST": {
    "periode": "+1y",
-   "bpa": 6.043,
+   "bpa": 6.055,
    "bpa_90j": 6.127,
-   "var": -1.4
+   "var": -1.2
   },
   "NORBTOL": {
    "periode": "+1y",
-   "bpa": 9.473,
-   "bpa_90j": 9.698,
-   "var": -2.3
+   "bpa": 9.47,
+   "bpa_90j": 9.708,
+   "var": -2.4
   },
   "HMSST": {
    "periode": "+1y",
@@ -1869,7 +1858,7 @@
   },
   "CAMXST": {
    "periode": "+1y",
-   "bpa": 22.103,
+   "bpa": 22.089,
    "bpa_90j": 23.78,
    "var": -7.1
   },
@@ -1881,27 +1870,27 @@
   },
   "NORCOOL": {
    "periode": "+1y",
-   "bpa": 2.742,
+   "bpa": 2.758,
    "bpa_90j": 2.928,
-   "var": -6.4
+   "var": -5.8
   },
   "DOCVI": {
    "periode": "+1y",
-   "bpa": 12.883,
+   "bpa": 12.939,
    "bpa_90j": 12.993,
-   "var": -0.8
+   "var": -0.4
   },
   "MAIREMI": {
    "periode": "+1y",
-   "bpa": 1.014,
-   "bpa_90j": 1.01,
-   "var": 0.4
+   "bpa": 1.031,
+   "bpa_90j": 1.02,
+   "var": 1.1
   },
   "CLASBST": {
    "periode": "+1y",
-   "bpa": 24.778,
+   "bpa": 24.788,
    "bpa_90j": 22.457,
-   "var": 10.3
+   "var": 10.4
   },
   "OEMBST": {
    "periode": "+1y",
@@ -1917,15 +1906,15 @@
   },
   "STRVI": {
    "periode": "+1y",
-   "bpa": 8.337,
+   "bpa": 8.577,
    "bpa_90j": 7.38,
-   "var": 13.0
+   "var": 16.2
   },
   "BONHROL": {
    "periode": "+1y",
-   "bpa": 30.75,
-   "bpa_90j": 27.957,
-   "var": 10.0
+   "bpa": 33.953,
+   "bpa_90j": 28.277,
+   "var": 20.1
   },
   "PDXST": {
    "periode": "+1y",
@@ -1935,15 +1924,15 @@
   },
   "RYAIR": {
    "periode": "+1y",
-   "bpa": 1.507,
+   "bpa": 1.477,
    "bpa_90j": 1.918,
-   "var": -21.4
+   "var": -23.0
   },
   "TREMC": {
    "periode": "+1y",
-   "bpa": 3.275,
+   "bpa": 3.312,
    "bpa_90j": 3.141,
-   "var": 4.3
+   "var": 5.4
   },
   "1INNDE": {
    "periode": "+1y",
@@ -1959,9 +1948,9 @@
   },
   "AEGNAT": {
    "periode": "+1y",
-   "bpa": 1.018,
-   "bpa_90j": 1.684,
-   "var": -39.5
+   "bpa": 1.052,
+   "bpa_90j": 1.678,
+   "var": -37.3
   },
   "ALVDMPA": {
    "periode": "+1y",
@@ -1978,20 +1967,20 @@
   "ARCADAS": {
    "periode": "+1y",
    "bpa": 3.625,
-   "bpa_90j": 3.646,
-   "var": -0.6
+   "bpa_90j": 3.693,
+   "var": -1.8
   },
   "ARTMC": {
    "periode": "+1y",
    "bpa": 1.435,
-   "bpa_90j": 1.19,
-   "var": 20.6
+   "bpa_90j": 1.345,
+   "var": 6.7
   },
   "ASEWA": {
    "periode": "+1y",
-   "bpa": 4.94,
-   "bpa_90j": 4.84,
-   "var": 2.1
+   "bpa": 5.08,
+   "bpa_90j": 4.94,
+   "var": 2.8
   },
   "ATEAOL": {
    "periode": "+1y",
@@ -2037,9 +2026,9 @@
   },
   "DIEBR": {
    "periode": "+1y",
-   "bpa": 15.274,
-   "bpa_90j": 15.484,
-   "var": -1.4
+   "bpa": 15.53,
+   "bpa_90j": 15.392,
+   "var": 0.9
   },
   "EINDE": {
    "periode": "+1y",
@@ -2091,9 +2080,9 @@
   },
   "IEGMI": {
    "periode": "+1y",
-   "bpa": 1.099,
+   "bpa": 1.153,
    "bpa_90j": 1.143,
-   "var": -3.8
+   "var": 0.9
   },
   "INDTST": {
    "periode": "+1y",
@@ -2109,7 +2098,7 @@
   },
   "ISSCO": {
    "periode": "+1y",
-   "bpa": 23.138,
+   "bpa": 23.147,
    "bpa_90j": 22.662,
    "var": 2.1
   },
@@ -2128,8 +2117,8 @@
   "KRXIR": {
    "periode": "+1y",
    "bpa": 5.839,
-   "bpa_90j": 5.049,
-   "var": 15.6
+   "bpa_90j": 5.401,
+   "var": 8.1
   },
   "LIFCOBST": {
    "periode": "+1y",
@@ -2139,15 +2128,15 @@
   },
   "LPPWA": {
    "periode": "+1y",
-   "bpa": 1669.313,
+   "bpa": 1669.564,
    "bpa_90j": 1577.785,
    "var": 5.8
   },
   "MBBDE": {
    "periode": "+1y",
-   "bpa": 10.84,
-   "bpa_90j": 10.61,
-   "var": 2.2
+   "bpa": 11.545,
+   "bpa_90j": 10.84,
+   "var": 6.5
   },
   "MCAPST": {
    "periode": "+1y",
@@ -2163,27 +2152,33 @@
   },
   "NRESTST": {
    "periode": "+1y",
-   "bpa": 20.24,
-   "bpa_90j": 19.418,
-   "var": 4.2
+   "bpa": 20.242,
+   "bpa_90j": 19.31,
+   "var": 4.8
   },
   "NTGCO": {
    "periode": "+1y",
-   "bpa": 20.614,
-   "bpa_90j": 19.861,
-   "var": 3.8
+   "bpa": 20.751,
+   "bpa_90j": 19.945,
+   "var": 4.0
+  },
+  "OROXMI": {
+   "periode": "+1y",
+   "bpa": 1.406,
+   "bpa_90j": 1.54,
+   "var": -8.7
   },
   "PENOL": {
    "periode": "+1y",
-   "bpa": 0.705,
-   "bpa_90j": 0.877,
-   "var": -19.7
+   "bpa": 0.62,
+   "bpa_90j": 0.879,
+   "var": -29.4
   },
   "PUIGMC": {
    "periode": "+1y",
-   "bpa": 1.199,
-   "bpa_90j": 1.184,
-   "var": 1.2
+   "bpa": 1.196,
+   "bpa_90j": 1.187,
+   "var": 0.8
   },
   "RAYBST": {
    "periode": "+1y",
@@ -2223,15 +2218,15 @@
   },
   "VOSDE": {
    "periode": "+1y",
-   "bpa": 3.519,
+   "bpa": 3.347,
    "bpa_90j": 4.166,
-   "var": -15.5
+   "var": -19.7
   },
   "VUPA": {
    "periode": "+1y",
-   "bpa": 11.283,
+   "bpa": 11.411,
    "bpa_90j": 11.437,
-   "var": -1.3
+   "var": -0.2
   },
   "ZABWA": {
    "periode": "+1y",
@@ -2241,32 +2236,32 @@
   },
   "ABNB": {
    "periode": "+1y",
-   "bpa": 6.363,
-   "bpa_90j": 6.181,
-   "var": 3.0
+   "bpa": 6.392,
+   "bpa_90j": 6.186,
+   "var": 3.3
   },
   "ADBE": {
    "periode": "+1y",
    "bpa": 27.407,
-   "bpa_90j": 27.36,
+   "bpa_90j": 27.356,
    "var": 0.2
   },
   "ADP2": {
    "periode": "+1y",
-   "bpa": 13.532,
+   "bpa": 13.523,
    "bpa_90j": 13.398,
-   "var": 1.0
+   "var": 0.9
   },
   "AMAT": {
    "periode": "+1y",
-   "bpa": 24.708,
-   "bpa_90j": 23.139,
-   "var": 6.8
+   "bpa": 24.625,
+   "bpa_90j": 23.445,
+   "var": 5.0
   },
   "AVGO": {
    "periode": "+1y",
-   "bpa": 19.414,
-   "bpa_90j": 19.598,
+   "bpa": 19.355,
+   "bpa_90j": 19.537,
    "var": -0.9
   },
   "CDNS": {
@@ -2283,15 +2278,15 @@
   },
   "COST": {
    "periode": "+1y",
-   "bpa": 25.099,
+   "bpa": 25.134,
    "bpa_90j": 24.959,
-   "var": 0.6
+   "var": 0.7
   },
   "CSCO": {
    "periode": "+1y",
-   "bpa": 6.007,
-   "bpa_90j": 5.583,
-   "var": 7.6
+   "bpa": 6.057,
+   "bpa_90j": 5.598,
+   "var": 8.2
   },
   "CTAS": {
    "periode": "+1y",
@@ -2331,27 +2326,27 @@
   },
   "IESC": {
    "periode": "+1y",
-   "bpa": 13.51,
-   "bpa_90j": 11.1,
-   "var": 21.7
+   "bpa": 15.83,
+   "bpa_90j": 12.81,
+   "var": 23.6
   },
   "INCY": {
    "periode": "+1y",
-   "bpa": 8.639,
-   "bpa_90j": 8.819,
-   "var": -2.0
+   "bpa": 8.584,
+   "bpa_90j": 8.878,
+   "var": -3.3
   },
   "JKHY": {
    "periode": "+1y",
    "bpa": 7.998,
-   "bpa_90j": 7.691,
-   "var": 4.0
+   "bpa_90j": 7.699,
+   "var": 3.9
   },
   "KLAC": {
    "periode": "+1y",
-   "bpa": 7.099,
-   "bpa_90j": 6.549,
-   "var": 8.4
+   "bpa": 7.105,
+   "bpa_90j": 6.604,
+   "var": 7.6
   },
   "KSPI": {
    "periode": "+1y",
@@ -2362,68 +2357,68 @@
   "LECO": {
    "periode": "+1y",
    "bpa": 12.828,
-   "bpa_90j": 12.051,
-   "var": 6.4
+   "bpa_90j": 12.515,
+   "var": 2.5
   },
   "LRCX": {
    "periode": "+1y",
-   "bpa": 12.236,
-   "bpa_90j": 10.157,
-   "var": 20.5
+   "bpa": 12.272,
+   "bpa_90j": 11.557,
+   "var": 6.2
   },
   "MANH": {
    "periode": "+1y",
-   "bpa": 6.18,
+   "bpa": 6.175,
    "bpa_90j": 6.116,
-   "var": 1.1
+   "var": 1.0
   },
   "MELI": {
    "periode": "+1y",
-   "bpa": 52.619,
+   "bpa": 51.894,
    "bpa_90j": 55.987,
-   "var": -6.0
+   "var": -7.3
   },
   "META": {
    "periode": "+1y",
-   "bpa": 33.972,
+   "bpa": 33.901,
    "bpa_90j": 33.948,
-   "var": 0.1
+   "var": -0.1
   },
   "MNST": {
    "periode": "+1y",
-   "bpa": 1.286,
-   "bpa_90j": 1.307,
-   "var": -1.6
+   "bpa": 1.281,
+   "bpa_90j": 1.306,
+   "var": -2.0
   },
   "NFLX": {
    "periode": "+1y",
-   "bpa": 3.767,
-   "bpa_90j": 3.813,
-   "var": -1.2
+   "bpa": 3.765,
+   "bpa_90j": 3.816,
+   "var": -1.3
   },
   "NVDA": {
    "periode": "+1y",
-   "bpa": 15.854,
-   "bpa_90j": 12.821,
-   "var": 23.7
+   "bpa": 16.605,
+   "bpa_90j": 12.999,
+   "var": 27.7
   },
   "ORLY": {
    "periode": "+1y",
-   "bpa": 3.669,
+   "bpa": 3.672,
    "bpa_90j": 3.649,
-   "var": 0.5
+   "var": 0.6
   },
   "PAYX": {
    "periode": "+1y",
-   "bpa": 6.389,
-   "bpa_90j": 6.388,
-   "var": 0.0
+   "bpa": 6.391,
+   "bpa_90j": 6.385,
+   "var": 0.1
   },
   "PDD": {
    "periode": "+1y",
-   "bpa": 82.478,
-   "bpa_90j": 82.597,
-   "var": -0.1
+   "bpa": 83.923,
+   "bpa_90j": 82.52,
+   "var": 1.7
   },
   "REGN": {
    "periode": "+1y",
@@ -2433,9 +2428,9 @@
   },
   "ROST": {
    "periode": "+1y",
-   "bpa": 8.997,
-   "bpa_90j": 8.598,
-   "var": 4.6
+   "bpa": 8.973,
+   "bpa_90j": 8.873,
+   "var": 1.1
   },
   "STRL": {
    "periode": "+1y",
@@ -2445,21 +2440,21 @@
   },
   "TXRH": {
    "periode": "+1y",
-   "bpa": 7.418,
+   "bpa": 7.388,
    "bpa_90j": 7.779,
-   "var": -4.6
+   "var": -5.0
   },
   "ULTA": {
    "periode": "+1y",
-   "bpa": 32.008,
-   "bpa_90j": 31.873,
-   "var": 0.4
+   "bpa": 32.03,
+   "bpa_90j": 31.802,
+   "var": 0.7
   },
   "UTHR": {
    "periode": "+1y",
-   "bpa": 31.443,
-   "bpa_90j": 28.937,
-   "var": 8.7
+   "bpa": 30.525,
+   "bpa_90j": 28.693,
+   "var": 6.4
   },
   "VRSK": {
    "periode": "+1y",
@@ -2482,14 +2477,14 @@
   "APH": {
    "periode": "+1y",
    "bpa": 3.625,
-   "bpa_90j": 3.224,
-   "var": 12.4
+   "bpa_90j": 3.239,
+   "var": 11.9
   },
   "CAT": {
    "periode": "+1y",
    "bpa": 32.177,
-   "bpa_90j": 32.055,
-   "var": 0.4
+   "bpa_90j": 32.281,
+   "var": -0.3
   },
   "CL": {
    "periode": "+1y",
@@ -2499,9 +2494,9 @@
   },
   "CMG": {
    "periode": "+1y",
-   "bpa": 1.325,
-   "bpa_90j": 1.368,
-   "var": -3.2
+   "bpa": 1.323,
+   "bpa_90j": 1.369,
+   "var": -3.3
   },
   "DCI": {
    "periode": "+1y",
@@ -2523,15 +2518,15 @@
   },
   "EME": {
    "periode": "+1y",
-   "bpa": 40.907,
+   "bpa": 41.063,
    "bpa_90j": 36.745,
-   "var": 11.3
+   "var": 11.8
   },
   "FIX": {
    "periode": "+1y",
-   "bpa": 67.154,
+   "bpa": 67.294,
    "bpa_90j": 60.043,
-   "var": 11.8
+   "var": 12.1
   },
   "GRMN": {
    "periode": "+1y",
@@ -2541,9 +2536,9 @@
   },
   "GWW": {
    "periode": "+1y",
-   "bpa": 52.103,
+   "bpa": 52.138,
    "bpa_90j": 51.04,
-   "var": 2.1
+   "var": 2.2
   },
   "HAL": {
    "periode": "+1y",
@@ -2565,15 +2560,15 @@
   },
   "ITT": {
    "periode": "+1y",
-   "bpa": 9.918,
-   "bpa_90j": 9.579,
-   "var": 3.5
+   "bpa": 9.966,
+   "bpa_90j": 9.605,
+   "var": 3.8
   },
   "MRK": {
    "periode": "+1y",
-   "bpa": 8.981,
-   "bpa_90j": 9.56,
-   "var": -6.1
+   "bpa": 8.963,
+   "bpa_90j": 9.54,
+   "var": -6.0
   },
   "PAYC": {
    "periode": "+1y",
@@ -2583,9 +2578,9 @@
   },
   "RL": {
    "periode": "+1y",
-   "bpa": 21.152,
-   "bpa_90j": 20.937,
-   "var": 1.0
+   "bpa": 21.201,
+   "bpa_90j": 20.967,
+   "var": 1.1
   },
   "RMD": {
    "periode": "+1y",
@@ -2607,9 +2602,9 @@
   },
   "TJX": {
    "periode": "+1y",
-   "bpa": 5.741,
-   "bpa_90j": 5.753,
-   "var": -0.2
+   "bpa": 5.704,
+   "bpa_90j": 5.76,
+   "var": -1.0
   },
   "TPR": {
    "periode": "+1y",
@@ -2626,8 +2621,8 @@
   "VLTO": {
    "periode": "+1y",
    "bpa": 4.854,
-   "bpa_90j": 4.771,
-   "var": 1.7
+   "bpa_90j": 4.775,
+   "var": 1.6
   },
   "WTS": {
    "periode": "+1y",
@@ -2637,9 +2632,9 @@
   },
   "ABBNSW": {
    "periode": "+1y",
-   "bpa": 3.729,
-   "bpa_90j": 3.545,
-   "var": 5.2
+   "bpa": 3.708,
+   "bpa_90j": 3.575,
+   "var": 3.7
   },
   "ABEV": {
    "periode": "+1y",
@@ -2649,39 +2644,39 @@
   },
   "ACM": {
    "periode": "+1y",
-   "bpa": 6.243,
-   "bpa_90j": 6.718,
-   "var": -7.1
+   "bpa": 7.078,
+   "bpa_90j": 7.006,
+   "var": 1.0
   },
   "ACN": {
    "periode": "+1y",
-   "bpa": 15.909,
+   "bpa": 15.912,
    "bpa_90j": 15.752,
    "var": 1.0
   },
   "ALLE": {
    "periode": "+1y",
-   "bpa": 10.146,
-   "bpa_90j": 9.716,
-   "var": 4.4
+   "bpa": 10.116,
+   "bpa_90j": 9.75,
+   "var": 3.8
   },
   "AME": {
    "periode": "+1y",
-   "bpa": 9.644,
+   "bpa": 9.662,
    "bpa_90j": 8.999,
-   "var": 7.2
+   "var": 7.4
   },
   "ANF": {
    "periode": "+1y",
-   "bpa": 13.393,
-   "bpa_90j": 11.89,
-   "var": 12.6
+   "bpa": 13.151,
+   "bpa_90j": 11.841,
+   "var": 11.1
   },
   "ARM": {
    "periode": "+1y",
-   "bpa": 3.075,
+   "bpa": 3.087,
    "bpa_90j": 3.058,
-   "var": 0.5
+   "var": 0.9
   },
   "AZN": {
    "periode": "+1y",
@@ -2691,27 +2686,27 @@
   },
   "BHP": {
    "periode": "+1y",
-   "bpa": 5.109,
+   "bpa": 5.108,
    "bpa_90j": 4.35,
    "var": 17.4
   },
   "BKNG": {
    "periode": "+1y",
-   "bpa": 12.238,
+   "bpa": 12.235,
    "bpa_90j": 12.376,
    "var": -1.1
   },
   "BKR": {
    "periode": "+1y",
-   "bpa": 2.823,
-   "bpa_90j": 3.164,
-   "var": -10.8
+   "bpa": 2.804,
+   "bpa_90j": 3.161,
+   "var": -11.3
   },
   "BOX": {
    "periode": "+1y",
    "bpa": 1.739,
    "bpa_90j": 1.801,
-   "var": -3.5
+   "var": -3.4
   },
   "BR": {
    "periode": "+1y",
@@ -2751,8 +2746,8 @@
   },
   "CW": {
    "periode": "+1y",
-   "bpa": 17.518,
-   "bpa_90j": 17.162,
+   "bpa": 17.497,
+   "bpa_90j": 17.13,
    "var": 2.1
   },
   "DOCS": {
@@ -2770,8 +2765,8 @@
   "EAT": {
    "periode": "+1y",
    "bpa": 14.939,
-   "bpa_90j": 13.971,
-   "var": 6.9
+   "bpa_90j": 14.516,
+   "var": 2.9
   },
   "EPAM": {
    "periode": "+1y",
@@ -2781,9 +2776,9 @@
   },
   "ETN": {
    "periode": "+1y",
-   "bpa": 16.436,
-   "bpa_90j": 16.022,
-   "var": 2.6
+   "bpa": 16.493,
+   "bpa_90j": 16.034,
+   "var": 2.9
   },
   "EXLS": {
    "periode": "+1y",
@@ -2794,14 +2789,14 @@
   "FSS": {
    "periode": "+1y",
    "bpa": 5.819,
-   "bpa_90j": 5.733,
-   "var": 1.5
+   "bpa_90j": 5.779,
+   "var": 0.7
   },
   "FTI": {
    "periode": "+1y",
-   "bpa": 3.797,
-   "bpa_90j": 3.577,
-   "var": 6.1
+   "bpa": 3.807,
+   "bpa_90j": 3.599,
+   "var": 5.8
   },
   "FTNT": {
    "periode": "+1y",
@@ -2817,15 +2812,15 @@
   },
   "GD": {
    "periode": "+1y",
-   "bpa": 18.971,
+   "bpa": 18.996,
    "bpa_90j": 18.595,
-   "var": 2.0
+   "var": 2.2
   },
   "GE": {
    "periode": "+1y",
-   "bpa": 9.979,
+   "bpa": 9.958,
    "bpa_90j": 9.717,
-   "var": 2.7
+   "var": 2.5
   },
   "GEHC": {
    "periode": "+1y",
@@ -2859,9 +2854,9 @@
   },
   "HRB": {
    "periode": "+1y",
-   "bpa": 6.848,
-   "bpa_90j": 6.87,
-   "var": -0.3
+   "bpa": 6.852,
+   "bpa_90j": 6.906,
+   "var": -0.8
   },
   "HWM": {
    "periode": "+1y",
@@ -2878,20 +2873,20 @@
   "IHG": {
    "periode": "+1y",
    "bpa": 6.686,
-   "bpa_90j": 6.782,
-   "var": -1.4
+   "bpa_90j": 6.847,
+   "var": -2.3
   },
   "INFY": {
    "periode": "+1y",
-   "bpa": 0.842,
+   "bpa": 0.843,
    "bpa_90j": 0.849,
-   "var": -0.8
+   "var": -0.7
   },
   "INTU": {
    "periode": "+1y",
-   "bpa": 26.908,
-   "bpa_90j": 30.752,
-   "var": -12.5
+   "bpa": 26.608,
+   "bpa_90j": 30.799,
+   "var": -13.6
   },
   "LAUR": {
    "periode": "+1y",
@@ -2901,9 +2896,9 @@
   },
   "LDOS": {
    "periode": "+1y",
-   "bpa": 11.802,
-   "bpa_90j": 12.881,
-   "var": -8.4
+   "bpa": 11.82,
+   "bpa_90j": 12.783,
+   "var": -7.5
   },
   "LMT": {
    "periode": "+1y",
@@ -2913,15 +2908,15 @@
   },
   "LNTH": {
    "periode": "+1y",
-   "bpa": 6.588,
-   "bpa_90j": 6.298,
-   "var": 4.6
+   "bpa": 6.654,
+   "bpa_90j": 6.324,
+   "var": 5.2
   },
   "LYV": {
    "periode": "+1y",
-   "bpa": 1.898,
+   "bpa": 1.868,
    "bpa_90j": 1.888,
-   "var": 0.5
+   "var": -1.0
   },
   "MSA": {
    "periode": "+1y",
@@ -2937,9 +2932,9 @@
   },
   "NTES": {
    "periode": "+1y",
-   "bpa": 71.808,
-   "bpa_90j": 71.474,
-   "var": 0.5
+   "bpa": 68.515,
+   "bpa_90j": 71.841,
+   "var": -4.6
   },
   "NVMI": {
    "periode": "+1y",
@@ -2955,21 +2950,21 @@
   },
   "NXT": {
    "periode": "+1y",
-   "bpa": 5.809,
+   "bpa": 5.551,
    "bpa_90j": 5.777,
-   "var": 0.6
+   "var": -3.9
   },
   "NYT": {
    "periode": "+1y",
-   "bpa": 3.17,
-   "bpa_90j": 3.139,
-   "var": 1.0
+   "bpa": 3.148,
+   "bpa_90j": 3.123,
+   "var": 0.8
   },
   "PANW": {
    "periode": "+1y",
-   "bpa": 2.146,
-   "bpa_90j": 2.279,
-   "var": -5.8
+   "bpa": 1.971,
+   "bpa_90j": 2.283,
+   "var": -13.7
   },
   "PCTY": {
    "periode": "+1y",
@@ -2979,15 +2974,15 @@
   },
   "PH": {
    "periode": "+1y",
-   "bpa": 40.987,
-   "bpa_90j": 38.435,
-   "var": 6.6
+   "bpa": 41.196,
+   "bpa_90j": 39.507,
+   "var": 4.3
   },
   "POWL": {
    "periode": "+1y",
-   "bpa": 6.817,
-   "bpa_90j": 6.818,
-   "var": -0.0
+   "bpa": 9.445,
+   "bpa_90j": 8.249,
+   "var": 14.5
   },
   "QLYS": {
    "periode": "+1y",
@@ -3009,15 +3004,15 @@
   },
   "SFM": {
    "periode": "+1y",
-   "bpa": 4.319,
-   "bpa_90j": 5.95,
-   "var": -27.4
+   "bpa": 4.17,
+   "bpa_90j": 5.951,
+   "var": -29.9
   },
   "SGHC": {
    "periode": "+1y",
-   "bpa": 0.907,
+   "bpa": 0.889,
    "bpa_90j": 0.884,
-   "var": 2.5
+   "var": 0.5
   },
   "SLB": {
    "periode": "+1y",
@@ -3039,14 +3034,14 @@
   },
   "THC": {
    "periode": "+1y",
-   "bpa": 20.32,
+   "bpa": 20.365,
    "bpa_90j": 20.844,
-   "var": -2.5
+   "var": -2.3
   },
   "TT": {
    "periode": "+1y",
    "bpa": 17.741,
-   "bpa_90j": 17.471,
+   "bpa_90j": 17.482,
    "var": 1.5
   },
   "TTEK": {
@@ -3057,9 +3052,9 @@
   },
   "UNH": {
    "periode": "+1y",
-   "bpa": 23.331,
+   "bpa": 23.474,
    "bpa_90j": 22.435,
-   "var": 4.0
+   "var": 4.6
   },
   "VRSN": {
    "periode": "+1y",
@@ -3069,33 +3064,33 @@
   },
   "VRT": {
    "periode": "+1y",
-   "bpa": 9.919,
+   "bpa": 9.906,
    "bpa_90j": 9.099,
-   "var": 9.0
+   "var": 8.9
   },
   "WFRD": {
    "periode": "+1y",
    "bpa": 6.696,
-   "bpa_90j": 7.27,
-   "var": -7.9
+   "bpa_90j": 7.059,
+   "var": -5.1
   },
   "WMT": {
    "periode": "+1y",
-   "bpa": 3.222,
-   "bpa_90j": 3.281,
-   "var": -1.8
+   "bpa": 3.228,
+   "bpa_90j": 3.224,
+   "var": 0.1
   },
   "WSE": {
    "periode": "+1y",
-   "bpa": 0.696,
+   "bpa": 0.694,
    "bpa_90j": 0.694,
-   "var": 0.3
+   "var": 0.1
   },
   "WWD": {
    "periode": "+1y",
-   "bpa": 10.75,
-   "bpa_90j": 10.73,
-   "var": 0.2
+   "bpa": 12.955,
+   "bpa_90j": 12.833,
+   "var": 1.0
   },
   "ACLNSW": {
    "periode": "+1y",
@@ -3129,9 +3124,9 @@
   },
   "CFRSW": {
    "periode": "+1y",
-   "bpa": 8.517,
+   "bpa": 8.658,
    "bpa_90j": 8.525,
-   "var": -0.1
+   "var": 1.6
   },
   "EMMNSW": {
    "periode": "+1y",
@@ -3147,9 +3142,9 @@
   },
   "SUNSW": {
    "periode": "+1y",
-   "bpa": 10.906,
+   "bpa": 10.928,
    "bpa_90j": 10.87,
-   "var": 0.3
+   "var": 0.5
   },
   "TEMNSW": {
    "periode": "+1y",
@@ -3159,33 +3154,33 @@
   },
   "ADSK": {
    "periode": "+1y",
-   "bpa": 14.199,
-   "bpa_90j": 14.228,
+   "bpa": 14.2,
+   "bpa_90j": 14.229,
    "var": -0.2
   },
   "EXPE": {
    "periode": "+1y",
-   "bpa": 24.865,
-   "bpa_90j": 24.13,
-   "var": 3.0
+   "bpa": 24.898,
+   "bpa_90j": 24.19,
+   "var": 2.9
   },
   "MEDP": {
    "periode": "+1y",
-   "bpa": 19.855,
+   "bpa": 19.864,
    "bpa_90j": 19.31,
-   "var": 2.8
+   "var": 2.9
   },
   "COR": {
    "periode": "+1y",
-   "bpa": 21.701,
-   "bpa_90j": 22.055,
-   "var": -1.6
+   "bpa": 21.738,
+   "bpa_90j": 21.95,
+   "var": -1.0
   },
   "GDDY": {
    "periode": "+1y",
-   "bpa": 9.24,
+   "bpa": 9.246,
    "bpa_90j": 9.236,
-   "var": 0.0
+   "var": 0.1
   },
   "IT": {
    "periode": "+1y",
@@ -3195,14 +3190,14 @@
   },
   "MCK": {
    "periode": "+1y",
-   "bpa": 52.265,
-   "bpa_90j": 50.533,
-   "var": 3.4
+   "bpa": 52.458,
+   "bpa_90j": 50.557,
+   "var": 3.8
   },
   "CAH": {
    "periode": "+1y",
-   "bpa": 14.379,
-   "bpa_90j": 14.021,
+   "bpa": 14.444,
+   "bpa_90j": 14.072,
    "var": 2.6
   },
   "FTDR": {
@@ -3214,7 +3209,7 @@
   "PYPL": {
    "periode": "+1y",
    "bpa": 5.904,
-   "bpa_90j": 5.785,
+   "bpa_90j": 5.786,
    "var": 2.0
   },
   "FDS": {
@@ -3225,7 +3220,7 @@
   },
   "MCO": {
    "periode": "+1y",
-   "bpa": 18.598,
+   "bpa": 18.596,
    "bpa_90j": 18.913,
    "var": -1.7
   },
@@ -3237,27 +3232,27 @@
   },
   "AON": {
    "periode": "+1y",
-   "bpa": 20.217,
-   "bpa_90j": 21.344,
-   "var": -5.3
+   "bpa": 20.213,
+   "bpa_90j": 21.37,
+   "var": -5.4
   },
   "ASR": {
    "periode": "+1y",
-   "bpa": 22.486,
-   "bpa_90j": 25.732,
-   "var": -12.6
+   "bpa": 23.052,
+   "bpa_90j": 23.66,
+   "var": -2.6
   },
   "CME": {
    "periode": "+1y",
-   "bpa": 13.245,
-   "bpa_90j": 12.934,
-   "var": 2.4
+   "bpa": 13.253,
+   "bpa_90j": 12.93,
+   "var": 2.5
   },
   "IBP": {
    "periode": "+1y",
-   "bpa": 10.541,
+   "bpa": 10.486,
    "bpa_90j": 11.391,
-   "var": -7.5
+   "var": -7.9
   },
   "MORN": {
    "periode": "+1y",
@@ -3279,9 +3274,9 @@
   },
   "DB1DE": {
    "periode": "+1y",
-   "bpa": 13.702,
-   "bpa_90j": 13.569,
-   "var": 1.0
+   "bpa": 13.819,
+   "bpa_90j": 13.601,
+   "var": 1.6
   },
   "AYI": {
    "periode": "+1y",
@@ -3291,27 +3286,27 @@
   },
   "AAPL": {
    "periode": "+1y",
-   "bpa": 10.598,
-   "bpa_90j": 10.722,
-   "var": -1.2
+   "bpa": 10.599,
+   "bpa_90j": 10.751,
+   "var": -1.4
   },
   "QCOM": {
    "periode": "+1y",
-   "bpa": 12.207,
+   "bpa": 12.182,
    "bpa_90j": 13.01,
-   "var": -6.2
+   "var": -6.4
   },
   "ATAT": {
    "periode": "+1y",
-   "bpa": 19.028,
+   "bpa": 19.08,
    "bpa_90j": 18.238,
-   "var": 4.3
+   "var": 4.6
   },
   "TEL": {
    "periode": "+1y",
-   "bpa": 15.088,
+   "bpa": 15.146,
    "bpa_90j": 14.41,
-   "var": 4.7
+   "var": 5.1
   },
   "WHD": {
    "periode": "+1y",
@@ -3324,6 +3319,30 @@
    "bpa": 9.188,
    "bpa_90j": 9.202,
    "var": -0.2
+  },
+  "DLB": {
+   "periode": "+1y",
+   "bpa": 4.537,
+   "bpa_90j": 5.1,
+   "var": -11.0
+  },
+  "SANM": {
+   "periode": "+1y",
+   "bpa": 11.843,
+   "bpa_90j": 11.62,
+   "var": 1.9
+  },
+  "EGLLS": {
+   "periode": "+1y",
+   "bpa": 0.635,
+   "bpa_90j": 0.628,
+   "var": 1.1
+  },
+  "NKTCO": {
+   "periode": "+1y",
+   "bpa": 5.658,
+   "bpa_90j": 5.327,
+   "var": 6.2
   }
  },
  "ecart_hist": {
