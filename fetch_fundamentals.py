@@ -26,6 +26,10 @@ try:
     from moat import MOAT, MOAT_MIN_BUY
 except Exception:
     MOAT, MOAT_MIN_BUY = {}, 3
+try:
+    from moat import MOAT_TRAJ
+except Exception:
+    MOAT_TRAJ = {}
 IRR_MIN_BUY = 12.0   # decision du 06/11/2026, testee et gardee
 try:
     from moat import UNCERTAINTY, MARGIN
@@ -681,8 +685,11 @@ def growth_yahoo(cagr, nig):
     m = sum(gs) / len(gs)
     return min(m, cagr) if cagr is not None else m
 
-def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
+def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None, g2=None):
+    # 22/11/2026 : g2 = croissance d'arrivee et perpetuelle (2,5 % par defaut).
+    # Le scenario de rupture d'un moat en erosion utilise g1 = -5 %, g2 = 0.
     R = QV_R if r is None else r
+    G2 = QV_G2 if g2 is None else g2
     if roic_pct is None:
         return None
     if g1_override is not None:
@@ -703,16 +710,16 @@ def qarp_value(eps_fwd, eps_ttm, cagr, nig, roic_pct, g1_override=None, r=None):
     else:
         return None
     roic = max(min(roic_pct, QV_ROIC_CAP) / 100, 0.10)
-    pay2 = max(0.2, 1 - QV_G2 / roic)
+    pay2 = max(0.2, min(1.0, 1 - G2 / roic))
     v, e = 0.0, eps
     for t_ in range(1, QV_YEARS + 1):
         # croissance qui ralentit lineairement de g1 vers 2,5 % en 10 ans
         # (une croissance forte constante 10 ans surevaluait Thales, GTT...)
-        g = g1 + (QV_G2 - g1) * (t_ - 1) / (QV_YEARS - 1)
+        g = g1 + (G2 - g1) * (t_ - 1) / (QV_YEARS - 1)
         e *= (1 + g)
-        pay = max(0.2, 1 - g / roic)
+        pay = max(0.2, min(1.0, 1 - g / roic))
         v += e * pay / (1 + R) ** t_
-    tv = e * (1 + QV_G2) * pay2 / (R - QV_G2)
+    tv = e * (1 + G2) * pay2 / (R - G2)
     v += tv / (1 + R) ** QV_YEARS
     return v
 
@@ -1447,11 +1454,17 @@ def fetch_one(ticker, yf_sym, sector):
                 result['vmeth'] = 'qarp'
                 # 05/10/2026 : trois scenarios et zone selon l'incertitude
                 vp = qarp_value(fwd_v, eps_ttm, 0.0, 0.0, roic_v)
+                # 22/11/2026 : moat en erosion (trajectoire a 10 ans, moat.py) ->
+                # le pessimiste n'est plus 'croissance nulle' mais la rupture :
+                # benefice en baisse de 5 %/an au depart, stabilise sans croissance.
+                _traj = (MOAT_TRAJ.get(ticker) or (None,))[0]
+                if _traj == 'erosion':
+                    vp = qarp_value(fwd_v, eps_ttm, None, None, roic_v, g1_override=-0.05, g2=0.0)
                 vo = qarp_value(fwd_v, eps_ttm, None, None, roic_v,
                                 g1_override=min(g_c + 3, g_cap) / 100)
                 p_ = result['price']
                 clamp = lambda x: round(max(min(x, p_ * 3.0), p_ * 0.3), 2)
-                unc = 'elevee' if _cyc else UNCERTAINTY.get(ticker)
+                unc = 'elevee' if (_cyc or _traj == 'erosion') else UNCERTAINTY.get(ticker)
                 lo_m, hi_m = MARGIN.get(unc or 'moyenne', (0.25, 0.15))
                 vc = result['dcfm']
                 result['unc'] = unc or 'non evaluee'
@@ -1552,6 +1565,9 @@ def fetch_one(ticker, yf_sym, sector):
         mo = MOAT.get(ticker)
         if mo:
             result['mscore'], result['mtype'], result['mthreat'] = mo
+        _tr = MOAT_TRAJ.get(ticker)
+        if _tr:
+            result['mtraj'], result['mtrajw'] = _tr
         # Garde-fou "couteau qui tombe" (05/10/2026, cas Wavestone) : un cours
         # a plus de 35 % sous son plus haut sur 1 an signale que le marche sait
         # quelque chose que 4 ans de comptes ne montrent pas encore (Wavestone :
@@ -1757,6 +1773,9 @@ def set_quality_fields(block, data):
         block = _set_field(block, 'mscore', num(data.get('mscore')))
         block = _set_field(block, 'mtype', txt(data.get('mtype')))
         block = _set_field(block, 'mthreat', txt(data.get('mthreat')))
+    if data.get('mtraj'):
+        block = _set_field(block, 'mtraj', txt(data.get('mtraj')))
+        block = _set_field(block, 'mtrajw', txt(data.get('mtrajw')))
     block = _set_field(block, 'gused', num(data.get('gused')))
     block = _set_field(block, 'place', txt(data.get('place')))
     for k in ('regu', 'regn', 'nregu', 'vpess', 'vopt'):

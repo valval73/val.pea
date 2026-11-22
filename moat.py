@@ -5,12 +5,18 @@ Un moat n'est PAS "pas de concurrence aujourd'hui" (monopoles d'Etat taxables,
 leaders disruptes comme Wavestone, brevets qui expirent). C'est une
 rentabilite elevee qui RESISTE aux concurrents dans la duree.
 
-Score 0-5 (evaluation qualitative de Claude, A VALIDER par l'utilisatrice) :
+Score 0-5 = le moat DANS 10 ANS, pas aujourd'hui (22/11/2026, erreur de
+debutant corrigee : Adobe notee 4/5 sur son etat actuel alors que l'IA attaque
+precisement ses couts de changement). Question a se poser : un concurrent bien
+finance, aide de l'IA, peut-il prendre ses clients rentables d'ici 10 ans ?
   5 = quasi infranchissable (monopole technique, marque iconique, duopole)
   4 = fort et durable, avec une menace identifiee
-  3 = reel mais limite (niche, taille, dependance)
+  3 = reel mais limite (niche, taille, dependance) ou fort mais en erosion
   2 = faible (metier de services, relations clients)
   0-1 = absent
+Trajectoire obligatoire (MOAT_TRAJ) : 'renforce', 'stable' ou 'erosion', avec
+la raison. Erosion -> incertitude elevee et scenario pessimiste de rupture
+(benefice -5 %/an au depart, puis sans croissance).
 Regle ecrite : pas de signal 'acheter' si moat < 3.
 A revoir chaque annee, et immediatement si la 'menace' se materialise.
 """
@@ -90,7 +96,7 @@ MOAT = {
                  "assistants d'IA qui contournent la recherche, proces antitrust"),
     'META':  (4, "effet de reseau de 3 milliards d'utilisateurs, ciblage publicitaire",
                  "depenses d'IA et de metavers colossales, reglementation"),
-    'ADBE':  (4, "standard des createurs (Photoshop, Acrobat), couts de changement",
+    'ADBE':  (3, "standard des createurs (Photoshop, Acrobat), couts de changement",
                  "IA generative qui banalise la creation (Canva, outils gratuits)"),
     'ANET':  (4, "commutateurs reseau des centres de donnees geants, logiciel EOS",
                  "dependance a quelques clients (Microsoft, Meta), Nvidia"),
@@ -275,3 +281,14 @@ UNCERTAINTY = {
 }
 # (bas de zone, haut de zone) = valeur x (1 - decote)
 MARGIN = {'faible': (0.20, 0.10), 'moyenne': (0.25, 0.15), 'elevee': (0.30, 0.20)}
+
+
+# 22/11/2026 : trajectoire du moat a 10 ans (renforce / stable / erosion) et sa
+# raison. Une fiche sans trajectoire est incomplete. Rempli fiche par fiche.
+MOAT_TRAJ = {
+    'ADBE': ('erosion', "l’IA generative attaque le coeur du moat : la maitrise de Photoshop et les formats de "
+             "fichiers comptent moins quand une image s’obtient en une phrase ; le bas de gamme est deja perdu "
+             "(Canva, Affinity gratuit) ; restent solides Acrobat/PDF en entreprise et Firefly, utilisable sans "
+             "risque juridique par les grandes marques ; les engagements signes (RPO) ralentissent : +8 % sur un an "
+             "contre +13 % un an plus tot"),
+}

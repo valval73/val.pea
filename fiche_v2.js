@@ -290,6 +290,8 @@ function moat(s, F){
     (s.mtype?'<p><b>D’où vient l’avantage :</b> '+esc(s.mtype)+'.</p>':'')+
     '<div><b>Pourquoi pas un concurrent ?</b></div>'+comp+peersBlock(s)+
     (s.mthreat?'<div style="color:'+C.rd+'"><b>Menace :</b> '+esc(s.mthreat)+'.</div>':'')+
+    // 22/11/2026 : le moat se juge à 10 ans ; sans trajectoire, la note est une photo
+    (s.mtraj?'<div style="margin-top:6px"><b>Dans 10 ans :</b> <span class="v2-pill" style="background:'+(s.mtraj==='erosion'?'#fbecea':s.mtraj==='renforce'?'#eef6f1':'#f5f3ee')+';color:'+(s.mtraj==='erosion'?C.rd:s.mtraj==='renforce'?C.gn:C.ink)+'">'+({erosion:'EN ÉROSION',stable:'STABLE',renforce:'RENFORCÉ'}[s.mtraj]||s.mtraj.toUpperCase())+'</span> '+esc(s.mtrajw||'')+'.</div>':'<div class="v2-small" style="color:'+C.rd+'"><b>Trajectoire à 10 ans non évaluée :</b> la note décrit le moat d’aujourd’hui, pas celui de demain.</div>')+
     '<div class="v2-small">'+((typeof FICHE!=='undefined'&&FICHE[s.ticker]&&FICHE[s.ticker].val)?'Note de moat validée par toi le '+esc(FICHE[s.ticker].val.split('-').reverse().join('/'))+'.':'Note de moat et niveau d’incertitude : jugement de Claude, à valider par toi.')+'</div></section>';
 }
 
@@ -298,11 +300,18 @@ function moat(s, F){
 var PROF = {lente:['Lente','le dividende et sa solidité'], solide:['Solide','le prix payé : croissance régulière, mais souvent chère'], rapide:['Rapide','la durée de la croissance ; si elle s’arrête, le multiple baisse'], cyclique:['Cyclique','où on en est dans le cycle ; un PER bas au sommet est un piège'], retournement:['Retournement','les preuves du redressement'], actifs:['Valeur d’actifs','ce que valent réellement les actifs']};
 function thesis(s, F){
   if(!F) return '<section class="v2-card"><h2>Ma thèse d’investissement</h2><p class="v2-small">Pas encore rédigée pour cette valeur (rédigée en priorité pour tes lignes et les valeurs de qualité).</p></section>';
-  var rows = (F.kpi||[]).map(function(k){ return '<tr><td>'+esc(k[0])+'</td><td class="v2-mono">'+esc(k[1])+'</td><td>'+esc(k[2])+'</td></tr>'; }).join('');
+  var rows = (F.kpi||[]).map(function(k){ return '<tr><td>'+esc(k[0])+(k[3]==='avance'?' <span class="v2-pill" style="background:#eef1f6;color:#24508a">EN AVANCE</span>':'')+'</td><td class="v2-mono">'+esc(k[1])+'</td><td>'+esc(k[2])+'</td></tr>'; }).join('');
+  // 22/11/2026 : une fiche exceptionnelle = trajectoire du moat + un chiffre qui alerte en avance + un scénario de rupture
+  var miss = [];
+  if(!s.mtraj) miss.push('trajectoire du moat à 10 ans');
+  if(!(F.kpi||[]).some(function(k){return k[3]==='avance';})) miss.push('un chiffre d’erreur qui alerte en avance');
+  if(!F.bear) miss.push('scénario de rupture');
   return '<section class="v2-card"><div class="v2-head"><h2>Ma thèse d’investissement</h2>'+(F.prof&&PROF[F.prof]?'<span class="v2-pill" style="background:#eef1f6;color:#0e1c33">'+PROF[F.prof][0].toUpperCase()+'</span> ':'')+(F.val?'<span class="v2-pill" style="background:#eef6f1;color:'+C.gn+'">VALIDÉE LE '+esc(F.val.split('-').reverse().join('/'))+'</span>':'<span class="v2-pill" style="background:#fbf4e6;color:#8a6420">BROUILLON — À VALIDER</span>')+'</div>'+(F.prof&&PROF[F.prof]?'<p class="v2-small"><b>Profil '+PROF[F.prof][0].toLowerCase()+' :</b> à regarder en priorité, '+PROF[F.prof][1]+'.</p>':'')+
     '<div class="v2-grid3"><div><div class="v2-k" style="color:'+C.gn+'">Pourquoi la posséder</div>'+esc(F.why)+'</div>'+
     '<div><div class="v2-k">Pourquoi maintenant</div>'+(s.gimp!=null&&s.gused!=null?'Le cours suppose '+fr(s.gimp,1)+' %/an ; on retient '+fr(s.gused,1)+' %. '+(s.gimp<s.gused?'Le marché est plus pessimiste que l’entreprise.':'Le marché est déjà plus optimiste que l’entreprise.'):'Voir la zone d’achat.')+'</div>'+
     '<div><div class="v2-k" style="color:'+C.rd+'">Ce qui prouverait que j’ai tort</div>'+esc(F.wrong)+'</div></div>'+
+    (F.bear?'<div class="v2-note" style="background:#fbecea"><span><b>Scénario de rupture (si la menace se réalise) :</b> '+esc(F.bear)+'</span></div>':'')+
+    (miss.length?'<div class="v2-small" style="color:'+C.rd+'"><b>Fiche incomplète</b> (méthode du 22/11/2026) : manque '+miss.join(', ')+'.</div>':'')+
     (rows?'<div class="v2-k" style="margin-top:6px">Tableau de bord de la thèse <span class="v2-small">· à vérifier à chaque publication</span></div><div class="v2-scroll"><table class="v2-tab"><thead><tr><th>Indicateur</th><th>Dernière valeur</th><th>Alerte si</th></tr></thead><tbody>'+rows+'</tbody></table></div><div class="v2-small">Deux alertes en même temps = thèse cassée → vente, quel que soit le cours.</div>':'')+
     '<div class="v2-small">'+(F.dep?'Dépendance : '+esc(F.dep):'')+(F.next?' · Prochain rendez-vous : '+esc(F.next):'')+'</div></section>';
 }
@@ -347,7 +356,7 @@ function priceBlock(s){
         card('CENTRAL',C.ink,C.bg,s.dcfm,'Actif net comptable par action (approche de l’actif net réévalué).',true)+
         card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,'Patrimoine réévalué de 10 %.')
       :
-      card('PESSIMISTE',C.rd,'#fbecea',s.vpess,'Plus aucune croissance pendant 10 ans.')+
+      card('PESSIMISTE',C.rd,'#fbecea',s.vpess,s.mtraj==='erosion'?'Rupture : bénéfice en baisse de 5 %/an au départ, puis stabilisé sans croissance (moat en érosion).':'Croissance nulle au départ, remontant lentement vers 2,5 %/an.')+
       card('CENTRAL',C.ink,C.bg,s.dcfm,'Prix pour gagner 8,5 %/an si '+(gc!=null?fr(gc,1)+' %/an au départ':'la croissance retenue')+', ralentissant vers 2,5 %.',true)+
       card('OPTIMISTE',C.gn,'#eef6f1',s.vopt,(gc!=null?fr(Math.min(gcap,gc+3),1)+' %/an au départ':'croissance + 3 points')+'.'))+
     '</div>'+(s.vref==='mediane'?'<div class="v2-note" style="background:#fbf4e6"><span><b>Valeur ramenée à la médiane des 3 méthodes</b> : le calcul central dépassait de plus de 30 % les deux contrôles. Sur 33 valeurs comparées à Baggr, ce cas était presque toujours trop optimiste ; les paliers partent donc de la valeur la plus prudente.</span></div>':'')+'<p class="v2-small">Ce ne sont <b>pas des prévisions de cours</b> : c’est ce que l’entreprise vaut selon trois hypothèses. Le « +x % » est l’écart avec le cours d’aujourd’hui, rien ne garantit que le marché le comble.</p>'+priceBar(s)+
