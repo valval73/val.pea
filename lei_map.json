@@ -255,6 +255,7 @@
 "lei": "9695006LOD5B2D7Y0N70",
 "name": "EDENRED"
 },
+"EGLLS": null,
 "EINDE": {
 "lei": "529900WKT7CENGR4UW29",
 "name": "Einhell Germany AG"
@@ -570,6 +571,10 @@
 "NEM": null,
 "NEUWA": null,
 "NFLX": null,
+"NKTCO": {
+"lei": "529900197LKWCEQ0NL18",
+"name": "NKT A/S"
+},
 "NORBTOL": {
 "lei": "254900C08RCMXVZYFY97",
 "name": "NORBIT ASA"

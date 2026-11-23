@@ -1,8 +1,8 @@
 {
-"date": "2026-11-16",
-"scope": 387,
-"compared": 93,
-"ok": 84,
+"date": "2026-11-23",
+"scope": 391,
+"compared": 104,
+"ok": 96,
 "res": {
 "0A2LL": {
 "status": "societe introuvable"
@@ -96,8 +96,21 @@
 "status": "societe introuvable"
 },
 "AI": {
-"status": "aucun rapport lisible",
-"lei": "969500MMPQVHK671GT54"
+"status": "compare",
+"lei": "969500MMPQVHK671GT54",
+"entity": "L'AIR LIQUIDE SOCIETE ANONYME POUR L'ETUDE ET L'EXPLOITATION DES PROCEDES GEORGES CLAUDE",
+"period_end": "2024-12-31",
+"checked": [
+"CA 2024",
+"CA 2023",
+"resultat net 2024",
+"resultat net 2023",
+"ROIC 2024"
+],
+"issues": [],
+"roic_officiel": 11.1,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "AIAAT": {
 "status": "societe introuvable"
@@ -189,9 +202,13 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "AQST": {
+"status": "aucun rapport lisible",
+"lei": "549300CN568MD1JD3E40"
+},
+"ARCADAS": {
 "status": "compare",
-"lei": "549300CN568MD1JD3E40",
-"entity": "AQ Group AB",
+"lei": "7245000UZH70GO047N03",
+"entity": "ARCADIS N.V.",
 "period_end": "2025-12-31",
 "checked": [
 "CA 2025",
@@ -201,20 +218,24 @@
 "ROIC 2025",
 "cash apres loyers 2025"
 ],
-"issues": [
-"cash après loyers 79 % (2025, loyers = 16 % du flux d'exploitation) contre 98 % selon Yahoo : sous le seuil de 80 %"
-],
-"roic_officiel": 17.1,
-"cash_apres_loyers": 79,
+"issues": [],
+"roic_officiel": 18.0,
+"cash_apres_loyers": 150,
 "histo_10a": null
 },
-"ARCADAS": {
-"status": "aucun rapport lisible",
-"lei": "7245000UZH70GO047N03"
-},
 "ARGAN": {
-"status": "aucun rapport lisible",
-"lei": "529900FXM41XSCUSGH04"
+"status": "compare",
+"lei": "529900FXM41XSCUSGH04",
+"entity": "ARGAN",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": 6.2,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "ARM": {
 "status": "SEC inaccessible depuis GitHub"
@@ -333,22 +354,8 @@
 "histo_10a": null
 },
 "AUBPA": {
-"status": "compare",
-"lei": "969500KGFSDP6UUKIA67",
-"entity": "AUBAY",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025",
-"cash apres loyers 2025"
-],
-"issues": [],
-"roic_officiel": 16.3,
-"cash_apres_loyers": 102,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "969500KGFSDP6UUKIA67"
 },
 "AVGO": {
 "status": "SEC inaccessible depuis GitHub"
@@ -368,8 +375,20 @@
 "histo_10a": null
 },
 "AXFOST": {
-"status": "aucun rapport lisible",
-"lei": "549300QIXCZWZLHE8L05"
+"status": "compare",
+"lei": "549300QIXCZWZLHE8L05",
+"entity": "Axfood AB",
+"period_end": "2025-12-31",
+"checked": [
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025",
+"cash apres loyers 2025"
+],
+"issues": [],
+"roic_officiel": 41.7,
+"cash_apres_loyers": 109,
+"histo_10a": null
 },
 "AYI": {
 "status": "SEC inaccessible depuis GitHub"
@@ -423,26 +442,47 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "BNP": {
-"status": "annees non comparables",
-"lei": "R0MUWSFPU8MPRO8K5P83",
-"entity": "BNP PARIBAS",
-"period_end": "2025-12-31",
-"checked": [],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "R0MUWSFPU8MPRO8K5P83"
 },
 "BOHUSOL": {
 "status": "societe introuvable"
 },
 "BONHROL": {
-"status": "aucun rapport lisible",
-"lei": "213800HOQE1B34SUA323"
+"status": "compare",
+"lei": "213800HOQE1B34SUA323",
+"entity": "Bonheur ASA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 16.7,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "BOUVOL": {
-"status": "aucun rapport lisible",
-"lei": "5967007LIEEXZXFMBC26"
+"status": "compare",
+"lei": "5967007LIEEXZXFMBC26",
+"entity": "BOUVET ASA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"cash apres loyers 2025"
+],
+"issues": [
+"cash après loyers 73 % (2025, loyers = 17 % du flux d'exploitation) contre 134 % selon Yahoo : sous le seuil de 80 %"
+],
+"roic_officiel": null,
+"cash_apres_loyers": 73,
+"histo_10a": null
 },
 "BOX": {
 "status": "SEC inaccessible depuis GitHub"
@@ -672,25 +712,8 @@
 "status": "societe introuvable"
 },
 "CTTLS": {
-"status": "compare",
-"lei": "529900G4A1IKOKC22K56",
-"entity": "CTT - CORREIOS DE PORTUGAL S.A.",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"ROIC 2025",
-"cash apres loyers 2025"
-],
-"issues": [
-"CA 2025 officiel 1 129 M contre Yahoo 1 232 M",
-"CA 2024 officiel 966 M contre Yahoo 1 064 M"
-],
-"roic_officiel": 35.1,
-"cash_apres_loyers": 136,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "529900G4A1IKOKC22K56"
 },
 "CVLT": {
 "status": "SEC inaccessible depuis GitHub"
@@ -718,8 +741,21 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "DG": {
-"status": "aucun rapport lisible",
-"lei": "213800WFQ334R8UXUG83"
+"status": "compare",
+"lei": "213800WFQ334R8UXUG83",
+"entity": "VINCI",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 34.7,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "DIAWA": {
 "status": "societe introuvable"
@@ -743,6 +779,9 @@
 "roic_officiel": 12.3,
 "cash_apres_loyers": 103,
 "histo_10a": null
+},
+"DLB": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "DLG": {
 "status": "compare",
@@ -807,6 +846,9 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"EGLLS": {
+"status": "societe introuvable"
+},
 "EINDE": {
 "status": "aucun rapport lisible",
 "lei": "529900WKT7CENGR4UW29"
@@ -856,8 +898,21 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "EPI": {
-"status": "aucun rapport lisible",
-"lei": "5493004Q73OEYW1SPE91"
+"status": "compare",
+"lei": "5493004Q73OEYW1SPE91",
+"entity": "Epiroc Aktiebolag",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 18.1,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "EPROBST": {
 "status": "societe introuvable"
@@ -989,6 +1044,9 @@
 "FDS": {
 "status": "SEC inaccessible depuis GitHub"
 },
+"FFIV": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "FIX": {
 "status": "SEC inaccessible depuis GitHub"
 },
@@ -1057,19 +1115,8 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "GOFOREHE": {
-"status": "compare",
-"lei": "743700JIW1LAUZDH9012",
-"entity": "Gofore Oyj",
-"period_end": "2025-12-31",
-"checked": [
-"resultat net 2025",
-"resultat net 2024",
-"cash apres loyers 2025"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": 199,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "743700JIW1LAUZDH9012"
 },
 "GOOGL": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1163,8 +1210,18 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "HEIJM": {
-"status": "aucun rapport lisible",
-"lei": "724500OUE3PCA809DZ79"
+"status": "compare",
+"lei": "724500OUE3PCA809DZ79",
+"entity": "Koninklijke Heijmans N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "HEMST": {
 "status": "compare",
@@ -1367,8 +1424,21 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "ITX": {
-"status": "aucun rapport lisible",
-"lei": "549300TTCXZOGZM2EY83"
+"status": "compare",
+"lei": "549300TTCXZOGZM2EY83",
+"entity": "INDUSTRIA DE DISEÑO TEXTIL, S.A.",
+"period_end": "2026-01-31",
+"checked": [
+"CA 2026",
+"CA 2025",
+"resultat net 2026",
+"resultat net 2025",
+"ROIC 2026"
+],
+"issues": [],
+"roic_officiel": 39.7,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "IVUDE": {
 "status": "aucun rapport lisible",
@@ -1464,8 +1534,19 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "LAGR": {
-"status": "aucun rapport lisible",
-"lei": "5493002L6I4YHANEYR87"
+"status": "compare",
+"lei": "5493002L6I4YHANEYR87",
+"entity": "Lagercrantz Group Aktiebolag",
+"period_end": "2026-03-31",
+"checked": [
+"CA 2026",
+"CA 2025",
+"ROIC 2026"
+],
+"issues": [],
+"roic_officiel": 16.7,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "LAUR": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1507,19 +1588,8 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "LOG": {
-"status": "compare",
-"lei": "9598000ANNAL42UJ7X28",
-"entity": "LOGISTA INTEGRAL SA",
-"period_end": "2025-09-30",
-"checked": [
-"CA 2024",
-"resultat net 2024",
-"cash apres loyers 2025"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": 168,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "9598000ANNAL42UJ7X28"
 },
 "LOTB": {
 "status": "compare",
@@ -1615,8 +1685,18 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "MEDIOL": {
-"status": "aucun rapport lisible",
-"lei": "5967007LIEEXZXJOX483"
+"status": "compare",
+"lei": "5967007LIEEXZXJOX483",
+"entity": "MEDISTIM ASA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "MEDP": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1637,21 +1717,8 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "MONC": {
-"status": "compare",
-"lei": "815600EBD7FB00525B20",
-"entity": "MONCLER S.P.A.",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024",
-"cash apres loyers 2025"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": 80,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "815600EBD7FB00525B20"
 },
 "MORN": {
 "status": "SEC inaccessible depuis GitHub"
@@ -1732,6 +1799,21 @@
 "NFLX": {
 "status": "SEC inaccessible depuis GitHub"
 },
+"NKTCO": {
+"status": "compare",
+"lei": "529900197LKWCEQ0NL18",
+"entity": "NKT A/S",
+"period_end": "2026-06-30",
+"checked": [
+"CA 2025",
+"resultat net 2025",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 20.3,
+"cash_apres_loyers": null,
+"histo_10a": null
+},
 "NORBTOL": {
 "status": "compare",
 "lei": "254900C08RCMXVZYFY97",
@@ -1751,8 +1833,18 @@
 "lei": "635400VFBLRSFRXLGQ03"
 },
 "NOVO": {
-"status": "aucun rapport lisible",
-"lei": "549300DAQ1CVT6CXN342"
+"status": "compare",
+"lei": "549300DAQ1CVT6CXN342",
+"entity": "NOVO NORDISK A/S",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "NRESTST": {
 "status": "societe introuvable"
@@ -1878,15 +1970,39 @@
 "status": "societe introuvable"
 },
 "PENOL": {
-"status": "aucun rapport lisible",
-"lei": "5967007LIEEXZXGWM030"
+"status": "compare",
+"lei": "5967007LIEEXZXGWM030",
+"entity": "PANORO ENERGY ASA",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "PH": {
 "status": "SEC inaccessible depuis GitHub"
 },
 "PLNW": {
-"status": "aucun rapport lisible",
-"lei": "969500356FAUM2X41Q59"
+"status": "compare",
+"lei": "969500356FAUM2X41Q59",
+"entity": "PLANISWARE",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "PLWWA": {
 "status": "societe introuvable"
@@ -1895,7 +2011,7 @@
 "status": "compare",
 "lei": "5299007OWYZ6I1E46843",
 "entity": "Pandora A/S",
-"period_end": "2026-06-30",
+"period_end": "2026-09-30",
 "checked": [
 "CA 2025"
 ],
@@ -2060,23 +2176,11 @@
 "status": "societe introuvable"
 },
 "SAF": {
-"status": "compare",
-"lei": "969500UIC89GT3UL7L24",
-"entity": "SAFRAN",
-"period_end": "2025-12-31",
-"checked": [
-"CA 2025",
-"CA 2024",
-"resultat net 2025",
-"resultat net 2024"
-],
-"issues": [],
-"roic_officiel": null,
-"cash_apres_loyers": null,
-"histo_10a": null
+"status": "aucun rapport lisible",
+"lei": "969500UIC89GT3UL7L24"
 },
-"SCBSM": {
-"status": "societe introuvable"
+"SANM": {
+"status": "SEC inaccessible depuis GitHub"
 },
 "SCCO": {
 "status": "SEC inaccessible depuis GitHub"
@@ -2088,8 +2192,20 @@
 "status": "societe introuvable"
 },
 "SECT": {
-"status": "aucun rapport lisible",
-"lei": "549300R9ZBT8YSFFK266"
+"status": "compare",
+"lei": "549300R9ZBT8YSFFK266",
+"entity": "SECTRA Aktiebolag",
+"period_end": "2026-04-30",
+"checked": [
+"CA 2026",
+"CA 2025",
+"resultat net 2026",
+"resultat net 2025"
+],
+"issues": [],
+"roic_officiel": null,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "SESMI": {
 "status": "compare",
@@ -2303,6 +2419,9 @@
 "cash_apres_loyers": null,
 "histo_10a": null
 },
+"TTEK": {
+"status": "SEC inaccessible depuis GitHub"
+},
 "TUI1DE": {
 "status": "compare",
 "lei": "529900SL2WSPV293B552",
@@ -2332,8 +2451,21 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "UMG": {
-"status": "aucun rapport lisible",
-"lei": "724500GJBUL3D9TW9Y18"
+"status": "compare",
+"lei": "724500GJBUL3D9TW9Y18",
+"entity": "Universal Music Group N.V.",
+"period_end": "2025-12-31",
+"checked": [
+"CA 2025",
+"CA 2024",
+"resultat net 2025",
+"resultat net 2024",
+"ROIC 2025"
+],
+"issues": [],
+"roic_officiel": 23.5,
+"cash_apres_loyers": null,
+"histo_10a": null
 },
 "UNH": {
 "status": "SEC inaccessible depuis GitHub"
@@ -2426,9 +2558,6 @@
 "status": "SEC inaccessible depuis GitHub"
 },
 "WTS": {
-"status": "SEC inaccessible depuis GitHub"
-},
-"WWD": {
 "status": "SEC inaccessible depuis GitHub"
 },
 "YRMMI": {
